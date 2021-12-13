@@ -8,11 +8,10 @@ import useMenu from "@services/StoreService/hooks/useMenu";
 import MegaNav, { NavItemMegaNavProps } from "../MegaNav/MegaNav";
 import MegaNavMobile from "../MegaNav/MegaNavMobile";
 import { Logo } from "@components/Layout/Logo";
-import NavItem, { NavItemProps } from "../NavItem/NavItem";
-import { Dropdown } from "../Dropdown/Dropdown";
-import Button from "@components/Button/Button";
+import { NavItemProps } from "../NavItem/NavItem";
 import { NavigationModul } from "@services/NavigationService/NavigationModul";
 import NavigationMobile from "@services/NavigationService/NavigationMobile";
+
 
 interface NavProps {
   items: (Omit<NavItemProps, "divider"> | NavItemMegaNavProps)[];
@@ -36,6 +35,9 @@ const Nav: React.FC<NavProps> = ({ items }) => {
             <NavigationModul items={items} />
           </div>
 
+       
+            
+
           {/* <div className="hidden lg:block">
             <Button> Kontakt aufnehmen</Button>
           </div>
@@ -44,6 +46,7 @@ const Nav: React.FC<NavProps> = ({ items }) => {
             data-testid="menu-overlay-toggle"
             onClick={handleNavClick}
             className="lg:hidden"
+             aria-label="Open the Menu"
           >
             <Svg className="w-[30px]" icon="hamburger" />
           </button>

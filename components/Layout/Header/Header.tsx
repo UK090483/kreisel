@@ -1,4 +1,5 @@
 import Typo from "@components/Typography/Typography";
+import UserWidget from "@services/AuthService/AuthWidged";
 import React from "react";
 
 interface HeaderProps {}
@@ -10,6 +11,7 @@ export const Header: React.FC<HeaderProps> = ({ children }) => {
         <Typo variant="body-s" space={false}>
           Kostenlose Beratung: 040 38 61 23 71
         </Typo>
+        <UserWidget/>
       </div>
       {children}
     </div>
