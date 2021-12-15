@@ -1,26 +1,27 @@
-// import React from 'react';
-// // import Embed from '@components/Embed'
+import React from "react";
 
-// export const embedPlugQuery = `
-// _type == "embed" => {
-//   _type,
-//   _key,
-//    url
-// }
-// `;
+import Embed from "@components/Embed";
 
-// export type EmbedPlugResult = {
-//   _type: 'embed';
-//   _key: string;
-//   url?: null | string;
-// };
+export const embedPlugQuery = `
+_type == "embed" => {
+  _type,
+  _key,
+   url
+}
+`;
 
-// const EmbedPlug: React.FC<EmbedPlugResult> = ({ url }) => {
-//   if (!url) return <div>url is missing</div>;
-//   return <div>embed</div>;
-//   // return <Embed url={url} />
-// };
+export type EmbedPlugResult = {
+  _type: "embed";
+  _key: string;
+  url?: null | string;
+};
 
-// export default EmbedPlug;
+const EmbedPlug: React.FC<{ node: EmbedPlugResult }> = (props) => {
+  const { url } = props.node;
 
-export {};
+  if (!url) return <div>url is missing</div>;
+
+  return <Embed url={url} />;
+};
+
+export default EmbedPlug;

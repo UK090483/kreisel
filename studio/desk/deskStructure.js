@@ -24,30 +24,43 @@ export default () =>
                 .child(S.documentTypeList("pageType")),
             ])
         ),
+      S.listItem().title('Pages').icon(CgWebsite).child(
+       S.documentTypeList('page')
+      ),
+      S.listItem().title('Articles').child(
+        S.documentTypeList('article')
+       ),
 
-      S.listItem()
-        .title("Pages")
-        .icon(CgWebsite)
-        .child(
-          S.documentTypeList("pageType")
-            .filter(
-              `_type ==  "pageType" || (_type == "page" && !defined(pageType)) `
-            )
-            .title("Pages")
+       S.listItem().title('Blog').child(
+        S.documentTypeList('page').filter("pageType->slug.current == 'blog'")
+       ),
+       S.listItem().title('Aktuelles').child(
+        S.documentTypeList('page').filter("pageType->slug.current == 'aktuelles'")
+       ),
 
-            .child(async (pageTypeId, d) => {
-              const isPage = await client.fetch(
-                `*[_type == "page" && _id  == '${pageTypeId}'][0]`
-              );
+      // S.listItem()
+      //   .title("Pages")
+      //   .icon(CgWebsite)
+      //   .child(
+      //     S.documentTypeList("pageType")
+      //       .filter(
+      //         `_type ==  "pageType" || (_type == "page" && !defined(pageType)) `
+      //       )
+      //       .title("Pages")
 
-              if (isPage) {
-                return S.document().id(pageTypeId);
-              }
+      //       .child(async (pageTypeId, d) => {
+      //         const isPage = await client.fetch(
+      //           `*[_type == "page" && _id  == '${pageTypeId}'][0]`
+      //         );
 
-              return S.documentList()
-                .title("SubPages")
-                .filter('_type == "page" && $pageTypeId == pageType._ref')
-                .params({ pageTypeId });
-            })
-        ),
+      //         if (isPage) {
+      //           return S.document().id(pageTypeId);
+      //         }
+
+      //         return S.documentList()
+      //           .title("SubPages")
+      //           .filter('_type == "page" && $pageTypeId == pageType._ref')
+      //           .params({ pageTypeId });
+      //       })
+      //   ),
     ]);

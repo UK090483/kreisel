@@ -11,7 +11,7 @@ import BlockContent, {
 import LinkMark, { linkMarkQuery } from "./marks/link";
 import ButtonPlug, { buttonPlugQuery } from "./Plugs/ButtonPlug";
 // import { downloadPlugQuery } from "./Plugs/DownLoadPlug";
-// import EmbedPlug, { embedPlugQuery } from "./Plugs/EmbedPlug";
+import EmbedPlug, { embedPlugQuery } from "./Plugs/EmbedPlug";
 import ImageGalleryPlug, {
   imageGalleryPlugQuery,
 } from "./Plugs/ImageGaleriePlug";
@@ -121,7 +121,7 @@ const serializer: Serializers = {
   types: {
     imageGalleryPlug: ImageGalleryPlug,
     button: ButtonPlug,
-    // embed: EmbedPlug,
+    embed: EmbedPlug,
     block: BlockRenderer,
     spacer: SpacerPlug,
   },

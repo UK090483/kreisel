@@ -18,6 +18,7 @@ export const Section: React.FC<SectionProps> = ({
   bg = "white",
   noPadding = false,
   as: Component = "section",
+  
 }) => {
   return (
     <Component

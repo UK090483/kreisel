@@ -7,15 +7,8 @@ export const defaultBockContent = {
     { type: "section" },
     { type: "hero" },
     { type: "listing" },
-    // { type: 'carouselHero' },
-    // { type: 'artworks' },
-    // { type: 'artists' },
-    // { type: 'posts' },
-    // { type: 'categories' },
-    // { type: 'products' },
-    // { type: 'marquee' },
-    // { type: 'quotes' }
   ],
+  
 };
 
 export function colorList(skip) {

@@ -14,7 +14,7 @@ export const Container: React.FC<ContainerProps> = ({
   return (
     <div
       className={clsx(
-        "mx-auto ",
+        "mx-auto",
         {
           "max-w-4xl": size === "small",
           "max-w-6xl": size === "medium",

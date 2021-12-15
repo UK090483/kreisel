@@ -140,7 +140,7 @@ export default {
     { type: "button", blockEditor: { render: Button } },
     { type: "spacer" },
     { type: "imageGalleryPlug" },
-    // { type: 'embed' },
+    { type: 'embed' },
     // { type: 'imagePlug' },
     // { type: 'seoHeader' },
 

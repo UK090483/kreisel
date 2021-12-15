@@ -5,16 +5,14 @@ import React from "react";
 import { Link } from "@components/Link";
 
 import useMenu from "@services/StoreService/hooks/useMenu";
-import MegaNav, { NavItemMegaNavProps } from "../MegaNav/MegaNav";
-import MegaNavMobile from "../MegaNav/MegaNavMobile";
+
 import { Logo } from "@components/Layout/Logo";
-import { NavItemProps } from "../NavItem/NavItem";
 import { NavigationModul } from "@services/NavigationService/NavigationModul";
 import NavigationMobile from "@services/NavigationService/NavigationMobile";
-
+import { NavItem } from "@services/NavigationService/types";
 
 interface NavProps {
-  items: (Omit<NavItemProps, "divider"> | NavItemMegaNavProps)[];
+  items: NavItem[];
 }
 
 const Nav: React.FC<NavProps> = ({ items }) => {
@@ -25,8 +23,8 @@ const Nav: React.FC<NavProps> = ({ items }) => {
   };
   return (
     <>
-      <nav>
-        <div className="flex items-center justify-between w-full py-2 pl-24 shadow-lg ">
+      <nav className=" shadow-lg ">
+        <div className=" mx-auto lg:container  flex items-center justify-between w-full py-2  ">
           <Link href="/">
             <Logo />
           </Link>
@@ -34,9 +32,6 @@ const Nav: React.FC<NavProps> = ({ items }) => {
           <div className="items-center justify-center hidden w-full lg:flex">
             <NavigationModul items={items} />
           </div>
-
-       
-            
 
           {/* <div className="hidden lg:block">
             <Button> Kontakt aufnehmen</Button>
@@ -46,7 +41,7 @@ const Nav: React.FC<NavProps> = ({ items }) => {
             data-testid="menu-overlay-toggle"
             onClick={handleNavClick}
             className="lg:hidden"
-             aria-label="Open the Menu"
+            aria-label="Open the Menu"
           >
             <Svg className="w-[30px]" icon="hamburger" />
           </button>

@@ -1,4 +1,4 @@
-import { Container } from "@components/Container";
+
 import { Image } from "@components/Image";
 import { Section } from "@components/Section";
 import Typo from "@components/Typography/Typography";

@@ -15,8 +15,10 @@ const Hero: React.FC<HeroProps> = ({ variant = "overlapping" }) => {
 
       <div className="absolute inset-0 flex items-center mx-auto text-white  ml-[10%] ">
         <Typo hand variant="h1">
-          Grundlagen <br /> Lernförderung <br />
-          <Underline color="primary"> & Lerntherapie</Underline>
+          <div style={{ fontSize: 72 }}>
+            Grundlagen <br /> Lernförderung <br />
+            <Underline color="primary"> & Lerntherapie</Underline>
+          </div>
         </Typo>
       </div>
     </Section>

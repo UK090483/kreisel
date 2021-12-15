@@ -7,10 +7,12 @@ import objects from "./objects";
 import plugs from "./pageComponents/plugs";
 import pageComponents from "./pageComponents";
 
+import Navigation from './objects/navigation'
+
 export default createSchema({
   name: "default",
-
   types: schemaTypes.concat([
+    ...Navigation,
     ...settings,
     ...objects,
     ...documents,

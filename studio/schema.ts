@@ -232,20 +232,6 @@ export interface Page extends SanityDocument {
   pageType?: SanityReference<PageType>;
 
   /**
-   * Header — `pageHeader`
-   *
-   *
-   */
-  pageHeader?: PageHeader;
-
-  /**
-   * Footer — `reference`
-   *
-   * if empty it will use the default Footer
-   */
-  footer?: SanityReference<Footer>;
-
-  /**
    * Page sections — `array`
    *
    * Add, edit, and reorder sections
@@ -356,6 +342,113 @@ export interface PageType extends SanityDocument {
   slug?: { _type: "slug"; current: string };
 }
 
+/**
+ * Artikel
+ *
+ *
+ */
+export interface Article extends SanityDocument {
+  _type: "article";
+
+  /**
+   * name — `string`
+   *
+   *
+   */
+  name?: string;
+
+  /**
+   * Description — `text`
+   *
+   *
+   */
+  description?: string;
+
+  /**
+   * Image — `defaultImage`
+   *
+   *
+   */
+  image?: DefaultImage;
+
+  /**
+   * Price — `number`
+   *
+   *
+   */
+  price?: number;
+}
+
+export type NavigationDropdown = {
+  _type: "navigationDropdown";
+  /**
+   * Label — `string`
+   *
+   *
+   */
+  label?: string;
+
+  /**
+   * Main Navigation — `array`
+   *
+   *
+   */
+  items?: Array<SanityKeyed<NavigationItem>>;
+};
+
+export type NavigationItem = {
+  _type: "navigationItem";
+  /**
+   * Label — `string`
+   *
+   *
+   */
+  label?: string;
+
+  /**
+   * Link — `link`
+   *
+   *
+   */
+  link?: Link;
+};
+
+export type NavigationMegaMenu = {
+  _type: "navigationMegaMenu";
+  /**
+   * Label — `string`
+   *
+   *
+   */
+  label?: string;
+
+  /**
+   * Main Navigation — `array`
+   *
+   *
+   */
+  items?: Array<
+    SanityKeyed<NavigationMegaMenuItem> | SanityKeyed<NavigationItem>
+  >;
+};
+
+export type NavigationMegaMenuItem = {
+  _type: "navigationMegaMenuItem";
+  /**
+   * Label — `string`
+   *
+   *
+   */
+  label?: string;
+
+  /**
+   * Main Navigation — `array`
+   *
+   *
+   */
+  items?: Array<SanityKeyed<NavigationItem>>;
+};
+
 export type DefaultImage = {
   _type: "defaultImage";
   asset: SanityReference<SanityImageAsset>;
@@ -454,76 +547,6 @@ export type Seo = {
   };
 };
 
-export type NavigationDropdown = {
-  _type: "navigationDropdown";
-  /**
-   * Label — `string`
-   *
-   *
-   */
-  label?: string;
-
-  /**
-   * Main Navigation — `array`
-   *
-   *
-   */
-  items?: Array<SanityKeyed<NavigationItem>>;
-};
-
-export type NavigationItem = {
-  _type: "navigationItem";
-  /**
-   * Label — `string`
-   *
-   *
-   */
-  label?: string;
-
-  /**
-   * Link — `link`
-   *
-   *
-   */
-  link?: Link;
-};
-
-export type NavigationMegaMenu = {
-  _type: "navigationMegaMenu";
-  /**
-   * Label — `string`
-   *
-   *
-   */
-  label?: string;
-
-  /**
-   * Main Navigation — `array`
-   *
-   *
-   */
-  items?: Array<
-    SanityKeyed<NavigationMegaMenuItem> | SanityKeyed<NavigationItem>
-  >;
-};
-
-export type NavigationMegaMenuItem = {
-  _type: "navigationMegaMenuItem";
-  /**
-   * Label — `string`
-   *
-   *
-   */
-  label?: string;
-
-  /**
-   * Main Navigation — `array`
-   *
-   *
-   */
-  items?: Array<SanityKeyed<NavigationItem>>;
-};
-
 export type Section = {
   _type: "section";
   /**
@@ -541,11 +564,18 @@ export type Section = {
   content?: DefaultRichText;
 
   /**
+   * Width — `string`
+   *
+   *
+   */
+  width?: "m" | "l" | "s";
+
+  /**
    * Type — `string`
    *
    *
    */
-  type?: "m" | "l" | "s";
+  type?: "accordion";
 
   /**
    * Background Color — `string`
@@ -799,4 +829,5 @@ export type Documents =
   | Navigation
   | Redirect
   | Footer
-  | PageType;
+  | PageType
+  | Article;

@@ -1,4 +1,10 @@
 import { defaultBockContent } from "../snippets";
+import { CgWebsite } from "react-icons/cg";
+import {VscFileSubmodule} from 'react-icons/vsc'
+import React from 'react'
+const SubPageIcon=()=>{
+  return <VscFileSubmodule color="red"/>
+}
 
 export default {
   type: "document",
@@ -12,7 +18,15 @@ export default {
       title: "Title",
       validation: (Rule) => Rule.required(),
     },
-
+    {
+      name: "description",
+      type: "text",
+      title: "Description",
+    },
+    {
+      name: "featuredImage",
+      type: "defaultImage",
+    },
     {
       name: "slug",
       type: "slug",
@@ -23,19 +37,12 @@ export default {
       name: "pageType",
       type: "reference",
       to: [{ type: "pageType" }],
+      options:{
+        disableNew:true
+      }
     },
-    {
-      name: "pageHeader",
-      type: "pageHeader",
-      title: "Header",
-    },
-    {
-      name: "footer",
-      description: "if empty it will use the default Footer",
-      type: "reference",
-      title: "Footer",
-      to: [{ type: "footer" }],
-    },
+   
+   
     defaultBockContent,
 
     {
@@ -47,10 +54,27 @@ export default {
       },
     },
   ],
+  orderings:[{
+    title: 'by PageType',
+    name: 'pageType',
+    by: [
+      {field: 'pageType.slug.current', direction: 'desc'}
+    ]
+  },],
+
   preview: {
     select: {
-      title: "slug.current",
-      subtitle: "title",
+      slug: "slug.current",
+      pageType: "pageType.slug.current",
+      title:'title'
     },
+    prepare(selection) {
+      const {slug, pageType,title} = selection
+      return {
+        title: title,
+        subtitle: pageType? `${pageType}/${slug}`: slug,
+        media: pageType? SubPageIcon: CgWebsite
+      }
+    }
   },
 };

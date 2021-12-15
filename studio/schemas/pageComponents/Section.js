@@ -30,10 +30,10 @@ export default {
       type: "defaultRichText",
       title: "Content",
     },
-
+    
     {
-      title: "Type",
-      name: "type",
+      title: "Width",
+      name: "width",
       type: "string",
       options: {
         list: [
@@ -42,7 +42,18 @@ export default {
           { title: "Narrow", value: "s" },
         ],
       },
-      initialValue: "normal",
+      initialValue: "m",
+    },
+    {
+      title: "Type",
+      name: "type",
+      type: "string",
+      options: {
+        list: [
+          { title: "Accordion", value: "accordion" },
+        ],
+      },
+      initialValue: "m",
     },
     {
       title: "Background Color",

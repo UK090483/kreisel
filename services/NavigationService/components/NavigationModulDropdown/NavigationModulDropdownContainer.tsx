@@ -32,7 +32,7 @@ export const NavigationModulDropdownContainer: React.FC<{
             top: targetY,
             left: prepared.hasLists ? undefined : targetX,
           }}
-          className={`fixed  animate-fadeInMenuItemFast p-4 flex items-center justify-between  bg-white  ${
+          className={`fixed  animate-fadeInMenuItemFast p-4 flex items-center justify-between  bg-white shadow-2xl rounded-b-2xl  ${
             prepared.hasLists
               ? "left-[50%] transform -translate-x-1/2  min-w-[80vw]"
               : ""
