@@ -5,7 +5,7 @@ import React, { FC, useState } from "react";
 
 type AccodionProps = {
   condition: boolean;
-  title: string;
+  title?: string;
 };
 
 const Accordion: FC<AccodionProps> = ({ condition, children, title }) => {
@@ -54,7 +54,7 @@ const Accordion: FC<AccodionProps> = ({ condition, children, title }) => {
 
 export default Accordion;
 
-function string_to_slug(str: string | null) {
+function string_to_slug(str?: string | null) {
   if (!str) return makeid(6);
 
   str = str.replace(/^\s+|\s+$/g, ""); // trim
