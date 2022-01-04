@@ -12,7 +12,8 @@ const Portal: React.FC = ({ children }) => {
   }, []);
 
   return mounted
-    ? createPortal(children, document.querySelector("#app-portal"))
+    ? //@ts-ignore
+      createPortal(children, document.querySelector("#app-portal"))
     : null;
 };
 
