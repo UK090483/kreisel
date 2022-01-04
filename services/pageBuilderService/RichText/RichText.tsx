@@ -87,7 +87,7 @@ const List: React.FC = (props: any) => {
   );
 };
 
-const styles = { h1: "h1", h2: "h2", h3: "h3", h4: "h4", normal: "body1" };
+const styles = { h1: "h1", h2: "h2", h3: "h3", h4: "h4", normal: "body" };
 
 const BlockRenderer = (props: any) => {
   const { style = "normal" } = props.node;

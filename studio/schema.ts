@@ -218,6 +218,20 @@ export interface Page extends SanityDocument {
   title?: string;
 
   /**
+   * Description — `text`
+   *
+   *
+   */
+  description?: string;
+
+  /**
+   * featuredImage — `defaultImage`
+   *
+   *
+   */
+  featuredImage?: DefaultImage;
+
+  /**
    * Slug — `slug`
    *
    *
@@ -616,11 +630,25 @@ export type Listing = {
   name?: string;
 
   /**
+   * Type — `string`
+   *
+   *
+   */
+  type?: "contentType" | "custom";
+
+  /**
    * contentType — `string`
    *
    *
    */
-  contentType?: "post" | "project";
+  contentType?: "post" | "article";
+
+  /**
+   * customItems — `array`
+   *
+   *
+   */
+  customItems?: Array<SanityKeyedReference<Page | Article>>;
 };
 
 export type DefaultRichText = Array<
@@ -645,6 +673,7 @@ export type DefaultRichText = Array<
   | SanityKeyed<Button>
   | SanityKeyed<Spacer>
   | SanityKeyed<ImageGalleryPlug>
+  | SanityKeyed<Embed>
 >;
 
 export type Hero = {
@@ -817,6 +846,16 @@ export type ImageGalleryItem = {
    *
    */
   size?: "m" | "l";
+};
+
+export type Embed = {
+  _type: "embed";
+  /**
+   * Url — `url`
+   *
+   *
+   */
+  url?: string;
 };
 
 export type Documents =

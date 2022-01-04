@@ -70,14 +70,14 @@ const Typo: React.FC<TypographyProps> = ({
       className={
         clsx({
           "font-hand ": hand,
-          "text-sm ": variant === "body-s",
-          "text-base ": variant === "body",
+          " text-sm ": variant === "body-s",
+          "text-base": variant === "body",
           "text-lg": ["body-l", "h6"].includes(variant as string),
           "text-xl": variant === "h5",
           "text-2xl": variant === "h4",
           "text-3xl": variant === "h3",
-          "text-4xl": variant === "h2",
-          "text-5xl": variant === "h1",
+          "text-2xl sm:text-4xl": variant === "h2",
+          "text-3xl sm:text-5xl": variant === "h1",
           "font-bold": isBold,
         }) + ` ${className}`
       }

@@ -10,7 +10,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body className="text-black">
+        <body className="text-black ">
           <Main />
           <div id="app-portal" />
           <NextScript />

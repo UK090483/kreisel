@@ -5,13 +5,13 @@ import SectionBlock, {
 import BodyParser from "./lib/BodyParser";
 import { blockFactory } from "./lib/BlockFactory";
 
+import HeroBlock, { heroBlockQuery } from "./Blocks/heroBlock/HeroBlock";
 import ListingBlock, {
   listingBlockQuery,
-  ListingBlogResult,
+  ListingBlockResult,
 } from "./Blocks/listingBlock/ListingsBlock";
-import HeroBlock, { heroBlockQuery } from "./Blocks/heroBlock/HeroBlock";
 
-export type PageBodyResult = (SectionResult | ListingBlogResult)[];
+export type PageBodyResult = (SectionResult | ListingBlockResult)[];
 export type PageQueryResult = { content: PageBodyResult };
 
 blockFactory.registerComponents([

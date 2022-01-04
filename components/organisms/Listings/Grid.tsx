@@ -1,4 +1,3 @@
-import { Container } from "@components/Container";
 import { Section } from "@components/Section";
 import React from "react";
 
@@ -9,7 +8,7 @@ export const Grid: React.FC<GridProps> = ({ children }) => {
     <Section
       width="l"
       bg="primary"
-      className="grid grid-cols-1 gap-8 py-32 md:grid-cols-3 "
+      className="grid grid-cols-1 gap-8 py-32 md:grid-cols-2 lg:grid-cols-3 "
     >
       {children}
     </Section>

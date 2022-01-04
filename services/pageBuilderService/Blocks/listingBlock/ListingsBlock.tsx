@@ -1,41 +1,40 @@
 import List from "@components/organisms/Listings/List";
 import React from "react";
-import { AppLocations, Listing as ListingType } from "types";
 
+import { AppLocations, Article, Listing as ListingType } from "types";
+
+const cardQuery = `
+...,
+'date': _createdAt,
+'href': select(
+  defined(pageType) && defined(slug) => '/' + pageType->slug.current + '/' + slug.current,
+  defined(slug) => '/' + slug.current
+),
+`;
+export interface CardResult extends Article {
+  href?: string;
+}
 export const listingBlockQuery = `
 _type == "listing" => {
-  _type,
- _key,
-  'items': *[ _type == ^.contentType ][]{
-    ...
-  }
+    ...,
+  'items': select(
+    type != 'custom' =>  *[ _type == ^.contentType ][]{${cardQuery}},
+    type == 'custom' => customItems[]->{${cardQuery}}
+  )
 }
 `;
 
-export interface ListingBlogResult extends ListingType {
+export type ListingBlockItem = Article;
+
+export interface ListingBlockResult extends ListingType {
   _type: "listing";
   _key: string;
-  items: any[];
-}
-
-export interface ListingBlockProps extends ListingBlogResult {
+  items: CardResult[];
   lang: AppLocations;
 }
-
-const ListingBlock: React.FC<ListingBlockProps> = (props) => {
+const ListingBlock: React.FC<ListingBlockResult> = (props) => {
   const { items } = props;
-
-  return (
-    <div>
-      <List />
-      {/* {items.map((item, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <ProjectCard key={index} {...item} />
-      ))} */}
-    </div>
-  );
+  return <List items={items} />;
 };
 
 export default ListingBlock;
-
-export {};

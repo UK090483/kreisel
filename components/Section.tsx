@@ -18,7 +18,6 @@ export const Section: React.FC<SectionProps> = ({
   bg = "white",
   noPadding = false,
   as: Component = "section",
-  
 }) => {
   return (
     <Component
@@ -31,7 +30,7 @@ export const Section: React.FC<SectionProps> = ({
       })}
     >
       <div
-        className={clsx("mx-auto ", className, {
+        className={clsx("mx-auto overflow-hidden", className, {
           "max-w-screen-md ": width === "s",
           "max-w-screen-lg ": width === "m",
           "max-w-screen-xl ": width === "l",

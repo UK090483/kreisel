@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import IframeResizer from "iframe-resizer-react";
 
 type EmbedProps = {
   url?: string;
@@ -6,10 +7,16 @@ type EmbedProps = {
 
 const Embed: FC<EmbedProps> = (props) => {
   const { url } = props;
+
   return (
-    <iframe className="mx-auto" src={url} width="640" height="1282">
-      Wird geladen…
-    </iframe>
+    <div>
+      <IframeResizer
+        log
+        src={url}
+        style={{ width: "1px", minWidth: "100%" }}
+        height="800"
+      />
+    </div>
   );
 };
 
