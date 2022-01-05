@@ -42,8 +42,6 @@ export const mockClient = ({
       const newItem = { ...doc, _id: doc._id || getId(doc._type) };
       database = [...database, newItem];
 
-      console.log(database);
-
       return Promise.resolve(newItem);
     },
     patch: (doc: string) => {

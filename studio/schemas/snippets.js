@@ -7,6 +7,7 @@ export const defaultBockContent = {
     { type: "section" },
     { type: "hero" },
     { type: "listing" },
+    { type: "onPageNav" },
   ],
   
 };

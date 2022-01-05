@@ -10,6 +10,7 @@ import ListingBlock, {
   listingBlockQuery,
   ListingBlockResult,
 } from "./Blocks/listingBlock/ListingsBlock";
+import onPageNav, { onPageNavBlockQuery } from "./Blocks/onPageNav/OnPageNav";
 
 export type PageBodyResult = (SectionResult | ListingBlockResult)[];
 export type PageQueryResult = { content: PageBodyResult };
@@ -32,6 +33,12 @@ blockFactory.registerComponents([
     component: ListingBlock,
     type: "root",
     query: listingBlockQuery,
+  },
+  {
+    name: "onPageNav",
+    component: onPageNav,
+    type: "root",
+    query: onPageNavBlockQuery,
   },
 ]);
 

@@ -24,19 +24,25 @@ export default () =>
                 .child(S.documentTypeList("pageType")),
             ])
         ),
-      S.listItem().title('Pages').icon(CgWebsite).child(
-       S.documentTypeList('page')
-      ),
-      S.listItem().title('Articles').child(
-        S.documentTypeList('article')
-       ),
+      S.listItem()
+        .title("Pages")
+        .icon(CgWebsite)
+        .child(S.documentTypeList("page")),
+      S.listItem().title("Articles").child(S.documentTypeList("article")),
 
-       S.listItem().title('Blog').child(
-        S.documentTypeList('page').filter("pageType->slug.current == 'blog'")
-       ),
-       S.listItem().title('Aktuelles').child(
-        S.documentTypeList('page').filter("pageType->slug.current == 'aktuelles'")
-       ),
+      S.listItem()
+        .title("Blog")
+        .child(
+          S.documentTypeList("page").filter("pageType->slug.current == 'blog'")
+        ),
+      S.listItem()
+        .title("Aktuelles")
+        .child(
+          S.documentTypeList("page").filter(
+            "pageType->slug.current == 'aktuelles'"
+          )
+        ),
+      S.listItem().title("Therapeuten").child(S.documentTypeList("therapist")),
 
       // S.listItem()
       //   .title("Pages")

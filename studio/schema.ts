@@ -175,7 +175,10 @@ export interface Post extends SanityDocument {
    * Add, edit, and reorder sections
    */
   content?: Array<
-    SanityKeyed<Section> | SanityKeyed<Hero> | SanityKeyed<Listing>
+    | SanityKeyed<Section>
+    | SanityKeyed<Hero>
+    | SanityKeyed<Listing>
+    | SanityKeyed<OnPageNav>
   >;
 
   /**
@@ -251,7 +254,10 @@ export interface Page extends SanityDocument {
    * Add, edit, and reorder sections
    */
   content?: Array<
-    SanityKeyed<Section> | SanityKeyed<Hero> | SanityKeyed<Listing>
+    | SanityKeyed<Section>
+    | SanityKeyed<Hero>
+    | SanityKeyed<Listing>
+    | SanityKeyed<OnPageNav>
   >;
 
   /**
@@ -329,7 +335,10 @@ export interface Footer extends SanityDocument {
    * Add, edit, and reorder sections
    */
   content?: Array<
-    SanityKeyed<Section> | SanityKeyed<Hero> | SanityKeyed<Listing>
+    | SanityKeyed<Section>
+    | SanityKeyed<Hero>
+    | SanityKeyed<Listing>
+    | SanityKeyed<OnPageNav>
   >;
 }
 
@@ -365,11 +374,11 @@ export interface Article extends SanityDocument {
   _type: "article";
 
   /**
-   * name — `string`
+   * Title — `string`
    *
    *
    */
-  name?: string;
+  title?: string;
 
   /**
    * Description — `text`
@@ -743,6 +752,40 @@ export type Hero = {
    *
    */
   filterColor?: "white" | "black";
+};
+
+export type OnPageNav = {
+  _type: "onPageNav";
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name?: string;
+
+  /**
+   * Items — `array`
+   *
+   *
+   */
+  items?: Array<SanityKeyed<OnPageNavItem>>;
+};
+
+export type OnPageNavItem = {
+  _type: "onPageNavItem";
+  /**
+   * Title — `string`
+   *
+   *
+   */
+  title?: string;
+
+  /**
+   * Link — `string`
+   *
+   *
+   */
+  link?: string;
 };
 
 export type Button = {
