@@ -1,6 +1,6 @@
 import React from "react";
 import { NavigationModulItemBase } from "./components/NavigationItemBase";
-import Dropdown, { List } from "./components/NavigationModulDropdown/Dropdown";
+import Dropdown from "./components/NavigationModulDropdown/Dropdown";
 import prepareNavItems from "./helper/prepareNavItems";
 import { NavItem } from "./types";
 
@@ -20,7 +20,6 @@ export const NavOnPage: React.FC<Props> = (props) => {
       {hasLists &&
         list.map((item, index) => {
           const { list, items } = prepareNavItems(item.items || []);
-
           return (
             <li key={item.label} className="m-2 ">
               <NavigationModulItemBase bold icon hover>

@@ -4,7 +4,7 @@ import { Layout } from "@components/Layout/Layout";
 import StoreContextProvider from "@services/StoreService/StoreProvider";
 import { FetchStaticPropsResult } from "@services/SanityService/fetchStaticProps";
 import { NextComponentType, NextPageContext } from "next";
-import Cookie from "@services/CookieService/Cookie";
+import Cookie from "Modules/Cookie/Cookie";
 import { SessionProvider } from "next-auth/react";
 import { ReactElement, ReactNode } from "react";
 

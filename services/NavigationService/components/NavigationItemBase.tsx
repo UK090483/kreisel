@@ -1,6 +1,6 @@
 import Svg from "@components/Svg";
 
-type NavItemBaseProps = {
+export type NavItemBaseProps = {
   icon?: boolean;
   hover?: boolean;
   bold?: boolean;
@@ -31,6 +31,7 @@ export const NavigationModulItemBase: React.FC<NavItemBaseProps> = ({
   );
 };
 
+export default NavigationModulItemBase;
 interface NavigationModulButton {
   variant: "listHeader" | "Link" | "Button";
 }

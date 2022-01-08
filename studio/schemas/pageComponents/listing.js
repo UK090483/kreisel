@@ -21,7 +21,7 @@ export default {
       type: "string",
       options: {
         list: [
-          { title: "Post", value: "post" },
+          { title: "Therapeut", value: "therapist" },
           { title: "Article", value: "article" },
         ],
         layout: "radio",
@@ -31,7 +31,7 @@ export default {
     {
       name: "customItems",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "page" },{ type: "article" }] }],
+      of: [{ type: "reference", to: [{ type: "page" }, { type: "article" }] }],
       hidden: ({ parent }) => parent?.type !== "custom",
     },
   ],

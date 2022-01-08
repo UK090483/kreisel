@@ -1,16 +1,39 @@
-import { NavItem } from "../types";
-import { NavigationModulItemBase } from "./NavigationItemBase";
-import { NavigationModulLink } from "./NavigationLink";
+import {
+  NavigationItemBaseComponent,
+  NavigationLinkComponent,
+  NavItem,
+} from "../types";
+import DefaultNavigationItemBase from "./NavigationItemBase";
+import DefaultNavigationLink from "./NavigationLink";
 import { NavigationModulDropdown } from "./NavigationModulDropdown/NavigationModulDropdown";
 
-const NavigationItem: React.FC<NavItem> = (props) => {
-  const { label, items, link } = props;
+export interface NavItemProps extends NavItem {
+  NavigationLink?: NavigationLinkComponent;
+  NavigationItemBase?: NavigationItemBaseComponent;
+}
 
+const NavigationItem: React.FC<NavItemProps> = (props) => {
+  const { label, items, link, NavigationLink, NavigationItemBase } = props;
   const hasItems = !!items && items.length > 0;
   const hasLink = !!link && !!link.href;
 
+  const NavigationLinkComponent = NavigationLink
+    ? NavigationLink
+    : DefaultNavigationLink;
+
+  const NavigationItemBaseComponent = NavigationItemBase
+    ? NavigationItemBase
+    : DefaultNavigationItemBase;
+
   if (!hasItems && hasLink) {
-    return <NavigationModulLink {...link}>{label}</NavigationModulLink>;
+    return (
+      <NavigationLinkComponent
+        NavigationItemBase={NavigationItemBaseComponent}
+        {...link}
+      >
+        {label}
+      </NavigationLinkComponent>
+    );
   }
 
   if (hasItems) {
@@ -18,7 +41,7 @@ const NavigationItem: React.FC<NavItem> = (props) => {
       <NavigationModulDropdown items={items}>{label}</NavigationModulDropdown>
     );
   }
-  return <NavigationModulItemBase>{label}</NavigationModulItemBase>;
+  return <NavigationItemBaseComponent>{label}</NavigationItemBaseComponent>;
 };
 
 export default NavigationItem;

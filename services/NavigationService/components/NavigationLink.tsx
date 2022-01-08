@@ -1,13 +1,23 @@
 import { Link } from "@components/Link";
 import Underline from "@components/Underline";
 import React from "react";
-import { NavItem } from "../types";
-import { NavigationModulItemBase } from "./NavigationItemBase";
+import { NavigationItemBaseComponent, NavItem } from "../types";
+import NavigationItemBase from "./NavigationItemBase";
+import DefaultNavigationItemBase, {
+  NavigationModulItemBase,
+} from "./NavigationItemBase";
 
-type NavigationLinkProps = NavItem["link"] & { onClick?: () => void };
+export type NavigationLinkProps = NavItem["link"] & {
+  onClick?: () => void;
+  NavigationItemBase?: NavigationItemBaseComponent;
+};
 
-export const NavigationModulLink: React.FC<NavigationLinkProps> = (props) => {
-  const { children, external, onClick, href } = props;
+const NavigationLink: React.FC<NavigationLinkProps> = (props) => {
+  const { children, external, onClick, href, NavigationItemBase } = props;
+
+  const NavigationItemBaseComponent = NavigationItemBase
+    ? NavigationItemBase
+    : DefaultNavigationItemBase;
 
   return (
     <Link
@@ -17,8 +27,10 @@ export const NavigationModulLink: React.FC<NavigationLinkProps> = (props) => {
       external={external}
     >
       <Underline on="hover">
-        <NavigationModulItemBase>{children}</NavigationModulItemBase>
+        <NavigationItemBaseComponent>{children}</NavigationItemBaseComponent>
       </Underline>
     </Link>
   );
 };
+
+export default NavigationLink;

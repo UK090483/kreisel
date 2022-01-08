@@ -7,11 +7,16 @@ import CardWrap from "./CardWrap";
 import CardBody from "./CardBody";
 import CardTitle from "./CardTitle";
 
+import BlockContent, {
+  BlockContentProps,
+  Serializers,
+} from "@sanity/block-content-to-react";
+
 export interface CardProps {
   href?: string;
   title?: string;
   date?: string;
-  description?: string;
+  description?: string | string[];
 }
 
 const Card: React.FC<CardProps> = ({
@@ -21,6 +26,12 @@ const Card: React.FC<CardProps> = ({
   date,
   description,
 }) => {
+  const _description = Array.isArray(description) ? (
+    <BlockContent blocks={description} />
+  ) : (
+    description
+  );
+
   return (
     <CardWrap href={href}>
       <div className="relative w-full aspect-w-16 aspect-h-10 ">
@@ -34,7 +45,7 @@ const Card: React.FC<CardProps> = ({
           </Typo>
         )}
         {title && <CardTitle>{title}</CardTitle>}
-        {description && <Typo>{description}</Typo>}
+        {description && <Typo>{_description}</Typo>}
         {children}
       </CardBody>
     </CardWrap>

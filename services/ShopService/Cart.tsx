@@ -2,6 +2,7 @@ import { Image } from "@components/Image";
 import useAnimationDelay from "@hooks/useAnimationDelay";
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
+import { ShopButton } from "./ShopButton";
 import { useShop } from "./shopContext";
 
 const Cart: React.FC = () => {
@@ -84,19 +85,5 @@ const Article: React.FC<ArticleProps> = ({ children, id, price, title }) => {
         <ShopButton onClick={() => removeArticle(id)}>entfernen</ShopButton>
       </div>
     </div>
-  );
-};
-
-type ShopButtonProps = {
-  onClick: () => void;
-};
-const ShopButton: React.FC<ShopButtonProps> = ({ children, onClick }) => {
-  return (
-    <button
-      className=" text-sm p-3 h-6 rounded-full flex justify-center items-center border-2 border-red text-red "
-      onClick={onClick}
-    >
-      {children}
-    </button>
   );
 };

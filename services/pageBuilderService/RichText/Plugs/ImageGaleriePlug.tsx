@@ -1,7 +1,10 @@
 import React from "react";
 
 import clsx from "clsx";
-import { ImageGalleryPlug, ImageGalleryItem } from "types";
+import {
+  ImageGalleryPlug as ImageGalleryPlugType,
+  ImageGalleryItem,
+} from "types";
 
 // import Photo from '@components/Photo';
 import {
@@ -35,7 +38,7 @@ interface ImageGalleryPlugItem
   _key: string;
 }
 export interface ImageGalleryPlugResult
-  extends Omit<ImageGalleryPlug, "items"> {
+  extends Omit<ImageGalleryPlugType, "items"> {
   items: ImageGalleryPlugItem[];
 }
 

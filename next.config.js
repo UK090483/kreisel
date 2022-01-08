@@ -6,6 +6,11 @@ module.exports = {
   images: {
     domains: ["picsum.photos"],
   },
+
+  env: {
+    SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
+    SANITY_PROJECT_DATASET: process.env.SANITY_PROJECT_DATASET,
+  },
   async redirects() {
     return [
       {

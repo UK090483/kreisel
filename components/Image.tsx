@@ -1,12 +1,30 @@
 import React from "react";
-
-import NextImage from "next/image";
+import NextImage, { ImageLoader } from "next/image";
+import { ImageMetaResult } from "@services/pageBuilderService/queries/snippets";
+import useSanityImage from "@services/pageBuilderService/lib/useSanityImage";
 
 interface ImageProps {
   src?: string;
+  objectFit?: "cover" | "contain";
+  image?: ImageMetaResult;
+  alt?: string;
 }
 
-export const Image: React.FC<ImageProps> = ({ src }) => {
+export const Image: React.FC<ImageProps> = (props) => {
+  const { src, objectFit = "cover", image } = props;
+
+  let imageProps = useSanityImage(image);
+
+  // if (image) return <ImageFaker alt="fake" />;
+
+  if (!imageProps) return null;
+
+  const { width, height, ...rest } = imageProps;
+
+  return <NextImage {...rest} layout="fill" objectFit={objectFit} />;
+};
+
+export const ImageFaker: React.FC<ImageProps> = ({ src }) => {
   const ranNum = (min: number = 4, max: number = 8) => {
     return Math.floor(Math.random() * (max - min) + min);
   };

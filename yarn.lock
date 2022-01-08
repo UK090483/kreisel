@@ -787,7 +787,7 @@
     "get-random-values" "^1.2.2"
     "lodash" "^4.17.15"
 
-"@sanity/client@^2.14.0", "@sanity/client@2.21.7":
+"@sanity/client@^2.11.0", "@sanity/client@^2.14.0", "@sanity/client@2.21.7":
   "integrity" "sha512-/JkDn+2pGR6cIgwADxaJpzPwT9gDjkHYabfSTux4lcgZ8Sv6YtfjzTl3DhMlDIA2EodAvJG9Fkff0BI12SwKcA=="
   "resolved" "https://registry.npmjs.org/@sanity/client/-/client-2.21.7.tgz"
   "version" "2.21.7"
@@ -4982,6 +4982,13 @@
     "preact-render-to-string" "^5.1.19"
     "uuid" "^8.3.2"
 
+"next-sanity-image@^3.2.1":
+  "integrity" "sha512-lnynR/h7kD5ueVxQoam8ElKXb+bGWuU1cP+PCwx1NzIiBUHM2wBMnvmpt+emubGocMaIURT/iwPU46VnmB9rsQ=="
+  "resolved" "https://registry.npmjs.org/next-sanity-image/-/next-sanity-image-3.2.1.tgz"
+  "version" "3.2.1"
+  dependencies:
+    "@sanity/image-url" "^0.140.22"
+
 "next-sanity@^0.4.0":
   "integrity" "sha512-Z3OG0Z/ORrDPhR5zM8ySIF7z6LynfNqWBTEFksKMOg54RjKV0zfSMAK60Lfbm4U/3u4Nldu96dmVhUkHFkSerw=="
   "resolved" "https://registry.npmjs.org/next-sanity/-/next-sanity-0.4.0.tgz"
@@ -4999,7 +5006,7 @@
   "resolved" "https://registry.npmjs.org/next-seo/-/next-seo-4.28.1.tgz"
   "version" "4.28.1"
 
-"next@^12.0.7", "next@^8.1.1-canary.54 || >=9.0.0", "next@>=10.2.0":
+"next@^11.0.0 || ^12.0.0", "next@^12.0.7", "next@^8.1.1-canary.54 || >=9.0.0", "next@>=10.2.0":
   "integrity" "sha512-sKO8GJJYfuk9c+q+zHSNumvff+wP7ufmOlwT6BuzwiYfFJ61VTTkfTcDLSJ+95ErQJiC54uS4Yg5JEE8H6jXRA=="
   "resolved" "https://registry.npmjs.org/next/-/next-12.0.7.tgz"
   "version" "12.0.7"

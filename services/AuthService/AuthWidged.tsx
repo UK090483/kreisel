@@ -8,7 +8,7 @@ const UserWidget: React.FC<UserWidgetProps> = () => {
   const { data: session } = s;
 
   return (
-    <div className="flex text-sm pr-8 ">
+    <div className="flex text-sm ">
       <Icon />
       <Link href="/mitgliederbereich" className=" px-3 ">
         Mitgliederbereich

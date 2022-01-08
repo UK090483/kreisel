@@ -2,9 +2,13 @@ import Portal from "@components/Portal";
 import Svg from "@components/Svg";
 import useAnimationDelay from "@hooks/useAnimationDelay";
 import React from "react";
-import { NavigationModulItemBase } from "./components/NavigationItemBase";
-import { NavigationModulLink } from "./components/NavigationLink";
-import { NavItem } from "./types";
+import DefaultNavigationItemBase from "./components/NavigationItemBase";
+import DefaultNavigationLink from "./components/NavigationLink";
+import {
+  NavigationItemBaseComponent,
+  NavigationLinkComponent,
+  NavItem,
+} from "./types";
 
 export interface NavigationMobileProps {
   label?: string;
@@ -12,13 +16,25 @@ export interface NavigationMobileProps {
   open?: boolean;
   items?: NavItem[];
   closeMenu?: () => void;
+  NavigationLink?: NavigationLinkComponent;
+  NavigationItemBase?: NavigationItemBaseComponent;
 }
 
 const NavigationMobile: React.FC<NavigationMobileProps> = ({
   open,
   items,
   closeMenu,
+  NavigationLink,
+  NavigationItemBase,
 }) => {
+  const NavigationLinkComponent = NavigationLink
+    ? NavigationLink
+    : DefaultNavigationLink;
+
+  const NavigationItemBaseComponent = NavigationItemBase
+    ? NavigationItemBase
+    : DefaultNavigationItemBase;
+
   const { render, animation } = useAnimationDelay({
     delay: 300,
     listener: open,
@@ -61,6 +77,8 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
                     onClick={(type) => handleClick(type, item)}
                     key={item.label}
                     {...item}
+                    NavigationItemBase={NavigationItemBaseComponent}
+                    NavigationLink={NavigationLinkComponent}
                   />
                 );
               })}
@@ -86,6 +104,8 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
                             key={item.label}
                             onClick={(type) => handleClick(type, item)}
                             {...item}
+                            NavigationItemBase={NavigationItemBaseComponent}
+                            NavigationLink={NavigationLinkComponent}
                           />
                         );
                       })}
@@ -100,20 +120,33 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
 };
 
 const ConditionalButton: React.FC<
-  NavItem & { onClick: (type: "link" | "item") => void }
+  NavItem & {
+    onClick: (type: "link" | "item") => void;
+    NavigationLink?: NavigationLinkComponent;
+    NavigationItemBase?: NavigationItemBaseComponent;
+  }
 > = (props) => {
-  const { label, onClick } = props;
+  const { label, onClick, NavigationLink, NavigationItemBase } = props;
+
+  const NavigationLinkComponent = NavigationLink
+    ? NavigationLink
+    : DefaultNavigationLink;
+
+  const NavigationItemBaseComponent = NavigationItemBase
+    ? NavigationItemBase
+    : DefaultNavigationItemBase;
+
   const hasChildren = props.items && props.items.length > 0;
   return hasChildren ? (
     <button onClick={() => onClick("item")}>
-      <NavigationModulItemBase icon {...props}>
+      <NavigationItemBaseComponent icon {...props}>
         {label}
-      </NavigationModulItemBase>
+      </NavigationItemBaseComponent>
     </button>
   ) : (
-    <NavigationModulLink onClick={() => onClick("link")} {...props.link}>
+    <NavigationLinkComponent onClick={() => onClick("link")} {...props.link}>
       {label}
-    </NavigationModulLink>
+    </NavigationLinkComponent>
   );
 };
 

@@ -402,6 +402,106 @@ export interface Article extends SanityDocument {
   price?: number;
 }
 
+/**
+ * Therapeut
+ *
+ *
+ */
+export interface Therapist extends SanityDocument {
+  _type: "therapist";
+
+  /**
+   * Vorname — `string`
+   *
+   *
+   */
+  firstName?: string;
+
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name?: string;
+
+  /**
+   * Beruf — `text`
+   *
+   *
+   */
+  jobDescription?: string;
+
+  /**
+   * Stasse — `string`
+   *
+   *
+   */
+  street?: string;
+
+  /**
+   * PLZ — `string`
+   *
+   *
+   */
+  zipCode?: string;
+
+  /**
+   * Ort — `string`
+   *
+   *
+   */
+  city?: string;
+
+  /**
+   * Telefonnummer — `string`
+   *
+   *
+   */
+  phone?: string;
+
+  /**
+   * Email — `string`
+   *
+   *
+   */
+  email?: string;
+
+  /**
+   * Website — `string`
+   *
+   *
+   */
+  website?: string;
+
+  /**
+   * Beschreibung — `array`
+   *
+   *
+   */
+  description?: Array<SanityKeyed<SanityBlock>>;
+
+  /**
+   * Ausbildung — `string`
+   *
+   *
+   */
+  education?: string;
+
+  /**
+   * Abschlüsse — `string`
+   *
+   *
+   */
+  degrees?: string;
+
+  /**
+   * Image — `defaultImage`
+   *
+   *
+   */
+  image?: DefaultImage;
+}
+
 export type NavigationDropdown = {
   _type: "navigationDropdown";
   /**
@@ -650,7 +750,7 @@ export type Listing = {
    *
    *
    */
-  contentType?: "post" | "article";
+  contentType?: "therapist" | "article";
 
   /**
    * customItems — `array`
@@ -912,4 +1012,5 @@ export type Documents =
   | Redirect
   | Footer
   | PageType
-  | Article;
+  | Article
+  | Therapist;

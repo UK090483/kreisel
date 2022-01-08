@@ -1,5 +1,9 @@
+import config from "../app.config.json";
+
 export * from "../studio/schema";
-export type AppLocations = "en" | "dk";
+
 export type AppSizes = "s" | "m" | "l" | "xl" | "xxl";
 export type ImageLayout = "fill" | "contain" | "intrinsic";
-export type AppColor = "main" | "secondary" | "white" | "black";
+
+export type AppColor = keyof typeof config.colors;
+export type AppLocales = keyof typeof config.locales;

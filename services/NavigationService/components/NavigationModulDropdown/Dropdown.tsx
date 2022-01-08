@@ -1,12 +1,13 @@
 import { NavItem } from "../../types";
 import React from "react";
 import { NavigationModulItemBase } from "../NavigationItemBase";
-import { NavigationModulLink } from "../NavigationLink";
+import DefaultNavigationLink, { NavigationLinkProps } from "../NavigationLink";
 
 interface DropdownProps {
   list?: NavItem[];
   items?: NavItem[];
   onClick?: () => void;
+  NavigationLink?: React.ReactElement<NavigationLinkProps>;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ items, list, onClick }) => {
@@ -39,9 +40,9 @@ export const List: React.FC<{
       <ul className="list-none">
         {items?.map(({ label, link }) => (
           <li key={label}>
-            <NavigationModulLink onClick={onClick} {...link}>
+            <DefaultNavigationLink onClick={onClick} {...link}>
               {label}
-            </NavigationModulLink>
+            </DefaultNavigationLink>
           </li>
         ))}
       </ul>

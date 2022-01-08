@@ -31,7 +31,6 @@ export const mockClient = ({
     fetch: (query: string, params?: Record<string, unknown>) => {
       if (database) {
         return fetchMock(database, query, params).then((res) => {
-          console.log(res);
           return res;
         });
       }

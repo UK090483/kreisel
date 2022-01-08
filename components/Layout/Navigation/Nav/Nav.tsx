@@ -10,7 +10,9 @@ import { Logo } from "@components/Layout/Logo";
 import { NavigationModul } from "@services/NavigationService/NavigationModul";
 import NavigationMobile from "@services/NavigationService/NavigationMobile";
 import { NavItem } from "@services/NavigationService/types";
-
+import NavigationLink from "@services/NavigationService/components/NavigationLink2";
+import NavItemBase from "@services/NavigationService/components/NavigationItemBase2";
+import { HeaderNavigation } from "Modules/Navigation";
 interface NavProps {
   items: NavItem[];
 }
@@ -30,7 +32,8 @@ const Nav: React.FC<NavProps> = ({ items }) => {
           </Link>
 
           <div className="items-center justify-center hidden w-full lg:flex">
-            <NavigationModul items={items} />
+            <HeaderNavigation items={items} />
+            {/* <NavigationModul items={items} /> */}
           </div>
 
           {/* <div className="hidden lg:block">
