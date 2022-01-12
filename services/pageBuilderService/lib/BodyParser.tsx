@@ -1,14 +1,14 @@
 /* eslint-disable no-underscore-dangle */
 import React from "react";
 
-import type { AppLocations } from "types";
+import type { AppLocales } from "types";
 
 import BlockFactory, { blockFactory } from "./BlockFactory";
 import type { PageBodyResult } from "../ContentParser";
 
 export type BodyParserProps = {
   content: PageBodyResult;
-  lang?: AppLocations;
+  lang?: AppLocales;
   extraComponents?: { [k: string]: React.ReactElement };
   blockFactory: BlockFactory;
 };

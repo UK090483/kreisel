@@ -1,7 +1,6 @@
 const plugin = require("tailwindcss/plugin");
 
 module.exports = {
-  
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
@@ -34,7 +33,7 @@ module.exports = {
         },
         black: "#595959",
         white: "#ffffff",
-        primary: "#F3BD06",
+        primary: { light: "#FDECB3", DEFAULT: "#F3BD06" },
         secondary: "#D22D30",
         red: "#D22D30",
       },
@@ -82,6 +81,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),
     require("tailwindcss-multi-column")(),
     plugin(function ({ addComponents, theme }) {

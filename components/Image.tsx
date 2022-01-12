@@ -15,8 +15,6 @@ export const Image: React.FC<ImageProps> = (props) => {
 
   let imageProps = useSanityImage(image);
 
-  // if (image) return <ImageFaker alt="fake" />;
-
   if (!imageProps) return null;
 
   const { width, height, ...rest } = imageProps;

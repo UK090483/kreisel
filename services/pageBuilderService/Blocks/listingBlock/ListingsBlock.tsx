@@ -6,12 +6,7 @@ import {
 } from "@services/pageBuilderService/queries/snippets";
 import React from "react";
 
-import {
-  AppLocations,
-  Article,
-  Listing as ListingType,
-  Therapist,
-} from "types";
+import { AppLocales, Article, Listing as ListingType, Therapist } from "types";
 
 const cardQuery = `
 ...,
@@ -46,14 +41,14 @@ export interface ListingBlockResult extends Omit<ListingType, "contentType"> {
   _key: string;
   contentType: "article";
   items: CardResult[];
-  lang: AppLocations;
+  lang: AppLocales;
 }
 export interface ListingBlockTherapistResult
   extends Omit<ListingType, "contentType"> {
   _key: string;
   contentType: "therapist";
   items: TherapistResult[];
-  lang: AppLocations;
+  lang: AppLocales;
 }
 
 const ListingBlock: React.FC<

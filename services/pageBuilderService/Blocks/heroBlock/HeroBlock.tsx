@@ -1,7 +1,7 @@
 import Hero from "@components/organisms/Hero/Hero";
 import React from "react";
 
-import { AppLocations } from "types";
+import { AppLocales } from "types";
 import { imageMeta, ImageMetaResult } from "../../queries/snippets";
 
 export const heroBlockQuery = `
@@ -43,7 +43,7 @@ export interface HeroBlogResult {
 }
 
 export interface HeroBlockProps extends HeroBlogResult {
-  lang: AppLocations;
+  lang: AppLocales;
 }
 
 const HeroBlock: React.FC<HeroBlockProps> = (props) => {

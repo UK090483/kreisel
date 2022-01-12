@@ -5,7 +5,7 @@
   "tailwindCSS.experimental.classRegex": ["clsx([^]*)"],
   "cSpell.language": "en,de-de",
   "jest.showCoverageOnLoad": true,
-  "jest.autoRun":{ "watch": false, "onSave":"test-only"},
+  "jest.autoRun": { "watch": false, "onSave": "test-only" },
 
   "files.exclude": {
     "**/.git": true,

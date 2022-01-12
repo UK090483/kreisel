@@ -11,8 +11,13 @@ import { NavigationModul } from "@services/NavigationService/NavigationModul";
 import NavigationMobile from "@services/NavigationService/NavigationMobile";
 import { NavItem } from "@services/NavigationService/types";
 import NavigationLink from "@services/NavigationService/components/NavigationLink2";
-import NavItemBase from "@services/NavigationService/components/NavigationItemBase2";
-import { HeaderNavigation } from "Modules/Navigation";
+
+import {
+  HeaderNavigation,
+  NavItemBaseProps,
+  NavigationItemBase,
+} from "Modules/Navigation";
+import Underline from "@components/Underline";
 interface NavProps {
   items: NavItem[];
 }
@@ -25,14 +30,17 @@ const Nav: React.FC<NavProps> = ({ items }) => {
   };
   return (
     <>
-      <nav className=" shadow-lg ">
-        <div className=" mx-auto lg:container  flex items-center justify-between w-full py-2  ">
+      <nav className=" shadow-lg  px-3">
+        <div className=" mx-auto lg:container  flex items-center justify-between w-full py-2   ">
           <Link href="/">
             <Logo />
           </Link>
 
           <div className="items-center justify-center hidden w-full lg:flex">
-            <HeaderNavigation items={items} />
+            <HeaderNavigation
+              items={items}
+              NavigationItemBase={NavItemBaseWithUnderline}
+            />
             {/* <NavigationModul items={items} /> */}
           </div>
 
@@ -43,10 +51,10 @@ const Nav: React.FC<NavProps> = ({ items }) => {
           <button
             data-testid="menu-overlay-toggle"
             onClick={handleNavClick}
-            className="lg:hidden"
+            className="lg:hidden  w-8 h-8 "
             aria-label="Open the Menu"
           >
-            <Svg className="w-[30px]" icon="hamburger" />
+            <Svg className="w-full" icon={menuOpen ? "erase" : "hamburger"} />
           </button>
         </div>
       </nav>
@@ -56,3 +64,15 @@ const Nav: React.FC<NavProps> = ({ items }) => {
 };
 
 export default Nav;
+
+const NavItemBaseWithUnderline: React.FC<NavItemBaseProps> = (props) => {
+  const { place } = props;
+  if (place === "link") {
+    return (
+      <Underline on="hover">
+        <NavigationItemBase {...props} />
+      </Underline>
+    );
+  }
+  return <NavigationItemBase {...props} />;
+};

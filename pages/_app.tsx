@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 
-import { Layout } from "@components/Layout/Layout";
+import Layout from "@components/Layout/Layout";
 import StoreContextProvider from "@services/StoreService/StoreProvider";
 import { FetchStaticPropsResult } from "@services/SanityService/fetchStaticProps";
 import { NextComponentType, NextPageContext } from "next";
@@ -31,9 +31,6 @@ function App({ Component, pageProps }: AppPropsWithStaticProps) {
     <SessionProvider>
       <ShopContextProvider>
         <StoreContextProvider>
-          {/* <Layout {...pageProps}>
-        <Component {...pageProps} />
-      </Layout> */}
           {getLayout}
           <Cookie />
           <Cart />

@@ -6,7 +6,7 @@ import { Header } from "./Header";
 import Nav from "./Navigation/Nav/Nav";
 interface LayoutProps extends FetchStaticPropsResult {}
 
-export const Layout: React.FC<LayoutProps> = ({ children, page }) => {
+const Layout: React.FC<LayoutProps> = ({ children, page }) => {
   return (
     <>
       <Header>
@@ -18,3 +18,5 @@ export const Layout: React.FC<LayoutProps> = ({ children, page }) => {
     </>
   );
 };
+
+export default Layout;

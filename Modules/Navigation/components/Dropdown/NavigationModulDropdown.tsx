@@ -1,5 +1,5 @@
 import { useNavigation } from "../../NavigationContext";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { NavItem } from "../../types";
 import { NavigationModulDropdownContainer } from "./NavigationModulDropdownContainer";
 
@@ -14,6 +14,7 @@ export const NavigationModulDropdown: React.FC<NavigationModulDropdownProps> = (
   const hasItems = items && items.length > 0;
 
   const [hover, setHover] = React.useState(false);
+
   const [bottom, setBottom] = React.useState<number>(0);
   const [target, setTarget] = React.useState<{ x: number; y: number }>({
     x: 0,
@@ -21,13 +22,39 @@ export const NavigationModulDropdown: React.FC<NavigationModulDropdownProps> = (
   });
 
   const ref = useRef<HTMLButtonElement>(null);
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const checkFocus = () => {
+      let res =
+        wrapRef.current?.contains(document.activeElement) ||
+        document.activeElement === ref.current;
+      if (!res) {
+        setHover(false);
+      }
+    };
+    const handleKeydown = () => {
+      checkFocus();
+    };
+    if (hover) {
+      document.addEventListener("keyup", handleKeydown);
+    } else {
+      document.removeEventListener("keyup", handleKeydown);
+    }
+    return () => {
+      document.removeEventListener("keyup", handleKeydown);
+    };
+  }, [hover]);
 
   const handleMouseEnter = () => {
     checkButtonPosition();
     setHover(true);
   };
   const handleMouseLeave = () => setHover(false);
-  const handleNavClick = () => setHover(false);
+  const handleNavClick = () => {
+    setHover((i) => !i);
+    checkButtonPosition();
+  };
 
   const checkButtonPosition = () => {
     if (ref.current) {
@@ -35,7 +62,6 @@ export const NavigationModulDropdown: React.FC<NavigationModulDropdownProps> = (
       if (rect.bottom !== bottom) {
         setBottom(rect.bottom);
       }
-
       if (rect.bottom !== target.y || rect.left + rect.width / 2 !== target.x) {
         setTarget({ x: rect.left + rect.width / 2, y: rect.bottom });
       }
@@ -49,13 +75,14 @@ export const NavigationModulDropdown: React.FC<NavigationModulDropdownProps> = (
   return (
     <>
       <button
-        className="leading-none "
+        aria-haspopup={true}
+        aria-expanded={hover}
+        className="leading-none"
         type="button"
         ref={ref}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        onFocus={handleMouseEnter}
-        onBlur={handleMouseLeave}
+        onClick={handleNavClick}
       >
         <DefaultNavigationItemBase
           props={props}
@@ -67,6 +94,7 @@ export const NavigationModulDropdown: React.FC<NavigationModulDropdownProps> = (
         </DefaultNavigationItemBase>
       </button>
       <NavigationModulDropdownContainer
+        ref={wrapRef}
         handleMouseLeave={handleMouseLeave}
         handleMouseEnter={handleMouseEnter}
         show={hover}
