@@ -8,6 +8,17 @@ export default NextAuth({
     client: mockClient({
       database: [
         { _type: "user", email: "web@konradullrich.com", _id: "testUser" },
+        { _type: "user", email: "konradullrich@me.com", _id: "testUser" },
+        {
+          _type: "user",
+          email: "fv@schwan-communications.com",
+          _id: "testUser",
+        },
+        {
+          _type: "user",
+          email: "nst@schwan-communications.com",
+          _id: "testUser",
+        },
       ],
     }),
     devMode: true,
