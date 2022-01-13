@@ -31,10 +31,10 @@ module.exports = {
           DEFAULT: "#dddddd",
           dark: "#dddddd",
         },
-        black: "#595959",
+        black: "#1c1c1c",
         white: "#ffffff",
-        primary: { light: "#FDECB3", DEFAULT: "#F3BD06" },
-        secondary: "#D22D30",
+        primary: { light: "#FCDE78", DEFAULT: "#2A9D8F" },
+        secondary: "#2A9D8F",
         red: "#D22D30",
       },
       animation: {

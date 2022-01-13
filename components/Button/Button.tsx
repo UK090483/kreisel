@@ -15,7 +15,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   if (href) {
     return (
       <Link
-        className="inline-block px-12 py-2 text-base rounded-full bg-primary whitespace-nowrap"
+        className="inline-block px-12 py-2 text-base rounded-full bg-secondary whitespace-nowrap"
         href={href}
         external={external}
       >
@@ -27,7 +27,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   return (
     <button
       onClick={onClick}
-      className="px-12 py-2 text-base rounded-full bg-primary whitespace-nowrap block w-full"
+      className="px-12 py-2 text-base rounded-full bg-secondary text-white  whitespace-nowrap block w-full"
       type="button"
     >
       {children}
