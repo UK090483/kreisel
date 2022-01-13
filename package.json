@@ -5,8 +5,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test": "jest --watch"
+    "lint": "next lint"
+
   },
   "dependencies": {
     "@sanity/block-tools": "^2.23.0",

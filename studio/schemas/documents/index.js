@@ -6,6 +6,8 @@ import footer from "./footer";
 import pageType from "./pageType";
 import article from "./article";
 import therapist from "./therapist";
+import event from "./event";
+import course from "./course";
 
 const Documents = [
   ...Blog,
@@ -16,6 +18,8 @@ const Documents = [
   pageType,
   article,
   therapist,
+  event,
+  course,
 ];
 
 export default Documents;

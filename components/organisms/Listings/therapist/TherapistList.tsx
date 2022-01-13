@@ -22,7 +22,7 @@ const TherapistList: React.FC<TherapistListProps> = (props) => {
 
   return (
     <>
-      <Section className="py-56">
+      <Section className="py-20">
         <Search />
         <Pagination
           itemCount={items.length}

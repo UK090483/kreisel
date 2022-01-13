@@ -7,6 +7,10 @@ import { siteQuery } from "./siteQuery";
 import { Page } from "types";
 import type { FetchStaticPathsParams } from "./fetchStaticPaths";
 import { SiteSettingResult } from "./siteQuery";
+import {
+  footerQuery,
+  FooterQueryResult,
+} from "@components/Layout/Footer/Footer";
 
 type FetchPageProps = {
   query: string;
@@ -47,7 +51,8 @@ type fetchStaticPropsProps = {
 export interface PageResult
   extends Omit<Page, "content">,
     PageQueryResult,
-    SiteSettingResult {}
+    SiteSettingResult,
+    FooterQueryResult {}
 
 export type FetchStaticPropsResult = {
   page: PageResult | null;
@@ -74,7 +79,8 @@ export const fetchStaticProps = async (
     query: `*[${filter}][0]{
       ...,
       ${body},  
-      ${siteQuery}
+      ${siteQuery},
+      ${footerQuery}
     }`,
     slug: slug || "",
     sanityClient,

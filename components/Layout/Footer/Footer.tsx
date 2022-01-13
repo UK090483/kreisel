@@ -1,4 +1,3 @@
-import { Carousel } from "@components/organisms/Listings/Carousel";
 import { Section } from "@components/Section";
 import { NavOverview } from "@services/NavigationService/NavOverview";
 import { NavItem as NavItemType } from "@services/NavigationService/types";
@@ -10,13 +9,22 @@ interface FooterProps {
   navItems: NavItemType[];
 }
 
+export const footerQuery = `
+'footer': {
+  'article' : *[_type == 'article']{...}
+}
+`;
+
+export interface FooterQueryResult {
+  footer: string;
+}
+
 const Footer: React.FC<FooterProps> = ({ navItems }) => {
   return (
     <footer
       data-testid="footer"
       className="flex flex-col items-center bg-primary "
     >
-      <Carousel />
       <Quote />
       <FooterContact />
       <Section bg="primary" width="l" className="pt-12">

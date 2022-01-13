@@ -1,4 +1,4 @@
-import { groq } from 'next-sanity';
+import { groq } from "next-sanity";
 
 export const siteQuery = groq`
 {'navigation':*[_type=='navigation'][0]{
@@ -29,7 +29,7 @@ export type NavigationItem = {
   label: string;
   labelEn: string;
   slug: string;
-  items: Omit<NavigationItem, 'items'>[] | null;
+  items: Omit<NavigationItem, "items">[] | null;
 };
 
 export type SiteResult = {

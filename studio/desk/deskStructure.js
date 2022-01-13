@@ -43,6 +43,7 @@ export default () =>
           )
         ),
       S.listItem().title("Therapeuten").child(S.documentTypeList("therapist")),
+      S.listItem().title("Kurse").child(S.documentTypeList("course")),
 
       // S.listItem()
       //   .title("Pages")

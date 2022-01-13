@@ -31,7 +31,7 @@ _type == "section" => {
 }
 `;
 
-export interface SectionResult
+export interface SectionBlockResult
   extends Omit<SectionType, "bgImage" | "content" | "image"> {
   content: null | any;
   bgImage: ImageMetaResult;
@@ -39,7 +39,7 @@ export interface SectionResult
   _key: string;
 }
 
-interface SectionBlockProps extends SectionResult {}
+interface SectionBlockProps extends SectionBlockResult {}
 
 const SectionBlock: React.FC<SectionBlockProps> = (props) => {
   const { content, bottomSpace, topSpace, title, image, bgColor, width, type } =

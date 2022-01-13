@@ -2,6 +2,12 @@ import React from "react";
 
 import Link from "next/link";
 
+import { Link as LinkType } from "types";
+import {
+  linkQuery,
+  LinkResult,
+} from "@services/pageBuilderService/queries/snippets";
+
 // import Icon from "@components/Icon";
 // import { buildInternalLink } from "@src/services/pageBuilder/buildInternalLink";
 
@@ -14,29 +20,27 @@ const InlineIcon = () => {
 };
 
 type LinkMarkPros = {
-  internalLink?: { type: string; slug: string };
-  link?: string;
+  link?: LinkResult;
   asButton?: boolean;
 };
 
 export const linkMarkQuery = `
 _type == "link" => {
+  ...,
 
+  'link': link{${linkQuery}},
+  'test':'test',
     'internalLink': link.internalLink->{'type':_type, 'slug':slug.current},
-    'link':link.link,
+    
     asButton,
   }`;
 
 const LinkMark: React.FC<LinkMarkPros> = (props) => {
-  const { link, internalLink, asButton } = props;
+  const { link, asButton } = props;
 
-  //   const _internalLink = internalLink && buildInternalLink(internalLink);
-
-  const _internalLink = "blaaa";
-
-  if (_internalLink) {
+  if (!link?.external && link?.internalLink) {
     return (
-      <Link href={_internalLink} passHref>
+      <Link href={link?.internalLink} passHref>
         <a className="underline text-frida-red">
           {asButton ? <InlineIcon /> : props.children}
         </a>
@@ -48,7 +52,7 @@ const LinkMark: React.FC<LinkMarkPros> = (props) => {
     <a
       target="_blank"
       rel="noreferrer"
-      href={link || "/"}
+      href={link?.externalLink || "/"}
       className="underline text-frida-red"
     >
       {asButton ? <InlineIcon /> : props.children}

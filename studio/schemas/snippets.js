@@ -9,7 +9,6 @@ export const defaultBockContent = {
     { type: "listing" },
     { type: "onPageNav" },
   ],
-  
 };
 
 export function colorList(skip) {

@@ -2,7 +2,7 @@ import "../styles/globals.css";
 
 import Layout from "@components/Layout/Layout";
 import StoreContextProvider from "@services/StoreService/StoreProvider";
-import { FetchStaticPropsResult } from "@services/SanityService/fetchStaticProps";
+import { PageProps } from "Modules/SanityPageBuilder/types";
 import { NextComponentType, NextPageContext } from "next";
 import Cookie from "Modules/Cookie/Cookie";
 import { SessionProvider } from "next-auth/react";
@@ -10,10 +10,11 @@ import { ReactElement, ReactNode } from "react";
 
 import Cart from "@services/ShopService/Cart";
 import { ShopContextProvider } from "@services/ShopService/shopContext";
+import { PageData } from "./[[...slug]]";
 
 interface AppPropsWithStaticProps {
-  pageProps: FetchStaticPropsResult;
-  Component: NextComponentType<NextPageContext, any, FetchStaticPropsResult> & {
+  pageProps: PageProps<PageData>;
+  Component: NextComponentType<NextPageContext, any, PageProps<PageData>> & {
     getLayout?: (page: ReactElement) => ReactNode;
   };
 }

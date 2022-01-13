@@ -1,6 +1,6 @@
 import SectionBlock, {
   sectionBlockQuery,
-  SectionResult,
+  SectionBlockResult,
 } from "./Blocks/sectionBlock/SectionBlock";
 import BodyParser from "./lib/BodyParser";
 import { blockFactory } from "./lib/BlockFactory";
@@ -12,7 +12,7 @@ import ListingBlock, {
 } from "./Blocks/listingBlock/ListingsBlock";
 import onPageNav, { onPageNavBlockQuery } from "./Blocks/onPageNav/OnPageNav";
 
-export type PageBodyResult = (SectionResult | ListingBlockResult)[];
+export type PageBodyResult = (SectionBlockResult | ListingBlockResult)[];
 export type PageQueryResult = { content: PageBodyResult };
 
 blockFactory.registerComponents([

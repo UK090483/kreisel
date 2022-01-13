@@ -1,20 +1,23 @@
-import { FetchStaticPropsResult } from "@services/SanityService/fetchStaticProps";
+import { PageProps } from "Modules/SanityPageBuilder/types";
+import { PageData } from "pages/[[...slug]]";
 import React from "react";
 import Footer from "./Footer";
 import Head from "./Head";
 import { Header } from "./Header";
 import Nav from "./Navigation/Nav/Nav";
-interface LayoutProps extends FetchStaticPropsResult {}
+interface LayoutProps extends PageProps<PageData> {}
 
-const Layout: React.FC<LayoutProps> = ({ children, page }) => {
+const Layout: React.FC<LayoutProps> = (props) => {
+  const { children, data } = props;
+
   return (
     <>
       <Header>
-        <Nav items={page?.siteSettings.mainNav || []} />
+        <Nav items={data?.navigation || []} />
       </Header>
-      <Head name={page?.title} />
+      <Head name={data?.title} />
       <main className="min-h-screen">{children}</main>
-      <Footer navItems={page?.siteSettings.mainNav || []} />
+      <Footer navItems={data?.navigation || []} />
     </>
   );
 };

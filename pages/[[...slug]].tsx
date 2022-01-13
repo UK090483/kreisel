@@ -1,31 +1,57 @@
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { sanityClient as client } from "@services/SanityService/sanity.server";
 
-import { fetchStaticPaths } from "@services/SanityService/fetchStaticPaths";
-import type { FetchStaticPathsParams } from "@services/SanityService/fetchStaticPaths";
-import { fetchStaticProps } from "@services/SanityService/fetchStaticProps";
-import type { FetchStaticPropsResult } from "@services/SanityService/fetchStaticProps";
-import { sanityClient } from "@services/SanityService/sanity.server";
-import ContentParser from "@services/pageBuilderService/ContentParser";
+import conf from "app.config.json";
+import SPB from "Modules/SanityPageBuilder/SPB";
+import HeroBlock, {
+  heroBlockQuery,
+  HeroBlogResult,
+} from "@services/pageBuilderService/Blocks/heroBlock/HeroBlock";
+import ListingBlock, {
+  listingBlockQuery,
+  ListingBlockResult,
+} from "@services/pageBuilderService/Blocks/listingBlock/ListingsBlock";
+import onPageNav, {
+  onPageNavBlockQuery,
+} from "@services/pageBuilderService/Blocks/onPageNav/OnPageNav";
+import SectionBlock, {
+  sectionBlockQuery,
+  SectionBlockResult,
+} from "@services/pageBuilderService/Blocks/sectionBlock/SectionBlock";
+import { NavigationQuery, NavigationResult } from "Modules/Navigation/query";
 
-const PageComponent: NextPage<FetchStaticPropsResult> = ({ page }) => {
-  return (
-    <>
-      <ContentParser content={page?.content} />
-    </>
-  );
-};
+export interface PageData extends NavigationResult {
+  content: (SectionBlockResult | ListingBlockResult | HeroBlogResult)[];
+  title?: string;
+}
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return await fetchStaticPaths("page", sanityClient);
-};
+const { getStaticPaths, getStaticProps, PageComponent } = SPB<PageData>({
+  client,
+  locales: conf.locales,
+  query: `${NavigationQuery()}, title`,
+  components: [
+    {
+      name: "hero",
+      component: HeroBlock,
+      query: heroBlockQuery,
+    },
+    {
+      name: "section",
+      component: SectionBlock,
+      query: sectionBlockQuery,
+    },
+    {
+      name: "listing",
+      component: ListingBlock,
+      query: listingBlockQuery,
+    },
+    {
+      name: "onPageNav",
+      component: onPageNav,
+      query: onPageNavBlockQuery,
+    },
+  ],
+});
 
-type GetStaticPropsPlus = GetStaticProps<
-  { [key: string]: any },
-  FetchStaticPathsParams
->;
-
-export const getStaticProps: GetStaticPropsPlus = async ({ params }) => {
-  return await fetchStaticProps({ params, sanityClient });
-};
+export { getStaticPaths, getStaticProps };
 
 export default PageComponent;
