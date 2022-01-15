@@ -1,3 +1,4 @@
+import type { PageProps } from "modules/SanityPageBuilder/types";
 import { PageData } from "pages/[[...slug]]";
 import React from "react";
 import Footer from "./Footer";
@@ -5,12 +6,6 @@ import Head from "./Head";
 import { Header } from "./Header";
 import Nav from "./Navigation/Nav/Nav";
 
-type PageProps<P> = {
-  data: P | null;
-  preview?: boolean;
-  query: string;
-  [k: string]: any;
-};
 interface LayoutProps extends PageProps<PageData> {}
 
 const Layout: React.FC<LayoutProps> = (props) => {
