@@ -16,7 +16,7 @@ import {
   HeaderNavigation,
   NavItemBaseProps,
   NavigationItemBase,
-} from "modules/Navigation";
+} from "../../../../modules/Navigation";
 import Underline from "@components/Underline";
 interface NavProps {
   items: NavItem[];
