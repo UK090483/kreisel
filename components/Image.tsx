@@ -6,7 +6,7 @@ import useSanityImage from "@services/pageBuilderService/lib/useSanityImage";
 interface ImageProps {
   src?: string;
   objectFit?: "cover" | "contain";
-  image?: ImageMetaResult;
+  image?: ImageMetaResult | null;
   alt?: string;
 }
 
@@ -23,7 +23,14 @@ export const Image: React.FC<ImageProps> = (props) => {
 
   const { width, height, ...rest } = imageProps;
 
-  return <NextImage {...rest} layout="fill" objectFit={objectFit} />;
+  return (
+    <NextImage
+      draggable={false}
+      {...rest}
+      layout="fill"
+      objectFit={objectFit}
+    />
+  );
 };
 
 export const ImageFaker: React.FC<ImageProps> = ({ src }) => {
@@ -35,6 +42,7 @@ export const ImageFaker: React.FC<ImageProps> = ({ src }) => {
 
   return (
     <NextImage
+      draggable={false}
       blurDataURL={`https://picsum.photos/50/50?blur=2`}
       src={`https://picsum.photos/${ranImage}`}
       alt={"bla"}

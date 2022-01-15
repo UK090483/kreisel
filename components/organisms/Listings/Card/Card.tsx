@@ -34,7 +34,7 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <CardWrap href={href}>
-      <div className="relative w-full aspect-w-16 aspect-h-10 ">
+      <div className="relative w-full aspect-w-3 aspect-h-2 ">
         <Image />
       </div>
 

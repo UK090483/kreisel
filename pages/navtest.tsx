@@ -2,7 +2,7 @@ import {
   HeaderNavigation,
   NavigationItemBase,
   NavItemBaseProps,
-} from "Modules/Navigation";
+} from "modules/Navigation";
 import * as React from "react";
 import { NavItem } from "@services/NavigationService/types";
 

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { BlockFactory } from "../BlockFactory";
 
 const TestComponent1 = () => <div>Test1</div>;

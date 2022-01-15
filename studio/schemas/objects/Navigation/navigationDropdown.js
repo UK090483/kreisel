@@ -1,3 +1,5 @@
+import { RiFileListFill } from "react-icons/ri";
+
 export default {
   title: "Navigation Dropdown",
   name: "navigationDropdown",
@@ -12,4 +14,17 @@ export default {
       of: [{ type: "navigationItem" }],
     },
   ],
+  preview: {
+    select: {
+      label: "label",
+    },
+    prepare(selection) {
+      const { label } = selection;
+      return {
+        title: label,
+        subtitle: "Link",
+        media: RiFileListFill,
+      };
+    },
+  },
 };

@@ -1,16 +1,16 @@
 import "../styles/globals.css";
-
 import Layout from "@components/Layout/Layout";
 import StoreContextProvider from "@services/StoreService/StoreProvider";
-import { PageProps } from "Modules/SanityPageBuilder/types";
+import { PageProps } from "modules/SanityPageBuilder/types";
 import { NextComponentType, NextPageContext } from "next";
-import Cookie from "Modules/Cookie/Cookie";
+import Cookie from "modules/Cookie/Cookie";
 import { SessionProvider } from "next-auth/react";
 import { ReactElement, ReactNode } from "react";
-
 import Cart from "@services/ShopService/Cart";
 import { ShopContextProvider } from "@services/ShopService/shopContext";
 import { PageData } from "./[[...slug]]";
+import usePreviewSubscription from "modules/SanityPageBuilder/lib/preview/previewSubscription";
+import PreviewIndicator from "modules/SanityPageBuilder/lib/preview/PreviewIndicator";
 
 interface AppPropsWithStaticProps {
   pageProps: PageProps<PageData>;
@@ -19,7 +19,16 @@ interface AppPropsWithStaticProps {
   };
 }
 
-function App({ Component, pageProps }: AppPropsWithStaticProps) {
+function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
+  const { data: _data, query, preview } = _pageProps;
+
+  const { data } = usePreviewSubscription<PageData | null>(query, {
+    initialData: _data,
+    enabled: preview,
+  });
+
+  const pageProps = { ..._pageProps, data };
+
   const getLayout = Component.getLayout ? (
     Component.getLayout(<Component {...pageProps} />)
   ) : (
@@ -35,6 +44,7 @@ function App({ Component, pageProps }: AppPropsWithStaticProps) {
           {getLayout}
           <Cookie />
           <Cart />
+          {preview && <PreviewIndicator />}
         </StoreContextProvider>
       </ShopContextProvider>
     </SessionProvider>

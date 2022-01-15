@@ -1,9 +1,11 @@
-import { fetchStaticPropsProps, FetchStaticPropsResult } from "./../types";
+import { GetStaticPropsResult } from "next";
+import { fetchStaticPropsProps, PageProps } from "../types";
 
 export async function fetchStaticProps<P>(
   props: fetchStaticPropsProps
-): Promise<FetchStaticPropsResult<P>> {
-  const { params, client, locale, preview, query, locales } = props;
+): Promise<GetStaticPropsResult<PageProps<P>>> {
+  const { params, client, locale, preview, query, locales, revalidate } = props;
+
   if (!params) {
     throw new Error("No params in getStaticProps");
   }
@@ -29,7 +31,16 @@ export async function fetchStaticProps<P>(
 
   const data = await client.fetch(fetch);
 
+  if (!data) {
+    return { notFound: true, revalidate };
+  }
+
   return {
-    props: { data, preview: preview || false, query },
+    props: {
+      data,
+      preview: preview || false,
+      query: preview ? fetch : "",
+    },
+    revalidate,
   };
 }

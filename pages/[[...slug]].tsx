@@ -1,7 +1,6 @@
 import { sanityClient as client } from "@services/SanityService/sanity.server";
-
 import conf from "app.config.json";
-import SPB from "Modules/SanityPageBuilder/SPB";
+import SPB from "modules/SanityPageBuilder/SPB";
 import HeroBlock, {
   heroBlockQuery,
   HeroBlogResult,
@@ -17,7 +16,7 @@ import SectionBlock, {
   sectionBlockQuery,
   SectionBlockResult,
 } from "@services/pageBuilderService/Blocks/sectionBlock/SectionBlock";
-import { NavigationQuery, NavigationResult } from "Modules/Navigation/query";
+import { NavigationQuery, NavigationResult } from "modules/Navigation/query";
 
 export interface PageData extends NavigationResult {
   content: (SectionBlockResult | ListingBlockResult | HeroBlogResult)[];
@@ -25,9 +24,11 @@ export interface PageData extends NavigationResult {
 }
 
 const { getStaticPaths, getStaticProps, PageComponent } = SPB<PageData>({
+  revalidate: 1,
   client,
   locales: conf.locales,
   query: `${NavigationQuery()}, title`,
+
   components: [
     {
       name: "hero",

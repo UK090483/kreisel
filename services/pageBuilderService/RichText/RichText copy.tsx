@@ -1,4 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable react/jsx-props-no-spreading */
+
 import React from "react";
+
+import BlockContent, {
+  BlockContentProps,
+  Serializers,
+} from "@sanity/block-content-to-react";
 
 import LinkMark, { linkMarkQuery } from "./marks/link";
 import ButtonPlug, { buttonPlugQuery } from "./Plugs/ButtonPlug";
@@ -19,6 +27,18 @@ markDefs[]{
   ${linkMarkQuery},
 }
 `;
+
+// export const richTextQuery = `
+// content[]{
+//   ...,
+//   ${marksQuery},
+//   ${buttonPlugQuery},
+//   ${embedPlugQuery},
+//   ${imagePlugQuery},
+//   ${imageGalleryPlugQuery},
+//   ${downloadPlugQuery},
+// }
+//`;
 export const richTextQuery = `
 content[]{
   ...,
@@ -26,8 +46,15 @@ content[]{
   ${buttonPlugQuery},
   ${spacerPlugQuery},
   ${imageGalleryPlugQuery},
+ 
 }
 `;
+
+export interface RichTextQueryResult {
+  _type: "richText" | "block";
+  _key: string;
+  content: any[];
+}
 
 const link = (props: any) => {
   return <LinkMark {...props.mark}>{props.children}</LinkMark>;
@@ -63,15 +90,60 @@ const List: React.FC = (props: any) => {
 
 const styles = { h1: "h1", h2: "h2", h3: "h3", h4: "h4", normal: "body" };
 
+const BlockRenderer = (props: any) => {
+  const { style = "normal" } = props.node;
+
+  if (!props.children[0]) {
+    return <Typo spacer />;
+  }
+
+  if (Object.keys(styles).includes(style)) {
+    return (
+      //@ts-ignore
+      <Typo variant={styles[style]} as={"p"}>
+        {props.children}
+      </Typo>
+    );
+  }
+
+  if (style === "blockquote") {
+    return <blockquote>- {props.children}</blockquote>;
+  }
+  //@ts-ignore
+  return BlockContent.defaultSerializers.types.block(props);
+};
+const Container: React.FC = ({ children }) => {
+  return <>{children}</>;
+};
+
+const serializer: Serializers = {
+  list: List,
+  // hardBreak: () => <div className="border-2 border-red-600 "></div>,
+  types: {
+    imageGalleryPlug: ImageGalleryPlug,
+    button: ButtonPlug,
+    embed: EmbedPlug,
+    block: BlockRenderer,
+    spacer: SpacerPlug,
+  },
+  marks: {
+    link,
+    tag,
+    hand,
+    handUnderline,
+  },
+  container: Container,
+};
+
 const RichText: React.FC<any> = (props: any) => {
   return (
     <SanityRichText
-      list={List}
       content={props.content}
       plugs={{
         imageGalleryPlug: ImageGalleryPlug,
         button: ButtonPlug,
         embed: EmbedPlug,
+        block: BlockRenderer,
         spacer: SpacerPlug,
       }}
       marks={{

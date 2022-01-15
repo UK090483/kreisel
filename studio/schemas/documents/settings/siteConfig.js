@@ -1,3 +1,5 @@
+import CustomObject from "../../../components/CustomObject";
+
 export default {
   name: "siteConfig",
   title: "Site config",
@@ -14,11 +16,10 @@ export default {
       name: "mainNav",
       type: "array",
       title: "Main Navigation",
-      of: [
-        { type: "navigationItem" },
-        { type: "navigationDropdown" },
-        { type: "navigationMegaMenu" },
-      ],
+      options: {
+        editModal: "popover",
+      },
+      of: [{ type: "navigationItem" }, { type: "navigationMegaMenu" }],
       validation: (Rule) => Rule.required(),
     },
     {

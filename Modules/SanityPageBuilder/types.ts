@@ -1,4 +1,9 @@
-import { NextPage, GetStaticPaths, GetStaticProps } from "next";
+import {
+  NextPage,
+  GetStaticPaths,
+  GetStaticPathsResult,
+  GetStaticProps,
+} from "next";
 import { ComponentType } from "react";
 import { BlockFactory } from "./lib/BlockFactory";
 import type { SanityClient } from "@sanity/client/sanityClient";
@@ -9,11 +14,14 @@ export type SPBComponent = {
   query: string;
 };
 
+type Revalidate = number | boolean;
+
 export type SPBOptions = {
   components: SPBComponent[];
   client: SanityClient;
   locales: LocationConfig;
   query?: string;
+  revalidate?: Revalidate;
 };
 
 export type SPBResult<P> = {
@@ -31,15 +39,18 @@ export type FetchStaticPathsResult = {
   fallback: boolean;
 };
 
+export type FetchStaticPathsResult2 =
+  GetStaticPathsResult<FetchStaticPathsParams>;
 export type FetchStaticPathsProps = {
   doc: string;
   client: SanityClient;
-  config?: LocationConfig;
+  locales?: LocationConfig;
+  query?: string;
 };
 
 export type FetchStaticPaths = (
   props: FetchStaticPathsProps
-) => Promise<FetchStaticPathsResult>;
+) => Promise<FetchStaticPathsResult2>;
 
 export type fetchStaticPropsProps = {
   locale?: string;
@@ -48,6 +59,7 @@ export type fetchStaticPropsProps = {
   client: SanityClient;
   locales: LocationConfig;
   query: string;
+  revalidate?: Revalidate;
 };
 
 export type PageProps<P> = {

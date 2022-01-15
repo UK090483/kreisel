@@ -1,4 +1,4 @@
-import { PageProps } from "Modules/SanityPageBuilder/types";
+import { PageProps } from "modules/SanityPageBuilder/types";
 import { PageData } from "pages/[[...slug]]";
 import React from "react";
 import Footer from "./Footer";

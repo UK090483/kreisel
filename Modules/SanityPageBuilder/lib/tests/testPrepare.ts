@@ -6,21 +6,21 @@ type MockSanityClient = {
   database?: any;
 };
 
-export const mockGetClient = ({ fetchReturn, database }: MockSanityClient) => {
-  return () =>
-    ({
-      fetch: (query: string) => {
-        if (database) {
-          return fetchMock(database, query);
-        }
+export const mockClient = (props: MockSanityClient) => {
+  const { fetchReturn, database } = props;
+  return {
+    fetch: (query: string) => {
+      if (database) {
+        return fetchMock(database, query);
+      }
 
-        return Promise.resolve(fetchReturn);
-      },
-    } as unknown as SanityClient);
+      return Promise.resolve(fetchReturn);
+    },
+  } as unknown as SanityClient;
 };
 
-export const mockClient = (props: MockSanityClient) => {
-  return mockGetClient(props);
+export const mockGetClient = (props: MockSanityClient) => {
+  return () => mockGetClient(props);
 };
 
 const fetchMock = async (dataset: any, query: string) => {

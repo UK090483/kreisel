@@ -1,10 +1,13 @@
 import { defaultBockContent } from "../snippets";
 import { CgWebsite } from "react-icons/cg";
-import {VscFileSubmodule} from 'react-icons/vsc'
-import React from 'react'
-const SubPageIcon=()=>{
-  return <VscFileSubmodule color="red"/>
-}
+import { VscFileSubmodule } from "react-icons/vsc";
+
+import React from "react";
+import Twitter from "../../components/Twitter";
+import CustomArray from "../../components/CustomArray";
+const SubPageIcon = () => {
+  return <VscFileSubmodule color="red" />;
+};
 
 export default {
   type: "document",
@@ -18,6 +21,25 @@ export default {
       title: "Title",
       validation: (Rule) => Rule.required(),
     },
+    // {
+    //   name: "twitter",
+    //   type: "string",
+    //   title: "Twitter",
+    //   inputComponent: Twitter,
+    // },
+    // {
+    //   name: "customArray",
+    //   type: "array",
+    //   title: "CustomArray",
+    //   of: [{ type: "navigationItem" }],
+    //   inputComponent: CustomArray,
+    // },
+    // {
+    //   name: "defaultArray",
+    //   type: "array",
+    //   title: "defaultArray",
+    //   of: [{ type: "navigationItem" }],
+    // },
     {
       name: "description",
       type: "text",
@@ -37,12 +59,11 @@ export default {
       name: "pageType",
       type: "reference",
       to: [{ type: "pageType" }],
-      options:{
-        disableNew:true
-      }
+      options: {
+        disableNew: true,
+      },
     },
-   
-   
+
     defaultBockContent,
 
     {
@@ -54,27 +75,27 @@ export default {
       },
     },
   ],
-  orderings:[{
-    title: 'by PageType',
-    name: 'pageType',
-    by: [
-      {field: 'pageType.slug.current', direction: 'desc'}
-    ]
-  },],
+  orderings: [
+    {
+      title: "by PageType",
+      name: "pageType",
+      by: [{ field: "pageType.slug.current", direction: "desc" }],
+    },
+  ],
 
   preview: {
     select: {
       slug: "slug.current",
       pageType: "pageType.slug.current",
-      title:'title'
+      title: "title",
     },
     prepare(selection) {
-      const {slug, pageType,title} = selection
+      const { slug, pageType, title } = selection;
       return {
         title: title,
-        subtitle: pageType? `${pageType}/${slug}`: slug,
-        media: pageType? SubPageIcon: CgWebsite
-      }
-    }
+        subtitle: pageType ? `${pageType}/${slug}` : slug,
+        media: pageType ? SubPageIcon : CgWebsite,
+      };
+    },
   },
 };

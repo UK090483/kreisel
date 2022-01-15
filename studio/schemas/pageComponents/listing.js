@@ -21,8 +21,10 @@ export default {
       type: "string",
       options: {
         list: [
-          { title: "Therapeut", value: "therapist" },
-          { title: "Article", value: "article" },
+          { title: "Therapeuten", value: "therapist" },
+          { title: "Artikel", value: "article" },
+          { title: "Aktuelles", value: "aktuelles" },
+          { title: "Blogs", value: "blog" },
         ],
         layout: "radio",
       },

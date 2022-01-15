@@ -86,7 +86,7 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
 const WithImage: React.FC<{
   place: "left" | "right";
   image: ImageMetaResult | null;
-}> = ({ children, place = "left" }) => {
+}> = ({ children, place = "left", image }) => {
   const content = (
     <div
       className={clsx({
@@ -101,7 +101,7 @@ const WithImage: React.FC<{
     <>
       {place === "right" && content}
       <div className="relative overflow-hidden aspect-w-16 aspect-h-9 rounded-2xl">
-        <Image />
+        <Image image={image} objectFit="contain" />
       </div>
       {place === "left" && content}
     </>

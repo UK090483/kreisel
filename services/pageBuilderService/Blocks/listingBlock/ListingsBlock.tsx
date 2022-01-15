@@ -29,7 +29,9 @@ export const listingBlockQuery = `
 _type == "listing" => {
     ...,
   'items': select(
-    type != 'custom' =>  *[ _type == ^.contentType ][]{${cardQuery}},
+    contentType == 'block' => *[_type == 'block'][]{${cardQuery}},
+    contentType == 'article' => *[_type == 'article'][]{${cardQuery}},
+    type != 'custom' =>  *[ pageType->slug.current == ^.contentType ][]{${cardQuery}},
     type == 'custom' => customItems[]->{${cardQuery}}
   )
 }

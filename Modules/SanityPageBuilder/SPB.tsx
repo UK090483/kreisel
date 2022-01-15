@@ -5,6 +5,7 @@ import { fetchStaticProps } from "./lib/fetchStaticProps";
 import { fetchStaticPaths } from "./lib/fetchStaticPaths";
 
 function SPB<P extends { [k: string]: any } = {}>({
+  revalidate,
   components,
   client,
   locales,
@@ -16,22 +17,23 @@ function SPB<P extends { [k: string]: any } = {}>({
   return {
     blockFactory: bf,
     PageComponent: (props) => {
-      const { data, page, query } = props;
-
-      console.log(props);
-
-      return <BodyParser blockFactory={bf} content={data.content || []} />;
+      const { data } = props;
+      return <BodyParser blockFactory={bf} content={data?.content || []} />;
     },
     getStaticPaths: async () => {
-      return await fetchStaticPaths({ client, doc: "page", config: locales });
+      return await fetchStaticPaths({ client, doc: "page", locales });
     },
     //@ts-ignore
-    getStaticProps: async ({ params }) => {
-      return await fetchStaticProps({
+    getStaticProps: async (props) => {
+      const { params, preview } = props;
+
+      return await fetchStaticProps<P>({
+        revalidate,
         params,
         client,
         query: `${bf.getRootQuery()}, ${query || ""}`,
         locales,
+        preview,
       });
     },
   };

@@ -27,7 +27,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = (props) => {
         {price} €
       </Typo>
       <Button onClick={handleClick}>
-        {_inCart ? "zum Einkaufswagen" : "Jetzt Kaufen"}
+        {_inCart ? "zum Einkaufswagen" : "zum Einkaufswagen"}
       </Button>
     </Card>
   );
