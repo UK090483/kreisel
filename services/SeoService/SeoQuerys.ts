@@ -1,7 +1,10 @@
-import { Seo } from "studio/schema";
-
-export interface SeoType extends Seo {
+export interface SeoType {
   canonical?: string;
+  metaTitle?: string;
+  metaDesc?: string;
+  shareTitle?: string;
+  shareDesc?: string;
+  pageUrl?: string;
 }
 
 export interface SeoResult {
