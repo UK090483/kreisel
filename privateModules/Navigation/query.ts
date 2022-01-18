@@ -2,7 +2,6 @@ import {
   linkQuery,
   LinkResult,
 } from "@services/pageBuilderService/queries/snippets";
-import { NavigationItem, NavigationMegaMenu } from "types";
 
 export const navItemQuery = (locale: string = "") => `
    _type == 'navigationItem' =>{
@@ -13,8 +12,7 @@ export const navItemQuery = (locale: string = "") => `
     }
   `;
 
-export interface NavigationMegaMenuResult
-  extends Omit<NavigationMegaMenu, "items"> {
+export interface NavigationMegaMenuResult {
   items: {
     label?: string;
     link?: LinkResult;
@@ -64,6 +62,6 @@ export interface NavigationResult {
   navigation: NavigationItemResult[];
 }
 
-export interface NavItemResult extends Omit<NavigationItem, "link"> {
+export interface NavItemResult {
   link: LinkResult;
 }

@@ -1,10 +1,6 @@
 import React from "react";
 
 import clsx from "clsx";
-import {
-  ImageGalleryPlug as ImageGalleryPlugType,
-  ImageGalleryItem,
-} from "types";
 
 // import Photo from '@components/Photo';
 import {
@@ -31,14 +27,20 @@ _type == "imageGalleryPlug" => {
 }
 `;
 
-interface ImageGalleryPlugItem
-  extends Omit<ImageGalleryItem, "image" | "link"> {
+interface ImageGalleryPlugItem {
+  _type: "imageGalleryItem";
+  title?: string;
+  size?: "m" | "l";
   image?: ImageMetaResult;
   link?: LinkResult;
   _key: string;
 }
-export interface ImageGalleryPlugResult
-  extends Omit<ImageGalleryPlugType, "items"> {
+export interface ImageGalleryPlugResult {
+  _type: "imageGalleryPlug";
+  name?: string;
+  rows?: number;
+  rows_mobile?: number;
+  ratio?: "1:1" | "16:9" | "2:3" | "3:2";
   items: ImageGalleryPlugItem[];
 }
 
@@ -74,8 +76,8 @@ const ImageGalleryPlug: React.FC<{ node: ImageGalleryPlugResult }> = (
 
         return (
           <ConditionalLink
-            href={link?.internalLink || link?.externalLink || ""}
-            external={!!link?.externalLink}
+            href={link?.href || "/"}
+            external={!!link?.external}
             condition={!!link}
             key={_key}
             className={clsx(

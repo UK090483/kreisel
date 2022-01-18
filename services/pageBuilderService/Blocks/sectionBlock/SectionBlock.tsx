@@ -6,8 +6,6 @@ import {
   ImageMetaResult,
 } from "@services/pageBuilderService/queries/snippets";
 
-import { Section as SectionType } from "types";
-
 import RichText, { richTextQuery } from "../../RichText/RichText";
 
 import { Section } from "@components/Section";
@@ -33,13 +31,19 @@ _type == "section" => {
 }
 `;
 
-export interface SectionBlockResult
-  extends Omit<SectionType, "bgImage" | "content" | "image"> {
+export interface SectionBlockResult {
+  _type: "section";
   content: null | any;
   bgImage?: ImageMetaResult | null;
   image?: ImageMetaResult | null;
   transitionTop?: "tearOff" | null;
   transitionBottom?: "tearOff" | null;
+  topSpace?: "s" | "m" | "l" | "xl" | "xxl";
+  bottomSpace?: "s" | "m" | "l" | "xl" | "xxl";
+  title?: string;
+  bgColor?: "black" | "white" | "primary" | "secondary" | "grey";
+  width?: "m" | "l" | "s";
+  type?: "accordion";
   _key: string;
 }
 

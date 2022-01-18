@@ -7,7 +7,7 @@ import {
 } from "@services/pageBuilderService/queries/snippets";
 import React from "react";
 
-import { AppLocales, Article, Listing as ListingType, Therapist } from "types";
+import { AppLocales } from "types";
 
 const cardQuery = `
 ...,
@@ -18,21 +18,39 @@ const cardQuery = `
   defined(slug) => '/' + slug.current
 ),
 `;
-export interface CardResult extends Article {
+export interface CardResult {
   href?: string;
+  title?: string;
+  description?: string;
+  image?: ImageMetaResult;
+  _id: string;
 }
 
-export interface TherapistResult extends Omit<Therapist, "image"> {
-  image?: ImageMetaResult;
+export interface IArticleCardResult extends CardResult {
+  _type: "article";
+  price?: number;
+}
+
+export interface TherapistResult extends CardResult {
+  _type: "therapist";
+  zipCode?: string;
+  city?: string;
+  name?: string;
+  firstName?: string;
+  degrees?: string;
+  education?: string;
+  website?: string;
+  email?: string;
+  jobDescription?: string;
 }
 
 export const listingBlockQuery = `
 _type == "listing" => {
     ...,
   'items': select(
-    contentType == 'testimonial' => *[_type == 'testimonial'][]{${cardQuery}},
-    contentType == 'block' => *[_type == 'block'][]{${cardQuery}},
     contentType == 'article' => *[_type == 'article'][]{${cardQuery}},
+    contentType == 'blog' => *[_type == 'blog'][]{${cardQuery}},
+    contentType == 'testimonial' => *[_type == 'testimonial'][]{${cardQuery}},
     contentType == 'therapist' => *[_type == 'therapist'][]{${cardQuery}},
     type != 'custom' =>  *[ pageType->slug.current == ^.contentType ][]{${cardQuery}},
     type == 'custom' => customItems[]->{${cardQuery}}
@@ -40,16 +58,17 @@ _type == "listing" => {
 }
 `;
 
-export type ListingBlockItem = Article;
-
-export interface ListingBlockResult extends Omit<ListingType, "contentType"> {
+export interface ListingBlockResult {
   _key: string;
-  contentType: "article";
+  _type: "listing";
+  type?: "contentType" | "custom";
+  contentType?: "therapist" | "article" | "testimonial" | "blog";
   items: CardResult[];
+  customItems?: CardResult[];
   lang: AppLocales;
 }
-export interface ListingBlockTherapistResult
-  extends Omit<ListingType, "contentType"> {
+
+export interface ListingBlockTherapistResult {
   _key: string;
   contentType: "therapist";
   items: TherapistResult[];
@@ -70,6 +89,8 @@ export interface ListingBlockTestimonialResult {
   items: ITestimonialItem[];
   lang: AppLocales;
 }
+
+export type ListingBlockItem = IArticleCardResult | TherapistResult;
 
 const ListingBlock: React.FC<
   | ListingBlockResult

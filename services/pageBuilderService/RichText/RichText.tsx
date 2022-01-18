@@ -11,7 +11,7 @@ import ImageGalleryPlug, {
 import Typo from "@components/Typography/Typography";
 import SpacerPlug, { spacerPlugQuery } from "./Plugs/Spacer";
 import Underline from "@components/Underline";
-import SanityRichText from "modules/SanityPageBuilder/lib/RichText";
+import SanityRichText from "privateModules/SanityPageBuilder/lib/RichText";
 
 const marksQuery = `
 markDefs[]{

@@ -1,5 +1,4 @@
 import Button from "@components/Button/Button";
-import { Button as ButtonType } from "types";
 
 import {
   LinkResult,
@@ -19,12 +18,19 @@ _type == "button" => {
 }
 `;
 
-export interface ButtonPlugResult extends Omit<ButtonType, "link"> {
+type ButtonType = {
+  _type: "button";
+  label?: string;
   link: LinkResult;
-}
+  position?: "inline" | "left" | "right" | "center";
+};
 
-type ButtonPlugProps = ButtonPlugResult;
-const ButtonPlug: React.FC<{ node: ButtonPlugProps }> = (props) => {
+// export interface ButtonPlugResult extends Omit<ButtonType, "link"> {
+//   link: LinkResult;
+// }
+
+// type ButtonPlugProps = ButtonPlugResult;
+const ButtonPlug: React.FC<{ node: ButtonType }> = (props) => {
   const { link, label, position } = props.node;
 
   return (

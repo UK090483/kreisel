@@ -1,5 +1,3 @@
-import { Link } from "types";
-
 export const linkQuery = `
    ...,
   'internalLink': select(
@@ -14,7 +12,7 @@ export const linkQuery = `
   'external': select(defined(externalLink)=>true,defined(internalLink)=>false) 
 `;
 
-export interface LinkResult extends Omit<Link, "internalLink"> {
+export interface LinkResult {
   internalLink?: string | null;
   href?: string | null;
   external?: boolean;

@@ -2,7 +2,6 @@ import React from "react";
 
 import Link from "next/link";
 
-import { Link as LinkType } from "types";
 import {
   linkQuery,
   LinkResult,
@@ -52,7 +51,7 @@ const LinkMark: React.FC<LinkMarkPros> = (props) => {
     <a
       target="_blank"
       rel="noreferrer"
-      href={link?.externalLink || "/"}
+      href={link?.href || "/"}
       className="underline text-frida-red"
     >
       {asButton ? <InlineIcon /> : props.children}

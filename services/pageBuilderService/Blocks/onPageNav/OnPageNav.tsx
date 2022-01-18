@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Article, OnPageNav } from "types";
-import Link from "next/link";
 import { scrollTo } from "@hooks/useScrollTo";
 export const onPageNavBlockQuery = `
 _type == "onPageNav" => {
@@ -9,9 +7,18 @@ _type == "onPageNav" => {
 }
 `;
 
-export type ListingBlockItem = Article;
+export type OnPageNavItem = {
+  _type: "onPageNavItem";
+  title?: string;
+  link?: string;
+  _key: string;
+};
 
-export interface onPageNavResult extends OnPageNav {}
+export interface onPageNavResult {
+  _type: "onPageNav";
+  name?: string;
+  items?: OnPageNavItem[];
+}
 const onPageNavComponent: React.FC<onPageNavResult> = (props) => {
   const { items } = props;
 
