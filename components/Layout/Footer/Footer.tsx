@@ -25,7 +25,6 @@ const Footer: React.FC<FooterProps> = ({ navItems }) => {
       data-testid="footer"
       className="flex flex-col items-center bg-primary "
     >
-      <Quote />
       <FooterContact />
       <Section bg="primary" width="l" className="pt-12">
         <NavOverview
@@ -34,18 +33,7 @@ const Footer: React.FC<FooterProps> = ({ navItems }) => {
         />
       </Section>
 
-      <div className="flex items-center justify-between w-full max-w-6xl px-8 ">
-        {/* <NavItem size="s" href="/" label="Kreisel e.V." />
-        <div className="flex ">
-          <NavItem size="s" href="/impressum" label="Impressum" />
-          <NavItem
-            size="s"
-            href="/datenschutz"
-            label="Datenschutz"
-            divider={false}
-          />
-        </div> */}
-      </div>
+      <div className="flex items-center justify-between w-full max-w-6xl px-8 "></div>
     </footer>
   );
 };

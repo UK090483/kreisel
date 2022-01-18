@@ -1,3 +1,4 @@
+import useIsActive from "../../helper/useIsActive";
 import { useNavigation } from "../../NavigationContext";
 import {
   NavigationItemBaseComponent,
@@ -17,6 +18,8 @@ const NavigationItem: React.FC<NavItemProps> = (props) => {
   const hasItems = !!items && items.length > 0;
   const hasLink = !!link && !!link.href;
 
+  const { active } = useIsActive(props);
+
   const {
     NavItemBase: DefaultNavigationItemBase,
     NavItemLink: DefaultNavigationLink,
@@ -33,7 +36,7 @@ const NavigationItem: React.FC<NavItemProps> = (props) => {
   if (!hasItems && hasLink) {
     return (
       <NavigationLinkComponent {...link}>
-        <NavigationItemBaseComponent props={props} place="link">
+        <NavigationItemBaseComponent active={active} props={props} place="link">
           {label}
         </NavigationItemBaseComponent>
       </NavigationLinkComponent>
@@ -46,7 +49,7 @@ const NavigationItem: React.FC<NavItemProps> = (props) => {
     );
   }
   return (
-    <NavigationItemBaseComponent props={props}>
+    <NavigationItemBaseComponent active={active} props={props}>
       {label}
     </NavigationItemBaseComponent>
   );

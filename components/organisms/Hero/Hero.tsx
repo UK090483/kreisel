@@ -2,16 +2,19 @@ import { Image } from "@components/Image";
 import { Section } from "@components/Section";
 import Typo from "@components/Typography";
 import Underline from "@components/Underline";
+import { ImageMetaResult } from "@services/pageBuilderService/queries/snippets";
 
 import React from "react";
 
 interface HeroProps {
   variant?: "overlapping" | "sideBySide";
+  photo?: ImageMetaResult;
 }
-const Hero: React.FC<HeroProps> = ({ variant = "overlapping" }) => {
+const Hero: React.FC<HeroProps> = (props) => {
+  const { variant = "overlapping", photo } = props;
   return (
     <Section width="full" className="relative h-screen">
-      <Image src="id/237/1900/800" />
+      <Image image={photo} />
       <div className="absolute inset-0 flex items-center mx-auto text-white  ml-[10%] ">
         <Typo hand variant="h1">
           <div style={{ fontSize: 72 }}>

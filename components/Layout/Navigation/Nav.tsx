@@ -7,16 +7,15 @@ import { Link } from "@components/Link";
 import useMenu from "@services/StoreService/hooks/useMenu";
 
 import { Logo } from "@components/Layout/Logo";
-import { NavigationModul } from "@services/NavigationService/NavigationModul";
+
 import NavigationMobile from "@services/NavigationService/NavigationMobile";
 import { NavItem } from "@services/NavigationService/types";
-import NavigationLink from "@services/NavigationService/components/NavigationLink2";
 
 import {
   HeaderNavigation,
   NavItemBaseProps,
   NavigationItemBase,
-} from "../../../../modules/Navigation";
+} from "../../../modules/Navigation";
 import Underline from "@components/Underline";
 interface NavProps {
   items: NavItem[];
@@ -41,7 +40,6 @@ const Nav: React.FC<NavProps> = ({ items }) => {
               items={items}
               NavigationItemBase={NavItemBaseWithUnderline}
             />
-            {/* <NavigationModul items={items} /> */}
           </div>
 
           {/* <div className="hidden lg:block">
@@ -66,13 +64,16 @@ const Nav: React.FC<NavProps> = ({ items }) => {
 export default Nav;
 
 const NavItemBaseWithUnderline: React.FC<NavItemBaseProps> = (props) => {
-  const { place } = props;
-  if (place === "link") {
-    return (
-      <Underline on="hover">
-        <NavigationItemBase {...props} />
-      </Underline>
-    );
-  }
-  return <NavigationItemBase {...props} />;
+  const { place, active } = props;
+
+  return (
+    <Underline
+      show={place === "link" || active}
+      on={active ? "init" : "hover"}
+      color={active ? "secondary" : "primary"}
+      type={active ? "around" : "under"}
+    >
+      <NavigationItemBase {...props} />
+    </Underline>
+  );
 };

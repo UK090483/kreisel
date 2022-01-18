@@ -7,6 +7,8 @@ import React from "react";
 interface UnderlineProps {
   color?: "white" | "black" | "primary" | "secondary";
   on?: "hover" | "init" | "scroll";
+  type?: "under" | "around";
+  show?: boolean;
 }
 
 const L1 =
@@ -22,6 +24,8 @@ const Underline: React.FC<UnderlineProps> = ({
   children,
   color,
   on = "init",
+  type = "under",
+  show = true,
 }) => {
   const [isHovered, hoverProps] = useHover();
 
@@ -38,10 +42,12 @@ const Underline: React.FC<UnderlineProps> = ({
 
   const { ref, isVisible } = useOnScreen({ delay: 200 });
 
-  const show =
+  const _on =
     on === "init" ||
     (on === "hover" && isHovered) ||
     (on === "scroll" && isVisible);
+
+  if (!show) return <>{children}</>;
 
   return (
     <>
@@ -51,14 +57,14 @@ const Underline: React.FC<UnderlineProps> = ({
           <svg
             style={{ fill: "transparent", height: "20px" }}
             preserveAspectRatio="none"
-            className="absolute  w-full transform scale-x-[1.1]  fill-current stroke-current -bottom-2 "
+            className="absolute  w-full transform scale-x-[1]  fill-current stroke-current -bottom-2 "
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 100 20"
           >
             <path
               style={{
                 strokeDasharray: lineLength.current,
-                strokeDashoffset: show ? 0 : lineLength.current,
+                strokeDashoffset: _on ? 0 : lineLength.current,
                 transition: `stroke-dashoffset 1s `,
               }}
               className={clsx("stroke-current", {

@@ -15,6 +15,9 @@ const Button: React.FC<ButtonProps> = (props) => {
   if (href) {
     return (
       <Link
+        onClick={() => {
+          console.error("consol error");
+        }}
         className="inline-block px-12 py-2 text-base rounded-full bg-primary whitespace-nowrap"
         href={href}
         external={external}

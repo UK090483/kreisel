@@ -1,4 +1,4 @@
 import getPreviewApi from "modules/SanityPageBuilder/lib/preview/previewApi";
-
-const prevApi = getPreviewApi();
+import { sanityClient as client } from "@services/SanityService/sanity.server";
+const prevApi = getPreviewApi({ client });
 export default prevApi;

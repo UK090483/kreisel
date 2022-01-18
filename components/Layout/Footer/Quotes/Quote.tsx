@@ -1,4 +1,3 @@
-
 import { Image } from "@components/Image";
 import { Section } from "@components/Section";
 import Typo from "@components/Typography/Typography";
@@ -12,7 +11,7 @@ const Quote: React.FC<QuoteProps> = ({ children }) => {
       noPadding
       width="l"
       bg="primary"
-      className="grid w-full grid-cols-1 md:grid-cols-2"
+      className="grid w-full grid-cols-1 md:grid-cols-2 py-10"
     >
       <div className="p-16">
         <Typo bold={false} variant="h4" className="pt-6 ">
@@ -30,7 +29,7 @@ const Quote: React.FC<QuoteProps> = ({ children }) => {
         </Typo>
       </div>
 
-      <div className="relative ">
+      <div className="relative rounded-theme overflow-hidden ">
         <Image src="id/1062/1200/1200" />
       </div>
     </Section>

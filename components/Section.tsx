@@ -22,11 +22,11 @@ export const Section: React.FC<SectionProps> = ({
   return (
     <Component
       id={id}
-      className={clsx(`w-full overflow-hidden`, {
+      className={clsx(`w-full overflow-hidden `, {
         "bg-white": bg === "white",
         "bg-primary": bg === "primary",
         "bg-secondary": bg === "secondary",
-        "bg-gray-300": bg === "grey",
+        " bg-grey": bg === "grey",
       })}
     >
       <div

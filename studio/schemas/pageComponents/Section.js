@@ -16,6 +16,11 @@ export default {
       title: "Image",
       options: { collapsible: true, collapsed: true },
     },
+    {
+      name: "transitions",
+      title: "Übergänge",
+      options: { collapsible: true, collapsed: true },
+    },
   ],
   icon: () => <AiOutlineBorderOuter />,
   fields: [
@@ -30,7 +35,7 @@ export default {
       type: "defaultRichText",
       title: "Content",
     },
-    
+
     {
       title: "Width",
       name: "width",
@@ -49,9 +54,7 @@ export default {
       name: "type",
       type: "string",
       options: {
-        list: [
-          { title: "Accordion", value: "accordion" },
-        ],
+        list: [{ title: "Accordion", value: "accordion" }],
       },
       initialValue: "m",
     },
@@ -62,6 +65,24 @@ export default {
       options: {
         list: [...colorList()],
       },
+    },
+    {
+      title: "Übergang Oben",
+      name: "transitionTop",
+      type: "string",
+      options: {
+        list: [{ title: "Abgerissen", value: "tearOff" }],
+      },
+      fieldset: "transitions",
+    },
+    {
+      title: "Übergang Unten",
+      name: "transitionBottom",
+      type: "string",
+      options: {
+        list: [{ title: "Abgerissen", value: "tearOff" }],
+      },
+      fieldset: "transitions",
     },
     {
       title: "Top Space",

@@ -21,6 +21,7 @@ export default {
       type: "string",
       options: {
         list: [
+          { title: "Testimonials", value: "testimonial" },
           { title: "Therapeuten", value: "therapist" },
           { title: "Artikel", value: "article" },
           { title: "Aktuelles", value: "aktuelles" },
@@ -33,7 +34,12 @@ export default {
     {
       name: "customItems",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "page" }, { type: "article" }] }],
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "page" }, { type: "article" }],
+        },
+      ],
       hidden: ({ parent }) => parent?.type !== "custom",
     },
   ],

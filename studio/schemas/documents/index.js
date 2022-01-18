@@ -8,9 +8,11 @@ import article from "./article";
 import therapist from "./therapist";
 import event from "./event";
 import course from "./course";
+import testimonial from "./testimonial";
 
 const Documents = [
   ...Blog,
+  testimonial,
   page,
   navigation,
   redirect,

@@ -1,0 +1,38 @@
+import { Section } from "@components/Section";
+import { ITestimonialItem } from "@services/pageBuilderService/Blocks/listingBlock/ListingsBlock";
+import * as React from "react";
+import TestimonialListItem from "./TestimonialListItem";
+
+interface ITestimonialListProps {
+  items: ITestimonialItem[];
+}
+
+const TestimonialList: React.FunctionComponent<ITestimonialListProps> = (
+  props
+) => {
+  const { items = [] } = props;
+
+  const [item, setItem] = React.useState<[number, number]>([0, -1]);
+
+  const [animate, setAnimate] = React.useState<null | "out" | "in">(null);
+
+  const nextItem = () => {
+    setAnimate("out");
+    setItem([(item[0] + 1) % items.length, item[1]]);
+  };
+
+  React.useEffect(() => {
+    if (item[0] === -1) return;
+  }, [item]);
+
+  if (items.length < 1) return null;
+  return (
+    <Section width="l" bg="primary">
+      <div onClick={nextItem}>
+        {<TestimonialListItem {...items[item[0]]} />}
+      </div>
+    </Section>
+  );
+};
+
+export default TestimonialList;

@@ -79,7 +79,7 @@ const ImageGalleryPlug: React.FC<{ node: ImageGalleryPlugResult }> = (
             condition={!!link}
             key={_key}
             className={clsx(
-              "w-full relative rounded-2xl overflow-hidden shadow-2xl  bg-primary ",
+              "w-full relative rounded-theme overflow-hidden shadow-2xl  bg-primary ",
               {
                 "aspect-w-10 aspect-h-10 ": ratio === "1:1",
                 "aspect-w-16 aspect-h-9": ratio === "16:9",

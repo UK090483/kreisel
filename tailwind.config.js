@@ -25,16 +25,19 @@ module.exports = {
     },
 
     extend: {
+      borderRadius: {
+        theme: "24px",
+      },
       colors: {
         grey: {
           light: "#dddddd",
-          DEFAULT: "#dddddd",
+          DEFAULT: "#d1d5db",
           dark: "#dddddd",
         },
         black: "#595959",
         white: "#ffffff",
-        primary: { light: "#FDECB3", DEFAULT: "#F3BD06" },
-        secondary: "#D22D30",
+        primary: { light: "#FDECB3", DEFAULT: "#facf3f" },
+        secondary: "#2A9D8F",
         red: "#D22D30",
       },
       animation: {
@@ -51,11 +54,9 @@ module.exports = {
             transform: " translateX(-50%)   translateY(-100%)",
             zIndex: -100,
           },
-
           "99%": {
             zIndex: -100,
           },
-
           "100%": {
             zIndex: 20,
             opacity: 1,

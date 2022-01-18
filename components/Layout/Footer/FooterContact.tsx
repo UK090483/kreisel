@@ -9,7 +9,7 @@ const FooterContact: React.FC<FooterContactProps> = ({ children }) => {
   return (
     <Section width="l" className="grid grid-cols-1 py-24 md:grid-cols-2">
       <div className="flex flex-col items-center justify-center ">
-        <div className="relative w-48 h-48 mb-12 overflow-hidden rounded-full">
+        <div className="relative w-48 h-48 mb-12 overflow-hidden rounded-theme">
           <Image src="id/1025/400/400" />
         </div>
         <Typo variant="body-l" className="text-center ">

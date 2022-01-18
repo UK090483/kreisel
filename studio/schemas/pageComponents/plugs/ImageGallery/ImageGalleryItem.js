@@ -53,10 +53,12 @@ export default {
   preview: {
     select: {
       name: "name",
+      image: "image",
     },
-    prepare({ name }) {
+    prepare({ name, image }) {
       return {
         title: "ImageGallery: " + name,
+        media: image,
       };
     },
   },

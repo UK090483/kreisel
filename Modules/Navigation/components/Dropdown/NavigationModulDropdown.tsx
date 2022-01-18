@@ -2,6 +2,7 @@ import { useNavigation } from "../../NavigationContext";
 import React, { useEffect, useRef } from "react";
 import { NavItem } from "../../types";
 import { NavigationModulDropdownContainer } from "./NavigationModulDropdownContainer";
+import useIsActive from "../../helper/useIsActive";
 
 type NavigationModulDropdownProps = {
   items?: NavItem[];
@@ -14,6 +15,8 @@ export const NavigationModulDropdown: React.FC<NavigationModulDropdownProps> = (
   const hasItems = items && items.length > 0;
 
   const [hover, setHover] = React.useState(false);
+
+  const { active } = useIsActive({ items });
 
   const [bottom, setBottom] = React.useState<number>(0);
   const [target, setTarget] = React.useState<{ x: number; y: number }>({
@@ -85,6 +88,7 @@ export const NavigationModulDropdown: React.FC<NavigationModulDropdownProps> = (
         onClick={handleNavClick}
       >
         <DefaultNavigationItemBase
+          active={active}
           props={props}
           place="dropdown"
           icon

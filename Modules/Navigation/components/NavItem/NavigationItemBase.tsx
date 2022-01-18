@@ -6,6 +6,7 @@ export type NavItemBaseProps = {
   bold?: boolean;
   place?: "link" | "dropdown" | "header";
   props: { [k: string]: any };
+  active: boolean;
 };
 
 export const NavigationItemBase: React.FC<NavItemBaseProps> = ({
@@ -13,10 +14,11 @@ export const NavigationItemBase: React.FC<NavItemBaseProps> = ({
   icon,
   hover,
   bold,
+  active,
 }) => {
   return (
     <span
-      className={`block px-5 py-3 leading-none  text-base  ${
+      className={`block px-5 py-3 leading-none  text-base ${
         bold ? " font-bold " : ""
       } `}
     >

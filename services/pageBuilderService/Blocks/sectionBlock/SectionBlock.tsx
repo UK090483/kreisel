@@ -27,29 +27,43 @@ _type == "section" => {
   bottomSpace,
   ${richTextQuery},
   bgImage{${imageMeta}},
-  image{${imageMeta}}
+  image{${imageMeta}},
+  transitionTop,
+  transitionBottom,
 }
 `;
 
 export interface SectionBlockResult
   extends Omit<SectionType, "bgImage" | "content" | "image"> {
   content: null | any;
-  bgImage: ImageMetaResult;
-  image: ImageMetaResult;
+  bgImage?: ImageMetaResult | null;
+  image?: ImageMetaResult | null;
+  transitionTop?: "tearOff" | null;
+  transitionBottom?: "tearOff" | null;
   _key: string;
 }
 
 interface SectionBlockProps extends SectionBlockResult {}
 
 const SectionBlock: React.FC<SectionBlockProps> = (props) => {
-  const { content, bottomSpace, topSpace, title, image, bgColor, width, type } =
-    props;
+  const {
+    content,
+    bottomSpace,
+    topSpace,
+    title,
+    image,
+    bgColor,
+    width,
+    type,
+    transitionTop,
+    transitionBottom,
+  } = props;
   const hasImage = image && image.asset;
   const autoType = hasImage ? "l" : "s";
 
   return (
     <Accordion condition={type === "accordion"} title={title}>
-      {/* {bgColor === "primary" && <Transition pos="top" />} */}
+      <Transition pos="top" transition={transitionTop} color={bgColor} />
       <Section
         bg={bgColor}
         width={width || autoType}
@@ -78,7 +92,7 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
         )}
       </Section>
 
-      {/* {bgColor === "primary" && <Transition pos="bottom" />} */}
+      <Transition pos="bottom" transition={transitionBottom} color={bgColor} />
     </Accordion>
   );
 };
@@ -94,14 +108,14 @@ const WithImage: React.FC<{
         "pl-0  lg:pl-12": place === "left",
       })}
     >
-      {children}{" "}
+      {children}
     </div>
   );
   return (
     <>
       {place === "right" && content}
-      <div className="relative overflow-hidden aspect-w-16 aspect-h-9 rounded-2xl">
-        <Image image={image} objectFit="contain" />
+      <div className="  relative overflow-hidden  aspect-w-16 aspect-h-9 rounded-theme">
+        <Image image={image} objectFit="cover" />
       </div>
       {place === "left" && content}
     </>
