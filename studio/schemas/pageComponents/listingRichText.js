@@ -7,7 +7,7 @@ const Button = (props) => {
 };
 
 export default {
-  name: "defaultRichText",
+  name: "listingRichText",
   type: "array",
   title: "Text",
   of: [
@@ -119,33 +119,5 @@ export default {
         ],
       },
     },
-    {
-      type: "image",
-      fields: [
-        {
-          type: "text",
-          name: "alt",
-          title: "Alternative text",
-          description: `Some of your visitors cannot see images, 
-            be they blind, color-blind, low-sighted; 
-            alternative text is of great help for those 
-            people that can rely on it to have a good idea of 
-            what\'s on your page.`,
-          options: {
-            isHighlighted: true,
-          },
-        },
-      ],
-    },
-    { type: "button", blockEditor: { render: Button } },
-    { type: "spacer" },
-    { type: "imageGalleryPlug" },
-    { type: "embed" },
-    // { type: 'imagePlug' },
-    // { type: 'seoHeader' },
-
-    // { type: 'innerSection' },
-
-    // { type: 'download' }
   ],
 };

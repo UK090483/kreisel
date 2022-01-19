@@ -1,7 +1,11 @@
 import S from "@sanity/desk-tool/structure-builder";
-import client from "part:@sanity/base/client";
+
 import { CgWebsite } from "react-icons/cg";
 import { MdSettings } from "react-icons/md";
+
+import sanityClient from "part:@sanity/base/client";
+const client = sanityClient.withConfig({ apiVersion: "2021-06-07" });
+
 export default () =>
   S.list()
     .title("Base")
@@ -24,54 +28,49 @@ export default () =>
                 .child(S.documentTypeList("pageType")),
             ])
         ),
-      S.listItem()
-        .title("Pages")
-        .icon(CgWebsite)
-        .child(S.documentTypeList("page")),
-      S.listItem().title("Articles").child(S.documentTypeList("article")),
 
-      S.listItem()
-        .title("Blog")
-        .child(
-          S.documentTypeList("page").filter("pageType->slug.current == 'blog'")
-        ),
-      S.listItem()
-        .title("Aktuelles")
-        .child(
-          S.documentTypeList("page").filter(
-            "pageType->slug.current == 'aktuelles'"
-          )
-        ),
+      S.listItem({
+        id: "pages",
+        title: "Pages",
+        schemaType: "page",
+        child: async () => {
+          const pageTypes = await client.fetch(
+            '*[_type == "pageType"]{_id ,name}'
+          );
+
+          const root = S.listItem()
+            .id("page")
+            .title("Root")
+            .child(
+              S.documentTypeList("page")
+                .title(`Pages`)
+                .filter(`_type == "page" && !defined(pageType) `)
+            );
+
+          const items = pageTypes.map(({ _id: pageTypeId, name }) =>
+            S.listItem()
+              .id(pageTypeId)
+              .title(name)
+              .child(
+                S.documentTypeList("page")
+                  .title(`${name}`)
+                  .filter("_type == $type && pageType._ref == $pageTypeId")
+                  .params({ pageTypeId, type: "page" })
+                  .initialValueTemplates([
+                    S.initialValueTemplateItem("page-by-pageType", {
+                      pageTypeId,
+                    }),
+                  ])
+              )
+          );
+
+          return S.list({ id: "li", items: [root, ...items] });
+        },
+      }),
+
       S.listItem().title("Therapeuten").child(S.documentTypeList("therapist")),
-
+      S.listItem().title("Articles").child(S.documentTypeList("article")),
       S.listItem()
         .title("Testimonials")
         .child(S.documentTypeList("testimonial")),
-
-      S.listItem()
-        .id("bluaaaa")
-        .title("Pages")
-        .icon(CgWebsite)
-        .child(
-          S.documentTypeList("pageType")
-            .filter(
-              `_type ==  "pageType" || (_type == "page" && !defined(pageType)) `
-            )
-            .title("Pages")
-
-            .child(async (pageTypeId, d) => {
-              const isPage = await client.fetch(
-                `*[_type == "page" && _id  == '${pageTypeId}'][0]`
-              );
-
-              if (isPage) {
-                return S.document().id(pageTypeId);
-              }
-
-              return S.documentList()
-                .title("SubPages")
-                .filter('_type == "page" && $pageTypeId == pageType._ref')
-                .params({ pageTypeId });
-            })
-        ),
     ]);

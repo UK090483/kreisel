@@ -2,7 +2,7 @@ import { Image } from "@components/Image";
 import { Section } from "@components/Section";
 import Typo from "@components/Typography";
 import Underline from "@components/Underline";
-import { ImageMetaResult } from "@services/pageBuilderService/queries/snippets";
+import { ImageMetaResult } from "privateModules/SanityPageBuilder/queries/snippets";
 
 import React from "react";
 

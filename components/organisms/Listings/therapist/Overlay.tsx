@@ -1,5 +1,5 @@
 import Typo from "@components/Typography/Typography";
-import { TherapistResult } from "@services/pageBuilderService/Blocks/listingBlock/ListingsBlock";
+import { TherapistResult } from "@components/Blocks/listingBlock/ListingsBlock";
 import Link from "next/link";
 import FocusTrap from "focus-trap-react";
 import { useRouter } from "next/router";

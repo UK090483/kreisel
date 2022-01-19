@@ -1,7 +1,7 @@
 import React from "react";
 import NextImage, { ImageLoader } from "next/image";
-import { ImageMetaResult } from "@services/pageBuilderService/queries/snippets";
-import useSanityImage from "@services/pageBuilderService/lib/useSanityImage";
+import useSanityImage from "privateModules/SanityPageBuilder/useSanityImage";
+import { ImageMetaResult } from "privateModules/SanityPageBuilder/queries/snippets";
 
 interface ImageProps {
   src?: string;

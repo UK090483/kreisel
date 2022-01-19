@@ -1,3 +1,6 @@
+import { colorList } from "../snippets";
+import { MdViewList } from "react-icons/md";
+
 export default {
   title: "Listing",
   name: "listing",
@@ -16,16 +19,17 @@ export default {
         layout: "radio",
       },
     },
+
     {
       name: "contentType",
       type: "string",
       options: {
         list: [
-          { title: "Testimonials", value: "testimonial" },
-          { title: "Therapeuten", value: "therapist" },
-          { title: "Artikel", value: "article" },
           { title: "Aktuelles", value: "aktuelles" },
           { title: "Blogs", value: "blog" },
+          { title: "Artikel", value: "article" },
+          { title: "Testimonials", value: "testimonial" },
+          { title: "Therapeuten", value: "therapist" },
         ],
         layout: "radio",
       },
@@ -37,10 +41,46 @@ export default {
       of: [
         {
           type: "reference",
-          to: [{ type: "page" }, { type: "article" }],
+          to: [{ type: "article" }, { type: "page" }],
+        },
+        {
+          type: "object",
+          name: "Custom Card",
+          fields: [
+            { name: "title", type: "string", title: "Name" },
+            { name: "description", type: "text", title: "Description" },
+            { name: "image", type: "defaultImage", title: "Image" },
+          ],
         },
       ],
       hidden: ({ parent }) => parent?.type !== "custom",
     },
+    {
+      name: "content",
+      type: "listingRichText",
+      title: "Header",
+    },
+    {
+      title: "Background Color",
+      name: "bgColor",
+      type: "string",
+      options: {
+        list: [...colorList()],
+      },
+    },
   ],
+  preview: {
+    select: {
+      name: "name",
+      contentType: "contentType",
+      type: "type",
+    },
+    prepare({ name, contentType, type }) {
+      return {
+        title: name,
+        subtitle: `Listing: ${type}${contentType ? " - " + contentType : ""}`,
+        media: MdViewList,
+      };
+    },
+  },
 };

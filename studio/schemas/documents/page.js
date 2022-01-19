@@ -6,7 +6,7 @@ import React from "react";
 import Twitter from "../../components/Twitter";
 import CustomArray from "../../components/CustomArray";
 const SubPageIcon = () => {
-  return <VscFileSubmodule color="red" />;
+  return <VscFileSubmodule />;
 };
 
 export default {
@@ -75,13 +75,6 @@ export default {
       },
     },
   ],
-  orderings: [
-    {
-      title: "by PageType",
-      name: "pageType",
-      by: [{ field: "pageType.slug.current", direction: "desc" }],
-    },
-  ],
 
   preview: {
     select: {
@@ -93,8 +86,8 @@ export default {
       const { slug, pageType, title } = selection;
       return {
         title: title,
-        subtitle: pageType ? `${pageType}/${slug}` : slug,
-        media: pageType ? SubPageIcon : CgWebsite,
+        subtitle: pageType ? `/${pageType}/${slug}` : `/${slug}`,
+        media: CgWebsite,
       };
     },
   },

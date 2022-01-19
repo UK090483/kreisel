@@ -1,5 +1,5 @@
 import { Image } from "@components/Image";
-import { ImageMetaResult } from "@services/pageBuilderService/queries/snippets";
+import { ImageMetaResult } from "privateModules/SanityPageBuilder/queries/snippets";
 
 type AvatarProps = {
   name?: string;

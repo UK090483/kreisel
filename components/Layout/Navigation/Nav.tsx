@@ -1,22 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import Svg from "@components/Svg";
 import React from "react";
-
 import { Link } from "@components/Link";
-
 import useMenu from "@services/StoreService/hooks/useMenu";
-
 import { Logo } from "@components/Layout/Logo";
-
-import NavigationMobile from "@services/NavigationService/NavigationMobile";
-import { NavItem } from "@services/NavigationService/types";
-
 import {
   HeaderNavigation,
   NavItemBaseProps,
   NavigationItemBase,
 } from "../../../privateModules/Navigation";
 import Underline from "@components/Underline";
+import NavigationMobile from "privateModules/Navigation/NavigationMobile";
+import { NavItem } from "privateModules/Navigation/types";
+
 interface NavProps {
   items: NavItem[];
 }
@@ -61,7 +57,7 @@ const Nav: React.FC<NavProps> = ({ items }) => {
   );
 };
 
-export default Nav;
+export default React.memo(Nav, () => false);
 
 const NavItemBaseWithUnderline: React.FC<NavItemBaseProps> = (props) => {
   const { place, active } = props;

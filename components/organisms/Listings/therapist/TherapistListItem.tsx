@@ -1,6 +1,6 @@
 import React from "react";
 import Typo from "@components/Typography/Typography";
-import { TherapistResult } from "@services/pageBuilderService/Blocks/listingBlock/ListingsBlock";
+import { TherapistResult } from "@components/Blocks/listingBlock/ListingsBlock";
 import Avatar from "./Avatar";
 import Link from "next/link";
 import { useRouter } from "next/router";

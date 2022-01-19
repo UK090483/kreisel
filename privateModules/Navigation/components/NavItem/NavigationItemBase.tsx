@@ -14,7 +14,6 @@ export const NavigationItemBase: React.FC<NavItemBaseProps> = ({
   icon,
   hover,
   bold,
-  active,
 }) => {
   return (
     <span

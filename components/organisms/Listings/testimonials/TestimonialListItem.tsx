@@ -1,7 +1,7 @@
 import { Image } from "@components/Image";
 import { Section } from "@components/Section";
 import Typo from "@components/Typography/Typography";
-import { ITestimonialItem } from "@services/pageBuilderService/Blocks/listingBlock/ListingsBlock";
+import { ITestimonialItem } from "@components/Blocks/listingBlock/ListingsBlock";
 import * as React from "react";
 
 interface ITestimonialListItemProps extends ITestimonialItem {}

@@ -1,5 +1,4 @@
-import { Section } from "@components/Section";
-import { ITestimonialItem } from "@services/pageBuilderService/Blocks/listingBlock/ListingsBlock";
+import { ITestimonialItem } from "@components/Blocks/listingBlock/ListingsBlock";
 import * as React from "react";
 import TestimonialListItem from "./TestimonialListItem";
 
@@ -27,11 +26,7 @@ const TestimonialList: React.FunctionComponent<ITestimonialListProps> = (
 
   if (items.length < 1) return null;
   return (
-    <Section width="l" bg="primary">
-      <div onClick={nextItem}>
-        {<TestimonialListItem {...items[item[0]]} />}
-      </div>
-    </Section>
+    <div onClick={nextItem}>{<TestimonialListItem {...items[item[0]]} />}</div>
   );
 };
 

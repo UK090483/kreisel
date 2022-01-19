@@ -4,25 +4,26 @@ import SPB from "privateModules/SanityPageBuilder/SPB";
 import HeroBlock, {
   heroBlockQuery,
   HeroBlogResult,
-} from "@services/pageBuilderService/Blocks/heroBlock/HeroBlock";
+} from "@components/Blocks/heroBlock/HeroBlock";
 import ListingBlock, {
+  ListingBlockProps,
   listingBlockQuery,
   ListingBlockResult,
-} from "@services/pageBuilderService/Blocks/listingBlock/ListingsBlock";
+} from "@components/Blocks/listingBlock/ListingsBlock";
 import onPageNav, {
   onPageNavBlockQuery,
-} from "@services/pageBuilderService/Blocks/onPageNav/OnPageNav";
+} from "@components/Blocks/onPageNav/OnPageNav";
 import SectionBlock, {
   sectionBlockQuery,
   SectionBlockResult,
-} from "@services/pageBuilderService/Blocks/sectionBlock/SectionBlock";
+} from "@components/Blocks/sectionBlock/SectionBlock";
 import {
   NavigationQuery,
   NavigationResult,
 } from "privateModules/Navigation/query";
 
 export interface PageData extends NavigationResult {
-  content: (SectionBlockResult | ListingBlockResult | HeroBlogResult)[];
+  content: (SectionBlockResult | ListingBlockProps | HeroBlogResult)[];
   title?: string;
 }
 

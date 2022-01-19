@@ -4,7 +4,7 @@ import Card from "./Card";
 import Typo from "@components/Typography/Typography";
 import Button from "@components/Button/Button";
 import { useShop } from "@services/ShopService/shopContext";
-import { IArticleCardResult } from "@services/pageBuilderService/Blocks/listingBlock/ListingsBlock";
+import { IArticleCardResult } from "@components/Blocks/listingBlock/ListingsBlock";
 
 interface ArticleCardProps extends IArticleCardResult {}
 

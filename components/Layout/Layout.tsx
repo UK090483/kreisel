@@ -18,7 +18,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
         <Nav items={data?.navigation || []} />
       </Header>
       <Head name={data?.title} />
-      {/* <BackGround /> */}
+
       <main className="min-h-screen ">{children}</main>
 
       <Footer navItems={data?.navigation || []} />
@@ -26,4 +26,4 @@ const Layout: React.FC<LayoutProps> = (props) => {
   );
 };
 
-export default Layout;
+export default React.memo(Layout);

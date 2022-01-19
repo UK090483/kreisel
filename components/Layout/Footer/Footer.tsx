@@ -1,12 +1,11 @@
 import { Section } from "@components/Section";
-import { NavOverview } from "@services/NavigationService/NavOverview";
-import { NavItem as NavItemType } from "@services/NavigationService/types";
+import NavOverview from "privateModules/Navigation/NavOverview";
+import { NavItem } from "privateModules/Navigation/types";
 import React from "react";
 import FooterContact from "./FooterContact";
-import Quote from "./Quotes/Quote";
 
 interface FooterProps {
-  navItems: NavItemType[];
+  navItems: NavItem[];
 }
 
 export const footerQuery = `
@@ -27,10 +26,7 @@ const Footer: React.FC<FooterProps> = ({ navItems }) => {
     >
       <FooterContact />
       <Section bg="primary" width="l" className="pt-12">
-        <NavOverview
-          items={navItems}
-          className="w-full py-24 border-t-2 border-b-2"
-        />
+        <NavOverview items={navItems} className="w-full py-24  " />
       </Section>
 
       <div className="flex items-center justify-between w-full max-w-6xl px-8 "></div>

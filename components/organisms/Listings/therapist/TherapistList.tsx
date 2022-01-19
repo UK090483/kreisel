@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Section } from "@components/Section";
-import { TherapistResult } from "@services/pageBuilderService/Blocks/listingBlock/ListingsBlock";
+import { TherapistResult } from "@components/Blocks/listingBlock/ListingsBlock";
 import { useRouter } from "next/router";
 import Overlay from "./Overlay";
 import Search from "./Search";

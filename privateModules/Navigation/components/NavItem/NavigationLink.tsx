@@ -1,7 +1,6 @@
-import { Link } from "@components/Link";
-import { NavItem } from "@services/NavigationService/types";
-
 import React from "react";
+import { Link } from "@components/Link";
+import { NavItem } from "../../types";
 
 export type NavigationLinkProps = NavItem["link"] & {
   onClick?: () => void;

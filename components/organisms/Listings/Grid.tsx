@@ -1,16 +1,11 @@
 import { Section } from "@components/Section";
 import React from "react";
+import { AppColor } from "types";
 
-interface GridProps {}
+interface GridProps {
+  bgColor?: AppColor;
+}
 
-export const Grid: React.FC<GridProps> = ({ children }) => {
-  return (
-    <Section
-      width="l"
-      bg="primary"
-      className="grid grid-cols-1 gap-8 py-32 md:grid-cols-2 lg:grid-cols-3 "
-    >
-      {children}
-    </Section>
-  );
+export const Grid: React.FC<GridProps> = ({ children, bgColor }) => {
+  return <>{children}</>;
 };
