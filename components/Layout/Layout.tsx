@@ -11,6 +11,16 @@ interface LayoutProps extends PageProps<PageData> {}
 
 const Layout: React.FC<LayoutProps> = (props) => {
   const { children, data } = props;
+  const [displayChildren, setDisplayChildren] = React.useState(children);
+  const [transitionStage, setTransitionStage] = React.useState("fadeOut");
+
+  React.useEffect(() => {
+    setTransitionStage("fadeIn");
+  }, []);
+
+  React.useEffect(() => {
+    if (children !== displayChildren) setTransitionStage("fadeOut");
+  }, [children, setDisplayChildren, displayChildren]);
 
   return (
     <>
@@ -19,11 +29,24 @@ const Layout: React.FC<LayoutProps> = (props) => {
       </Header>
       <Head name={data?.title} />
 
-      <main className="min-h-screen ">{children}</main>
+      <main
+        onTransitionEnd={() => {
+          if (transitionStage === "fadeOut") {
+            console.log("fading out");
+            setDisplayChildren(children);
+            setTransitionStage("fadeIn");
+          }
+        }}
+        className={`min-h-screen transition-opacity duration-300 ease-out ${
+          transitionStage === "fadeIn" ? "opacity-100 " : "opacity-0"
+        }`}
+      >
+        {displayChildren}
+      </main>
 
       <Footer navItems={data?.navigation || []} />
     </>
   );
 };
 
-export default React.memo(Layout);
+export default Layout;
