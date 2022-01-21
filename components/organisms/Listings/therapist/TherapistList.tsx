@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Section } from "@components/Section";
+import { Section } from "@components/organisms/Section/Section";
 import { TherapistResult } from "@components/Blocks/listingBlock/ListingsBlock";
 import { useRouter } from "next/router";
 import Overlay from "./Overlay";

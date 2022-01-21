@@ -71,6 +71,7 @@ export interface ListingBlockResult<Type, Card> {
   lang: AppLocales;
   bgColor: AppColor;
   content: null | any;
+  variation?: null | "list" | "grid";
 }
 
 export interface ITestimonialItem {
@@ -99,7 +100,8 @@ export type ListingBlockProps =
   | ListingBlockResult<"blog" | "article", CardResult>;
 
 const ListingBlock: React.FC<ListingBlockProps> = (props) => {
-  const { bgColor, content } = props;
+  const { bgColor, content, variation } = props;
+  console.log(props);
 
   if (!props.items) return null;
 
@@ -117,7 +119,7 @@ const ListingBlock: React.FC<ListingBlockProps> = (props) => {
 
   return (
     <ListWrap bgColor={bgColor} content={content}>
-      <List bgColor={bgColor} items={props.items} />
+      <List variation={variation} bgColor={bgColor} items={props.items} />
     </ListWrap>
   );
 };

@@ -141,6 +141,7 @@ export default {
     { type: "spacer" },
     { type: "imageGalleryPlug" },
     { type: "embed" },
+    { type: "gSheet" },
     // { type: 'imagePlug' },
     // { type: 'seoHeader' },
 

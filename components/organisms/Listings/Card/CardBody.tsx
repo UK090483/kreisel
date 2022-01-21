@@ -1,7 +1,11 @@
 import React from "react";
 
-const CardBody: React.FC = ({ children }) => {
-  return <div className="p-4">{children}</div>;
+type CardBodyProps = {
+  className?: string;
+};
+
+const CardBody: React.FC<CardBodyProps> = ({ children, className }) => {
+  return <div className={`p-4 ${className}`}>{children}</div>;
 };
 
 export default CardBody;

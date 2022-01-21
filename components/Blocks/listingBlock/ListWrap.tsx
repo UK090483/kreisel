@@ -1,5 +1,5 @@
 import RichText from "@components/RichText/RichText";
-import { Section } from "@components/Section";
+import { Section } from "@components/organisms/Section/Section";
 import { AppColor } from "types";
 
 type ListWrapProps = {

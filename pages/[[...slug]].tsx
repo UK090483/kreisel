@@ -21,6 +21,9 @@ import {
   NavigationQuery,
   NavigationResult,
 } from "privateModules/Navigation/query";
+import TrustBlock, {
+  trustBlockQuery,
+} from "@components/Blocks/trustBlock/TrustBlock";
 
 export interface PageData extends NavigationResult {
   content: (SectionBlockResult | ListingBlockProps | HeroBlogResult)[];
@@ -34,6 +37,11 @@ const { getStaticPaths, getStaticProps, PageComponent } = SPB<PageData>({
   query: `${NavigationQuery()}, title`,
 
   components: [
+    {
+      name: "trust",
+      component: TrustBlock,
+      query: trustBlockQuery,
+    },
     {
       name: "hero",
       component: HeroBlock,

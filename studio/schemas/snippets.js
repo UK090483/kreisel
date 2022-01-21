@@ -8,6 +8,7 @@ export const defaultBockContent = {
     { type: "hero" },
     { type: "listing" },
     { type: "onPageNav" },
+    { type: "trust" },
   ],
 };
 

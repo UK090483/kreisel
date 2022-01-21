@@ -5,46 +5,52 @@ import { Image } from "@components/Image";
 
 import CardWrap from "./CardWrap";
 import CardBody from "./CardBody";
-import CardTitle from "./CardTitle";
 
 import BlockContent, {
   BlockContentProps,
   Serializers,
 } from "@sanity/block-content-to-react";
+import { ImageMetaResult } from "privateModules/SanityPageBuilder/queries/snippets";
 
 export interface CardProps {
   href?: string;
   title?: string;
   date?: string;
   description?: string | string[];
+  variation?: null | "list" | "grid";
+  image?: ImageMetaResult;
 }
 
-const Card: React.FC<CardProps> = ({
-  children,
-  href,
-  title,
-  date,
-  description,
-}) => {
+const Card: React.FC<CardProps> = (props) => {
+  const { children, href, title, date, description, variation, image } = props;
+
   const _description = Array.isArray(description) ? (
     <BlockContent blocks={description} />
   ) : (
     description
   );
 
+  const isList = variation === "list";
+
   return (
     <CardWrap href={href}>
-      <div className="relative w-full aspect-w-3 aspect-h-2 ">
-        <Image />
+      <div
+        className={`relative w-full     ${
+          isList
+            ? " aspect-w-4 aspect-h-2  rounded-theme"
+            : "aspect-w-3 aspect-h-2 rounded-t-theme"
+        } overflow-hidden`}
+      >
+        <Image image={image} />
       </div>
 
-      <CardBody>
+      <CardBody className={`${isList ? "bg-transparent" : "bg-white"} `}>
         {date && (
           <Typo className="pb-2" variant="body">
             {paresDate(date)}
           </Typo>
         )}
-        {title && <CardTitle>{title}</CardTitle>}
+        {title && <Typo variant="body-l">{title}</Typo>}
         {description && <Typo>{_description}</Typo>}
         {children}
       </CardBody>

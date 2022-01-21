@@ -7,7 +7,7 @@ const Button = (props) => {
 };
 
 export default {
-  name: "listingRichText",
+  name: "headerRichText",
   type: "array",
   title: "Text",
   of: [

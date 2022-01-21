@@ -5,12 +5,13 @@ import ButtonPlug, { buttonPlugQuery } from "./Plugs/ButtonPlug";
 import EmbedPlug from "./Plugs/EmbedPlug";
 import ImageGalleryPlug, {
   imageGalleryPlugQuery,
-} from "./Plugs/ImageGaleriePlug";
+} from "./Plugs/ImageGaleriePlug/ImageGaleriePlug";
 import Typo from "@components/Typography/Typography";
 import SpacerPlug, { spacerPlugQuery } from "./Plugs/Spacer";
 import Underline from "@components/Underline";
 import SanityRichText from "privateModules/SanityPageBuilder/lib/RichText";
 import List from "./list/List";
+import GSheet from "./Plugs/Gsheet";
 
 const marksQuery = `
 markDefs[]{
@@ -40,6 +41,7 @@ const RichText: React.FC<any> = (props: any) => {
         button: ButtonPlug,
         embed: EmbedPlug,
         spacer: SpacerPlug,
+        gSheet: GSheet,
       }}
       marks={{
         link,

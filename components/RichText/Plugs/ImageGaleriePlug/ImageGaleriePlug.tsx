@@ -71,7 +71,6 @@ const ImageGalleryPlug: React.FC<{ node: ImageGalleryPlugResult }> = (
     >
       {items.map((item) => {
         const { image, title, _key, link, size = "m" } = item;
-
         return (
           <ConditionalLink
             href={link?.href || "/"}

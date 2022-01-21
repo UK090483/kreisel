@@ -34,6 +34,18 @@ export default {
         list: ["1:1", "16:9", "2:3", "3:2"],
       },
     },
+    // {
+    //   name: "variation",
+    //   title: "Variation",
+    //   type: "string",
+
+    //   options: {
+    //     list: [
+    //       { title: "Grid", value: "grid" },
+    //       { title: "List", value: "list" },
+    //     ],
+    //   },
+    // },
   ],
   preview: {
     select: {

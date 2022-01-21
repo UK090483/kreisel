@@ -5,8 +5,12 @@ import hero from "./hero";
 import onPageNav from "./onPageNav";
 import onPageNavItem from "./onPageNavItem";
 import listingRichText from "./listingRichText";
+import trust from "./trust";
+import trustItem from "./trustItem";
 
 const PageComponents = [
+  trust,
+  trustItem,
   Section,
   listing,
   defaultRichText,

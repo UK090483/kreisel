@@ -1,7 +1,7 @@
 //@ts-nocheck
 
 import { Image } from "@components/Image";
-import { Section } from "@components/Section";
+import { Section } from "@components/organisms/Section/Section";
 import Typo from "@components/Typography/Typography";
 import Underline from "@components/Underline";
 import { NavigationMobile } from "@services/NavigationService/NavigationMobile";

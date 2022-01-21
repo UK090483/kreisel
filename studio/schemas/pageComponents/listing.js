@@ -57,7 +57,7 @@ export default {
     },
     {
       name: "content",
-      type: "listingRichText",
+      type: "headerRichText",
       title: "Header",
     },
     {
@@ -66,6 +66,18 @@ export default {
       type: "string",
       options: {
         list: [...colorList()],
+      },
+    },
+    {
+      name: "variation",
+      title: "Variation",
+      type: "string",
+
+      options: {
+        list: [
+          { title: "Cards", value: "cards" },
+          { title: "List", value: "list" },
+        ],
       },
     },
   ],

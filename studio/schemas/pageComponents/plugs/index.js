@@ -3,6 +3,8 @@ import Spacer from "./Spacer";
 import ImageGallery from "./ImageGallery/index";
 import Embed from "./Embed";
 
-const Plugs = [Button, Spacer, ...ImageGallery,Embed];
+import GSheet from "./GSheet";
+
+const Plugs = [Button, Spacer, ...ImageGallery, Embed, GSheet];
 
 export default Plugs;

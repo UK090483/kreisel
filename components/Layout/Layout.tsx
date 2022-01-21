@@ -7,20 +7,15 @@ import Head from "./Head";
 import { Header } from "./Header";
 import Nav from "./Navigation/Nav";
 
+import usePageTransition from "@hooks/usePageTransition";
+
 interface LayoutProps extends PageProps<PageData> {}
 
 const Layout: React.FC<LayoutProps> = (props) => {
   const { children, data } = props;
-  const [displayChildren, setDisplayChildren] = React.useState(children);
-  const [transitionStage, setTransitionStage] = React.useState("fadeOut");
 
-  React.useEffect(() => {
-    setTransitionStage("fadeIn");
-  }, []);
-
-  React.useEffect(() => {
-    if (children !== displayChildren) setTransitionStage("fadeOut");
-  }, [children, setDisplayChildren, displayChildren]);
+  const { transitionStage, displayChildren, handleTransitionEnd } =
+    usePageTransition({ children });
 
   return (
     <>
@@ -30,15 +25,11 @@ const Layout: React.FC<LayoutProps> = (props) => {
       <Head name={data?.title} />
 
       <main
-        onTransitionEnd={() => {
-          if (transitionStage === "fadeOut") {
-            console.log("fading out");
-            setDisplayChildren(children);
-            setTransitionStage("fadeIn");
-          }
-        }}
-        className={`min-h-screen transition-opacity duration-300 ease-out ${
-          transitionStage === "fadeIn" ? "opacity-100 " : "opacity-0"
+        onTransitionEnd={handleTransitionEnd}
+        className={`min-h-screen transition-all duration-500 ease-out ${
+          transitionStage === "fadeIn"
+            ? "opacity-100 translate-y-0"
+            : "opacity-0  -translate-y-10"
         }`}
       >
         {displayChildren}

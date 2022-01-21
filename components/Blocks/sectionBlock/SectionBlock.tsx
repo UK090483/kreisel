@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 import RichText, { richTextQuery } from "../../RichText/RichText";
 
-import { Section } from "@components/Section";
+import { Section } from "@components/organisms/Section/Section";
 import { Image } from "@components/Image";
 import Transition from "./Transition";
 import Accordion from "./Accordion";
@@ -66,11 +66,12 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
 
   return (
     <Accordion condition={type === "accordion"} title={title}>
-      <Transition pos="top" transition={transitionTop} color={bgColor} />
       <Section
         bg={bgColor}
         width={width || autoType}
         {...(title && { id: title })}
+        transitionTop={transitionTop}
+        transitionBottom={transitionBottom}
         className={clsx({
           "pt-5 md:pt-10": topSpace === "s",
           "pt-9 md:pt-20": topSpace === "m",
@@ -94,8 +95,6 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
           <>{content && <RichText content={content} />} </>
         )}
       </Section>
-
-      <Transition pos="bottom" transition={transitionBottom} color={bgColor} />
     </Accordion>
   );
 };

@@ -1,7 +1,8 @@
 import { Image } from "@components/Image";
-import { Section } from "@components/Section";
+import { Section } from "@components/organisms/Section/Section";
 import Typo from "@components/Typography";
 import Underline from "@components/Underline";
+import useCSV from "@hooks/useCsv";
 import { ImageMetaResult } from "privateModules/SanityPageBuilder/queries/snippets";
 
 import React from "react";
@@ -12,6 +13,8 @@ interface HeroProps {
 }
 const Hero: React.FC<HeroProps> = (props) => {
   const { variant = "overlapping", photo } = props;
+
+  useCSV();
   return (
     <Section width="full" className="relative h-screen">
       <Image image={photo} />

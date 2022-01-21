@@ -1,5 +1,5 @@
 import { Image } from "@components/Image";
-import { Section } from "@components/Section";
+import { Section } from "@components/organisms/Section/Section";
 import Typo from "@components/Typography/Typography";
 import React from "react";
 
