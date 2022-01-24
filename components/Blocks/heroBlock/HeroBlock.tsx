@@ -1,4 +1,10 @@
+import { Image } from "@components/Image";
 import Hero from "@components/organisms/Hero/Hero";
+import { Section } from "@components/organisms/Section/Section";
+import RichText from "@components/RichText/RichText";
+import Typo from "@components/Typography/Typography";
+import Underline from "@components/Underline";
+
 import {
   imageMeta,
   ImageMetaResult,
@@ -14,17 +20,17 @@ _type == "hero" => {
  'photo':image{${imageMeta}},
  title,
  text,
- btnText,
- btnLink,
  filterIntensity,
  filterColor,
- size
+ size,
+ content
 }
 `;
 
 export interface HeroBlogResult {
   _type: "hero";
   _key: string;
+  content?: any;
   photo?: ImageMetaResult;
   title?: string;
   text?: string;
@@ -50,7 +56,22 @@ export interface HeroBlockProps extends HeroBlogResult {
 }
 
 const HeroBlock: React.FC<HeroBlockProps> = (props) => {
-  return <Hero {...props} />;
+  const { content, photo, size } = props;
+  return (
+    <Section width="l" bg="secondary" className=" h-screen grid grid-cols-2 ">
+      <div className="flex items-center mx-auto text-white  ml-[10%] ">
+        <Typo hand variant="h1">
+          <div style={{ fontSize: 72 }}>
+            Grundlagen <br /> Lernförderung <br />
+            <Underline color="primary"> & Lerntherapie</Underline>
+          </div>
+        </Typo>
+      </div>
+      <div className="relative">
+        <Image image={photo} objectFit="contain" />
+      </div>
+    </Section>
+  );
 };
 
 export default HeroBlock;

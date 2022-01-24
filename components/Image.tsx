@@ -29,6 +29,7 @@ export const Image: React.FC<ImageProps> = (props) => {
       {...rest}
       layout="fill"
       objectFit={objectFit}
+      objectPosition=" center"
     />
   );
 };

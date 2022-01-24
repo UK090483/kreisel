@@ -22,26 +22,28 @@ interface AppPropsWithStaticProps {
 function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   const { data: _data, query, preview } = _pageProps;
 
-  const { data } = usePreviewSubscription<PageData | null>(query, {
+  const { data, error } = usePreviewSubscription<PageData | null>(query, {
     initialData: _data,
     enabled: preview,
   });
 
   const pageProps = { ..._pageProps, data };
 
-  const getLayout = Component.getLayout ? (
-    Component.getLayout(<Component {...pageProps} />)
-  ) : (
-    <Layout {...pageProps}>
-      <Component {...pageProps} />
-    </Layout>
-  );
+  const getLayout = (id: string) => {
+    return Component.getLayout ? (
+      Component.getLayout(<Component key={id} {...pageProps} />)
+    ) : (
+      <Layout preview={preview} {...pageProps}>
+        <Component key={id} {...pageProps} />
+      </Layout>
+    );
+  };
 
   return (
     <SessionProvider>
       <ShopContextProvider>
         <StoreContextProvider>
-          {getLayout}
+          {getLayout(pageProps.id)}
           <Cookie />
           <Cart />
           {preview && <PreviewIndicator />}

@@ -16,7 +16,6 @@ const useSanityImage = (
 ): ImageProps | null => {
   //@ts-ignore
   let imageProps: any = useNextSanityImage(configuredSanityClient, image);
-
   let fake = useFakeImage();
 
   if (!image) return fake;

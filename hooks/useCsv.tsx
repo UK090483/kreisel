@@ -6,9 +6,7 @@ const testUrl =
 const getCsv = async (url: string) => {
   try {
     const res = await fetch(url);
-    const res2 = await fetch(testUrl);
-    const res2text = await res2.text();
-    console.log(res2text);
+
     return await res.text();
   } catch (error) {
     console.error(error);

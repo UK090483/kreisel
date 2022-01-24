@@ -38,12 +38,11 @@
     },
     {
       "implements": "part:@sanity/production-preview/resolve-production-url",
-      "path": "./parts/resolveProductionUrl.js" 
+      "path": "./parts/resolveProductionUrl.js"
     },
     {
       "name": "part:@sanity/base/initial-value-templates",
       "path": "./parts/initialValueTemplates.js"
     }
-
   ]
 }

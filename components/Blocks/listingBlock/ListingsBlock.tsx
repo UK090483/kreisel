@@ -50,7 +50,7 @@ export interface TherapistResult extends CardResult {
 export const listingBlockQuery = `
 _type == "listing" => {
     ...,
-    content[]{...},
+  'content':  content[]{...},
   'items': select(
     type == 'custom' => customItems[]{
       _type == 'reference' => @->{${cardQuery}},
@@ -101,7 +101,6 @@ export type ListingBlockProps =
 
 const ListingBlock: React.FC<ListingBlockProps> = (props) => {
   const { bgColor, content, variation } = props;
-  console.log(props);
 
   if (!props.items) return null;
 

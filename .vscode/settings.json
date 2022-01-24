@@ -5,7 +5,7 @@
   "tailwindCSS.experimental.classRegex": ["clsx([^]*)"],
   "cSpell.language": "en,de-de",
   "jest.showCoverageOnLoad": true,
-  "jest.autoRun": { "watch": false, "onSave": "test-only" },
+ 
 
   "files.exclude": {
     "**/.git": true,
@@ -15,7 +15,7 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "node_modules": true,
-    ".vscode": true,
+    ".vscode": false,
     ".eslintrc.json": true,
     "next-env.d.ts": true,
     ".gitignore": true,
@@ -38,7 +38,7 @@
     "coverage": true,
     "__mocks__": true,
     "tests": true,
-    "jest.config.js": true,
+    "jest.config.js": false,
     "setupTests.js": true,
     "tailwind.config.js": true,
     "styles": true,

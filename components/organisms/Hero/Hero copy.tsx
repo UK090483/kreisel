@@ -14,6 +14,7 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = (props) => {
   const { variant = "overlapping", photo } = props;
 
+  useCSV();
   return (
     <Section width="full" className="relative h-screen">
       <Image image={photo} />

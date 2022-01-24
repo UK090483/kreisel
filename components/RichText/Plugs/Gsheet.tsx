@@ -14,8 +14,6 @@ const GSheet: React.FunctionComponent<IGSheetProps> = (props) => {
 
   const { data, loading, reload } = csv;
 
-  console.log(downloadLink);
-
   return (
     <>
       {/* <Button
@@ -56,17 +54,32 @@ const GSheet: React.FunctionComponent<IGSheetProps> = (props) => {
             })}
         </tbody>
       </table>
-      {downloadLink && (
-        <Button
-          href={downloadLink}
-          external
-          className={`transition-colors  ${loading ? "bg-blue-600" : ""}  `}
-        >
-          Download as pdf
-        </Button>
-      )}
+      {downloadLink && <PdfPreview link={downloadLink} />}
     </>
   );
 };
 
 export default GSheet;
+
+type PdfPreviewPros = {
+  link: string;
+};
+const PdfPreview: React.FC<PdfPreviewPros> = (props) => {
+  const { link } = props;
+
+  const loading = false;
+
+  const handleClick = () => {};
+
+  return (
+    <Button
+      href={
+        "https://drive.google.com/file/d/1fiJ81gdPBxvjIaPyb_uU2ZTSWk_Rn-rb/view?usp=sharing"
+      }
+      external
+      className={`transition-colors  ${loading ? "bg-blue-600" : ""}  `}
+    >
+      Download as pdf
+    </Button>
+  );
+};

@@ -11,19 +11,10 @@ export default {
     },
     {
       title: "Text",
-      name: "text",
-      type: "text",
+      name: "content",
+      type: "headerRichText",
     },
-    {
-      title: "Button text",
-      name: "btnText",
-      type: "string",
-    },
-    {
-      title: "Button link",
-      name: "btnLink",
-      type: "string",
-    },
+
     {
       title: "Image",
       name: "image",

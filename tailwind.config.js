@@ -36,8 +36,8 @@ module.exports = {
         },
         black: "#595959",
         white: "#ffffff",
-        primary: { light: "#FDECB3", DEFAULT: "#facf3f" },
-        secondary: "#2A9D8F",
+        primary: { light: "#FDECB3", DEFAULT: "#FCDE84" },
+        secondary: "#CDD3C5",
         red: "#D22D30",
       },
       animation: {

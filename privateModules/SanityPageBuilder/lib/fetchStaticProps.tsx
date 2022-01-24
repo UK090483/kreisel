@@ -40,6 +40,7 @@ export async function fetchStaticProps<P>(
       data,
       preview: preview || false,
       query: preview ? fetch : "",
+      id: slug || "noId",
     },
     revalidate,
   };

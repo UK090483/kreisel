@@ -1,11 +1,15 @@
+import { useRouter } from "next/router";
 import React from "react";
 
 type usePageTransitionProps = {
   children: React.ReactNode;
+  preview?: boolean;
 };
 
 const usePageTransition = (props: usePageTransitionProps) => {
-  const { children } = props;
+  const { children, preview } = props;
+
+  const lastPageId = React.useRef<null | number>(null);
 
   const [displayChildren, setDisplayChildren] = React.useState(children);
   const [transitionStage, setTransitionStage] = React.useState("fadeOut");
@@ -15,19 +19,23 @@ const usePageTransition = (props: usePageTransitionProps) => {
   }, []);
 
   React.useEffect(() => {
-    if (children !== displayChildren) setTransitionStage("fadeOut");
+    //@ts-ignore
+    if (children.key !== displayChildren.key) setTransitionStage("fadeOut");
   }, [children, setDisplayChildren, displayChildren]);
 
   const handleTransitionEnd = () => {
     if (transitionStage === "fadeOut") {
-      console.log("fading out");
       setDisplayChildren(children);
       window.scrollTo(0, 0);
       setTransitionStage("fadeIn");
     }
   };
 
-  return { displayChildren, transitionStage, handleTransitionEnd };
+  return {
+    displayChildren: preview ? children : displayChildren,
+    transitionStage,
+    handleTransitionEnd,
+  };
 };
 
 export default usePageTransition;

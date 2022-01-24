@@ -66,6 +66,7 @@ export type PageProps<P> = {
   data: P | null;
   preview?: boolean;
   query: string;
+  id: string;
   [k: string]: any;
 };
 

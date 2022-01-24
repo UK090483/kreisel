@@ -10,8 +10,8 @@ export default {
     },
     {
       title: "Text",
-      name: "text",
-      type: "text",
+      name: "content",
+      type: "headerRichText",
     },
     {
       title: "Button text",

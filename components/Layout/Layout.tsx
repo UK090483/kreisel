@@ -9,13 +9,15 @@ import Nav from "./Navigation/Nav";
 
 import usePageTransition from "@hooks/usePageTransition";
 
-interface LayoutProps extends PageProps<PageData> {}
+interface LayoutProps extends PageProps<PageData> {
+  preview?: boolean;
+}
 
 const Layout: React.FC<LayoutProps> = (props) => {
-  const { children, data } = props;
+  const { children, data, preview = false } = props;
 
   const { transitionStage, displayChildren, handleTransitionEnd } =
-    usePageTransition({ children });
+    usePageTransition({ children, preview });
 
   return (
     <>
