@@ -2,14 +2,11 @@ import React from "react";
 
 import clsx from "clsx";
 
-import { Image } from "@components/Image";
+import SanityImage from "@privateModules/SanityImage";
 import Typo from "@components/Typography/Typography";
 import { ConditionalLink } from "@components/Link";
 import { linkQuery, LinkResult } from "@privateModules/Navigation/query";
-import {
-  imageMeta,
-  ImageMetaResult,
-} from "@privateModules/SanityPageBuilder/queries/snippets";
+import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
 
 export const imageGalleryPlugQuery = `
 _type == "imageGalleryPlug" => {
@@ -88,7 +85,7 @@ const ImageGalleryPlug: React.FC<{ node: ImageGalleryPlugResult }> = (
               }
             )}
           >
-            {image && <Image image={image} />}
+            {image && <SanityImage image={image} />}
 
             {title && (
               <div className="absolute bottom-0 flex items-end left-4 ">

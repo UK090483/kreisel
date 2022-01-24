@@ -1,9 +1,9 @@
-import { Image } from "@components/Image";
+import SanityImage from "@privateModules/SanityImage";
 import { Section } from "@components/organisms/Section/Section";
 import Typo from "@components/Typography";
 import Underline from "@components/Underline";
 import useCSV from "@hooks/useCsv";
-import { ImageMetaResult } from "@privateModules/SanityPageBuilder/queries/snippets";
+import { ImageMetaResult } from "@privateModules/SanityImage/query";
 
 import React from "react";
 
@@ -17,7 +17,7 @@ const Hero: React.FC<HeroProps> = (props) => {
   useCSV();
   return (
     <Section width="full" className="relative h-screen">
-      <Image image={photo} />
+      <SanityImage image={photo} />
       <div className="absolute inset-0 flex items-center mx-auto text-white  ml-[10%] ">
         <Typo hand variant="h1">
           <div style={{ fontSize: 72 }}>

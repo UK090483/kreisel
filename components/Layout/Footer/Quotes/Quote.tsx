@@ -1,4 +1,4 @@
-import { Image } from "@components/Image";
+import SanityImage from "@privateModules/SanityImage";
 import { Section } from "@components/organisms/Section/Section";
 import Typo from "@components/Typography/Typography";
 import React from "react";
@@ -30,7 +30,7 @@ const Quote: React.FC<QuoteProps> = ({ children }) => {
       </div>
 
       <div className="relative rounded-theme overflow-hidden ">
-        <Image src="id/1062/1200/1200" />
+        <SanityImage src="id/1062/1200/1200" />
       </div>
     </Section>
   );

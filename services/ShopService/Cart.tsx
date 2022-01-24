@@ -1,4 +1,4 @@
-import { Image } from "@components/Image";
+import SanityImage from "@privateModules/SanityImage";
 import useAnimationDelay from "@hooks/useAnimationDelay";
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
@@ -100,7 +100,7 @@ const Article: React.FC<ArticleProps> = ({ children, id, price, title }) => {
   return (
     <div className=" bg-white  rounded-xl overflow-hidden mb-4">
       <div className="relative w-full aspect-w-16 aspect-h-10 ">
-        <Image />
+        <SanityImage />
       </div>
 
       <div className="p-3">

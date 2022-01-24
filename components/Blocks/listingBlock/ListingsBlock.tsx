@@ -1,10 +1,7 @@
 import List from "@components/organisms/Listings/List";
 import TestimonialList from "@components/organisms/Listings/testimonials/TestimonialList";
 import TherapistList from "@components/organisms/Listings/therapist/TherapistList";
-import {
-  imageMeta,
-  ImageMetaResult,
-} from "@privateModules/SanityPageBuilder/queries/snippets";
+import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
 import React from "react";
 import { AppColor, AppLocales } from "types";
 import ListWrap from "./ListWrap";

@@ -1,4 +1,4 @@
-import { Image } from "@components/Image";
+import SanityImage from "@privateModules/SanityImage";
 import { Section } from "@components/organisms/Section/Section";
 import Typo from "@components/Typography/Typography";
 import { ITestimonialItem } from "@components/Blocks/listingBlock/ListingsBlock";
@@ -34,7 +34,7 @@ const TestimonialListItem: React.FunctionComponent<
       </div>
 
       <div className="relative rounded-theme overflow-hidden w-full aspect-w-1 aspect-h-1 ">
-        <Image image={image} />
+        <SanityImage image={image} />
       </div>
     </div>
   );

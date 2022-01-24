@@ -1,5 +1,5 @@
-import { Image } from "@components/Image";
-import { ImageMetaResult } from "@privateModules/SanityPageBuilder/queries/snippets";
+import SanityImage from "@privateModules/SanityImage";
+import { ImageMetaResult } from "@privateModules/SanityImage/query";
 
 type AvatarProps = {
   name?: string;
@@ -12,7 +12,7 @@ const Avatar: React.FC<AvatarProps> = (props) => {
   return (
     <div className={`${className}`}>
       {image ? (
-        <Image />
+        <SanityImage />
       ) : (
         <div className=" absolute inset-0 flex justify-center items-center  font-bold  bg-primary">
           {getInitials(name)}

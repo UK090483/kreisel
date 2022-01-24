@@ -1,7 +1,7 @@
 import React from "react";
 
 import Typo from "@components/Typography";
-import { Image } from "@components/Image";
+import SanityImage from "@privateModules/SanityImage";
 
 import CardWrap from "./CardWrap";
 import CardBody from "./CardBody";
@@ -10,7 +10,7 @@ import BlockContent, {
   BlockContentProps,
   Serializers,
 } from "@sanity/block-content-to-react";
-import { ImageMetaResult } from "@privateModules/SanityPageBuilder/queries/snippets";
+import { ImageMetaResult } from "@privateModules/SanityImage/query";
 
 export interface CardProps {
   href?: string;
@@ -41,7 +41,7 @@ const Card: React.FC<CardProps> = (props) => {
             : "aspect-w-3 aspect-h-2 rounded-t-theme"
         } overflow-hidden`}
       >
-        <Image image={image} />
+        <SanityImage image={image} />
       </div>
 
       <CardBody className={`${isList ? "bg-transparent" : "bg-white"} `}>

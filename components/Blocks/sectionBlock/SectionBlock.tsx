@@ -4,13 +4,10 @@ import clsx from "clsx";
 import RichText, { richTextQuery } from "../../RichText/RichText";
 
 import { Section } from "@components/organisms/Section/Section";
-import { Image } from "@components/Image";
+import SanityImage from "@privateModules/SanityImage";
 import Transition from "./Transition";
 import Accordion from "./Accordion";
-import {
-  imageMeta,
-  ImageMetaResult,
-} from "@privateModules/SanityPageBuilder/queries/snippets";
+import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
 
 export const sectionBlockQuery = `
 _type == "section" => {
@@ -117,7 +114,7 @@ const WithImage: React.FC<{
     <>
       {place === "right" && content}
       <div className="  relative overflow-hidden  aspect-w-16 aspect-h-9 rounded-theme">
-        <Image image={image} objectFit="cover" />
+        <SanityImage image={image} objectFit="cover" />
       </div>
       {place === "left" && content}
     </>

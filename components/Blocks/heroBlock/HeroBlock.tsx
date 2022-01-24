@@ -1,14 +1,11 @@
-import { Image } from "@components/Image";
+import SanityImage from "@privateModules/SanityImage";
 import Hero from "@components/organisms/Hero/Hero";
 import { Section } from "@components/organisms/Section/Section";
 import RichText from "@components/RichText/RichText";
 import Typo from "@components/Typography/Typography";
 import Underline from "@components/Underline";
 
-import {
-  imageMeta,
-  ImageMetaResult,
-} from "@privateModules/SanityPageBuilder/queries/snippets";
+import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
 import React from "react";
 
 import { AppLocales } from "types";
@@ -68,7 +65,7 @@ const HeroBlock: React.FC<HeroBlockProps> = (props) => {
         </Typo>
       </div>
       <div className="relative">
-        <Image image={photo} objectFit="contain" />
+        <SanityImage image={photo} objectFit="contain" />
       </div>
     </Section>
   );

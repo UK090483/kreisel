@@ -1,9 +1,6 @@
-import { Image } from "@components/Image";
+import SanityImage from "@privateModules/SanityImage";
 import Typo from "@components/Typography/Typography";
-import {
-  imageMeta,
-  ImageMetaResult,
-} from "@privateModules/SanityPageBuilder/queries/snippets";
+import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
 import * as React from "react";
 import { useIntersection } from "react-use";
 
@@ -32,7 +29,7 @@ const TrustBlockItem: React.FunctionComponent<ITrustBlockItem> = (props) => {
   return (
     <div ref={ref} className=" text-white ">
       <div className="relative w-full   aspect-w-1 aspect-h-1">
-        <Image image={image} objectFit="contain" />
+        <SanityImage image={image} objectFit="contain" />
       </div>
       {isIntersecting && (
         <Typo variant="h1" hand as="p" className=" text-center text-5xl pt-8 ">

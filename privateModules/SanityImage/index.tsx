@@ -1,22 +1,22 @@
 import React from "react";
-import NextImage, { ImageLoader } from "next/image";
-import useSanityImage from "@privateModules/SanityPageBuilder/useSanityImage";
-import { ImageMetaResult } from "@privateModules/SanityPageBuilder/queries/snippets";
+import NextImage, { ImageProps as NextImagePros } from "next/image";
+import useSanityImage from "@privateModules/SanityImage/useSanityImage";
+import { ImageMetaResult } from "@privateModules/SanityImage/query";
 
-interface ImageProps {
+export interface SanityImageProps {
   src?: string;
-  objectFit?: "cover" | "contain";
+  objectFit?: NextImagePros["objectFit"];
   image?: ImageMetaResult | null;
   alt?: string;
 }
 
-export const Image: React.FC<ImageProps> = (props) => {
+const SanityImage: React.FC<SanityImageProps> = (props) => {
   const { src, objectFit = "cover", image } = props;
 
   let imageProps = useSanityImage(image);
 
   if (src) {
-    return <ImageFaker src={src} />;
+    return <SanityImageFaker src={src} />;
   }
 
   if (!imageProps) return null;
@@ -27,6 +27,7 @@ export const Image: React.FC<ImageProps> = (props) => {
     <NextImage
       draggable={false}
       {...rest}
+      blurDataURL={image?.lqip}
       layout="fill"
       objectFit={objectFit}
       objectPosition=" center"
@@ -34,7 +35,9 @@ export const Image: React.FC<ImageProps> = (props) => {
   );
 };
 
-export const ImageFaker: React.FC<ImageProps> = ({ src }) => {
+export default SanityImage;
+
+export const SanityImageFaker: React.FC<SanityImageProps> = ({ src }) => {
   const ranNum = (min: number = 4, max: number = 8) => {
     return Math.floor(Math.random() * (max - min) + min);
   };

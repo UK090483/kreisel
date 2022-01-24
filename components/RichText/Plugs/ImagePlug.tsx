@@ -28,7 +28,7 @@
 //   layout?: "fill" | "contain";
 // }
 
-// const ImagePlug: React.FC<ImagePlugResult> = (props) => {
+// const ImagePlug: React.FC<SanityImagePlugResult> = (props) => {
 //   const {
 //     customWidth,
 //     customHeight,

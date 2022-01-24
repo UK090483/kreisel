@@ -1,4 +1,4 @@
-import { Image } from "@components/Image";
+import SanityImage from "@privateModules/SanityImage";
 import React from "react";
 
 interface Props {}
@@ -6,7 +6,7 @@ interface Props {}
 export const Video = (props: Props) => {
   return (
     <>
-      <Image />
+      <SanityImage />
 
       <div className="absolute inset-0 opacity-0">
         <iframe

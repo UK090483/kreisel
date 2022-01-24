@@ -1,6 +1,6 @@
 //@ts-nocheck
 
-import { Image } from "@components/Image";
+import SanityImage from "@privateModules/SanityImage";
 import { Section } from "@components/organisms/Section/Section";
 import Typo from "@components/Typography/Typography";
 import Underline from "@components/Underline";
@@ -46,7 +46,7 @@ const Home = () => {
       {/* 
       <Section className="col-gap-20 pt-40 lg:col-count-2">
         <div className="relative w-full h-32">
-          <Image />
+          <SanityImage />
         </div>
         <Typo variant="h2" hand>
           fermentum malesuada porta. Sed consequat
