@@ -3,7 +3,8 @@ import { mockClient } from "../MockClient";
 describe("MockClient", () => {
   it("should have methods fetch ", () => {
     const client = mockClient();
-    client.fetch("*[]");
+
+    expect(client).toHaveProperty("fetch");
   });
 
   it("mockReturnValue should work ", () => {

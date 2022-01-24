@@ -11,6 +11,7 @@ import ListWrap from "./ListWrap";
 
 const cardQuery = `
 ...,
+
 'image':image{...,${imageMeta}},
 'date': _createdAt,
 'href': select(
@@ -57,7 +58,7 @@ _type == "listing" => {
       _type != 'reference' => {${cardQuery}},
     },
     contentType in ['article','testimonial','therapist']=> *[_type == ^.contentType ][]{${cardQuery}},
-    contentType in ['blog','aktuelles']=> *[ pageType->slug.current == ^.contentType ][]{${cardQuery}},
+    contentType in ['blog','aktuelles']=> *[ pageType->slug.current == ^.contentType ][]{${cardQuery}}
   ),
 }
 `;
