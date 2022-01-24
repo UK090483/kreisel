@@ -5,11 +5,11 @@ import clsx from "clsx";
 import { Image } from "@components/Image";
 import Typo from "@components/Typography/Typography";
 import { ConditionalLink } from "@components/Link";
-import { linkQuery, LinkResult } from "privateModules/Navigation/query";
+import { linkQuery, LinkResult } from "@privateModules/Navigation/query";
 import {
   imageMeta,
   ImageMetaResult,
-} from "privateModules/SanityPageBuilder/queries/snippets";
+} from "@privateModules/SanityPageBuilder/queries/snippets";
 
 export const imageGalleryPlugQuery = `
 _type == "imageGalleryPlug" => {

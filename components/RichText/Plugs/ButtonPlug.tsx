@@ -1,5 +1,5 @@
 import Button from "@components/Button/Button";
-import { linkQuery, LinkResult } from "privateModules/Navigation/query";
+import { linkQuery, LinkResult } from "@privateModules/Navigation/query";
 
 import React from "react";
 

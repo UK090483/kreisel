@@ -3,7 +3,7 @@ import { Section } from "@components/organisms/Section/Section";
 import Typo from "@components/Typography";
 import Underline from "@components/Underline";
 import useCSV from "@hooks/useCsv";
-import { ImageMetaResult } from "privateModules/SanityPageBuilder/queries/snippets";
+import { ImageMetaResult } from "@privateModules/SanityPageBuilder/queries/snippets";
 
 import React from "react";
 

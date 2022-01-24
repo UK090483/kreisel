@@ -5,7 +5,6 @@
   "tailwindCSS.experimental.classRegex": ["clsx([^]*)"],
   "cSpell.language": "en,de-de",
   "jest.showCoverageOnLoad": true,
- 
 
   "files.exclude": {
     "**/.git": true,
@@ -23,7 +22,7 @@
     "package.json": true,
     "postcss.config.js": true,
     "README.md": true,
-    "tsconfig.json": true,
+    "tsconfig.json": false,
     "yarn.lock": true,
     ".next": true,
     "package-lock.json": true,

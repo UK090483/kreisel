@@ -13,7 +13,6 @@ export const mockClient = (props?: MockSanityClient) => {
   };
 
   return {
-    blg: () => null,
     fetch: (query: string) => {
       if (database) {
         return fetchMock(database, query);
@@ -29,6 +28,8 @@ export const mockGetClient = (props: MockSanityClient) => {
 };
 
 const fetchMock = async (dataset: any, query: string) => {
+  console.log(query);
+
   let tree = parse(query);
   let value = await evaluate(tree, { dataset });
   return await value.get();

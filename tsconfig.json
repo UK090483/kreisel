@@ -19,7 +19,7 @@
       "@components/*": ["components/*"],
       "@services/*": ["services/*"],
       "@hooks/*": ["hooks/*"],
-      "privateModules/*": ["privateModules/*"],
+      "@privateModules/*": ["privateModules/*"],
       "types/*": ["types/*"]
     }
   },

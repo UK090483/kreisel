@@ -8,7 +8,7 @@ import Underline from "@components/Underline";
 import {
   imageMeta,
   ImageMetaResult,
-} from "privateModules/SanityPageBuilder/queries/snippets";
+} from "@privateModules/SanityPageBuilder/queries/snippets";
 import React from "react";
 
 import { AppLocales } from "types";

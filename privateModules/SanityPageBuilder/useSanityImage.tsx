@@ -2,7 +2,7 @@ import React from "react";
 import { configuredSanityClient } from "@services/SanityService/sanity";
 import { useNextSanityImage } from "next-sanity-image";
 import { ImageLoader, ImageProps } from "next/image";
-import { ImageMetaResult } from "privateModules/SanityPageBuilder/queries/snippets";
+import { ImageMetaResult } from "@privateModules/SanityPageBuilder/queries/snippets";
 
 interface UseSanityImageOptions extends Pick<ImageProps, "objectFit"> {}
 

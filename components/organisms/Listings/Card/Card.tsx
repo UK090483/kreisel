@@ -10,7 +10,7 @@ import BlockContent, {
   BlockContentProps,
   Serializers,
 } from "@sanity/block-content-to-react";
-import { ImageMetaResult } from "privateModules/SanityPageBuilder/queries/snippets";
+import { ImageMetaResult } from "@privateModules/SanityPageBuilder/queries/snippets";
 
 export interface CardProps {
   href?: string;

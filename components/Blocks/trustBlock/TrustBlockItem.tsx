@@ -3,7 +3,7 @@ import Typo from "@components/Typography/Typography";
 import {
   imageMeta,
   ImageMetaResult,
-} from "privateModules/SanityPageBuilder/queries/snippets";
+} from "@privateModules/SanityPageBuilder/queries/snippets";
 import * as React from "react";
 import { useIntersection } from "react-use";
 

@@ -1,6 +1,6 @@
 import Button from "@components/Button/Button";
 import useCSV from "@hooks/useCsv";
-import { PlugProps } from "privateModules/SanityPageBuilder/lib/RichText";
+import { PlugProps } from "@privateModules/SanityPageBuilder/lib/RichText";
 import * as React from "react";
 
 interface IGSheetProps extends PlugProps<{ url?: string | null }> {}

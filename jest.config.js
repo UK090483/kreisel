@@ -10,6 +10,7 @@ module.exports = {
     "^@components/(.*)$": "<rootDir>/components/$1",
     "^@services/(.*)$": "<rootDir>/services/$1",
     "^@hooks/(.*)$": "<rootDir>/hooks/$1",
+    "^@privateModules/(.*)$": "<rootDir>/privateModules/$1",
 
     /* Handle CSS imports (with CSS modules)
       https://jestjs.io/docs/webpack#mocking-css-modules */

@@ -1,16 +1,16 @@
 import "../styles/globals.css";
 import Layout from "@components/Layout/Layout";
 import StoreContextProvider from "@services/StoreService/StoreProvider";
-import { PageProps } from "privateModules/SanityPageBuilder/types";
+import { PageProps } from "@privateModules/SanityPageBuilder/types";
 import { NextComponentType, NextPageContext } from "next";
-import Cookie from "privateModules/Cookie/Cookie";
+import Cookie from "@privateModules/Cookie/Cookie";
 import { SessionProvider } from "next-auth/react";
 import { ReactElement, ReactNode } from "react";
 import Cart from "@services/ShopService/Cart";
 import { ShopContextProvider } from "@services/ShopService/shopContext";
 import { PageData } from "./[[...slug]]";
-import usePreviewSubscription from "privateModules/SanityPageBuilder/lib/preview/previewSubscription";
-import PreviewIndicator from "privateModules/SanityPageBuilder/lib/preview/PreviewIndicator";
+import usePreviewSubscription from "@privateModules/SanityPageBuilder/lib/preview/previewSubscription";
+import PreviewIndicator from "@privateModules/SanityPageBuilder/lib/preview/PreviewIndicator";
 
 interface AppPropsWithStaticProps {
   pageProps: PageProps<PageData>;

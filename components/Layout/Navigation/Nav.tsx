@@ -10,8 +10,8 @@ import {
   NavigationItemBase,
 } from "../../../privateModules/Navigation";
 import Underline from "@components/Underline";
-import NavigationMobile from "privateModules/Navigation/NavigationMobile";
-import { NavItem } from "privateModules/Navigation/types";
+import NavigationMobile from "@privateModules/Navigation/NavigationMobile";
+import { NavItem } from "@privateModules/Navigation/types";
 
 interface NavProps {
   items: NavItem[];

@@ -4,7 +4,7 @@ import TherapistList from "@components/organisms/Listings/therapist/TherapistLis
 import {
   imageMeta,
   ImageMetaResult,
-} from "privateModules/SanityPageBuilder/queries/snippets";
+} from "@privateModules/SanityPageBuilder/queries/snippets";
 import React from "react";
 import { AppColor, AppLocales } from "types";
 import ListWrap from "./ListWrap";

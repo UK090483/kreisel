@@ -9,7 +9,7 @@ import ImageGalleryPlug, {
 import Typo from "@components/Typography/Typography";
 import SpacerPlug, { spacerPlugQuery } from "./Plugs/Spacer";
 import Underline from "@components/Underline";
-import SanityRichText from "privateModules/SanityPageBuilder/lib/RichText";
+import SanityRichText from "@privateModules/SanityPageBuilder/lib/RichText";
 import List from "./list/List";
 import GSheet from "./Plugs/Gsheet";
 

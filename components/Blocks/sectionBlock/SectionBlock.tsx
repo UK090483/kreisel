@@ -10,7 +10,7 @@ import Accordion from "./Accordion";
 import {
   imageMeta,
   ImageMetaResult,
-} from "privateModules/SanityPageBuilder/queries/snippets";
+} from "@privateModules/SanityPageBuilder/queries/snippets";
 
 export const sectionBlockQuery = `
 _type == "section" => {
