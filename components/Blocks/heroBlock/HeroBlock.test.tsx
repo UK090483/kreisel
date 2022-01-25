@@ -1,9 +1,7 @@
 import { mockClient } from "@privateModules/SanityPageBuilder/lib/MockClient";
 import { heroBlockQuery } from "./HeroBlock";
 
-jest.mock("@components/Image", () => ({
-  Image: () => {},
-}));
+jest.mock("@privateModules/SanityImage", () => ({}));
 
 const database: any[] = [];
 
