@@ -1,4 +1,5 @@
 import Button from "@components/Button/Button";
+import Kreisel from "@components/Kreisel";
 import List from "@components/List/List";
 import ListItem from "@components/List/ListItem";
 import Typo from "@components/Typography/Typography";
@@ -18,26 +19,19 @@ interface IGSheetProps {
 
 const GSheet: React.FunctionComponent<PlugProps<IGSheetProps>> = (props) => {
   const url = props?.node?.url;
-  const { node } = props;
-  const { columns } = node;
-
-  const csv = useCSV({ hot: true, url });
-
-  const downloadLink = url && url?.replace("csv", "pdf");
-
-  const { data, loading, reload } = csv;
-
-  const names = columns?.map((i) => i.columnName) || [];
-  const indexes =
-    data &&
-    Object.keys(data[0].row)
-      .map((item, index) => (names.includes(item) ? index : null))
-      .filter((i) => i);
+  const { data, loading, reload } = useCSV({ hot: true, url });
 
   return (
-    <>
+    <div>
+      <button onClick={reload}>Reload</button>
+      {loading && (
+        <div className="w-1/2 mx-auto animate-spin">
+          <Kreisel />
+        </div>
+      )}
       <List name="stelle" overlay={(id) => <Overlay data={data} id={id} />}>
         {data &&
+          !loading &&
           data.map((item, index) => {
             return (
               <ListItem
@@ -56,7 +50,7 @@ const GSheet: React.FunctionComponent<PlugProps<IGSheetProps>> = (props) => {
             );
           })}
       </List>
-    </>
+    </div>
   );
 };
 
