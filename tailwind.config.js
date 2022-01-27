@@ -82,6 +82,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    require("tailwindcss-debug-screens"),
     require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),
     require("tailwindcss-multi-column")(),

@@ -37,7 +37,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
         {displayChildren}
       </main>
 
-      <Footer navItems={data?.navigation || []} />
+      <Footer data={data} />
     </>
   );
 };

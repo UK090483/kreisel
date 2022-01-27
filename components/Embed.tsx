@@ -14,7 +14,7 @@ const Embed: FC<EmbedProps> = (props) => {
         log
         src={url}
         style={{ width: "1px", minWidth: "100%" }}
-        height="800"
+        height="1200"
       />
     </div>
   );

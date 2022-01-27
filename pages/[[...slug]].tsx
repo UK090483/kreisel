@@ -8,7 +8,6 @@ import HeroBlock, {
 import ListingBlock, {
   ListingBlockProps,
   listingBlockQuery,
-  ListingBlockResult,
 } from "@components/Blocks/listingBlock/ListingsBlock";
 import onPageNav, {
   onPageNavBlockQuery,
@@ -24,8 +23,12 @@ import {
 import TrustBlock, {
   trustBlockQuery,
 } from "@components/Blocks/trustBlock/TrustBlock";
+import {
+  footerQuery,
+  FooterQueryResult,
+} from "@components/Layout/Footer/Footer";
 
-export interface PageData extends NavigationResult {
+export interface PageData extends NavigationResult, FooterQueryResult {
   content: (SectionBlockResult | ListingBlockProps | HeroBlogResult)[];
   title?: string;
 }
@@ -34,7 +37,7 @@ const { getStaticPaths, getStaticProps, PageComponent } = SPB<PageData>({
   revalidate: 1,
   client,
   locales: conf.locales,
-  query: `${NavigationQuery()}, title`,
+  query: `${footerQuery}, ${NavigationQuery()}, title`,
 
   components: [
     {

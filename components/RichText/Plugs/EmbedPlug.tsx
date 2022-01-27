@@ -3,7 +3,7 @@ import React from "react";
 import Embed from "@components/Embed";
 
 export const embedPlugQuery = `
-_type == "embed" => {
+_type == "image" => {
   _type,
   _key,
    url

@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { NavItem } from "../../types";
 import { NavigationModulDropdownContainer } from "./NavigationModulDropdownContainer";
 import useIsActive from "../../helper/useIsActive";
+import NavigationItemBase from "../NavItem/NavigationItemBase";
 
 type NavigationModulDropdownProps = {
   items?: NavItem[];
@@ -87,7 +88,7 @@ export const NavigationModulDropdown: React.FC<NavigationModulDropdownProps> = (
         onMouseLeave={handleMouseLeave}
         onClick={handleNavClick}
       >
-        <DefaultNavigationItemBase
+        <NavigationItemBase
           active={active}
           props={props}
           place="dropdown"
@@ -95,7 +96,7 @@ export const NavigationModulDropdown: React.FC<NavigationModulDropdownProps> = (
           hover={hover}
         >
           {children}
-        </DefaultNavigationItemBase>
+        </NavigationItemBase>
       </button>
       <NavigationModulDropdownContainer
         ref={wrapRef}

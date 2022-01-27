@@ -12,7 +12,7 @@ const Avatar: React.FC<AvatarProps> = (props) => {
   return (
     <div className={`${className}`}>
       {image ? (
-        <SanityImage />
+        <SanityImage image={image} />
       ) : (
         <div className=" absolute inset-0 flex justify-center items-center  font-bold  bg-primary">
           {getInitials(name)}

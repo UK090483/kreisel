@@ -12,6 +12,7 @@ import Underline from "@components/Underline";
 import SanityRichText from "@privateModules/SanityPageBuilder/lib/RichText";
 import List from "./list/List";
 import GSheet from "./Plugs/Gsheet";
+import ImagePlug, { ImagePlugQuery } from "./Plugs/ImagePlug";
 
 const marksQuery = `
 markDefs[]{
@@ -26,6 +27,7 @@ content[]{
   ${buttonPlugQuery},
   ${spacerPlugQuery},
   ${imageGalleryPlugQuery},
+  ${ImagePlugQuery},
 }
 `;
 
@@ -42,6 +44,7 @@ const RichText: React.FC<any> = (props: any) => {
         embed: EmbedPlug,
         spacer: SpacerPlug,
         gSheet: GSheet,
+        imagePlug: ImagePlug,
       }}
       marks={{
         link,

@@ -29,7 +29,7 @@ export const Section: React.FC<SectionProps> = ({
       <Transition pos="top" transition={transitionTop} color={bg} />
       <Component
         id={id}
-        className={clsx(`w-full overflow-hidden `, {
+        className={clsx(`w-full overflow-hidden  `, {
           "bg-white": bg === "white",
           "bg-primary": bg === "primary",
           "bg-secondary": bg === "secondary",
@@ -37,11 +37,11 @@ export const Section: React.FC<SectionProps> = ({
         })}
       >
         <div
-          className={clsx("mx-auto", className, {
-            "max-w-screen-md ": width === "s",
-            "max-w-screen-lg ": width === "m",
-            "max-w-screen-xl ": width === "l",
-            "px-4": width !== "full" && !noPadding,
+          className={clsx("mx-auto", "container", className, {
+            "md:max-w-screen-md ": width === "s",
+            "lg:max-w-screen-lg ": width === "m",
+            "xl:max-w-screen-xl ": width === "l",
+            "px-3": width !== "full" && !noPadding,
           })}
         >
           {children}

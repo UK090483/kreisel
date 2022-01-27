@@ -10,7 +10,11 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body className="text-black ">
+        <body
+          className={`text-black ${
+            process.env.NODE_ENV === "development" ? "debug-screens" : ""
+          } `}
+        >
           <Main />
           <div id="app-portal" />
           <NextScript />

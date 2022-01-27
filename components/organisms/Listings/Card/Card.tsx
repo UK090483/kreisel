@@ -6,10 +6,7 @@ import SanityImage from "@privateModules/SanityImage";
 import CardWrap from "./CardWrap";
 import CardBody from "./CardBody";
 
-import BlockContent, {
-  BlockContentProps,
-  Serializers,
-} from "@sanity/block-content-to-react";
+import BlockContent from "@sanity/block-content-to-react";
 import { ImageMetaResult } from "@privateModules/SanityImage/query";
 
 export interface CardProps {
@@ -41,10 +38,10 @@ const Card: React.FC<CardProps> = (props) => {
             : "aspect-w-3 aspect-h-2 rounded-t-theme"
         } overflow-hidden`}
       >
-        <SanityImage image={image} />
+        <SanityImage image={image} objectFit="cover" />
       </div>
 
-      <CardBody className={`${isList ? "bg-transparent" : "bg-white"} `}>
+      <CardBody className={`${isList ? "bg-transparent" : "bg-white"}  h-full`}>
         {date && (
           <Typo className="pb-2" variant="body">
             {paresDate(date)}

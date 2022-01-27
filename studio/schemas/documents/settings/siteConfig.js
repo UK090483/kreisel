@@ -22,6 +22,12 @@ export default {
       of: [{ type: "navigationItem" }, { type: "navigationMegaMenu" }],
       validation: (Rule) => Rule.required(),
     },
+
+    {
+      name: "footerImage",
+      type: "defaultImage",
+    },
+
     {
       title: "Default / Seo",
       name: "seo",

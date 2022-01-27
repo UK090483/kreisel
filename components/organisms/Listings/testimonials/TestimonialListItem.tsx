@@ -34,7 +34,7 @@ const TestimonialListItem: React.FunctionComponent<
       </div>
 
       <div className="relative rounded-theme overflow-hidden w-full aspect-w-1 aspect-h-1 ">
-        <SanityImage image={image} />
+        <SanityImage image={image} objectFit="cover" />
       </div>
     </div>
   );

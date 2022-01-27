@@ -51,10 +51,9 @@ export default {
       title: "Description",
     },
     {
-      name: "featuredImage",
+      name: "image",
       type: "defaultImage",
     },
-
     {
       name: "slug",
       type: "slug",

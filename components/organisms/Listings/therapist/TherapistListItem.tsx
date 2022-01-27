@@ -22,13 +22,13 @@ const TherapistListItem: React.FC<TherapistListItemProps> = (props) => {
     <li className={`rounded-theme w-full  odd:bg-primary-light  mb-2 p-0.5`}>
       <Link
         passHref
-        href={{ pathname: baseUrl, query: { therapeut: _id } }}
+        href={{ pathname: "/" + baseUrl, query: { therapeut: _id } }}
         scroll={false}
         shallow={true}
       >
         <a className=" rounded-theme flex w-full items-center hover:ring-4  ring-primary ">
           <Avatar
-            className={`relative transition-all ${"w-10 h-10"}  flex-shrink-0 rounded-theme overflow-hidden`}
+            className={`relative transition-all w-10 h-10 flex-shrink-0 rounded-theme overflow-hidden`}
             name={`${firstName} ${name}`}
             image={image}
           />

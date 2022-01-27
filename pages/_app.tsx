@@ -46,6 +46,9 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
           {getLayout(pageProps.id)}
           <Cookie />
           <Cart />
+          {process.env.NODE_ENV === "development" && (
+            <div className="h-28 container z-50bg-red mx-auto"></div>
+          )}
           {preview && <PreviewIndicator />}
         </StoreContextProvider>
       </ShopContextProvider>

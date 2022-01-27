@@ -58,7 +58,8 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
     transitionTop,
     transitionBottom,
   } = props;
-  const hasImage = image && image.asset;
+
+  const hasImage = image && image.type;
   const autoType = hasImage ? "l" : "s";
 
   return (

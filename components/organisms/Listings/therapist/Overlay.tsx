@@ -11,6 +11,7 @@ import BlockContent, {
 
 import useScrollStop from "@hooks/useScrollStop";
 import { useLockBodyScroll } from "react-use";
+import SanityImage from "@privateModules/SanityImage";
 
 interface IOverlayProps {
   items: TherapistResult[];
@@ -47,6 +48,10 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
         </Link>
 
         <Typo bold variant="h4">{`${item?.firstName} ${item?.name}`}</Typo>
+
+        {item?.image && (
+          <SanityImage image={item.image} width={150} layout="fixed" />
+        )}
 
         <InfoItem title="Beruf" data={item?.jobDescription} />
         <InfoItem title="Email">

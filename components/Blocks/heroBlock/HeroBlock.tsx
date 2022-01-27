@@ -55,7 +55,7 @@ export interface HeroBlockProps extends HeroBlogResult {
 const HeroBlock: React.FC<HeroBlockProps> = (props) => {
   const { content, photo, size } = props;
   return (
-    <Section width="l" bg="secondary" className=" h-screen grid grid-cols-2 ">
+    <Section width="l" bg="secondary" className=" h-[85vh] grid grid-cols-2 ">
       <div className="flex items-center mx-auto text-white  ml-[10%] ">
         <Typo hand variant="h1">
           <div style={{ fontSize: 72 }}>

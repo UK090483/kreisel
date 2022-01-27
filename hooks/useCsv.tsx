@@ -18,7 +18,7 @@ type useCSVProps = {
 };
 
 type DataResultItem = { row: { [k: string]: string }; values: string[] };
-type DataResult = DataResultItem[];
+export type DataResult = DataResultItem[];
 
 const useCSV = (props?: useCSVProps) => {
   const hot = props?.hot || false;

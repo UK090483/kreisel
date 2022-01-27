@@ -1,26 +1,33 @@
-import { configuredSanityClient } from "@services/SanityService/sanity";
-import { useNextSanityImage } from "next-sanity-image";
 import { ImageLoader, ImageProps } from "next/image";
-import { ImageMetaResult } from "@privateModules/SanityImage/query";
-import { SanityImageProps } from "@privateModules/SanityImage";
+import { UseSanityImage } from "./types";
+import handleCrop from "./lib/handleCrop";
+import getDefaultResult from "./lib/getDefaultResult";
+import handleFixed from "./lib/handleFixed";
+import handleFill from "./lib/handleFill";
 
-interface UseSanityImageOptions extends Pick<SanityImageProps, "objectFit"> {}
+const useSanityImage: UseSanityImage = (image, options) => {
+  if (!image || !image.url) {
+    return getFakeImage();
+  }
 
-const Loader: ImageLoader = ({ src, width, quality }) => {
-  return `https://example.com/${src}?w=${width}&q=${quality || 75}`;
-};
+  const imageProps: ImageProps = {
+    ...getDefaultResult(image),
+    ...options,
+  };
 
-const useSanityImage = (
-  image?: ImageMetaResult | null,
-  options?: UseSanityImageOptions
-): ImageProps | null => {
-  //@ts-ignore
-  let imageProps: any = useNextSanityImage(configuredSanityClient, image);
+  if (
+    options?.layout === "fixed" ||
+    options?.layout === "responsive" ||
+    options?.layout === "intrinsic"
+  ) {
+    return handleFixed(image, options);
+  }
 
-  //@ts-ignore
-  if (!image) return getFakeImage();
+  if (options?.layout === "fill" || options?.objectFit) {
+    return handleFill(image, options);
+  }
 
-  return imageProps;
+  return handleFixed(image, { ...options });
 };
 
 export default useSanityImage;
@@ -35,5 +42,5 @@ const getFakeImage = () => {
     src: `https://picsum.photos/${ranImage}`,
     alt: "bla",
     layout: "fill",
-  };
+  } as ImageProps;
 };

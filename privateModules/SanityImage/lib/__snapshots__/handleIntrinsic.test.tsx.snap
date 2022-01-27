@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`handleFixed should handle height 1`] = `233.5436263379825`;
+
+exports[`handleFixed should handle width 1`] = `181.70052707235266`;

@@ -2,15 +2,22 @@ import SanityImage from "@privateModules/SanityImage";
 import { Section } from "@components/organisms/Section/Section";
 import Typo from "@components/Typography/Typography";
 import React from "react";
+import { PageData } from "pages/[[...slug]]";
 
-interface FooterContactProps {}
+interface FooterContactProps {
+  data: PageData | null;
+}
 
-const FooterContact: React.FC<FooterContactProps> = ({ children }) => {
+const FooterContact: React.FC<FooterContactProps> = (props) => {
+  const { data } = props;
+
+  const image = data?.footer.footerImage;
+
   return (
     <Section width="l" className="grid grid-cols-1 py-24 md:grid-cols-2">
       <div className="flex flex-col items-center justify-center ">
         <div className="relative w-48 h-48 mb-12 overflow-hidden rounded-theme">
-          <SanityImage src="id/1025/400/400" />
+          <SanityImage image={image} />
         </div>
         <Typo variant="body-l" className="text-center ">
           Marieke Klein <br /> Leitung KREISEL e. V.
