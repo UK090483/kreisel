@@ -6,6 +6,7 @@ const Kreisel: React.FC<IKreiselProps> = () => {
       viewBox="11 10 158 159"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
+      className="w-full"
     >
       <path
         className=" fill-primary "

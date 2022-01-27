@@ -9,6 +9,7 @@ import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
 import React from "react";
 
 import { AppLocales } from "types";
+import Kreisel from "@components/Kreisel";
 
 export const heroBlockQuery = `
 _type == "hero" => {
@@ -64,8 +65,9 @@ const HeroBlock: React.FC<HeroBlockProps> = (props) => {
           </div>
         </Typo>
       </div>
-      <div className="relative">
-        <SanityImage image={photo} objectFit="contain" />
+      <div className="relative flex justify-center items-center animate-fadeIn">
+        <Kreisel />
+        {/* <SanityImage image={photo} objectFit="contain" /> */}
       </div>
     </Section>
   );
