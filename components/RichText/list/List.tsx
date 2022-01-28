@@ -1,10 +1,13 @@
 import * as React from "react";
 
-interface IListProps {}
+interface IListProps {
+  type?: string;
+}
 
-const List: React.FC = (props: any) => {
+const List: React.FC<IListProps> = (props: any) => {
   return (
     <ul
+      data-testid="list"
       className={`${
         props?.type === "number" ? "list-decimal" : "list-disc"
       } list-inside pb-4`}

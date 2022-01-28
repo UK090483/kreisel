@@ -1,13 +1,8 @@
-import SanityImage from "@privateModules/SanityImage";
-import Hero from "@components/organisms/Hero/Hero";
 import { Section } from "@components/organisms/Section/Section";
-import RichText from "@components/RichText/RichText";
 import Typo from "@components/Typography/Typography";
 import Underline from "@components/Underline";
-
 import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
 import React from "react";
-
 import { AppLocales } from "types";
 import Kreisel from "@components/Kreisel";
 

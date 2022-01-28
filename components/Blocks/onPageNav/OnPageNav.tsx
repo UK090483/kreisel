@@ -1,5 +1,4 @@
 import React from "react";
-
 import { scrollTo } from "@hooks/useScrollTo";
 export const onPageNavBlockQuery = `
 _type == "onPageNav" => {
@@ -26,8 +25,6 @@ const onPageNavComponent: React.FC<onPageNavResult> = (props) => {
     <div className=" sticky top-[90px] flex items-center justify-center bg-primary ">
       {items &&
         items.map(({ _key, title, link }) => {
-          console.log(link);
-
           return (
             <button
               className=" px-4 py-5 "

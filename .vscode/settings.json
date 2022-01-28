@@ -34,7 +34,7 @@
     "studio/config/.checksums": true,
     "studio/static": true,
     ".env.local": false,
-    "coverage": true,
+    "coverage": false,
     "__mocks__": true,
     "tests": true,
     "jest.config.js": false,

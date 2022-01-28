@@ -65,10 +65,10 @@ export interface ListingBlockResult<Type, Card> {
   _type: "listing";
   type?: "contentType" | "custom";
   contentType: Type;
-  items: Card[];
-  lang: AppLocales;
-  bgColor: AppColor;
-  content: null | any;
+  items?: Card[];
+  lang?: AppLocales;
+  bgColor?: AppColor;
+  content?: null | any;
   variation?: null | "list" | "grid";
 }
 

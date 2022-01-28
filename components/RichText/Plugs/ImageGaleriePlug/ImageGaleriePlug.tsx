@@ -88,18 +88,25 @@ const ImageGalleryPlug: React.FC<{ node: ImageGalleryPlugResult }> = (
             {image && <SanityImage image={image} objectFit="cover" />}
 
             {title && (
-              <div className="absolute bottom-0 flex items-end left-4 ">
-                <div className="pb-6 ">
-                  {title.split("\n").map((string, index) => (
+              <div className="absolute  flex items-end left-4 ">
+                <div className="pb-4 ">
+                  <Typo
+                    space={false}
+                    bold
+                    className="inline-block py-4 px-6 bg-white rounded-theme whitespace-pre-line "
+                  >
+                    {title}
+                  </Typo>
+                  {/* {title.split("\n").map((string, index) => (
                     <div key={index}>
                       <Typo
                         space={false}
-                        className="inline-block py-0.5 px-4  m-0 bg-white "
+                        className="inline-block py-0.5 px-4  m-0 bg-white rounded-lg "
                       >
                         {string}
                       </Typo>
                     </div>
-                  ))}
+                  ))} */}
                 </div>
               </div>
             )}
