@@ -19,7 +19,7 @@
     "next-env.d.ts": true,
     ".gitignore": true,
     "next.config.js": false,
-    "package.json": true,
+    "package.json": false,
     "postcss.config.js": true,
     "README.md": true,
     "tsconfig.json": false,

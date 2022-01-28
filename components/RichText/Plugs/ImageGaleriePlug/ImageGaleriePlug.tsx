@@ -97,16 +97,6 @@ const ImageGalleryPlug: React.FC<{ node: ImageGalleryPlugResult }> = (
                   >
                     {title}
                   </Typo>
-                  {/* {title.split("\n").map((string, index) => (
-                    <div key={index}>
-                      <Typo
-                        space={false}
-                        className="inline-block py-0.5 px-4  m-0 bg-white rounded-lg "
-                      >
-                        {string}
-                      </Typo>
-                    </div>
-                  ))} */}
                 </div>
               </div>
             )}
@@ -118,5 +108,3 @@ const ImageGalleryPlug: React.FC<{ node: ImageGalleryPlugResult }> = (
 };
 
 export default ImageGalleryPlug;
-
-export {};
