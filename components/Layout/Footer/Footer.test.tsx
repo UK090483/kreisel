@@ -23,7 +23,7 @@ const testItems = [
 
 describe("Footer", () => {
   it(" should render Nav items ", () => {
-    // render(<Footer navItems={testItems} />);
+    // render(<Footer data={{ navigation: testItems }} />);
     // expect(screen.getByTestId("footer")).toHaveTextContent("Home");
     // expect(screen.getByTestId("footer")).toHaveTextContent("About");
     // expect(screen.getByTestId("footer")).toHaveTextContent("Contact");

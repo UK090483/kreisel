@@ -9,7 +9,7 @@ interface IOverlayProps {}
 const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
   const { children } = props;
 
-  const { query } = useRouter();
+  const { query, pathname } = useRouter();
 
   useLockBodyScroll();
 

@@ -4,7 +4,8 @@
   },
   "tailwindCSS.experimental.classRegex": ["clsx([^]*)"],
   "cSpell.language": "en,de-de",
-  "jest.showCoverageOnLoad": true,
+
+  
 
   "files.exclude": {
     "**/.git": true,

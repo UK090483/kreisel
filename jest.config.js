@@ -4,7 +4,9 @@ module.exports = {
     "**/*.{js,jsx,ts,tsx}",
     "!studio/**",
     "!**/*.d.ts",
+    "!**/schema/**",
     "!**/node_modules/**",
+    "!.next/**",
   ],
   moduleNameMapper: {
     "^@components/(.*)$": "<rootDir>/components/$1",

@@ -11,6 +11,7 @@ interface ListProps {
 const List: React.FC<ListProps> = (props) => {
   const { name, overlay, children } = props;
   const { query } = useRouter();
+
   return (
     <>
       <Section className="py-20">{children}</Section>

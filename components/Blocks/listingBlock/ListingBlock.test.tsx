@@ -1,6 +1,7 @@
 import { mockClient } from "@privateModules/SanityPageBuilder/lib/MockClient";
-import ListingBlock, { listingBlockQuery } from "./ListingsBlock";
+import ListingBlock from "./ListingsBlock";
 import { render } from "@testing-library/react";
+import { listingBlockQuery } from "./listingBlockQuery";
 
 jest.mock("@privateModules/SanityImage", () => ({}));
 const database: any[] = [];
