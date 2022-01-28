@@ -1,4 +1,4 @@
-import { ITestimonialItem } from "@components/Blocks/listingBlock/ListingsBlock";
+import { ITestimonialItem } from "@components/Blocks/listingBlock/listingBlockQuery";
 import * as React from "react";
 import TestimonialListItem from "./TestimonialListItem";
 

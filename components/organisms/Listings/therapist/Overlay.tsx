@@ -1,5 +1,5 @@
 import Typo from "@components/Typography/Typography";
-import { TherapistResult } from "@components/Blocks/listingBlock/ListingsBlock";
+
 import Link from "next/link";
 import FocusTrap from "focus-trap-react";
 import { useRouter } from "next/router";
@@ -12,6 +12,7 @@ import BlockContent, {
 import useScrollStop from "@hooks/useScrollStop";
 import { useLockBodyScroll } from "react-use";
 import SanityImage from "@privateModules/SanityImage";
+import { TherapistResult } from "@components/Blocks/listingBlock/listingBlockQuery";
 
 interface IOverlayProps {
   items: TherapistResult[];

@@ -1,8 +1,9 @@
 import SanityImage from "@privateModules/SanityImage";
 import { Section } from "@components/organisms/Section/Section";
 import Typo from "@components/Typography/Typography";
-import { ITestimonialItem } from "@components/Blocks/listingBlock/ListingsBlock";
+
 import * as React from "react";
+import { ITestimonialItem } from "@components/Blocks/listingBlock/listingBlockQuery";
 
 interface ITestimonialListItemProps extends ITestimonialItem {}
 

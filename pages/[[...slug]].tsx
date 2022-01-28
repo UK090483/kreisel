@@ -5,10 +5,7 @@ import HeroBlock, {
   heroBlockQuery,
   HeroBlogResult,
 } from "@components/Blocks/heroBlock/HeroBlock";
-import ListingBlock, {
-  ListingBlockProps,
-  listingBlockQuery,
-} from "@components/Blocks/listingBlock/ListingsBlock";
+
 import onPageNav, {
   onPageNavBlockQuery,
 } from "@components/Blocks/onPageNav/OnPageNav";
@@ -27,6 +24,11 @@ import {
   footerQuery,
   FooterQueryResult,
 } from "@components/Layout/Footer/Footer";
+import {
+  ListingBlockProps,
+  listingBlockQuery,
+} from "@components/Blocks/listingBlock/listingBlockQuery";
+import ListingBlock from "@components/Blocks/listingBlock/ListingsBlock";
 
 export interface PageData extends NavigationResult, FooterQueryResult {
   content: (SectionBlockResult | ListingBlockProps | HeroBlogResult)[];

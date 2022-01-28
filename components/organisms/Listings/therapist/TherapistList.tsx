@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Section } from "@components/organisms/Section/Section";
-import { TherapistResult } from "@components/Blocks/listingBlock/ListingsBlock";
+
 import { useRouter } from "next/router";
 import Overlay from "./Overlay";
 import Search from "./Search";
 import TherapistListItem from "./TherapistListItem";
 import Pagination from "./Pagination";
+import { TherapistResult } from "@components/Blocks/listingBlock/listingBlockQuery";
 
 interface TherapistListProps {
   items: TherapistResult[];

@@ -1,4 +1,4 @@
-import { ListingBlockItem } from "@components/Blocks/listingBlock/ListingsBlock";
+import { ListingBlockItem } from "@components/Blocks/listingBlock/listingBlockQuery";
 import React from "react";
 import { AppColor } from "types";
 
