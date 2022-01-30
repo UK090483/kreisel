@@ -58,8 +58,11 @@ export const navItemQuery2 = (locale: string = "") => `
       } 
   `;
 
-export const NavigationQuery = (locale: string = "") => `
-   'navigation':*[_id == 'siteConfig'][0].mainNav[]{
+export const NavigationQuery = (
+  locale: string = "",
+  root: string = "mainNav"
+) => `
+   'navigation':*[_id == 'siteConfig'][0].${root}[]{
     ${navItemQuery2(locale)},
     'items':items[]{
       ${navItemQuery2(locale)},

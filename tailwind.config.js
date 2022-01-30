@@ -98,34 +98,6 @@ module.exports = {
             color: theme("colors.white"),
           },
         },
-        // ".svg-underline::after": {
-        //   position: "relative",
-
-        //   "&::after": {
-        //     content: "",
-        //     position: "absolute",
-        //     bottom: "-0.125rem",
-        //     left: "-0.5rem",
-        //     right: " -0.5rem",
-        //     height: "0.75rem",
-
-        //     // Position the line behind the text so that
-        //     // it is still easily readable
-        //     "z-index": -1,
-
-        //     // The SVG is added as an SVG background image
-        //     "background-image": "url('/underline/underline.svg')",
-        //     "background-repeat": "no-repeat",
-
-        //     // This allows the SVG to flex in size to fit
-        //     // any length of word. If the word is short,
-        //     // the SVG will be stretched vertically, if it
-        //     // is long, the SVG will be stretched horizontally.
-        //     // The jagged nature of this particular SVG works
-        //     // with this transforming.
-        //     "background-size": "cover",
-        //   },
-        // },
       };
 
       addComponents(buttons);

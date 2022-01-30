@@ -9,6 +9,7 @@ function SPB<P extends { [k: string]: any } = {}>({
   components,
   client,
   locales,
+  getQuery,
   query,
 }: SPBOptions): SPBResult<P> {
   const bf = BlockFactory;
@@ -31,7 +32,9 @@ function SPB<P extends { [k: string]: any } = {}>({
         revalidate,
         params,
         client,
-        query: `${bf.getRootQuery()}, ${query || ""}`,
+        query: `${bf.getRootQuery()}, ${
+          getQuery ? getQuery(props) : query || ""
+        }`,
         locales,
         preview,
       });

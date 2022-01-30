@@ -39,8 +39,14 @@ const { getStaticPaths, getStaticProps, PageComponent } = SPB<PageData>({
   revalidate: 1,
   client,
   locales: conf.locales,
-  query: `${footerQuery}, ${NavigationQuery()}, title`,
-
+  getQuery: (props) => {
+    const isMember =
+      props?.params?.slug && props?.params?.slug[0] === "mitgliederbereich";
+    return `${footerQuery}, ${NavigationQuery(
+      "",
+      isMember ? "memberNav" : undefined
+    )}, title`;
+  },
   components: [
     {
       name: "trust",

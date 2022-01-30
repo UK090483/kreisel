@@ -32,8 +32,7 @@ const getAllSlugs: (
         'pageType': pageType->slug.current , 
         'slug': slug.current ,
         ${i18nQuery}
-        'isHome':*[_id == 'siteConfig'][0].indexPage._ref == @._id }
-    `
+        'isHome':*[_id == 'siteConfig'][0].indexPage._ref == @._id }`
   );
 
   if (!allPages || !Array.isArray(allPages)) {
@@ -96,5 +95,3 @@ export const fetchStaticPaths: FetchStaticPaths = async (props) => {
   const allPages = await getAllSlugs(doc, client, locales);
   return parseFetchResult(allPages, locales);
 };
-
-export {};

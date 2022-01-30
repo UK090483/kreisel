@@ -1,17 +1,22 @@
-/**
- * @jest-environment jsdom
- */
-
 import { render } from "@testing-library/react";
 import App from "../pages/_app";
 
 const TestComponent: React.FC = () => {
   return <div>Test</div>;
 };
+const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 describe("App", () => {
   test("smoke", () => {
-    // //@ts-ignore
-    // render(<App Component={TestComponent} pageProps={{}} />);
+    useRouter.mockImplementation(() => ({
+      locale: "de",
+      query: { slug: "testSlug" },
+    }));
+    // render(
+    //   <App
+    //     Component={TestComponent}
+    //     pageProps={{ data: null, id: "test", preview: false, query: "" }}
+    //   />
+    // );
   });
 });

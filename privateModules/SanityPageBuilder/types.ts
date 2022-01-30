@@ -21,6 +21,7 @@ export type SPBOptions = {
   client: SanityClient;
   locales: LocationConfig;
   query?: string;
+  getQuery?: (props: any) => string;
   revalidate?: Revalidate;
 };
 

@@ -24,13 +24,13 @@ export default NextAuth({
     devMode: true,
   }),
   secret: process.env.AUTH_SECRET,
-  session: { strategy: "jwt", maxAge: 60 },
+  session: { strategy: "jwt", maxAge: 60000 },
   jwt: {
     // A secret to use for key generation. Defaults to the top-level `secret`.
     secret: "INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw",
     // The maximum age of the NextAuth.js issued JWT in seconds.
     // Defaults to `session.maxAge`.
-    maxAge: 60,
+    maxAge: 60000,
     // You can define your own encode/decode functions for signing and encryption
     // if you want to override the default behavior.
   },

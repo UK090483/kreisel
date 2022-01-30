@@ -1,5 +1,3 @@
-import CustomObject from "../../../components/CustomObject";
-
 export default {
   name: "siteConfig",
   title: "Site config",
@@ -22,12 +20,20 @@ export default {
       of: [{ type: "navigationItem" }, { type: "navigationMegaMenu" }],
       validation: (Rule) => Rule.required(),
     },
-
+    {
+      name: "memberNav",
+      type: "array",
+      title: "Mitglieder Navigation",
+      options: {
+        editModal: "popover",
+      },
+      of: [{ type: "navigationItem" }, { type: "navigationMegaMenu" }],
+      validation: (Rule) => Rule.required(),
+    },
     {
       name: "footerImage",
       type: "defaultImage",
     },
-
     {
       title: "Default / Seo",
       name: "seo",
