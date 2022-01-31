@@ -1,5 +1,5 @@
 import Button from "@components/Button/Button";
-import { Section } from "@components/organisms/Section/Section";
+import { Section } from "@components/Section/Section";
 import Typo from "@components/Typography";
 import Underline from "@components/Underline";
 import React from "react";

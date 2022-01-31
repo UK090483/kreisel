@@ -1,4 +1,4 @@
-import { Section } from "@components/organisms/Section/Section";
+import { Section } from "@components/Section/Section";
 import NavOverview from "@privateModules/Navigation/NavOverview";
 import { NavItem } from "@privateModules/Navigation/types";
 import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";

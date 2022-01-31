@@ -1,7 +1,7 @@
 //@ts-nocheck
 
 import SanityImage from "@privateModules/SanityImage";
-import { Section } from "@components/organisms/Section/Section";
+import { Section } from "@components/Section/Section";
 import Typo from "@components/Typography/Typography";
 import Underline from "@components/Underline";
 import { NavigationMobile } from "@services/NavigationService/NavigationMobile";

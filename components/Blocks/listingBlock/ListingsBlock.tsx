@@ -1,6 +1,6 @@
-import List from "@components/organisms/Listings/List";
-import TestimonialList from "@components/organisms/Listings/testimonials/TestimonialList";
-import TherapistList from "@components/organisms/Listings/therapist/TherapistList";
+import List from "@components/Blocks/listingBlock/Listings/List";
+import TestimonialList from "@components/Blocks/listingBlock/Listings/testimonials/TestimonialList";
+import TherapistList from "@components/Blocks/listingBlock/Listings/therapist/TherapistList";
 import React from "react";
 import { ListingBlockProps } from "./listingBlockQuery";
 import ListWrap from "./ListWrap";
@@ -24,7 +24,7 @@ const ListingBlock: React.FC<ListingBlockProps> = (props) => {
 
   return (
     <ListWrap bgColor={bgColor} content={content}>
-      <List variation={variation} bgColor={bgColor} items={props.items} />
+      <List variation={variation} items={props.items} />
     </ListWrap>
   );
 };

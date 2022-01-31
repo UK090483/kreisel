@@ -1,4 +1,4 @@
-import { Section } from "@components/organisms/Section/Section";
+import { Section } from "@components/Section/Section";
 import React from "react";
 import Card from "./Card/Card";
 

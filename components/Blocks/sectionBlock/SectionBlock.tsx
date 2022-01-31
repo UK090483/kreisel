@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 import RichText, { richTextQuery } from "../../RichText/RichText";
 
-import { Section } from "@components/organisms/Section/Section";
+import { Section } from "@components/Section/Section";
 import SanityImage from "@privateModules/SanityImage";
 import Accordion from "./Accordion";
 import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";

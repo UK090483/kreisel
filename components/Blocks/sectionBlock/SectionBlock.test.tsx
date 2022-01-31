@@ -8,7 +8,7 @@ const database: any[] = [];
 describe("SectionBlock", () => {
   it("query should be valid ", async () => {
     const client = mockClient({ database });
-    const res = await client.fetch(`*[_type == "page"]{
+    await client.fetch(`*[_type == "page"]{
       'content':content[]{
         ${sectionBlockQuery}
       }

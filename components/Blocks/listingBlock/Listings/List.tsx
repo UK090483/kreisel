@@ -5,16 +5,13 @@ import { AppColor } from "types";
 import { ArticleCard } from "./Card/ArticleCard";
 import Card from "./Card/Card";
 
-import { Grid } from "./Grid";
-
 interface ListProps {
   items: ListingBlockItem[];
-  bgColor?: AppColor;
   variation?: null | "list" | "grid";
 }
 
 const List: React.FC<ListProps> = (props) => {
-  const { items, bgColor, variation } = props;
+  const { items, variation } = props;
 
   return (
     <div className="grid grid-cols-1 gap-8  md:grid-cols-2 lg:grid-cols-3 ">
@@ -24,12 +21,7 @@ const List: React.FC<ListProps> = (props) => {
           return <ArticleCard key={item._id || item._key} {...item} />;
         }
         return (
-          <Card
-            variation={variation}
-            key={item._id || item._key}
-            {...item}
-            // title={`(${item._type})  ${item.title}`}
-          />
+          <Card variation={variation} key={item._id || item._key} {...item} />
         );
       })}
     </div>

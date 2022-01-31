@@ -4,6 +4,7 @@
   },
   "tailwindCSS.experimental.classRegex": ["clsx([^]*)"],
   "cSpell.language": "en,de-de",
+  "jest.autoRun": {"watch":true, "onStartup": ["all-tests"], "onSave":  "test-src-file"},
 
   "files.exclude": {
     "**/.git": true,
@@ -13,7 +14,7 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "node_modules": true,
-    ".vscode": true,
+    ".vscode": false,
     ".eslintrc.json": true,
     "next-env.d.ts": true,
     ".gitignore": true,

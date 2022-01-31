@@ -29,6 +29,8 @@ const Card: React.FC<CardProps> = (props) => {
 
   const isList = variation === "list";
 
+  return <div></div>;
+
   return (
     <CardWrap href={href}>
       <div

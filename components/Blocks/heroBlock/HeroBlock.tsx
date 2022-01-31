@@ -1,4 +1,4 @@
-import { Section } from "@components/organisms/Section/Section";
+import { Section } from "@components/Section/Section";
 import Typo from "@components/Typography/Typography";
 import Underline from "@components/Underline";
 import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
