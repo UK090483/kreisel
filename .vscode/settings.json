@@ -5,8 +5,6 @@
   "tailwindCSS.experimental.classRegex": ["clsx([^]*)"],
   "cSpell.language": "en,de-de",
 
-  
-
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -35,7 +33,7 @@
     "studio/config/.checksums": true,
     "studio/static": true,
     ".env.local": true,
-    "coverage": true,
+    "coverage": false,
     "__mocks__": true,
     "tests": false,
     "jest.config.js": true,

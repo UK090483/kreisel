@@ -7,16 +7,5 @@ const TestComponent: React.FC = () => {
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 describe("App", () => {
-  test("smoke", () => {
-    useRouter.mockImplementation(() => ({
-      locale: "de",
-      query: { slug: "testSlug" },
-    }));
-    // render(
-    //   <App
-    //     Component={TestComponent}
-    //     pageProps={{ data: null, id: "test", preview: false, query: "" }}
-    //   />
-    // );
-  });
+  test("smoke", () => {});
 });

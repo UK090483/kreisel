@@ -5,7 +5,6 @@ import RichText, { richTextQuery } from "../../RichText/RichText";
 
 import { Section } from "@components/organisms/Section/Section";
 import SanityImage from "@privateModules/SanityImage";
-import Transition from "./Transition";
 import Accordion from "./Accordion";
 import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
 

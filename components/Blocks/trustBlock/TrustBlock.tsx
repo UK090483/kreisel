@@ -1,4 +1,4 @@
-import RichText, { richTextQuery } from "@components/RichText/RichText";
+import RichText from "@components/RichText/RichText";
 import { Section } from "@components/organisms/Section/Section";
 
 import * as React from "react";
