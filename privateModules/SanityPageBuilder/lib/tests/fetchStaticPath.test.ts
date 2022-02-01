@@ -62,20 +62,20 @@ describe("fetchStaticPath", () => {
 
     await expect(
       mockFetchStaticPaths({ fetchReturn: [] })
-    ).resolves.toStrictEqual({ fallback: false, paths: [] });
+    ).resolves.toStrictEqual({ fallback: "blocking", paths: [] });
   });
 
   it("should return right data no locales ", async () => {
     await expect(
       mockFetchStaticPaths({ fetchReturn: [] })
-    ).resolves.toStrictEqual({ fallback: false, paths: [] });
+    ).resolves.toStrictEqual({ fallback: "blocking", paths: [] });
     await expect(mockFetchStaticPaths({ database })).resolves.toMatchSnapshot();
   });
 
   it("should return right data ", async () => {
     await expect(
       mockFetchStaticPaths({ fetchReturn: [], locales })
-    ).resolves.toStrictEqual({ fallback: false, paths: [] });
+    ).resolves.toStrictEqual({ fallback: "blocking", paths: [] });
 
     await expect(
       mockFetchStaticPaths({ database, locales })

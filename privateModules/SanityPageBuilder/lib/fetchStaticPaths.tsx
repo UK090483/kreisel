@@ -73,7 +73,7 @@ const parseFetchResult = (
         });
         return [...acc, ...pageParams];
       }, [] as any[]) || [],
-    fallback: false,
+    fallback: "blocking",
   };
 };
 

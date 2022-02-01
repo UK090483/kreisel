@@ -2,7 +2,7 @@
 
 exports[`fetchStaticPath should return right data  1`] = `
 Object {
-  "fallback": false,
+  "fallback": "blocking",
   "paths": Array [
     Object {
       "locale": "de",
@@ -133,7 +133,7 @@ Object {
 
 exports[`fetchStaticPath should return right data no locales  1`] = `
 Object {
-  "fallback": false,
+  "fallback": "blocking",
   "paths": Array [
     Object {
       "params": Object {
