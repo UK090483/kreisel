@@ -6,7 +6,7 @@ import {
   NavItem,
 } from "../../types";
 
-import { NavigationModulDropdown } from "../Dropdown/NavigationModulDropdown";
+import DropdownNavItem from "../Dropdown/DropdownNavItem";
 
 export interface NavItemProps extends NavItem {
   NavigationLink?: NavigationLinkComponent;
@@ -45,7 +45,9 @@ const NavigationItem: React.FC<NavItemProps> = (props) => {
 
   if (hasItems) {
     return (
-      <NavigationModulDropdown items={items}>{label}</NavigationModulDropdown>
+      <DropdownNavItem id={label || ""} items={items}>
+        {label}
+      </DropdownNavItem>
     );
   }
   return (

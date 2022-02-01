@@ -4,6 +4,10 @@ import SanityAdapter from "@services/AuthService/SanityAdapter/SanityAdapter";
 import { mockClient } from "@services/SanityService/test/testClient";
 
 export default NextAuth({
+  pages: {
+    signIn: "/auth/login",
+    verifyRequest: "/auth/verify-request",
+  },
   adapter: SanityAdapter({
     client: mockClient({
       database: [

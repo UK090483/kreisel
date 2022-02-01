@@ -3,6 +3,7 @@ import BlockFactory from "./lib/BlockFactory";
 import { SPBOptions, SPBResult } from "./types";
 import { fetchStaticProps } from "./lib/fetchStaticProps";
 import { fetchStaticPaths } from "./lib/fetchStaticPaths";
+import useAuthenticatePage from "@hooks/useAuthenticatePage";
 
 function SPB<P extends { [k: string]: any } = {}>({
   revalidate,
@@ -19,6 +20,7 @@ function SPB<P extends { [k: string]: any } = {}>({
     blockFactory: bf,
     PageComponent: (props) => {
       const { data } = props;
+      useAuthenticatePage();
       return <BodyParser blockFactory={bf} content={data?.content || []} />;
     },
     getStaticPaths: async () => {

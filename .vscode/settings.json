@@ -5,7 +5,7 @@
   "tailwindCSS.experimental.classRegex": ["clsx([^]*)"],
   "cSpell.language": "en,de-de",
   "jest.autoRun": {"watch":true, "onStartup": ["all-tests"], "onSave":  "test-src-file"},
-
+  "jest.showCoverageOnLoad": true,
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -14,7 +14,7 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "node_modules": true,
-    ".vscode": false,
+    ".vscode": true,
     ".eslintrc.json": true,
     "next-env.d.ts": true,
     ".gitignore": true,
@@ -34,12 +34,12 @@
     "studio/config/.checksums": true,
     "studio/static": true,
     ".env.local": true,
-    "coverage": false,
+    "coverage": true,
     "__mocks__": true,
-    "tests": false,
+    "tests": true,
     "jest.config.js": true,
     "setupTests.js": true,
-    "tailwind.config.js": true,
+    "tailwind.config.js": false,
     "styles": true,
     ".vercel": true,
     ".sentryclirc": true,
@@ -50,5 +50,9 @@
   },
   "explorerExclude.backup": null,
   "workspace.isHidden": true,
-  "cSpell.words": ["clsx", "serializers"]
+  "cSpell.words": [
+    "clsx",
+    "csrfToken",
+    "serializers"
+  ]
 }

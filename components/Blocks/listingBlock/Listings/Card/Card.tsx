@@ -2,24 +2,18 @@ import React from "react";
 
 import Typo from "@components/Typography";
 import SanityImage from "@privateModules/SanityImage";
-
 import CardWrap from "./CardWrap";
 import CardBody from "./CardBody";
-
+import { CardResult } from "../../listingBlockQuery";
 import BlockContent from "@sanity/block-content-to-react";
-import { ImageMetaResult } from "@privateModules/SanityImage/query";
 
-export interface CardProps {
-  href?: string;
-  title?: string;
-  date?: string;
-  description?: string | string[];
+type CardProps = {
   variation?: null | "list" | "grid";
-  image?: ImageMetaResult;
-}
+} & CardResult;
 
 const Card: React.FC<CardProps> = (props) => {
-  const { children, href, title, date, description, variation, image } = props;
+  const { children, href, title, _createdAt, description, variation, image } =
+    props;
 
   const _description = Array.isArray(description) ? (
     <BlockContent blocks={description} />
@@ -28,8 +22,6 @@ const Card: React.FC<CardProps> = (props) => {
   );
 
   const isList = variation === "list";
-
-  return <div></div>;
 
   return (
     <CardWrap href={href}>
@@ -44,9 +36,9 @@ const Card: React.FC<CardProps> = (props) => {
       </div>
 
       <CardBody className={`${isList ? "bg-transparent" : "bg-white"}  h-full`}>
-        {date && (
+        {_createdAt && (
           <Typo className="pb-2" variant="body">
-            {paresDate(date)}
+            {paresDate(_createdAt)}
           </Typo>
         )}
         {title && <Typo variant="body-l">{title}</Typo>}

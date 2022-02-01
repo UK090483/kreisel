@@ -1,11 +1,6 @@
 import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
 import { AppLocales, AppColor } from "types";
 
-export interface IArticleCardResult extends CardResult {
-  _type: "article";
-  price?: number;
-}
-
 export interface TherapistResult extends CardResult {
   _type: "therapist";
   zipCode?: string;
@@ -41,8 +36,13 @@ export type ListingBlockItem = CardResult;
 
 const cardQuery = `
 ...,
+'content':null,
+description,
+_type,
+_id,
+_createdAt,
+title,
 'image':image{...,${imageMeta}},
-'date': _createdAt,
 'href': select(
   defined(pageType) && defined(slug) => '/' + pageType->slug.current + '/' + slug.current,
   defined(slug) => '/' + slug.current
@@ -54,9 +54,15 @@ export interface CardResult {
   title?: string;
   description?: string;
   image?: ImageMetaResult;
+  _createdAt?: string;
   _id: string;
   _key?: string;
   _type?: string;
+}
+
+export interface IArticleCardResult extends CardResult {
+  _type: "article";
+  price?: number;
 }
 
 export const listingBlockQuery = `

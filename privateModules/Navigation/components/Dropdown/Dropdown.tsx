@@ -1,5 +1,5 @@
 import { NavItem } from "../../types";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useNavigation } from "../../NavigationContext";
 import { NavigationLinkProps } from "../NavItem/NavigationLink";
 import useIsActive from "../../helper/useIsActive";

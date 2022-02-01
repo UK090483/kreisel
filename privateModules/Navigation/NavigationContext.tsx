@@ -3,9 +3,13 @@ import DefaultNavigationItemBase from "./components/NavItem/NavigationItemBase";
 import DefaultNavigationLink from "./components/NavItem/NavigationLink";
 import { NavigationItemBaseComponent, NavigationLinkComponent } from "./types";
 
-type NavigationState = {};
+type NavigationState = {
+  open: string | null;
+};
 
-const initialState: NavigationState = {};
+const initialState: NavigationState = {
+  open: null,
+};
 
 type NavigationContextValues<T> = {
   state: T;
@@ -48,4 +52,12 @@ export const NavigationContextProvider: React.FC<
 export const useNavigation = () => {
   const { NavItemBase, NavItemLink } = useContext(NavigationContext);
   return { NavItemBase, NavItemLink };
+};
+
+export const useNavigationOpen = (id: string) => {
+  const { state, setState } = useContext(NavigationContext);
+
+  const setOpen = (open: string | null) => setState({ ...state, open });
+
+  return { open: state.open === id, setOpen };
 };

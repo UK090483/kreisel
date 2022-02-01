@@ -6,7 +6,7 @@ import Button from "@components/Button/Button";
 import { useShop } from "@services/ShopService/shopContext";
 import { IArticleCardResult } from "@components/Blocks/listingBlock/listingBlockQuery";
 
-interface ArticleCardProps extends IArticleCardResult {}
+type ArticleCardProps = {} & IArticleCardResult;
 
 export const ArticleCard: React.FC<ArticleCardProps> = (props) => {
   const { price, _id, ...rest } = props;
@@ -23,7 +23,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = (props) => {
   };
 
   return (
-    <Card {...rest} date={undefined}>
+    <Card {...rest} _id={_id}>
       <Typo bold className="text-right ">
         {price} €
       </Typo>

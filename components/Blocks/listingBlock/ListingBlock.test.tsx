@@ -3,7 +3,6 @@ import ListingBlock from "./ListingsBlock";
 import { render } from "@testing-library/react";
 import { listingBlockQuery } from "./listingBlockQuery";
 
-jest.mock("@privateModules/SanityImage", () => ({}));
 const database: any[] = [];
 
 const items = [

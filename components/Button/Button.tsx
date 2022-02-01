@@ -8,6 +8,10 @@ type ButtonProps = {
   href?: string | null;
   external?: boolean;
   className?: string;
+  type?: React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  >["type"];
 };
 
 const Button: React.FC<ButtonProps> = (props) => {
@@ -18,6 +22,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     internalLink,
     href,
     external,
+    type = "button",
   } = props;
 
   if (href) {
@@ -26,7 +31,7 @@ const Button: React.FC<ButtonProps> = (props) => {
         onClick={() => {
           console.error("consol error");
         }}
-        className="inline-block px-12 py-2 text-base rounded-full bg-primary whitespace-nowrap"
+        className={`inline-block px-12 py-2 text-center text-base rounded-full bg-primary whitespace-nowrap ${className}`}
         href={href}
         external={external}
       >
@@ -38,8 +43,8 @@ const Button: React.FC<ButtonProps> = (props) => {
   return (
     <button
       onClick={onClick}
-      className={`px-12 py-2 text-base rounded-full bg-primary whitespace-nowrap block w-full ${className}`}
-      type="button"
+      className={`px-12  py-2 text-base rounded-full bg-primary whitespace-nowrap  w-full ${className}`}
+      type={type}
     >
       {children}
     </button>

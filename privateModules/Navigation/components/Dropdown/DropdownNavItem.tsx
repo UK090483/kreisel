@@ -1,5 +1,5 @@
-import { useNavigation } from "../../NavigationContext";
-import React, { useEffect, useRef } from "react";
+import { useNavigation, useNavigationOpen } from "../../NavigationContext";
+import React, { useRef } from "react";
 import { NavItem } from "../../types";
 import { NavigationModulDropdownContainer } from "./NavigationModulDropdownContainer";
 import useIsActive from "../../helper/useIsActive";
@@ -7,16 +7,14 @@ import NavigationItemBase from "../NavItem/NavigationItemBase";
 
 type NavigationModulDropdownProps = {
   items?: NavItem[];
+  id: string;
 };
 
-export const NavigationModulDropdown: React.FC<NavigationModulDropdownProps> = (
-  props
-) => {
-  const { children, items } = props;
+const DropdownNavItem: React.FC<NavigationModulDropdownProps> = (props) => {
+  const { children, items, id } = props;
   const hasItems = items && items.length > 0;
 
-  const [hover, setHover] = React.useState(false);
-
+  const { open, setOpen } = useNavigationOpen(id);
   const { active } = useIsActive({ items });
 
   const [bottom, setBottom] = React.useState<number>(0);
@@ -28,35 +26,17 @@ export const NavigationModulDropdown: React.FC<NavigationModulDropdownProps> = (
   const ref = useRef<HTMLButtonElement>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const checkFocus = () => {
-      let res =
-        wrapRef.current?.contains(document.activeElement) ||
-        document.activeElement === ref.current;
-      if (!res) {
-        setHover(false);
-      }
-    };
-    const handleKeydown = () => {
-      checkFocus();
-    };
-    if (hover) {
-      document.addEventListener("keyup", handleKeydown);
-    } else {
-      document.removeEventListener("keyup", handleKeydown);
-    }
-    return () => {
-      document.removeEventListener("keyup", handleKeydown);
-    };
-  }, [hover]);
-
   const handleMouseEnter = () => {
     checkButtonPosition();
-    setHover(true);
+    setOpen(id);
   };
-  const handleMouseLeave = () => setHover(false);
+  const handleMouseLeave = () => setOpen(null);
+
   const handleNavClick = () => {
-    setHover((i) => !i);
+    if (open) {
+      return setOpen(null);
+    }
+    setOpen(id);
     checkButtonPosition();
   };
 
@@ -72,28 +52,28 @@ export const NavigationModulDropdown: React.FC<NavigationModulDropdownProps> = (
     }
   };
 
-  const { NavItemBase: DefaultNavigationItemBase } = useNavigation();
-
   if (!hasItems) return null;
 
   return (
     <>
       <button
+        id={id}
         aria-haspopup={true}
-        aria-expanded={hover}
+        aria-expanded={open}
         className="leading-none"
         type="button"
         ref={ref}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleNavClick}
+        data-testid={"DropdownNavItem_" + id}
       >
         <NavigationItemBase
           active={active}
           props={props}
           place="dropdown"
           icon
-          hover={hover}
+          hover={open}
         >
           {children}
         </NavigationItemBase>
@@ -102,7 +82,7 @@ export const NavigationModulDropdown: React.FC<NavigationModulDropdownProps> = (
         ref={wrapRef}
         handleMouseLeave={handleMouseLeave}
         handleMouseEnter={handleMouseEnter}
-        show={hover}
+        show={open}
         items={items}
         targetX={target.x}
         targetY={target.y}
@@ -110,3 +90,5 @@ export const NavigationModulDropdown: React.FC<NavigationModulDropdownProps> = (
     </>
   );
 };
+
+export default DropdownNavItem;

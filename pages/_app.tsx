@@ -12,6 +12,7 @@ import { PageData } from "./[[...slug]]";
 import usePreviewSubscription from "@privateModules/SanityPageBuilder/lib/preview/previewSubscription";
 import PreviewIndicator from "@privateModules/SanityPageBuilder/lib/preview/PreviewIndicator";
 import Script from "next/script";
+import useAuthenticatePage from "@hooks/useAuthenticatePage";
 
 interface AppPropsWithStaticProps {
   pageProps: PageProps<PageData>;
@@ -52,9 +53,9 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
             {getLayout(pageProps.id)}
             <Cookie />
             <Cart />
-            {process.env.NODE_ENV === "development" && (
+            {/* {process.env.NODE_ENV === "development" && (
               <div className="h-28 container z-50bg-red mx-auto"></div>
-            )}
+            )} */}
             {preview && <PreviewIndicator />}
           </StoreContextProvider>
         </ShopContextProvider>
