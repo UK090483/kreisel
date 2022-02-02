@@ -12,6 +12,7 @@ type ButtonProps = {
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   >["type"];
+  disabled?: boolean;
 };
 
 const Button: React.FC<ButtonProps> = (props) => {
@@ -19,10 +20,10 @@ const Button: React.FC<ButtonProps> = (props) => {
     className = "",
     children,
     onClick = () => {},
-    internalLink,
     href,
     external,
     type = "button",
+    disabled = false,
   } = props;
 
   if (href) {
@@ -31,7 +32,7 @@ const Button: React.FC<ButtonProps> = (props) => {
         onClick={() => {
           console.error("consol error");
         }}
-        className={`inline-block px-12 py-2 text-center text-base rounded-full bg-primary whitespace-nowrap ${className}`}
+        className={`inline-block px-12 py-2 text-center text-base rounded-full  bg-primary whitespace-nowrap ${className}`}
         href={href}
         external={external}
       >
@@ -39,11 +40,11 @@ const Button: React.FC<ButtonProps> = (props) => {
       </Link>
     );
   }
-
   return (
     <button
+      disabled={disabled}
       onClick={onClick}
-      className={`px-12  py-2 text-base rounded-full bg-primary whitespace-nowrap  w-full ${className}`}
+      className={`px-12  py-2 text-base rounded-full bg-primary whitespace-nowrap disabled:opacity-60  w-full ${className}`}
       type={type}
     >
       {children}
