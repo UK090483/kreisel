@@ -1,4 +1,4 @@
-const remoteUrl = `https://your-nextjs-site.com`;
+const remoteUrl = `https://kreisel-ie23otl8b-konradullrich.vercel.app`;
 const localUrl = `http://localhost:3000`;
 
 const previewSecret = "j8heapkqy4rdz6kudrvsc7ywpvfhrv022abyx5zgmuwpc1xv";

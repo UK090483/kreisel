@@ -4,6 +4,7 @@ import { AppColor } from "types";
 
 import { ArticleCard } from "./Card/ArticleCard";
 import Card from "./Card/Card";
+import ListCard from "./Card/ListCard";
 
 interface ListProps {
   items: ListingBlockItem[];
@@ -21,7 +22,11 @@ const List: React.FC<ListProps> = (props) => {
           return <ArticleCard key={item._id || item._key} {...item} />;
         }
         return (
-          <Card variation={variation} key={item._id || item._key} {...item} />
+          <ListCard
+            variation={variation}
+            key={item._id || item._key}
+            {...item}
+          />
         );
       })}
     </div>

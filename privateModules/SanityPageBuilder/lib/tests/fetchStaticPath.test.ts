@@ -39,10 +39,12 @@ const mockFetchStaticPaths = ({
   fetchReturn,
   database,
   locales,
+  fallback,
 }: {
   fetchReturn?: any;
   database?: any;
   locales?: any;
+  fallback?: boolean | "blocking";
 }) => {
   return fetchStaticPaths({
     doc: "page",
@@ -52,6 +54,7 @@ const mockFetchStaticPaths = ({
     }),
     //@ts-ignore
     locales: locales,
+    fallback,
   });
 };
 
@@ -59,10 +62,21 @@ describe("fetchStaticPath", () => {
   it("should trow error if fetch result is not [] ", async () => {
     await expect(mockFetchStaticPaths({ fetchReturn: null })).rejects.toThrow();
     await expect(mockFetchStaticPaths({ fetchReturn: "st" })).rejects.toThrow();
-
     await expect(
       mockFetchStaticPaths({ fetchReturn: [] })
     ).resolves.toStrictEqual({ fallback: "blocking", paths: [] });
+  });
+
+  it("should handle fallback ", async () => {
+    await expect(
+      mockFetchStaticPaths({ fetchReturn: [] })
+    ).resolves.toStrictEqual({ fallback: "blocking", paths: [] });
+    await expect(
+      mockFetchStaticPaths({ fetchReturn: [], fallback: false })
+    ).resolves.toStrictEqual({ fallback: false, paths: [] });
+    await expect(
+      mockFetchStaticPaths({ fetchReturn: [], fallback: true })
+    ).resolves.toStrictEqual({ fallback: true, paths: [] });
   });
 
   it("should return right data no locales ", async () => {

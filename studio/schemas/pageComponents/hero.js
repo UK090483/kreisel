@@ -67,6 +67,7 @@ export default {
       content: "content",
       bgColor: "bgColor",
     },
+
     prepare({ image }) {
       return {
         title: "hero",

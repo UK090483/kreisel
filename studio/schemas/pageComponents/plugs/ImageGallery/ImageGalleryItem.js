@@ -1,3 +1,5 @@
+import { colorList } from "../../../snippets";
+
 export default {
   title: "Image Gallery Item",
   name: "imageGalleryItem",
@@ -7,6 +9,17 @@ export default {
     { name: "title", title: "title", type: "text" },
 
     { name: "image", title: "Image", type: "defaultImage" },
+
+    { name: "contain", title: "Überlagern", type: "boolean" },
+
+    {
+      title: "Background Color",
+      name: "bgColor",
+      type: "string",
+      options: {
+        list: [...colorList()],
+      },
+    },
 
     { name: "link", title: "Link", type: "link" },
 

@@ -11,10 +11,10 @@ const Embed: FC<EmbedProps> = (props) => {
   return (
     <div>
       <IframeResizer
-        log
+        heightCalculationMethod="lowestElement"
         src={url}
         style={{ width: "1px", minWidth: "100%" }}
-        height="1200"
+        height={600}
       />
     </div>
   );

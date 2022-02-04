@@ -1,6 +1,5 @@
 import S from "@sanity/desk-tool/structure-builder";
 
-import { CgWebsite } from "react-icons/cg";
 import { MdSettings } from "react-icons/md";
 
 import sanityClient from "part:@sanity/base/client";
@@ -22,7 +21,6 @@ export default () =>
                 .schemaType("siteConfig")
                 .title("Configuration")
                 .id("siteConfig"),
-
               S.listItem()
                 .title("Page Types")
                 .child(S.documentTypeList("pageType")),

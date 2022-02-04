@@ -27,8 +27,6 @@ const GSheet: React.FunctionComponent<PlugProps<IGSheetProps>> = (props) => {
   const url = props?.node?.url;
   const { data, loading, reload } = useCSV({ hot: true, url });
 
-  console.log(props);
-
   return (
     <div>
       <button onClick={reload}>Reload</button>

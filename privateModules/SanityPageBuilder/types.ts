@@ -42,11 +42,13 @@ export type FetchStaticPathsResult = {
 
 export type FetchStaticPathsResult2 =
   GetStaticPathsResult<FetchStaticPathsParams>;
+
 export type FetchStaticPathsProps = {
   doc: string;
   client: SanityClient;
   locales?: LocationConfig;
   query?: string;
+  fallback?: boolean | "blocking";
 };
 
 export type FetchStaticPaths = (

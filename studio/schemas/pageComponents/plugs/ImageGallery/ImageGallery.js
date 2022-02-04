@@ -50,7 +50,9 @@ export default {
   preview: {
     select: {
       name: "name",
+      items: "items",
     },
+
     prepare({ name }) {
       return {
         title: "ImageGallery: " + name,

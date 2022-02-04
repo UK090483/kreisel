@@ -7,6 +7,9 @@ import Typo from "@components/Typography/Typography";
 import { ConditionalLink } from "@components/Link";
 import { linkQuery, LinkResult } from "@privateModules/Navigation/query";
 import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
+import ImageGalleryPlugItem from "./ImageGalerieItem";
+import ImageGalleryItem from "./ImageGalerieItem";
+import { AppColor } from "types";
 
 export const imageGalleryPlugQuery = `
 _type == "imageGalleryPlug" => {
@@ -22,14 +25,17 @@ _type == "imageGalleryPlug" => {
 }
 `;
 
-interface ImageGalleryPlugItem {
+export interface ImageGalleryPlugItem {
   _type: "imageGalleryItem";
   title?: string;
   size?: "m" | "l";
   image?: ImageMetaResult;
   link?: LinkResult;
+  contain?: boolean;
+  bgColor: AppColor;
   _key: string;
 }
+
 export interface ImageGalleryPlugResult {
   _type: "imageGalleryPlug";
   name?: string;
@@ -67,40 +73,34 @@ const ImageGalleryPlug: React.FC<{ node: ImageGalleryPlugResult }> = (
       })}
     >
       {items.map((item) => {
-        const { image, title, _key, link, size = "m" } = item;
+        const {
+          image,
+          title,
+          _key,
+          link,
+          size = "m",
+          contain,
+          bgColor = "primary",
+        } = item;
         return (
-          <ConditionalLink
-            href={link?.href || "/"}
-            external={!!link?.external}
-            condition={!!link}
+          <ImageGalleryItem
+            contain={contain}
+            image={image}
+            title={title}
             key={_key}
-            className={clsx(
-              "w-full relative rounded-theme overflow-hidden shadow-2xl bg-primary ",
-              {
-                "aspect-w-10 aspect-h-10 ": ratio === "1:1",
-                "aspect-w-16 aspect-h-9": ratio === "16:9",
-                "aspect-w-3 aspect-h-2": ratio === "3:2",
-                "aspect-w-2 aspect-h-3": ratio === "2:3",
-                "col-span-2 row-span-2  ": size === "l",
-              }
-            )}
-          >
-            {image && <SanityImage image={image} objectFit="cover" />}
-
-            {title && (
-              <div className="absolute  flex items-end left-4 ">
-                <div className="pb-4 ">
-                  <Typo
-                    space={false}
-                    bold
-                    className="inline-block py-4 px-6 bg-white rounded-theme whitespace-pre-line "
-                  >
-                    {title}
-                  </Typo>
-                </div>
-              </div>
-            )}
-          </ConditionalLink>
+            link={link}
+            className={clsx({
+              "aspect-w-10 aspect-h-10 ": ratio === "1:1",
+              "aspect-w-16 aspect-h-9": ratio === "16:9",
+              "aspect-w-3 aspect-h-2": ratio === "3:2",
+              "aspect-w-2 aspect-h-3": ratio === "2:3",
+              "col-span-2 row-span-2  ": size === "l",
+              "bg-white": bgColor === "white",
+              "bg-primary": bgColor === "primary",
+              "bg-secondary": bgColor === "secondary",
+              " bg-grey": bgColor === "grey",
+            })}
+          />
         );
       })}
     </div>

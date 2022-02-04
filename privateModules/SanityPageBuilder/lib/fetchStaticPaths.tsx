@@ -28,9 +28,9 @@ const getAllSlugs: (
 
   const allPages = await client.fetch(
     `*[_type == "${doc}"]{ 
-        ...,
         'pageType': pageType->slug.current , 
         'slug': slug.current ,
+        'preparedSlug': select(defined(pageType)=> pageType->slug.current +'/'+ slug.current,slug.current ),
         ${i18nQuery}
         'isHome':*[_id == 'siteConfig'][0].indexPage._ref == @._id }`
   );
@@ -43,10 +43,10 @@ const getAllSlugs: (
 
 const parseFetchResult = (
   allPages: getAllSlugsResult,
-  locales: LocationConfig
+  locales: LocationConfig,
+  fallback: boolean | "blocking" = "blocking"
 ): FetchStaticPathsResult2 => {
   const hasI18n = Object.keys(locales).length > 1;
-
   return {
     paths:
       allPages.reduce((acc, page) => {
@@ -73,7 +73,7 @@ const parseFetchResult = (
         });
         return [...acc, ...pageParams];
       }, [] as any[]) || [],
-    fallback: "blocking",
+    fallback,
   };
 };
 
@@ -90,8 +90,9 @@ export const fetchStaticPaths: FetchStaticPaths = async (props) => {
     doc,
     client,
     locales = { de: { title: "Deutsch", isDefault: true, flag: "🇩🇪" } },
+    fallback,
   } = props;
 
   const allPages = await getAllSlugs(doc, client, locales);
-  return parseFetchResult(allPages, locales);
+  return parseFetchResult(allPages, locales, fallback);
 };
