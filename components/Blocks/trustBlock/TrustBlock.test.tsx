@@ -1,4 +1,4 @@
-import { mockClient } from "@privateModules/SanityPageBuilder/lib/MockClient";
+import { mockClient } from "@lib/SanityPageBuilder/lib/MockClient";
 import TustBlock, { trustBlockQuery } from "./TrustBlock";
 import { screen, render } from "@testing-library/react";
 import React from "react";

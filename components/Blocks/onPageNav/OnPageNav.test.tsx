@@ -1,4 +1,4 @@
-import { mockClient } from "@privateModules/SanityPageBuilder/lib/MockClient";
+import { mockClient } from "@lib/SanityPageBuilder/lib/MockClient";
 
 import { render, screen } from "@testing-library/react";
 import OnPageNavComponent from "./OnPageNav";

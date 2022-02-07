@@ -4,9 +4,9 @@ import clsx from "clsx";
 import RichText, { richTextQuery } from "../../RichText/RichText";
 
 import { Section } from "@components/Section/Section";
-import SanityImage from "@privateModules/SanityImage";
+import SanityImage from "@lib/SanityImage";
 import Accordion from "./Accordion";
-import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
+import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 
 export const sectionBlockQuery = `
 _type == "section" => {

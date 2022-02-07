@@ -1,4 +1,4 @@
-import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
+import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import { AppLocales, AppColor } from "types";
 
 export interface TherapistResult extends CardResult {

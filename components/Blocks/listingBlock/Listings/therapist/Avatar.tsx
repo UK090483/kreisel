@@ -1,5 +1,5 @@
-import SanityImage from "@privateModules/SanityImage";
-import { ImageMetaResult } from "@privateModules/SanityImage/query";
+import SanityImage from "@lib/SanityImage";
+import { ImageMetaResult } from "@lib/SanityImage/query";
 
 type AvatarProps = {
   name?: string;

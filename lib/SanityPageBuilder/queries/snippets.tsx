@@ -1,4 +1,4 @@
-import { ImageMetaResult } from "@privateModules/SanityImage/query";
+import { ImageMetaResult } from "@lib/SanityImage/query";
 
 export const linkQuery = `
    ...,

@@ -1,11 +1,11 @@
-import SanityImage from "@privateModules/SanityImage";
+import SanityImage from "@lib/SanityImage";
 import useAnimationDelay from "@hooks/useAnimationDelay";
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { ShopButton } from "./ShopButton";
 import { useShop } from "./shopContext";
 import FocusTrap from "focus-trap-react";
-import { ImageMetaResult } from "@privateModules/SanityImage/query";
+import { ImageMetaResult } from "@lib/SanityImage/query";
 
 const Cart: React.FC = () => {
   const s = useShop();

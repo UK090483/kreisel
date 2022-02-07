@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { imageMeta } from "@privateModules/SanityImage/query";
+import { imageMeta } from "lib/SanityImage/query";
 import { sanityClient } from "@services/SanityService/sanity.server";
 import type { NextApiRequest, NextApiResponse } from "next";
 

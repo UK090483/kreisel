@@ -1,7 +1,7 @@
 import { Section } from "@components/Section/Section";
 import Typo from "@components/Typography/Typography";
 import Underline from "@components/Underline";
-import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
+import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import React from "react";
 import { AppLocales } from "types";
 import Kreisel from "@components/Kreisel";

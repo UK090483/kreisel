@@ -1,5 +1,5 @@
 import Typo from "@components/Typography/Typography";
-import { PlugProps } from "@privateModules/SanityPageBuilder/lib/RichText";
+import { PlugProps } from "@lib/SanityPageBuilder/lib/RichText";
 import React from "react";
 
 interface IEvent {

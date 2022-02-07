@@ -1,7 +1,7 @@
 import { Section } from "@components/Section/Section";
-import NavOverview from "@privateModules/Navigation/NavOverview";
-import { NavItem } from "@privateModules/Navigation/types";
-import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
+import NavOverview from "@lib/Navigation/NavOverview";
+import { NavItem } from "@lib/Navigation/types";
+import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import { PageData } from "pages/[[...slug]]";
 import React from "react";
 import FooterContact from "./FooterContact";

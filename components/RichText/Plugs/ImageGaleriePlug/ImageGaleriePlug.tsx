@@ -2,11 +2,11 @@ import React from "react";
 
 import clsx from "clsx";
 
-import SanityImage from "@privateModules/SanityImage";
+import SanityImage from "@lib/SanityImage";
 import Typo from "@components/Typography/Typography";
 import { ConditionalLink } from "@components/Link";
-import { linkQuery, LinkResult } from "@privateModules/Navigation/query";
-import { imageMeta, ImageMetaResult } from "@privateModules/SanityImage/query";
+import { linkQuery, LinkResult } from "@lib/Navigation/query";
+import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import ImageGalleryPlugItem from "./ImageGalerieItem";
 import ImageGalleryItem from "./ImageGalerieItem";
 import { AppColor } from "types";

@@ -4,7 +4,7 @@ import List from "@components/List/List";
 import ListItem from "@components/List/ListItem";
 import Typo from "@components/Typography/Typography";
 import useCSV, { DataResult } from "@hooks/useCsv";
-import { PlugProps } from "@privateModules/SanityPageBuilder/lib/RichText";
+import { PlugProps } from "@lib/SanityPageBuilder/lib/RichText";
 import { filter } from "lodash";
 import * as React from "react";
 

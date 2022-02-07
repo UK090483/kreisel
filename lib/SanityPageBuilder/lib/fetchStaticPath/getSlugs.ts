@@ -1,4 +1,4 @@
-import { LocationConfig } from "@privateModules/SanityPageBuilder/types";
+import { LocationConfig } from "lib/SanityPageBuilder/types";
 import type { SanityClient } from "@sanity/client/sanityClient";
 import { defaultLocales } from "./defaultValues";
 

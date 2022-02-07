@@ -1,4 +1,4 @@
-import type { PageProps } from "@privateModules/SanityPageBuilder/types";
+import type { PageProps } from "@lib/SanityPageBuilder/types";
 import { PageData } from "pages/[[...slug]]";
 import React from "react";
 import BackGround from "./BackGround";

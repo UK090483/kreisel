@@ -1,4 +1,4 @@
-import { NavigationContextProvider } from "@privateModules/Navigation/NavigationContext";
+import { NavigationContextProvider } from "@lib/Navigation/NavigationContext";
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import DropdownNavItem from "./DropdownNavItem";

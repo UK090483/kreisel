@@ -1,7 +1,7 @@
-import { mockClient } from "@privateModules/SanityPageBuilder/lib/MockClient";
+import { mockClient } from "@lib/SanityPageBuilder/lib/MockClient";
 import { sectionBlockQuery } from "./SectionBlock";
 
-jest.mock("@privateModules/SanityImage", () => ({}));
+jest.mock("@lib/SanityImage", () => ({}));
 
 const database: any[] = [];
 

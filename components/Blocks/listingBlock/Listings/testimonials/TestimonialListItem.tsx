@@ -1,4 +1,4 @@
-import SanityImage from "@privateModules/SanityImage";
+import SanityImage from "@lib/SanityImage";
 import { Section } from "@components/Section/Section";
 import Typo from "@components/Typography/Typography";
 

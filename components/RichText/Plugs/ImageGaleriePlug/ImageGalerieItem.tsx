@@ -1,10 +1,10 @@
 import * as React from "react";
-import { ImageMetaResult } from "@privateModules/SanityImage/query";
+import { ImageMetaResult } from "@lib/SanityImage/query";
 import Typo from "@components/Typography/Typography";
-import SanityImage from "@privateModules/SanityImage";
+import SanityImage from "@lib/SanityImage";
 import { ConditionalLink } from "@components/Link";
 
-import { LinkResult } from "@privateModules/Navigation/query";
+import { LinkResult } from "@lib/Navigation/query";
 type ImageGalleryItemProps = {
   image?: ImageMetaResult;
   title?: string;

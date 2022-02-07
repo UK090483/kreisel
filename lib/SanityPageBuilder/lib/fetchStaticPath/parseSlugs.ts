@@ -1,7 +1,7 @@
 import {
   LocationConfig,
   FetchStaticPathsResult2,
-} from "@privateModules/SanityPageBuilder/types";
+} from "lib/SanityPageBuilder/types";
 import { defaultLocales } from "./defaultValues";
 import { GetSlugsResult } from "./getSlugs";
 

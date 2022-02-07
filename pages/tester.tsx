@@ -1,12 +1,12 @@
 //@ts-nocheck
 
-import SanityImage from "@privateModules/SanityImage";
+import SanityImage from "@lib/SanityImage";
 import { Section } from "@components/Section/Section";
 import Typo from "@components/Typography/Typography";
 import Underline from "@components/Underline";
 import { NavigationMobile } from "@services/NavigationService/NavigationMobile";
 import { NavigationModul } from "@services/NavigationService/NavigationModul";
-import { NavOverview } from "@privateModules/Navigation/NavOverview";
+import { NavOverview } from "@lib/Navigation/NavOverview";
 import { nav } from "@services/NavigationService/t";
 
 const Home = () => {

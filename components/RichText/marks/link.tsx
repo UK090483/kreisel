@@ -1,7 +1,7 @@
 import React from "react";
 
 import Link from "next/link";
-import { LinkResult, linkQuery } from "@privateModules/Navigation/query";
+import { LinkResult, linkQuery } from "@lib/Navigation/query";
 
 // import Icon from "@components/Icon";
 // import { buildInternalLink } from "@src/services/pageBuilder/buildInternalLink";
