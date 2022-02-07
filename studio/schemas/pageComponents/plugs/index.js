@@ -6,6 +6,7 @@ import Image from "./Image";
 
 import GSheet from "./GSheet/GSheet";
 import GSheetItem from "./GSheet/GSheetItem";
+import Events from "./Events";
 
 const Plugs = [
   Button,
@@ -15,6 +16,7 @@ const Plugs = [
   GSheet,
   GSheetItem,
   Image,
+  Events,
 ];
 
 export default Plugs;

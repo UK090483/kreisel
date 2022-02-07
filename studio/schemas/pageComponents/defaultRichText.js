@@ -127,6 +127,7 @@ export default {
     { type: "imageGalleryPlug" },
     { type: "embed" },
     { type: "gSheet" },
+    { type: "eventPlug" },
     // { type: 'imagePlug' },
     // { type: 'seoHeader' },
 

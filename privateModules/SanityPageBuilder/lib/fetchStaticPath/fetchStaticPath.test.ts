@@ -1,5 +1,5 @@
-import { fetchStaticPaths } from "../fetchStaticPathsNew";
-import { mockClient } from "./testPrepare";
+import fetchStaticPaths from "./fetchStaticPath";
+import { mockClient } from "../MockClient";
 
 const locales = {
   de: { title: "Deutsch", isDefault: true, flag: "🇩🇪" },
@@ -49,10 +49,9 @@ const mockFetchStaticPaths = ({
   return fetchStaticPaths({
     doc: "page",
     client: mockClient({
-      ...(fetchReturn && { fetchReturn }),
+      ...(fetchReturn && { mockReturnValue: fetchReturn }),
       ...(database && { database }),
     }),
-    //@ts-ignore
     locales: locales,
     fallback,
   });
@@ -63,32 +62,32 @@ describe("fetchStaticPath", () => {
     await expect(mockFetchStaticPaths({ fetchReturn: null })).rejects.toThrow();
     await expect(mockFetchStaticPaths({ fetchReturn: "st" })).rejects.toThrow();
     await expect(
-      mockFetchStaticPaths({ fetchReturn: [] })
+      mockFetchStaticPaths({ fetchReturn: { slugs: [] } })
     ).resolves.toStrictEqual({ fallback: "blocking", paths: [] });
   });
 
   it("should handle fallback ", async () => {
     await expect(
-      mockFetchStaticPaths({ fetchReturn: [] })
+      mockFetchStaticPaths({ fetchReturn: { slugs: [] } })
     ).resolves.toStrictEqual({ fallback: "blocking", paths: [] });
     await expect(
-      mockFetchStaticPaths({ fetchReturn: [], fallback: false })
+      mockFetchStaticPaths({ fetchReturn: { slugs: [] }, fallback: false })
     ).resolves.toStrictEqual({ fallback: false, paths: [] });
     await expect(
-      mockFetchStaticPaths({ fetchReturn: [], fallback: true })
+      mockFetchStaticPaths({ fetchReturn: { slugs: [] }, fallback: true })
     ).resolves.toStrictEqual({ fallback: true, paths: [] });
   });
 
   it("should return right data no locales ", async () => {
     await expect(
-      mockFetchStaticPaths({ fetchReturn: [] })
+      mockFetchStaticPaths({ fetchReturn: { slugs: [] } })
     ).resolves.toStrictEqual({ fallback: "blocking", paths: [] });
     await expect(mockFetchStaticPaths({ database })).resolves.toMatchSnapshot();
   });
 
   it("should return right data ", async () => {
     await expect(
-      mockFetchStaticPaths({ fetchReturn: [], locales })
+      mockFetchStaticPaths({ fetchReturn: { slugs: [] }, locales })
     ).resolves.toStrictEqual({ fallback: "blocking", paths: [] });
 
     await expect(

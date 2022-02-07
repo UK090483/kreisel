@@ -13,6 +13,7 @@ import SanityRichText from "@privateModules/SanityPageBuilder/lib/RichText";
 import List from "./list/List";
 import GSheet, { GSheetPlugQuery } from "./Plugs/Gsheet";
 import ImagePlug, { ImagePlugQuery } from "./Plugs/ImagePlug";
+import EventPlug, { EventPlugQuery } from "./Plugs/EventPlug";
 
 const marksQuery = `
 markDefs[]{
@@ -29,6 +30,7 @@ content[]{
   ${imageGalleryPlugQuery},
   ${ImagePlugQuery},
   ${GSheetPlugQuery},
+  ${EventPlugQuery},
 }
 `;
 
@@ -46,6 +48,7 @@ const RichText: React.FC<any> = (props: any) => {
         spacer: SpacerPlug,
         gSheet: GSheet,
         imagePlug: ImagePlug,
+        eventPlug: EventPlug,
       }}
       marks={{
         link,

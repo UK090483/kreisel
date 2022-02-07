@@ -21,13 +21,17 @@ const List: React.FC<ListProps> = (props) => {
           //@ts-ignore
           return <ArticleCard key={item._id || item._key} {...item} />;
         }
-        return (
-          <ListCard
-            variation={variation}
-            key={item._id || item._key}
-            {...item}
-          />
-        );
+        {
+          return variation === "list" ? (
+            <ListCard
+              variation={variation}
+              key={item._id || item._key}
+              {...item}
+            />
+          ) : (
+            <Card key={item._id || item._key} {...item} />
+          );
+        }
       })}
     </div>
   );

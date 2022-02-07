@@ -1,23 +1,27 @@
 import { LocationConfig } from "@privateModules/SanityPageBuilder/types";
 import type { SanityClient } from "@sanity/client/sanityClient";
+import { defaultLocales } from "./defaultValues";
 
-type getSlugsProps = {
+export type getSlugsProps = {
   doc: string;
   client: SanityClient;
   locales: LocationConfig;
   query?: string;
 };
-type getSlugsResult = {
+type slugResult = {
   slug: string;
   [k: string]: any;
-  pageType: null | string;
-  isHome: boolean;
-}[];
+};
 
-const getAllSlugs: (props: getSlugsProps) => Promise<getSlugsResult> = async (
+export type GetSlugsResult = {
+  slugs: slugResult[];
+  homeSlug?: slugResult;
+};
+
+const getAllSlugs: (props: getSlugsProps) => Promise<GetSlugsResult> = async (
   props
 ) => {
-  const { doc, client, locales } = props;
+  const { doc, client, locales = defaultLocales } = props;
 
   const i18nQuery = Object.entries(locales).reduce((acc, [locale, item]) => {
     if (!item.isDefault) {
@@ -26,20 +30,16 @@ const getAllSlugs: (props: getSlugsProps) => Promise<getSlugsResult> = async (
     return acc;
   }, "");
 
-  const allPages = await client.fetch(
+  const allPages = await client.fetch<GetSlugsResult>(
     `{'slugs': *[_type == "${doc}"]{ 
-          'pageType': pageType->slug.current , 
-          'slug': slug.current ,
-          'preparedSlug': select(defined(pageType)=> pageType->slug.current +'/'+ slug.current,slug.current ),
+          'slug': select(defined(pageType)=> pageType->slug.current +'/'+ slug.current,slug.current ),
           ${i18nQuery}
-          'isHome':*[_id == 'siteConfig'][0].indexPage._ref == @._id 
         },
-        'homeSlug':*[_id == 'siteConfig'][0].indexPage->slug.current 
-       
+        'homeSlug':{
+            'slug':*[_id == 'siteConfig'][0].indexPage->slug.current
+            }
         }`
   );
-
-  console.log(allPages);
 
   if (!allPages || !allPages.slugs || !Array.isArray(allPages.slugs)) {
     throw new Error("No Path returned");

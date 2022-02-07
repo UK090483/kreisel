@@ -8,17 +8,16 @@ const locales = {
 };
 
 const database = [
-  ...["testPageHome", "testPage1", "widthSubRoute2", "CAPITAL-TestPage3"].map(
+  ...["testPageHome", "testPage", "widthSubRoute", "withString/subRoute"].map(
     (i) => ({
       _id: i,
       _type: "page",
-      pageType: i === "widthSubRoute2" ? { _ref: "testPageType" } : null,
+      pageType: i === "widthSubRoute" ? { _ref: "testPageType" } : null,
       slug: { current: i },
       slug_en: { current: i + "en" },
       slug_da: { current: i + "da" },
     })
   ),
-
   {
     _id: "noSlug",
     _type: "page",
@@ -30,8 +29,12 @@ const database = [
     _type: "page",
     slug: { current: "noTransSlug" },
   },
-
-  { _id: "testPageType", _type: "pageType", slug: { current: "testPageType" } },
+  {
+    _id: "testPageType",
+    _type: "pageType",
+    slug: { current: "testPageType" },
+    slug_en: { current: "noSlugEn" },
+  },
   { _id: "siteConfig", indexPage: { _ref: "testPageHome" } },
 ];
 
@@ -54,26 +57,26 @@ const mockFetchGetSlugs = ({
   });
 };
 
-describe("fetchStaticPath", () => {
-  it("should trow error if fetch result is not [] ", async () => {
+describe("getSlugs", () => {
+  it("should trow error if fetch result is not usable ", async () => {
     await expect(mockFetchGetSlugs({ fetchReturn: null })).rejects.toThrow();
     await expect(mockFetchGetSlugs({ fetchReturn: "st" })).rejects.toThrow();
   });
 
   it("should return right data no locales ", async () => {
-    // await expect(
-    //   mockFetchGetSlugs({ fetchReturn: { slugs: [] } })
-    // ).resolves.toStrictEqual({ paths: [] });
-    // await expect(mockFetchStaticPaths({ database })).resolves.toMatchSnapshot();
+    await expect(
+      mockFetchGetSlugs({ fetchReturn: { slugs: [], homeSlug: null } })
+    ).resolves.toStrictEqual({ slugs: [], homeSlug: null });
+    await expect(mockFetchGetSlugs({ database })).resolves.toMatchSnapshot();
   });
 
-  //   it("should return right data ", async () => {
-  //     await expect(
-  //       mockFetchStaticPaths({ fetchReturn: [], locales })
-  //     ).resolves.toStrictEqual({ fallback: "blocking", paths: [] });
+  it("should return right data  width locales", async () => {
+    await expect(
+      mockFetchGetSlugs({ fetchReturn: { slugs: [], homeSlug: null }, locales })
+    ).resolves.toStrictEqual({ slugs: [], homeSlug: null });
 
-  //     await expect(
-  //       mockFetchStaticPaths({ database, locales })
-  //     ).resolves.toMatchSnapshot();
-  //   });
+    await expect(
+      mockFetchGetSlugs({ database, locales })
+    ).resolves.toMatchSnapshot();
+  });
 });

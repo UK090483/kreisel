@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getSlugs should return right data  width locales 1`] = `
+Object {
+  "homeSlug": Object {
+    "slug": "testPageHome",
+  },
+  "slugs": Array [
+    Object {
+      "slug": "testPageHome",
+      "slug-da": "testPageHomeda",
+      "slug-en": "testPageHomeen",
+    },
+    Object {
+      "slug": "testPage",
+      "slug-da": "testPageda",
+      "slug-en": "testPageen",
+    },
+    Object {
+      "slug": "testPageType/widthSubRoute",
+      "slug-da": "widthSubRouteda",
+      "slug-en": "widthSubRouteen",
+    },
+    Object {
+      "slug": "withString/subRoute",
+      "slug-da": "withString/subRouteda",
+      "slug-en": "withString/subRouteen",
+    },
+    Object {
+      "slug": null,
+      "slug-da": "noSlugEn",
+      "slug-en": "noSlugEn",
+    },
+    Object {
+      "slug": "noTransSlug",
+      "slug-da": null,
+      "slug-en": null,
+    },
+  ],
+}
+`;
+
+exports[`getSlugs should return right data no locales  1`] = `
+Object {
+  "homeSlug": Object {
+    "slug": "testPageHome",
+  },
+  "slugs": Array [
+    Object {
+      "slug": "testPageHome",
+    },
+    Object {
+      "slug": "testPage",
+    },
+    Object {
+      "slug": "testPageType/widthSubRoute",
+    },
+    Object {
+      "slug": "withString/subRoute",
+    },
+    Object {
+      "slug": null,
+    },
+    Object {
+      "slug": "noTransSlug",
+    },
+  ],
+}
+`;

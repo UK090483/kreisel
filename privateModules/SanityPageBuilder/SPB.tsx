@@ -2,7 +2,7 @@ import BodyParser from "./lib/BodyParser";
 import BlockFactory from "./lib/BlockFactory";
 import { SPBOptions, SPBResult } from "./types";
 import { fetchStaticProps } from "./lib/fetchStaticProps";
-import { fetchStaticPaths } from "./lib/fetchStaticPaths";
+import fetchStaticPaths from "./lib/fetchStaticPath/fetchStaticPath";
 import useAuthenticatePage from "@hooks/useAuthenticatePage";
 
 function SPB<P extends { [k: string]: any } = {}>({

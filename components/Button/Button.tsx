@@ -3,8 +3,6 @@ import React from "react";
 
 type ButtonProps = {
   onClick?: () => void;
-  internalLink?: string | null;
-  externalLink?: string;
   href?: string | null;
   external?: boolean;
   className?: string;
@@ -19,7 +17,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   const {
     className = "",
     children,
-    onClick = () => {},
+    onClick,
     href,
     external,
     type = "button",
@@ -29,9 +27,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   if (href) {
     return (
       <Link
-        onClick={() => {
-          console.error("consol error");
-        }}
+        onClick={onClick}
         className={`inline-block px-12 py-2 text-center text-base rounded-full  bg-primary whitespace-nowrap ${className}`}
         href={href}
         external={external}
@@ -44,7 +40,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`px-12  py-2 text-base rounded-full bg-primary whitespace-nowrap disabled:opacity-60  w-full ${className}`}
+      className={`px-12 py-2 text-base rounded-full bg-primary whitespace-nowrap disabled:opacity-60  w-full ${className}`}
       type={type}
     >
       {children}
