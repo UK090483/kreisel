@@ -9,7 +9,7 @@ interface IEvent {
   endDate?: string | null;
   isSub?: boolean;
 }
-interface IEventItem {
+export interface IEventItem {
   eventItems: IEvent[];
   title?: string | null;
   multi?: boolean;
@@ -70,6 +70,7 @@ const EventItem: React.FC<IEventItem> = (props) => {
 
 const Event: React.FC<IEvent> = (props) => {
   const { title, startDate, endDate, isSub, description } = props;
+
   return (
     <div className="w-full">
       <div className={` flex w-full justify-between ${isSub ? "pl-6" : ""}`}>

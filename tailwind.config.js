@@ -5,13 +5,14 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./services/**/*.{js,ts,jsx,tsx}",
-    "./privateModules/**/*.{js,ts,jsx,tsx}",
+    "./lib/**/*.{js,ts,jsx,tsx}",
   ],
 
   theme: {
     fontFamily: {
       sans: ["Montserrat", "Helvetica", "sans-serif"],
       hand: ["Caveat"],
+      header: ["GTZirkon"],
     },
     fontSize: {
       sm: ["12px", "1em"],
@@ -35,6 +36,7 @@ module.exports = {
           dark: "#dddddd",
         },
         black: "#595959",
+        // black: "#000000",
         white: "#ffffff",
         primary: { light: "#FDECB3", DEFAULT: "#FCDE84" },
         secondary: "#CDD3C5",

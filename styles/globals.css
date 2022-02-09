@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "GTZirkon";
+  src: url("../public/fonts/GTZirkon/GT\ Zirkon\ Bold.otf");
+
+  font-weight: 500;
+  font-style: normal;
+}

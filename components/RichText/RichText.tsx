@@ -1,7 +1,7 @@
 import React from "react";
 import link, { linkMarkQuery } from "./marks/link";
 import hand from "./marks/hand";
-import ButtonPlug, { buttonPlugQuery } from "./Plugs/ButtonPlug";
+import ButtonPlug, { buttonPlugQuery } from "./Plugs/ButtonPlug/ButtonPlug";
 import EmbedPlug from "./Plugs/EmbedPlug";
 import ImageGalleryPlug, {
   imageGalleryPlugQuery,
@@ -13,7 +13,9 @@ import SanityRichText from "@lib/SanityPageBuilder/lib/RichText";
 import List from "./list/List";
 import GSheet, { GSheetPlugQuery } from "./Plugs/Gsheet";
 import ImagePlug, { ImagePlugQuery } from "./Plugs/ImagePlug";
-import EventPlug, { EventPlugQuery } from "./Plugs/EventPlug";
+import EventPlug, { EventPlugQuery } from "./Plugs/EventPlug/EventPlug";
+import EmbedHTML from "./Plugs/EmbedHTML/EmbedHTML";
+import HandUnderline from "./marks/handunderline";
 
 const marksQuery = `
 markDefs[]{
@@ -49,20 +51,25 @@ const RichText: React.FC<any> = (props: any) => {
         gSheet: GSheet,
         imagePlug: ImagePlug,
         eventPlug: EventPlug,
+        embedHTML: EmbedHTML,
       }}
       marks={{
         link,
         tag: (props: any) => {
           return <Typo variant={props.mark.tag}>{props.children}</Typo>;
         },
-        hand,
-        handUnderline: (props: any) => {
-          return (
-            <Underline color={props?.mark?.color} on="init">
-              {props.children}
-            </Underline>
-          );
-        },
+        // hand: (props: any) => {
+        //   return <Typo className=" text-red ">{props.children}</Typo>;
+        // },
+
+        handUnderline: HandUnderline,
+        // handUnderline: (props: any) => {
+        //   return (
+        //     <Underline color={props?.mark?.color} on="init">
+        //       {props.children}
+        //     </Underline>
+        //   );
+        // },
       }}
       blockRenderer={(props) => {
         const { style = "normal" } = props.node;

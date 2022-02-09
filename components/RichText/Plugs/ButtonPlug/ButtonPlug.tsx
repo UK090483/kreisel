@@ -22,16 +22,11 @@ type ButtonType = {
   position?: "inline" | "left" | "right" | "center";
 };
 
-// export interface ButtonPlugResult extends Omit<ButtonType, "link"> {
-//   link: LinkResult;
-// }
-
-// type ButtonPlugProps = ButtonPlugResult;
 const ButtonPlug: React.FC<{ node: ButtonType }> = (props) => {
   const { link, label, position } = props.node;
 
   return (
-    <Button href={link.href} external={link.external} onClick={() => {}}>
+    <Button href={link.href} external={link.external}>
       {label}
     </Button>
   );

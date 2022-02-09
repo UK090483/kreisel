@@ -36,10 +36,6 @@ export default {
             title: "Underline",
             value: "underline",
           },
-          // {
-          //   title: "Hand Underline",
-          //   value: "handUnderline",
-          // },
         ],
         annotations: [
           {
@@ -53,6 +49,22 @@ export default {
                 type: "string",
                 options: {
                   list: [...colorList()],
+                },
+                initialValue: "black",
+              },
+              {
+                title: "Underline Variant",
+                name: "variant",
+                type: "string",
+                options: {
+                  list: [
+                    { title: "Auto", value: "auto" },
+                    { title: "Line 1", value: "line1" },
+                    { title: "Line 2", value: "line2" },
+                    { title: "Line 3", value: "line3" },
+                    { title: "Circle 1", value: "circle1" },
+                    { title: "Circle 2", value: "circle2" },
+                  ],
                 },
                 initialValue: "black",
               },
@@ -125,7 +137,7 @@ export default {
     { type: "button", blockEditor: { render: Button } },
     { type: "spacer" },
     { type: "imageGalleryPlug" },
-    { type: "embed" },
+    { type: "embedHTML" },
     { type: "gSheet" },
     { type: "eventPlug" },
     // { type: 'imagePlug' },

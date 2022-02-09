@@ -51,16 +51,15 @@ export interface HeroBlockProps extends HeroBlogResult {
 const HeroBlock: React.FC<HeroBlockProps> = (props) => {
   const { content, photo, size } = props;
   return (
-    <Section width="l" bg="secondary" className=" h-[85vh] grid grid-cols-2 ">
-      <div className="flex items-center mx-auto text-white  ml-[10%] ">
-        <Typo hand variant="h1">
-          <div style={{ fontSize: 72 }}>
-            Grundlagen <br /> Lernförderung <br />
-            <Underline color="primary"> & Lerntherapie</Underline>
+    <Section width="l" bg="secondary" className=" h-[85vh] grid grid-cols-2  ">
+      <div className="z-10 flex items-center mx-auto  ml-[10%] ">
+        <Typo variant="h1">
+          <div className=" md:text-[72px] ">
+            Weiterbildung. Lerntherapeutische Förderung. Netzwerk.
           </div>
         </Typo>
       </div>
-      <div className="relative flex justify-center items-center animate-fadeIn">
+      <div className="z-0 relative flex justify-center items-center animate-fadeIn">
         <Kreisel />
         {/* <SanityImage image={photo} objectFit="contain" /> */}
       </div>

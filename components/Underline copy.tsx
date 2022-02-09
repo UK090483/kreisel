@@ -9,7 +9,6 @@ interface UnderlineProps {
   color?: AppColor;
   on?: "hover" | "init" | "scroll";
   type?: "under" | "around";
-  variant?: number;
   show?: boolean;
 }
 
@@ -22,37 +21,23 @@ const L2 =
 const L3 =
   "M7.54157 3.06993C27.7386 3.06993 48.1161 2.87791 68.263 3.13025C71.9239 3.1761 75.6259 3.26829 79.3004 3.27873C81.6995 3.28555 84.0369 3.2965 86.3618 3.38546C87.0236 3.41078 87.8629 3.40329 86.6798 3.45506C80.868 3.70941 75.2089 4.03563 69.3604 4.28332C61.5235 4.61523 54.1857 5.11829 46.6654 5.57559C39.4583 6.01386 31.8386 6.42001 24.9405 6.95371C19.1645 7.40059 13.524 7.97609 7.15987 8.24134C6.35706 8.2748 11.9332 7.9511 12.7532 7.92813C16.395 7.82613 16.9394 7.99812 20.6146 7.92813C29.4397 7.76009 38.1266 7.73974 47.0153 7.71469C59.0288 7.68082 70.7431 7.73535 82.2744 8.25294C87.0175 8.46584 91.7756 8.60788 95.9996 9";
 
-const K1 =
-  "M34.2229 95.9997C24.6675 88.352 20.8509 85.4082 15.113 75.9247C3.54513 56.8052 7 30.5 21 21.5C30.5002 15.3928 40.3946 12.9997 52.9998 12.9997C62.9998 12.9997 76.9302 18.5929 86.4999 28.4998C97.9736 40.3779 100.5 70.9998 81.4999 82.2096C63.9063 92.5896 39.9998 93.9998 20.0751 82.2096C-3.17061 68.4543 -2.61993 32.819 18 18.4998C36 6 69.297 4.71453 87.9999 19.5228";
-
-const K2 =
-  "M44.0004 14.5C64.7631 20 76.3343 13.9696 86.2277 24.4846C106.001 45.5 94.2653 72.9145 80.3955 82.51C70.9836 89.0212 61.1812 91.5725 48.6932 91.5725C38.7861 91.5725 21.2183 85.1439 11.7376 74.5815C0.370617 61.9177 0.141721 30.6834 20.4582 17.784C37.8882 6.71724 59.5666 10.4208 74.7371 20.0816C97.5661 34.6195 97.1655 67.2438 76.7372 82.5103C58.9046 95.8371 34.2662 98.2982 15.7373 82.5103";
-
-const lines = [
-  { type: "line", path: L1, length: 97 },
-  { type: "line", path: L2, length: 99 },
-  { type: "line", path: L3, length: 250 },
-  { type: "circle", path: K1, length: 435 },
-  { type: "circle", path: K2, length: 435 },
-];
 const Underline: React.FC<UnderlineProps> = ({
   children,
   color,
   on = "init",
+  type = "under",
   show = true,
-  variant,
 }) => {
   const [isHovered, hoverProps] = useHover();
 
   const [init, setInit] = React.useState(false);
 
-  const lineRef = React.useRef<number>(variant || 0);
+  const lineRef = React.useRef<string>("");
+  const lineLength = React.useRef<number>(0);
 
   React.useEffect(() => {
-    if (variant === undefined) {
-      lineRef.current = Math.floor(Math.random() * lines.length);
-    }
-
+    lineRef.current = [L1, L2, L3][Math.floor(Math.random() * 3)];
+    lineLength.current = lineRef.current.length;
     setInit(true);
   }, []);
 
@@ -63,31 +48,24 @@ const Underline: React.FC<UnderlineProps> = ({
     (on === "hover" && isHovered) ||
     (on === "scroll" && isVisible);
 
-  const line = lines[lineRef.current];
-
   if (!show) return <>{children}</>;
-
-  console.log(color);
 
   return (
     <>
       {init && (
-        <span ref={ref} {...hoverProps} className="relative inline-block  ">
+        <span ref={ref} {...hoverProps} className="relative inline-block ">
+          {children}
           <svg
-            style={{ fill: "transparent" }}
+            style={{ fill: "transparent", height: "20px" }}
             preserveAspectRatio="none"
-            className={clsx("absolute w-full fill-current stroke-current", {
-              "   inset-0 scale-y-150 scale-x-125 -z-10  h-full ":
-                line.type === "circle",
-              " h-5 bottom-[-23px] translate-y-[-0.35em]": line.type === "line",
-            })}
+            className="absolute  w-full transform scale-x-[1]  fill-current stroke-current -bottom-2 "
             xmlns="http://www.w3.org/2000/svg"
-            viewBox={line.type === "circle" ? "0 0 100 100" : "0 0 100 20"}
+            viewBox="0 0 100 20"
           >
             <path
               style={{
-                strokeDasharray: line.length,
-                strokeDashoffset: _on ? 0 : line.length,
+                strokeDasharray: lineLength.current,
+                strokeDashoffset: _on ? 0 : lineLength.current,
                 transition: `stroke-dashoffset 1s `,
               }}
               className={clsx("stroke-current", {
@@ -96,12 +74,11 @@ const Underline: React.FC<UnderlineProps> = ({
                 "text-primary": color === "primary",
                 "text-secondary": color === "secondary",
               })}
-              d={line.path}
+              d={lineRef.current}
               strokeWidth="3.5"
               strokeLinecap="round"
             />
           </svg>
-          <span className=" relative">{children}</span>
         </span>
       )}
     </>
