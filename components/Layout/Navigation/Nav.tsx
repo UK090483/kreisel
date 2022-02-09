@@ -12,6 +12,7 @@ import {
 import Underline from "@components/Underline/Underline";
 import NavigationMobile from "@lib/Navigation/NavigationMobile";
 import { NavItem } from "@lib/Navigation/types";
+import ContactButton from "../Header/ContactButton";
 
 interface NavProps {
   items: NavItem[];
@@ -37,6 +38,7 @@ const Nav: React.FC<NavProps> = ({ items }) => {
               NavigationItemBase={NavItemBaseWithUnderline}
             />
           </div>
+          <ContactButton />
 
           {/* <div className="hidden lg:block">
             <Button> Kontakt aufnehmen</Button>

@@ -8,6 +8,7 @@ import { Header } from "./Header";
 import Nav from "./Navigation/Nav";
 
 import usePageTransition from "@hooks/usePageTransition";
+import useScroll from "@hooks/useScroll";
 
 interface LayoutProps extends PageProps<PageData> {
   preview?: boolean;
@@ -16,12 +17,14 @@ interface LayoutProps extends PageProps<PageData> {
 const Layout: React.FC<LayoutProps> = (props) => {
   const { children, data, preview = false } = props;
 
+  const scrolled = useScroll(200);
+
   const { transitionStage, displayChildren, handleTransitionEnd } =
     usePageTransition({ children, preview });
 
   return (
     <>
-      <Header>
+      <Header scrolled={scrolled}>
         <Nav items={data?.navigation || []} />
       </Header>
       <Head name={data?.title} />

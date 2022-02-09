@@ -27,16 +27,21 @@ const TrustBlockItem: React.FunctionComponent<ITrustBlockItem> = (props) => {
   const isNumber = parseInt(value);
 
   return (
-    <div ref={ref} className=" text-white ">
-      <div className="relative w-full   aspect-w-1 aspect-h-1">
+    <div ref={ref} className="">
+      <div className=" w-40 relative  mx-auto  h-40">
         <SanityImage image={image} objectFit="contain" />
       </div>
-      {isIntersecting && (
-        <Typo variant="h1" as="p" className=" text-center text-5xl pt-8 ">
-          {isNumber ? <CountUp n={isNumber} /> : value}
-        </Typo>
-      )}
-      <Typo variant="h3" as="p" bold={false} className=" text-center ">
+
+      <Typo
+        variant="h2"
+        as="p"
+        className=" font-sans text-center text-5xl pt-8 "
+      >
+        {value}
+        {/* {isNumber ? <CountUp n={isNumber} /> : value} */}
+      </Typo>
+
+      <Typo variant="body-l" as="p" className=" text-center ">
         {name}
       </Typo>
     </div>

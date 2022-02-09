@@ -28,7 +28,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     return (
       <Link
         onClick={onClick}
-        className={`inline-block px-12 py-2 text-center text-base rounded-full  bg-primary whitespace-nowrap ${className}`}
+        className={`inline-block px-12 py-2 text-center text-base rounded-full  border-2 border-black  whitespace-nowrap ${className}`}
         href={href}
         external={external}
       >
@@ -40,7 +40,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`px-12 py-2 text-base rounded-full bg-primary whitespace-nowrap disabled:opacity-60  w-full ${className}`}
+      className={`px-12 py-2 text-base rounded-full  whitespace-nowrap border-2 border-black disabled:opacity-60  w-full ${className}`}
       type={type}
     >
       {children}

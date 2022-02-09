@@ -71,7 +71,7 @@ const Typo: React.FC<TypographyProps> = ({
         clsx("antialiased relative  scale-100", {
           "text-sm ": variant === "body-s",
           "text-base": variant === "body",
-          "text-lg font-header": ["body-l", "h6"].includes(variant as string),
+          "text-lg ": ["body-l", "h6"].includes(variant as string),
           "text-xl font-header": variant === "h5",
           "text-2xl font-header": variant === "h4",
           "text-3xl font-header": variant === "h3",

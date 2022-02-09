@@ -1,4 +1,5 @@
 import Button from "@components/Button/Button";
+import Kreisel from "@components/Kreisel";
 import { Section } from "@components/Section/Section";
 import Typo from "@components/Typography";
 import Underline from "@components/Underline/Underline";
@@ -36,6 +37,10 @@ const Style = () => {
               Blaaaasdfjskl
             </Underline>
           </Typo>
+
+          <div>
+            <Kreisel />
+          </div>
 
           {/* <Typo space={false} variant="h2">
             <Underline color="primary" variant={2}>

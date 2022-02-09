@@ -12,7 +12,7 @@ const ListingBlock: React.FC<ListingBlockProps> = (props) => {
 
   if (props.contentType === "testimonial") {
     return (
-      <ListWrap bgColor={bgColor} content={content}>
+      <ListWrap space={false} bgColor={bgColor} content={content}>
         <TestimonialList items={props.items} />
       </ListWrap>
     );

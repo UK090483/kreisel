@@ -21,8 +21,8 @@ module.exports = {
       xl: ["20px", "1.5em"],
       "2xl": ["22px", "1.5em"],
       "3xl": ["30px", "1.5em"],
-      "4xl": ["40px", "1.5em"],
-      "5xl": ["50px", "1.5em"],
+      "4xl": ["45px", "1.5em"],
+      "5xl": ["65px", "1.5em"],
     },
 
     extend: {
@@ -35,8 +35,8 @@ module.exports = {
           DEFAULT: "#d1d5db",
           dark: "#dddddd",
         },
-        black: "#595959",
-        // black: "#000000",
+        // black: "#595959",
+        black: "#000000",
         white: "#ffffff",
         primary: { light: "#FDECB3", DEFAULT: "#FCDE84" },
         secondary: "#CDD3C5",

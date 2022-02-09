@@ -5,6 +5,8 @@ import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import React from "react";
 import { AppLocales } from "types";
 import Kreisel from "@components/Kreisel";
+import SanityImage from "@lib/SanityImage";
+import RichText from "@components/RichText/RichText";
 
 export const heroBlockQuery = `
 _type == "hero" => {
@@ -50,21 +52,37 @@ export interface HeroBlockProps extends HeroBlogResult {
 
 const HeroBlock: React.FC<HeroBlockProps> = (props) => {
   const { content, photo, size } = props;
+
   return (
-    <Section width="l" bg="secondary" className=" h-[85vh] grid grid-cols-2  ">
-      <div className="z-10 flex items-center mx-auto  ml-[10%] ">
-        <Typo variant="h1">
-          <div className=" md:text-[72px] ">
-            Weiterbildung. Lerntherapeutische Förderung. Netzwerk.
-          </div>
-        </Typo>
+    <div className="relative h-[95vh] grid grid-cols-2 bg-primary-light">
+      {photo && <SanityImage image={photo} objectFit="cover" />}
+      <div className="z-10 flex items-center mx-auto ml-[10%] ">
+        <RichText content={content} />
       </div>
       <div className="z-0 relative flex justify-center items-center animate-fadeIn">
-        <Kreisel />
-        {/* <SanityImage image={photo} objectFit="contain" /> */}
+        {!photo && <Kreisel />}
       </div>
-    </Section>
+    </div>
   );
 };
 
 export default HeroBlock;
+
+// const HeroBlock: React.FC<HeroBlockProps> = (props) => {
+//   const { content, photo, size } = props;
+//   return (
+//     <Section width="l" bg="secondary" className=" h-[85vh] grid grid-cols-2  ">
+//       <div className="z-10 flex items-center mx-auto  ml-[10%] ">
+//         <Typo variant="h1">
+//           <div className=" md:text-[72px] ">
+//             Weiterbildung. Lerntherapeutische Förderung. Netzwerk.
+//           </div>
+//         </Typo>
+//       </div>
+//       <div className="z-0 relative flex justify-center items-center animate-fadeIn">
+//         <Kreisel />
+//         {/* <SanityImage image={photo} objectFit="contain" /> */}
+//       </div>
+//     </Section>
+//   );
+// };

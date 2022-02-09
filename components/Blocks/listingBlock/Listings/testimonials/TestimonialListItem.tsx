@@ -13,12 +13,12 @@ const TestimonialListItem: React.FunctionComponent<
   const { text, name, position, image } = props;
 
   return (
-    <div className="grid  grid-cols-1 md:grid-cols-2 py-10 animate-fadeIn ">
-      <div className="p-16 h-full flex flex-col">
+    <div className="grid  grid-cols-1 md:grid-cols-2  animate-fadeIn ">
+      <div className=" flex flex-col py-12">
         <Typo bold={false} variant="h4" className="pt-6 ">
           Das sagen ehemalige Teilnehmer*innen
         </Typo>
-        <Typo bold={false} variant="h1" className="pt-6 text-white  h-full">
+        <Typo bold={false} variant="h2" className="pt-6 text-white  h-full">
           {text}
         </Typo>
         <Typo bold={false} space={false} variant="h4" className="pt-6 ">
@@ -29,7 +29,7 @@ const TestimonialListItem: React.FunctionComponent<
         </Typo>
       </div>
 
-      <div className="relative rounded-theme overflow-hidden w-full aspect-w-1 aspect-h-1 ">
+      <div className="relative overflow-hidden w-full aspect-w-1 aspect-h-1 ">
         <SanityImage image={image} objectFit="cover" />
       </div>
     </div>

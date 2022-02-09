@@ -21,8 +21,6 @@ const HandUnderlineMark: React.FC<MarkProps<HandUnderlineMarkProps>> = (
 ) => {
   const { color, variant, on } = props.mark;
 
-  console.log(props.mark);
-
   return (
     <Underline on={on || "init"} color={color} variant={variantMap[variant]}>
       {props.children}
