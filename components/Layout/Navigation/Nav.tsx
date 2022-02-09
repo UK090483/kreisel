@@ -9,7 +9,7 @@ import {
   NavItemBaseProps,
   NavigationItemBase,
 } from "../../../lib/Navigation";
-import Underline from "@components/Underline";
+import Underline from "@components/Underline/Underline";
 import NavigationMobile from "@lib/Navigation/NavigationMobile";
 import { NavItem } from "@lib/Navigation/types";
 
@@ -67,7 +67,6 @@ const NavItemBaseWithUnderline: React.FC<NavItemBaseProps> = (props) => {
       show={place === "link" || active}
       on={active ? "init" : "hover"}
       color={active ? "secondary" : "primary"}
-      type={active ? "around" : "under"}
     >
       <NavigationItemBase {...props} />
     </Underline>

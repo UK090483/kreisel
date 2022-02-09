@@ -1,6 +1,6 @@
 import { Section } from "@components/Section/Section";
 import Typo from "@components/Typography/Typography";
-import Underline from "@components/Underline";
+import Underline from "@components/Underline/Underline";
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import React from "react";
 import { AppLocales } from "types";

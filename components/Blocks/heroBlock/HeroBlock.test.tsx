@@ -6,7 +6,7 @@ import React from "react";
 const TestUnderline: React.FC = ({ children }) => {
   return <div>{children}</div>;
 };
-jest.mock("@components/Underline", () => {
+jest.mock("@components/Underline/Underline", () => {
   return {
     __esModule: true,
     default: TestUnderline,

@@ -44,25 +44,8 @@ export default {
         annotations: [
           {
             name: "handUnderline",
-            type: "object",
+            type: "underline",
             title: "Hand Underline",
-            fields: [
-              {
-                title: "Underline Color",
-                name: "color",
-                type: "string",
-                options: {
-                  list: [...colorList()],
-                },
-                initialValue: "black",
-              },
-            ],
-            blockEditor: {
-              icon: () => "Hand Underline",
-              render: (props) => {
-                return <span>{props.children}</span>;
-              },
-            },
           },
           {
             name: "tag",

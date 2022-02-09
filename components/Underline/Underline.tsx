@@ -1,14 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import useHover from "@hooks/useHover";
-import useOnScreen from "@hooks/useOnSrceen";
 import clsx from "clsx";
 import React from "react";
+import { useIntersection } from "react-use";
 import { AppColor } from "types";
 
 interface UnderlineProps {
   color?: AppColor;
   on?: "hover" | "init" | "scroll";
-  type?: "under" | "around";
+
   variant?: number;
   show?: boolean;
 }
@@ -33,7 +33,7 @@ const lines = [
   { type: "line", path: L2, length: 99 },
   { type: "line", path: L3, length: 250 },
   { type: "circle", path: K1, length: 435 },
-  { type: "circle", path: K2, length: 435 },
+  { type: "circle", path: K2, length: 446 },
 ];
 const Underline: React.FC<UnderlineProps> = ({
   children,
@@ -42,21 +42,26 @@ const Underline: React.FC<UnderlineProps> = ({
   show = true,
   variant,
 }) => {
-  const [isHovered, hoverProps] = useHover();
+  const { isHovered, hoverProps } = useHover();
 
   const [init, setInit] = React.useState(false);
 
   const lineRef = React.useRef<number>(variant || 0);
+  const intersectionRef = React.useRef(null);
+  const intersection = useIntersection(intersectionRef, {
+    root: null,
+    rootMargin: "-100px",
+    threshold: 1,
+  });
+
+  const isVisible = intersection?.isIntersecting;
 
   React.useEffect(() => {
     if (variant === undefined) {
       lineRef.current = Math.floor(Math.random() * lines.length);
     }
-
     setInit(true);
   }, []);
-
-  const { ref, isVisible } = useOnScreen({ delay: 200 });
 
   const _on =
     on === "init" ||
@@ -67,12 +72,14 @@ const Underline: React.FC<UnderlineProps> = ({
 
   if (!show) return <>{children}</>;
 
-  console.log(color);
-
   return (
     <>
-      {init && (
-        <span ref={ref} {...hoverProps} className="relative inline-block  ">
+      <span
+        ref={intersectionRef}
+        {...hoverProps}
+        className="relative inline-block "
+      >
+        {init && (
           <svg
             style={{ fill: "transparent" }}
             preserveAspectRatio="none"
@@ -88,7 +95,7 @@ const Underline: React.FC<UnderlineProps> = ({
               style={{
                 strokeDasharray: line.length,
                 strokeDashoffset: _on ? 0 : line.length,
-                transition: `stroke-dashoffset 1s `,
+                transition: `stroke-dashoffset 0.6s`,
               }}
               className={clsx("stroke-current", {
                 "text-black": color === "black",
@@ -101,9 +108,9 @@ const Underline: React.FC<UnderlineProps> = ({
               strokeLinecap="round"
             />
           </svg>
-          <span className=" relative">{children}</span>
-        </span>
-      )}
+        )}
+        <span className=" relative">{children}</span>
+      </span>
     </>
   );
 };

@@ -1,10 +1,11 @@
-import Underline from "@components/Underline";
+import Underline from "@components/Underline/Underline";
 import { MarkProps } from "@lib/SanityPageBuilder/lib/RichText";
 import { AppColor } from "types";
 
 type HandUnderlineMarkProps = {
   color?: AppColor;
   variant: string;
+  on?: "scroll";
 };
 
 const variantMap: { [k: string]: number } = {
@@ -18,10 +19,12 @@ const variantMap: { [k: string]: number } = {
 const HandUnderlineMark: React.FC<MarkProps<HandUnderlineMarkProps>> = (
   props
 ) => {
-  const { color, variant } = props.mark;
+  const { color, variant, on } = props.mark;
+
+  console.log(props.mark);
 
   return (
-    <Underline color={color} on="init" variant={variantMap[variant]}>
+    <Underline on={on || "init"} color={color} variant={variantMap[variant]}>
       {props.children}
     </Underline>
   );

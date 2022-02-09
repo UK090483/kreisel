@@ -8,7 +8,7 @@ import ImageGalleryPlug, {
 } from "./Plugs/ImageGaleriePlug/ImageGaleriePlug";
 import Typo from "@components/Typography/Typography";
 import SpacerPlug, { spacerPlugQuery } from "./Plugs/Spacer";
-import Underline from "@components/Underline";
+import Underline from "@components/Underline/Underline";
 import SanityRichText from "@lib/SanityPageBuilder/lib/RichText";
 import List from "./list/List";
 import GSheet, { GSheetPlugQuery } from "./Plugs/Gsheet";

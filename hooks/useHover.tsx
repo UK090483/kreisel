@@ -6,7 +6,7 @@ const useHover = () => {
   const onMouseOver = () => setValue(true);
   const onMouseOut = () => setValue(false);
 
-  return [value, { onMouseOver, onMouseOut }];
+  return { isHovered: value, hoverProps: { onMouseOver, onMouseOut } };
 };
 
 export default useHover;
