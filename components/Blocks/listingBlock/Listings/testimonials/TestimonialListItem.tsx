@@ -18,12 +18,7 @@ const TestimonialListItem: React.FunctionComponent<
         <Typo bold={false} variant="h4" className="pt-6 ">
           Das sagen ehemalige Teilnehmer*innen
         </Typo>
-        <Typo
-          bold={false}
-          hand
-          variant="h1"
-          className="pt-6 text-white  h-full"
-        >
+        <Typo bold={false} variant="h1" className="pt-6 text-white  h-full">
           {text}
         </Typo>
         <Typo bold={false} space={false} variant="h4" className="pt-6 ">

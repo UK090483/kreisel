@@ -25,9 +25,7 @@ const FooterContact: React.FC<FooterContactProps> = (props) => {
       </div>
 
       <div className="p-16">
-        <Typo hand variant={"h1"}>
-          Sie haben Fragen?
-        </Typo>
+        <Typo variant={"h1"}>Sie haben Fragen?</Typo>
         <Typo variant="body-l">Rufen Sie uns an oder mailen Sie uns</Typo>
         <Typo variant="body-l">
           Wir sind Montag bis Freitag von 8:00 bis 17:30 Uhr für Sie da.

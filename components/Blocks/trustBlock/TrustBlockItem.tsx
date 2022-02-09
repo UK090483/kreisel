@@ -32,7 +32,7 @@ const TrustBlockItem: React.FunctionComponent<ITrustBlockItem> = (props) => {
         <SanityImage image={image} objectFit="contain" />
       </div>
       {isIntersecting && (
-        <Typo variant="h1" hand as="p" className=" text-center text-5xl pt-8 ">
+        <Typo variant="h1" as="p" className=" text-center text-5xl pt-8 ">
           {isNumber ? <CountUp n={isNumber} /> : value}
         </Typo>
       )}
