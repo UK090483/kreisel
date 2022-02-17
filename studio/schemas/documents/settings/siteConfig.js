@@ -40,4 +40,10 @@ export default {
       type: "seo",
     },
   ],
+  preview: {
+    select: {},
+    prepare() {
+      return { title: "mainSetting" };
+    },
+  },
 };

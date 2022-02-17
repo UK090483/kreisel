@@ -21,21 +21,15 @@ const Card: React.FC<CardProps> = (props) => {
     description
   );
 
-  const isList = variation === "list";
-
   return (
-    <CardWrap href={href}>
+    <CardWrap href={href} className=" shadow-xl w-full">
       <div
-        className={`relative w-full     ${
-          isList
-            ? " aspect-w-4 aspect-h-2  rounded-theme"
-            : "aspect-w-3 aspect-h-2 rounded-t-theme"
-        } overflow-hidden`}
+        className={`relative w-full   aspect-w-10 aspect-h-5 rounded-t-theme overflow-hidden bg-primary-light `}
       >
-        <SanityImage image={image} objectFit="cover" />
+        {image && <SanityImage image={image} objectFit="cover" />}
       </div>
 
-      <CardBody className={`${isList ? "bg-transparent" : "bg-white"}  h-full`}>
+      <CardBody className={`bg-white  h-full`}>
         {_createdAt && (
           <Typo className="pb-2" variant="body">
             {paresDate(_createdAt)}

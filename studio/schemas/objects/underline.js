@@ -38,7 +38,6 @@ export default {
       options: {
         list: [{ title: "Scroll", value: "scroll" }],
       },
-      initialValue: "black",
     },
   ],
   blockEditor: {

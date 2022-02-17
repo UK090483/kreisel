@@ -11,20 +11,20 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
       <input
         type="text"
         placeholder="Name"
-        className=" rounded-full border-2 mb-4 bg-primary"
+        className=" rounded-full border-0 text-black placeholder:text-black mb-4 bg-primary-light"
       />
 
       <input
         type="text"
         placeholder="PlZ"
         pattern="[0-9]{5}"
-        className=" rounded-full border-2 mb-4 bg-primary"
+        className=" rounded-full border-0 text-black placeholder:text-black mb-4 bg-primary-light"
       />
 
       <input
         type="text"
         placeholder="Stadt"
-        className=" rounded-full border-2 mb-4 bg-primary"
+        className=" rounded-full border-0  text-black placeholder:text-black mb-4 bg-primary-light"
       />
     </div>
   );

@@ -1,6 +1,5 @@
 import { Section } from "@components/Section/Section";
 import NavOverview from "@lib/Navigation/NavOverview";
-import { NavItem } from "@lib/Navigation/types";
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import { PageData } from "pages/[[...slug]]";
 import React from "react";
@@ -30,10 +29,10 @@ const Footer: React.FC<FooterProps> = (props) => {
   return (
     <footer
       data-testid="footer"
-      className="flex flex-col items-center bg-primary "
+      className="flex flex-col items-center bg-primary-light"
     >
       <FooterContact data={data} />
-      <Section bg="primary" width="l" className="pt-12">
+      <Section bg="primary-light" width="l" className="pt-12">
         <NavOverview
           items={data?.navigation || []}
           className="w-full py-24  "

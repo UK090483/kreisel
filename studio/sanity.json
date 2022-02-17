@@ -43,6 +43,10 @@
     {
       "name": "part:@sanity/base/initial-value-templates",
       "path": "./parts/initialValueTemplates.js"
+    },
+    {
+      "implements": "part:@sanity/base/theme/variables/override-style",
+      "path": "parts/variableOverrides.css"
     }
   ]
 }

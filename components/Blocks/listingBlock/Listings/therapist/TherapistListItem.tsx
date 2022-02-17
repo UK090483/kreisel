@@ -20,14 +20,14 @@ const TherapistListItem: React.FC<TherapistListItemProps> = (props) => {
       : "";
 
   return (
-    <li className={`rounded-theme w-full  odd:bg-primary-light  mb-2 p-0.5`}>
+    <li className={`rounded-theme w-full   mb-2 p-0.5`}>
       <Link
         passHref
         href={{ pathname: "/" + baseUrl, query: { therapeut: _id } }}
         scroll={false}
         shallow={true}
       >
-        <a className=" rounded-theme flex w-full items-center hover:ring-4  ring-primary ">
+        <a className=" rounded-theme flex w-full items-center hover:bg-grey-light ">
           <Avatar
             className={`relative transition-all w-10 h-10 flex-shrink-0 rounded-theme overflow-hidden`}
             name={`${firstName} ${name}`}
@@ -35,8 +35,8 @@ const TherapistListItem: React.FC<TherapistListItemProps> = (props) => {
           />
 
           <div className=" w-full px-6 ">
-            <div className="flex-col md:flex-row flex w-full md:items-center md:justify-between">
-              <Typo space={false} bold>{`${firstName} ${name}`}</Typo>
+            <div className="flex-col md:flex-row flex w-full md:items-center md:justify-between ">
+              <Typo space={false}>{`${firstName} ${name}`}</Typo>
               <Typo space={false}>{`${city || ""} ${zipCode || ""}`}</Typo>
             </div>
           </div>

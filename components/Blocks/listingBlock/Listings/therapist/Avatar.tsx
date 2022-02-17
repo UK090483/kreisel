@@ -12,9 +12,9 @@ const Avatar: React.FC<AvatarProps> = (props) => {
   return (
     <div className={`${className}`}>
       {image ? (
-        <SanityImage image={image} />
+        <SanityImage image={image} objectFit="cover" />
       ) : (
-        <div className=" absolute inset-0 flex justify-center items-center  font-bold  bg-primary">
+        <div className=" absolute inset-0 flex justify-center items-center  bg-primary-light">
           {getInitials(name)}
         </div>
       )}
@@ -26,6 +26,9 @@ export default Avatar;
 
 const getInitials = (name?: string) => {
   return name
-    ? name.split(" ").reduce((acc, subName) => acc + subName[0] + "", "")
+    ? name
+        .split(" ")
+        .filter((i) => i)
+        .reduce((acc, subName) => acc + subName[0] + "", "")
     : "N.N.";
 };

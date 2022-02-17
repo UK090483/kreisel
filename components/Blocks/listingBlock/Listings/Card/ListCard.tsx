@@ -22,18 +22,16 @@ const ListCard: React.FC<CardProps> = (props) => {
     description
   );
 
-  const isList = variation === "list";
-
   return (
     <CardWrap
       href={href}
-      className=" rounded-theme bg-grey-light flex items-center shadow-sm hover:shadow-2xl transition-shadow"
+      className=" rounded-theme bg-grey-light  shadow-sm hover:shadow-2xl transition-shadow  w-full py-6 border-primary border-[1px]"
     >
-      <div className=" flex items-center ">
-        <div className="w-14 m-6">
+      <div className=" flex items-center w-full ">
+        <div className="w-14 m-6 flex-shrink-0">
           <Kreisel />
         </div>
-        <div className=" p-8 w-full ">
+        <div className="  w-full ">
           {title && (
             <Typo space={false} variant="body-l">
               {title}
@@ -41,27 +39,6 @@ const ListCard: React.FC<CardProps> = (props) => {
           )}
         </div>
       </div>
-
-      {/* <div
-        className={`relative w-full     ${
-          isList
-            ? " aspect-w-4 aspect-h-2  rounded-theme"
-            : "aspect-w-3 aspect-h-2 rounded-t-theme"
-        } overflow-hidden`}
-      >
-        <SanityImage image={image} objectFit="cover" />
-      </div>
-
-      <CardBody className={`${isList ? "bg-transparent" : "bg-white"}  h-full`}>
-        {_createdAt && (
-          <Typo className="pb-2" variant="body">
-            {paresDate(_createdAt)}
-          </Typo>
-        )}
-        {title && <Typo variant="body-l">{title}</Typo>}
-        {description && <Typo>{_description}</Typo>}
-        {children}
-      </CardBody> */}
     </CardWrap>
   );
 };

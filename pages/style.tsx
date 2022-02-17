@@ -8,7 +8,7 @@ import React from "react";
 const Style = () => {
   return (
     <Section>
-      <div className="container  mx-auto py-8">
+      <div className="container  mx-auto py-8 bla">
         <div className="container mx-auto mt-10 ">
           <Typo space={false} variant="h1">
             <Underline color="primary" variant={0}>

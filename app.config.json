@@ -4,9 +4,12 @@
   },
   "colors": {
     "primary": "#000000",
+    "primary-light": "#000000",
     "secondary": "#000000",
+    "secondary-light": "#000000",
     "black": "#000000",
     "white": "#000000",
-    "grey": "#000000"
+    "grey": "#000000",
+    "grey-light": "#000000"
   }
 }

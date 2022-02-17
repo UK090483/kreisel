@@ -31,15 +31,15 @@ module.exports = {
       },
       colors: {
         grey: {
-          light: "#dddddd",
-          DEFAULT: "#d1d5db",
+          light: "#f1f1f1",
+          DEFAULT: "#c4c4c4",
           dark: "#dddddd",
         },
-        // black: "#595959",
+
         black: "#000000",
         white: "#ffffff",
-        primary: { light: "#FDECB3", DEFAULT: "#FCDE84" },
-        secondary: "#CDD3C5",
+        primary: { light: "#F9DE83", DEFAULT: "#F3BD06" },
+        secondary: { DEFAULT: "#D22D30", light: "#EC4E51" },
         red: "#D22D30",
       },
       animation: {

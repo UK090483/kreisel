@@ -68,7 +68,7 @@ const NavItemBaseWithUnderline: React.FC<NavItemBaseProps> = (props) => {
     <Underline
       show={place === "link" || active}
       on={active ? "init" : "hover"}
-      color={active ? "secondary" : "primary"}
+      color={active ? "secondary-light" : "primary-light"}
     >
       <NavigationItemBase {...props} />
     </Underline>

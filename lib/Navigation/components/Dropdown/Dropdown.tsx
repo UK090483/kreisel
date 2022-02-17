@@ -14,7 +14,7 @@ interface DropdownProps {
 const Dropdown: React.FC<DropdownProps> = ({ items, list, onClick }) => {
   const ref = useRef<HTMLUListElement | null>(null);
   return (
-    <ul ref={ref} className="flex justify-between w-full">
+    <ul ref={ref} className=" flex justify-between w-full ">
       {list &&
         list.map((i, index) => (
           <List

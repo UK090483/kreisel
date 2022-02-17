@@ -5,6 +5,7 @@ import { NextPage } from "next";
 import { Session } from "next-auth";
 import Kreisel from "@components/Kreisel";
 import { useForm } from "react-hook-form";
+import Input from "@components/Inputs/Input";
 
 type LoginProps = {
   csrfToken?: string | undefined;
@@ -36,8 +37,8 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
   };
 
   return (
-    <div className="h-screen flex justify-center  bg-secondary px-5 ">
-      <div className=" pt-20 ">
+    <div className="h-screen flex justify-center items-center  px-5 bg-grey-light">
+      <div className=" rounded-theme p-20  bg-primary-light  h-fit">
         <div className="w-1/2 sm:w-2/3 mx-auto">
           <Kreisel />
         </div>
@@ -57,7 +58,7 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
               Email {errors["email"] && " " + errors["email"].message}
             </span>
 
-            <input
+            <Input
               {...register("email", {
                 pattern: {
                   value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
@@ -65,7 +66,7 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
                 },
                 required: "muss ausgefüllt sein",
               })}
-              className="w-full mt-2 rounded-theme bg-primary"
+              className="w-full mt-2 "
               type="text"
               id="email"
               name="email"

@@ -5,6 +5,8 @@ import { MdSettings } from "react-icons/md";
 import sanityClient from "part:@sanity/base/client";
 const client = sanityClient.withConfig({ apiVersion: "2021-06-07" });
 
+const isLocal = window.location.hostname === "localhost";
+
 export default () =>
   S.list()
     .title("Base")
@@ -21,9 +23,13 @@ export default () =>
                 .schemaType("siteConfig")
                 .title("Configuration")
                 .id("siteConfig"),
-              S.listItem()
-                .title("Page Types")
-                .child(S.documentTypeList("pageType")),
+              ...(isLocal
+                ? [
+                    S.listItem()
+                      .title("Page Types")
+                      .child(S.documentTypeList("pageType")),
+                  ]
+                : []),
             ])
         ),
 

@@ -28,7 +28,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     return (
       <Link
         onClick={onClick}
-        className={`inline-block px-12 py-2 text-center text-base rounded-full  border-2 border-black  whitespace-nowrap ${className}`}
+        className={`inline-block px-6 py-1 text-center text-base rounded-full  border-2 border-black  whitespace-nowrap ${className}`}
         href={href}
         external={external}
       >

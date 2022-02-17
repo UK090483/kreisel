@@ -1,10 +1,11 @@
 import clsx from "clsx";
 import React from "react";
+import { AppColor } from "types";
 import Transition from "./Transition";
 
 interface SectionProps {
   width?: "full" | "m" | "l" | "s";
-  bg?: "white" | "grey" | "black" | "primary" | "secondary";
+  bg?: AppColor;
   className?: string;
   id?: string;
   noPadding?: boolean;
@@ -32,8 +33,11 @@ export const Section: React.FC<SectionProps> = ({
         className={clsx(`w-full overflow-hidden  `, {
           "bg-white": bg === "white",
           "bg-primary": bg === "primary",
+          "bg-primary-light": bg === "primary-light",
           "bg-secondary": bg === "secondary",
+          "bg-secondary-light": bg === "secondary-light",
           " bg-grey": bg === "grey",
+          " bg-grey-light": bg === "grey-light",
         })}
       >
         <div

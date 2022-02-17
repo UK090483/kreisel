@@ -23,7 +23,7 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
 
   return (
     <div className="flex flex-col items-center my-12">
-      <div className="flex text-gray-700">
+      <div className="flex text-black">
         <button
           onClick={prev}
           className={`h-8 w-8 ml-1 flex justify-center items-center  cursor-pointer ${
@@ -90,7 +90,7 @@ const Item: React.FC<{ active: boolean; onClick: () => void }> = (props) => {
     <div
       onClick={onClick}
       className={`w-8 md:flex rounded-full justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in    ${
-        active ? "bg-primary" : ""
+        active ? "bg-primary-light" : ""
       }`}
     >
       {children}

@@ -1,7 +1,8 @@
 import clsx from "clsx";
+import { AppColor } from "types";
 
 type TransitionProps = {
-  color?: "black" | "white" | "primary" | "secondary" | "grey";
+  color?: AppColor;
   pos: "top" | "bottom";
   transition?: null | string;
 };
@@ -21,7 +22,7 @@ const Transition: React.FC<TransitionProps> = ({
   return (
     <div className="relative ">
       <div
-        className={clsx("absolute w-full", {
+        className={clsx("absolute w-full overflow-hidden", {
           "transform -translate-y-full": pos === "top",
         })}
       >
@@ -29,12 +30,18 @@ const Transition: React.FC<TransitionProps> = ({
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1000 100"
-          className={clsx("  fill-current h-8  w-full", {
-            "text-white": color === "white",
-            "text-primary": color === "primary",
-            "text-secondary": color === "secondary",
-            "text-gray-300": color === "grey",
-          })}
+          className={clsx(
+            " fill-current h-8  w-[300vw] md:w-[150vw] lg:w-full",
+            {
+              "text-white": color === "white",
+              "text-primary": color === "primary",
+              "text-primary-light": color === "primary-light",
+              "text-secondary": color === "secondary",
+              "text-secondary-light": color === "secondary-light",
+              "text-grey": color === "grey",
+              "text-grey-light": color === "grey-light",
+            }
+          )}
         >
           <path d={pos === "top" ? overFlowTop : bottomD} />
         </svg>
