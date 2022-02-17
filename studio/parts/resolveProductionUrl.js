@@ -1,4 +1,4 @@
-const remoteUrl = `https://kreisel-rfmups45y-konradullrich.vercel.app`;
+const remoteUrl = `https://kreisel-gr1ims8iv-konradullrich.vercel.app/`;
 const localUrl = `http://localhost:3000`;
 
 const previewSecret = "j8heapkqy4rdz6kudrvsc7ywpvfhrv022abyx5zgmuwpc1xv";
