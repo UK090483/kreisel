@@ -11,17 +11,23 @@ export default NextAuth({
   adapter: SanityAdapter({
     client: mockClient({
       database: [
-        { _type: "user", email: "web@konradullrich.com", _id: "testUser" },
-        { _type: "user", email: "konradullrich@me.com", _id: "testUser" },
+        { _type: "user", email: "web@konradullrich.com", _id: "testUser1" },
+        { _type: "user", email: "konradullrich@me.com", _id: "testUser2" },
+        {
+          _type: "user",
+          email: "meikeschueler@kreiselhh.de",
+          _id: "testUser3",
+        },
+        { _type: "user", email: "gesaharms@kreiselhh.de", _id: "testUser4" },
         {
           _type: "user",
           email: "fv@schwan-communications.com",
-          _id: "testUser",
+          _id: "testUser5",
         },
         {
           _type: "user",
           email: "nst@schwan-communications.com",
-          _id: "testUser",
+          _id: "testUser6",
         },
       ],
     }),
