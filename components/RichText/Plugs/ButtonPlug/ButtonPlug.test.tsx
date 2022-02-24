@@ -19,7 +19,7 @@ const customRender = ({
 describe("Button", () => {
   it("should render correctly as Button ", () => {
     customRender({});
-    expect(screen.getByRole("button")).toHaveTextContent("test");
+    expect(screen.getByRole("link")).toHaveTextContent("test");
   });
 
   it("should handle click as Link", () => {

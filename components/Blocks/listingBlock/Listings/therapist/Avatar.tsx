@@ -1,5 +1,5 @@
-import SanityImage from "@lib/SanityImage";
 import { ImageMetaResult } from "@lib/SanityImage/query";
+import Image from "next/image";
 
 type AvatarProps = {
   name?: string;
@@ -7,14 +7,21 @@ type AvatarProps = {
   className?: string;
 };
 
+const imageSize = 500;
 const Avatar: React.FC<AvatarProps> = (props) => {
   const { image, name, className } = props;
+
   return (
     <div className={`${className}`}>
-      {image ? (
-        <SanityImage image={image} objectFit="cover" />
+      {image && image.url ? (
+        <Image
+          src={image.url}
+          width={imageSize}
+          height={imageSize / image.aspectRatio}
+          alt={`${name} Profil`}
+        />
       ) : (
-        <div className=" absolute inset-0 flex justify-center items-center  bg-primary-light">
+        <div className="absolute inset-0 flex justify-center items-center bg-primary-light">
           {getInitials(name)}
         </div>
       )}

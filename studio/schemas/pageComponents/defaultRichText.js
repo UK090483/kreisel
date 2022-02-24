@@ -23,13 +23,6 @@ export default {
       ],
       marks: {
         decorators: [
-          {
-            title: "Hand",
-            value: "hand",
-            blockEditor: {
-              icon: TiPencil,
-            },
-          },
           { title: "Strong", value: "strong" },
           { title: "Emphasis", value: "em" },
           {
@@ -87,8 +80,23 @@ export default {
             blockEditor: {
               icon: () => "Link",
               render: (props) => {
+                console.log(props);
+
+                const buttonStyles = {
+                  border: "red solid 2px",
+                  padding: "5px 20px",
+                  borderRadius: "50px",
+                  textDecoration: "none",
+                };
+
                 return (
-                  <a style={{ textDecoration: "underline", color: "red" }}>
+                  <a
+                    style={{
+                      textDecoration: "underline",
+                      color: "red",
+                      ...(props.asButton ? buttonStyles : {}),
+                    }}
+                  >
                     {props.children}
                   </a>
                 );
@@ -101,7 +109,7 @@ export default {
     {
       type: "imagePlug",
     },
-    { type: "button", blockEditor: { render: Button } },
+    // { type: "button", blockEditor: { render: Button } },
     { type: "spacer" },
     { type: "imageGalleryPlug" },
     { type: "embedHTML" },

@@ -18,7 +18,7 @@ _type == "button" => {
 type ButtonType = {
   _type: "button";
   label?: string;
-  link: LinkResult;
+  link?: LinkResult;
   position?: "inline" | "left" | "right" | "center";
 };
 
@@ -26,7 +26,11 @@ const ButtonPlug: React.FC<{ node: ButtonType }> = (props) => {
   const { link, label, position } = props.node;
 
   return (
-    <Button href={link.href} external={link.external}>
+    <Button
+      href={link?.href || "/"}
+      external={!!link?.external}
+      className=" block"
+    >
       {label}
     </Button>
   );

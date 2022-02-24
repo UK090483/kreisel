@@ -1,11 +1,8 @@
-import { useRouter } from "next/router";
 import * as React from "react";
 
 interface ISearchProps {}
 
 const Search: React.FunctionComponent<ISearchProps> = (props) => {
-  const {} = useRouter();
-
   return (
     <div className=" flex-col md:flex-row  w-full py-0 md:py-10 flex justify-between ">
       <input
