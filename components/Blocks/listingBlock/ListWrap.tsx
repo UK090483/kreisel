@@ -13,8 +13,6 @@ const ListWrap: React.FC<ListWrapProps> = (props) => {
   const { children, bgColor, content, space = true } = props;
   const hasContent = content && content.length > 0;
 
-  console.log(content);
-
   return (
     <Section
       width="l"

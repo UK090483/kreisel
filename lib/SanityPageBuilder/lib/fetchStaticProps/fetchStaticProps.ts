@@ -1,10 +1,19 @@
 import { GetStaticPropsResult } from "next";
-import { fetchStaticPropsProps, PageProps } from "../types";
+import { fetchStaticPropsProps, PageProps } from "../../types";
 
 export async function fetchStaticProps<P>(
   props: fetchStaticPropsProps
 ): Promise<GetStaticPropsResult<PageProps<P>>> {
-  const { params, client, locale, preview, query, locales, revalidate } = props;
+  const {
+    params,
+    client,
+    locale,
+    preview,
+    query,
+    locales,
+    revalidate,
+    previewQuery,
+  } = props;
 
   if (!params) {
     throw new Error("No params in getStaticProps");
@@ -22,12 +31,16 @@ export async function fetchStaticProps<P>(
     }, `slug.current == "${slug}"`);
 
   const filter = slug
-    ? `_type == "page" && ${localizedQuery(slug)}`
+    ? `_type == "page" && (${localizedQuery(slug)})`
     : `_id == *[_id == 'siteConfig'][0].indexPage._ref`;
 
   const fetch = `*[${filter}][0]{
    ${query}
   }`;
+
+  const previewFetch = `*[${filter}][0]{
+    ${previewQuery}
+   }`;
 
   const data = await client.fetch(fetch);
 
@@ -39,9 +52,11 @@ export async function fetchStaticProps<P>(
     props: {
       data,
       preview: preview || false,
-      query: preview ? fetch : "",
+      query: preview ? (previewQuery ? previewFetch : fetch) : "",
       id: slug || "noId",
     },
     revalidate,
   };
 }
+
+export default fetchStaticProps;

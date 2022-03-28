@@ -1,18 +1,16 @@
 import { sanityClient as client } from "@services/SanityService/sanity.server";
-import conf from "app.config.json";
-import SPB from "@lib/SanityPageBuilder/SPB";
+
 import HeroBlock, {
   heroBlockQuery,
   HeroBlogResult,
 } from "@components/Blocks/heroBlock/HeroBlock";
 
-import onPageNav, {
-  onPageNavBlockQuery,
-} from "@components/Blocks/onPageNav/OnPageNav";
-import SectionBlock, {
-  sectionBlockQuery,
+import SectionBlock from "@components/Blocks/sectionBlock/SectionBlock";
+import {
   SectionBlockResult,
-} from "@components/Blocks/sectionBlock/SectionBlock";
+  sectionBlockQuery,
+} from "@components/Blocks/sectionBlock/SectionBlockQuery";
+
 import { NavigationQuery, NavigationResult } from "@lib/Navigation/query";
 import TrustBlock, {
   trustBlockQuery,
@@ -27,52 +25,69 @@ import {
 } from "@components/Blocks/listingBlock/listingBlockQuery";
 import ListingBlock from "@components/Blocks/listingBlock/ListingsBlock";
 
-export interface PageData extends NavigationResult, FooterQueryResult {
+import fetchStaticProps from "@lib/SanityPageBuilder/lib/fetchStaticProps/fetchStaticProps";
+
+import { GetStaticPaths, GetStaticProps } from "next";
+import appConfig from "../app.config.json";
+import { useAppContext } from "@components/AppContext/AppContext";
+import BodyParser from "@lib/SanityPageBuilder/lib/BodyParser/BodyParser";
+import { fetchStaticPaths } from "@lib/SanityPageBuilder/lib/fetchStaticPaths";
+import appQuery, { appQueryResult } from "@components/AppContext/appQuery";
+const locales = appConfig.locales;
+
+export interface PageData
+  extends NavigationResult,
+    appQueryResult,
+    FooterQueryResult {
   content: (SectionBlockResult | ListingBlockProps | HeroBlogResult)[];
   title?: string;
 }
 
-const { getStaticPaths, getStaticProps, PageComponent } = SPB<PageData>({
-  revalidate: 1,
-  client,
-  locales: conf.locales,
-  getQuery: (props) => {
-    const isMember =
-      props?.params?.slug && props?.params?.slug[0] === "mitgliederbereich";
-    return `${footerQuery}, ${NavigationQuery(
-      "",
-      isMember ? "memberNav" : undefined
-    )}, title`;
-  },
-  components: [
-    {
-      name: "trust",
-      component: TrustBlock,
-      query: trustBlockQuery,
-    },
-    {
-      name: "hero",
-      component: HeroBlock,
-      query: heroBlockQuery,
-    },
-    {
-      name: "section",
-      component: SectionBlock,
-      query: sectionBlockQuery,
-    },
-    {
-      name: "listing",
-      component: ListingBlock,
-      query: listingBlockQuery,
-    },
-    {
-      name: "onPageNav",
-      component: onPageNav,
-      query: onPageNavBlockQuery,
-    },
-  ],
-});
+const Page = () => {
+  const { data } = useAppContext();
+  return (
+    <BodyParser
+      components={{
+        hero: {
+          component: HeroBlock,
+        },
+        section: {
+          component: SectionBlock,
+        },
+        listing: {
+          component: ListingBlock,
+        },
+        trust: {
+          component: TrustBlock,
+        },
+      }}
+      content={data?.content || []}
+    />
+  );
+};
 
-export { getStaticPaths, getStaticProps };
+export const getStaticPaths: GetStaticPaths = async () => {
+  return await fetchStaticPaths({
+    client,
+    doc: "page",
+    locales,
+  });
+};
 
-export default PageComponent;
+export const getStaticProps: GetStaticProps = async (props) => {
+  const { params, preview, locale } = props;
+  return await fetchStaticProps<PageData>({
+    locale,
+    revalidate: true,
+    params,
+    client,
+    previewQuery: `content[]{${heroBlockQuery},${sectionBlockQuery}, ${listingBlockQuery},${trustBlockQuery}}`,
+    query: `content[]{${heroBlockQuery},${sectionBlockQuery},${listingBlockQuery},${trustBlockQuery} },  ${footerQuery}, ${appQuery(
+      ""
+    )}, ${NavigationQuery()}`,
+    locales,
+    preview,
+  });
+};
+
+export default Page;

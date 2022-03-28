@@ -1,10 +1,4 @@
 import React from "react";
-import { TiPencil } from "react-icons/ti";
-
-import { colorList } from "../snippets";
-const Button = (props) => {
-  return <span>{props.label}</span>;
-};
 
 export default {
   name: "defaultRichText",

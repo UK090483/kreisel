@@ -1,46 +1,11 @@
 import React from "react";
 import clsx from "clsx";
-
-import RichText, { richTextQuery } from "../../RichText/RichText";
-
+import RichText from "../../RichText/RichText";
 import { Section } from "@components/Section/Section";
 import SanityImage from "@lib/SanityImage";
 import Accordion from "./Accordion";
-import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
-
-export const sectionBlockQuery = `
-_type == "section" => {
-  _key,
-  _type,
-  title,
-  width,
-  bgColor,
-  type,
-  topSpace,
-  bottomSpace,
-  ${richTextQuery},
-  bgImage{${imageMeta}},
-  image{${imageMeta}},
-  transitionTop,
-  transitionBottom,
-}
-`;
-
-export interface SectionBlockResult {
-  _type: "section";
-  content: null | any;
-  bgImage?: ImageMetaResult | null;
-  image?: ImageMetaResult | null;
-  transitionTop?: "tearOff" | null;
-  transitionBottom?: "tearOff" | null;
-  topSpace?: "s" | "m" | "l" | "xl" | "xxl";
-  bottomSpace?: "s" | "m" | "l" | "xl" | "xxl";
-  title?: string;
-  bgColor?: "black" | "white" | "primary" | "secondary" | "grey";
-  width?: "m" | "l" | "s";
-  type?: "accordion";
-  _key: string;
-}
+import { ImageMetaResult } from "@lib/SanityImage/query";
+import { SectionBlockResult } from "./SectionBlockQuery";
 
 interface SectionBlockProps extends SectionBlockResult {}
 

@@ -1,4 +1,5 @@
 {
+  "hostname":"https://Kreisel",
   "locales": {
     "de": { "title": "Deutsch", "isDefault": true, "flag": "🇩🇪" }
   },

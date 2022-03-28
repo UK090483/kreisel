@@ -1,6 +1,6 @@
 import React from "react";
 import link, { linkMarkQuery } from "./marks/link";
-import hand from "./marks/hand";
+
 import ButtonPlug, { buttonPlugQuery } from "./Plugs/ButtonPlug/ButtonPlug";
 import EmbedPlug from "./Plugs/EmbedPlug";
 import ImageGalleryPlug, {
@@ -8,7 +8,7 @@ import ImageGalleryPlug, {
 } from "./Plugs/ImageGaleriePlug/ImageGaleriePlug";
 import Typo from "@components/Typography/Typography";
 import SpacerPlug, { spacerPlugQuery } from "./Plugs/Spacer";
-import Underline from "@components/Underline/Underline";
+
 import SanityRichText from "@lib/SanityPageBuilder/lib/RichText";
 import List from "./list/List";
 import GSheet, { GSheetPlugQuery } from "./Plugs/Gsheet";
@@ -58,18 +58,7 @@ const RichText: React.FC<any> = (props: any) => {
         tag: (props: any) => {
           return <Typo variant={props.mark.tag}>{props.children}</Typo>;
         },
-        // hand: (props: any) => {
-        //   return <Typo className=" text-red ">{props.children}</Typo>;
-        // },
-
         handUnderline: HandUnderline,
-        // handUnderline: (props: any) => {
-        //   return (
-        //     <Underline color={props?.mark?.color} on="init">
-        //       {props.children}
-        //     </Underline>
-        //   );
-        // },
       }}
       blockRenderer={(props) => {
         const { style = "normal" } = props.node;

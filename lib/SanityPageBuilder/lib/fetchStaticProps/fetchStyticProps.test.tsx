@@ -1,5 +1,5 @@
-import { mockClient } from "./testPrepare";
-import { fetchStaticProps } from "../fetchStaticProps";
+import { mockClient } from "../MockClient";
+import { fetchStaticProps } from "../fetchStaticProps/fetchStaticProps";
 
 const locales = {
   de: { title: "Deutsch", isDefault: true, flag: "🇩🇪" },
@@ -35,7 +35,7 @@ describe.only("fetchStaticProps", () => {
     await expect(
       fetchStaticProps({
         query: "any",
-        client: mockClient({ fetchReturn: { test: "test" } }),
+        client: mockClient({ mockReturnValue: { test: "test" } }),
         locales,
       })
     ).rejects.toThrowError();

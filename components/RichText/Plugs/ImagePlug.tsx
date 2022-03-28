@@ -10,7 +10,7 @@ type ImagePlugProps = {
 export const ImagePlugQuery = `
 _type == "imagePlug" => {
   ...,
-  'image': image{${imageMeta}} 
+  'image': {${imageMeta}} 
 }
 `;
 

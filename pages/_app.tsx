@@ -13,6 +13,8 @@ import usePreviewSubscription from "@lib/SanityPageBuilder/lib/preview/previewSu
 import PreviewIndicator from "@lib/SanityPageBuilder/lib/preview/PreviewIndicator";
 import Script from "next/script";
 import useAuthenticatePage from "@hooks/useAuthenticatePage";
+import { AppContextProvider } from "@components/AppContext/AppContext";
+import AppConfig from "app.config.json";
 
 interface AppPropsWithStaticProps {
   pageProps: PageProps<PageData>;
@@ -23,6 +25,8 @@ interface AppPropsWithStaticProps {
 
 function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   const { data: _data, query, preview } = _pageProps;
+
+  console.log(_pageProps);
 
   const { data, error } = usePreviewSubscription<PageData | null>(query, {
     initialData: _data,
@@ -48,17 +52,19 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
         strategy="beforeInteractive"
       />
       <SessionProvider>
-        <ShopContextProvider>
-          <StoreContextProvider>
-            {getLayout(pageProps.id)}
-            <Cookie />
-            <Cart />
-            {/* {process.env.NODE_ENV === "development" && (
+        <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
+          <ShopContextProvider>
+            <StoreContextProvider>
+              {getLayout(pageProps.id)}
+              <Cookie />
+              <Cart />
+              {/* {process.env.NODE_ENV === "development" && (
               <div className="h-28 container z-50bg-red mx-auto"></div>
             )} */}
-            {preview && <PreviewIndicator />}
-          </StoreContextProvider>
-        </ShopContextProvider>
+              {preview && <PreviewIndicator />}
+            </StoreContextProvider>
+          </ShopContextProvider>
+        </AppContextProvider>
       </SessionProvider>
     </>
   );
