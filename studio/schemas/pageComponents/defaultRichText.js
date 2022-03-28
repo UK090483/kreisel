@@ -1,10 +1,4 @@
 import React from "react";
-import { TiPencil } from "react-icons/ti";
-
-import { colorList } from "../snippets";
-const Button = (props) => {
-  return <span>{props.label}</span>;
-};
 
 export default {
   name: "defaultRichText",
@@ -23,46 +17,18 @@ export default {
       ],
       marks: {
         decorators: [
-          {
-            title: "Hand",
-            value: "hand",
-            blockEditor: {
-              icon: TiPencil,
-            },
-          },
           { title: "Strong", value: "strong" },
           { title: "Emphasis", value: "em" },
           {
             title: "Underline",
             value: "underline",
           },
-          // {
-          //   title: "Hand Underline",
-          //   value: "handUnderline",
-          // },
         ],
         annotations: [
           {
             name: "handUnderline",
-            type: "object",
+            type: "underline",
             title: "Hand Underline",
-            fields: [
-              {
-                title: "Underline Color",
-                name: "color",
-                type: "string",
-                options: {
-                  list: [...colorList()],
-                },
-                initialValue: "black",
-              },
-            ],
-            blockEditor: {
-              icon: () => "Hand Underline",
-              render: (props) => {
-                return <span>{props.children}</span>;
-              },
-            },
           },
           {
             name: "tag",
@@ -108,8 +74,23 @@ export default {
             blockEditor: {
               icon: () => "Link",
               render: (props) => {
+                console.log(props);
+
+                const buttonStyles = {
+                  border: "red solid 2px",
+                  padding: "5px 20px",
+                  borderRadius: "50px",
+                  textDecoration: "none",
+                };
+
                 return (
-                  <a style={{ textDecoration: "underline", color: "red" }}>
+                  <a
+                    style={{
+                      textDecoration: "underline",
+                      color: "red",
+                      ...(props.asButton ? buttonStyles : {}),
+                    }}
+                  >
                     {props.children}
                   </a>
                 );
@@ -120,27 +101,14 @@ export default {
       },
     },
     {
-      type: "image",
-      fields: [
-        {
-          type: "text",
-          name: "alt",
-          title: "Alternative text",
-          description: `Some of your visitors cannot see images, 
-            be they blind, color-blind, low-sighted; 
-            alternative text is of great help for those 
-            people that can rely on it to have a good idea of 
-            what\'s on your page.`,
-          options: {
-            isHighlighted: true,
-          },
-        },
-      ],
+      type: "imagePlug",
     },
-    { type: "button", blockEditor: { render: Button } },
+    // { type: "button", blockEditor: { render: Button } },
     { type: "spacer" },
     { type: "imageGalleryPlug" },
-    { type: 'embed' },
+    { type: "embedHTML" },
+    { type: "gSheet" },
+    { type: "eventPlug" },
     // { type: 'imagePlug' },
     // { type: 'seoHeader' },
 

@@ -24,7 +24,7 @@ export const Link: React.FC<LinkProps> = ({
   }
 
   return (
-    <NextLink href={href} passHref>
+    <NextLink href={href} passHref scroll={false}>
       <a onClick={onClick} className={className}>
         {children}
       </a>

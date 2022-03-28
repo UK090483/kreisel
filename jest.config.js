@@ -1,14 +1,18 @@
 module.exports = {
+  collectCoverage: true,
   collectCoverageFrom: [
     "**/*.{js,jsx,ts,tsx}",
     "!studio/**",
     "!**/*.d.ts",
+    "!**/schema/**",
     "!**/node_modules/**",
+    "!.next/**",
   ],
   moduleNameMapper: {
     "^@components/(.*)$": "<rootDir>/components/$1",
     "^@services/(.*)$": "<rootDir>/services/$1",
     "^@hooks/(.*)$": "<rootDir>/hooks/$1",
+    "^@lib/(.*)$": "<rootDir>/lib/$1",
 
     /* Handle CSS imports (with CSS modules)
       https://jestjs.io/docs/webpack#mocking-css-modules */

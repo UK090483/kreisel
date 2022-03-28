@@ -1,10 +1,11 @@
-import { Image } from "@components/Image";
+import SanityImage from "@lib/SanityImage";
 import useAnimationDelay from "@hooks/useAnimationDelay";
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { ShopButton } from "./ShopButton";
 import { useShop } from "./shopContext";
 import FocusTrap from "focus-trap-react";
+import { ImageMetaResult } from "@lib/SanityImage/query";
 
 const Cart: React.FC = () => {
   const s = useShop();
@@ -92,15 +93,22 @@ type ArticleProps = {
   id: string;
   price?: number;
   title?: string;
+  image?: ImageMetaResult;
 };
 
-const Article: React.FC<ArticleProps> = ({ children, id, price, title }) => {
+const Article: React.FC<ArticleProps> = ({
+  children,
+  id,
+  price,
+  title,
+  image,
+}) => {
   const s = useShop();
   const { removeArticle } = s;
   return (
     <div className=" bg-white  rounded-xl overflow-hidden mb-4">
       <div className="relative w-full aspect-w-16 aspect-h-10 ">
-        <Image />
+        <SanityImage image={image} objectFit="cover" />
       </div>
 
       <div className="p-3">

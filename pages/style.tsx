@@ -1,17 +1,66 @@
 import Button from "@components/Button/Button";
-import { Section } from "@components/Section";
+import Kreisel from "@components/Kreisel";
+import { Section } from "@components/Section/Section";
 import Typo from "@components/Typography";
-import Underline from "@components/Underline";
+import Underline from "@components/Underline/Underline";
 import React from "react";
 
 const Style = () => {
   return (
     <Section>
-      <div className="container flex mx-auto ">
-        <div className="container mx-auto ">
+      <div className="container  mx-auto py-8 bla">
+        <div className="container mx-auto mt-10 ">
           <Typo space={false} variant="h1">
-            H1
+            <Underline color="primary" variant={0}>
+              Blaaaasdfjskl
+            </Underline>
           </Typo>
+          <Typo space={false} variant="h2">
+            <Underline color="primary" variant={0}>
+              Blaaaasdfjskl fg fgfg
+            </Underline>
+          </Typo>
+          <Typo space={false} variant="h3">
+            sdfjsdlfkj f
+            <Underline color="primary" variant={3}>
+              __sfdsdfkBlaaaasdfjskl
+            </Underline>
+          </Typo>
+          <Typo space={false} variant="h4">
+            <Underline color="primary" variant={0}>
+              Blaaaasdfjskl
+            </Underline>
+          </Typo>
+
+          <Typo space={false} variant="body">
+            <Underline color="primary" variant={0}>
+              Blaaaasdfjskl
+            </Underline>
+          </Typo>
+
+          <div>
+            <Kreisel />
+          </div>
+
+          {/* <Typo space={false} variant="h2">
+            <Underline color="primary" variant={2}>
+              Blaaaasdfjskl
+            </Underline>
+          </Typo>
+          <Typo space={false} variant="h3">
+            <Underline on="hover" color="primary" variant={3}>
+              Blaaaasdfjskl
+            </Underline>
+          </Typo> */}
+        </div>
+      </div>
+      {/* <div className="container flex mx-auto ">
+        <div className="container mx-auto ">
+          <Underline variant={2}>
+            <Typo space={false} variant="h1">
+              H1
+            </Typo>
+          </Underline>
           <Typo space={false} variant="h2">
             H2
           </Typo>
@@ -54,7 +103,7 @@ const Style = () => {
             body
           </Typo>
         </div>
-      </div>
+      </div> */}
     </Section>
   );
 };

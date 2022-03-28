@@ -7,7 +7,7 @@ export const defaultBockContent = {
     { type: "section" },
     { type: "hero" },
     { type: "listing" },
-    { type: "onPageNav" },
+    { type: "trust" },
   ],
 };
 
@@ -16,8 +16,11 @@ export function colorList(skip) {
     { title: "Black", value: "black" },
     { title: "White", value: "white" },
     { title: "Primary", value: "primary" },
+    { title: "Primary-Light", value: "primary-light" },
     { title: "Secondary", value: "secondary" },
+    { title: "Secondary-Light", value: "secondary-light" },
     { title: "Grey", value: "grey" },
+    { title: "Grey-Light", value: "grey-light" },
   ];
   if (!Array.isArray(skip)) return list;
 

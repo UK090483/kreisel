@@ -57,19 +57,19 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // const linksList = await Promise.all(
-  //   new Array(2)
-  //     .fill("bla")
-  //     .map((_i, index) =>
-  //       getLinks(
-  //         `https://www.kreiselhh.de/lerntherapeutenliste?field_plz_value=All&page=${index}`
-  //       )
-  //     )
-  // );
+  const linksList = await Promise.all(
+    new Array(2)
+      .fill("bla")
+      .map((_i, index) =>
+        getLinks(
+          `https://www.kreiselhh.de/lerntherapeutenliste?field_plz_value=All&page=${index}`
+        )
+      )
+  );
 
-  // const links = linksList.flat();
+  const links = linksList.flat();
 
-  // const data = await Promise.all(links.map((i) => getData(i)));
+  const data = await Promise.all(links.map((i) => getData(i)));
 
   // const docs = await Promise.all(data.map((i) => createDoc(i)));
 
@@ -82,7 +82,7 @@ export default async function handler(
   //   );
 
   //@ts-ignore
-  res.status(200).json({ docs });
+  res.status(200).json({ data });
 }
 
 const getData = async (url: string) => {

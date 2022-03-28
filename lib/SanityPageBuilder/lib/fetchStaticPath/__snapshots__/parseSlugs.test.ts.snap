@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parseSlugs should return expected result no locales 1`] = `
+Object {
+  "fallback": "blocking",
+  "paths": Array [
+    Object {
+      "params": Object {
+        "slug": Array [
+          "slug1",
+        ],
+      },
+    },
+    Object {
+      "params": Object {
+        "slug": Array [
+          "slug",
+          "split",
+        ],
+      },
+    },
+  ],
+}
+`;
+
+exports[`parseSlugs should return expected result with locales 1`] = `
+Object {
+  "fallback": "blocking",
+  "paths": Array [
+    Object {
+      "locale": "de",
+      "params": Object {
+        "slug": Array [
+          "slug1",
+        ],
+      },
+    },
+    Object {
+      "locale": "en",
+      "params": Object {
+        "slug": Array [
+          "slug1-en",
+        ],
+      },
+    },
+    Object {
+      "locale": "da",
+      "params": Object {
+        "slug": Array [
+          "slug1",
+        ],
+      },
+    },
+    Object {
+      "locale": "de",
+      "params": Object {
+        "slug": Array [
+          "slug",
+          "split",
+        ],
+      },
+    },
+    Object {
+      "locale": "en",
+      "params": Object {
+        "slug": Array [
+          "slug",
+          "split-en",
+        ],
+      },
+    },
+    Object {
+      "locale": "da",
+      "params": Object {
+        "slug": Array [
+          "slug",
+          "split",
+        ],
+      },
+    },
+  ],
+}
+`;

@@ -14,12 +14,25 @@ export default {
       name: "mainNav",
       type: "array",
       title: "Main Navigation",
-      of: [
-        { type: "navigationItem" },
-        { type: "navigationDropdown" },
-        { type: "navigationMegaMenu" },
-      ],
+      options: {
+        editModal: "popover",
+      },
+      of: [{ type: "navigationItem" }, { type: "navigationMegaMenu" }],
       validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "memberNav",
+      type: "array",
+      title: "Mitglieder Navigation",
+      options: {
+        editModal: "popover",
+      },
+      of: [{ type: "navigationItem" }, { type: "navigationMegaMenu" }],
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "footerImage",
+      type: "defaultImage",
     },
     {
       title: "Default / Seo",
@@ -27,4 +40,10 @@ export default {
       type: "seo",
     },
   ],
+  preview: {
+    select: {},
+    prepare() {
+      return { title: "mainSetting" };
+    },
+  },
 };

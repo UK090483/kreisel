@@ -19,6 +19,7 @@
       "@components/*": ["components/*"],
       "@services/*": ["services/*"],
       "@hooks/*": ["hooks/*"],
+      "@lib/*": ["lib/*"],
       "types/*": ["types/*"]
     }
   },

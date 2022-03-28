@@ -1,4 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { imageMeta } from "lib/SanityImage/query";
 import { sanityClient } from "@services/SanityService/sanity.server";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -15,7 +16,7 @@ export default async function handler(
     throw new Error("missing article data");
   }
   const data = await sanityClient.fetch<{ _id: string }[] | null>(
-    `*[_type=='article' && _id in $ids ]{...}`,
+    `*[_type=='article' && _id in $ids ]{...,'image':image{${imageMeta}}}`,
     { ids: body.article }
   );
 

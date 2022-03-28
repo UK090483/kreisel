@@ -10,6 +10,9 @@ export default {
       name: "internalLink",
       type: "reference",
       to: [{ type: "page" }],
+      options: {
+        disableNew: true,
+      },
     },
     {
       title: "On Page Position",

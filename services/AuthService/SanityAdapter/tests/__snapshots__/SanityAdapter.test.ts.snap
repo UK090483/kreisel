@@ -1,15 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Sanity Adapter createUser should create and return user  1`] = `
-Object {
-  "_type": "user",
-  "email": "web@konradullrich.com",
-  "emailVerified": 2018-02-12T09:30:00.000Z,
-  "id": "user.9bc5ab2e-dcab-40f9-b47c-31128f109347",
-  "name": "testName",
-}
-`;
-
 exports[`Sanity Adapter getUser should return user if exist 1`] = `
 Object {
   "_type": "user",

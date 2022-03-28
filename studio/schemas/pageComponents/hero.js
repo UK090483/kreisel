@@ -10,8 +10,8 @@ export default {
     },
     {
       title: "Text",
-      name: "text",
-      type: "text",
+      name: "content",
+      type: "headerRichText",
     },
     {
       title: "Button text",
@@ -67,6 +67,7 @@ export default {
       content: "content",
       bgColor: "bgColor",
     },
+
     prepare({ image }) {
       return {
         title: "hero",

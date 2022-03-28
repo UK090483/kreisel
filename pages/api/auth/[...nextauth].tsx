@@ -4,27 +4,46 @@ import SanityAdapter from "@services/AuthService/SanityAdapter/SanityAdapter";
 import { mockClient } from "@services/SanityService/test/testClient";
 
 export default NextAuth({
+  pages: {
+    signIn: "/auth/login",
+    verifyRequest: "/auth/verify-request",
+  },
   adapter: SanityAdapter({
     client: mockClient({
       database: [
-        { _type: "user", email: "web@konradullrich.com", _id: "testUser" },
-        { _type: "user", email: "konradullrich@me.com", _id: "testUser" },
+        { _type: "user", email: "web@konradullrich.com", _id: "testUser1" },
+        { _type: "user", email: "konradullrich@me.com", _id: "testUser2" },
+        {
+          _type: "user",
+          email: "meikeschueler@kreiselhh.de",
+          _id: "testUser3",
+        },
+        { _type: "user", email: "gesaharms@kreiselhh.de", _id: "testUser4" },
         {
           _type: "user",
           email: "fv@schwan-communications.com",
-          _id: "testUser",
+          _id: "testUser5",
         },
         {
           _type: "user",
           email: "nst@schwan-communications.com",
-          _id: "testUser",
+          _id: "testUser6",
         },
       ],
     }),
     devMode: true,
   }),
   secret: process.env.AUTH_SECRET,
-  session: { strategy: "jwt" },
+  session: { strategy: "jwt", maxAge: 60000 },
+  jwt: {
+    // A secret to use for key generation. Defaults to the top-level `secret`.
+    secret: "INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw",
+    // The maximum age of the NextAuth.js issued JWT in seconds.
+    // Defaults to `session.maxAge`.
+    maxAge: 60000,
+    // You can define your own encode/decode functions for signing and encryption
+    // if you want to override the default behavior.
+  },
 
   // Configure one or more authentication providers
   providers: [

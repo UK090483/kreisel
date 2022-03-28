@@ -5,13 +5,14 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./services/**/*.{js,ts,jsx,tsx}",
-    "./modules/**/*.{js,ts,jsx,tsx}",
+    "./lib/**/*.{js,ts,jsx,tsx}",
   ],
 
   theme: {
     fontFamily: {
       sans: ["Montserrat", "Helvetica", "sans-serif"],
       hand: ["Caveat"],
+      header: ["GTZirkon"],
     },
     fontSize: {
       sm: ["12px", "1em"],
@@ -20,21 +21,25 @@ module.exports = {
       xl: ["20px", "1.5em"],
       "2xl": ["22px", "1.5em"],
       "3xl": ["30px", "1.5em"],
-      "4xl": ["40px", "1.5em"],
-      "5xl": ["50px", "1.5em"],
+      "4xl": ["45px", "1.5em"],
+      "5xl": ["65px", "1.5em"],
     },
 
     extend: {
+      borderRadius: {
+        theme: "24px",
+      },
       colors: {
         grey: {
-          light: "#dddddd",
-          DEFAULT: "#dddddd",
+          light: "#f1f1f1",
+          DEFAULT: "#c4c4c4",
           dark: "#dddddd",
         },
-        black: "#595959",
+
+        black: "#000000",
         white: "#ffffff",
-        primary: { light: "#FDECB3", DEFAULT: "#F3BD06" },
-        secondary: "#D22D30",
+        primary: { light: "#F9DE83", DEFAULT: "#F3BD06" },
+        secondary: { DEFAULT: "#D22D30", light: "#EC4E51" },
         red: "#D22D30",
       },
       animation: {
@@ -51,11 +56,9 @@ module.exports = {
             transform: " translateX(-50%)   translateY(-100%)",
             zIndex: -100,
           },
-
           "99%": {
             zIndex: -100,
           },
-
           "100%": {
             zIndex: 20,
             opacity: 1,
@@ -81,6 +84,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    require("tailwindcss-debug-screens"),
     require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),
     require("tailwindcss-multi-column")(),
@@ -96,34 +100,6 @@ module.exports = {
             color: theme("colors.white"),
           },
         },
-        // ".svg-underline::after": {
-        //   position: "relative",
-
-        //   "&::after": {
-        //     content: "",
-        //     position: "absolute",
-        //     bottom: "-0.125rem",
-        //     left: "-0.5rem",
-        //     right: " -0.5rem",
-        //     height: "0.75rem",
-
-        //     // Position the line behind the text so that
-        //     // it is still easily readable
-        //     "z-index": -1,
-
-        //     // The SVG is added as an SVG background image
-        //     "background-image": "url('/underline/underline.svg')",
-        //     "background-repeat": "no-repeat",
-
-        //     // This allows the SVG to flex in size to fit
-        //     // any length of word. If the word is short,
-        //     // the SVG will be stretched vertically, if it
-        //     // is long, the SVG will be stretched horizontally.
-        //     // The jagged nature of this particular SVG works
-        //     // with this transforming.
-        //     "background-size": "cover",
-        //   },
-        // },
       };
 
       addComponents(buttons);

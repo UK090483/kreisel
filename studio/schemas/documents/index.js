@@ -8,9 +8,12 @@ import article from "./article";
 import therapist from "./therapist";
 import event from "./event";
 import course from "./course";
+import testimonial from "./testimonial";
+import eventTag from "./eventTag";
 
 const Documents = [
   ...Blog,
+  testimonial,
   page,
   navigation,
   redirect,
@@ -19,6 +22,7 @@ const Documents = [
   article,
   therapist,
   event,
+  eventTag,
   course,
 ];
 

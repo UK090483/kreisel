@@ -1,57 +1,93 @@
 import { sanityClient as client } from "@services/SanityService/sanity.server";
 
-import conf from "app.config.json";
-import SPB from "Modules/SanityPageBuilder/SPB";
 import HeroBlock, {
   heroBlockQuery,
   HeroBlogResult,
-} from "@services/pageBuilderService/Blocks/heroBlock/HeroBlock";
-import ListingBlock, {
-  listingBlockQuery,
-  ListingBlockResult,
-} from "@services/pageBuilderService/Blocks/listingBlock/ListingsBlock";
-import onPageNav, {
-  onPageNavBlockQuery,
-} from "@services/pageBuilderService/Blocks/onPageNav/OnPageNav";
-import SectionBlock, {
-  sectionBlockQuery,
-  SectionBlockResult,
-} from "@services/pageBuilderService/Blocks/sectionBlock/SectionBlock";
-import { NavigationQuery, NavigationResult } from "Modules/Navigation/query";
+} from "@components/Blocks/heroBlock/HeroBlock";
 
-export interface PageData extends NavigationResult {
-  content: (SectionBlockResult | ListingBlockResult | HeroBlogResult)[];
+import SectionBlock from "@components/Blocks/sectionBlock/SectionBlock";
+import {
+  SectionBlockResult,
+  sectionBlockQuery,
+} from "@components/Blocks/sectionBlock/SectionBlockQuery";
+
+import { NavigationQuery, NavigationResult } from "@lib/Navigation/query";
+import TrustBlock, {
+  trustBlockQuery,
+} from "@components/Blocks/trustBlock/TrustBlock";
+import {
+  footerQuery,
+  FooterQueryResult,
+} from "@components/Layout/Footer/Footer";
+import {
+  ListingBlockProps,
+  listingBlockQuery,
+} from "@components/Blocks/listingBlock/listingBlockQuery";
+import ListingBlock from "@components/Blocks/listingBlock/ListingsBlock";
+
+import fetchStaticProps from "@lib/SanityPageBuilder/lib/fetchStaticProps/fetchStaticProps";
+
+import { GetStaticPaths, GetStaticProps } from "next";
+import appConfig from "../app.config.json";
+import { useAppContext } from "@components/AppContext/AppContext";
+import BodyParser from "@lib/SanityPageBuilder/lib/BodyParser/BodyParser";
+import { fetchStaticPaths } from "@lib/SanityPageBuilder/lib/fetchStaticPaths";
+import appQuery, { appQueryResult } from "@components/AppContext/appQuery";
+const locales = appConfig.locales;
+
+export interface PageData
+  extends NavigationResult,
+    appQueryResult,
+    FooterQueryResult {
+  content: (SectionBlockResult | ListingBlockProps | HeroBlogResult)[];
   title?: string;
 }
 
-const { getStaticPaths, getStaticProps, PageComponent } = SPB<PageData>({
-  client,
-  locales: conf.locales,
-  query: `${NavigationQuery()}, title`,
-  components: [
-    {
-      name: "hero",
-      component: HeroBlock,
-      query: heroBlockQuery,
-    },
-    {
-      name: "section",
-      component: SectionBlock,
-      query: sectionBlockQuery,
-    },
-    {
-      name: "listing",
-      component: ListingBlock,
-      query: listingBlockQuery,
-    },
-    {
-      name: "onPageNav",
-      component: onPageNav,
-      query: onPageNavBlockQuery,
-    },
-  ],
-});
+const Page = () => {
+  const { data } = useAppContext();
+  return (
+    <BodyParser
+      components={{
+        hero: {
+          component: HeroBlock,
+        },
+        section: {
+          component: SectionBlock,
+        },
+        listing: {
+          component: ListingBlock,
+        },
+        trust: {
+          component: TrustBlock,
+        },
+      }}
+      content={data?.content || []}
+    />
+  );
+};
 
-export { getStaticPaths, getStaticProps };
+export const getStaticPaths: GetStaticPaths = async () => {
+  return await fetchStaticPaths({
+    client,
+    doc: "page",
+    locales,
+  });
+};
 
-export default PageComponent;
+export const getStaticProps: GetStaticProps = async (props) => {
+  const { params, preview, locale } = props;
+  return await fetchStaticProps<PageData>({
+    locale,
+    revalidate: true,
+    params,
+    client,
+    previewQuery: `content[]{${heroBlockQuery},${sectionBlockQuery}, ${listingBlockQuery},${trustBlockQuery}}`,
+    query: `content[]{${heroBlockQuery},${sectionBlockQuery},${listingBlockQuery},${trustBlockQuery} },  ${footerQuery}, ${appQuery(
+      ""
+    )}, ${NavigationQuery()}`,
+    locales,
+    preview,
+  });
+};
+
+export default Page;

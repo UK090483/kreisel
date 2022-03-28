@@ -23,10 +23,5 @@ export default {
       name: "withOutLogo",
       type: "boolean",
     },
-    // {
-    //   title: "Hide Menu",
-    //   name: "hideMenu",
-    //   type: "boolean",
-    // },
   ],
 };

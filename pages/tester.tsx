@@ -1,12 +1,12 @@
 //@ts-nocheck
 
-import { Image } from "@components/Image";
-import { Section } from "@components/Section";
+import SanityImage from "@lib/SanityImage";
+import { Section } from "@components/Section/Section";
 import Typo from "@components/Typography/Typography";
-import Underline from "@components/Underline";
+import Underline from "@components/Underline/Underline";
 import { NavigationMobile } from "@services/NavigationService/NavigationMobile";
 import { NavigationModul } from "@services/NavigationService/NavigationModul";
-import { NavOverview } from "@services/NavigationService/NavOverview";
+import { NavOverview } from "@lib/Navigation/NavOverview";
 import { nav } from "@services/NavigationService/t";
 
 const Home = () => {
@@ -46,7 +46,7 @@ const Home = () => {
       {/* 
       <Section className="col-gap-20 pt-40 lg:col-count-2">
         <div className="relative w-full h-32">
-          <Image />
+          <SanityImage />
         </div>
         <Typo variant="h2" hand>
           fermentum malesuada porta. Sed consequat

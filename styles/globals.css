@@ -3,34 +3,9 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "HMSans";
-  src: url("/fonts/HMSans-Regular.woff");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-@font-face {
-  font-family: "HMSans";
-  src: url("/fonts/HMSans-SemiBold.woff");
-  font-style: medium;
+  font-family: "GTZirkon";
+  src: url("../public/fonts/GTZirkon/GT\ Zirkon\ Bold.otf");
+
   font-weight: 500;
-  font-display: swap;
-}
-
-.svg-underline {
-  position: relative;
-}
-
-.svg-underline::after {
-  content: "";
-  position: absolute;
-  bottom: -20%;
-  left: -1rem;
-  right: -1rem;
-  top: 0;
-  z-index: -1;
-  border: red solid 1px;
-  background-image: url("/underline/underline.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  font-style: normal;
 }

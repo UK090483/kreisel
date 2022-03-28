@@ -1,10 +1,36 @@
 import { defaultBockContent } from "../snippets";
 import { CgWebsite } from "react-icons/cg";
-import {VscFileSubmodule} from 'react-icons/vsc'
-import React from 'react'
-const SubPageIcon=()=>{
-  return <VscFileSubmodule color="red"/>
+import { VscFileSubmodule } from "react-icons/vsc";
+import sanityClient from "part:@sanity/base/client";
+
+import React from "react";
+import Twitter from "../../components/Twitter";
+import CustomArray from "../../components/CustomArray";
+const SubPageIcon = () => {
+  return <VscFileSubmodule />;
+};
+
+const slugify = (input) => {
+  return input.toLowerCase().replace(/\s+/g, "-").slice(0, 200);
+};
+
+async function myAsyncSlugifier(params) {
+  const [id, type] = params;
+
+  console.log(params);
+  const slug = slugify(input);
+  const identicalDocs = await getDocsWithIdenticalSlug(slug);
+
+  console.log(identicalDocs);
+
+  const count = Array.isArray(identicalDocs) ? identicalDocs.length : null;
+  return count ? `${slug}-${count + 1}` : slug;
 }
+const getDocsWithIdenticalSlug = async (slug, type = "page") => {
+  const query = "*[_type==$type && slug.current == $slug]{_id}";
+  const params = { slug, type };
+  return sanityClient.fetch(query, params);
+};
 
 export default {
   type: "document",
@@ -18,31 +44,33 @@ export default {
       title: "Title",
       validation: (Rule) => Rule.required(),
     },
+
     {
       name: "description",
       type: "text",
       title: "Description",
     },
     {
-      name: "featuredImage",
+      name: "image",
       type: "defaultImage",
     },
     {
       name: "slug",
       type: "slug",
       title: "Slug",
-      validation: (Rule) => Rule.required(),
+      options: {
+        source: "title",
+      },
     },
     {
       name: "pageType",
       type: "reference",
       to: [{ type: "pageType" }],
-      options:{
-        disableNew:true
-      }
+      options: {
+        disableNew: true,
+      },
     },
-   
-   
+
     defaultBockContent,
 
     {
@@ -54,27 +82,20 @@ export default {
       },
     },
   ],
-  orderings:[{
-    title: 'by PageType',
-    name: 'pageType',
-    by: [
-      {field: 'pageType.slug.current', direction: 'desc'}
-    ]
-  },],
 
   preview: {
     select: {
       slug: "slug.current",
       pageType: "pageType.slug.current",
-      title:'title'
+      title: "title",
     },
     prepare(selection) {
-      const {slug, pageType,title} = selection
+      const { slug, pageType, title } = selection;
       return {
         title: title,
-        subtitle: pageType? `${pageType}/${slug}`: slug,
-        media: pageType? SubPageIcon: CgWebsite
-      }
-    }
+        subtitle: pageType ? `/${pageType}/${slug}` : `/${slug}`,
+        media: CgWebsite,
+      };
+    },
   },
 };

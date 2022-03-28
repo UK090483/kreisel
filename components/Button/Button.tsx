@@ -3,19 +3,32 @@ import React from "react";
 
 type ButtonProps = {
   onClick?: () => void;
-  internalLink?: string | null;
-  externalLink?: string;
   href?: string | null;
   external?: boolean;
+  className?: string;
+  type?: React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  >["type"];
+  disabled?: boolean;
 };
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { children, onClick = () => {}, internalLink, href, external } = props;
+  const {
+    className = "",
+    children,
+    onClick,
+    href,
+    external,
+    type = "button",
+    disabled = false,
+  } = props;
 
   if (href) {
     return (
       <Link
-        className="inline-block px-12 py-2 text-base rounded-full bg-primary whitespace-nowrap"
+        onClick={onClick}
+        className={`inline-block px-6 py-1 text-center text-base rounded-full  border-2 border-black  whitespace-nowrap ${className}`}
         href={href}
         external={external}
       >
@@ -23,12 +36,12 @@ const Button: React.FC<ButtonProps> = (props) => {
       </Link>
     );
   }
-
   return (
     <button
+      disabled={disabled}
       onClick={onClick}
-      className="px-12 py-2 text-base rounded-full bg-primary whitespace-nowrap block w-full"
-      type="button"
+      className={`px-12 py-2 text-base rounded-full  whitespace-nowrap border-2 border-black disabled:opacity-60  w-full ${className}`}
+      type={type}
     >
       {children}
     </button>
