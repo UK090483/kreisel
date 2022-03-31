@@ -1,9 +1,10 @@
 import List from "@components/Blocks/listingBlock/Listings/List";
-import TestimonialList from "@components/Blocks/listingBlock/Listings/Testimonials/TestimonialList";
-import TherapistList from "@components/Blocks/listingBlock/Listings/Therapist/TherapistList";
+
 import React from "react";
 import { ListingBlockProps } from "./listingBlockQuery";
 import PersonList from "./Listings/Persons/PersonList";
+import TestimonialList from "./Listings/Testimonials/TestimonialList";
+import TherapistList from "./Listings/Therapist/TherapistList";
 import ListWrap from "./ListWrap";
 
 const ListingBlock: React.FC<ListingBlockProps> = (props) => {
