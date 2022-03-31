@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { PageData } from "pages/[[...slug]]";
 import React, { useContext } from "react";
+import { useSession } from "next-auth/react";
 
 interface IAppContextState {
   data?: PageData | null;
@@ -25,6 +26,7 @@ interface AppContextProviderProps {
 
 export const AppContextProvider = (props: AppContextProviderProps) => {
   const { children, ...rest } = props;
+
   return (
     <AppContext.Provider value={{ preview: false, ...rest }}>
       {children}
@@ -51,4 +53,17 @@ export const useHomeRoute = () => {
   };
 
   return { homeRoute, parseRoute };
+};
+
+export const useMemberPage = () => {
+  const { data } = useContext(AppContext);
+  const { data: sessionData } = useSession();
+  const { push } = useRouter();
+  const slug = data?.slug;
+  if (!slug) return false;
+  const isMemberPage = slug.split("/")[1] === "mitgliederbereich";
+  if (!sessionData && isMemberPage) {
+    typeof window !== "undefined" && push("/auth/login");
+  }
+  return isMemberPage;
 };

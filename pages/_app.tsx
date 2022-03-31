@@ -26,8 +26,6 @@ interface AppPropsWithStaticProps {
 function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   const { data: _data, query, preview } = _pageProps;
 
-  console.log(_pageProps);
-
   const { data, error } = usePreviewSubscription<PageData | null>(query, {
     initialData: _data,
     enabled: preview,
@@ -47,25 +45,18 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
 
   return (
     <>
-      <Script
-        src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"
-        strategy="beforeInteractive"
-      />
-      <SessionProvider>
-        <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
+      <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
+        <SessionProvider>
           <ShopContextProvider>
             <StoreContextProvider>
               {getLayout(pageProps.id)}
               <Cookie />
               <Cart />
-              {/* {process.env.NODE_ENV === "development" && (
-              <div className="h-28 container z-50bg-red mx-auto"></div>
-            )} */}
               {preview && <PreviewIndicator />}
             </StoreContextProvider>
           </ShopContextProvider>
-        </AppContextProvider>
-      </SessionProvider>
+        </SessionProvider>
+      </AppContextProvider>
     </>
   );
 }

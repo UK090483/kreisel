@@ -4,10 +4,16 @@ const appQuery = (locale?: string) => `
 'slug':coalesce('/'+pageType->slug_${locale}.current, '/'+pageType->slug.current,'') +'/'+ coalesce(slug_${locale},slug).current
 `;
 
+const appQueryNoLocales = (locale?: string) => `
+title,
+'homeRoute':*[_id == 'siteConfig'][0].indexPage->{ 'slug':slug.current },
+'slug':coalesce('/'+pageType->slug.current,'') +'/'+ slug.current
+`;
+
 export type appQueryResult = {
   title?: string | null;
   homeRoute?: { [k: string]: string };
   slug?: string | null;
 };
 
-export default appQuery;
+export default appQueryNoLocales;

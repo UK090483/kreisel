@@ -1,5 +1,4 @@
 import { sanityClient as client } from "@services/SanityService/sanity.server";
-
 import HeroBlock, {
   heroBlockQuery,
   HeroBlogResult,
@@ -29,7 +28,10 @@ import fetchStaticProps from "@lib/SanityPageBuilder/lib/fetchStaticProps/fetchS
 
 import { GetStaticPaths, GetStaticProps } from "next";
 import appConfig from "../app.config.json";
-import { useAppContext } from "@components/AppContext/AppContext";
+import {
+  useAppContext,
+  useMemberPage,
+} from "@components/AppContext/AppContext";
 import BodyParser from "@lib/SanityPageBuilder/lib/BodyParser/BodyParser";
 import { fetchStaticPaths } from "@lib/SanityPageBuilder/lib/fetchStaticPaths";
 import appQuery, { appQueryResult } from "@components/AppContext/appQuery";
@@ -45,6 +47,7 @@ export interface PageData
 
 const Page = () => {
   const { data } = useAppContext();
+  useMemberPage();
   return (
     <BodyParser
       components={{
@@ -76,6 +79,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (props) => {
   const { params, preview, locale } = props;
+  const isMember =
+    params &&
+    params.slug &&
+    Array.isArray(params.slug) &&
+    params.slug[0] === "mitgliederbereich";
+
   return await fetchStaticProps<PageData>({
     locale,
     revalidate: true,
@@ -84,7 +93,7 @@ export const getStaticProps: GetStaticProps = async (props) => {
     previewQuery: `content[]{${heroBlockQuery},${sectionBlockQuery}, ${listingBlockQuery},${trustBlockQuery}}`,
     query: `content[]{${heroBlockQuery},${sectionBlockQuery},${listingBlockQuery},${trustBlockQuery} },  ${footerQuery}, ${appQuery(
       ""
-    )}, ${NavigationQuery()}`,
+    )}, ${NavigationQuery("", isMember ? "memberNav" : undefined)}`,
     locales,
     preview,
   });

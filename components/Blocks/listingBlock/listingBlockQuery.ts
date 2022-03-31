@@ -1,5 +1,9 @@
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import { AppLocales, AppColor } from "types";
+import {
+  personItemQuery,
+  PersonItemResult,
+} from "./Listings/Persons/PersonListQuery";
 
 export interface TherapistResult extends CardResult {
   _type: "therapist";
@@ -67,13 +71,17 @@ export interface IArticleCardResult extends CardResult {
 
 export const listingBlockQuery = `
 _type == "listing" => {
-    ...,
+  variation,
+  _type,
+   _key,
+   contentType,
   'content':  content[]{...},
   'items': select(
-    type == 'custom' => customItems[]{
+    contentType == 'custom' => customItems[]{
       _type == 'reference' => @->{${cardQuery}},
       _type != 'reference' => {${cardQuery}},
     },
+    contentType == 'people' => peopleItems[]->{${personItemQuery("")}},
     contentType in ['article','testimonial','therapist']=> *[_type == ^.contentType ][]{${cardQuery}},
     contentType in ['blog','aktuelles']=> *[ pageType->slug.current == ^.contentType ][]{${cardQuery}}
   ),
@@ -93,6 +101,7 @@ export interface ListingBlockResult<Type, Card> {
 }
 
 export type ListingBlockProps =
+  | ListingBlockResult<"people", PersonItemResult>
   | ListingBlockResult<"therapist", TherapistResult>
   | ListingBlockResult<"testimonial", ITestimonialItem>
   | ListingBlockResult<"blog" | "article", CardResult>;

@@ -74,6 +74,7 @@ export default () =>
       S.listItem().title("Termine").child(S.documentTypeList("event")),
       S.listItem().title("Therapeuten").child(S.documentTypeList("therapist")),
       S.listItem().title("Articles").child(S.documentTypeList("article")),
+      S.listItem().title("Persons").child(S.documentTypeList("person")),
       S.listItem()
         .title("Testimonials")
         .child(S.documentTypeList("testimonial")),

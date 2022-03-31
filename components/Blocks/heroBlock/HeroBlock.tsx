@@ -59,8 +59,9 @@ const HeroBlock: React.FC<HeroBlockProps> = (props) => {
       <div className="z-10 flex items-center mx-auto ml-[10%] ">
         <RichText content={content} />
       </div>
+
       <div className="z-0 relative flex justify-center items-center animate-fadeIn">
-        {!photo && <Kreisel />}
+        {!photo && <Kreisel className="h-[50vh]" />}
       </div>
     </div>
   );

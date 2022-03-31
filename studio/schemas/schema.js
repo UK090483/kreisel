@@ -7,11 +7,13 @@ import objects from "./objects";
 import plugs from "./pageComponents/plugs";
 import pageComponents from "./pageComponents";
 
-import Navigation from './objects/navigation'
+import Persons from "./Persons";
+import Navigation from "./objects/navigation";
 
 export default createSchema({
   name: "default",
   types: schemaTypes.concat([
+    ...Persons,
     ...Navigation,
     ...settings,
     ...objects,

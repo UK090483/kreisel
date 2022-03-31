@@ -7,18 +7,6 @@ export default {
   type: "object",
   fields: [
     { name: "name", type: "string", title: "Name" },
-    {
-      title: "Type",
-      name: "type",
-      type: "string",
-      options: {
-        list: [
-          { title: "Content Type", value: "contentType" },
-          { title: "Custom", value: "custom" },
-        ],
-        layout: "radio",
-      },
-    },
 
     {
       name: "contentType",
@@ -30,10 +18,11 @@ export default {
           { title: "Artikel", value: "article" },
           { title: "Testimonials", value: "testimonial" },
           { title: "Therapeuten", value: "therapist" },
+          { title: "People", value: "people" },
+          { title: "Custom", value: "custom" },
         ],
         layout: "radio",
       },
-      hidden: ({ parent }) => parent?.type !== "contentType",
     },
     {
       name: "customItems",
@@ -53,7 +42,18 @@ export default {
           ],
         },
       ],
-      hidden: ({ parent }) => parent?.type !== "custom",
+      hidden: ({ parent }) => parent?.contentType !== "custom",
+    },
+    {
+      name: "peopleItems",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "person" }],
+        },
+      ],
+      hidden: ({ parent }) => parent?.contentType !== "people",
     },
     {
       name: "content",
