@@ -1,5 +1,5 @@
-import { ITestimonialItem } from "@components/Blocks/listingBlock/listingBlockQuery";
-import * as React from "react";
+import React from "react";
+import { ITestimonialItem } from "../../listingBlockQuery";
 import TestimonialListItem from "./TestimonialListItem";
 
 interface ITestimonialListProps {
