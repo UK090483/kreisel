@@ -16,6 +16,7 @@ import ImagePlug, { ImagePlugQuery } from "./Plugs/ImagePlug";
 import EventPlug, { EventPlugQuery } from "./Plugs/EventPlug/EventPlug";
 import EmbedHTML from "./Plugs/EmbedHTML/EmbedHTML";
 import HandUnderline from "./marks/handunderline";
+import InfoboxPlug, { infoBoxPlugQuery } from "./Plugs/InfoBoxPlug/InfoBoxPlug";
 
 const marksQuery = `
 markDefs[]{
@@ -33,6 +34,7 @@ content[]{
   ${ImagePlugQuery},
   ${GSheetPlugQuery},
   ${EventPlugQuery},
+  ${infoBoxPlugQuery},
 }
 `;
 
@@ -52,6 +54,7 @@ const RichText: React.FC<any> = (props: any) => {
         imagePlug: ImagePlug,
         eventPlug: EventPlug,
         embedHTML: EmbedHTML,
+        infoBox: InfoboxPlug,
       }}
       marks={{
         link,

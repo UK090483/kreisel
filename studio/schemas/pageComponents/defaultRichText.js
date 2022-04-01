@@ -109,7 +109,7 @@ export default {
     { type: "embedHTML" },
     { type: "gSheet" },
     { type: "eventPlug" },
-    // { type: 'imagePlug' },
+    { type: "infoBox" },
     // { type: 'seoHeader' },
 
     // { type: 'innerSection' },
