@@ -24,13 +24,13 @@ const Accordion: FC<AccordionProps> = ({ condition, children, title }) => {
       }    transition-all overflow-hidden`}
     >
       <div
-        className={`w-full pl-3 transition-colors bg-primary  ${
+        className={`w-full pl-3 transition-colors bg-primary-light  ${
           open ? " delay-200 duration-700" : ""
         }      z-10 `}
       >
         <button
           onClick={handleClick}
-          className="max-w-screen-lg w-full mx-auto h-16 flex items-center bg-primary font-bold"
+          className="max-w-screen-lg w-full mx-auto h-16 flex items-center bg-primary-light font-bold"
         >
           <Svg
             icon="chevronRight"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import clsx from "clsx";
 
@@ -10,6 +10,7 @@ import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import ImageGalleryPlugItem from "./InfoBoxPlugItem";
 import ImageGalleryItem from "./InfoBoxPlugItem";
 import { AppColor } from "types";
+import RichText from "@components/RichText/RichText";
 
 export const infoBoxPlugQuery = `
 _type == "infoBox" => {
@@ -27,6 +28,7 @@ export interface ImageGalleryPlugItem {
   content?: string | null;
   content2?: string | null;
   image?: ImageMetaResult;
+  rows?: [{ _key: string; content?: any[] | null }];
   link?: LinkResult;
   contain?: boolean;
   bgColor: AppColor;
@@ -45,36 +47,32 @@ const InfoboxPlug: React.FC<{ node: ImageGalleryPlugResult }> = (props) => {
   console.log(props.node);
 
   if (!items || items.length < 1) return <div>No Images</div>;
+
   return (
-    <div
-      className={clsx(
-        "grid mx-auto  grid-flow-row gap-2 pb-2",
-        " grid-cols-1 md:grid-cols-2 xl:grid-cols-4 "
-      )}
-    >
-      {items.map((item) => {
-        const {
-          image,
-          title,
-          _key,
-          link,
-          size = "m",
-          contain,
-          bgColor = "primary",
-          content,
-          content2,
-        } = item;
+    <div className="grid  grid-cols-1  lg:grid-cols-2 xl:grid-cols-4 gap-4 ">
+      {items.map((i, index) => {
         return (
-          <ImageGalleryItem
-            bgColor={bgColor}
-            content={content}
-            content2={content2}
-            contain={contain}
-            image={image}
-            title={title}
-            key={_key}
-            link={link}
-          />
+          <div
+            className={clsx("rounded-3xl", {
+              "bg-secondary-light ": index === 0,
+              "bg-blue-200  ": index === 1,
+              "bg-primary-light  ": index === 2,
+              "bg-green-200 ": index === 3,
+            })}
+            key={i._key}
+          >
+            {i.rows?.map((row, index) => {
+              return (
+                <div
+                  key={row._key}
+                  className={clsx("p-4 border-white first:border-0 border-t-4")}
+                >
+                  {index === 0 && <Typo bold> {i.title}</Typo>}
+                  <RichText content={row.content} />
+                </div>
+              );
+            })}
+          </div>
         );
       })}
     </div>
@@ -82,3 +80,12 @@ const InfoboxPlug: React.FC<{ node: ImageGalleryPlugResult }> = (props) => {
 };
 
 export default InfoboxPlug;
+const columnsToRows = (items: ImageGalleryPlugItem[]) => {
+  const rows = items.reduce((acc, item, index) => {
+    const rows =
+      item.rows?.map((i) => ({ content: i.content, itemKey: index })) || [];
+    return [...acc, ...rows];
+  }, [] as { content?: any; itemKey: number }[]);
+
+  return rows;
+};

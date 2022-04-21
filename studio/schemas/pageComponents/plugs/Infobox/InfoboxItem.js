@@ -8,8 +8,20 @@ export default {
   fields: [
     { name: "title", title: "title", type: "text" },
 
-    { name: "content", title: "Content", type: "headerRichText" },
-    { name: "content2", title: "Content 2", type: "headerRichText" },
+    {
+      name: "rows",
+      title: "Rows",
+      type: "array",
+      of: [
+        {
+          type: "object",
+
+          fields: [
+            { name: "content", title: "Content", type: "headerRichText" },
+          ],
+        },
+      ],
+    },
 
     { name: "image", title: "Image", type: "defaultImage" },
 

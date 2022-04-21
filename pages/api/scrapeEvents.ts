@@ -5,6 +5,17 @@ import Schema from "@sanity/schema";
 
 import { previewClient } from "@services/SanityService/sanity.server";
 
+export type ScrapeEvent = {
+  link?: string;
+  referent?: string;
+  name?: string;
+  ort?: string;
+  duration?: string;
+  start?: string;
+  end?: string;
+  bookingStatus?: string;
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -29,7 +40,7 @@ export default async function handler(
 const indexToName: { [k: number]: string } = {
   1: "referent",
   3: "ort",
-  4: "dauer",
+  4: "duration",
   2: "name",
   6: "start",
   7: "end",
@@ -49,28 +60,33 @@ const getData = async (url: string) => {
 
   const table = content?.querySelector("table");
   const rows = table?.querySelectorAll("tr:not(.separator)");
-  const data: { [k: string]: any } = {};
-  console.log(
-    rows?.forEach((row) => {
-      const link = row?.querySelector("a")?.href;
-      const item: { [k: string]: any } = {};
+  const data: any[] = [];
 
-      const cells = row?.querySelectorAll("td");
+  rows?.forEach((row) => {
+    const link = row?.querySelector("a")?.href;
+    const item: { [k: string]: any } = { link };
 
-      cells.forEach((cell, index) => {
-        if (getName(index)) {
-          item[getName(index)] = cell.textContent;
-        }
+    const cells = row?.querySelectorAll("td");
 
-        console.log(cell.textContent);
-      });
+    cells.forEach((cell, index) => {
+      if (index === 0) {
+        const bgImage = cell.style.backgroundImage;
 
-      if (link) {
-        data[link] = item;
+        const status = bgImage.includes("RoundY")
+          ? "medium"
+          : bgImage.includes("RoundR")
+          ? "full"
+          : (bgImage.includes("RoundG") && "open") || undefined;
+
+        item.bookingStatus = status;
       }
-    })
-  );
-  const image = content?.querySelector("img");
+
+      if (getName(index)) {
+        item[getName(index)] = cell.textContent;
+      }
+    });
+    if (link) data.push(item);
+  });
 
   return data;
 };

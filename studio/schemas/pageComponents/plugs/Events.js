@@ -10,6 +10,11 @@ export default {
       type: "array",
       of: [{ type: "reference", to: { type: "eventTag" } }],
     },
+    {
+      name: "groupByMonth",
+      title: "Group By Month",
+      type: "boolean",
+    },
   ],
   preview: {
     select: {
