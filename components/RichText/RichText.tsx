@@ -12,11 +12,13 @@ import SpacerPlug, { spacerPlugQuery } from "./Plugs/Spacer";
 import SanityRichText from "@lib/SanityPageBuilder/lib/RichText";
 import List from "./list/List";
 import GSheet, { GSheetPlugQuery } from "./Plugs/Gsheet";
-import ImagePlug, { ImagePlugQuery } from "./Plugs/ImagePlug";
+import ImagePlug from "./Plugs/ImagePlug/ImagePlug";
+
 import EventPlug, { EventPlugQuery } from "./Plugs/EventPlug/EventPlug";
 import EmbedHTML from "./Plugs/EmbedHTML/EmbedHTML";
 import HandUnderline from "./marks/handunderline";
 import InfoboxPlug, { infoBoxPlugQuery } from "./Plugs/InfoBoxPlug/InfoBoxPlug";
+import { ImagePlugQuery } from "./Plugs/ImagePlug/imagePlugQuery";
 
 const marksQuery = `
 markDefs[]{
