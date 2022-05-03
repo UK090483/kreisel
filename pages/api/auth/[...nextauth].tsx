@@ -2,36 +2,52 @@ import NextAuth from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import SanityAdapter from "@services/AuthService/SanityAdapter/SanityAdapter";
 import { mockClient } from "@services/SanityService/test/testClient";
+import { sanityClient } from "@services/SanityService/sanity.server";
 
 export default NextAuth({
   pages: {
     signIn: "/auth/login",
     verifyRequest: "/auth/verify-request",
   },
+  debug: true,
+  logger: {
+    error(code, metadata) {
+      console.error(code, metadata);
+    },
+    warn(code) {
+      console.warn(code);
+    },
+    debug(code, metadata) {
+      console.debug(code, metadata);
+    },
+  },
+
   adapter: SanityAdapter({
-    client: mockClient({
-      database: [
-        { _type: "user", email: "web@konradullrich.com", _id: "testUser1" },
-        { _type: "user", email: "konradullrich@me.com", _id: "testUser2" },
-        {
-          _type: "user",
-          email: "meikeschueler@kreiselhh.de",
-          _id: "testUser3",
-        },
-        { _type: "user", email: "gesaharms@kreiselhh.de", _id: "testUser4" },
-        {
-          _type: "user",
-          email: "fv@schwan-communications.com",
-          _id: "testUser5",
-        },
-        {
-          _type: "user",
-          email: "nst@schwan-communications.com",
-          _id: "testUser6",
-        },
-      ],
-    }),
-    devMode: true,
+    client: sanityClient,
+    docType: "therapist",
+    // client: mockClient({
+    //   database: [
+    //     { _type: "user", email: "web@konradullrich.com", _id: "testUser1" },
+    //     { _type: "user", email: "konradullrich@me.com", _id: "testUser2" },
+    //     {
+    //       _type: "user",
+    //       email: "meikeschueler@kreiselhh.de",
+    //       _id: "testUser3",
+    //     },
+    //     { _type: "user", email: "gesaharms@kreiselhh.de", _id: "testUser4" },
+    //     {
+    //       _type: "user",
+    //       email: "fv@schwan-communications.com",
+    //       _id: "testUser5",
+    //     },
+    //     {
+    //       _type: "user",
+    //       email: "nst@schwan-communications.com",
+    //       _id: "testUser6",
+    //     },
+    //   ],
+    // }),
+    devMode: false,
   }),
   secret: process.env.AUTH_SECRET,
   session: { strategy: "jwt", maxAge: 60000 },

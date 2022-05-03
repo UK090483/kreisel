@@ -41,6 +41,8 @@ type sanityAdapterProps = {
   client: SanityClient;
   devMode?: boolean;
   logger?: typeof defaultLogger;
+  docType?: string;
+  prefix?: string;
 };
 
 const toSanityUser = (user: AdapterUser) => {
@@ -52,6 +54,8 @@ const toAdapterUser = (user: SanityAdapterUser): AdapterUser => {
 };
 
 const sanityAdapter = ({
+  prefix = "user",
+  docType = "user",
   client,
   logger,
   devMode = false,
@@ -63,8 +67,8 @@ const sanityAdapter = ({
       return client
         .create({
           ...user,
-          _id: `user.${uuidv4()}`,
-          _type: "user",
+          _id: `${prefix}.${uuidv4()}`,
+          _type: docType,
         })
         .then((newUser) => {
           return { ...user, id: newUser._id } as AdapterUser;
@@ -73,14 +77,15 @@ const sanityAdapter = ({
     getUser: (id) => {
       _logger({ type: "info", message: `getUser` });
       return client
-        .fetch<SanityAdapterUser>(getUserByIdQuery, { id })
+        .fetch<SanityAdapterUser>(getUserByIdQuery, { id, docType })
         .then((i) => (i ? toAdapterUser(i) : null));
     },
-    getUserByEmail: (email) => {
+    getUserByEmail: async (email) => {
       _logger({ type: "info", message: `getUserByEmail` });
-      return client
-        .fetch<SanityAdapterUser>(getUserByEmailQuery, { email })
+      const user = await client
+        .fetch<SanityAdapterUser>(getUserByEmailQuery, { email, docType })
         .then((i) => (i ? toAdapterUser(i) : null));
+      return user;
     },
 
     getUserByAccount: ({ providerAccountId, provider }) => {
@@ -135,6 +140,8 @@ const sanityAdapter = ({
     createVerificationToken: (verificationToken) => {
       _logger({ type: "info", message: `createVerificationToken` });
       globToken = { ...verificationToken };
+      console.log(globToken);
+
       return globToken;
     },
     useVerificationToken: () => {
@@ -143,7 +150,7 @@ const sanityAdapter = ({
       const useToken = { ...globToken };
       return useToken;
     },
-    getSessionAndUser: (sessinToken) => {
+    getSessionAndUser: (sessionToken) => {
       _logger({ type: "info", message: `getSessionAndUser` });
       return null;
     },
@@ -157,43 +164,3 @@ const sanityAdapter = ({
 };
 
 export default sanityAdapter;
-
-// const createVerificationToken: Adapter["createVerificationToken"] = async (
-//   verificationToken
-// ) => {
-//   globToken = { ...verificationToken };
-//   return globToken;
-// };
-
-// const useVerificationToken: Adapter["useVerificationToken"] = async (
-//   params
-// ) => {
-//   const _token = { ...globToken } as VerificationToken;
-
-//   // console.log("globToken:" + _token);
-
-//   globToken = null;
-
-//   return _token;
-// };
-
-// //@ts-ignore
-// const getSessionAndUser: Adapter["getSessionAndUser"] = (sessionToken) => {
-//   console.log("getSessionAndUser ----");
-//   console.log(sessionToken);
-//   console.log("getSessionAndUser ----");
-//   return { user, session };
-// };
-
-// const deleteSession: Adapter["deleteSession"] = (sessionToken) => {
-//   console.log("deleteSession ----");
-//   console.log(sessionToken);
-//   console.log("deleteSession ----");
-
-//   const oldSess = { ...session } as AdapterSession;
-//   session = null;
-
-//   return new Promise<null | AdapterSession>((resolve, reject) => {
-//     resolve(oldSess);
-//   });
-// };

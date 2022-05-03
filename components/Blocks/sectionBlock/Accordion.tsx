@@ -20,13 +20,13 @@ const Accordion: FC<AccordionProps> = ({ condition, children, title }) => {
   return (
     <div
       className={`relative  ${
-        open ? "max-h-[999px]" : "max-h-16"
+        open ? "max-h-[9999px]" : "max-h-16"
       }    transition-all overflow-hidden`}
     >
       <div
         className={`w-full pl-3 transition-colors bg-primary-light  ${
           open ? " delay-200 duration-700" : ""
-        }      z-10 `}
+        }   z-10 `}
       >
         <button
           onClick={handleClick}

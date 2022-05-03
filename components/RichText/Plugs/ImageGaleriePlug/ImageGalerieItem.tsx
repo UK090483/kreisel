@@ -23,10 +23,10 @@ const ImageGalleryItem: React.FunctionComponent<ImageGalleryItemProps> = (
         href={link?.href || "/"}
         external={!!link?.external}
         condition={!!link}
-        className={`${className} w-full rounded-theme overflow-hidden shadow-2x `}
+        className={`${className}  w-full rounded-theme overflow-hidden shadow-2x `}
       >
-        <div className="flex flex-col pt-4">
-          <div className={`h-full  ${contain ? "relative" : ""}`}>
+        <div className="flex  flex-col pt-4">
+          <div className={`h-full ${contain ? "relative" : ""}`}>
             <SanityImage
               image={image}
               objectFit={contain ? "contain" : "cover"}
