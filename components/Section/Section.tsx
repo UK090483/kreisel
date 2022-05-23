@@ -3,7 +3,7 @@ import React from "react";
 import { AppColor } from "types";
 import Transition from "./Transition";
 
-interface SectionProps {
+export interface SectionProps {
   width?: "full" | "m" | "l" | "s";
   bg?: AppColor;
   className?: string;

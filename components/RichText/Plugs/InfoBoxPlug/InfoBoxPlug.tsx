@@ -1,37 +1,26 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 import clsx from "clsx";
 
-import SanityImage from "@lib/SanityImage";
 import Typo from "@components/Typography/Typography";
-import { ConditionalLink } from "@components/Link";
-import { linkQuery, LinkResult } from "@lib/Navigation/query";
-import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
-import ImageGalleryPlugItem from "./InfoBoxPlugItem";
-import ImageGalleryItem from "./InfoBoxPlugItem";
-import { AppColor } from "types";
 import RichText from "@components/RichText/RichText";
 
+const infoBoxPlugItemQuery = `
+_key,rows,title,bgColor,
+`;
 export const infoBoxPlugQuery = `
 _type == "infoBox" => {
-  'test':'tester',
   _type,
   _key,
-  'items':items[]{...,'test':'test' },
+  'items':items[]{${infoBoxPlugItemQuery}},
 }
 `;
 
 export interface ImageGalleryPlugItem {
   _type: "imageGalleryItem";
   title?: string;
-  size?: "m" | "l";
-  content?: string | null;
-  content2?: string | null;
-  image?: ImageMetaResult;
   rows?: [{ _key: string; content?: any[] | null }];
-  link?: LinkResult;
-  contain?: boolean;
-  bgColor: AppColor;
+  bgColor: "red" | "blue" | "yellow" | "green";
   _key: string;
 }
 
@@ -54,10 +43,10 @@ const InfoboxPlug: React.FC<{ node: ImageGalleryPlugResult }> = (props) => {
         return (
           <div
             className={clsx("rounded-3xl", {
-              "bg-secondary-light ": index === 0,
-              "bg-blue-200  ": index === 1,
-              "bg-primary-light  ": index === 2,
-              "bg-green-200 ": index === 3,
+              "bg-secondary-light ": i.bgColor === "red",
+              "bg-blue-200  ": i.bgColor === "blue",
+              "bg-primary-light  ": i.bgColor === "yellow",
+              "bg-green-200 ": i.bgColor === "green",
             })}
             key={i._key}
           >

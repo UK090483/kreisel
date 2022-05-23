@@ -7,15 +7,16 @@ type ListWrapProps = {
   bgColor?: AppColor;
   content?: any[];
   space?: boolean;
+  width?: "l" | "full";
 };
 
 const ListWrap: React.FC<ListWrapProps> = (props) => {
-  const { children, bgColor, content, space = true } = props;
+  const { children, bgColor, content, space = true, width = "l" } = props;
   const hasContent = content && content.length > 0;
 
   return (
     <Section
-      width="l"
+      width={width}
       bg={bgColor}
       className={clsx({
         "pb-32 pt-16": space && hasContent,

@@ -23,60 +23,21 @@ export default {
       ],
     },
 
-    { name: "image", title: "Image", type: "defaultImage" },
-
-    { name: "contain", title: "Überlagern", type: "boolean" },
-
     {
       title: "Background Color",
       name: "bgColor",
       type: "string",
       options: {
-        list: [...colorList()],
+        list: [
+          { title: "Rot", value: "red" },
+          { title: "Blau", value: "blue" },
+          { title: "Gelb", value: "yellow" },
+          { title: "Grün", value: "green" },
+        ],
       },
     },
 
-    { name: "link", title: "Link", type: "link" },
-
-    {
-      name: "size",
-      title: "Size",
-      type: "string",
-      initialValue: "m",
-      options: {
-        list: ["m", "l"],
-      },
-    },
-
-    //   {
-    //     name: "items",
-    //     title: "Images",
-    //     type: "array",
-    //     of: [{ type: "defaultImage" }],
-    //   },
-    // {
-    //   name: "rows",
-    //   title: "Rows",
-    //   type: "number",
-    //   initialValue: 4,
-    //   validation: (Rule) => Rule.required().integer().min(1).max(8),
-    // },
-    // {
-    //   name: "rows_mobile",
-    //   title: "Rows Mobile",
-    //   type: "number",
-    //   initialValue: 2,
-    //   validation: (Rule) => Rule.required().integer().min(1).max(8),
-    // },
-    // {
-    //   name: "ratio",
-    //   title: "Ratio",
-    //   type: "string",
-    //   initialValue: "1:1",
-    //   options: {
-    //     list: ["1:1", "16:9", "2:3", "3:2"],
-    //   },
-    // },
+    // { name: "link", title: "Link", type: "link" },
   ],
   preview: {
     select: {

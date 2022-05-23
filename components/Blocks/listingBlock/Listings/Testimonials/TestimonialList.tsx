@@ -1,3 +1,9 @@
+import Carousel from "@lib/Carousel/Carousel";
+import CarouselItem from "@lib/Carousel/CarouselItem";
+import CarouselItemWrap from "@lib/Carousel/CarouselItemWrap";
+import Dots from "@lib/Carousel/Dots";
+import Navigation from "@lib/Carousel/Navigation";
+import clsx from "clsx";
 import React from "react";
 import { ITestimonialItem } from "../../listingBlockQuery";
 import TestimonialListItem from "./TestimonialListItem";
@@ -13,6 +19,8 @@ const TestimonialList: React.FunctionComponent<ITestimonialListProps> = (
 
   const [item, setItem] = React.useState<[number, number]>([0, -1]);
 
+  console.log(items);
+
   const [animate, setAnimate] = React.useState<null | "out" | "in">(null);
 
   const nextItem = () => {
@@ -25,8 +33,28 @@ const TestimonialList: React.FunctionComponent<ITestimonialListProps> = (
   }, [item]);
 
   if (items.length < 1) return null;
+
   return (
-    <div onClick={nextItem}>{<TestimonialListItem {...items[item[0]]} />}</div>
+    <Carousel items={items}>
+      <Navigation>
+        <CarouselItemWrap>
+          {({ activeItem }) => (
+            <div className=" grid grid-cols-1 grid-rows-1">
+              {items.map((i, index) => {
+                return (
+                  <CarouselItem key={i._id} index={index}>
+                    <TestimonialListItem {...items[index]}>
+                      <Dots className=" lg:hidden  " />
+                    </TestimonialListItem>
+                  </CarouselItem>
+                );
+              })}
+            </div>
+          )}
+        </CarouselItemWrap>
+      </Navigation>
+      <Dots className="hidden lg:flex " />
+    </Carousel>
   );
 };
 

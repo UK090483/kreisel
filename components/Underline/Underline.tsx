@@ -100,7 +100,7 @@ const Underline: React.FC<UnderlineProps> = ({
               className={clsx("stroke-current", {
                 "text-black": color === "black",
                 "text-white": color === "white",
-                "text-primary": color === "primary",
+                "text-primary": color === "primary" || color === null,
                 "text-primary-light": color === "primary-light",
                 "text-secondary": color === "secondary",
                 "text-secondary-light": color === "secondary-light",
