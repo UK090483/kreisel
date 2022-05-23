@@ -14,7 +14,7 @@ import {
   getUserByProviderAccountIdQuery,
 } from "./queries";
 
-let globToken: VerificationToken | null = null;
+let verificationTokens: { [identifier: string]: VerificationToken } = {};
 let session: AdapterSession | null = null;
 
 const user: AdapterUser = {
@@ -26,11 +26,16 @@ const user: AdapterUser = {
 const defaultLogger = ({
   type,
   message,
+  params,
 }: {
   type: "error" | "info";
   message: string;
+  params?: any;
 }) => {
   console.log(`AUTH_LOGGER: ${message}`);
+  if (params) {
+    console.log({ ...params });
+  }
 };
 
 interface SanityAdapterUser extends AdapterUser {
@@ -81,10 +86,15 @@ const sanityAdapter = ({
         .then((i) => (i ? toAdapterUser(i) : null));
     },
     getUserByEmail: async (email) => {
-      _logger({ type: "info", message: `getUserByEmail` });
+      _logger({ type: "info", message: `getUserByEmail`, params: { email } });
       const user = await client
         .fetch<SanityAdapterUser>(getUserByEmailQuery, { email, docType })
         .then((i) => (i ? toAdapterUser(i) : null));
+      _logger({
+        type: "info",
+        message: `getUserByEmail-fetchUser`,
+        params: { user },
+      });
       return user;
     },
 
@@ -98,7 +108,7 @@ const sanityAdapter = ({
         .then((i) => (i ? toAdapterUser(i) : null));
     },
     updateUser: async (_user) => {
-      _logger({ type: "info", message: `updateUser` });
+      _logger({ type: "info", message: `updateUser`, params: { _user } });
       return new Promise((resolve, reject) => {
         if (!_user?.id) return reject("id: missing in updateUser");
         client
@@ -133,22 +143,43 @@ const sanityAdapter = ({
     updateSession: (session) => {
       return null;
     },
-
     unlinkAccount: () => {
       return undefined;
     },
-    createVerificationToken: (verificationToken) => {
-      _logger({ type: "info", message: `createVerificationToken` });
-      globToken = { ...verificationToken };
-      console.log(globToken);
+    createVerificationToken: async (verificationToken) => {
+      _logger({
+        type: "info",
+        message: `createVerificationToken`,
+        params: verificationToken,
+      });
 
-      return globToken;
+      const createdVerificationToken = await client.create({
+        _type: "verificationToken",
+        ...verificationToken,
+      });
+
+      return createdVerificationToken;
     },
-    useVerificationToken: () => {
-      _logger({ type: "info", message: `useVerificationToken` });
-      if (!globToken) return null;
-      const useToken = { ...globToken };
-      return useToken;
+    useVerificationToken: async (params) => {
+      const { identifier, token } = params;
+      _logger({ type: "info", message: `useVerificationToken`, params });
+      const deletedResult = (await client.delete(
+        {
+          query: `*[_type == 'verificationToken' && identifier == '${identifier}' && token == '${token}' ][0]`,
+        },
+        { returnFirst: true }
+      )) as {
+        documentId?: string;
+        results: { document?: VerificationToken }[];
+      };
+
+      const hasDeleted = !!deletedResult.documentId;
+      const deletedToken = deletedResult.results[0].document || null;
+
+      if (!hasDeleted) {
+        return null;
+      }
+      return deletedToken;
     },
     getSessionAndUser: (sessionToken) => {
       _logger({ type: "info", message: `getSessionAndUser` });

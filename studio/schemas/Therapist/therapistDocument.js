@@ -34,6 +34,12 @@ export default {
       type: "string",
     },
     {
+      name: "emailVerified",
+      title: "Email Verified",
+      type: "datetime",
+      readOnly: true,
+    },
+    {
       name: "image",
       title: "Image",
       type: "defaultImage",

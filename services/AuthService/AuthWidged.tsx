@@ -7,12 +7,20 @@ const UserWidget: React.FC<UserWidgetProps> = () => {
   const s = useSession();
   const { data: session } = s;
 
+  const allowProfile = session?.allowProfile;
+  console.log(session);
+
   return (
     <div className="flex text-sm items-center ">
       <Icon />
-      <Link href="/mitgliederbereich" className=" px-3 ">
+      <Link href="/mitgliederbereich" className="px-3">
         Mitgliederbereich
       </Link>
+      {allowProfile && (
+        <Link href="/profile" className="px-3">
+          Profile
+        </Link>
+      )}
       {session ? (
         <button onClick={() => signOut()}>Sign out</button>
       ) : (

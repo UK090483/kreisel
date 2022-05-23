@@ -26,7 +26,7 @@ const ImageGalleryItem: React.FunctionComponent<ImageGalleryItemProps> = (
         className={`${className}  w-full rounded-theme overflow-hidden shadow-2x `}
       >
         <div className="flex  flex-col pt-4">
-          <div className={`h-full ${contain ? "relative" : ""}`}>
+          <div className={`h-full relativ  m-3 ${contain ? "relative" : ""}`}>
             <SanityImage
               image={image}
               objectFit={contain ? "contain" : "cover"}
@@ -43,28 +43,6 @@ const ImageGalleryItem: React.FunctionComponent<ImageGalleryItemProps> = (
             </div>
           )}
         </div>
-
-        {/* {image && (
-          <div
-            className={`${contain ? "" : ""} absolute inset-0 w-full h-full`}
-          >
-            <SanityImage image={image} objectFit="cover" />
-          </div>
-        )}
-
-        {title && (
-          <div className="flex items-end left-4">
-            <div className="pb-4 ">
-              <Typo
-                space={false}
-                bold
-                className="inline-block py-4 px-6 bg-white rounded-theme whitespace-pre-line "
-              >
-                {title}
-              </Typo>
-            </div>
-          </div>
-        )} */}
       </ConditionalLink>
     </>
   );

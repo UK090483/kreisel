@@ -59,9 +59,10 @@ export const useMemberPage = () => {
   const { data } = useContext(AppContext);
   const slug = data?.slug;
   const isMemberPage = slug && slug.split("/")[1] === "mitgliederbereich";
-  const { status } = useSession({
+  const { status, data: sessionData } = useSession({
     required: !!isMemberPage,
   });
+
   const { push } = useRouter();
   if (status === "unauthenticated" && isMemberPage) {
     typeof window !== "undefined" && push("/auth/login");

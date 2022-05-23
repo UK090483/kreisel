@@ -2,66 +2,66 @@ import NextAuth from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import SanityAdapter from "@services/AuthService/SanityAdapter/SanityAdapter";
 import { mockClient } from "@services/SanityService/test/testClient";
-import { sanityClient } from "@services/SanityService/sanity.server";
+import { previewClient } from "@services/SanityService/sanity.server";
 
 export default NextAuth({
   pages: {
     signIn: "/auth/login",
     verifyRequest: "/auth/verify-request",
   },
-  debug: true,
-  logger: {
-    error(code, metadata) {
-      console.error(code, metadata);
+  callbacks: {
+    async signIn(params) {
+      const { user, account, profile, email, credentials } = params;
+      //console.log(params);
+
+      const isAllowedToSignIn = !!user.allowMember;
+      if (isAllowedToSignIn) {
+        return true;
+      } else {
+        // Return false to display a default error message
+        return false;
+        // Or you can return a URL to redirect to:
+        // return '/unauthorized'
+      }
     },
-    warn(code) {
-      console.warn(code);
+    async jwt({ token, account, isNewUser, user, profile }) {
+      // console.log({
+      //   n: "jwtCallback",
+      //   user,
+      //   token,
+      //   profile,
+      //   isNewUser,
+      //   account,
+      // });
+
+      if (user) {
+        token.allowMember = !!user.allowMember;
+        token.allowProfile = !!user.allowProfile;
+      }
+
+      return token;
     },
-    debug(code, metadata) {
-      console.debug(code, metadata);
+    async session({ session, token, user }) {
+      // console.log({ n: "sessionCallback", user, token, session });
+
+      session.allowMember = token.allowMember;
+      session.allowProfile = token.allowProfile;
+      return session;
     },
   },
 
   adapter: SanityAdapter({
-    client: sanityClient,
+    client: previewClient,
     docType: "therapist",
-    // client: mockClient({
-    //   database: [
-    //     { _type: "user", email: "web@konradullrich.com", _id: "testUser1" },
-    //     { _type: "user", email: "konradullrich@me.com", _id: "testUser2" },
-    //     {
-    //       _type: "user",
-    //       email: "meikeschueler@kreiselhh.de",
-    //       _id: "testUser3",
-    //     },
-    //     { _type: "user", email: "gesaharms@kreiselhh.de", _id: "testUser4" },
-    //     {
-    //       _type: "user",
-    //       email: "fv@schwan-communications.com",
-    //       _id: "testUser5",
-    //     },
-    //     {
-    //       _type: "user",
-    //       email: "nst@schwan-communications.com",
-    //       _id: "testUser6",
-    //     },
-    //   ],
-    // }),
-    devMode: false,
+    devMode: true,
   }),
   secret: process.env.AUTH_SECRET,
-  session: { strategy: "jwt", maxAge: 60000 },
+  session: { strategy: "jwt", maxAge: 6000 },
   jwt: {
-    // A secret to use for key generation. Defaults to the top-level `secret`.
     secret: "INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw",
-    // The maximum age of the NextAuth.js issued JWT in seconds.
-    // Defaults to `session.maxAge`.
-    maxAge: 60000,
-    // You can define your own encode/decode functions for signing and encryption
-    // if you want to override the default behavior.
+    maxAge: 6000,
   },
 
-  // Configure one or more authentication providers
   providers: [
     EmailProvider({
       server: {

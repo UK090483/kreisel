@@ -5,7 +5,7 @@ import { NextPage } from "next";
 import { Session } from "next-auth";
 import Kreisel from "@components/Kreisel";
 import { useForm } from "react-hook-form";
-import Input from "@components/Inputs/Input";
+import { previewClient } from "@services/SanityService/sanity.server";
 
 type LoginProps = {
   csrfToken?: string | undefined;
@@ -54,11 +54,11 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
               errors["email"] ? "text-red" : ""
             }`}
           >
-            <span className=" block">
+            <span className="block">
               Email {errors["email"] && " " + errors["email"].message}
             </span>
 
-            <Input
+            <input
               {...register("email", {
                 pattern: {
                   value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
