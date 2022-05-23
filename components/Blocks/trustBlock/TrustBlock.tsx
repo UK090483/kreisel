@@ -33,7 +33,7 @@ const TrustBlock: React.FunctionComponent<ITrustProps> = (props) => {
     <Section
       transitionBottom={transitionBottom}
       transitionTop={transitionTop}
-      width="l"
+      width="m"
       bg={bgColor}
     >
       {hasContent && (

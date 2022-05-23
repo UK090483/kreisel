@@ -29,8 +29,9 @@ export function colorList(skip) {
 
 export function sizesList(skip) {
   const list = [
+    { title: "no Space", value: "noSpace" },
     { title: "s", value: "s" },
-    { title: "m", value: "m" },
+    { title: "m (default)", value: "m" },
     { title: "l", value: "l" },
     { title: "xl", value: "xl" },
     { title: "xxl", value: "xxl" },

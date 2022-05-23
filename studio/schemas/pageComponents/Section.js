@@ -1,6 +1,7 @@
 import React from "react";
 import { AiOutlineBorderOuter } from "react-icons/ai";
 import { colorList, sizesList } from "../snippets";
+
 export default {
   type: "object",
   name: "section",
@@ -35,7 +36,6 @@ export default {
       type: "defaultRichText",
       title: "Content",
     },
-
     {
       title: "Width",
       name: "width",
@@ -44,7 +44,7 @@ export default {
         list: [
           { title: "Medium", value: "m" },
           { title: "Wide", value: "l" },
-          { title: "Narrow", value: "s" },
+          { title: "Narrow (default)", value: "s" },
         ],
       },
       initialValue: "m",

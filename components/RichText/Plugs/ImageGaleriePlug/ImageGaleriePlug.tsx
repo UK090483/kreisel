@@ -54,7 +54,7 @@ const ImageGalleryPlug: React.FC<{ node: ImageGalleryPlugResult }> = (
   return (
     <div
       className={clsx(
-        "grid mx-auto max-w-sm md:max-w-full  grid-flow-row gap-2 pb-2",
+        "grid mx-auto max-w-sm md:max-w-full  grid-flow-row gap-4 pb-2",
         {
           "grid-cols-1": rows_mobile === 1,
           "grid-cols-2": rows_mobile === 2,

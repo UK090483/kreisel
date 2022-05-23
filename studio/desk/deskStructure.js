@@ -78,4 +78,6 @@ export default () =>
       S.listItem()
         .title("Testimonials")
         .child(S.documentTypeList("testimonial")),
+
+      S.listItem().title("Auth").child(S.documentTypeList("verificationToken")),
     ]);

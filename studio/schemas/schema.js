@@ -15,10 +15,12 @@ import Therapist from "./Therapist";
 import Seo from "./Seo";
 import Image from "./Image";
 import Settings from "./Settings";
+import Auth from "./Auth";
 
 export default createSchema({
   name: "default",
   types: schemaTypes.concat([
+    ...Auth,
     ...Settings,
     ...Image,
     ...Seo,
