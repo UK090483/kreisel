@@ -6,6 +6,7 @@ import type { ImageMetaResult } from "@lib/SanityImage/query";
 import * as React from "react";
 
 import { useRouter } from "next/router";
+import Avatar from "@components/Avatar";
 
 interface IPersonListItemProps {
   name?: null | string;
@@ -29,33 +30,9 @@ const PersonListItem: React.FunctionComponent<IPersonListItemProps> = (
 
   return (
     <li className="flex flex-col items-center justify-center sm:min-w-[250px] w-1/2   sm:w-1/3 py-8 self-start">
+      <Avatar image={avatar} title={name} subTitle={position}></Avatar>
       <div className="tooltip hidden" />
-      <div
-        className={`relative h-24  sm:h-32  overflow-hidden ${
-          isImage
-            ? "w-full border-[10px] border-transparent "
-            : "rounded-full w-24 sm:w-32"
-        } `}
-      >
-        <SanityImage
-          image={avatar}
-          objectFit={isImage ? "contain" : "cover"}
-          sizes={"350px"}
-        />
-      </div>
 
-      <div className="pt-3 h-12 ">
-        <Typo
-          bold
-          variant="h4"
-          as="h3"
-          space={false}
-          className="uppercase text-center"
-        >
-          {name}
-        </Typo>
-      </div>
-      <Typo className="whitespace-pre-line text-center w-60">{position}</Typo>
       {/* <button
         className="underline text-sm sm:text-base"
         data-tip

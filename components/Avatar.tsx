@@ -11,10 +11,11 @@ interface IAvatarProps {
   title?: string | null;
   subTitle?: string | null;
   image?: ImageMetaResult | null;
+  size?: "s" | "m" | "l";
 }
 
 const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
-  const { showFull, title, image, subTitle, children } = props;
+  const { showFull, title, image, subTitle, children, size = "m" } = props;
 
   const { bg } = useSection();
 
@@ -23,11 +24,18 @@ const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
   return (
     <div className="flex flex-col items-center ">
       <div
-        className={`relative   h-60 shadow-2xl overflow-hidden ${
-          showFull
-            ? "w-full border-[10px] border-transparent "
-            : "rounded-full w-60"
-        } `}
+        className={clsx(
+          `relative    shadow-2xl overflow-hidden ${
+            showFull
+              ? "w-full border-[10px] border-transparent "
+              : "rounded-full w-60"
+          } `,
+          {
+            "h-60 w-60": size === "l",
+            "h-44 w-44": size === "m",
+            "h-12 w-12": size === "s",
+          }
+        )}
       >
         <SanityImage
           image={image}
