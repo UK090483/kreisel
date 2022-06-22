@@ -27,7 +27,11 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
   const autoType = hasImage ? "l" : "s";
 
   return (
-    <Accordion condition={type === "accordion"} title={title}>
+    <Accordion
+      condition={type === "accordion"}
+      title={title}
+      width={width || autoType}
+    >
       <Section
         bg={bgColor}
         width={width || autoType}

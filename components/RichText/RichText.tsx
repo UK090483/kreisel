@@ -70,8 +70,6 @@ const RichText: React.FC<any> = (props: any) => {
       blockRenderer={(props) => {
         const { style = "normal" } = props.node;
 
-        console.log(props.node);
-
         if (!props.children[0]) {
           return <Typo spacer />;
         }

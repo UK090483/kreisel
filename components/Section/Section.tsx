@@ -2,6 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import { AppColor } from "types";
 import Transition from "./Transition";
+import useSectionWidth from "./useSectionWidth";
 
 export interface SectionProps {
   width?: "full" | "m" | "l" | "s";
@@ -25,6 +26,8 @@ export const Section: React.FC<SectionProps> = ({
   transitionTop = null,
   transitionBottom = null,
 }) => {
+  const widthClasses = useSectionWidth({ noPadding, width });
+
   return (
     <>
       <Transition pos="top" transition={transitionTop} color={bg} />
@@ -40,14 +43,7 @@ export const Section: React.FC<SectionProps> = ({
           " bg-grey-light": bg === "grey-light",
         })}
       >
-        <div
-          className={clsx("mx-auto", "container", className, {
-            "md:max-w-screen-md ": width === "s",
-            "lg:max-w-screen-lg ": width === "m",
-            "xl:max-w-screen-xl ": width === "l",
-            "px-3": width !== "full" && !noPadding,
-          })}
-        >
+        <div className={clsx("mx-auto", "container", className, widthClasses)}>
           {children}
         </div>
       </Component>

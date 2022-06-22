@@ -1,3 +1,5 @@
+import { SectionProps } from "@components/Section/Section";
+import useSectionWidth from "@components/Section/useSectionWidth";
 import Svg from "@components/Svg";
 import useQueryState from "@hooks/useQueryState";
 import React, { FC } from "react";
@@ -5,17 +7,25 @@ import React, { FC } from "react";
 type AccordionProps = {
   condition: boolean;
   title?: string;
+  width: SectionProps["width"];
 };
 
-const Accordion: FC<AccordionProps> = ({ condition, children, title }) => {
+const Accordion: FC<AccordionProps> = ({
+  condition,
+  children,
+  title,
+  width,
+}) => {
   const { SetValue, value } = useQueryState("accordion");
   const _key = React.useMemo(() => fixedEncodeURIComponent(title), [title]);
   const open = value === _key;
   const handleClick = () => {
     SetValue(open ? null : _key);
   };
-
+  const widthClasses = useSectionWidth({ width, noPadding: false });
   if (!condition) return <>{children}</>;
+
+  console.log({ width, widthClasses });
 
   return (
     <div
@@ -30,7 +40,10 @@ const Accordion: FC<AccordionProps> = ({ condition, children, title }) => {
       >
         <button
           onClick={handleClick}
-          className="max-w-screen-lg w-full mx-auto h-16 flex items-center bg-primary-light font-bold"
+          className={
+            " w-full mx-auto h-16 flex items-center bg-primary-light font-bold " +
+            widthClasses
+          }
         >
           <Svg
             icon="chevronRight"
