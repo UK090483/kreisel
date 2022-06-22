@@ -13,7 +13,7 @@ const EventHead: React.FunctionComponent<IEventHeadProps> = (props) => {
   const { bookingStatus, location, date } = props;
   return (
     <div className="flex justify-between">
-      <div className="flex  justify-center items-center mb-3">
+      <div className="flex  justify-center items-center mb-2">
         <Kreisel
           className={clsx("h-6 w-6 rounded-full  mr-2 ", {
             "text-green-400  ": bookingStatus === "open",

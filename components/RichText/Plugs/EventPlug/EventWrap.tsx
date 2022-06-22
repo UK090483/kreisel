@@ -9,7 +9,7 @@ export const EventWrap: React.FC<EventWrapProps> = (props) => {
   const { children, href, bookingStatus } = props;
 
   const className = clsx(
-    "bg-grey-light p-6 rounded-theme flex flex-col justify-between border-primary-light border-2 transition-shadow hover:shadow-2xl",
+    "bg-grey-light p-4 rounded-theme  justify-between   transition-shadow hover:shadow-md",
     {
       "border-green-400  ": bookingStatus === "open",
       "border-red ": bookingStatus === "full",

@@ -15,8 +15,12 @@ export const ScrapeEventItem: React.FC<ScrapeEvent> = (item) => {
           item.start === item.end ? item.end : item.start + " - " + item.end
         }
       />
-      <Typo bold>{item.name}</Typo>
-      <Typo space={false}>{item.referent}</Typo>
+      <div className="flex justify-between">
+        <Typo bold space={false}>
+          {item.name}
+        </Typo>
+        <Typo space={false}>{item.referent}</Typo>
+      </div>
     </EventWrap>
   );
 };

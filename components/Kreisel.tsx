@@ -50,13 +50,11 @@ export const PureKreisel: React.FC<IKreiselProps> = (props) => {
       viewBox="0 0 100 100"
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
-      className={"w-full" + className}
+      className={"w-full fill-current stroke-current " + className}
     >
       <path
         d={path}
-        fill="#000000"
         fillOpacity="1"
-        stroke="#000000"
         strokeWidth="0.5"
         strokeOpacity="1"
         strokeLinejoin="round"
