@@ -67,9 +67,9 @@ const Typo: React.FC<TypographyProps> = ({
       className={
         clsx("antialiased relative  scale-100", {
           "pb-[0.8em]": space !== false && variant !== "body",
-          "pb-[2em]": space !== false && variant === "body",
+          "pb-[2em]  last-of-type:pb-0": space !== false && variant === "body",
           "text-sm ": variant === "body-s",
-          "text-base": variant === "body",
+          "text-base ": variant === "body",
           "text-lg ": ["body-l", "h6"].includes(variant as string),
           "text-xl font-header": variant === "h5",
           "text-2xl font-header": variant === "h4",
