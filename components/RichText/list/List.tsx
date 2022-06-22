@@ -4,17 +4,23 @@ interface IListProps {
   type?: string;
 }
 
-const List: React.FC<IListProps> = (props: any) => {
+export const List: React.FC<IListProps> = (props: any) => {
   return (
     <ul
       data-testid="list"
       className={`${
         props?.type === "number" ? "list-decimal" : "list-disc"
-      } list-inside pb-4`}
+      } list-outside ml-4 marker:text-primary pb-4 `}
     >
       {props.children}
     </ul>
   );
 };
 
-export default List;
+export const ListItem: React.FC<IListProps> = (props: any) => {
+  return (
+    <li data-testid="listItem" className={` pb-3`}>
+      {props.children}
+    </li>
+  );
+};

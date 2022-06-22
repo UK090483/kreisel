@@ -1,5 +1,5 @@
 import Button from "@components/Button/Button";
-import Kreisel from "@components/Kreisel";
+import Kreisel, { PureKreisel } from "@components/Kreisel";
 import { Section } from "@components/Section/Section";
 import Typo from "@components/Typography";
 import Underline from "@components/Underline/Underline";
@@ -10,7 +10,12 @@ const Style = () => {
     <Section>
       <div className="container  mx-auto py-8 bla">
         <div className="container mx-auto mt-10 ">
-          <Typo space={false} variant="h1">
+          <div>
+            <PureKreisel className="w-1/2" />
+
+            <Kreisel />
+          </div>
+          {/* <Typo space={false} variant="h1">
             <Underline color="primary" variant={0}>
               Blaaaasdfjskl
             </Underline>
@@ -36,11 +41,7 @@ const Style = () => {
             <Underline color="primary" variant={0}>
               Blaaaasdfjskl
             </Underline>
-          </Typo>
-
-          <div>
-            <Kreisel />
-          </div>
+          </Typo> */}
 
           {/* <Typo space={false} variant="h2">
             <Underline color="primary" variant={2}>

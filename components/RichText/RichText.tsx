@@ -10,7 +10,7 @@ import Typo from "@components/Typography/Typography";
 import SpacerPlug, { spacerPlugQuery } from "./Plugs/Spacer";
 
 import SanityRichText from "@lib/SanityPageBuilder/lib/RichText";
-import List from "./list/List";
+
 import GSheet, { GSheetPlugQuery } from "./Plugs/Gsheet";
 import ImagePlug from "./Plugs/ImagePlug/ImagePlug";
 
@@ -19,6 +19,7 @@ import EmbedHTML from "./Plugs/EmbedHTML/EmbedHTML";
 import HandUnderline from "./marks/handunderline";
 import InfoboxPlug, { infoBoxPlugQuery } from "./Plugs/InfoBoxPlug/InfoBoxPlug";
 import { ImagePlugQuery } from "./Plugs/ImagePlug/imagePlugQuery";
+import { List, ListItem } from "./list/List";
 
 const marksQuery = `
 markDefs[]{
@@ -46,6 +47,7 @@ const RichText: React.FC<any> = (props: any) => {
   return (
     <SanityRichText
       list={List}
+      listItem={ListItem}
       content={props.content}
       plugs={{
         imageGalleryPlug: ImageGalleryPlug,
@@ -67,6 +69,8 @@ const RichText: React.FC<any> = (props: any) => {
       }}
       blockRenderer={(props) => {
         const { style = "normal" } = props.node;
+
+        console.log(props.node);
 
         if (!props.children[0]) {
           return <Typo spacer />;

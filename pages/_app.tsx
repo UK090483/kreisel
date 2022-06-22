@@ -11,8 +11,6 @@ import { ShopContextProvider } from "@services/ShopService/shopContext";
 import { PageData } from "./[[...slug]]";
 import usePreviewSubscription from "@lib/SanityPageBuilder/lib/preview/previewSubscription";
 import PreviewIndicator from "@lib/SanityPageBuilder/lib/preview/PreviewIndicator";
-import Script from "next/script";
-import useAuthenticatePage from "@hooks/useAuthenticatePage";
 import { AppContextProvider } from "@components/AppContext/AppContext";
 import AppConfig from "app.config.json";
 
@@ -48,12 +46,12 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
       <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
         <SessionProvider>
           <ShopContextProvider>
-            <StoreContextProvider>
-              {getLayout(pageProps.id)}
-              <Cookie />
-              <Cart />
-              {preview && <PreviewIndicator />}
-            </StoreContextProvider>
+            {/* <StoreContextProvider> */}
+            {getLayout(pageProps.id)}
+            <Cookie />
+            <Cart />
+            {preview && <PreviewIndicator />}
+            {/* </StoreContextProvider> */}
           </ShopContextProvider>
         </SessionProvider>
       </AppContextProvider>

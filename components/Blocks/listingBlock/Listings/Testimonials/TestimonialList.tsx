@@ -19,8 +19,6 @@ const TestimonialList: React.FunctionComponent<ITestimonialListProps> = (
 
   const [item, setItem] = React.useState<[number, number]>([0, -1]);
 
-  console.log(items);
-
   const [animate, setAnimate] = React.useState<null | "out" | "in">(null);
 
   const nextItem = () => {

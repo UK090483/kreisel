@@ -26,7 +26,7 @@ interface ISanityRichTextProps {
   plugs?: Record<string, (props: any) => JSX.Element | null>;
   content: SanityBlock[];
   list?: React.ReactNode;
-  listItem?: React.Component;
+  listItem?: React.ReactNode;
   blockRenderer?: (props: BlockRendererProps) => any;
   dataset?: string;
   projectId?: string;
@@ -50,6 +50,7 @@ const SanityRichText: React.FunctionComponent<ISanityRichTextProps> = (
     plugs = {},
     marks = {},
     list,
+    listItem,
     content,
     blockRenderer,
     dataset,
@@ -68,6 +69,8 @@ const SanityRichText: React.FunctionComponent<ISanityRichTextProps> = (
       blocks={content}
       serializers={{
         list,
+        //@ts-ignore
+        listItem,
         types: { ...plugs, block: BlockRenderer },
         marks,
       }}

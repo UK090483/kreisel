@@ -13,7 +13,7 @@ const TestimonialListItem: React.FunctionComponent<
   const { text, name, position, image, children } = props;
 
   return (
-    <div className="grid  grid-cols-1 lg:grid-cols-2  animate-fadeIn ">
+    <div className="grid   grid-cols-1 lg:grid-cols-2  animate-fadeIn ">
       <div className=" flex flex-col p-12">
         <Typo bold={false} variant="h4" className="pt-6 ">
           Das sagen ehemalige Teilnehmer*innen
@@ -27,8 +27,8 @@ const TestimonialListItem: React.FunctionComponent<
         </Typo>
         {children}
       </div>
-      <div>
-        <Avatar image={image} title={name} subTitle={position} />
+      <div className=" flex justify-center items-center ">
+        <Avatar size="l" image={image} title={name} subTitle={position} />
       </div>
     </div>
   );
