@@ -21,17 +21,9 @@ const Layout: React.FC<LayoutProps> = (props) => {
   const { children, data, preview = false } = props;
 
   const firstRender = useRef(true);
-
   const [fadeIn, setFadeIn] = useState(false);
 
-  console.log(data);
-
-  const { transitionStage, displayChildren, handleTransitionEnd } =
-    usePageTransition({ children, preview });
-
   useIsomorphicLayoutEffect(() => {
-    console.log("render");
-
     if (firstRender.current) {
       firstRender.current = false;
       return;
