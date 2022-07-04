@@ -1,14 +1,10 @@
 import type { PageProps } from "@lib/SanityPageBuilder/types";
 import { PageData } from "pages/[[...slug]]";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import BackGround from "./BackGround";
 import Footer from "./Footer";
 import Head from "./Head";
 import { Header } from "./Header";
 import Nav from "./Navigation/Nav";
-
-import usePageTransition from "@hooks/usePageTransition";
-import useScroll from "@hooks/useScroll";
 
 interface LayoutProps extends PageProps<PageData> {
   preview?: boolean;

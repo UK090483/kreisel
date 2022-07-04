@@ -1,6 +1,5 @@
 import "../styles/globals.css";
 import Layout from "@components/Layout/Layout";
-import StoreContextProvider from "@services/StoreService/StoreProvider";
 import { PageProps } from "@lib/SanityPageBuilder/types";
 import { NextComponentType, NextPageContext } from "next";
 import Cookie from "@lib/Cookie/Cookie";
@@ -46,12 +45,10 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
       <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
         <SessionProvider>
           <ShopContextProvider>
-            {/* <StoreContextProvider> */}
             {getLayout(pageProps.id)}
             <Cookie />
             <Cart />
             {preview && <PreviewIndicator />}
-            {/* </StoreContextProvider> */}
           </ShopContextProvider>
         </SessionProvider>
       </AppContextProvider>

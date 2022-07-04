@@ -5,7 +5,6 @@ import type { ImageMetaResult } from "@lib/SanityImage/query";
 
 import * as React from "react";
 
-import { useRouter } from "next/router";
 import Avatar from "@components/Avatar";
 
 interface IPersonListItemProps {
