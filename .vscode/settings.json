@@ -49,5 +49,10 @@
   },
   "explorerExclude.backup": null,
   "workspace.isHidden": true,
-  "cSpell.words": ["clsx", "csrfToken", "serializers"]
+  "cSpell.words": [
+    "clsx",
+    "csrfToken",
+    "serializers",
+    "tailwindcss"
+  ]
 }

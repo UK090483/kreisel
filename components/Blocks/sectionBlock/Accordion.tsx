@@ -2,13 +2,16 @@ import { SectionProps } from "@components/Section/Section";
 import useSectionWidth from "@components/Section/useSectionWidth";
 import Svg from "@components/Svg";
 import useQueryState from "@hooks/useQueryState";
-import React, { FC } from "react";
+import { useScrollTo } from "@hooks/useScrollTo";
+import React, { FC, useEffect, useRef, useState } from "react";
 
 type AccordionProps = {
   condition: boolean;
   title?: string;
   width: SectionProps["width"];
 };
+
+const initialHeight = 64;
 
 const Accordion: FC<AccordionProps> = ({
   condition,
@@ -19,29 +22,46 @@ const Accordion: FC<AccordionProps> = ({
   const { SetValue, value } = useQueryState("accordion");
   const _key = React.useMemo(() => fixedEncodeURIComponent(title), [title]);
   const open = value === _key;
+
+  const [containerHeight, setContainerHeight] = useState(initialHeight);
+
+  const ref = useRef<HTMLDivElement>(null);
+  const widthClasses = useSectionWidth({ width, noPadding: false });
+
   const handleClick = () => {
     SetValue(open ? null : _key);
   };
-  const widthClasses = useSectionWidth({ width, noPadding: false });
-  if (!condition) return <>{children}</>;
 
-  console.log({ width, widthClasses });
+  const scrollTo = useScrollTo(500);
+
+  useEffect(() => {
+    if (!open) return;
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const { height, top } = rect;
+
+    setContainerHeight(height);
+    // scrollTo(scrollY + (top - 200));
+  }, [open, scrollTo, ref]);
+
+  if (!condition) return <>{children}</>;
 
   return (
     <div
-      className={`relative  ${
-        open ? "max-h-[999px]" : "max-h-16"
-      }    transition-all overflow-hidden`}
+      style={{
+        maxHeight: open ? containerHeight + initialHeight : initialHeight,
+      }}
+      className={`relative  max-h-16 transition-all duration-500 overflow-hidden`}
     >
       <div
-        className={`w-full pl-3 transition-colors bg-primary-light  ${
+        className={`w-full shadow-lg pl-3 transition-colors bg-primary-light  ${
           open ? " delay-200 duration-700" : ""
         }      z-10 `}
       >
         <button
           onClick={handleClick}
           className={
-            " w-full mx-auto h-16 flex items-center bg-primary-light font-bold " +
+            ` w-full mx-auto h-16 flex items-center bg-primary-light font-bold ` +
             widthClasses
           }
         >
@@ -54,7 +74,7 @@ const Accordion: FC<AccordionProps> = ({
           <div className=" text-left ">{title}</div>
         </button>
       </div>
-      {children}
+      <div ref={ref}>{children}</div>
     </div>
   );
 };

@@ -43,7 +43,7 @@ export const Section: React.FC<SectionProps> = ({
           " bg-grey-light": bg === "grey-light",
         })}
       >
-        <div className={clsx("mx-auto", "container", className, widthClasses)}>
+        <div className={clsx("mx-auto", className, widthClasses)}>
           {children}
         </div>
       </Component>

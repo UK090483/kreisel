@@ -43,11 +43,13 @@ module.exports = {
         red: "#D22D30",
       },
       animation: {
+        pageFadeIn: "fadeIn 0.6s ease-in forwards",
         fadeIn: "fadeIn 1s ease-in forwards",
         fadeInFast: "slideDown 0.25s ease-in forwards",
         fadeInMenuItemFast: "menuFade 0.25s ease-in forwards",
         slideDown: "slideDown 0.25s ease-in forwards",
         slideInRight: "slideInRight 0.5s ease-in forwards",
+        slideDownOut: "slideDownOut 0.5s ease-in forwards",
       },
       keyframes: {
         menuFade: {
@@ -69,9 +71,22 @@ module.exports = {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
         },
+        slideUp: {
+          "0%": { transform: "translateY(100%)", opacity: 0 },
+          "100%": { transform: "translateY(0)", opacity: 1 },
+        },
         slideDown: {
           "0%": { transform: "translateY(-100%)", opacity: 0 },
           "100%": { transform: "translateY(0)", opacity: 1 },
+        },
+        slideDownOut: {
+          "0%": { transform: "translateY(0)", opacity: 1 },
+          "50%": { opacity: 0 },
+          "100%": { transform: "translateY(100%)", opacity: 0 },
+        },
+        slideDownIn: {
+          "0%": { transform: "translateY(0)", opacity: 1 },
+          "100%": { transform: "translateY(100%)", opacity: 0 },
         },
         slideInRight: {
           "0%": { transform: "translateX(100%)", opacity: 0 },

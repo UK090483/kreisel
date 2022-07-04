@@ -1,4 +1,6 @@
 // animateScroll.js
+import React from "react";
+import { useEffect } from "react";
 
 const pow = Math.pow;
 
@@ -8,12 +10,12 @@ function easeOutQuart(x: number) {
 }
 type animateScrollProps = {
   targetPosition: number;
-  initialPosition: number;
+  initialPosition?: number;
   duration: number;
 };
 const animateScroll = ({
   targetPosition,
-  initialPosition,
+  initialPosition = window.scrollY,
   duration,
 }: animateScrollProps) => {
   let start: undefined | number;
@@ -102,4 +104,15 @@ export const scrollTo = ({ id, duration = 500 }: scrollToProps) => {
       duration,
     });
   }
+};
+
+export const useScrollTo = (duration: number = 500) => {
+  const scrollTo = React.useCallback(
+    (pos: number) => {
+      animateScroll({ targetPosition: pos, duration });
+    },
+    [duration]
+  );
+
+  return scrollTo;
 };

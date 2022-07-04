@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 export interface ICarouselContextState<T> {
   items: T[];
@@ -60,4 +60,58 @@ export function CarouselContextProvider<T>(
 
 export const useCarousel = () => {
   return useContext(CarouselContext);
+};
+type useAnimatedCarouselProps = {
+  animateOut: number;
+  animateIn: number;
+};
+
+const defaultProps: useAnimatedCarouselProps = {
+  animateOut: 500,
+  animateIn: 500,
+};
+export const useAnimatedCarousel = (props?: useAnimatedCarouselProps) => {
+  const {
+    animateOut = defaultProps["animateOut"],
+    animateIn = defaultProps["animateIn"],
+  } = props || defaultProps;
+
+  const { activeItem: _activeItem, ...rest } = useContext(CarouselContext);
+
+  const initial = React.useRef(true);
+  const lastItem = React.useRef(-1);
+
+  const [activeItem, setActiveItem] = useState(_activeItem);
+  const [animateInItem, setAnimateInItem] = useState(-1);
+  const [animateOutItem, setAnimateOutItem] = useState(-1);
+
+  useEffect(() => {
+    if (initial.current) {
+      initial.current = false;
+      lastItem.current = _activeItem;
+      return;
+    }
+    let timeOut: NodeJS.Timeout | null = null;
+
+    if (animateOut) {
+      setAnimateOutItem(lastItem.current);
+      timeOut = setTimeout(() => {
+        setAnimateOutItem(-1);
+        setActiveItem(_activeItem);
+        lastItem.current = _activeItem;
+      }, animateOut);
+    }
+  }, [_activeItem, animateIn, animateOut]);
+
+  useEffect(() => {
+    let timeOut: NodeJS.Timeout | null = null;
+    if (animateIn) {
+      setAnimateInItem(activeItem);
+      timeOut = setTimeout(() => {
+        setAnimateInItem(-1);
+      }, animateIn);
+    }
+  }, [activeItem, animateIn]);
+
+  return { ...rest, animateInItem, animateOutItem, activeItem };
 };

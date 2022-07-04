@@ -17,41 +17,24 @@ const TestimonialList: React.FunctionComponent<ITestimonialListProps> = (
 ) => {
   const { items = [] } = props;
 
-  const [item, setItem] = React.useState<[number, number]>([0, -1]);
-
-  const [animate, setAnimate] = React.useState<null | "out" | "in">(null);
-
-  const nextItem = () => {
-    setAnimate("out");
-    setItem([(item[0] + 1) % items.length, item[1]]);
-  };
-
-  React.useEffect(() => {
-    if (item[0] === -1) return;
-  }, [item]);
-
   if (items.length < 1) return null;
 
   return (
     <Carousel items={items}>
-      <Navigation>
-        <CarouselItemWrap>
-          {({ activeItem }) => (
-            <div className=" grid grid-cols-1 grid-rows-1">
-              {items.map((i, index) => {
-                return (
-                  <CarouselItem key={i._id} index={index}>
-                    <TestimonialListItem {...items[index]}>
-                      <Dots className=" lg:hidden  " />
-                    </TestimonialListItem>
-                  </CarouselItem>
-                );
-              })}
-            </div>
-          )}
-        </CarouselItemWrap>
+      <Navigation className=" text-grey ">
+        <div className=" grid grid-cols-1 grid-rows-1 text-black ">
+          {items.map((i, index) => {
+            return (
+              <CarouselItem key={i._id} index={index}>
+                <TestimonialListItem index={index} {...items[index]}>
+                  {/* <Dots className="lg:hidden" /> */}
+                </TestimonialListItem>
+              </CarouselItem>
+            );
+          })}
+        </div>
       </Navigation>
-      <Dots className="hidden lg:flex " />
+      <Dots />
     </Carousel>
   );
 };

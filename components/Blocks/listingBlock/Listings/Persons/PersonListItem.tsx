@@ -22,10 +22,6 @@ const PersonListItem: React.FunctionComponent<IPersonListItemProps> = (
 ) => {
   const { name, description, position, avatar, _id, variant } = props;
 
-  console.log(props);
-
-  const { locale } = useRouter();
-
   const isImage = variant === "image";
 
   return (

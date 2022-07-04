@@ -3,6 +3,7 @@ import { Section } from "@components/Section/Section";
 import Typo from "@components/Typography/Typography";
 import React from "react";
 import { PageData } from "pages/[[...slug]]";
+import Avatar from "@components/Avatar";
 
 interface FooterContactProps {
   data: PageData | null;
@@ -16,12 +17,11 @@ const FooterContact: React.FC<FooterContactProps> = (props) => {
   return (
     <Section width="l" className="grid grid-cols-1 py-24 md:grid-cols-2">
       <div className="flex flex-col items-center justify-center ">
-        <div className="relative w-48 h-48 mb-12 overflow-hidden rounded-theme">
-          <SanityImage image={image} />
-        </div>
-        <Typo variant="body-l" className="text-center ">
-          Marieke Klein <br /> Leitung KREISEL e. V.
-        </Typo>
+        <Avatar
+          size="m"
+          image={image}
+          title={"Marieke Klein  Leitung KREISEL e. V."}
+        />
       </div>
 
       <div className="p-16">

@@ -33,8 +33,6 @@ export interface ImageGalleryPlugResult {
 const InfoboxPlug: React.FC<{ node: ImageGalleryPlugResult }> = (props) => {
   const { items } = props.node;
 
-  console.log(props.node);
-
   if (!items || items.length < 1) return <div>No Images</div>;
 
   return (

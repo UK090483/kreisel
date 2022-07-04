@@ -86,14 +86,14 @@ const EventPlug: React.FC<PlugProps<IEventPlugProps>> = (props) => {
               }
 
               return (
-                <>
-                  {isNewMonth && groupByMonth && (
-                    <div className="col-span-full font-bold">
-                      {month && monthMap[month]}
-                    </div>
-                  )}
-                  <ScrapeEventItem key={index} {...item} />
-                </>
+                // <>
+                //   {isNewMonth && groupByMonth && (
+                //     <div className="col-span-full font-bold">
+                //       {month && monthMap[month]}
+                //     </div>
+                //   )}
+                <ScrapeEventItem key={item.link} {...item} />
+                // </>
               );
             })}
       </div>
