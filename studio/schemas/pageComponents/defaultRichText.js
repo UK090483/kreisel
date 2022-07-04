@@ -26,6 +26,11 @@ export default {
         ],
         annotations: [
           {
+            name: "tooltip",
+            type: "tooltipPlug",
+            title: "Tooltip",
+          },
+          {
             name: "handUnderline",
             type: "underline",
             title: "Hand Underline",

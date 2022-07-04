@@ -1,11 +1,8 @@
 import SanityImage from "@lib/SanityImage";
 import Typo from "@components/Typography/Typography";
-
 import * as React from "react";
 import { ITestimonialItem } from "@components/Blocks/listingBlock/listingBlockQuery";
-import Avatar from "@components/Avatar";
 import clsx from "clsx";
-import { useCarousel } from "@lib/Carousel/CarouselContext";
 
 interface ITestimonialListItemProps extends ITestimonialItem {
   index: number;
@@ -17,8 +14,6 @@ const TestimonialListItem: React.FunctionComponent<
   const { text, name, position, image, children } = props;
 
   const hasImage = !!(image && image.url);
-
-  console.log(hasImage);
 
   return (
     <div
@@ -39,8 +34,6 @@ const TestimonialListItem: React.FunctionComponent<
       {hasImage && (
         <div className=" mx-auto rounded-theme overflow-hidden  relative flex justify-center items-center   h-[320px] w-[320px] ">
           <SanityImage image={image} layout={"fill"} objectFit="cover" />
-
-          {/* <Avatar size="l" image={image} title={name} subTitle={position} /> */}
         </div>
       )}
     </div>

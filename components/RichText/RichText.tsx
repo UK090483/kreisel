@@ -20,11 +20,14 @@ import HandUnderline from "./marks/handunderline";
 import InfoboxPlug, { infoBoxPlugQuery } from "./Plugs/InfoBoxPlug/InfoBoxPlug";
 import { ImagePlugQuery } from "./Plugs/ImagePlug/imagePlugQuery";
 import { List, ListItem } from "./list/List";
+import Tooltip from "./marks/Tooltip/tooltip";
+import { toolTipQuery } from "./marks/Tooltip/tooltipQuery";
 
 const marksQuery = `
 markDefs[]{
   ...,
   ${linkMarkQuery},
+  ${toolTipQuery},
 }
 `;
 export const richTextQuery = `
@@ -61,6 +64,7 @@ const RichText: React.FC<any> = (props: any) => {
         infoBox: InfoboxPlug,
       }}
       marks={{
+        tooltip: Tooltip,
         link,
         tag: (props: any) => {
           return <Typo variant={props.mark.tag}>{props.children}</Typo>;
