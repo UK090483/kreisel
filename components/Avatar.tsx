@@ -16,12 +16,8 @@ interface IAvatarProps {
 
 const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
   const { showFull, title, image, subTitle, children, size = "m" } = props;
-
   const { bg } = useSection();
-
   const _bg = bg || "white";
-
-  console.log(bg);
 
   return (
     <div className="flex flex-col items-center ">

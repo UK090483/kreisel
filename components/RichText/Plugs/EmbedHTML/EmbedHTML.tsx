@@ -8,8 +8,6 @@ interface IEmbedHTMLProps {
 const EmbedHTML: React.FC<PlugProps<IEmbedHTMLProps>> = (props) => {
   const { html } = props.node;
 
-  console.log(props);
-
   if (!html) {
     return null;
   }
