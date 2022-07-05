@@ -21,6 +21,8 @@ interface NavProps {
 const Nav: React.FC<NavProps> = ({ items }) => {
   const { toggleMenu, menuOpen, closeMenu } = useMenu();
 
+  console.log({ menuOpen });
+
   const handleNavClick = () => {
     toggleMenu();
   };

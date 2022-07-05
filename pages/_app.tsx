@@ -12,6 +12,7 @@ import usePreviewSubscription from "@lib/SanityPageBuilder/lib/preview/previewSu
 import PreviewIndicator from "@lib/SanityPageBuilder/lib/preview/PreviewIndicator";
 import { AppContextProvider } from "@components/AppContext/AppContext";
 import AppConfig from "app.config.json";
+import StoreContextProvider from "@services/StoreService/StoreProvider";
 
 interface AppPropsWithStaticProps {
   pageProps: PageProps<PageData>;
@@ -42,16 +43,18 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
 
   return (
     <>
-      <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
-        <SessionProvider>
-          <ShopContextProvider>
-            {getLayout(pageProps.id)}
-            <Cookie />
-            <Cart />
-            {preview && <PreviewIndicator />}
-          </ShopContextProvider>
-        </SessionProvider>
-      </AppContextProvider>
+      <StoreContextProvider>
+        <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
+          <SessionProvider>
+            <ShopContextProvider>
+              {getLayout(pageProps.id)}
+              <Cookie />
+              <Cart />
+              {preview && <PreviewIndicator />}
+            </ShopContextProvider>
+          </SessionProvider>
+        </AppContextProvider>
+      </StoreContextProvider>
     </>
   );
 }
