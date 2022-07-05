@@ -9,14 +9,13 @@ import Persons from "./Persons";
 import Navigation from "./Navigation";
 import Page from "./Page";
 import Shop from "./Shop";
-import Events from "./Events";
+
 import Testimonial from "./Testimonial";
 import Therapist from "./Therapist";
 import Seo from "./Seo";
 import Image from "./Image";
 import Settings from "./Settings";
 import Tooltip from "./Tooltip";
-import tooltipDocument from "./Tooltip/tooltipDocument";
 
 export default createSchema({
   name: "default",
@@ -28,7 +27,7 @@ export default createSchema({
     ...Shop,
     ...Page,
     ...Persons,
-    ...Events,
+
     ...Testimonial,
     ...Therapist,
     ...Navigation,

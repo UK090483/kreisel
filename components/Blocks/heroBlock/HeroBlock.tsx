@@ -1,6 +1,3 @@
-import { Section } from "@components/Section/Section";
-import Typo from "@components/Typography/Typography";
-import Underline from "@components/Underline/Underline";
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import React from "react";
 import { AppLocales } from "types";
@@ -51,7 +48,7 @@ export interface HeroBlockProps extends HeroBlogResult {
 }
 
 const HeroBlock: React.FC<HeroBlockProps> = (props) => {
-  const { content, photo, size } = props;
+  const { content, photo } = props;
 
   return (
     <div className="relative h-[95vh] grid grid-cols-2 bg-primary-light">

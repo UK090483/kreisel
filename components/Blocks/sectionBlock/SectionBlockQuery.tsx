@@ -19,18 +19,24 @@ _type == "section" => {
 }
 `;
 
-export interface SectionBlockResult {
+export interface ISectionSpace {
+  topSpace?: "s" | "m" | "l" | "xl" | "xxl";
+  bottomSpace?: "s" | "m" | "l" | "xl" | "xxl";
+}
+export interface SectionBase extends ISectionSpace {
+  transitionTop?: "tearOff" | null;
+  transitionBottom?: "tearOff" | null;
+  title?: string;
+  bgColor?: "black" | "white" | "primary" | "secondary" | "grey";
+  width?: "m" | "l" | "s" | "full";
+}
+
+export interface SectionBlockResult extends SectionBase {
   _type: "section";
   content: null | any;
   bgImage?: ImageMetaResult | null;
   image?: ImageMetaResult | null;
-  transitionTop?: "tearOff" | null;
-  transitionBottom?: "tearOff" | null;
-  topSpace?: "s" | "m" | "l" | "xl" | "xxl";
-  bottomSpace?: "s" | "m" | "l" | "xl" | "xxl";
-  title?: string;
-  bgColor?: "black" | "white" | "primary" | "secondary" | "grey";
-  width?: "m" | "l" | "s";
+
   type?: "accordion";
   _key: string;
 }

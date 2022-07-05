@@ -1,10 +1,23 @@
-import { colorList } from "../snippets";
+import { colorList, sizesList } from "../snippets";
 import { MdViewList } from "react-icons/md";
 
 export default {
   title: "Listing",
   name: "listing",
   type: "object",
+  fieldsets: [
+    {
+      name: "space",
+      title: "Space",
+      options: { collapsible: true, collapsed: true, columns: 2 },
+    },
+
+    {
+      name: "transitions",
+      title: "Übergänge",
+      options: { collapsible: true, collapsed: true },
+    },
+  ],
   fields: [
     { name: "name", type: "string", title: "Name" },
 
@@ -68,6 +81,7 @@ export default {
         list: [...colorList()],
       },
     },
+
     {
       name: "variation",
       title: "Variation",
@@ -78,6 +92,43 @@ export default {
           { title: "Cards", value: "cards" },
           { title: "List", value: "list" },
         ],
+      },
+    },
+
+    {
+      title: "Übergang Oben",
+      name: "transitionTop",
+      type: "string",
+      options: {
+        list: [{ title: "Abgerissen", value: "tearOff" }],
+      },
+      fieldset: "transitions",
+    },
+    {
+      title: "Übergang Unten",
+      name: "transitionBottom",
+      type: "string",
+      options: {
+        list: [{ title: "Abgerissen", value: "tearOff" }],
+      },
+      fieldset: "transitions",
+    },
+    {
+      title: "Top Space",
+      name: "topSpace",
+      type: "string",
+      fieldset: "space",
+      options: {
+        list: [...sizesList()],
+      },
+    },
+    {
+      title: "Bottom Space",
+      name: "bottomSpace",
+      type: "string",
+      fieldset: "space",
+      options: {
+        list: [...sizesList()],
       },
     },
   ],

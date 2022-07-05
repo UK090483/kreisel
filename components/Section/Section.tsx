@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import { AppColor } from "types";
+import { SectionContextProvider } from "./SectionContext";
 import Transition from "./Transition";
 import useSectionWidth from "./useSectionWidth";
 
@@ -15,21 +16,22 @@ export interface SectionProps {
   transitionBottom?: "tearOff" | null;
 }
 
-export const Section: React.FC<SectionProps> = ({
-  children,
-  width = "m",
-  className,
-  id,
-  bg = "white",
-  noPadding = false,
-  as: Component = "section",
-  transitionTop = null,
-  transitionBottom = null,
-}) => {
+export const Section: React.FC<SectionProps> = (props) => {
+  const {
+    children,
+    width = "m",
+    className,
+    id,
+    bg = "white",
+    noPadding = false,
+    as: Component = "section",
+    transitionTop = null,
+    transitionBottom = null,
+  } = props;
   const widthClasses = useSectionWidth({ noPadding, width });
 
   return (
-    <>
+    <SectionContextProvider {...props}>
       <Transition pos="top" transition={transitionTop} color={bg} />
       <Component
         id={id}
@@ -48,6 +50,6 @@ export const Section: React.FC<SectionProps> = ({
         </div>
       </Component>
       <Transition pos="bottom" transition={transitionBottom} color={bg} />
-    </>
+    </SectionContextProvider>
   );
 };

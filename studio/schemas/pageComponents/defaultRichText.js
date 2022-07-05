@@ -105,20 +105,11 @@ export default {
         ],
       },
     },
-    {
-      type: "imagePlug",
-    },
-    // { type: "button", blockEditor: { render: Button } },
+    { type: "imagePlug" },
     { type: "spacer" },
     { type: "imageGalleryPlug" },
     { type: "embedHTML" },
     { type: "gSheet" },
-    { type: "eventPlug" },
     { type: "infoBox" },
-    // { type: 'seoHeader' },
-
-    // { type: 'innerSection' },
-
-    // { type: 'download' }
   ],
 };

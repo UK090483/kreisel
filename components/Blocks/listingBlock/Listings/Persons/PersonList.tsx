@@ -1,4 +1,4 @@
-import { Section } from "@components/Section/Section";
+import { useSection } from "@components/Section/SectionContext";
 import Typo from "@components/Typography/Typography";
 import * as React from "react";
 
@@ -18,21 +18,10 @@ const PersonList: React.FunctionComponent<IPersonListProps> = (props) => {
   }, []);
 
   return (
-    <Section width="l" className=" overflow-hidden pb-12 pt-24 ">
-      {title && (
-        <Typo
-          variant="h3"
-          as="h2"
-          className="text-center uppercase pb-12 md:pb-24 pt-6 md:pt-12 "
-        >
-          {title}
-        </Typo>
-      )}
-      <ul className="w-full flex flex-wrap items-center justify-center">
-        {isMounted &&
-          items?.map((i, index) => <PersonListItem key={index} {...i} />)}
-      </ul>
-    </Section>
+    <ul className="w-full flex flex-wrap items-center justify-center">
+      {isMounted &&
+        items?.map((i, index) => <PersonListItem key={index} {...i} />)}
+    </ul>
   );
 };
 

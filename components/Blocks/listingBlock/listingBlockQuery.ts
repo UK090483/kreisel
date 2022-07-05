@@ -1,5 +1,6 @@
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import { AppLocales, AppColor } from "types";
+import { SectionBase } from "../sectionBlock/SectionBlockQuery";
 import {
   personItemQuery,
   PersonItemResult,
@@ -74,6 +75,11 @@ _type == "listing" => {
   variation,
   _type,
    _key,
+   bgColor,
+   transitionTop,
+   transitionBottom,
+   topSpace,
+   bottomSpace,
    contentType,
   'content':  content[]{...},
   'items': select(
@@ -88,14 +94,13 @@ _type == "listing" => {
 }
 `;
 
-export interface ListingBlockResult<Type, Card> {
+export interface ListingBlockResult<Type, Card> extends SectionBase {
   _key: string;
   _type: "listing";
   type?: "contentType" | "custom";
   contentType: Type;
   items?: Card[];
   lang?: AppLocales;
-  bgColor?: AppColor;
   content?: null | any;
   variation?: null | "list" | "grid";
 }

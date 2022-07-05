@@ -21,6 +21,8 @@ const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
 
   const _bg = bg || "white";
 
+  console.log(bg);
+
   return (
     <div className="flex flex-col items-center ">
       <div

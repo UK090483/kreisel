@@ -13,8 +13,6 @@ export const defaultBockContent = {
 
 export function colorList(skip) {
   const list = [
-    { title: "Black", value: "black" },
-    { title: "White", value: "white" },
     { title: "Primary", value: "primary" },
     { title: "Primary-Light", value: "primary-light" },
     { title: "Secondary", value: "secondary" },
@@ -29,6 +27,7 @@ export function colorList(skip) {
 
 export function sizesList(skip) {
   const list = [
+    { title: "noSpace", value: "noSpace" },
     { title: "s", value: "s" },
     { title: "m", value: "m" },
     { title: "l", value: "l" },

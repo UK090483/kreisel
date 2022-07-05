@@ -1,27 +1,35 @@
 import RichText from "@components/RichText/RichText";
 import { Section } from "@components/Section/Section";
+import useSectionSpace from "@components/Section/useSectionSpace";
 import clsx from "clsx";
 import { AppColor } from "types";
+import { SectionBase } from "../sectionBlock/SectionBlockQuery";
 
-type ListWrapProps = {
-  bgColor?: AppColor;
+interface ListWrapProps extends SectionBase {
   content?: any[];
   space?: boolean;
-  width?: "l" | "full";
-};
+}
 
 const ListWrap: React.FC<ListWrapProps> = (props) => {
-  const { children, bgColor, content, space = true, width = "l" } = props;
+  const {
+    children,
+    bgColor,
+    content,
+    width = "l",
+    transitionTop,
+    transitionBottom,
+    topSpace,
+    bottomSpace,
+  } = props;
   const hasContent = content && content.length > 0;
-
+  const spaceClasses = useSectionSpace({ bottomSpace, topSpace });
   return (
     <Section
+      transitionTop={transitionTop}
+      transitionBottom={transitionBottom}
       width={width}
       bg={bgColor}
-      className={clsx({
-        "pb-32 pt-16": space && hasContent,
-        "py-32": space && !hasContent,
-      })}
+      className={spaceClasses}
     >
       {hasContent && <RichText content={content} />}
       {children}

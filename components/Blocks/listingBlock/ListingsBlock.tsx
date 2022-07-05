@@ -7,13 +7,28 @@ import TherapistList from "./Listings/Therapist/TherapistList";
 import ListWrap from "./ListWrap";
 
 const ListingBlock: React.FC<ListingBlockProps> = (props) => {
-  const { bgColor, content, variation } = props;
+  const {
+    bgColor,
+    content,
+    variation,
+    transitionTop,
+    transitionBottom,
+    topSpace,
+    bottomSpace,
+  } = props;
 
   if (!props.items) return null;
 
   if (props.contentType === "people") {
     return (
-      <ListWrap space={false} bgColor={bgColor} content={content}>
+      <ListWrap
+        bottomSpace={bottomSpace}
+        topSpace={topSpace}
+        transitionTop={transitionTop}
+        transitionBottom={transitionBottom}
+        bgColor={bgColor}
+        content={content}
+      >
         <PersonList items={props.items} />
       </ListWrap>
     );
@@ -21,7 +36,14 @@ const ListingBlock: React.FC<ListingBlockProps> = (props) => {
 
   if (props.contentType === "testimonial") {
     return (
-      <ListWrap width="full" space={false} bgColor={bgColor} content={content}>
+      <ListWrap
+        bottomSpace={bottomSpace}
+        topSpace={topSpace}
+        transitionTop={transitionTop}
+        transitionBottom={transitionBottom}
+        bgColor={bgColor}
+        content={content}
+      >
         <TestimonialList items={props.items} />
       </ListWrap>
     );
@@ -32,7 +54,14 @@ const ListingBlock: React.FC<ListingBlockProps> = (props) => {
   }
 
   return (
-    <ListWrap bgColor={bgColor} content={content}>
+    <ListWrap
+      bottomSpace={bottomSpace}
+      topSpace={topSpace}
+      transitionTop={transitionTop}
+      transitionBottom={transitionBottom}
+      bgColor={bgColor}
+      content={content}
+    >
       <List variation={variation} items={props.items} />
     </ListWrap>
   );
