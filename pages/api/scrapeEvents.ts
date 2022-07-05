@@ -1,9 +1,5 @@
 import { JSDOM } from "jsdom";
 import type { NextApiRequest, NextApiResponse } from "next";
-import blockTools from "@sanity/block-tools";
-import Schema from "@sanity/schema";
-
-import { previewClient } from "@services/SanityService/sanity.server";
 
 export type ScrapeEvent = {
   link?: string;
@@ -16,21 +12,15 @@ export type ScrapeEvent = {
   bookingStatus?: string;
 };
 
-let cash: ScrapeEvent[] | null = null;
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (cash) {
-    return res.status(200).json({ data: cash });
-  }
-
   const data = await getData(
     "https://www.kcs4web.de/kcs4webhcm/Veranstaltungen.aspx?IDC=03371220&hsstartdate=1&hsenddate=1&reset=1"
   );
-  cash = data;
-  res.status(200).json({ data: cash });
+  res.setHeader("Cache-Control", "s-maxage=1, stale-while-revalidate");
+  res.status(200).json({ data });
 }
 
 const indexToName: { [k: number]: string } = {
