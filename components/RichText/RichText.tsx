@@ -3,9 +3,7 @@ import link, { linkMarkQuery } from "./marks/link";
 
 import ButtonPlug, { buttonPlugQuery } from "./Plugs/ButtonPlug/ButtonPlug";
 import EmbedPlug from "./Plugs/EmbedPlug";
-import ImageGalleryPlug, {
-  imageGalleryPlugQuery,
-} from "./Plugs/ImageGaleriePlug/ImageGaleriePlug";
+import ImageGalleryPlug from "./Plugs/ImageGaleriePlug/ImageGaleriePlug";
 import Typo from "@components/Typography/Typography";
 import SpacerPlug, { spacerPlugQuery } from "./Plugs/Spacer";
 
@@ -22,6 +20,7 @@ import { ImagePlugQuery } from "./Plugs/ImagePlug/imagePlugQuery";
 import { List, ListItem } from "./list/List";
 import Tooltip from "./marks/Tooltip/tooltip";
 import { toolTipQuery } from "./marks/Tooltip/tooltipQuery";
+import { imageGalleryPlugQuery } from "./Plugs/ImageGaleriePlug/ImageGalerieQuery";
 
 const marksQuery = `
 markDefs[]{

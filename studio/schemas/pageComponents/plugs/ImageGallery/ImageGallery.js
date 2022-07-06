@@ -17,6 +17,7 @@ export default {
       type: "number",
       initialValue: 4,
       validation: (Rule) => Rule.required().integer().min(1).max(8),
+      hidden: ({ parent }) => parent?.variant === "carousel",
     },
     {
       name: "rows_mobile",
@@ -24,6 +25,7 @@ export default {
       type: "number",
       initialValue: 2,
       validation: (Rule) => Rule.required().integer().min(1).max(8),
+      hidden: ({ parent }) => parent?.variant === "carousel",
     },
     {
       name: "ratio",
@@ -33,19 +35,20 @@ export default {
       options: {
         list: ["1:1", "16:9", "2:3", "3:2"],
       },
+      hidden: ({ parent }) => parent?.variant === "carousel",
     },
-    // {
-    //   name: "variation",
-    //   title: "Variation",
-    //   type: "string",
+    {
+      name: "variant",
+      title: "Variation",
+      type: "string",
 
-    //   options: {
-    //     list: [
-    //       { title: "Grid", value: "grid" },
-    //       { title: "List", value: "list" },
-    //     ],
-    //   },
-    // },
+      options: {
+        list: [
+          { title: "Grid (default)", value: "grid" },
+          { title: "Carousel", value: "carousel" },
+        ],
+      },
+    },
   ],
   preview: {
     select: {
