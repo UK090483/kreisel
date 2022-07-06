@@ -13,7 +13,6 @@ export default {
       options: {
         list: [...colorList()],
       },
-      initialValue: "black",
     },
     {
       title: "Variant",
@@ -29,7 +28,6 @@ export default {
           { title: "Circle 2", value: "circle2" },
         ],
       },
-      initialValue: "black",
     },
     {
       title: "Show on",

@@ -13,6 +13,7 @@ import Underline from "@components/Underline/Underline";
 import NavigationMobile from "@lib/Navigation/NavigationMobile";
 import { NavItem } from "@lib/Navigation/types";
 import ContactButton from "../Header/ContactButton";
+import clsx from "clsx";
 
 interface NavProps {
   items: NavItem[];
@@ -66,9 +67,11 @@ const NavItemBaseWithUnderline: React.FC<NavItemBaseProps> = (props) => {
 
   return (
     <Underline
-      show={place === "link" || active}
+      show={place === "link" || place === "dropdown"}
       on={active ? "init" : "hover"}
-      color={active ? "secondary-light" : "primary-light"}
+      color={"primary-light"}
+      variant={[1, 2, 3]}
+      className={clsx("-translate-y-4 ")}
     >
       <NavigationItemBase {...props} />
     </Underline>

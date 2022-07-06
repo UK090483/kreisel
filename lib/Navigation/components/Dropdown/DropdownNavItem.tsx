@@ -1,18 +1,24 @@
 import { useNavigation, useNavigationOpen } from "../../NavigationContext";
 import React, { useRef } from "react";
-import { NavItem } from "../../types";
+import { NavigationItemBaseComponent, NavItem } from "../../types";
 import { NavigationModulDropdownContainer } from "./NavigationModulDropdownContainer";
 import useIsActive from "../../helper/useIsActive";
-import NavigationItemBase from "../NavItem/NavigationItemBase";
+import DefaultNavigationItemBase from "../NavItem/NavigationItemBase";
 
 type NavigationModulDropdownProps = {
   items?: NavItem[];
   id: string;
+
+  NavigationItemBase?: NavigationItemBaseComponent;
 };
 
 const DropdownNavItem: React.FC<NavigationModulDropdownProps> = (props) => {
-  const { children, items, id } = props;
+  const { children, items, id, NavigationItemBase } = props;
   const hasItems = items && items.length > 0;
+
+  const NavigationItemBaseComponent = NavigationItemBase
+    ? NavigationItemBase
+    : DefaultNavigationItemBase;
 
   const { open, setOpen } = useNavigationOpen(id);
   const { active } = useIsActive({ items });
@@ -60,7 +66,7 @@ const DropdownNavItem: React.FC<NavigationModulDropdownProps> = (props) => {
         id={id}
         aria-haspopup={true}
         aria-expanded={open}
-        className="leading-none"
+        className="leading-none whitespace-nowrap"
         type="button"
         ref={ref}
         onMouseEnter={handleMouseEnter}
@@ -68,7 +74,7 @@ const DropdownNavItem: React.FC<NavigationModulDropdownProps> = (props) => {
         onClick={handleNavClick}
         data-testid={"DropdownNavItem_" + id}
       >
-        <NavigationItemBase
+        <NavigationItemBaseComponent
           active={active}
           props={props}
           place="dropdown"
@@ -76,7 +82,7 @@ const DropdownNavItem: React.FC<NavigationModulDropdownProps> = (props) => {
           hover={open}
         >
           {children}
-        </NavigationItemBase>
+        </NavigationItemBaseComponent>
       </button>
       <NavigationModulDropdownContainer
         ref={wrapRef}

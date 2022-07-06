@@ -45,7 +45,11 @@ const NavigationItem: React.FC<NavItemProps> = (props) => {
 
   if (hasItems) {
     return (
-      <DropdownNavItem id={label || ""} items={items}>
+      <DropdownNavItem
+        id={label || ""}
+        items={items}
+        NavigationItemBase={NavigationItemBaseComponent}
+      >
         {label}
       </DropdownNavItem>
     );

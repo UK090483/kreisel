@@ -8,8 +8,8 @@ import { AppColor } from "types";
 interface UnderlineProps {
   color?: AppColor;
   on?: "hover" | "init" | "scroll";
-
-  variant?: number;
+  className?: string;
+  variant?: number | number[];
   show?: boolean;
 }
 
@@ -41,12 +41,16 @@ const Underline: React.FC<UnderlineProps> = ({
   on = "init",
   show = true,
   variant,
+  className,
 }) => {
   const { isHovered, hoverProps } = useHover();
 
+  const _variant = Array.isArray(variant) ? variant[0] | 0 : variant;
+
   const [init, setInit] = React.useState(false);
 
-  const lineRef = React.useRef<number>(variant || 0);
+  const lineRef = React.useRef<number>(_variant || 0);
+  const firstRender = React.useRef(true);
   const intersectionRef = React.useRef(null);
   const intersection = useIntersection(intersectionRef, {
     root: null,
@@ -57,11 +61,17 @@ const Underline: React.FC<UnderlineProps> = ({
   const isVisible = intersection?.isIntersecting;
 
   React.useEffect(() => {
+    if (!firstRender.current) return;
+    firstRender.current = false;
     if (variant === undefined) {
       lineRef.current = Math.floor(Math.random() * lines.length);
     }
+
+    if (Array.isArray(variant)) {
+      lineRef.current = Math.floor(Math.random() * variant.length);
+    }
     setInit(true);
-  }, []);
+  }, [variant]);
 
   const _on =
     on === "init" ||
@@ -83,11 +93,16 @@ const Underline: React.FC<UnderlineProps> = ({
           <svg
             style={{ fill: "transparent" }}
             preserveAspectRatio="none"
-            className={clsx("absolute w-full fill-current stroke-current", {
-              "   inset-0 scale-y-150 scale-x-125 -z-10  h-full ":
-                line.type === "circle",
-              " h-5 bottom-[-23px] translate-y-[-0.35em]": line.type === "line",
-            })}
+            className={clsx(
+              "absolute w-full fill-current stroke-current",
+              {
+                "   inset-0 scale-y-150 scale-x-125 -z-10  h-full ":
+                  line.type === "circle",
+                " h-5 bottom-[-23px] translate-y-[-0.35em]":
+                  line.type === "line",
+              },
+              className
+            )}
             xmlns="http://www.w3.org/2000/svg"
             viewBox={line.type === "circle" ? "0 0 100 100" : "0 0 100 20"}
           >

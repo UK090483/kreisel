@@ -19,7 +19,7 @@ const variantMap: { [k: string]: number } = {
 const HandUnderlineMark: React.FC<MarkProps<HandUnderlineMarkProps>> = (
   props
 ) => {
-  const { color, variant, on } = props.mark;
+  const { color = "primary", variant, on } = props.mark;
 
   return (
     <Underline on={on || "init"} color={color} variant={variantMap[variant]}>

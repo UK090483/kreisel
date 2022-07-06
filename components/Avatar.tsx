@@ -2,6 +2,7 @@ import SanityImage from "@lib/SanityImage";
 import { ImageMetaResult } from "@lib/SanityImage/query";
 import clsx from "clsx";
 import * as React from "react";
+import Kreisel, { PureKreisel } from "./Kreisel";
 import { useSection } from "./Section/SectionContext";
 
 import Typo from "./Typography/Typography";
@@ -19,6 +20,8 @@ const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
   const { bg } = useSection();
   const _bg = bg || "white";
 
+  const hasImage = !!(image && image.url);
+
   return (
     <div className="flex flex-col items-center ">
       <div
@@ -35,11 +38,18 @@ const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
           }
         )}
       >
-        <SanityImage
-          image={image}
-          objectFit={showFull ? "contain" : "cover"}
-          sizes={"350px"}
-        />
+        {hasImage && (
+          <SanityImage
+            image={image}
+            objectFit={showFull ? "contain" : "cover"}
+            sizes={"350px"}
+          />
+        )}
+        {!hasImage && (
+          <div className=" w-1/2 translate-x-1/2 translate-y-1/2 ">
+            <Kreisel />
+          </div>
+        )}
       </div>
 
       <div className="pt-3  ">
