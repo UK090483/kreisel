@@ -16,9 +16,7 @@ export default {
         {
           type: "object",
 
-          fields: [
-            { name: "content", title: "Content", type: "headerRichText" },
-          ],
+          fields: [{ name: "content", title: "Content", type: "easyRichText" }],
         },
       ],
     },

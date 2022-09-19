@@ -52,7 +52,9 @@ const InfoboxPlug: React.FC<{ node: ImageGalleryPlugResult }> = (props) => {
               return (
                 <div
                   key={row._key}
-                  className={clsx("p-4 border-white first:border-0 border-t-4")}
+                  className={clsx(
+                    "p-4 break-words border-white first:border-0 border-t-4"
+                  )}
                 >
                   {index === 0 && <Typo bold> {i.title}</Typo>}
                   <RichText content={row.content} />

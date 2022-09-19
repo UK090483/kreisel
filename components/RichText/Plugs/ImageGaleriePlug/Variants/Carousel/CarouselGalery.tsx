@@ -1,9 +1,8 @@
 import Carousel from "@lib/Carousel/Carousel";
 import CarouselItem from "@lib/Carousel/CarouselItem";
-import CarouselItemWrap from "@lib/Carousel/CarouselItemWrap";
 import Dots from "@lib/Carousel/Dots";
 import Navigation from "@lib/Carousel/Navigation";
-import clsx from "clsx";
+
 import * as React from "react";
 
 import { ImageGalleryPlugResult } from "../../ImageGalerieQuery";
