@@ -25,7 +25,7 @@ const TestimonialListItem: React.FunctionComponent<
         <Typo bold={false} variant="h4" className="pt-6 ">
           Das sagen ehemalige Teilnehmer*innen:
         </Typo>
-        <Typo bold={false} className="pt-6   h-full">
+        <Typo bold={false} className="pt-6 whitespace-pre-line  h-full">
           {text}
         </Typo>
         {children}
