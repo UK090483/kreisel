@@ -1,9 +1,8 @@
 import listing from "./listing";
 import Section from "./Section";
 import defaultRichText from "./RichText/defaultRichText";
-import hero from "../../../components/Blocks/heroBlock/schema/hero";
-import onPageNav from "./onPageNav";
-import onPageNavItem from "./onPageNavItem";
+import hero from "./hero";
+
 import headerRichText from "./RichText/headerRichText";
 import easyRichText from "./RichText/easyRichText";
 import trust from "./trust";
@@ -18,8 +17,6 @@ const PageComponents = [
   headerRichText,
   easyRichText,
   hero,
-  onPageNav,
-  onPageNavItem,
 ];
 
 export default PageComponents;

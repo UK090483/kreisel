@@ -1,4 +1,5 @@
 import { colorList, sizesList } from "../snippets";
+
 export default {
   name: "trust",
   type: "object",

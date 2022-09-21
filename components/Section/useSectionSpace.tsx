@@ -1,7 +1,7 @@
-import { ISectionSpace } from "@components/Blocks/sectionBlock/SectionBlockQuery";
+import { IBlockSpace } from "@components/Blocks/types";
 import clsx from "clsx";
 
-interface IIseSectionWidthProps extends ISectionSpace {}
+interface IIseSectionWidthProps extends IBlockSpace {}
 
 const useSectionSpace = (props: IIseSectionWidthProps) => {
   const { topSpace, bottomSpace } = props;

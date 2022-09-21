@@ -21,6 +21,18 @@ export default {
       type: "defaultImage",
     },
     {
+      title: "Variant",
+      name: "variant",
+      type: "string",
+      options: {
+        list: [
+          { title: "Full HeroImage", value: "full" },
+          { title: "Half HeroImage", value: "half" },
+        ],
+      },
+      initialValue: "1/3",
+    },
+    {
       title: "Size",
       name: "size",
       type: "string",

@@ -1,11 +1,9 @@
 import RichText from "@components/RichText/RichText";
 import { Section } from "@components/Section/Section";
 import useSectionSpace from "@components/Section/useSectionSpace";
-import clsx from "clsx";
-import { AppColor } from "types";
-import { SectionBase } from "../sectionBlock/SectionBlockQuery";
+import { IBlockStyle } from "../types";
 
-interface ListWrapProps extends SectionBase {
+interface ListWrapProps extends IBlockStyle {
   content?: any[];
   space?: boolean;
 }

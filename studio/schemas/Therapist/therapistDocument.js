@@ -74,6 +74,16 @@ export default {
       title: "Image",
       type: "defaultImage",
     },
+    {
+      name: "allowMember",
+      title: "Allow Member",
+      type: "boolean",
+    },
+    {
+      name: "allowProfile",
+      title: "Allow Profile",
+      type: "boolean",
+    },
   ],
   preview: {
     select: {

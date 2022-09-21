@@ -6,11 +6,6 @@ import Fieldset from "part:@sanity/components/fieldsets/default";
 import { TextInput } from "@sanity/ui";
 // Utilities for patching
 import { Card, Text, Flex, Button, Stack, Box } from "@sanity/ui";
-import {
-  DragHandleIcon,
-  RemoveIcon,
-  TrashIcon,
-} from "@sanity/icons/lib/sanity-icons";
 import { setIfMissing } from "@sanity/form-builder/PatchEvent";
 import { useState } from "react";
 
@@ -103,17 +98,13 @@ const CustomArray = React.forwardRef(function CO(props, ref) {
                 >
                   <Flex justify="space-between">
                     <Card>
-                      <Button
-                        mode="bleed"
-                        tone="default"
-                        icon={<DragHandleIcon />}
-                      />
+                      <Button mode="bleed" tone="default" />
                     </Card>
                     <Card as="button">
                       <Text>{i.label}</Text>
                     </Card>
 
-                    <Button tone="critical" mode="bleed" icon={<TrashIcon />} />
+                    <Button tone="critical" mode="bleed" />
                   </Flex>
                 </Card>
               );

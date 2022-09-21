@@ -27,6 +27,6 @@ describe("HeroBlock", () => {
   });
 
   it("should render", () => {
-    render(<HeroBlock _type="hero" _key="test" lang="de" />);
+    render(<HeroBlock _type="hero" _key="test" />);
   });
 });

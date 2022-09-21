@@ -1,6 +1,6 @@
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import { AppLocales, AppColor } from "types";
-import { SectionBase } from "../sectionBlock/SectionBlockQuery";
+import { IBlockStyle } from "../types";
 import {
   personItemQuery,
   PersonItemResult,
@@ -94,7 +94,7 @@ _type == "listing" => {
 }
 `;
 
-export interface ListingBlockResult<Type, Card> extends SectionBase {
+export interface ListingBlockResult<Type, Card> extends IBlockStyle {
   _key: string;
   _type: "listing";
   type?: "contentType" | "custom";
