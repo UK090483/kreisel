@@ -1,4 +1,3 @@
-import { colorList, sizesList } from "../snippets";
 import { MdViewList } from "react-icons/md";
 import makeBlock from "./snippets/makeBlock";
 
@@ -7,7 +6,6 @@ const block = makeBlock({
   name: "listing",
   content: [
     { name: "name", type: "string", title: "Name" },
-
     {
       name: "contentType",
       type: "string",

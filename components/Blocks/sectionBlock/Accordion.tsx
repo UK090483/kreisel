@@ -21,33 +21,38 @@ const Accordion: FC<AccordionProps> = ({
 }) => {
   const { SetValue, value } = useQueryState("accordion");
   const _key = React.useMemo(() => fixedEncodeURIComponent(title), [title]);
-  const open = value === _key;
-
+  // const open = value === _key;
   const [containerHeight, setContainerHeight] = useState(initialHeight);
-
   const ref = useRef<HTMLDivElement>(null);
   const widthClasses = useSectionWidth({ width, noPadding: false });
-
-  const handleClick = () => {
-    SetValue(open ? null : _key);
-  };
-
   const scrollTo = useScrollTo(500);
+  const lastRef = useRef<Element | null>(null);
+
+  const [open, setOpen] = useState(false);
+  const handleClick = () => {
+    lastRef.current = findOpenContainer().container;
+    // SetValue(open ? null : _key);
+
+    setOpen((i) => !i);
+  };
 
   useEffect(() => {
     if (!open) return;
     if (!ref.current) return;
+
     const rect = ref.current.getBoundingClientRect();
     const { height, top } = rect;
 
     setContainerHeight(height);
-    // scrollTo(scrollY + (top - 200));
+
+    scrollTo(scrollY + (top - 200));
   }, [open, scrollTo, ref]);
 
   if (!condition) return <>{children}</>;
 
   return (
     <div
+      data-container-open={open}
       style={{
         maxHeight: open ? containerHeight + initialHeight : initialHeight,
       }}
@@ -99,3 +104,9 @@ function makeId(length: number) {
   }
   return result;
 }
+
+const findOpenContainer = () => {
+  const container = document.querySelector("[data-container-open=true]");
+  const rect = container ? container.getBoundingClientRect() : null;
+  return { container, top: rect?.top, height: rect?.height };
+};

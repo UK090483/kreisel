@@ -7,6 +7,7 @@ import RichText from "@components/RichText/RichText";
 import clsx from "clsx";
 import { Section } from "@components/Section/Section";
 import { IBlockStyle } from "../types";
+import useSectionSpace from "@components/Section/useSectionSpace";
 
 export const heroBlockQuery = `
 _type == "hero" => {
@@ -49,10 +50,14 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
     bgColor,
     transitionTop,
     transitionBottom,
+    topSpace,
+    bottomSpace,
   } = props;
 
   const isFull = variant === "full" || variant === null;
   const isHalf = variant === "half";
+
+  const spaceClasses = useSectionSpace({ topSpace, bottomSpace });
 
   return (
     <Section
@@ -60,7 +65,7 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
       transitionBottom={transitionBottom}
       bg={bgColor}
       width={isFull ? "full" : "m"}
-      className={clsx("grid  relative", {
+      className={clsx(spaceClasses, "grid  relative", {
         "min-h-[95vh]": size === "full",
         "min-h-[50vh]": size === "1/2",
         "min-h-[66vh]": size === "2/3",
@@ -76,25 +81,12 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
         </div>
       </div>
       {photo && isHalf && (
-        <div className=" relative order-1 md:order-2 min-h-[250px] mt-8 md:mt-0">
+        <div className=" relative order-1 md:order-2 min-h-[250px] my-8 md:my-0">
           <SanityImage image={photo} objectFit="contain" />
         </div>
       )}
     </Section>
   );
-  // return (
-  //   <div className="relative h-[95vh] grid grid-cols-2 bg-primary-light">
-  //     {photo && isFull && <SanityImage image={photo} objectFit="cover" />}
-  //     <div className={clsx("z-10 flex items-center mx-auto ml-[10%]  ")}>
-  //       <RichText content={content} />
-  //     </div>
-
-  //     <div className="z-0 relative flex justify-center items-center animate-fadeIn">
-  //       {photo && isHalf && <SanityImage image={photo} objectFit="contain" />}
-  //       {!photo && <Kreisel className="h-[50vh]" />}
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default HeroBlock;

@@ -17,7 +17,7 @@ export const Link: React.FC<LinkProps> = ({
 }) => {
   if (external) {
     return (
-      <a href={href} className={className}>
+      <a href={href} className={className} target="_blank" rel="noreferrer">
         {children}
       </a>
     );
