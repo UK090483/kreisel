@@ -16,6 +16,7 @@ import Seo from "./Seo";
 import Image from "./Image";
 import Settings from "./Settings";
 import Tooltip from "./Tooltip";
+import Reusable from "./Reusable";
 
 export default createSchema({
   name: "default",
@@ -27,7 +28,7 @@ export default createSchema({
     ...Shop,
     ...Page,
     ...Persons,
-
+    ...Reusable,
     ...Testimonial,
     ...Therapist,
     ...Navigation,

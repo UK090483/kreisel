@@ -36,7 +36,7 @@ export interface HeroBlogResult extends IBlockStyle {
     | "70"
     | "80"
     | "90";
-  filterColor?: "white" | "black";
+  filterColor?: "white" | "primary-light";
   size?: "full" | "1/2" | "2/3" | "1/3";
   variant?: "full" | "half";
 }
@@ -52,6 +52,8 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
     transitionBottom,
     topSpace,
     bottomSpace,
+    filterIntensity,
+    filterColor,
   } = props;
 
   const isFull = variant === "full" || variant === null;
@@ -74,7 +76,29 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
         "md:grid-cols-[2fr,1fr]": isHalf,
       })}
     >
-      {photo && isFull && <SanityImage image={photo} objectFit="cover" />}
+      {photo && isFull && (
+        <div>
+          <SanityImage image={photo} objectFit="cover" className="f" />
+          <div
+            className={clsx(" absolute inset-0 å", {
+              " bg-primary-light ":
+                filterColor === "primary-light" && !!filterIntensity,
+              "bg-white ": filterColor === "white" && !!filterIntensity,
+              "opacity-10": filterIntensity === "10",
+              "opacity-20": filterIntensity === "20",
+              "opacity-30": filterIntensity === "30",
+              "opacity-40": filterIntensity === "40",
+              "opacity-50": filterIntensity === "50",
+              "opacity-60": filterIntensity === "60",
+              "opacity-70": filterIntensity === "70",
+              "opacity-80": filterIntensity === "80",
+              "opacity-90": filterIntensity === "90",
+            })}
+          >
+            {" "}
+          </div>
+        </div>
+      )}
       <div className=" flex  items-center w-full order-2 md:order-1 break-words">
         <div className=" max-w-full    ">
           <RichText content={content} />

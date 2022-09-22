@@ -79,4 +79,5 @@ export default () =>
         .title("Testimonials")
         .child(S.documentTypeList("testimonial")),
       S.listItem().title("ToolTip").child(S.documentTypeList("tooltip")),
+      S.listItem().title("ReuseAble ").child(S.documentTypeList("reuseAble")),
     ]);

@@ -7,6 +7,7 @@ import headerRichText from "./RichText/headerRichText";
 import easyRichText from "./RichText/easyRichText";
 import trust from "./trust";
 import trustItem from "./trustItem";
+import reuseableBlock from "./reuseableBlock";
 
 const PageComponents = [
   trust,
@@ -17,6 +18,7 @@ const PageComponents = [
   headerRichText,
   easyRichText,
   hero,
+  reuseableBlock,
 ];
 
 export default PageComponents;

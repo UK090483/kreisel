@@ -35,6 +35,8 @@ import {
 import BodyParser from "@lib/SanityPageBuilder/lib/BodyParser/BodyParser";
 import { fetchStaticPaths } from "@lib/SanityPageBuilder/lib/fetchStaticPaths";
 import appQuery, { appQueryResult } from "@components/AppContext/appQuery";
+import ReusableBlock from "@components/Blocks/reuseableBlock/ReuseableBlock";
+import { reusableBlockQuery } from "@components/Blocks/reuseableBlock/ReusableBlock.query";
 const locales = appConfig.locales;
 
 export interface PageData
@@ -62,6 +64,9 @@ const Page = () => {
         },
         trust: {
           component: TrustBlock,
+        },
+        reusable: {
+          component: ReusableBlock,
         },
       }}
       content={data?.content || []}
@@ -91,7 +96,7 @@ export const getStaticProps: GetStaticProps = async (props) => {
     params,
     client,
     previewQuery: `content[]{${heroBlockQuery},${sectionBlockQuery}, ${listingBlockQuery},${trustBlockQuery}}`,
-    query: `content[]{${heroBlockQuery},${sectionBlockQuery},${listingBlockQuery},${trustBlockQuery} },  ${footerQuery}, ${appQuery(
+    query: `content[]{${heroBlockQuery},${sectionBlockQuery},${listingBlockQuery},${trustBlockQuery},${reusableBlockQuery} },  ${footerQuery}, ${appQuery(
       ""
     )}, ${NavigationQuery("", isMember ? "memberNav" : undefined)}`,
     locales,

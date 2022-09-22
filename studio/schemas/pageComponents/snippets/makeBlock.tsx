@@ -11,6 +11,7 @@ type makeBlockProps = {
   preview?: any;
   name: string;
   title: string;
+  type?: "object" | "document";
 };
 
 const makeBlock = ({
@@ -20,10 +21,11 @@ const makeBlock = ({
   style = [],
   fieldsets = [],
   preview,
+  type = "object",
 }: makeBlockProps) => {
   return {
     name,
-    type: "object",
+    type,
     title,
     groups: [
       {

@@ -57,7 +57,7 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
   );
 };
 
-const WithImage: React.FC<{
+export const WithImage: React.FC<{
   place: "left" | "right";
   image: ImageMetaResult | null;
 }> = ({ children, place = "left", image }) => {

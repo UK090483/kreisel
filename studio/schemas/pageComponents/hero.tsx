@@ -65,7 +65,7 @@ const block = makeBlock({
       name: "filterColor",
       type: "string",
       options: {
-        list: ["white", "black"],
+        list: ["white", "primary-light"],
       },
     },
   ],
