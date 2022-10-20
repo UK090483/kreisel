@@ -1,4 +1,4 @@
-import { colorList } from "../snippets";
+import { colorList } from "../../snippets";
 import React from "react";
 export default {
   title: "Link",

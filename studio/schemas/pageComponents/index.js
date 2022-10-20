@@ -8,8 +8,10 @@ import easyRichText from "./RichText/easyRichText";
 import trust from "./trust";
 import trustItem from "./trustItem";
 import reuseableBlock from "./reuseableBlock";
+import annotations from "./annotations";
 
 const PageComponents = [
+  ...annotations,
   trust,
   trustItem,
   Section,

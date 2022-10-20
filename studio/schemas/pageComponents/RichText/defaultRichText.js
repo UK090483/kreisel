@@ -31,6 +31,16 @@ export default {
             title: "Tooltip",
           },
           {
+            name: "download",
+            type: "download",
+            title: "Download",
+          },
+          {
+            name: "tooltip",
+            type: "tooltipPlug",
+            title: "Tooltip",
+          },
+          {
             name: "handUnderline",
             type: "underline",
             title: "Hand Underline",

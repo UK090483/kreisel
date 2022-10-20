@@ -1,5 +1,3 @@
-import link from "./link";
-import underline from "./underline";
-const Objects = [link, underline];
+const Objects = [];
 
 export default Objects;
