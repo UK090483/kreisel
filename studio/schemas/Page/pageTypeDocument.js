@@ -1,4 +1,3 @@
-import React from "react";
 import { VscMultipleWindows } from "react-icons/vsc";
 export default {
   name: "pageType",

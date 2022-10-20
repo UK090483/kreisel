@@ -8,7 +8,7 @@ const Tooltip: React.FC<MarkProps<TooltipResult>> = (props) => {
   const { mark } = props;
   const { title, text, ref, _key } = mark;
 
-  const _title = title || ref.title;
+  const _title = title || ref?.title;
 
   return (
     <>
@@ -40,7 +40,7 @@ const Tooltip: React.FC<MarkProps<TooltipResult>> = (props) => {
           className="tooltip"
         >
           <h1 className=" font-bold pb-4">{_title}</h1>
-          {ref.text}
+          {ref?.text}
         </ReactTooltip>
       </Portal>
     </>
