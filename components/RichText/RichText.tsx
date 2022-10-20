@@ -1,5 +1,7 @@
 import React from "react";
 import link, { linkMarkQuery } from "./marks/link";
+import Download from "./marks/Download/download";
+import { downloadQuery } from "./marks/Download/downloadQuery";
 
 import ButtonPlug, { buttonPlugQuery } from "./Plugs/ButtonPlug/ButtonPlug";
 import EmbedPlug from "./Plugs/EmbedPlug";
@@ -27,6 +29,7 @@ markDefs[]{
   ...,
   ${linkMarkQuery},
   ${toolTipQuery},
+  ${downloadQuery},
 }
 `;
 export const richTextQuery = `
@@ -71,6 +74,7 @@ const RichText: React.FC<any> = (props: any) => {
         infoBox: InfoboxPlug,
       }}
       marks={{
+        download: Download,
         tooltip: Tooltip,
         link,
         tag: (props: any) => {
