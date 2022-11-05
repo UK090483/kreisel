@@ -12,19 +12,33 @@ interface FooterProps {
 export const footerQuery = `
 'footer': {
   ...*[_id == 'siteConfig'][0]{
-    'footerImage':footerImage{${imageMeta}}
+    'footerImage':footerImage{${imageMeta}},
+    'contact':coalesce(^.contacts,contacts[0])->{
+      content,
+      'persons':persons[]->{_id,name,position,'avatar':avatar{${imageMeta}}}
+  }
   }
 }
 `;
-
 export interface FooterQueryResult {
   footer: {
     footerImage: ImageMetaResult;
+    contact?: {
+      content?: any;
+      persons?: {
+        avatar?: ImageMetaResult;
+        name?: string;
+        position?: string;
+        _id: string;
+      }[];
+    };
   };
 }
 
 const Footer: React.FC<FooterProps> = (props) => {
   const { data } = props;
+
+  console.log(data);
 
   return (
     <footer

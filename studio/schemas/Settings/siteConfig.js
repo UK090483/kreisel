@@ -35,6 +35,12 @@ export default {
       type: "defaultImage",
     },
     {
+      name: "contacts",
+      title: "Contacts",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "contactItem" }] }],
+    },
+    {
       title: "Default / Seo",
       name: "seo",
       type: "seo",
