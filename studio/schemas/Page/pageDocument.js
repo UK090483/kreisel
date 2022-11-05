@@ -99,6 +99,18 @@ export default {
       to: [{ type: "contactItem" }],
     },
 
+    {
+      name: "layout",
+      title: "Layout",
+      description: "if empty, default will be used",
+      type: "string",
+      group: "base",
+
+      options: {
+        list: [{ title: "Glossary", value: "glossary" }],
+      },
+    },
+
     { ...defaultBockContent, group: "content" },
 
     {

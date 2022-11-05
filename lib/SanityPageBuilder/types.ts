@@ -25,11 +25,11 @@ export type SPBOptions = {
   revalidate?: Revalidate;
 };
 
-export type SPBResult<P> = {
-  PageComponent: NextPage<FetchStaticPropsResult<any>["props"]>;
-  getStaticPaths: GetStaticPaths;
-  getStaticProps: GetStaticProps<P>;
-};
+// export type SPBResult<P> = {
+//   PageComponent: NextPage<FetchStaticPropsResult<any>["props"]>;
+//   getStaticPaths: GetStaticPaths;
+//   getStaticProps: GetStaticProps<P>;
+// };
 
 export type FetchStaticPathsParams = {
   slug?: string[];

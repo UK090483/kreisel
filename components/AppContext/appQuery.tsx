@@ -10,7 +10,8 @@ const appQueryNoLocales = (locale?: string) => `
 _id,
 title,
 'homeRoute':*[_id == 'siteConfig'][0].indexPage->{ 'slug':slug.current },
-'slug':coalesce('/'+pageType->slug.current,'') +'/'+ slug.current
+'slug':coalesce('/'+pageType->slug.current,'') +'/'+ slug.current,
+layout
 `;
 
 export type appQueryResult = {
@@ -18,6 +19,7 @@ export type appQueryResult = {
   title?: string | null;
   homeRoute?: { [k: string]: string };
   slug?: string | null;
+  layout?: "glossary" | null;
 };
 
 export default appQueryNoLocales;

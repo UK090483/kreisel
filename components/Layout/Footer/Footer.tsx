@@ -38,8 +38,6 @@ export interface FooterQueryResult {
 const Footer: React.FC<FooterProps> = (props) => {
   const { data } = props;
 
-  console.log(data);
-
   return (
     <footer
       data-testid="footer"
