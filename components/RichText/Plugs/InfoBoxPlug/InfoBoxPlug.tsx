@@ -26,17 +26,24 @@ export interface ImageGalleryPlugItem {
 
 export interface ImageGalleryPlugResult {
   _type: "imageGalleryPlug";
+  rows?: number;
   name?: string;
   items: ImageGalleryPlugItem[];
 }
 
 const InfoboxPlug: React.FC<{ node: ImageGalleryPlugResult }> = (props) => {
-  const { items } = props.node;
-
+  const { items, rows } = props.node;
   if (!items || items.length < 1) return <div>No Images</div>;
 
   return (
-    <div className="grid  grid-cols-1  lg:grid-cols-2 xl:grid-cols-4 gap-4 ">
+    <div
+      className={clsx("grid  gap-4 ", {
+        "grid-cols-1  lg:grid-cols-2 xl:grid-cols-4":
+          rows === null || rows === 4,
+        "grid-cols-1  lg:grid-cols-2": rows === 2,
+        "grid-cols-1  lg:grid-cols-3": rows === 3,
+      })}
+    >
       {items.map((i, index) => {
         return (
           <div

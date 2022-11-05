@@ -16,10 +16,7 @@ const useIsomorphicLayoutEffect =
 
 const Layout: React.FC<LayoutProps> = (props) => {
   const { children, data } = props;
-
   const isGlossary = data?.layout === "glossary";
-
-  console.log(isGlossary);
 
   const firstRender = useRef(true);
   const [fadeIn, setFadeIn] = useState(false);

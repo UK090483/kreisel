@@ -18,22 +18,22 @@ export default {
       initialValue: 4,
       validation: (Rule) => Rule.required().integer().min(1).max(8),
     },
-    {
-      name: "rows_mobile",
-      title: "Rows Mobile",
-      type: "number",
-      initialValue: 2,
-      validation: (Rule) => Rule.required().integer().min(1).max(8),
-    },
-    {
-      name: "ratio",
-      title: "Ratio",
-      type: "string",
-      initialValue: "1:1",
-      options: {
-        list: ["1:1", "16:9", "2:3", "3:2"],
-      },
-    },
+    // {
+    //   name: "rows_mobile",
+    //   title: "Rows Mobile",
+    //   type: "number",
+    //   initialValue: 2,
+    //   validation: (Rule) => Rule.required().integer().min(1).max(8),
+    // },
+    // {
+    //   name: "ratio",
+    //   title: "Ratio",
+    //   type: "string",
+    //   initialValue: "1:1",
+    //   options: {
+    //     list: ["1:1", "16:9", "2:3", "3:2"],
+    //   },
+    // },
     // {
     //   name: "variation",
     //   title: "Variation",
