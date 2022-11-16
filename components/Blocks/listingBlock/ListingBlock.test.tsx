@@ -45,14 +45,14 @@ const items = [
 ];
 
 describe("ListingBlock", () => {
-  it("query should be valid ", async () => {
-    const client = mockClient({ database });
-    const res = await client.fetch(`*[_type == "page"]{
-      'content':content[]{
-        ${listingBlockQuery}
-      }
-    }`);
-  });
+  // it("query should be valid ", async () => {
+  //   const client = mockClient({ database });
+  //   const res = await client.fetch(`*[_type == "page"]{
+  //     'content':content[]{
+  //       ${listingBlockQuery}
+  //     }
+  //   }`);
+  // });
   it("should render no Items", async () => {
     render(
       <ListingBlock contentType="blog" _type="listing" _key="test" lang="de" />

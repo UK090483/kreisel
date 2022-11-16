@@ -30,8 +30,6 @@ const ListCard: React.FC<CardProps> = (props) => {
     description
   );
 
-  console.log(props);
-
   return (
     <CardWrap
       href={href}
@@ -55,7 +53,3 @@ const ListCard: React.FC<CardProps> = (props) => {
 };
 
 export default ListCard;
-
-const paresDate = (d: string) => {
-  return new Date(d).toLocaleDateString("de");
-};

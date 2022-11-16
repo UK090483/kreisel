@@ -1,6 +1,5 @@
 import { ListingBlockItem } from "@components/Blocks/listingBlock/listingBlockQuery";
 import React from "react";
-import { AppColor } from "types";
 
 import { ArticleCard } from "./Card/ArticleCard";
 import Card from "./Card/Card";
@@ -13,6 +12,8 @@ interface ListProps {
 
 const List: React.FC<ListProps> = (props) => {
   const { items, variation } = props;
+
+  console.log(props);
 
   return (
     <div className="grid grid-cols-1 gap-8  md:grid-cols-2 lg:grid-cols-3 ">

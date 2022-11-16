@@ -1,16 +1,20 @@
 export const linkQuery = `
  'href': select(
+            defined(internalLink) && defined(internalLink->pageType) && defined(onPage)  => '/'+ internalLink->pageType->slug.current + '/' + internalLink->slug.current + '#'+ onPage,
             defined(internalLink) && defined(internalLink->pageType)  => '/'+ internalLink->pageType->slug.current + '/' + internalLink->slug.current,
+            defined(internalLink) && defined(onPage) => '/'+ internalLink->slug.current + '#'+ onPage,
             defined(internalLink) => '/'+ internalLink->slug.current,
             defined(externalLink)  => externalLink,
           ),
-  'external': select(defined(externalLink)=>true,defined(internalLink)=>false)
+  'external': select(defined(externalLink)=>true,defined(internalLink)=>false),
+  onPage,
 `;
 
 export interface LinkResult {
   internalLink?: string | null;
   href?: string | null;
   external?: boolean;
+  onPage?: string | null;
 }
 
 export const navItemQuery = (locale: string = "") => `
