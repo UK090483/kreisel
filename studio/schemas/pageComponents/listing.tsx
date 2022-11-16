@@ -55,6 +55,17 @@ const block = makeBlock({
       hidden: ({ parent }) => parent?.contentType !== "people",
     },
     {
+      name: "testimonialItems",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "testimonial" }],
+        },
+      ],
+      hidden: ({ parent }) => parent?.contentType !== "testimonial",
+    },
+    {
       name: "content",
       type: "headerRichText",
       title: "Header",

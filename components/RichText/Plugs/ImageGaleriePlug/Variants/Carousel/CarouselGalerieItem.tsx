@@ -23,9 +23,9 @@ const CarouselGalerieItem: React.FunctionComponent<ImageGalleryItemProps> = (
         href={link?.href || "/"}
         external={!!link?.external}
         condition={!!link}
-        className={`${className} w-full min-h-[200px]  `}
+        className={`${className} w-full min-h-[200px]`}
       >
-        <div className="grid grid-cols-2  ">
+        <div className="grid grid-cols-2 items-center">
           <div className=" relative h-fit mx-4 mb-4 ">
             <Typo
               space={false}

@@ -91,7 +91,8 @@ _type == "listing" => {
       _type != 'reference' => {${cardQuery}},
     },
     contentType == 'people' => peopleItems[]->{${personItemQuery("")}},
-    contentType in ['article','testimonial','therapist']=> *[_type == ^.contentType ][]{${cardQuery}},
+    contentType == 'testimonial' => testimonialItems[]->{${cardQuery}},
+    contentType in ['article','therapist']=> *[_type == ^.contentType ][]{${cardQuery}},
     contentType in ['blog','aktuelles']=> *[ pageType->slug.current == ^.contentType ][]{${cardQuery}}
   ),
 }
