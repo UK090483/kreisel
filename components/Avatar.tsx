@@ -2,6 +2,7 @@ import SanityImage from "@lib/SanityImage";
 import { ImageMetaResult } from "@lib/SanityImage/query";
 import clsx from "clsx";
 import * as React from "react";
+import ReactTooltip from "react-tooltip";
 import Kreisel, { PureKreisel } from "./Kreisel";
 import { useSection } from "./Section/SectionContext";
 
@@ -12,18 +13,29 @@ interface IAvatarProps {
   title?: string | null;
   subTitle?: string | null;
   image?: ImageMetaResult | null;
+  description?: string | null;
+  id: string;
   size?: "s" | "m" | "l";
 }
 
 const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
-  const { showFull, title, image, subTitle, children, size = "m" } = props;
+  const {
+    showFull,
+    title,
+    image,
+    subTitle,
+    children,
+    description,
+    id,
+    size = "m",
+  } = props;
   const { bg } = useSection();
   const _bg = bg || "white";
 
   const hasImage = !!(image && image.url);
 
   return (
-    <div className="flex flex-col items-center ">
+    <div data-tip data-for={id} className="flex flex-col items-center ">
       <div
         className={clsx(
           `relative    shadow-2xl overflow-hidden ${
@@ -71,6 +83,36 @@ const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
         {subTitle}
       </Typo>
       {children}
+
+      {description && (
+        <ReactTooltip
+          overridePosition={(position) => {
+            console.log(position);
+
+            const wWidth = window.innerWidth;
+            const needFitLeft = position.left < 0;
+            const needFitRight = position.left + 280 > wWidth;
+            const needFitTop = position.top < 0;
+            let p = { ...position };
+            if (needFitLeft) {
+              p = { ...p, left: 20 };
+            }
+            if (needFitRight) {
+              p = { ...p, left: wWidth - 300 };
+            }
+            if (needFitTop) {
+              p = { ...p, top: 20 };
+            }
+            return p;
+          }}
+          id={id}
+          effect="float"
+          // multiline={true}
+          className="tooltip !max-w-xs"
+        >
+          {description}
+        </ReactTooltip>
+      )}
     </div>
   );
 };

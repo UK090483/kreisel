@@ -20,20 +20,18 @@ const FooterContact: React.FC<FooterContactProps> = (props) => {
 
   return (
     <Section width="l" className="grid grid-cols-1 py-24 md:grid-cols-2">
-      <div
-        className={clsx({
-          "flex items-center justify-center ": avatarCount === 1,
-          "grid grid-cols-2 ": avatarCount > 1,
-        })}
-      >
+      <div className="flex flex-wrap items-center justify-center">
         {avatars?.map((a) => (
-          <Avatar
-            key={a._id}
-            size="m"
-            image={a.avatar}
-            title={a.name}
-            subTitle={a.position}
-          />
+          <li key={a._id} className=" list-none w-full md:w-1/2">
+            <Avatar
+              id={a._id}
+              size="m"
+              image={a.avatar}
+              title={a.name}
+              subTitle={a.position}
+              description={a.description}
+            />
+          </li>
         ))}
       </div>
 

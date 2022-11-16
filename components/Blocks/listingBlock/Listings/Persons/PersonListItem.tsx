@@ -1,7 +1,7 @@
 import Typo from "@components/Typography/Typography";
 import SanityImage from "@lib/SanityImage";
 import type { ImageMetaResult } from "@lib/SanityImage/query";
-// import ReactTooltip from "react-tooltip";
+import ReactTooltip from "react-tooltip";
 
 import * as React from "react";
 
@@ -24,8 +24,14 @@ const PersonListItem: React.FunctionComponent<IPersonListItemProps> = (
   const isImage = variant === "image";
 
   return (
-    <li className="flex flex-col items-center justify-center sm:min-w-[250px] w-1/2 sm:w-1/3 self-start">
-      <Avatar image={avatar} title={name} subTitle={position}></Avatar>
+    <li className="flex flex-col items-center justify-center w-full md:w-1/2  lg:w-1/3 self-start">
+      <Avatar
+        id={_id}
+        description={description}
+        image={avatar}
+        title={name}
+        subTitle={position}
+      ></Avatar>
     </li>
   );
 };

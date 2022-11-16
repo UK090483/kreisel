@@ -15,7 +15,7 @@ export const footerQuery = `
     'footerImage':footerImage{${imageMeta}},
     'contact':coalesce(^.contacts,contacts[0])->{
       content,
-      'persons':persons[]->{_id,name,position,'avatar':avatar{${imageMeta}}}
+      'persons':persons[]->{_id,name,position,description,'avatar':avatar{${imageMeta}}}
   }
   }
 }
@@ -26,6 +26,7 @@ export interface FooterQueryResult {
     contact?: {
       content?: any;
       persons?: {
+        description?: string | null;
         avatar?: ImageMetaResult;
         name?: string;
         position?: string;
