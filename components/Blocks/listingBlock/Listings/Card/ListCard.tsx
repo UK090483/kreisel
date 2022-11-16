@@ -13,8 +13,16 @@ type CardProps = {
 } & CardResult;
 
 const ListCard: React.FC<CardProps> = (props) => {
-  const { children, href, title, _createdAt, description, variation, image } =
-    props;
+  const {
+    children,
+    href,
+    title,
+    _createdAt,
+    description,
+    link,
+    variation,
+    image,
+  } = props;
 
   const _description = Array.isArray(description) ? (
     <BlockContent blocks={description} />
@@ -22,9 +30,12 @@ const ListCard: React.FC<CardProps> = (props) => {
     description
   );
 
+  console.log(props);
+
   return (
     <CardWrap
       href={href}
+      link={link}
       className=" rounded-theme bg-grey-light  shadow-sm hover:shadow-2xl transition-shadow  w-full py-6 border-primary border-[1px]"
     >
       <div className=" flex items-center w-full ">

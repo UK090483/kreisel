@@ -12,8 +12,16 @@ type CardProps = {
 } & CardResult;
 
 const Card: React.FC<CardProps> = (props) => {
-  const { children, href, title, _createdAt, description, variation, image } =
-    props;
+  const {
+    children,
+    href,
+    title,
+    link,
+    _createdAt,
+    description,
+    variation,
+    image,
+  } = props;
 
   const _description = Array.isArray(description) ? (
     <BlockContent blocks={description} />
@@ -22,7 +30,7 @@ const Card: React.FC<CardProps> = (props) => {
   );
 
   return (
-    <CardWrap href={href} className=" shadow-xl w-full">
+    <CardWrap link={link} href={href} className=" shadow-xl w-full">
       <div
         className={`relative w-full   aspect-w-10 aspect-h-5 rounded-t-theme overflow-hidden bg-primary-light `}
       >

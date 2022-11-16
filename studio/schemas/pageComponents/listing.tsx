@@ -35,6 +35,7 @@ const block = makeBlock({
           name: "Custom Card",
           fields: [
             { name: "title", type: "string", title: "Name" },
+            { name: "link", type: "link", title: "Link" },
             { name: "description", type: "text", title: "Description" },
             { name: "image", type: "defaultImage", title: "Image" },
           ],

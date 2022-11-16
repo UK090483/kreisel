@@ -21,6 +21,8 @@ export async function fetchStaticProps<P>(
 
   const slug = params && params.slug && params.slug[params.slug.length - 1];
 
+  console.time(slug);
+
   const localizedQuery = (slug: string) =>
     Object.keys(locales).reduce((acc, item) => {
       //@ts-ignore
@@ -47,6 +49,8 @@ export async function fetchStaticProps<P>(
   if (!data) {
     return { notFound: true, revalidate };
   }
+
+  console.timeEnd(slug);
 
   return {
     props: {

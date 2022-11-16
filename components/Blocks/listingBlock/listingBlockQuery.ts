@@ -1,3 +1,4 @@
+import { linkQuery, LinkResult } from "@lib/Navigation/query";
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import { AppLocales, AppColor } from "types";
 import { IBlockStyle } from "../types";
@@ -52,6 +53,7 @@ title,
   defined(pageType) && defined(slug) => '/' + pageType->slug.current + '/' + slug.current,
   defined(slug) => '/' + slug.current
 ),
+'link':link{${linkQuery}},
 `;
 
 export interface CardResult {
@@ -59,6 +61,7 @@ export interface CardResult {
   title?: string;
   description?: string;
   image?: ImageMetaResult;
+  link?: LinkResult;
   _createdAt?: string;
   _id: string;
   _key?: string;
