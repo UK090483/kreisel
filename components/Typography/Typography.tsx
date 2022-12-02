@@ -65,9 +65,9 @@ const Typo: React.FC<TypographyProps> = ({
   return (
     <Component
       className={
-        clsx("antialiased relative  scale-100", {
+        clsx("antialiased relative scale-100", {
           "pb-[0.8em]": space !== false && variant !== "body",
-          "pb-[2em]  last-of-type:pb-0": space !== false && variant === "body",
+          "pb-[2em] last:pb-0": space !== false && variant === "body",
           "text-sm ": variant === "body-s",
           "text-base ": variant === "body",
           "text-lg ": ["body-l", "h6"].includes(variant as string),
