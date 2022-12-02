@@ -6,7 +6,6 @@ export type TooltipResult = {
 };
 export const toolTipQuery = `
   _type == "tooltip" => {
-   
     _key,
     title,
     text,

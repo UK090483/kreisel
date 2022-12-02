@@ -2,9 +2,9 @@ import SanityImage from "@lib/SanityImage";
 import { ImageMetaResult } from "@lib/SanityImage/query";
 import clsx from "clsx";
 import * as React from "react";
-import ReactTooltip from "react-tooltip";
-import Kreisel, { PureKreisel } from "./Kreisel";
+import Kreisel from "./Kreisel";
 import { useSection } from "./Section/SectionContext";
+import Tooltip from "./Tooltip";
 
 import Typo from "./Typography/Typography";
 
@@ -30,6 +30,7 @@ const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
     size = "m",
   } = props;
   const { bg } = useSection();
+
   const _bg = bg || "white";
 
   const hasImage = !!(image && image.url);
@@ -84,35 +85,7 @@ const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
       </Typo>
       {children}
 
-      {description && (
-        <ReactTooltip
-          overridePosition={(position) => {
-            console.log(position);
-
-            const wWidth = window.innerWidth;
-            const needFitLeft = position.left < 0;
-            const needFitRight = position.left + 280 > wWidth;
-            const needFitTop = position.top < 0;
-            let p = { ...position };
-            if (needFitLeft) {
-              p = { ...p, left: 20 };
-            }
-            if (needFitRight) {
-              p = { ...p, left: wWidth - 300 };
-            }
-            if (needFitTop) {
-              p = { ...p, top: 20 };
-            }
-            return p;
-          }}
-          id={id}
-          effect="float"
-          // multiline={true}
-          className="tooltip !max-w-xs"
-        >
-          {description}
-        </ReactTooltip>
-      )}
+      {description && <Tooltip id={id}>{description}</Tooltip>}
     </div>
   );
 };
