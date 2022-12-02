@@ -41,10 +41,6 @@ const Nav: React.FC<NavProps> = ({ items }) => {
           </div>
           <ContactButton />
 
-          {/* <div className="hidden lg:block">
-            <Button> Kontakt aufnehmen</Button>
-          </div>
-          */}
           <button
             data-testid="menu-overlay-toggle"
             onClick={handleNavClick}

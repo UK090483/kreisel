@@ -1,7 +1,5 @@
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import React from "react";
-import { AppLocales } from "types";
-import Kreisel from "@components/Kreisel";
 import SanityImage from "@lib/SanityImage";
 import RichText from "@components/RichText/RichText";
 import clsx from "clsx";

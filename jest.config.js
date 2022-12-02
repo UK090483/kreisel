@@ -1,3 +1,5 @@
+const nextJest = require("next/jest");
+
 module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
@@ -13,6 +15,7 @@ module.exports = {
     "^@services/(.*)$": "<rootDir>/services/$1",
     "^@hooks/(.*)$": "<rootDir>/hooks/$1",
     "^@lib/(.*)$": "<rootDir>/lib/$1",
+    "^pages/(.*)$": "<rootDir>/pages/$1",
 
     /* Handle CSS imports (with CSS modules)
       https://jestjs.io/docs/webpack#mocking-css-modules */
@@ -32,7 +35,7 @@ module.exports = {
     "<rootDir>/studio/",
     "testPrepare.ts",
   ],
-  testEnvironment: "jsdom",
+  testEnvironment: "jest-environment-jsdom",
   transform: {
     /* Use babel-jest to transpile tests with the next/babel preset
       https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object */
