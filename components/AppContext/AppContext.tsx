@@ -57,12 +57,12 @@ export const useHomeRoute = () => {
 
 export const useMemberPage = () => {
   const { data } = useContext(AppContext);
-  const { data: sessionData } = useSession();
+  const { status } = useSession();
   const { push } = useRouter();
   const slug = data?.slug;
   if (!slug) return false;
   const isMemberPage = slug.split("/")[1] === "mitgliederbereich";
-  if (!sessionData && isMemberPage) {
+  if (status === "unauthenticated" && isMemberPage) {
     typeof window !== "undefined" && push("/auth/login");
   }
   return isMemberPage;
