@@ -2,13 +2,15 @@ export const imageMeta = `
 alt,
 crop,
 hotspot,
-'url':asset->url,
-"id": asset->assetId,
-"type": asset->mimeType,
-"aspectRatio": asset->metadata.dimensions.aspectRatio,
-"lqip": asset->metadata.lqip,
-'width': asset->metadata.dimensions.width,
-'height': asset->metadata.dimensions.height
+...(asset->{
+  url,
+  'id':assetId,
+  'type':mimeType,
+  "aspectRatio": metadata.dimensions.aspectRatio,
+  "lqip": metadata.lqip,
+  'width': metadata.dimensions.width,
+  'height': metadata.dimensions.height
+}),
 `;
 
 export type ImageMetaResult = {

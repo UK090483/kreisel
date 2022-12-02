@@ -49,7 +49,7 @@ export interface PageData
 
 const Page = () => {
   const { data } = useAppContext();
-  // useMemberPage();
+  useMemberPage();
   return (
     <BodyParser
       components={{
