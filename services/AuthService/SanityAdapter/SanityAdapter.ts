@@ -82,7 +82,6 @@ const sanityAdapter = ({
         .fetch<SanityAdapterUser>(getUserByEmailQuery, { email })
         .then((i) => (i ? toAdapterUser(i) : null));
     },
-
     getUserByAccount: ({ providerAccountId, provider }) => {
       _logger({ type: "info", message: `getUserByAccount` });
       return client
@@ -116,7 +115,6 @@ const sanityAdapter = ({
 
       const sess: AdapterSession = {
         ..._session,
-        id: "what ever",
       };
       session = sess;
       return sess;

@@ -1,4 +1,4 @@
-import type { SanityClient } from "@sanity/client/sanityClient";
+import type { SanityClient } from "@sanity/client";
 import { parse, evaluate } from "groq-js";
 import { CLIENT_RENEG_LIMIT } from "tls";
 
