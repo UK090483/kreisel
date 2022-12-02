@@ -1,19 +1,20 @@
 import { Link } from "@components/Link";
-import { useSession, signIn, signOut } from "next-auth/react";
+import useAuth from "@lib/Auth/useAuth";
+import { signIn, signOut } from "next-auth/react";
 
 type UserWidgetProps = {};
 
-const UserWidget: React.FC<UserWidgetProps> = () => {
-  const s = useSession();
-  const { data: session } = s;
-
+const AuthWidget: React.FC<UserWidgetProps> = () => {
+  const { isAuthenticated } = useAuth();
   return (
     <div className="flex text-sm items-center ">
-      <Icon />
+      <Link href="/profile" className=" px-3 ">
+        <Icon />
+      </Link>
       <Link href="/mitgliederbereich" className=" px-3 ">
         Mitgliederbereich
       </Link>
-      {session ? (
+      {isAuthenticated ? (
         <button onClick={() => signOut()}>Sign out</button>
       ) : (
         <button onClick={() => signIn()}>Sign in</button>
@@ -22,7 +23,7 @@ const UserWidget: React.FC<UserWidgetProps> = () => {
   );
 };
 
-export default UserWidget;
+export default AuthWidget;
 
 const Icon = () => {
   return (
