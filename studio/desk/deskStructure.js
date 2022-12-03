@@ -72,7 +72,7 @@ export default () =>
         },
       }),
 
-      S.listItem().title("Therapeuten").child(S.documentTypeList("therapist")),
+      S.listItem().title("Mitglieder").child(S.documentTypeList("therapist")),
       S.listItem().title("Articles").child(S.documentTypeList("article")),
       S.listItem().title("Persons").child(S.documentTypeList("person")),
       S.listItem()

@@ -17,6 +17,7 @@ const FooterContact: React.FC<FooterContactProps> = (props) => {
   const contact = data?.footer?.contact;
   const avatars = contact?.persons;
   const avatarCount = avatars ? avatars.length : 0;
+  if (!data.footer.contact.content && !data.footer.contact.persons) return null;
 
   return (
     <Section width="l" className="grid grid-cols-1 py-24 md:grid-cols-2">

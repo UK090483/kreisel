@@ -1,6 +1,6 @@
 export default {
   name: "therapist",
-  title: "Therapeut",
+  title: "Mitglied",
   type: "document",
   fields: [
     {

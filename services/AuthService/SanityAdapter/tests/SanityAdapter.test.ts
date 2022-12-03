@@ -1,6 +1,7 @@
 import Adapter from "../SanityAdapter";
 import { mockClient } from "../../../SanityService/test/testClient";
-import {omit} from 'lodash'
+import { omit } from "lodash";
+import AdapterLogger from "../AdapterLogger";
 const testUser1 = {
   _type: "user",
   emailVerified: new Date(2018, 1, 12, 10, 30),
@@ -18,23 +19,23 @@ const testAccount = {
 
 const database: any[] = [testUser1, testAccount];
 
-const testAdapter = (db?:any[]) => {
-  return Adapter({ client: mockClient({ database:db ||database }) });
+const testAdapter = (db?: any[]) => {
+  return AdapterLogger(
+    Adapter({ client: mockClient({ database: db || database }) })
+  );
 };
 
 describe("Sanity Adapter", () => {
-  let client = mockClient({database})
-   let adapter = Adapter({client}) 
-  beforeEach(()=>{
-    client = mockClient({database})
-    adapter = Adapter({client}) 
-  })
+  let client = mockClient({ database });
+  let adapter = Adapter({ client });
+  beforeEach(() => {
+    client = mockClient({ database });
+    adapter = Adapter({ client });
+  });
   it("createUser should create and return user ", async () => {
-  
-    const newUser = await adapter.createUser(omit(testUser1,'_id'))
-    expect(newUser).toHaveProperty('id')
+    const newUser = await adapter.createUser(omit(testUser1, "_id"));
+    expect(newUser).toHaveProperty("id");
     expect(client.getDb().length).toBe(3);
-    
   });
 
   //getUser ------------------------------------------------
@@ -68,16 +69,20 @@ describe("Sanity Adapter", () => {
     expect(user).toMatchSnapshot();
   });
 
-
   // updateUser ------------------------------------------------
   it("getUserByEmail should return user if exist", async () => {
-    const updated = { ...omit(testUser1,'_id'),id:'testUser1', name: "updatedName" };
+    const updated = {
+      ...omit(testUser1, "_id"),
+      id: "testUser1",
+      name: "updatedName",
+    };
     const updatedUser = await adapter.updateUser(updated);
     expect(updatedUser).toStrictEqual(updated);
-    expect(client.getDb().find(i=>i._id === 'testUser1')).toStrictEqual({...testUser1,name: "updatedName"});
+    expect(client.getDb().find((i) => i._id === "testUser1")).toStrictEqual({
+      ...testUser1,
+      name: "updatedName",
+    });
   });
-
- 
 });
 
 export {};

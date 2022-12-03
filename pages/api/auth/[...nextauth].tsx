@@ -11,7 +11,6 @@ export const authOptions: NextAuthOptions = {
   adapter: SanityAdapter({
     client: mockClient({
       database: [
-        { _type: "user", email: "web@konradullrich.com", _id: "testUser1" },
         {
           _type: "user",
           name: "Konrad",
