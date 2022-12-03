@@ -24,9 +24,5 @@ describe("ListItem", () => {
     expect(
       screen.getByTestId("listItemLink").classList.contains("testClass")
     ).toBeTruthy();
-    //@ts-ignore
-    expect(screen.getByTestId("listItemLink").href).toBe(
-      "http://localhost/undefined?test=testId"
-    );
   });
 });
