@@ -6,10 +6,14 @@ import React from "react";
 const TestUnderline: React.FC = ({ children }) => {
   return <div>{children}</div>;
 };
+
 jest.mock("@components/Underline/Underline", () => {
   return {
     __esModule: true,
-    default: TestUnderline,
+    //@ts-ignore
+    default: ({ children }) => {
+      return <div>{children}</div>;
+    },
   };
 });
 
@@ -22,11 +26,10 @@ describe("HeroBlock", () => {
       'content':content[]{
         ${heroBlockQuery}
       }
-
     }`);
   });
 
   it("should render", () => {
-    render(<HeroBlock _type="hero" _key="test" />);
+    render(<HeroBlock _type="hero" _key="test" content={[]} />);
   });
 });

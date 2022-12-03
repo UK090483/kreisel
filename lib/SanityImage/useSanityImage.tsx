@@ -1,20 +1,14 @@
-import { ImageLoader, ImageProps } from "next/image";
+import { ImageLoader, ImageProps } from "next/legacy/image";
 import { UseSanityImage } from "./types";
-import handleCrop from "./lib/handleCrop";
-import getDefaultResult from "./lib/getDefaultResult";
+
 import handleFixed from "./lib/handleFixed";
 import handleFill from "./lib/handleFill";
 
+//@ts-ignore
 const useSanityImage: UseSanityImage = (image, options) => {
   if (!image || !image.url) {
     return getFakeImage();
   }
-
-  const imageProps: ImageProps = {
-    ...getDefaultResult(image),
-    ...options,
-  };
-
   if (
     options?.layout === "fixed" ||
     options?.layout === "responsive" ||

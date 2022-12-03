@@ -9,6 +9,7 @@ const loader: ImageLoader = (props) => {
 
 const getDefaultResult = (image: ImageMetaResult): ImageProps => {
   const url = `${image.url}?auto=format`;
+  //@ts-ignore
   return {
     draggable: false,
     blurDataURL: image.lqip,

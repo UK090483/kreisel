@@ -24,10 +24,14 @@ export const Link: React.FC<LinkProps> = ({
   }
 
   return (
-    <NextLink href={href} passHref>
-      <a data-testid="nextLink" onClick={onClick} className={className}>
-        {children}
-      </a>
+    <NextLink
+      onClick={onClick}
+      data-testid="nextLink"
+      href={href}
+      passHref
+      className={className}
+    >
+      {children}
     </NextLink>
   );
 };

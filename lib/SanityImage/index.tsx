@@ -1,5 +1,5 @@
 import React from "react";
-import NextImage from "next/image";
+import NextImage from "next/legacy/image";
 import useSanityImage from "@lib/SanityImage/useSanityImage";
 
 import { SanityImageComponent } from "./types";
