@@ -29,7 +29,7 @@ const Nav: React.FC<NavProps> = ({ items }) => {
     <>
       <nav className=" shadow-lg  px-3">
         <div className=" mx-auto lg:container  flex items-center justify-between w-full py-2   ">
-          <Link href="/">
+          <Link href="/" className=" shrink-0 ">
             <Logo />
           </Link>
 
