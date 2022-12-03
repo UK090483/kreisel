@@ -1,23 +1,24 @@
-import {
-  Adapter,
-  AdapterUser,
-  VerificationToken,
-  AdapterSession,
-} from "next-auth/adapters";
+import { Adapter } from "next-auth/adapters";
 
 const AdapterLogger: (adapter: Adapter) => Adapter = (adapter) => {
-  Object.keys(adapter).forEach((key) => {
-    const _key = key as keyof Adapter;
-    //@ts-ignore
-    adapter[_key] = async (...params) => {
-      console.log(_key + "called");
+  const handler: ProxyHandler<Adapter> = {
+    get(target, prop) {
+      const res = target[prop as keyof Adapter];
 
-      //@ts-ignore
-      return await adapter[_key](...params);
-    };
-  });
+      if (typeof res === "function") {
+        return (...rest: any[]) => {
+          console.log(prop.toString().toUpperCase() + " called");
+          console.log("params", rest);
+          //@ts-ignore
+          return res.call(target, rest);
+        };
+      }
 
-  return adapter;
+      return target[prop as keyof Adapter];
+    },
+  };
+
+  return new Proxy(adapter, handler) as Adapter;
 };
 
 export default AdapterLogger;

@@ -54,7 +54,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 
   const profile = await previewClient.fetch(
-    `*[_type == "therapist" && email == '${session.user?.email}' ][0]{...}`
+    `*[_type == "therapist" && email == '${session.user?.email}' ][0]{
+      name,
+      firstName,
+      street,
+      city,
+      website,
+      email,
+      jobDescription,
+      phone,
+      zipCode,
+      allowProfile,
+      allowMember,
+    }`
   );
 
   return {

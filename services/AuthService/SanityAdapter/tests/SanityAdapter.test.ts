@@ -19,18 +19,13 @@ const testAccount = {
 
 const database: any[] = [testUser1, testAccount];
 
-const testAdapter = (db?: any[]) => {
-  return AdapterLogger(
-    Adapter({ client: mockClient({ database: db || database }) })
-  );
-};
-
 describe("Sanity Adapter", () => {
   let client = mockClient({ database });
   let adapter = Adapter({ client });
   beforeEach(() => {
     client = mockClient({ database });
-    adapter = Adapter({ client });
+    // adapter = Adapter({ client });
+    adapter = AdapterLogger(Adapter({ client }));
   });
   it("createUser should create and return user ", async () => {
     const newUser = await adapter.createUser(omit(testUser1, "_id"));
@@ -49,7 +44,7 @@ describe("Sanity Adapter", () => {
     expect(user).toStrictEqual(null);
   });
 
-  //getUserByEmail ------------------------------------------------
+  // //getUserByEmail ------------------------------------------------
 
   it("getUserByEmail should return user if exist", async () => {
     const user = await adapter.getUserByEmail("web@konradullrich.com");
@@ -60,29 +55,29 @@ describe("Sanity Adapter", () => {
     expect(user).toStrictEqual(null);
   });
 
-  //getUserByAccount  ------------------------------------------------
-  it("getUserByEmail should return user if exist", async () => {
-    const user = await adapter.getUserByAccount({
-      provider: "testProvider",
-      providerAccountId: "testProviderAccountId",
-    });
-    expect(user).toMatchSnapshot();
-  });
+  // //getUserByAccount  ------------------------------------------------
+  // it("getUserByEmail should return user if exist", async () => {
+  //   const user = await adapter.getUserByAccount({
+  //     provider: "testProvider",
+  //     providerAccountId: "testProviderAccountId",
+  //   });
+  //   expect(user).toMatchSnapshot();
+  // });
 
-  // updateUser ------------------------------------------------
-  it("getUserByEmail should return user if exist", async () => {
-    const updated = {
-      ...omit(testUser1, "_id"),
-      id: "testUser1",
-      name: "updatedName",
-    };
-    const updatedUser = await adapter.updateUser(updated);
-    expect(updatedUser).toStrictEqual(updated);
-    expect(client.getDb().find((i) => i._id === "testUser1")).toStrictEqual({
-      ...testUser1,
-      name: "updatedName",
-    });
-  });
+  // // updateUser ------------------------------------------------
+  // it("getUserByEmail should return user if exist", async () => {
+  //   const updated = {
+  //     ...omit(testUser1, "_id"),
+  //     id: "testUser1",
+  //     name: "updatedName",
+  //   };
+  //   const updatedUser = await adapter.updateUser(updated);
+  //   expect(updatedUser).toStrictEqual(updated);
+  //   expect(client.getDb().find((i) => i._id === "testUser1")).toStrictEqual({
+  //     ...testUser1,
+  //     name: "updatedName",
+  //   });
+  // });
 });
 
 export {};
