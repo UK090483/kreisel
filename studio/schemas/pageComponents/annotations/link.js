@@ -29,6 +29,10 @@ export default {
       hidden: ({ parent }) => {
         return !!parent?.internalLink;
       },
+      validation: (Rule) =>
+        Rule.uri({
+          scheme: ["http", "https", "mailto", "tel"],
+        }),
     },
   ],
   preview: {

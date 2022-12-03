@@ -15,7 +15,7 @@ export const Navigation: React.FC<NavigationProps> = (props) => {
   return (
     <div className={`w-full flex  justify-between ${className}`}>
       <button
-        className=" px-3 "
+        className="text-grey px-3 "
         onClick={prev}
         aria-label="carousel button previous"
       >
@@ -23,7 +23,7 @@ export const Navigation: React.FC<NavigationProps> = (props) => {
       </button>
       {children}
       <button
-        className=" px-3  rotate-180 "
+        className=" px-3 text-grey rotate-180 "
         onClick={next}
         aria-label="carousel button next"
       >

@@ -11,7 +11,7 @@ import CarouselGalerieItem from "./CarouselGalerieItem";
 const CarouselGallery: React.FunctionComponent<ImageGalleryPlugResult> = (
   props
 ) => {
-  const { items, rows = 4, rows_mobile = 2, ratio = "1:1" } = props;
+  const { items } = props;
   return (
     <div>
       <Carousel items={items}>

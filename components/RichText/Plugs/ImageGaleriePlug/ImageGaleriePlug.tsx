@@ -1,9 +1,5 @@
 import React from "react";
 
-import clsx from "clsx";
-
-import ImageGalleryItem from "./Variants/Grid/GridGalerieItem";
-
 import { ImageGalleryPlugResult } from "./ImageGalerieQuery";
 import GridGalerie from "./Variants/Grid/GridGalery";
 import CarouselGallery from "./Variants/Carousel/CarouselGalery";
