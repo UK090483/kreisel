@@ -21,7 +21,7 @@ const TestimonialList: React.FunctionComponent<ITestimonialListProps> = (
 
   return (
     <Carousel items={items}>
-      <Navigation className=" text-grey ">
+      <Navigation>
         <div className=" grid grid-cols-1 grid-rows-1 text-black ">
           {items.map((i, index) => {
             return (
