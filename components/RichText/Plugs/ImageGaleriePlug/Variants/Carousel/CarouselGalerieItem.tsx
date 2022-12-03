@@ -5,6 +5,7 @@ import SanityImage from "@lib/SanityImage";
 import { ConditionalLink } from "@components/Link";
 
 import { LinkResult } from "@lib/Navigation/query";
+import clsx from "clsx";
 type ImageGalleryItemProps = {
   image?: ImageMetaResult;
   title?: string;
@@ -25,15 +26,17 @@ const CarouselGalerieItem: React.FunctionComponent<ImageGalleryItemProps> = (
         condition={!!link}
         className={`${className} w-full min-h-[200px]`}
       >
-        <div className="grid grid-cols-2 items-center">
-          <div className=" relative h-fit mx-4 mb-4 ">
-            <Typo
-              space={false}
-              className="inline-block py-4 px-6 w-full bg-white rounded-[16px] whitespace-pre-line"
-            >
-              {title}
-            </Typo>
-          </div>
+        <div className={clsx("grid items-center", { "grid-cols-2": title })}>
+          {title && (
+            <div className=" relative h-fit mx-4 mb-4 ">
+              <Typo
+                space={false}
+                className="inline-block py-4 px-6 w-full bg-white rounded-[16px] whitespace-pre-line"
+              >
+                {title}
+              </Typo>
+            </div>
+          )}
 
           <div className={`h-full min-h-[400px] relative`}>
             <SanityImage
