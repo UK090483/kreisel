@@ -46,6 +46,7 @@ const handleFixed = (
     imageProps.src = `${imageProps.src}${crop.query}`;
   }
 
+  //@ts-ignore
   return imageProps;
 };
 

@@ -54,8 +54,6 @@ const getDimensions = (
   image: ImageMetaResult,
   options: UseSanityImageOptions
 ) => {
-  console.log(options);
-
   const crop = handleCrop(image);
   const { width, height } = checkDimensionOptions(options);
 

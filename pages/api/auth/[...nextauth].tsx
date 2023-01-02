@@ -7,6 +7,7 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/login",
     verifyRequest: "/auth/verify-request",
+    newUser: "/auth/new-user",
   },
   adapter: SanityAdapter({
     client: mockClient({
@@ -15,6 +16,7 @@ export const authOptions: NextAuthOptions = {
           _type: "user",
           name: "Konrad",
           email: "konradullrich@me.com",
+          test: "test",
           _id: "testUser2",
         },
         {
@@ -32,8 +34,44 @@ export const authOptions: NextAuthOptions = {
   jwt: {
     maxAge: 600,
   },
+  callbacks: {
+    async jwt({ token, account, profile }) {
+      console.log("jwt---------");
+      console.log({ token, account, profile });
 
-  // Configure one or more authentication providers
+      console.log("jwt---------");
+      // Persist the OAuth access_token and or the user id to the token right after signin
+      token.test = "bla test";
+      return token;
+    },
+    async session({ session, token, user }) {
+      // Send properties to the client, like an access_token and user id from a provider.
+      console.log("session---------");
+      console.log({ session, token, user });
+      console.log("session---------");
+      //@ts-ignore
+      session.sess = token.test;
+      return session;
+    },
+    async signIn({ user, account, profile, email, credentials }) {
+      console.log("signIn---------");
+      console.log({ user, account, profile, email, credentials });
+      console.log("signIn---------");
+      const isAllowedToSignIn = true;
+      if (isAllowedToSignIn) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+
+  events: {
+    createUser: (...props) => {
+      console.log("createUser", ...props);
+    },
+  },
+
   providers: [
     EmailProvider({
       server: {

@@ -8,7 +8,7 @@ interface HeadProps {
 const Head: React.FunctionComponent<HeadProps> = ({ name }) => {
   return (
     <NextHead>
-      <title>Kreisel e.V. {name ? `/ ${name}` : ""}</title>
+      <title>{`Kreisel e.V. | ${name}`}</title>
       <meta
         name="description"
         content="Generated width love by create next app"

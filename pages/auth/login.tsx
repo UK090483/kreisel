@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from "react";
-import { getSession, getCsrfToken } from "next-auth/react";
+import { getSession, getCsrfToken, signIn } from "next-auth/react";
 import Button from "@components/Button/Button";
 import { NextPage } from "next";
 import { Session } from "next-auth";
@@ -30,15 +30,18 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
   } = useForm<Inputs>({ mode: "onTouched" });
 
   const canSubmit = isDirty && isValid;
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const _handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     trigger();
-    if (canSubmit) return;
+
+    signIn("email", { email: "web@konradullrich.com", name: "bla" });
+
     e.preventDefault();
+    if (canSubmit) return;
   };
 
   return (
-    <div className="h-screen flex justify-center items-center  px-5 bg-grey-light">
-      <div className=" rounded-theme p-20  bg-primary-light  h-fit">
+    <div className="h-screen flex justify-center items-center px-5 bg-grey-light">
+      <div className="rounded-theme p-20 bg-primary-light h-fit">
         <div className="w-1/2 sm:w-2/3 mx-auto">
           <Kreisel />
         </div>
@@ -46,15 +49,15 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
           className=" pt-20 "
           method="post"
           action="/api/auth/signin/email"
-          onSubmit={handleSubmit}
+          // onSubmit={_handleSubmit}
         >
           <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
           <label
-            className={`block  text-sm font-bold ${
+            className={`block text-sm font-bold ${
               errors["email"] ? "text-red" : ""
             }`}
           >
-            <span className=" block">
+            <span className="block">
               Email {errors["email"] && " " + errors["email"].message}
             </span>
 

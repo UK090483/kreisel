@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import React, { ReactElement, ReactNode } from "react";
 import ProfileForm from "@lib/Profile/ProfileForm";
+import { Profile } from "@lib/Profile/profileQuery";
 import { previewClient } from "@services/SanityService/sanity.server";
 
 type ProfileProps = {
@@ -10,35 +11,18 @@ type ProfileProps = {
   profile: Profile;
 };
 
-type Profile = {
-  firstName: string;
-  name: string;
-  job: string;
-  surgery: string;
-  addressSupplement: string;
-  street: string;
-  city: string;
-  phone: string;
-  mobile: string;
-  email: string;
-  website: string;
-  description: string;
-  membership: "kreisel" | "fil" | "bvl" | "legaKids";
-};
-
-const Profile: React.FC<ProfileProps> & {
+const ProfilePage: React.FC<ProfileProps> & {
   getLayout: (page: ReactElement) => ReactNode;
 } = (props) => {
-  console.log(props);
-
   return (
     <div className="w-full flex items-center justify-center">
-      <ProfileForm profile={props.profile} />
+      <h1> Profile </h1>
+      {props.profile && <ProfileForm profile={props.profile} />}
     </div>
   );
 };
 
-Profile.getLayout = function getLayout(page) {
+ProfilePage.getLayout = function getLayout(page) {
   return <div className=" bg-blue-400 ">{page}</div>;
 };
 
@@ -69,6 +53,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }`
   );
 
+  console.log(profile);
+
   return {
     props: {
       session,
@@ -77,4 +63,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   };
 };
 
-export default Profile;
+export default ProfilePage;
