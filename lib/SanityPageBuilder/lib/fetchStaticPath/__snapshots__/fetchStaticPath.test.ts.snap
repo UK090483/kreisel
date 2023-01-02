@@ -1,126 +1,126 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`fetchStaticPath should return right data  1`] = `
-Object {
+{
   "fallback": "blocking",
-  "paths": Array [
-    Object {
+  "paths": [
+    {
       "locale": "de",
-      "params": Object {
-        "slug": Array [
+      "params": {
+        "slug": [
           "testpagehome",
         ],
       },
     },
-    Object {
+    {
       "locale": "en",
-      "params": Object {
-        "slug": Array [
+      "params": {
+        "slug": [
           "testpagehomeen",
         ],
       },
     },
-    Object {
+    {
       "locale": "da",
-      "params": Object {
-        "slug": Array [
+      "params": {
+        "slug": [
           "testpagehomeda",
         ],
       },
     },
-    Object {
+    {
       "locale": "de",
-      "params": Object {
-        "slug": Array [
+      "params": {
+        "slug": [
           "testpage1",
         ],
       },
     },
-    Object {
+    {
       "locale": "en",
-      "params": Object {
-        "slug": Array [
+      "params": {
+        "slug": [
           "testpage1en",
         ],
       },
     },
-    Object {
+    {
       "locale": "da",
-      "params": Object {
-        "slug": Array [
+      "params": {
+        "slug": [
           "testpage1da",
         ],
       },
     },
-    Object {
+    {
       "locale": "de",
-      "params": Object {
-        "slug": Array [
+      "params": {
+        "slug": [
           "testpagetype",
           "widthsubroute2",
         ],
       },
     },
-    Object {
+    {
       "locale": "en",
-      "params": Object {
-        "slug": Array [
+      "params": {
+        "slug": [
           "widthsubroute2en",
         ],
       },
     },
-    Object {
+    {
       "locale": "da",
-      "params": Object {
-        "slug": Array [
+      "params": {
+        "slug": [
           "widthsubroute2da",
         ],
       },
     },
-    Object {
+    {
       "locale": "de",
-      "params": Object {
-        "slug": Array [
+      "params": {
+        "slug": [
           "capital-testpage3",
         ],
       },
     },
-    Object {
+    {
       "locale": "en",
-      "params": Object {
-        "slug": Array [
+      "params": {
+        "slug": [
           "capital-testpage3en",
         ],
       },
     },
-    Object {
+    {
       "locale": "da",
-      "params": Object {
-        "slug": Array [
+      "params": {
+        "slug": [
           "capital-testpage3da",
         ],
       },
     },
-    Object {
+    {
       "locale": "de",
-      "params": Object {
-        "slug": Array [
+      "params": {
+        "slug": [
           "notransslug",
         ],
       },
     },
-    Object {
+    {
       "locale": "en",
-      "params": Object {
-        "slug": Array [
+      "params": {
+        "slug": [
           "notransslug",
         ],
       },
     },
-    Object {
+    {
       "locale": "da",
-      "params": Object {
-        "slug": Array [
+      "params": {
+        "slug": [
           "notransslug",
         ],
       },
@@ -130,41 +130,41 @@ Object {
 `;
 
 exports[`fetchStaticPath should return right data no locales  1`] = `
-Object {
+{
   "fallback": "blocking",
-  "paths": Array [
-    Object {
-      "params": Object {
-        "slug": Array [
+  "paths": [
+    {
+      "params": {
+        "slug": [
           "testpagehome",
         ],
       },
     },
-    Object {
-      "params": Object {
-        "slug": Array [
+    {
+      "params": {
+        "slug": [
           "testpage1",
         ],
       },
     },
-    Object {
-      "params": Object {
-        "slug": Array [
+    {
+      "params": {
+        "slug": [
           "testpagetype",
           "widthsubroute2",
         ],
       },
     },
-    Object {
-      "params": Object {
-        "slug": Array [
+    {
+      "params": {
+        "slug": [
           "capital-testpage3",
         ],
       },
     },
-    Object {
-      "params": Object {
-        "slug": Array [
+    {
+      "params": {
+        "slug": [
           "notransslug",
         ],
       },

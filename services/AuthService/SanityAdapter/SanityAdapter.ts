@@ -13,6 +13,7 @@ import {
   getUserByIdQuery,
   getUserByProviderAccountIdQuery,
 } from "./queries";
+import { use } from "react";
 
 let globToken: VerificationToken | null = null;
 let session: AdapterSession | null = null;
@@ -26,11 +27,13 @@ const user: AdapterUser = {
 const defaultLogger = ({
   type,
   message,
+  args,
 }: {
   type: "error" | "info";
   message: string;
+  args?: any;
 }) => {
-  console.log(`AUTH_LOGGER: ${message}`);
+  console.log(`AUTH_LOGGER: ${message}`, args);
 };
 
 interface SanityAdapterUser extends AdapterUser {
@@ -53,13 +56,14 @@ const toAdapterUser = (user: SanityAdapterUser): AdapterUser => {
 
 const sanityAdapter = ({
   client,
-  logger,
+  logger = defaultLogger,
   devMode = false,
 }: sanityAdapterProps) => {
-  const _logger = logger ? logger : devMode ? defaultLogger : () => {};
+  const _logger = devMode ? logger : () => {};
   const adapter: Adapter = {
     createUser: (user) => {
-      _logger({ type: "info", message: `createUser` });
+      _logger({ type: "info", message: `createUser`, args: { user } });
+
       return client
         .create({
           ...user,
@@ -71,13 +75,14 @@ const sanityAdapter = ({
         });
     },
     getUser: (id) => {
-      _logger({ type: "info", message: `getUser` });
+      _logger({ type: "info", message: `getUser`, args: { id } });
       return client
         .fetch<SanityAdapterUser>(getUserByIdQuery, { id })
         .then((i) => (i ? toAdapterUser(i) : null));
     },
     getUserByEmail: (email) => {
-      _logger({ type: "info", message: `getUserByEmail` });
+      _logger({ type: "info", message: `getUserByEmail`, args: { email } });
+
       return client
         .fetch<SanityAdapterUser>(getUserByEmailQuery, { email })
         .then((i) => (i ? toAdapterUser(i) : null));
@@ -105,6 +110,7 @@ const sanityAdapter = ({
       });
     },
     deleteUser: () => {
+      _logger({ type: "info", message: `deleteUser` });
       return null;
     },
 
@@ -121,13 +127,16 @@ const sanityAdapter = ({
     },
 
     deleteSession: (sessionToken) => {
+      _logger({ type: "info", message: `deleteSession` });
       return null;
     },
     updateSession: (session) => {
+      _logger({ type: "info", message: `updateSession` });
       return null;
     },
 
     unlinkAccount: () => {
+      _logger({ type: "info", message: `unlinkAccount` });
       return undefined;
     },
     createVerificationToken: (verificationToken) => {
@@ -146,7 +155,7 @@ const sanityAdapter = ({
       return null;
     },
     linkAccount: (account) => {
-      console.info("linkAccount");
+      _logger({ type: "info", message: `linkAccount` });
       return null;
     },
   };

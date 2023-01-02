@@ -1,5 +1,6 @@
 import clsx from "clsx";
-import Profile from "pages/profile";
+import { Profile } from "@lib/Profile/profileQuery";
+
 import * as React from "react";
 import {
   useForm,
@@ -24,6 +25,8 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
 
   const canSubmit = isDirty && isValid && !isSubmitting;
 
+  const allowProfile = profile.allowProfile;
+
   const onSubmit: SubmitHandler<Profile> = async (data) => {
     return new Promise<void>((resolve, reject) => {
       fetch("api/profile", { method: "POST", body: JSON.stringify(data) }).then(
@@ -44,21 +47,28 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
             <Input name="name" label="Name" />
             <Input name="email" label="Email" type="email" />
             <Input name="phone" label="Tel" type="tel" />
-            <Input name="mobile" label="Mobile" type="tel" />
-            <Input name="website" label="Website" />
+
+            {allowProfile && (
+              <>
+                <Input name="mobile" label="Mobile" type="tel" />
+                <Input name="website" label="Website" />
+              </>
+            )}
           </div>
 
-          <Input name="job" label="Job" />
-          <Input name="surgery" label="Praxis" />
-
-          <div className="grid md:grid-cols-2 gap-4">
-            <Input name="addressSupplement" label="Address Zusatz" />
-            <Input name="street" label="Strasse" />
-            <Input name="city" label="Ort" />
-            <Input name="zipCode" label="Plz" />
-          </div>
-
-          <Textarea name="description" label="Description" rows={4} />
+          {allowProfile && (
+            <>
+              <Input name="job" label="Job" />
+              <Input name="surgery" label="Praxis" />
+              <div className="grid md:grid-cols-2 gap-4">
+                <Input name="addressSupplement" label="Address Zusatz" />
+                <Input name="street" label="Strasse" />
+                <Input name="city" label="Ort" />
+                <Input name="zipCode" label="Plz" />
+              </div>
+              <Textarea name="description" label="Description" rows={4} />
+            </>
+          )}
           <input
             disabled={!canSubmit}
             className={clsx("p-4 border-2", {

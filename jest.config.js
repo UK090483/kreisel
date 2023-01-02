@@ -36,6 +36,7 @@ const oldJest = {
     "testPrepare.ts",
   ],
   testEnvironment: "jest-environment-jsdom",
+  modulePathIgnorePatterns: ['cypress'],
 
   // transform: {
   //   // /* Use babel-jest to transpile tests with the next/babel preset

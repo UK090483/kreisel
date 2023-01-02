@@ -6,7 +6,7 @@ surgery,
 addressSupplement,
 `;
 
-type Profile = {
+export type Profile = {
   firstName: string;
   name: string;
   jobDescription: string;
@@ -20,4 +20,5 @@ type Profile = {
   website: string;
   description: string;
   membership: "kreisel" | "fil" | "bvl" | "legaKids";
+  allowProfile: boolean;
 };

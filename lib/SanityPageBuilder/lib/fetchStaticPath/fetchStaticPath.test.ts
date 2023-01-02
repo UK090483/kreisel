@@ -30,7 +30,6 @@ const database = [
     _type: "page",
     slug: { current: "noTransSlug" },
   },
-
   { _id: "testPageType", _type: "pageType", slug: { current: "testPageType" } },
   { _id: "siteConfig", indexPage: { _ref: "testPageHome" } },
 ];

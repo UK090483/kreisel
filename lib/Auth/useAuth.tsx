@@ -1,7 +1,9 @@
 import { useSession } from "next-auth/react";
 
 const useAuth = () => {
-  const { status } = useSession();
+  const { status, data } = useSession();
+
+  console.log(data);
 
   return {
     status,
