@@ -13,7 +13,6 @@ import {
   getUserByIdQuery,
   getUserByProviderAccountIdQuery,
 } from "./queries";
-import { use } from "react";
 
 let globToken: VerificationToken | null = null;
 let session: AdapterSession | null = null;
@@ -164,43 +163,3 @@ const sanityAdapter = ({
 };
 
 export default sanityAdapter;
-
-// const createVerificationToken: Adapter["createVerificationToken"] = async (
-//   verificationToken
-// ) => {
-//   globToken = { ...verificationToken };
-//   return globToken;
-// };
-
-// const useVerificationToken: Adapter["useVerificationToken"] = async (
-//   params
-// ) => {
-//   const _token = { ...globToken } as VerificationToken;
-
-//   // console.log("globToken:" + _token);
-
-//   globToken = null;
-
-//   return _token;
-// };
-
-// //@ts-ignore
-// const getSessionAndUser: Adapter["getSessionAndUser"] = (sessionToken) => {
-//   console.log("getSessionAndUser ----");
-//   console.log(sessionToken);
-//   console.log("getSessionAndUser ----");
-//   return { user, session };
-// };
-
-// const deleteSession: Adapter["deleteSession"] = (sessionToken) => {
-//   console.log("deleteSession ----");
-//   console.log(sessionToken);
-//   console.log("deleteSession ----");
-
-//   const oldSess = { ...session } as AdapterSession;
-//   session = null;
-
-//   return new Promise<null | AdapterSession>((resolve, reject) => {
-//     resolve(oldSess);
-//   });
-// };
