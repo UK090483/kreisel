@@ -39,10 +39,10 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
   };
 
   return (
-    <div className="w-full px-5 max-w-2xl mx-auto">
+    <div className="w-full px-5 max-w-3xl mx-auto">
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="grid  md:grid-cols-3 gap-4">
+          <div className="grid  md:grid-cols-2 gap-4">
             <Input name="firstName" label="Vorname" />
             <Input name="name" label="Name" />
             <Input name="email" label="Email" type="email" />

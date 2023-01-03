@@ -37,6 +37,7 @@ import { fetchStaticPaths } from "@lib/SanityPageBuilder/lib/fetchStaticPaths";
 import appQuery, { appQueryResult } from "@components/AppContext/appQuery";
 import ReusableBlock from "@components/Blocks/reuseableBlock/ReuseableBlock";
 import { reusableBlockQuery } from "@components/Blocks/reuseableBlock/ReusableBlock.query";
+import Kreisel from "@components/Kreisel";
 const locales = appConfig.locales;
 
 export interface PageData
@@ -49,7 +50,16 @@ export interface PageData
 
 const Page = () => {
   const { data } = useAppContext();
-  useMemberPage();
+  const { showSpinner } = useMemberPage();
+
+  if (showSpinner) {
+    return (
+      <div className=" w-full px-28 h-screen ">
+        <Kreisel className="max-w-sm "></Kreisel>
+      </div>
+    );
+  }
+
   return (
     <BodyParser
       components={{

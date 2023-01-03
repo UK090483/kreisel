@@ -41,11 +41,13 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
     );
   };
 
+  //console.log(_pageProps);
+
   return (
     <>
       <StoreContextProvider>
         <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
-          <SessionProvider>
+          <SessionProvider refetchInterval={10}>
             <ShopContextProvider>
               {getLayout(pageProps.id)}
               <Cookie />

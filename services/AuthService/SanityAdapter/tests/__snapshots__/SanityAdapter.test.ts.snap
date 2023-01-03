@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Sanity Adapter getUser should return user if exist 1`] = `null`;
-
-exports[`Sanity Adapter getUserByEmail should return user if exist 1`] = `null`;

@@ -5,15 +5,17 @@ import { signIn, signOut } from "next-auth/react";
 type UserWidgetProps = {};
 
 const AuthWidget: React.FC<UserWidgetProps> = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, member } = useAuth();
   return (
     <div className="flex text-sm items-center ">
       <Link href="/profile" className=" px-3 ">
         <Icon />
       </Link>
-      <Link href="/mitgliederbereich" className=" px-3 ">
-        Mitgliederbereich
-      </Link>
+      {member && (
+        <Link href="/mitgliederbereich" className=" px-3 ">
+          Mitgliederbereich
+        </Link>
+      )}
       {isAuthenticated ? (
         <button onClick={() => signOut()}>Sign out</button>
       ) : (

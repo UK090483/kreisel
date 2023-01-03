@@ -15,15 +15,20 @@ const ProfilePage: React.FC<ProfileProps> & {
   getLayout: (page: ReactElement) => ReactNode;
 } = (props) => {
   return (
-    <div className="w-full flex items-center justify-center">
-      <h1> Profile </h1>
+    <div className="w-full   items-center justify-center">
+      <div className="bg-primary-light py-24 mb-24 px-5">
+        <div className=" max-w-3xl mx-auto">
+          <h1 className="font-header text-2xl"> Dein Kreisel Profil </h1>
+        </div>
+      </div>
+
       {props.profile && <ProfileForm profile={props.profile} />}
     </div>
   );
 };
 
 ProfilePage.getLayout = function getLayout(page) {
-  return <div className=" bg-blue-400 ">{page}</div>;
+  return <div className="  ">{page}</div>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
