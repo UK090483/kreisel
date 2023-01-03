@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import { PageData } from "pages/[[...slug]]";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import useAuth from "@lib/Auth/useAuth";
 
 interface IAppContextState {
   data?: PageData | null;
@@ -57,13 +58,29 @@ export const useHomeRoute = () => {
 
 export const useMemberPage = () => {
   const { data } = useContext(AppContext);
-  const { status } = useSession();
+
+  const [verified, setVerified] = useState(false);
+
+  const { member, status } = useAuth();
   const { push } = useRouter();
   const slug = data?.slug;
-  if (!slug) return false;
+  const isLoading = status === "loading";
+
+  useEffect(() => {
+    if (status !== "loading" && member) {
+      setVerified(true);
+    }
+  }, [status, member]);
+
+  if (!slug) return { isMemberPage: false, isLoading: false };
+
   const isMemberPage = slug.split("/")[1] === "mitgliederbereich";
-  if (status === "unauthenticated" && isMemberPage) {
-    typeof window !== "undefined" && push("/auth/login");
-  }
-  return isMemberPage;
+
+  // if (!member && !isLoading && isMemberPage) {
+  //   typeof window !== "undefined" && push("/auth/login");
+  // }
+
+  const showSpinner = isMemberPage && !verified;
+
+  return { showSpinner };
 };
