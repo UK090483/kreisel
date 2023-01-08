@@ -41,7 +41,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
     );
   };
 
-  //console.log(_pageProps);
+ 
 
   return (
     <>

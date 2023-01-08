@@ -34,6 +34,7 @@ module.exports = {
           light: "#f1f1f1",
           DEFAULT: "#c4c4c4",
           dark: "#dddddd",
+          border: "#6b7280",
         },
 
         black: "#000000",
