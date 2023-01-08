@@ -1,5 +1,5 @@
-import schemaTypes from "all:part:@sanity/base/schema-type";
-import createSchema from "part:@sanity/base/schema-creator";
+// import schemaTypes from "all:part:@sanity/base/schema-type";
+// import createSchema from "part:@sanity/base/schema-creator";
 
 import objects from "./objects";
 import plugs from "./pageComponents/plugs";
@@ -17,21 +17,39 @@ import Image from "./Image";
 import Settings from "./Settings";
 import Reusable from "./Reusable";
 
-export default createSchema({
-  name: "default",
-  types: schemaTypes.concat([
-    ...Settings,
-    ...Image,
-    ...Seo,
-    ...Shop,
-    ...Page,
-    ...Persons,
-    ...Reusable,
-    ...Testimonial,
-    ...Therapist,
-    ...Navigation,
-    ...objects,
-    ...pageComponents,
-    ...plugs,
-  ]),
-});
+const schema = [
+  ...Settings,
+  ...Image,
+  ...Seo,
+  ...Shop,
+  ...Page,
+  ...Persons,
+  ...Reusable,
+  ...Testimonial,
+  ...Therapist,
+  ...Navigation,
+  ...objects,
+  ...pageComponents,
+  ...plugs,
+];
+
+export default schema;
+
+// export default createSchema({
+//   name: "default",
+//   types: schemaTypes.concat([
+//     ...Settings,
+//     ...Image,
+//     ...Seo,
+//     ...Shop,
+//     ...Page,
+//     ...Persons,
+//     ...Reusable,
+//     ...Testimonial,
+//     ...Therapist,
+//     ...Navigation,
+//     ...objects,
+//     ...pageComponents,
+//     ...plugs,
+//   ]),
+// });
