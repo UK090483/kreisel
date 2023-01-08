@@ -8,12 +8,17 @@ import { ReactElement, ReactNode } from "react";
 import Cart from "@services/ShopService/Cart";
 import { ShopContextProvider } from "@services/ShopService/shopContext";
 import { PageData } from "./[[...slug]]";
-import usePreviewSubscription from "@lib/SanityPageBuilder/lib/preview/previewSubscription";
+// import usePreviewSubscription from "@lib/SanityPageBuilder/lib/preview/previewSubscription";
 import PreviewIndicator from "@lib/SanityPageBuilder/lib/preview/PreviewIndicator";
-import { AppContextProvider } from "@components/AppContext/AppContext";
+import { AppContextProvider } from "components/AppContext/AppContext";
 import AppConfig from "app.config.json";
 import StoreContextProvider from "@services/StoreService/StoreProvider";
 
+import { lazy } from "react";
+import { PreviewSuspense } from "@sanity/preview-kit";
+const PreviewPageBuilderContextProvider = lazy(
+  () => import("../components/AppContext/PrevPageBuilderContext")
+);
 interface AppPropsWithStaticProps {
   pageProps: PageProps<PageData>;
   Component: NextComponentType<NextPageContext, any, PageProps<PageData>> & {
@@ -22,12 +27,12 @@ interface AppPropsWithStaticProps {
 }
 
 function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
-  const { data: _data, query, preview } = _pageProps;
+  const { data, query, preview } = _pageProps;
 
-  const { data, error } = usePreviewSubscription<PageData | null>(query, {
-    initialData: _data,
-    enabled: preview,
-  });
+  // const { data, error } = usePreviewSubscription<PageData | null>(query, {
+  //   initialData: _data,
+  //   enabled: preview,
+  // });
 
   const pageProps = { ..._pageProps, data };
 
@@ -41,23 +46,42 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
     );
   };
 
- 
+  if (preview) {
+    return (
+      <PreviewSuspense fallback="Loading...">
+        <PreviewPageBuilderContextProvider
+          query={query}
+          data={pageProps.data}
+          hostName={AppConfig.hostname}
+        >
+          <StoreContextProvider>
+            <SessionProvider refetchInterval={10}>
+              <ShopContextProvider>
+                {getLayout(pageProps.id)}
+                <Cookie />
+                <Cart />
+                {preview && <PreviewIndicator />}
+              </ShopContextProvider>
+            </SessionProvider>
+          </StoreContextProvider>
+        </PreviewPageBuilderContextProvider>
+      </PreviewSuspense>
+    );
+  }
 
   return (
-    <>
+    <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
       <StoreContextProvider>
-        <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
-          <SessionProvider refetchInterval={10}>
-            <ShopContextProvider>
-              {getLayout(pageProps.id)}
-              <Cookie />
-              <Cart />
-              {preview && <PreviewIndicator />}
-            </ShopContextProvider>
-          </SessionProvider>
-        </AppContextProvider>
+        <SessionProvider refetchInterval={10}>
+          <ShopContextProvider>
+            {getLayout(pageProps.id)}
+            <Cookie />
+            <Cart />
+            {preview && <PreviewIndicator />}
+          </ShopContextProvider>
+        </SessionProvider>
       </StoreContextProvider>
-    </>
+    </AppContextProvider>
   );
 }
 

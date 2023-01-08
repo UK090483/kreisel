@@ -9,7 +9,6 @@ const CarouselGallery: React.FunctionComponent<ImageGalleryPlugResult> = (
   props
 ) => {
   const { items } = props;
-
   return (
     <Carousel slides={1} slidesMobile={1}>
       {items.map((item, index) => (

@@ -7,7 +7,7 @@ type NavigationProps = {
   className?: string;
 };
 export const Navigation: React.FC<NavigationProps> = (props) => {
-  const { children, className, next, prev } = props;
+  const { className, next, prev } = props;
 
   return (
     <div className={`w-full  flex flex-col items-end mt-8 ${className}`}>

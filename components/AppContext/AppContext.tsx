@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { PageData } from "pages/[[...slug]]";
 import React, { useContext, useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
+
 import useAuth from "@lib/Auth/useAuth";
 
 interface IAppContextState {
@@ -16,9 +16,9 @@ const defaultState: IAppContextState = {
   hostName: "noHostname",
 };
 
-const AppContext = React.createContext(defaultState);
+export const AppContext = React.createContext(defaultState);
 
-interface AppContextProviderProps {
+export interface AppContextProviderProps {
   data: IAppContextState["data"];
   children?: React.ReactNode;
   preview?: boolean;
@@ -75,10 +75,6 @@ export const useMemberPage = () => {
   if (!slug) return { isMemberPage: false, isLoading: false };
 
   const isMemberPage = slug.split("/")[1] === "mitgliederbereich";
-
-  // if (!member && !isLoading && isMemberPage) {
-  //   typeof window !== "undefined" && push("/auth/login");
-  // }
 
   const showSpinner = isMemberPage && !verified;
 
