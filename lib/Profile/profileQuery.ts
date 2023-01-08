@@ -1,9 +1,12 @@
 export const profileQuery = `
+...,
+title,
 firstName,
 name,
 jobDescription,
 surgery,
 addressSupplement,
+degree
 `;
 
 export type Profile = {
@@ -16,6 +19,7 @@ export type Profile = {
   city: string;
   phone: string;
   mobile: string;
+  degree: string[];
   email: string;
   website: string;
   description: string;

@@ -19,7 +19,6 @@ const getHandler = (client: SanityClient, getTokenFn: typeof getToken) => {
       return res.status(401).send("unauthorized");
     }
     const body = req.body ? (JSON.parse(req.body) as Profile) : null;
-    console.log(body);
 
     if (!body) {
       return res.status(400).send("no data to process");
@@ -35,6 +34,10 @@ const getHandler = (client: SanityClient, getTokenFn: typeof getToken) => {
 
     const result = await updateUser(client, token.email, validatedValues);
 
+    if (!result) {
+      return res.status(400).json("unable to update User");
+    }
+
     res.status(200).json({ result });
   };
 };
@@ -47,8 +50,7 @@ const updateUser = async (client: SanityClient, email: string, data: any) => {
   );
 
   if (items.length < 1) {
-    console.log("no user found");
-    return;
+    return null;
   }
   const original = items.find((i) => !i._id.startsWith("drafts"));
   const draft = items.find((i) => i._id.startsWith("drafts"));
@@ -61,12 +63,10 @@ const updateUser = async (client: SanityClient, email: string, data: any) => {
   }
 
   if (original) {
-    await client.create({
+    return await client.create({
       ...original,
       ...data,
       _id: "drafts." + original._id,
     });
   }
-
-  console.log({ draft });
 };
