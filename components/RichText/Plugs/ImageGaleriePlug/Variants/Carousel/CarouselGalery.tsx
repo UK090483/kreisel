@@ -1,7 +1,4 @@
-import Carousel from "@lib/Carousel/Carousel";
-import CarouselItem from "@lib/Carousel/CarouselItem";
-import Dots from "@lib/Carousel/Dots";
-import Navigation from "@lib/Carousel/Navigation";
+import Carousel from "components/Carousel/Carousel";
 
 import * as React from "react";
 
@@ -12,21 +9,15 @@ const CarouselGallery: React.FunctionComponent<ImageGalleryPlugResult> = (
   props
 ) => {
   const { items } = props;
+
   return (
-    <div>
-      <Carousel items={items}>
-        <Navigation>
-          <ul className="w-full grid grid-cols-1 grid-rows-1">
-            {items.map((item, index) => (
-              <CarouselItem index={index} key={item._key}>
-                <CarouselGalerieItem {...item} />
-              </CarouselItem>
-            ))}
-          </ul>
-        </Navigation>
-        <Dots></Dots>
-      </Carousel>
-    </div>
+    <Carousel slides={1} slidesMobile={1}>
+      {items.map((item, index) => (
+        <div key={item._key}>
+          <CarouselGalerieItem {...item} />
+        </div>
+      ))}
+    </Carousel>
   );
 };
 

@@ -1,12 +1,14 @@
 import * as React from "react";
-import { useCarousel } from "./CarouselContext";
 
 type DotsProps = {
   className?: string;
+  itemCount: number;
+  activeItem: number;
+  set: (index: number) => void;
 };
 const Dots: React.FC<DotsProps> = (props) => {
-  const { className } = props;
-  const { itemCount, activeItem, set } = useCarousel();
+  const { className, itemCount, activeItem, set } = props;
+
   const dots = React.useMemo(() => new Array(itemCount).fill("a"), [itemCount]);
   if (itemCount < 2) return <></>;
   return (
