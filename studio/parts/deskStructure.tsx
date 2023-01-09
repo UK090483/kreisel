@@ -1,9 +1,18 @@
 import { MdSettings } from "react-icons/md";
 import { deskTool, StructureResolver } from "sanity/desk";
-// import sanityClient from "part:@sanity/base/client";
-// const client = sanityClient.withConfig({ apiVersion: "2021-06-07" });
+import Iframe, { IframeOptions } from "sanity-plugin-iframe-pane";
+import { resolveProductionUrl } from "./resolveProductionUrl";
 
 const isLocal = window.location.hostname === "localhost";
+
+const iframeOptions: IframeOptions = {
+  url: (doc) => resolveProductionUrl(doc),
+  defaultSize: "mobile",
+  reload: {
+    revision: false,
+    button: false,
+  },
+};
 
 const structure: StructureResolver = (S, context) =>
   S.list()
@@ -49,6 +58,17 @@ const structure: StructureResolver = (S, context) =>
               S.documentTypeList("page")
                 .title(`Pages`)
                 .filter(`_type == "page" && !defined(pageType) `)
+                .child(
+                  S.document()
+                    .schemaType("page")
+                    .views([
+                      S.view.form(),
+                      S.view
+                        .component(Iframe)
+                        .options(iframeOptions)
+                        .title("Preview"),
+                    ])
+                )
             );
 
           const items = pageTypes.map(({ _id: pageTypeId, name }) =>
@@ -65,6 +85,17 @@ const structure: StructureResolver = (S, context) =>
                       pageTypeId,
                     }),
                   ])
+                  .child(
+                    S.document()
+                      .schemaType("page")
+                      .views([
+                        S.view.form(),
+                        S.view
+                          .component(Iframe)
+                          .options(iframeOptions)
+                          .title("Preview"),
+                      ])
+                  )
               )
           );
 

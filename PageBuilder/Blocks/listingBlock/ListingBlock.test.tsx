@@ -1,7 +1,5 @@
-import { mockClient } from "@lib/SanityPageBuilder/lib/MockClient";
 import ListingBlock from "./ListingsBlock";
 import { render } from "@testing-library/react";
-import { listingBlockQuery } from "./listingBlockQuery";
 
 const database: any[] = [];
 

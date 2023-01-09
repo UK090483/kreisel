@@ -4,7 +4,7 @@ import Typo from "@components/Typography/Typography";
 import Avatar from "./Avatar";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { TherapistResult } from "@components/Blocks/listingBlock/listingBlockQuery";
+import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlockQuery";
 
 interface TherapistListItemProps extends TherapistResult {}
 

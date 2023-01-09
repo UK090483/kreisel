@@ -1,4 +1,4 @@
-import { IBlockSpace } from "@components/Blocks/types";
+import { IBlockSpace } from "PageBuilder/Blocks/types";
 import clsx from "clsx";
 
 interface IIseSectionWidthProps extends IBlockSpace {}

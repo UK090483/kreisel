@@ -12,7 +12,7 @@ import BlockContent, {
 import useScrollStop from "@hooks/useScrollStop";
 import { useLockBodyScroll } from "react-use";
 import SanityImage from "@lib/SanityImage";
-import { TherapistResult } from "@components/Blocks/listingBlock/listingBlockQuery";
+import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlockQuery";
 
 interface IOverlayProps {
   items: TherapistResult[];

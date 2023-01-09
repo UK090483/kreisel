@@ -1,8 +1,8 @@
 import React from "react";
 import { ITestimonialItem } from "../../listingBlockQuery";
 import Carousel from "components/Carousel/Carousel";
-import Typo from "@components/Typography/Typography";
-import SanityImage from "@lib/SanityImage";
+import Typo from "components/Typography/Typography";
+import SanityImage from "lib/SanityImage";
 import clsx from "clsx";
 
 interface ITestimonialListProps {

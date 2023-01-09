@@ -1,4 +1,4 @@
-import { ListingBlockItem } from "@components/Blocks/listingBlock/listingBlockQuery";
+import { ListingBlockItem } from "PageBuilder/Blocks/listingBlock/listingBlockQuery";
 import React from "react";
 
 import { ArticleCard } from "./Card/ArticleCard";

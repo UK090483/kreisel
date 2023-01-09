@@ -4,7 +4,7 @@ import Card from "./Card";
 import Typo from "@components/Typography/Typography";
 import Button from "@components/Button/Button";
 import { useShop } from "@services/ShopService/shopContext";
-import { IArticleCardResult } from "@components/Blocks/listingBlock/listingBlockQuery";
+import { IArticleCardResult } from "PageBuilder/Blocks/listingBlock/listingBlockQuery";
 
 type ArticleCardProps = {} & IArticleCardResult;
 

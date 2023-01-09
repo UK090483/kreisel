@@ -4,7 +4,7 @@ import SanityImage from "@lib/SanityImage";
 import RichText from "@components/RichText/RichText";
 import clsx from "clsx";
 import { Section } from "@components/Section/Section";
-import { IBlockStyle } from "../types";
+import { IBlockStyle } from "../../types";
 import useSectionSpace from "@components/Section/useSectionSpace";
 
 export const heroBlockQuery = `

@@ -2,18 +2,18 @@ import { sanityClient as client } from "@services/SanityService/sanity.server";
 import HeroBlock, {
   heroBlockQuery,
   HeroBlogResult,
-} from "@components/Blocks/heroBlock/HeroBlock";
+} from "PageBuilder/Blocks/heroBlock/frontend/HeroBlock";
 
-import SectionBlock from "@components/Blocks/sectionBlock/SectionBlock";
+import SectionBlock from "PageBuilder/Blocks/sectionBlock/SectionBlock";
 import {
   SectionBlockResult,
   sectionBlockQuery,
-} from "@components/Blocks/sectionBlock/SectionBlockQuery";
+} from "PageBuilder/Blocks/sectionBlock/SectionBlockQuery";
 
 import { NavigationQuery, NavigationResult } from "@lib/Navigation/query";
 import TrustBlock, {
   trustBlockQuery,
-} from "@components/Blocks/trustBlock/TrustBlock";
+} from "PageBuilder/Blocks/trustBlock/TrustBlock";
 import {
   footerQuery,
   FooterQueryResult,
@@ -21,8 +21,8 @@ import {
 import {
   ListingBlockProps,
   listingBlockQuery,
-} from "@components/Blocks/listingBlock/listingBlockQuery";
-import ListingBlock from "@components/Blocks/listingBlock/ListingsBlock";
+} from "PageBuilder/Blocks/listingBlock/listingBlockQuery";
+import ListingBlock from "PageBuilder/Blocks/listingBlock/ListingsBlock";
 
 import fetchStaticProps from "@lib/SanityPageBuilder/lib/fetchStaticProps/fetchStaticProps";
 
@@ -31,12 +31,12 @@ import appConfig from "../app.config.json";
 import {
   useAppContext,
   useMemberPage,
-} from "@components/AppContext/AppContext";
+} from "PageBuilder/AppContext/AppContext";
 import BodyParser from "@lib/SanityPageBuilder/lib/BodyParser/BodyParser";
 import { fetchStaticPaths } from "@lib/SanityPageBuilder/lib/fetchStaticPaths";
-import appQuery, { appQueryResult } from "@components/AppContext/appQuery";
-import ReusableBlock from "@components/Blocks/reuseableBlock/ReuseableBlock";
-import { reusableBlockQuery } from "@components/Blocks/reuseableBlock/ReusableBlock.query";
+import appQuery, { appQueryResult } from "PageBuilder/AppContext/appQuery";
+import ReusableBlock from "PageBuilder/Blocks/reuseableBlock/ReuseableBlock";
+import { reusableBlockQuery } from "PageBuilder/Blocks/reuseableBlock/ReusableBlock.query";
 import Kreisel from "@components/Kreisel";
 const locales = appConfig.locales;
 

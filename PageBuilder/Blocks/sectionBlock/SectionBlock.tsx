@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import RichText from "../../RichText/RichText";
+import RichText from "../../../components/RichText/RichText";
 import { Section } from "@components/Section/Section";
 import SanityImage from "@lib/SanityImage";
 import Accordion from "./Accordion";

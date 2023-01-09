@@ -3,10 +3,6 @@ import TustBlock, { trustBlockQuery } from "./TrustBlock";
 import { screen, render } from "@testing-library/react";
 import React from "react";
 
-const TestUnderline: React.FC = ({ children }) => {
-  return <div>{children}</div>;
-};
-
 const content = [
   {
     _key: "0489510a4b30",

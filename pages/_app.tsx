@@ -10,14 +10,14 @@ import { ShopContextProvider } from "@services/ShopService/shopContext";
 import { PageData } from "./[[...slug]]";
 // import usePreviewSubscription from "@lib/SanityPageBuilder/lib/preview/previewSubscription";
 import PreviewIndicator from "@lib/SanityPageBuilder/lib/preview/PreviewIndicator";
-import { AppContextProvider } from "components/AppContext/AppContext";
+import { AppContextProvider } from "PageBuilder/AppContext/AppContext";
 import AppConfig from "app.config.json";
 import StoreContextProvider from "@services/StoreService/StoreProvider";
 
 import { lazy } from "react";
 import { PreviewSuspense } from "@sanity/preview-kit";
 const PreviewPageBuilderContextProvider = lazy(
-  () => import("../components/AppContext/PrevPageBuilderContext")
+  () => import("../PageBuilder/AppContext/PrevPageBuilderContext")
 );
 interface AppPropsWithStaticProps {
   pageProps: PageProps<PageData>;
