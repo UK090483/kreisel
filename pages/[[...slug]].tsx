@@ -1,8 +1,10 @@
 import { sanityClient as client } from "@services/SanityService/sanity.server";
-import HeroBlock, {
+import {
   heroBlockQuery,
   HeroBlogResult,
-} from "PageBuilder/Blocks/heroBlock/frontend/HeroBlock";
+} from "PageBuilder/Blocks/hero/hero.query";
+
+import HeroBlock from "PageBuilder/Blocks/hero/frontend/HeroBlock";
 
 import SectionBlock from "PageBuilder/Blocks/sectionBlock/SectionBlock";
 import {
@@ -10,7 +12,10 @@ import {
   sectionBlockQuery,
 } from "PageBuilder/Blocks/sectionBlock/SectionBlockQuery";
 
-import { NavigationQuery, NavigationResult } from "@lib/Navigation/query";
+import {
+  NavigationQuery,
+  NavigationResult,
+} from "PageBuilder/Navigation/query";
 import TrustBlock, {
   trustBlockQuery,
 } from "PageBuilder/Blocks/trustBlock/TrustBlock";
@@ -38,6 +43,7 @@ import appQuery, { appQueryResult } from "PageBuilder/AppContext/appQuery";
 import ReusableBlock from "PageBuilder/Blocks/reuseableBlock/ReuseableBlock";
 import { reusableBlockQuery } from "PageBuilder/Blocks/reuseableBlock/ReusableBlock.query";
 import Kreisel from "@components/Kreisel";
+import { pageQuery } from "PageBuilder/ContentTypes/Page/page.query";
 const locales = appConfig.locales;
 
 export interface PageData
@@ -49,7 +55,6 @@ export interface PageData
 }
 
 const Page = () => {
-  const { data } = useAppContext();
   const { showSpinner } = useMemberPage();
 
   if (showSpinner) {
@@ -79,7 +84,6 @@ const Page = () => {
           component: ReusableBlock,
         },
       }}
-      content={data?.content || []}
     />
   );
 };
@@ -106,9 +110,7 @@ export const getStaticProps: GetStaticProps = async (props) => {
     params,
     client,
     previewQuery: `content[]{${heroBlockQuery},${sectionBlockQuery}, ${listingBlockQuery},${trustBlockQuery}}`,
-    query: `content[]{${heroBlockQuery},${sectionBlockQuery},${listingBlockQuery},${trustBlockQuery},${reusableBlockQuery} },  ${footerQuery}, ${appQuery(
-      ""
-    )}, ${NavigationQuery("", isMember ? "memberNav" : undefined)}`,
+    query: pageQuery,
     locales,
     preview,
   });

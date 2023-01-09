@@ -1,4 +1,4 @@
-import { richTextQuery } from "@components/RichText/RichText";
+import { richTextQuery } from "PageBuilder/RichText/RichText";
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import { IBlockStyle } from "../types";
 

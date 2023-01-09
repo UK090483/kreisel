@@ -1,13 +1,12 @@
 import { Section } from "@components/Section/Section";
-import NavOverview from "@lib/Navigation/NavOverview";
+import NavOverview from "PageBuilder/Navigation/NavOverview";
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import { PageData } from "pages/[[...slug]]";
 import React from "react";
 import FooterContact from "./FooterContact";
+import { useAppContext } from "PageBuilder/AppContext/AppContext";
 
-interface FooterProps {
-  data: PageData | null;
-}
+interface FooterProps {}
 
 export const footerQuery = `
 'footer': {
@@ -37,14 +36,14 @@ export interface FooterQueryResult {
 }
 
 const Footer: React.FC<FooterProps> = (props) => {
-  const { data } = props;
+  const { data } = useAppContext();
 
   return (
     <footer
       data-testid="footer"
       className="flex flex-col items-center bg-primary-light"
     >
-      <FooterContact data={data} />
+      <FooterContact />
       <Section bg="primary-light" width="l" className="pt-12">
         <NavOverview
           items={data?.navigation || []}

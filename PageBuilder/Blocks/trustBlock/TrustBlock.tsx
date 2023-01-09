@@ -1,4 +1,4 @@
-import RichText from "@components/RichText/RichText";
+import RichText from "PageBuilder/RichText/RichText";
 import { Section } from "@components/Section/Section";
 
 import * as React from "react";

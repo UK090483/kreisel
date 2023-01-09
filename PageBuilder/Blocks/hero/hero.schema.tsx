@@ -1,7 +1,4 @@
-import blockStyle from "./snippets/blockStyle";
-import makeBlock from "./snippets/makeBlock";
-
-const block = makeBlock({
+const heroSchema = {
   name: "hero",
   title: "Hero",
   content: [
@@ -82,5 +79,5 @@ const block = makeBlock({
       };
     },
   },
-});
-export default block;
+};
+export default heroSchema;

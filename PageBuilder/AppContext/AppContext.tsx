@@ -1,19 +1,16 @@
 import { useRouter } from "next/router";
-import { PageData } from "pages/[[...slug]]";
+
 import React, { useContext, useEffect, useState } from "react";
 
 import useAuth from "@lib/Auth/useAuth";
+import { PageBuilderData } from "PageBuilder/query";
 
 interface IAppContextState {
-  data?: PageData | null;
-  preview: boolean;
-  hostName: string;
+  data?: PageBuilderData | null;
 }
 
 const defaultState: IAppContextState = {
   data: null,
-  preview: false,
-  hostName: "noHostname",
 };
 
 export const AppContext = React.createContext(defaultState);
@@ -27,6 +24,8 @@ export interface AppContextProviderProps {
 
 export const AppContextProvider = (props: AppContextProviderProps) => {
   const { children, ...rest } = props;
+
+  console.log(props);
 
   return (
     <AppContext.Provider value={{ preview: false, ...rest }}>

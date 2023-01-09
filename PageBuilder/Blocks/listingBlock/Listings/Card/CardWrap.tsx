@@ -1,6 +1,6 @@
 import React from "react";
 import { ConditionalLink } from "@components/Link";
-import { LinkResult } from "@lib/Navigation/query";
+import { LinkResult } from "PageBuilder/Navigation/query";
 
 const CardWrap: React.FC<{
   href?: string;

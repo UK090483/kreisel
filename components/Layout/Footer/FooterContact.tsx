@@ -3,15 +3,14 @@ import Typo from "@components/Typography/Typography";
 import React from "react";
 import { PageData } from "pages/[[...slug]]";
 import Avatar from "@components/Avatar";
-import RichText from "@components/RichText/RichText";
+import RichText from "PageBuilder/RichText/RichText";
 import clsx from "clsx";
+import { useAppContext } from "PageBuilder/AppContext/AppContext";
 
-interface FooterContactProps {
-  data: PageData | null;
-}
+interface FooterContactProps {}
 
 const FooterContact: React.FC<FooterContactProps> = (props) => {
-  const { data } = props;
+  const { data } = useAppContext();
 
   if (!data?.footer?.contact) return null;
   const contact = data?.footer?.contact;

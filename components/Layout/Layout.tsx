@@ -1,4 +1,5 @@
 import type { PageProps } from "@lib/SanityPageBuilder/types";
+import { useAppContext } from "PageBuilder/AppContext/AppContext";
 import { PageData } from "pages/[[...slug]]";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { BackButton } from "./BackButton";
@@ -7,15 +8,17 @@ import Head from "./Head";
 import { Header } from "./Header";
 import Nav from "./Navigation/Nav";
 
-interface LayoutProps extends PageProps<PageData> {
+interface LayoutProps {
   preview?: boolean;
 }
 
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
-const Layout: React.FC<LayoutProps> = (props) => {
-  const { children, data } = props;
+const Layout: React.FC = (props) => {
+  const { children } = props;
+  const { data } = useAppContext();
+
   const isGlossary = data?.layout === "glossary";
 
   const firstRender = useRef(true);
@@ -54,7 +57,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
         {children}
       </main>
 
-      <Footer data={data} />
+      <Footer />
     </>
   );
 };

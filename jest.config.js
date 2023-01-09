@@ -12,10 +12,13 @@ const oldJest = {
   // ],
   moduleNameMapper: {
     "^@components/(.*)$": "<rootDir>/components/$1",
+    "^components/(.*)$": "<rootDir>/components/$1",
     "^@services/(.*)$": "<rootDir>/services/$1",
     "^@hooks/(.*)$": "<rootDir>/hooks/$1",
     "^@lib/(.*)$": "<rootDir>/lib/$1",
+    "^lib/(.*)$": "<rootDir>/lib/$1",
     "^pages/(.*)$": "<rootDir>/pages/$1",
+    "^PageBuilder/(.*)$": "<rootDir>/PageBuilder/$1",
 
     /* Handle CSS imports (with CSS modules)
       https://jestjs.io/docs/webpack#mocking-css-modules */

@@ -1,4 +1,4 @@
-import { linkQuery, LinkResult } from "@lib/Navigation/query";
+import { linkQuery, LinkResult } from "PageBuilder/Navigation/query";
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import { AppLocales, AppColor } from "types";
 import { IBlockStyle } from "../types";

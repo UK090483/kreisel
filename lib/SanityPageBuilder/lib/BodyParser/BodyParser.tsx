@@ -1,14 +1,14 @@
+import { useAppContext } from "PageBuilder/AppContext/AppContext";
 import React, { ComponentType } from "react";
-import type { AppLocales } from "types";
 
 export type BodyParserProps = {
-  content: any[];
-  lang?: AppLocales;
   components: { [k: string]: { component: ComponentType<any> } };
 };
-
 const BodyParser: React.FC<BodyParserProps> = (props) => {
-  const { content, components } = props;
+  const { components } = props;
+
+  const { data } = useAppContext();
+  const content = data?.content;
 
   return (
     <>

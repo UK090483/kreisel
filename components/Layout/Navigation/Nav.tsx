@@ -8,10 +8,10 @@ import {
   HeaderNavigation,
   NavItemBaseProps,
   NavigationItemBase,
-} from "../../../lib/Navigation";
+} from "../../../PageBuilder/Navigation";
 import Underline from "@components/Underline/Underline";
-import NavigationMobile from "@lib/Navigation/NavigationMobile";
-import { NavItem } from "@lib/Navigation/types";
+import NavigationMobile from "PageBuilder/Navigation/NavigationMobile";
+import { NavItem } from "PageBuilder/Navigation/types";
 import ContactButton from "../Header/ContactButton";
 import clsx from "clsx";
 
