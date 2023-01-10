@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export interface IFormErrorProps {
+interface IFormErrorProps {
   errorMessage?: string;
 }
 

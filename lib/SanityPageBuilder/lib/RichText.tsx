@@ -1,7 +1,7 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import BlockContent from "@sanity/block-content-to-react";
 
-export interface SanityBlock {
+interface SanityBlock {
   _type: "block";
   style: string;
   [key: string]: any;
@@ -25,8 +25,8 @@ interface ISanityRichTextProps {
   marks?: Record<string, (props: any) => JSX.Element | null>;
   plugs?: Record<string, (props: any) => JSX.Element | null>;
   content: SanityBlock[];
-  list?: React.ReactNode;
-  listItem?: React.ReactNode;
+  list?: ReactNode;
+  listItem?: ReactNode;
   blockRenderer?: (props: BlockRendererProps) => any;
   dataset?: string;
   projectId?: string;

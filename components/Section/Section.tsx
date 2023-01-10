@@ -2,7 +2,7 @@ import { SectionContextProvider } from "./SectionContext";
 import Transition from "./Transition";
 import useSectionWidth from "./useSectionWidth";
 import { AppColor } from "types";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import clsx from "clsx";
 
 export interface SectionProps {
@@ -14,9 +14,10 @@ export interface SectionProps {
   as?: "section" | "div";
   transitionTop?: "tearOff" | null;
   transitionBottom?: "tearOff" | null;
+  children?: React.ReactNode;
 }
 
-export const Section: React.FC<SectionProps> = (props) => {
+export const Section: React.FC<PropsWithChildren<SectionProps>> = (props) => {
   const {
     children,
     width = "m",

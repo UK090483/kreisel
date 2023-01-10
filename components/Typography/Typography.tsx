@@ -44,13 +44,12 @@ interface TypographyProps {
 
 const boldMap = ["h1", "h2", "h3", "h4", "h5", "h6"];
 
-const Typo: React.FC<TypographyProps> = ({
+const Typo: React.FC< React.PropsWithChildren<TypographyProps>> = ({
   variant = "body",
   children,
   className = "",
   as,
   spacer = false,
-
   bold,
   space,
 }) => {

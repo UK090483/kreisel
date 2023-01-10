@@ -1,4 +1,4 @@
-import React, { ReactPortal, useCallback, useContext, useEffect } from "react";
+import React, { useCallback, useContext, PropsWithChildren } from "react";
 import { useLocalStorage } from "react-use";
 
 type ShopState = {
@@ -32,6 +32,7 @@ type StoreContextValues<T> = {
 const ShopContext = React.createContext<StoreContextValues<ShopState>>({
   state: initialState,
   setState: () => {
+    // eslint-disable-next-line no-console
     console.log("no Context.Provider Reachable");
   },
   article: {},
@@ -42,7 +43,7 @@ const ShopContext = React.createContext<StoreContextValues<ShopState>>({
 });
 
 export const ShopContextProvider: React.FC<
-  Partial<StoreContextValues<ShopState>>
+  PropsWithChildren<Partial<StoreContextValues<ShopState>>>
 > = ({ children, ...rest }) => {
   const [state, setState] = React.useState<ShopState>(initialState);
 

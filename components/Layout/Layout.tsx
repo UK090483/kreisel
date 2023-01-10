@@ -4,7 +4,13 @@ import Head from "./Head";
 import { Header } from "./Header";
 import Nav from "./Navigation/Nav";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  PropsWithChildren,
+} from "react";
 
 interface LayoutProps {
   preview?: boolean;
@@ -13,7 +19,7 @@ interface LayoutProps {
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
-const Layout: React.FC = (props) => {
+const Layout: React.FC<PropsWithChildren> = (props) => {
   const { children } = props;
   const { data } = useAppContext();
 

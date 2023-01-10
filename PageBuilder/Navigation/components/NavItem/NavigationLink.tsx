@@ -1,10 +1,11 @@
-import React from "react";
-import { Link } from "components/Link";
 import { NavItem } from "../../types";
+import { Link } from "components/Link";
+import React from "react";
 
 export type NavigationLinkProps = NavItem["link"] & {
   onClick?: () => void;
   focus?: boolean;
+  children?: React.ReactNode;
 };
 
 const NavigationLink: React.FC<NavigationLinkProps> = (props) => {

@@ -9,6 +9,7 @@ type AccordionProps = {
   condition: boolean;
   title?: string;
   width: SectionProps["width"];
+  children?: React.ReactNode;
 };
 
 const initialHeight = 64;

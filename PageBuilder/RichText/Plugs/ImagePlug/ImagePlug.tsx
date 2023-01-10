@@ -1,9 +1,9 @@
-import clsx from "clsx";
 import SanityImage from "lib/SanityImage";
-import type { ImageMetaResult } from "lib/SanityImage/query";
 import { PlugProps } from "lib/SanityPageBuilder/lib/RichText";
+import clsx from "clsx";
 
-import React from "react";
+import React, { PropsWithChildren } from "react";
+import type { ImageMetaResult } from "lib/SanityImage/query";
 
 type ImagePlugProps = {
   image?: ImageMetaResult | null;
@@ -63,7 +63,9 @@ const ImagePlug: React.FC<PlugProps<ImagePlugProps>> = (props) => {
 
 export default ImagePlug;
 
-const AspectBox: React.FC<{ ratio?: ImagePlugProps["ratio"] }> = (props) => {
+const AspectBox: React.FC<
+  PropsWithChildren<{ ratio?: ImagePlugProps["ratio"] }>
+> = (props) => {
   const { children, ratio } = props;
   if (!ratio || ratio === "auto") {
     return <>{children}</>;

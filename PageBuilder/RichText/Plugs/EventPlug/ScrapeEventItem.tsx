@@ -1,9 +1,9 @@
+import { EventWrap } from "./EventWrap";
 import { PureKreisel } from "components/Kreisel";
 import Typo from "components/Typography/Typography";
-import clsx from "clsx";
 import { ScrapeEvent } from "pages/api/scrapeEvents";
+import clsx from "clsx";
 import React from "react";
-import { EventWrap } from "./EventWrap";
 const url = "https://www.kcs4web.de/kcs4webhcm/";
 
 export const ScrapeEventItem: React.FC<ScrapeEvent> = (item) => {

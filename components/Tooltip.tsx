@@ -3,6 +3,7 @@ import ReactTooltip from "react-tooltip";
 
 interface ITooltipProps {
   id: string;
+  children?: React.ReactNode;
 }
 
 const Tooltip: React.FC<ITooltipProps> = (props) => {

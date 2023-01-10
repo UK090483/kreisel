@@ -1,3 +1,4 @@
+import { FormError } from "./parts/FormError";
 import { useFormContext } from "react-hook-form";
 
 type TextareaProps = {
@@ -12,6 +13,9 @@ const Textarea: React.FC<TextareaProps> = (props) => {
     formState: { errors },
   } = useFormContext();
 
+  const error = errors[name];
+  const errorMessage = error?.message as string | undefined;
+
   return (
     <div className="flex  flex-col  gap-2 py-2">
       <label htmlFor={name}>{label}</label>
@@ -21,7 +25,7 @@ const Textarea: React.FC<TextareaProps> = (props) => {
         className={"rounded-md " + className}
         id={name}
       />
-      <p className="text-red">{errors[name] && errors[name]}</p>
+      <FormError errorMessage={errorMessage} />
     </div>
   );
 };

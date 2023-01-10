@@ -5,7 +5,9 @@ import clsx from "clsx";
 
 import React from "react";
 
-interface HeaderProps {}
+interface HeaderProps {
+  children?: React.ReactNode;
+}
 export const Header: React.FC<HeaderProps> = ({ children }) => {
   const { isAuthenticated } = useAuth();
   return (

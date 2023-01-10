@@ -15,9 +15,11 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
   const hasPrev = page > 1;
 
   const prev = () => {
+    // eslint-disable-next-line no-unused-expressions
     hasPrev && onChange(page - 1);
   };
   const next = () => {
+    // eslint-disable-next-line no-unused-expressions
     hasNext && onChange(page + 1);
   };
 
@@ -52,7 +54,7 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
               active={page === index + 1}
               key={index}
             >
-              {index + 1}
+              {index + 1 + ""}
             </Item>
           ))}
         </div>
@@ -84,7 +86,11 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
 
 export default Pagination;
 
-const Item: React.FC<{ active: boolean; onClick: () => void }> = (props) => {
+const Item: React.FC<{
+  active: boolean;
+  onClick: () => void;
+  children?: React.ReactNode;
+}> = (props) => {
   const { children, active, onClick } = props;
   return (
     <div

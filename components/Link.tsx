@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
 import NextLink from "next/link";
 interface LinkProps {
@@ -8,7 +8,7 @@ interface LinkProps {
   onClick?: () => void;
 }
 
-export const Link: React.FC<LinkProps> = ({
+export const Link: React.FC<PropsWithChildren<LinkProps>> = ({
   href,
   children,
   className,
@@ -36,10 +36,9 @@ export const Link: React.FC<LinkProps> = ({
   );
 };
 
-export const ConditionalLink: React.FC<LinkProps & { condition: boolean }> = ({
-  condition,
-  ...rest
-}) => {
+export const ConditionalLink: React.FC<
+  PropsWithChildren<LinkProps & { condition: boolean }>
+> = ({ condition, ...rest }) => {
   if (condition) {
     return <Link {...rest} />;
   }

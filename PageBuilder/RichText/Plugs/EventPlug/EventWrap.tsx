@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import React from "react";
 
 type EventWrapProps = {
@@ -6,7 +5,9 @@ type EventWrapProps = {
   bookingStatus?: string;
   className?: string;
 };
-export const EventWrap: React.FC<EventWrapProps> = (props) => {
+export const EventWrap: React.FC<React.PropsWithChildren<EventWrapProps>> = (
+  props
+) => {
   const { children, href, bookingStatus, className } = props;
 
   // const className = clsx(

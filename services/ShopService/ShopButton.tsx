@@ -1,11 +1,11 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
 type ShopButtonProps = {
   onClick: () => void;
   round?: boolean;
   color?: "accent" | "white";
 };
-export const ShopButton: React.FC<ShopButtonProps> = ({
+export const ShopButton: React.FC<PropsWithChildren<ShopButtonProps>> = ({
   children,
   onClick,
   round,

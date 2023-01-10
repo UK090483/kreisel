@@ -1,4 +1,3 @@
-import React from "react";
 import link, { linkMarkQuery } from "./marks/link";
 import Download from "./marks/Download/download";
 import { downloadQuery } from "./marks/Download/download.query";
@@ -6,10 +5,7 @@ import { downloadQuery } from "./marks/Download/download.query";
 import ButtonPlug, { buttonPlugQuery } from "./Plugs/ButtonPlug/ButtonPlug";
 import EmbedPlug from "./Plugs/EmbedPlug";
 import ImageGalleryPlug from "./Plugs/ImageGaleriePlug/ImageGaleriePlug";
-import Typo from "components/Typography/Typography";
 import SpacerPlug, { spacerPlugQuery } from "./Plugs/Spacer";
-
-import SanityRichText from "lib/SanityPageBuilder/lib/RichText";
 
 import GSheet, { GSheetPlugQuery } from "./Plugs/Gsheet";
 import ImagePlug from "./Plugs/ImagePlug/ImagePlug";
@@ -23,6 +19,9 @@ import { List, ListItem } from "./list/List";
 import Tooltip from "./marks/Tooltip/tooltip";
 import { toolTipQuery } from "./marks/Tooltip/tooltipQuery";
 import { imageGalleryPlugQuery } from "./Plugs/ImageGaleriePlug/ImageGalerieQuery";
+import SanityRichText from "lib/SanityPageBuilder/lib/RichText";
+import Typo from "components/Typography/Typography";
+import React from "react";
 
 const marksQuery = `
 markDefs[]{
@@ -59,7 +58,9 @@ const styles = { h1: "h1", h2: "h2", h3: "h3", h4: "h4", normal: "body" };
 const RichText: React.FC<any> = (props: any) => {
   return (
     <SanityRichText
+      //@ts-ignore
       list={List}
+      //@ts-ignore
       listItem={ListItem}
       content={props.content}
       plugs={{

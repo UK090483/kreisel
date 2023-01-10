@@ -1,8 +1,8 @@
-import React from "react";
 import NavigationModulItemBase from "./components/NavItem/NavigationItemBase";
 import Dropdown from "./components/Dropdown/Dropdown";
 import prepareNavItems from "./helper/prepareNavItems";
 import { NavItem } from "./types";
+import React from "react";
 
 interface Props {
   items: NavItem[];

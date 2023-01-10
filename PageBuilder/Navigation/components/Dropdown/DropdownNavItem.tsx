@@ -1,14 +1,14 @@
-import { useNavigation, useNavigationOpen } from "../../NavigationContext";
-import React, { useRef } from "react";
-import { NavigationItemBaseComponent, NavItem } from "../../types";
 import { NavigationModulDropdownContainer } from "./NavigationModulDropdownContainer";
+import { NavigationItemBaseComponent, NavItem } from "../../types";
+import { useNavigationOpen } from "../../NavigationContext";
 import useIsActive from "../../helper/useIsActive";
 import DefaultNavigationItemBase from "../NavItem/NavigationItemBase";
+import React, { useRef } from "react";
 
 type NavigationModulDropdownProps = {
   items?: NavItem[];
   id: string;
-
+  children?: React.ReactNode;
   NavigationItemBase?: NavigationItemBaseComponent;
 };
 

@@ -11,6 +11,7 @@ interface UnderlineProps {
   className?: string;
   variant?: number | number[];
   show?: boolean;
+  children?: React.ReactNode;
 }
 
 const L1 =

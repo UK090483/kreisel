@@ -1,8 +1,7 @@
-import React from "react";
-
 import { Link } from "components/Link";
 import { LinkResult, linkQuery } from "PageBuilder/Navigation/query";
 import Button from "components/Button/Button";
+import React from "react";
 
 const InlineIcon = () => {
   return (
@@ -23,7 +22,7 @@ _type == "link" => {
     asButton,
   }`;
 
-const LinkMark: React.FC<LinkMarkPros> = (props) => {
+const LinkMark: React.FC<React.PropsWithChildren<LinkMarkPros>> = (props) => {
   const { link, asButton } = props;
 
   if (asButton) {

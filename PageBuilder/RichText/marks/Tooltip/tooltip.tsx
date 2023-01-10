@@ -1,7 +1,5 @@
-import { MarkProps } from "lib/SanityPageBuilder/lib/RichText";
 import { TooltipResult } from "./tooltipQuery";
-import ReactTooltip from "react-tooltip";
-import Button from "components/Button/Button";
+import { MarkProps } from "lib/SanityPageBuilder/lib/RichText";
 import Portal from "components/Portal";
 
 import ToolTipComponent from "components/Tooltip";

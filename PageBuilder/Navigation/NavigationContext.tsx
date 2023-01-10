@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
 import DefaultNavigationItemBase from "./components/NavItem/NavigationItemBase";
 import DefaultNavigationLink from "./components/NavItem/NavigationLink";
 import { NavigationItemBaseComponent, NavigationLinkComponent } from "./types";
+import React, { useContext } from "react";
 
 type NavigationState = {
   open: string | null;
@@ -23,6 +23,7 @@ const NavigationContext = React.createContext<
 >({
   state: initialState,
   setState: () => {
+    // eslint-disable-next-line no-console
     console.log("no Context.Provider Reachable");
   },
   NavItemBase: DefaultNavigationItemBase,
@@ -30,7 +31,9 @@ const NavigationContext = React.createContext<
 });
 
 export const NavigationContextProvider: React.FC<
-  Partial<NavigationContextValues<NavigationState>>
+  Partial<NavigationContextValues<NavigationState>> & {
+    children?: React.ReactNode;
+  }
 > = ({ children, NavItemLink, NavItemBase, ...rest }) => {
   const [state, setState] = React.useState<NavigationState>(initialState);
 

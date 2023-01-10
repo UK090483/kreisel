@@ -7,8 +7,10 @@ export type NavItemBaseProps = {
   place?: "link" | "dropdown" | "header";
   props: { [k: string]: any };
   active: boolean;
+  children?: React.ReactNode;
 };
 
+// eslint-disable-next-line import/no-unused-modules
 export const NavigationItemBase: React.FC<NavItemBaseProps> = ({
   children,
   icon,

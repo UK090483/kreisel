@@ -1,6 +1,4 @@
-/* eslint-disable react/display-name */
 import { FormError } from "./parts/FormError";
-
 import { FormLabel } from "./parts/FormLabel";
 import { InputWarp } from "./parts/InputWrap";
 import { useFormContext } from "react-hook-form";

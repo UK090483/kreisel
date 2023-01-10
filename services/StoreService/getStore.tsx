@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
 type StoreContextValues<T> = {
   state: T;
@@ -13,10 +13,9 @@ function getStore<T>(initialState: T) {
     },
   });
 
-  const StoreContextProvider: React.FC<Partial<StoreContextValues<T>>> = ({
-    children,
-    ...rest
-  }) => {
+  const StoreContextProvider: React.FC<
+    PropsWithChildren<Partial<StoreContextValues<T>>>
+  > = ({ children, ...rest }) => {
     const [state, setState] = React.useState<T>(initialState);
 
     const value = { state, setState, ...rest };

@@ -1,8 +1,9 @@
 import clsx from "clsx";
 import * as React from "react";
 
-export type InputWarpProps = {
+type InputWarpProps = {
   disabled?: boolean;
+  children?: React.ReactNode;
 };
 
 export const InputWarp: React.FC<InputWarpProps> = ({ children, disabled }) => {

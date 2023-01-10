@@ -2,6 +2,7 @@ import React from "react";
 
 type CardBodyProps = {
   className?: string;
+  children?: React.ReactNode;
 };
 
 const CardBody: React.FC<CardBodyProps> = ({ children, className }) => {

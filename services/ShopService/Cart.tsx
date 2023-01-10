@@ -1,11 +1,11 @@
-import SanityImage from "lib/SanityImage";
-import useAnimationDelay from "hooks/useAnimationDelay";
-import React, { useEffect } from "react";
-import { createPortal } from "react-dom";
 import { ShopButton } from "./ShopButton";
 import { useShop } from "./shopContext";
-import FocusTrap from "focus-trap-react";
+import SanityImage from "lib/SanityImage";
+import useAnimationDelay from "hooks/useAnimationDelay";
 import { ImageMetaResult } from "lib/SanityImage/query";
+import React, { useEffect, PropsWithChildren } from "react";
+import { createPortal } from "react-dom";
+import FocusTrap from "focus-trap-react";
 
 const Cart: React.FC = () => {
   const s = useShop();
@@ -15,8 +15,6 @@ const Cart: React.FC = () => {
     delay: 1000,
     listener: cartOpen,
   });
-
-  const isLoading = articleData.status === "loading";
 
   const sum = Object.values(articleData.items).reduce((acc, item) => {
     if (item.price && typeof item.price === "number") {
@@ -96,7 +94,7 @@ type ArticleProps = {
   image?: ImageMetaResult;
 };
 
-const Article: React.FC<ArticleProps> = ({
+const Article: React.FC<PropsWithChildren<ArticleProps>> = ({
   children,
   id,
   price,

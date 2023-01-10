@@ -1,14 +1,14 @@
-import React from "react";
-
-import Typo from "components/Typography";
-import SanityImage from "lib/SanityImage";
 import CardWrap from "./CardWrap";
 import CardBody from "./CardBody";
 import { CardResult } from "../../listingBlockQuery";
+import SanityImage from "lib/SanityImage";
+import Typo from "components/Typography";
+import React from "react";
 import BlockContent from "@sanity/block-content-to-react";
 
 type CardProps = {
   variation?: null | "list" | "grid";
+  children?: React.ReactNode;
 } & CardResult;
 
 const Card: React.FC<CardProps> = (props) => {

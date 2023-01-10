@@ -1,6 +1,6 @@
 import Overlay from "./Overlay";
 import { Section } from "components/Section/Section";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { useRouter } from "next/router";
 
 interface ListProps {
@@ -8,7 +8,7 @@ interface ListProps {
   name: string;
 }
 
-const List: React.FC<ListProps> = (props) => {
+const List: React.FC<PropsWithChildren<ListProps>> = (props) => {
   const { name, overlay, children } = props;
   const { query } = useRouter();
 

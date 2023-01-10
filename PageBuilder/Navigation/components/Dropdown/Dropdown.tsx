@@ -1,8 +1,8 @@
 import { NavItem } from "../../types";
-import React, { useRef } from "react";
 import { useNavigation } from "../../NavigationContext";
 import { NavigationLinkProps } from "../NavItem/NavigationLink";
 import useIsActive from "../../helper/useIsActive";
+import React, { useRef } from "react";
 
 interface DropdownProps {
   list?: NavItem[];
@@ -11,7 +11,11 @@ interface DropdownProps {
   NavigationLink?: React.ReactElement<NavigationLinkProps>;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ items, list, onClick }) => {
+const Dropdown: React.FC<React.PropsWithChildren<DropdownProps>> = ({
+  items,
+  list,
+  onClick,
+}) => {
   const ref = useRef<HTMLUListElement | null>(null);
   return (
     <ul ref={ref} className=" flex justify-between w-full ">
@@ -31,10 +35,11 @@ const Dropdown: React.FC<DropdownProps> = ({ items, list, onClick }) => {
 
 export default Dropdown;
 
-export const List: React.FC<{
+const List: React.FC<{
   items?: NavItem[];
   label?: string;
   onClick?: () => void;
+  children?: string;
 }> = (props) => {
   const { items, label, onClick } = props;
   const {

@@ -15,6 +15,7 @@ interface IAvatarProps {
   description?: string | null;
   id: string;
   size?: "s" | "m" | "l";
+  children?: React.ReactNode;
 }
 
 const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {

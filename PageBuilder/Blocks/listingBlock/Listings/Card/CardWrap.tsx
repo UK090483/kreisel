@@ -1,11 +1,12 @@
-import React from "react";
 import { ConditionalLink } from "components/Link";
 import { LinkResult } from "PageBuilder/Navigation/query";
+import React from "react";
 
 const CardWrap: React.FC<{
   href?: string;
   className?: string;
   link?: LinkResult;
+  children?: React.ReactNode;
 }> = (props) => {
   const { children, href, className, link } = props;
 

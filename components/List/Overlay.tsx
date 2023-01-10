@@ -4,7 +4,9 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { useLockBodyScroll } from "react-use";
 
-interface IOverlayProps {}
+interface IOverlayProps {
+  children?: React.ReactNode;
+}
 
 const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
   const { children } = props;

@@ -1,8 +1,3 @@
-import Portal from "components/Portal";
-import Svg from "components/Svg";
-import useAnimationDelay from "hooks/useAnimationDelay";
-import React from "react";
-import { useLockBodyScroll } from "react-use";
 import DefaultNavigationItemBase from "./components/NavItem/NavigationItemBase";
 import DefaultNavigationLink from "./components/NavItem/NavigationLink";
 import {
@@ -10,8 +5,13 @@ import {
   NavigationLinkComponent,
   NavItem,
 } from "./types";
+import Portal from "components/Portal";
+import Svg from "components/Svg";
+import useAnimationDelay from "hooks/useAnimationDelay";
+import React from "react";
+import { useLockBodyScroll } from "react-use";
 
-export interface NavigationMobileProps {
+interface NavigationMobileProps {
   label?: string;
   className?: string;
   open?: boolean;

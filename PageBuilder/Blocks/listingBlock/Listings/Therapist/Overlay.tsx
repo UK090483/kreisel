@@ -1,18 +1,14 @@
 import Typo from "components/Typography/Typography";
 
+import SanityImage from "lib/SanityImage";
+import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlockQuery";
 import Link from "next/link";
 import FocusTrap from "focus-trap-react";
 import { useRouter } from "next/router";
 import * as React from "react";
-import BlockContent, {
-  BlockContentProps,
-  Serializers,
-} from "@sanity/block-content-to-react";
+import BlockContent from "@sanity/block-content-to-react";
 
-import useScrollStop from "hooks/useScrollStop";
 import { useLockBodyScroll } from "react-use";
-import SanityImage from "lib/SanityImage";
-import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlockQuery";
 
 interface IOverlayProps {
   items: TherapistResult[];
@@ -95,11 +91,11 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
   );
 };
 
-const InfoItem: React.FC<{ data?: undefined | string; title?: string }> = ({
-  data,
-  title,
-  children,
-}) => {
+const InfoItem: React.FC<{
+  data?: undefined | string;
+  title?: string;
+  children?: React.ReactNode;
+}> = ({ data, title, children }) => {
   return data || children ? (
     <>
       {title && (

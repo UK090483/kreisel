@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -8,7 +8,7 @@ interface ListItemProps {
   className?: string;
 }
 
-const ListItem: React.FC<ListItemProps> = (props) => {
+const ListItem: React.FC<PropsWithChildren<ListItemProps>> = (props) => {
   const { children, name, id, className } = props;
   const r = useRouter();
   const { asPath } = r;
