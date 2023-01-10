@@ -1,10 +1,10 @@
-import type { SanityClient } from "@sanity/client/sanityClient";
-
 import {
   FetchStaticPaths,
   FetchStaticPathsResult2,
   LocationConfig,
 } from "../types";
+import type { SanityClient } from "@sanity/client/sanityClient";
+
 
 type getAllSlugsResult = {
   slug: string;

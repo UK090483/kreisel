@@ -1,8 +1,8 @@
-import { SanityClient } from "@sanity/client";
-import type { NextApiRequest, NextApiResponse } from "next";
-import { getToken } from "next-auth/jwt";
 import { Profile } from "./profileQuery";
 import { schema } from "./validation";
+import { SanityClient } from "@sanity/client";
+import { getToken } from "next-auth/jwt";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
   name: string;

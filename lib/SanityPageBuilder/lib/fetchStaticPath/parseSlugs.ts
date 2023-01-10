@@ -1,9 +1,9 @@
+import { defaultLocales } from "./defaultValues";
+import { GetSlugsResult } from "./getSlugs";
 import {
   LocationConfig,
   FetchStaticPathsResult2,
 } from "lib/SanityPageBuilder/types";
-import { defaultLocales } from "./defaultValues";
-import { GetSlugsResult } from "./getSlugs";
 
 export type ParseSlugsProps = {
   getSlugResult: GetSlugsResult;

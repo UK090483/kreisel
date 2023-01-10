@@ -1,6 +1,6 @@
 import handleIntrinsic from "./handleIntrinsic";
 
-import { imageMeta, imageMeatWithCrop } from "./testprepare";
+import { imageMeta } from "./testprepare";
 
 const width = 123;
 const height = 345;

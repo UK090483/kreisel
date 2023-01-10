@@ -1,20 +1,19 @@
 import "../styles/globals.css";
+import { PageData } from "./[[...slug]]";
 import Layout from "@components/Layout/Layout";
 import { PageProps } from "@lib/SanityPageBuilder/types";
-import { NextComponentType, NextPageContext } from "next";
 import Cookie from "@lib/Cookie/Cookie";
-import { SessionProvider } from "next-auth/react";
-import { ReactElement, ReactNode } from "react";
 import Cart from "@services/ShopService/Cart";
 import { ShopContextProvider } from "@services/ShopService/shopContext";
-import { PageData } from "./[[...slug]]";
 // import usePreviewSubscription from "@lib/SanityPageBuilder/lib/preview/previewSubscription";
 import PreviewIndicator from "@lib/SanityPageBuilder/lib/preview/PreviewIndicator";
 import { AppContextProvider } from "PageBuilder/AppContext/AppContext";
 import AppConfig from "app.config.json";
 import StoreContextProvider from "@services/StoreService/StoreProvider";
+import { ReactElement, ReactNode , lazy } from "react";
+import { SessionProvider } from "next-auth/react";
+import { NextComponentType, NextPageContext } from "next";
 
-import { lazy } from "react";
 import { PreviewSuspense } from "@sanity/preview-kit";
 const PreviewPageBuilderContextProvider = lazy(
   () => import("../PageBuilder/AppContext/PrevPageBuilderContext")

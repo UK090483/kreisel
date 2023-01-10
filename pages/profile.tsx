@@ -1,10 +1,10 @@
+import ProfileForm from "@lib/Profile/ProfileForm";
+import { Profile, profileQuery } from "@lib/Profile/profileQuery";
+import { previewClient } from "@services/SanityService/sanity.server";
 import { Session } from "next-auth";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import React, { ReactElement, ReactNode } from "react";
-import ProfileForm from "@lib/Profile/ProfileForm";
-import { Profile, profileQuery } from "@lib/Profile/profileQuery";
-import { previewClient } from "@services/SanityService/sanity.server";
 
 type ProfileProps = {
   session: Session | null;

@@ -1,12 +1,12 @@
-import { Profile } from "@lib/Profile/profileQuery";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as React from "react";
-import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { schema } from "./validation";
+import { membershipOptions, degreeOptions } from "./Fields";
+import { Profile } from "@lib/Profile/profileQuery";
 import Input from "@components/Inputs/input2";
 import Textarea from "@components/Inputs/TextArea";
 import { DropdownInput } from "@components/Inputs/Dropdown";
-import { membershipOptions, degreeOptions } from "./Fields";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as React from "react";
+import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 
 interface IProfileFormProps {
   profile?: Partial<Profile>;

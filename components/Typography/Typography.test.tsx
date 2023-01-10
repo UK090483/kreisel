@@ -1,9 +1,9 @@
 /**
  * @jest-environment jsdom
  */
+import Typo from "./Typography";
 import { render, screen } from "@testing-library/react";
 
-import Typo from "./Typography";
 
 const variants = {
   h1: "H1",

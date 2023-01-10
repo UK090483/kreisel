@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import { SectionProps } from "./Section";
+import clsx from "clsx";
 interface IIseSectionWidthProps
   extends Pick<SectionProps, "width" | "noPadding"> {}
 const useSectionWidth = (props: IIseSectionWidthProps) => {

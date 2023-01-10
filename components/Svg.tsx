@@ -1,5 +1,4 @@
 import React from "react";
-import clsx from "clsx";
 
 const paths = {
   hamburger: <path strokeWidth="2" d="M2 6h20M2 12h20M2 18h20" />,

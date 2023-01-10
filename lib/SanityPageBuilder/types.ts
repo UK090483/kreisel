@@ -1,8 +1,5 @@
 import {
-  NextPage,
-  GetStaticPaths,
   GetStaticPathsResult,
-  GetStaticProps,
 } from "next";
 import { ComponentType } from "react";
 

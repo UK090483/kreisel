@@ -1,6 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-
 import List from "./List";
+import { render } from "@testing-library/react";
+
 
 const TestOverlay = () => <div data-testid="testOverlay"></div>;
 

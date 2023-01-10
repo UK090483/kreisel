@@ -1,5 +1,5 @@
-import React from "react";
 import { SectionProps } from "./Section";
+import React from "react";
 
 type SectionContextValues = {
   bgColor?: string;

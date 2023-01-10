@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import { AppColor } from "types";
+import clsx from "clsx";
 
 type TransitionProps = {
   color?: AppColor;

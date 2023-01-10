@@ -1,5 +1,5 @@
-import { render, screen, cleanup } from "@testing-library/react";
 import SanityImage from "./SanityImage";
+import { render, screen, cleanup } from "@testing-library/react";
 
 const testImage = {
   aspectRatio: 1.5,

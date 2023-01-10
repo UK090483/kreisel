@@ -1,5 +1,5 @@
-import { render } from "@testing-library/react";
 import Underline from "./Underline";
+import { render } from "@testing-library/react";
 
 const intersectionObserverMock = () => ({
   observe: () => null,

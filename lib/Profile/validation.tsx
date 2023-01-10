@@ -1,5 +1,5 @@
+import { membershipOptions, degreeOptions } from "./Fields";
 import { object, string, array, InferType } from "yup";
-import fields, { membershipOptions, degreeOptions } from "./Fields";
 
 const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
 

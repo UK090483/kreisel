@@ -1,8 +1,8 @@
+import { SanityImageComponent } from "./types";
+import useSanityImage from "@lib/SanityImage/useSanityImage";
 import React from "react";
 import NextImage from "next/legacy/image";
-import useSanityImage from "@lib/SanityImage/useSanityImage";
 
-import { SanityImageComponent } from "./types";
 
 const SanityImage: SanityImageComponent = (props) => {
   const { image, ...rest } = props;

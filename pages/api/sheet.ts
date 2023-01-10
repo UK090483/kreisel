@@ -1,5 +1,4 @@
 // import { jwtClient } from "@services/googleService/client";
-import { google } from "googleapis";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 

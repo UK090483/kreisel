@@ -1,9 +1,8 @@
+import FooterContact from "./FooterContact";
 import { Section } from "@components/Section/Section";
 import NavOverview from "PageBuilder/Navigation/NavOverview";
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
-import { PageData } from "pages/[[...slug]]";
 import React from "react";
-import FooterContact from "./FooterContact";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
 
 interface FooterProps {}

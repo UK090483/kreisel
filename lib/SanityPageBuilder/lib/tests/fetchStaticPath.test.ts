@@ -1,5 +1,5 @@
-import { fetchStaticPaths } from "../fetchStaticPaths";
 import { mockClient } from "./testPrepare";
+import { fetchStaticPaths } from "../fetchStaticPaths";
 
 const locales = {
   de: { title: "Deutsch", isDefault: true, flag: "🇩🇪" },

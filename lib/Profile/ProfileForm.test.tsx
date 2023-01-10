@@ -1,8 +1,8 @@
-import { render, screen, act } from "@testing-library/react";
-import user from "@testing-library/user-event";
 import ProfileForm from "./ProfileForm";
 import { Profile } from "./validation";
 import { profileFields } from "./Fields";
+import user from "@testing-library/user-event";
+import { render, screen, act } from "@testing-library/react";
 
 type TestProfile = Partial<Profile>;
 const testProfile: TestProfile = {

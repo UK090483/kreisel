@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react";
 import Button from "./Button";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 describe("Button", () => {
   it("should render correctly as Button ", () => {

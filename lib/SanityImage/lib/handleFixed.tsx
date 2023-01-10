@@ -1,8 +1,8 @@
-import { ImageMetaResult } from "../query";
-import { IImagePropsWithDimensions, UseSanityImageOptions } from "../types";
 import getDefaultResult from "./getDefaultResult";
 import handleCrop from "./handleCrop";
 import { checkDimensionOptions } from "./helper";
+import { IImagePropsWithDimensions, UseSanityImageOptions } from "../types";
+import { ImageMetaResult } from "../query";
 
 const handleFixed = (
   image: ImageMetaResult,

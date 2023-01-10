@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import fetch from "node-fetch";
 import stream from "stream";
 import { promisify } from "util";
-import fetch from "node-fetch";
 
 const pipeline = promisify(stream.pipeline);
 const url =

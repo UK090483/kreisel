@@ -1,7 +1,7 @@
-import { ImageProps } from "next/image";
+import getDefaultResult from "./getDefaultResult";
 import { ImageMetaResult } from "../query";
 import { UseSanityImageOptions } from "../types";
-import getDefaultResult from "./getDefaultResult";
+import { ImageProps } from "next/image";
 
 const handleResponsive = (
   image: ImageMetaResult,

@@ -1,9 +1,9 @@
-import { ImageProps } from "next/image";
-import { ImageMetaResult } from "../query";
-import { UseSanityImageOptions } from "../types";
 import getDefaultResult from "./getDefaultResult";
 import handleCrop from "./handleCrop";
 import { checkDimensionOptions } from "./helper";
+import { UseSanityImageOptions } from "../types";
+import { ImageMetaResult } from "../query";
+import { ImageProps } from "next/image";
 
 const handleIntrinsic = (
   image: ImageMetaResult,

@@ -1,10 +1,7 @@
 import { Section } from "@components/Section/Section";
-import Typo from "@components/Typography/Typography";
 import React from "react";
-import { PageData } from "pages/[[...slug]]";
 import Avatar from "@components/Avatar";
 import RichText from "PageBuilder/RichText/RichText";
-import clsx from "clsx";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
 
 interface FooterContactProps {}

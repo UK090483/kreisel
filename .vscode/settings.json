@@ -4,7 +4,7 @@
   // },
   // "tailwindCSS.experimental.classRegex": ["clsx([^]*)"],
   "cSpell.language": "en,de-de",
-  
+
   "files.exclude": {
     "**/.git": false,
     "**/.svn": false,
@@ -53,6 +53,7 @@
     "clsx",
     "csrfToken",
     "fieldsets",
+    "hookform",
     "serializers",
     "tailwindcss"
   ]

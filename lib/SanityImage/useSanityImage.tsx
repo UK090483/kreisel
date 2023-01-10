@@ -1,8 +1,8 @@
-import { ImageLoader, ImageProps } from "next/legacy/image";
 import { UseSanityImage } from "./types";
 
 import handleFixed from "./lib/handleFixed";
 import handleFill from "./lib/handleFill";
+import { ImageProps } from "next/legacy/image";
 
 //@ts-ignore
 const useSanityImage: UseSanityImage = (image, options) => {

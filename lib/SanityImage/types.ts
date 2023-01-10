@@ -1,7 +1,7 @@
+import { ImageMetaResult } from "./query";
 import { ImageProps } from "next/legacy/image";
 import React from "react";
 
-import { ImageMetaResult } from "./query";
 
 export interface UseSanityImageOptions extends Omit<ImageProps, "src"> {}
 

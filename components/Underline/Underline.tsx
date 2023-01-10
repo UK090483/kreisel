@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import useHover from "@hooks/useHover";
+import { AppColor } from "types";
 import clsx from "clsx";
 import React from "react";
 import { useIntersection } from "react-use";
-import { AppColor } from "types";
 
 interface UnderlineProps {
   color?: AppColor;

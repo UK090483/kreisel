@@ -1,8 +1,5 @@
-import Button from "@components/Button/Button";
 import Kreisel, { PureKreisel } from "@components/Kreisel";
 import { Section } from "@components/Section/Section";
-import Typo from "@components/Typography";
-import Underline from "@components/Underline/Underline";
 import React from "react";
 
 const Style = () => {

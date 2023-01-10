@@ -1,6 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-
 import BodyParser from "./BodyParser";
+import { render } from "@testing-library/react";
+
 
 const TestComponent1 = () => <div>Test1</div>;
 const TestComponent2 = (props: { testProp: string }) => (

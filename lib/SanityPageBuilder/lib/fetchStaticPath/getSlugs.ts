@@ -1,6 +1,6 @@
+import { defaultLocales } from "./defaultValues";
 import { LocationConfig } from "lib/SanityPageBuilder/types";
 import type { SanityClient } from "@sanity/client/sanityClient";
-import { defaultLocales } from "./defaultValues";
 
 export type getSlugsProps = {
   doc: string;

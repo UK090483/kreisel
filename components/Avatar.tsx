@@ -1,12 +1,12 @@
+import Kreisel from "./Kreisel";
+import { useSection } from "./Section/SectionContext";
+import Tooltip from "./Tooltip";
+import Typo from "./Typography/Typography";
 import SanityImage from "@lib/SanityImage";
 import { ImageMetaResult } from "@lib/SanityImage/query";
 import clsx from "clsx";
 import * as React from "react";
-import Kreisel from "./Kreisel";
-import { useSection } from "./Section/SectionContext";
-import Tooltip from "./Tooltip";
 
-import Typo from "./Typography/Typography";
 
 interface IAvatarProps {
   showFull?: boolean;

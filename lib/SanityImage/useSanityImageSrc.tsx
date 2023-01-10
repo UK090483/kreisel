@@ -1,9 +1,4 @@
-import { ImageLoader, ImageProps } from "next/image";
-import { UseSanityImage, UseSanityImageOptions } from "./types";
-import handleCrop from "./lib/handleCrop";
-import getDefaultResult from "./lib/getDefaultResult";
-import handleFixed from "./lib/handleFixed";
-import handleFill from "./lib/handleFill";
+import { UseSanityImageOptions } from "./types";
 import { ImageMetaResult } from "./query";
 
 export type UseSanityImageSrc = (

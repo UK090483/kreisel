@@ -1,3 +1,4 @@
+import appConfig from "../app.config.json";
 import { sanityClient as client } from "@services/SanityService/sanity.server";
 import {
   heroBlockQuery,
@@ -12,17 +13,11 @@ import {
   sectionBlockQuery,
 } from "PageBuilder/Blocks/sectionBlock/SectionBlockQuery";
 
-import {
-  NavigationQuery,
-  NavigationResult,
-} from "PageBuilder/Navigation/query";
+import { NavigationResult } from "PageBuilder/Navigation/query";
 import TrustBlock, {
   trustBlockQuery,
 } from "PageBuilder/Blocks/trustBlock/TrustBlock";
-import {
-  footerQuery,
-  FooterQueryResult,
-} from "@components/Layout/Footer/Footer";
+import { FooterQueryResult } from "@components/Layout/Footer/Footer";
 import {
   ListingBlockProps,
   listingBlockQuery,
@@ -31,19 +26,14 @@ import ListingBlock from "PageBuilder/Blocks/listingBlock/ListingsBlock";
 
 import fetchStaticProps from "@lib/SanityPageBuilder/lib/fetchStaticProps/fetchStaticProps";
 
-import { GetStaticPaths, GetStaticProps } from "next";
-import appConfig from "../app.config.json";
-import {
-  useAppContext,
-  useMemberPage,
-} from "PageBuilder/AppContext/AppContext";
+import { useMemberPage } from "PageBuilder/AppContext/AppContext";
 import BodyParser from "@lib/SanityPageBuilder/lib/BodyParser/BodyParser";
 import { fetchStaticPaths } from "@lib/SanityPageBuilder/lib/fetchStaticPaths";
-import appQuery, { appQueryResult } from "PageBuilder/AppContext/appQuery";
+import { appQueryResult } from "PageBuilder/AppContext/appQuery";
 import ReusableBlock from "PageBuilder/Blocks/reuseableBlock/ReuseableBlock";
-import { reusableBlockQuery } from "PageBuilder/Blocks/reuseableBlock/ReusableBlock.query";
 import Kreisel from "@components/Kreisel";
 import { pageQuery } from "PageBuilder/ContentTypes/Page/page.query";
+import { GetStaticPaths, GetStaticProps } from "next";
 const locales = appConfig.locales;
 
 export interface PageData

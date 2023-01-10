@@ -1,9 +1,9 @@
-import clsx from "clsx";
-import React from "react";
-import { AppColor } from "types";
 import { SectionContextProvider } from "./SectionContext";
 import Transition from "./Transition";
 import useSectionWidth from "./useSectionWidth";
+import { AppColor } from "types";
+import React from "react";
+import clsx from "clsx";
 
 export interface SectionProps {
   width?: "full" | "m" | "l" | "s";

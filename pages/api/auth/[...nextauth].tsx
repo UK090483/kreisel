@@ -1,8 +1,8 @@
+import SanityAdapter from "@services/AuthService/SanityAdapter/SanityAdapter";
+import { previewClient } from "@services/SanityService/sanity.server";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
-import SanityAdapter from "@services/AuthService/SanityAdapter/SanityAdapter";
 // import { mockClient } from "@services/SanityService/test/testClient";
-import { previewClient } from "@services/SanityService/sanity.server";
 export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/login",

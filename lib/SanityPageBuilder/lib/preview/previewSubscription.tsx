@@ -1,5 +1,5 @@
-import { createPreviewSubscriptionHook } from "next-sanity";
 import { config } from "../config";
+import { createPreviewSubscriptionHook } from "next-sanity";
 
 const usePreviewSubscription = createPreviewSubscriptionHook({
   ...config,

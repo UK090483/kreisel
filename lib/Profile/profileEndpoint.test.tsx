@@ -1,6 +1,6 @@
+import getHandler from "./profileEndpoint";
 import { mockClient } from "@services/SanityService/test/testClient";
 import { getToken } from "next-auth/jwt";
-import getHandler from "./profileEndpoint";
 import { testApiHandler, NtarhParameters } from "next-test-api-route-handler";
 
 const testDbItem = { _type: "therapist", email: "testEmail", _id: "testId" };

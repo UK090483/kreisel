@@ -6,7 +6,7 @@ type NavigationProps = {
   prev?: () => void;
   className?: string;
 };
-export const Navigation: React.FC<NavigationProps> = (props) => {
+const Navigation: React.FC<NavigationProps> = (props) => {
   const { className, next, prev } = props;
 
   return (

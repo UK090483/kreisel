@@ -24,9 +24,6 @@ export interface AppContextProviderProps {
 
 export const AppContextProvider = (props: AppContextProviderProps) => {
   const { children, ...rest } = props;
-
-  console.log(props);
-
   return (
     <AppContext.Provider value={{ preview: false, ...rest }}>
       {children}
@@ -57,9 +54,7 @@ export const useHomeRoute = () => {
 
 export const useMemberPage = () => {
   const { data } = useContext(AppContext);
-
   const [verified, setVerified] = useState(false);
-
   const { member, status } = useAuth();
   const { push } = useRouter();
   const slug = data?.slug;

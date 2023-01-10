@@ -1,7 +1,7 @@
-import { GetStaticPropsResult } from "next";
 import { fetchStaticPropsProps, PageProps } from "../../types";
+import { GetStaticPropsResult } from "next";
 
-export async function fetchStaticProps<P>(
+ async function fetchStaticProps<P>(
   props: fetchStaticPropsProps
 ): Promise<GetStaticPropsResult<PageProps<P>>> {
   const {

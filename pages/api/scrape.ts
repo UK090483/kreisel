@@ -1,9 +1,9 @@
+import { previewClient } from "@services/SanityService/sanity.server";
 import { JSDOM } from "jsdom";
-import type { NextApiRequest, NextApiResponse } from "next";
 import blockTools from "@sanity/block-tools";
 import Schema from "@sanity/schema";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-import { previewClient } from "@services/SanityService/sanity.server";
 
 const defaultSchema = Schema.compile({
   name: "myBlog",

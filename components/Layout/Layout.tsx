@@ -1,12 +1,10 @@
-import type { PageProps } from "@lib/SanityPageBuilder/types";
-import { useAppContext } from "PageBuilder/AppContext/AppContext";
-import { PageData } from "pages/[[...slug]]";
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { BackButton } from "./BackButton";
 import Footer from "./Footer";
 import Head from "./Head";
 import { Header } from "./Header";
 import Nav from "./Navigation/Nav";
+import { useAppContext } from "PageBuilder/AppContext/AppContext";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 interface LayoutProps {
   preview?: boolean;

@@ -1,8 +1,8 @@
-import { ImageProps } from "next/image";
-import { ImageMetaResult } from "../query";
-import { UseSanityImageOptions } from "../types";
 import getDefaultResult from "./getDefaultResult";
 import handleCrop from "./handleCrop";
+import { ImageMetaResult } from "../query";
+import { UseSanityImageOptions } from "../types";
+import { ImageProps } from "next/image";
 
 const handleFill = (
   image: ImageMetaResult,
