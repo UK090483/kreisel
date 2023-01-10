@@ -1,22 +1,22 @@
 // import listing from "./listing";
-import Section from "./Section";
-import defaultRichText from "./RichText/defaultRichText";
+// import Section from "./Section";
+// import defaultRichText from "./RichText/defaultRichText";
 // import hero from "./hero";
 
 import headerRichText from "./RichText/headerRichText";
 import easyRichText from "./RichText/easyRichText";
-import trust from "./trust";
-import trustItem from "./trustItem";
+// import trust from "./trust";
+// import trustItem from "./trustItem";
 // import reuseableBlock from "./reuseableBlock";
 import annotations from "./annotations";
 
 const PageComponents = [
   ...annotations,
-  trust,
-  trustItem,
-  Section,
+  // trust,
+  // trustItem,
+  // Section,
   // listing,
-  defaultRichText,
+  // defaultRichText,
   headerRichText,
   easyRichText,
   // hero,

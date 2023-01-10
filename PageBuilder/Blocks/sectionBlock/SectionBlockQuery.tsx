@@ -1,22 +1,20 @@
 import { richTextQuery } from "PageBuilder/RichText/RichText";
 import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
-import { BlockStyle } from "PageBuilder/schemaHelper/blockStyle";
+import {
+  BlockStyle,
+  blockStyleProjection,
+} from "PageBuilder/schemaHelper/blockStyle";
 
 export const sectionBlockQuery = `
 _type == "section" => {
   _key,
   _type,
   title,
-  width,
-  bgColor,
   type,
-  topSpace,
-  bottomSpace,
   ${richTextQuery},
   bgImage{${imageMeta}},
   image{${imageMeta}},
-  transitionTop,
-  transitionBottom,
+  ${blockStyleProjection()}
 }
 `;
 

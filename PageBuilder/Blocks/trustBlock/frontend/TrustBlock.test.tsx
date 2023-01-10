@@ -1,5 +1,6 @@
+import TrustBlock from "./TrustBlock";
+import { trustBlockQuery } from "../trustBlock.query";
 import { mockClient } from "lib/SanityPageBuilder/lib/MockClient";
-import TustBlock, { trustBlockQuery } from "./TrustBlock";
 import { screen, render } from "@testing-library/react";
 import React from "react";
 
@@ -43,7 +44,7 @@ const items = [
 
 const database: any[] = [];
 
-describe("TustBlock", () => {
+describe("TrustBlock", () => {
   it("query should be valid ", async () => {
     const client = mockClient({ database });
     const res = await client.fetch(`*[_type == "page"]{
@@ -54,16 +55,16 @@ describe("TustBlock", () => {
         }`);
   });
   it("should render", () => {
-    render(<TustBlock />);
+    render(<TrustBlock />);
   });
 
   it("should render content", () => {
-    render(<TustBlock content={content} />);
+    render(<TrustBlock content={content} />);
     expect(screen.getByText("TestContent")).toBeInTheDocument();
   });
 
   it("should render Items", () => {
-    render(<TustBlock items={items} />);
+    render(<TrustBlock items={items} />);
     expect(screen.getByText("TestItem")).toBeInTheDocument();
   });
 });

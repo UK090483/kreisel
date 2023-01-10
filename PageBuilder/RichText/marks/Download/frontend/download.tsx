@@ -1,6 +1,6 @@
+import { DownloadResult } from "../download.query";
 import { Link } from "components/Link";
 import { MarkProps } from "lib/SanityPageBuilder/lib/RichText";
-import { DownloadResult } from "./download.query";
 
 const Download: React.FC<MarkProps<DownloadResult>> = (props) => {
   const { mark } = props;
@@ -18,7 +18,7 @@ const Download: React.FC<MarkProps<DownloadResult>> = (props) => {
     <Link
       external={true}
       href={url}
-      className="underline font-bold  text-primary"
+      className="underline font-bold text-primary"
     >
       {inner}
     </Link>

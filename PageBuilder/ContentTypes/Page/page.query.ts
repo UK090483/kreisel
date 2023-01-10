@@ -20,7 +20,7 @@ import {
   sectionBlockQuery,
   SectionBlockResult,
 } from "PageBuilder/Blocks/sectionBlock/SectionBlockQuery";
-import { trustBlockQuery } from "PageBuilder/Blocks/trustBlock/TrustBlock";
+import { trustBlockQuery } from "PageBuilder/Blocks/trustBlock/trustBlock.query";
 
 export const pageQuery = `content[]{${heroBlockQuery},${sectionBlockQuery},${listingBlockQuery},${trustBlockQuery},${reusableBlockQuery} },  ${footerQuery}, ${appQuery(
   ""

@@ -1,5 +1,5 @@
 import { IReusableBlockResult } from "../ReusableBlock.query";
-import SectionBlock from "../../sectionBlock/SectionBlock";
+import SectionBlock from "../../sectionBlock/frontend/SectionBlock";
 
 const ReusableBlock: React.FunctionComponent<IReusableBlockResult> = (
   props

@@ -1,9 +1,7 @@
 import link, { linkMarkQuery } from "./marks/link";
-import Download from "./marks/Download/download";
+import Download from "./marks/Download/frontend/download";
 import { downloadQuery } from "./marks/Download/download.query";
 
-import ButtonPlug, { buttonPlugQuery } from "./Plugs/ButtonPlug/ButtonPlug";
-import EmbedPlug from "./Plugs/EmbedPlug";
 import ImageGalleryPlug from "./Plugs/ImageGaleriePlug/ImageGaleriePlug";
 import SpacerPlug, { spacerPlugQuery } from "./Plugs/Spacer";
 
@@ -35,7 +33,6 @@ export const richTextQuery = `
 content[]{
   ...,
   ${marksQuery},
-  ${buttonPlugQuery},
   ${spacerPlugQuery},
   ${imageGalleryPlugQuery},
   ${ImagePlugQuery},
@@ -65,8 +62,6 @@ const RichText: React.FC<any> = (props: any) => {
       content={props.content}
       plugs={{
         imageGalleryPlug: ImageGalleryPlug,
-        button: ButtonPlug,
-        embed: EmbedPlug,
         spacer: SpacerPlug,
         gSheet: GSheet,
         imagePlug: ImagePlug,

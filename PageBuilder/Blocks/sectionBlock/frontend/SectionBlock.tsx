@@ -1,6 +1,6 @@
 import Accordion from "./Accordion";
-import { SectionBlockResult } from "./SectionBlockQuery";
-import RichText from "../../RichText/RichText";
+import { SectionBlockResult } from "../SectionBlockQuery";
+import RichText from "../../../RichText/RichText";
 import { Section } from "components/Section/Section";
 import SanityImage from "lib/SanityImage";
 import { ImageMetaResult } from "lib/SanityImage/query";

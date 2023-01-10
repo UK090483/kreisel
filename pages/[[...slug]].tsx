@@ -4,11 +4,11 @@ import { HeroBlogResult } from "PageBuilder/Blocks/hero/hero.query";
 
 import HeroBlock from "PageBuilder/Blocks/hero/frontend/HeroBlock";
 
-import SectionBlock from "PageBuilder/Blocks/sectionBlock/SectionBlock";
+import SectionBlock from "PageBuilder/Blocks/sectionBlock/frontend/SectionBlock";
 import { SectionBlockResult } from "PageBuilder/Blocks/sectionBlock/SectionBlockQuery";
 
 import { NavigationResult } from "PageBuilder/Navigation/query";
-import TrustBlock from "PageBuilder/Blocks/trustBlock/TrustBlock";
+
 import { FooterQueryResult } from "components/Layout/Footer/Footer";
 import { ListingBlockProps } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
 
@@ -22,6 +22,7 @@ import ReusableBlock from "PageBuilder/Blocks/reuseableBlock/frontend/ReuseableB
 import Kreisel from "components/Kreisel";
 import { pageQuery } from "PageBuilder/ContentTypes/Page/page.query";
 import ListingBlock from "PageBuilder/Blocks/listingBlock/frontend/ListingsBlock";
+import TrustBlock from "PageBuilder/Blocks/trustBlock/frontend/TrustBlock";
 import { GetStaticPaths, GetStaticProps } from "next";
 const locales = appConfig.locales;
 
