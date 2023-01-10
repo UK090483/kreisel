@@ -54,7 +54,7 @@ function Carousel(props: ICarouselProps) {
         "text-white ": ["dark-grey"].includes(bg || "no"),
       })}
     >
-      <ul ref={sliderRef} className="keen-slider list-none">
+      <ul ref={sliderRef} className="keen-slider list-none items-center">
         {children.map((i, index) => {
           return React.cloneElement(
             { ...i, type: "li" },
