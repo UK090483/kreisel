@@ -16,7 +16,7 @@ interface IProfileFormProps {
 const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
   const { profile, allowProfile } = props;
 
-  const methods = useForm<Profile>({
+  const methods = useForm<any>({
     mode: "onBlur",
     reValidateMode: "onChange",
     defaultValues: profile,
