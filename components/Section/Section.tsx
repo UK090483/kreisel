@@ -1,13 +1,13 @@
 import { SectionContextProvider } from "./SectionContext";
 import Transition from "./Transition";
 import useSectionWidth from "./useSectionWidth";
-import { AppColor } from "types";
+
 import React, { PropsWithChildren } from "react";
 import clsx from "clsx";
 
 export interface SectionProps {
-  width?: "full" | "m" | "l" | "s";
-  bg?: AppColor;
+  width?: "full" | "m" | "l" | "s" | null;
+  bg?: string | null;
   className?: string;
   id?: string;
   noPadding?: boolean;
