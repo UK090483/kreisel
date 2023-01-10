@@ -17,21 +17,21 @@ import { NavigationResult } from "PageBuilder/Navigation/query";
 import TrustBlock, {
   trustBlockQuery,
 } from "PageBuilder/Blocks/trustBlock/TrustBlock";
-import { FooterQueryResult } from "@components/Layout/Footer/Footer";
+import { FooterQueryResult } from "components/Layout/Footer/Footer";
 import {
   ListingBlockProps,
   listingBlockQuery,
 } from "PageBuilder/Blocks/listingBlock/listingBlockQuery";
 import ListingBlock from "PageBuilder/Blocks/listingBlock/ListingsBlock";
 
-import fetchStaticProps from "@lib/SanityPageBuilder/lib/fetchStaticProps/fetchStaticProps";
+import fetchStaticProps from "lib/SanityPageBuilder/lib/fetchStaticProps/fetchStaticProps";
 
 import { useMemberPage } from "PageBuilder/AppContext/AppContext";
-import BodyParser from "@lib/SanityPageBuilder/lib/BodyParser/BodyParser";
-import { fetchStaticPaths } from "@lib/SanityPageBuilder/lib/fetchStaticPaths";
+import BodyParser from "lib/SanityPageBuilder/lib/BodyParser/BodyParser";
+import { fetchStaticPaths } from "lib/SanityPageBuilder/lib/fetchStaticPaths";
 import { appQueryResult } from "PageBuilder/AppContext/appQuery";
 import ReusableBlock from "PageBuilder/Blocks/reuseableBlock/ReuseableBlock";
-import Kreisel from "@components/Kreisel";
+import Kreisel from "components/Kreisel";
 import { pageQuery } from "PageBuilder/ContentTypes/Page/page.query";
 import { GetStaticPaths, GetStaticProps } from "next";
 const locales = appConfig.locales;

@@ -11,10 +11,10 @@ const oldJest = {
   //   "!.next/**",
   // ],
   moduleNameMapper: {
-    "^@components/(.*)$": "<rootDir>/components/$1",
+    "^components/(.*)$": "<rootDir>/components/$1",
     "^components/(.*)$": "<rootDir>/components/$1",
     "^@services/(.*)$": "<rootDir>/services/$1",
-    "^@hooks/(.*)$": "<rootDir>/hooks/$1",
+    "^hooks/(.*)$": "<rootDir>/hooks/$1",
     "^@lib/(.*)$": "<rootDir>/lib/$1",
     "^lib/(.*)$": "<rootDir>/lib/$1",
     "^pages/(.*)$": "<rootDir>/pages/$1",

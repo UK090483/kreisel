@@ -1,4 +1,4 @@
-import { ImageMetaResult } from "@lib/SanityImage/query";
+import { ImageMetaResult } from "lib/SanityImage/query";
 import Image from "next/image";
 
 type AvatarProps = {

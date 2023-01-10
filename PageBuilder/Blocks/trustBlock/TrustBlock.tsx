@@ -1,5 +1,5 @@
 import RichText from "PageBuilder/RichText/RichText";
-import { Section } from "@components/Section/Section";
+import { Section } from "components/Section/Section";
 
 import * as React from "react";
 import TrustBlockItem, {

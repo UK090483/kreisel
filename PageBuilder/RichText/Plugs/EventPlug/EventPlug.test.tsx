@@ -1,4 +1,4 @@
-import { mockClient } from "@lib/SanityPageBuilder/lib/MockClient";
+import { mockClient } from "lib/SanityPageBuilder/lib/MockClient";
 import EventPlug, { EventPlugQuery, IEventItem } from "./EventPlug";
 import { render, screen } from "@testing-library/react";
 

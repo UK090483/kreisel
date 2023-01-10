@@ -1,6 +1,6 @@
-import { Section } from "@components/Section/Section";
+import { Section } from "components/Section/Section";
 import React from "react";
-import Avatar from "@components/Avatar";
+import Avatar from "components/Avatar";
 import RichText from "PageBuilder/RichText/RichText";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
 

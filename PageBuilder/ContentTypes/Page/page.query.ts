@@ -1,7 +1,7 @@
 import {
   footerQuery,
   FooterQueryResult,
-} from "@components/Layout/Footer/Footer";
+} from "components/Layout/Footer/Footer";
 import {
   NavigationQuery,
   NavigationResult,

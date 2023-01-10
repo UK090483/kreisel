@@ -1,14 +1,14 @@
 import useCookie from "./useCookie";
 import CookieIcon from "./CookieIcon";
-import Button from "@components/Button/Button";
+import Button from "components/Button/Button";
 import React from "react";
 
 import { useRouter } from "next/router";
 
 // import Icon from "./Icon";
-// import useCookie from "@lib/context/useCookie";
-// import useHasMounted from "@hooks/useHasMounted";
-// import Button from "@components/Button/Button";
+// import useCookie from "lib/context/useCookie";
+// import useHasMounted from "hooks/useHasMounted";
+// import Button from "components/Button/Button";
 
 const barAnim = {
   show: {

@@ -1,5 +1,5 @@
 import Overlay from "./Overlay";
-import { Section } from "@components/Section/Section";
+import { Section } from "components/Section/Section";
 import React from "react";
 import { useRouter } from "next/router";
 

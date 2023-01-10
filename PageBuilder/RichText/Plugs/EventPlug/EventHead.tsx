@@ -1,5 +1,5 @@
-import { PureKreisel as Kreisel } from "@components/Kreisel";
-import Typo from "@components/Typography/Typography";
+import { PureKreisel as Kreisel } from "components/Kreisel";
+import Typo from "components/Typography/Typography";
 import clsx from "clsx";
 import * as React from "react";
 

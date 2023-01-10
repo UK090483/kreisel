@@ -1,4 +1,4 @@
-import Button from "@components/Button/Button";
+import Button from "components/Button/Button";
 import * as React from "react";
 
 interface IContactButtonProps {}

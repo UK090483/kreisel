@@ -1,4 +1,4 @@
-import Typo from "@components/Typography/Typography";
+import Typo from "components/Typography/Typography";
 
 import Link from "next/link";
 import FocusTrap from "focus-trap-react";
@@ -9,9 +9,9 @@ import BlockContent, {
   Serializers,
 } from "@sanity/block-content-to-react";
 
-import useScrollStop from "@hooks/useScrollStop";
+import useScrollStop from "hooks/useScrollStop";
 import { useLockBodyScroll } from "react-use";
-import SanityImage from "@lib/SanityImage";
+import SanityImage from "lib/SanityImage";
 import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlockQuery";
 
 interface IOverlayProps {

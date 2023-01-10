@@ -1,12 +1,12 @@
 import React from "react";
 
-import Typo from "@components/Typography";
-import SanityImage from "@lib/SanityImage";
+import Typo from "components/Typography";
+import SanityImage from "lib/SanityImage";
 import CardWrap from "./CardWrap";
 import CardBody from "./CardBody";
 import { CardResult } from "../../listingBlockQuery";
 import BlockContent from "@sanity/block-content-to-react";
-import Kreisel from "@components/Kreisel";
+import Kreisel from "components/Kreisel";
 
 type CardProps = {
   variation?: null | "list" | "grid";

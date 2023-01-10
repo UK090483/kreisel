@@ -1,5 +1,5 @@
-import ProfileForm from "@lib/Profile/ProfileForm";
-import { Profile, profileQuery } from "@lib/Profile/profileQuery";
+import ProfileForm from "lib/Profile/ProfileForm";
+import { Profile, profileQuery } from "lib/Profile/profileQuery";
 import { previewClient } from "@services/SanityService/sanity.server";
 import { Session } from "next-auth";
 import { GetServerSideProps } from "next";

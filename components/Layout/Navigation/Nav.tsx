@@ -5,11 +5,11 @@ import {
   NavigationItemBase,
 } from "../../../PageBuilder/Navigation";
 import ContactButton from "../Header/ContactButton";
-import Svg from "@components/Svg";
-import { Link } from "@components/Link";
+import Svg from "components/Svg";
+import { Link } from "components/Link";
 import useMenu from "@services/StoreService/hooks/useMenu";
-import { Logo } from "@components/Layout/Logo";
-import Underline from "@components/Underline/Underline";
+import { Logo } from "components/Layout/Logo";
+import Underline from "components/Underline/Underline";
 import NavigationMobile from "PageBuilder/Navigation/NavigationMobile";
 import { NavItem } from "PageBuilder/Navigation/types";
 import React from "react";

@@ -1,10 +1,10 @@
-import Button from "@components/Button/Button";
-import Kreisel from "@components/Kreisel";
-import List from "@components/List/List";
-import ListItem from "@components/List/ListItem";
-import Typo from "@components/Typography/Typography";
-import useCSV, { DataResult } from "@hooks/useCsv";
-import { PlugProps } from "@lib/SanityPageBuilder/lib/RichText";
+import Button from "components/Button/Button";
+import Kreisel from "components/Kreisel";
+import List from "components/List/List";
+import ListItem from "components/List/ListItem";
+import Typo from "components/Typography/Typography";
+import useCSV, { DataResult } from "hooks/useCsv";
+import { PlugProps } from "lib/SanityPageBuilder/lib/RichText";
 import { filter } from "lodash";
 import * as React from "react";
 

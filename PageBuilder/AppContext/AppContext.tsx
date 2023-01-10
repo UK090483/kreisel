@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 
 import React, { useContext, useEffect, useState } from "react";
 
-import useAuth from "@lib/Auth/useAuth";
+import useAuth from "lib/Auth/useAuth";
 import { PageBuilderData } from "PageBuilder/query";
 
 interface IAppContextState {

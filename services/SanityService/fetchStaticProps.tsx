@@ -10,7 +10,7 @@
 // import {
 //   footerQuery,
 //   FooterQueryResult,
-// } from "@components/Layout/Footer/Footer";
+// } from "components/Layout/Footer/Footer";
 
 // type FetchPageProps = {
 //   query: string;

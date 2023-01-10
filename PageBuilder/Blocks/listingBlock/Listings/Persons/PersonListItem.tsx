@@ -1,8 +1,8 @@
-import type { ImageMetaResult } from "@lib/SanityImage/query";
+import type { ImageMetaResult } from "lib/SanityImage/query";
 
 import * as React from "react";
 
-import Avatar from "@components/Avatar";
+import Avatar from "components/Avatar";
 
 interface IPersonListItemProps {
   name?: null | string;

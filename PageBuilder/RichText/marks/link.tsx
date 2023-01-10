@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Link } from "@components/Link";
+import { Link } from "components/Link";
 import { LinkResult, linkQuery } from "PageBuilder/Navigation/query";
-import Button from "@components/Button/Button";
+import Button from "components/Button/Button";
 
 const InlineIcon = () => {
   return (

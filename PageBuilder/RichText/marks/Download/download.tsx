@@ -1,5 +1,5 @@
-import { Link } from "@components/Link";
-import { MarkProps } from "@lib/SanityPageBuilder/lib/RichText";
+import { Link } from "components/Link";
+import { MarkProps } from "lib/SanityPageBuilder/lib/RichText";
 import { DownloadResult } from "./download.query";
 
 const Download: React.FC<MarkProps<DownloadResult>> = (props) => {

@@ -1,13 +1,13 @@
 import { schema } from "./validation";
 import { membershipOptions, degreeOptions } from "./Fields";
-import { Profile } from "@lib/Profile/profileQuery";
-import Input from "@components/Inputs/input2";
-import Textarea from "@components/Inputs/TextArea";
-import { DropdownInput } from "@components/Inputs/Dropdown";
+import { Profile } from "lib/Profile/profileQuery";
+import Input from "components/Inputs/input2";
+import Textarea from "components/Inputs/TextArea";
+import { DropdownInput } from "components/Inputs/Dropdown";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as React from "react";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
-
+import type { AnyObjectSchema } from "yup";
 interface IProfileFormProps {
   profile?: Partial<Profile>;
   allowProfile?: boolean;
@@ -20,7 +20,7 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
     mode: "onBlur",
     reValidateMode: "onChange",
     defaultValues: profile,
-    resolver: yupResolver(schema),
+    resolver: yupResolver<AnyObjectSchema>(schema),
   });
 
   if (!profile) return null;

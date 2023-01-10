@@ -1,10 +1,10 @@
-import { MarkProps } from "@lib/SanityPageBuilder/lib/RichText";
+import { MarkProps } from "lib/SanityPageBuilder/lib/RichText";
 import { TooltipResult } from "./tooltipQuery";
 import ReactTooltip from "react-tooltip";
-import Button from "@components/Button/Button";
-import Portal from "@components/Portal";
+import Button from "components/Button/Button";
+import Portal from "components/Portal";
 
-import ToolTipComponent from "@components/Tooltip";
+import ToolTipComponent from "components/Tooltip";
 
 const Tooltip: React.FC<MarkProps<TooltipResult>> = (props) => {
   const { mark } = props;

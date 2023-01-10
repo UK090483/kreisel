@@ -1,9 +1,9 @@
-import { mockClient } from "@lib/SanityPageBuilder/lib/MockClient";
+import { mockClient } from "lib/SanityPageBuilder/lib/MockClient";
 
 import React from "react";
 import { heroBlockQuery } from "../hero.query";
 
-jest.mock("@components/Underline/Underline", () => {
+jest.mock("components/Underline/Underline", () => {
   return {
     __esModule: true,
     //@ts-ignore

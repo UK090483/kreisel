@@ -1,4 +1,4 @@
-// import Typo from "@components/Typography/Typography";
+// import Typo from "components/Typography/Typography";
 // import React from "react";
 // type CardTitleProps = {
 //   className?: string;

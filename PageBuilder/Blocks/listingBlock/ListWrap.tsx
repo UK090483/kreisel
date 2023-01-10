@@ -1,6 +1,6 @@
 import RichText from "PageBuilder/RichText/RichText";
-import { Section } from "@components/Section/Section";
-import useSectionSpace from "@components/Section/useSectionSpace";
+import { Section } from "components/Section/Section";
+import useSectionSpace from "components/Section/useSectionSpace";
 import { IBlockStyle } from "../types";
 
 interface ListWrapProps extends IBlockStyle {

@@ -1,4 +1,4 @@
-import { PlugProps } from "@lib/SanityPageBuilder/lib/RichText";
+import { PlugProps } from "lib/SanityPageBuilder/lib/RichText";
 import * as React from "react";
 
 interface IEmbedHTMLProps {

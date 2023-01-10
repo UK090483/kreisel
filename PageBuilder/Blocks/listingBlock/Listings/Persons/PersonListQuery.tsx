@@ -1,4 +1,4 @@
-import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
+import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
 
 export const personItemQuery = (locale: string) => `
 ...,

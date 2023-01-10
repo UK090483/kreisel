@@ -1,7 +1,7 @@
 import React from "react";
 
-import Typo from "@components/Typography";
-import SanityImage from "@lib/SanityImage";
+import Typo from "components/Typography";
+import SanityImage from "lib/SanityImage";
 import CardWrap from "./CardWrap";
 import CardBody from "./CardBody";
 import { CardResult } from "../../listingBlockQuery";

@@ -1,5 +1,5 @@
-import Kreisel from "@components/Kreisel";
-import Typo from "@components/Typography/Typography";
+import Kreisel from "components/Kreisel";
+import Typo from "components/Typography/Typography";
 import { NextPage } from "next";
 import { ReactElement, ReactNode } from "react";
 

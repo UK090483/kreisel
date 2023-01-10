@@ -1,6 +1,6 @@
 import React from "react";
 
-import Embed from "@components/Embed";
+import Embed from "components/Embed";
 
 export const embedPlugQuery = `
 _type == "image" => {

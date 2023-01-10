@@ -1,12 +1,12 @@
 import React from "react";
 import clsx from "clsx";
 import RichText from "../../RichText/RichText";
-import { Section } from "@components/Section/Section";
-import SanityImage from "@lib/SanityImage";
+import { Section } from "components/Section/Section";
+import SanityImage from "lib/SanityImage";
 import Accordion from "./Accordion";
-import { ImageMetaResult } from "@lib/SanityImage/query";
+import { ImageMetaResult } from "lib/SanityImage/query";
 import { SectionBlockResult } from "./SectionBlockQuery";
-import useSectionSpace from "@components/Section/useSectionSpace";
+import useSectionSpace from "components/Section/useSectionSpace";
 
 interface SectionBlockProps extends SectionBlockResult {}
 

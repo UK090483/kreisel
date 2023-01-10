@@ -1,11 +1,10 @@
-import React from "react";
-import SanityImage from "@lib/SanityImage";
+import { HeroBlogResult } from "../hero.query";
+import { Section } from "components/Section/Section";
+import useSectionSpace from "components/Section/useSectionSpace";
+import SanityImage from "lib/SanityImage";
 import RichText from "PageBuilder/RichText/RichText";
 import clsx from "clsx";
-import { Section } from "@components/Section/Section";
-
-import useSectionSpace from "@components/Section/useSectionSpace";
-import { HeroBlogResult } from "../hero.query";
+import React from "react";
 
 const HeroBlock: React.FC<HeroBlogResult> = (props) => {
   const {
@@ -60,9 +59,7 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
               "opacity-80": filterIntensity === "80",
               "opacity-90": filterIntensity === "90",
             })}
-          >
-            {" "}
-          </div>
+          ></div>
         </div>
       )}
       <div className=" flex  items-center w-full order-2 md:order-1 break-words">

@@ -1,5 +1,5 @@
-import { Link } from "@components/Link";
-import useAuth from "@lib/Auth/useAuth";
+import { Link } from "components/Link";
+import useAuth from "lib/Auth/useAuth";
 import { signIn, signOut } from "next-auth/react";
 
 type UserWidgetProps = {};

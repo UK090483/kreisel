@@ -1,4 +1,4 @@
-import SanityImage from "@lib/SanityImage";
+import SanityImage from "lib/SanityImage";
 import React from "react";
 
 interface Props {}

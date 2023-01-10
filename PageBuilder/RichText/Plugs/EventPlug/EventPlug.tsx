@@ -1,6 +1,6 @@
-import Kreisel from "@components/Kreisel";
-import Typo from "@components/Typography/Typography";
-import { PlugProps } from "@lib/SanityPageBuilder/lib/RichText";
+import Kreisel from "components/Kreisel";
+import Typo from "components/Typography/Typography";
+import { PlugProps } from "lib/SanityPageBuilder/lib/RichText";
 import clsx from "clsx";
 import { ScrapeEvent } from "pages/api/scrapeEvents";
 import React, { useEffect, useState } from "react";

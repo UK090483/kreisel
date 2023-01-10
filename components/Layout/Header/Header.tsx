@@ -1,5 +1,5 @@
-import Typo from "@components/Typography/Typography";
-import useAuth from "@lib/Auth/useAuth";
+import Typo from "components/Typography/Typography";
+import useAuth from "lib/Auth/useAuth";
 import UserWidget from "@services/AuthService/AuthWidged";
 import clsx from "clsx";
 

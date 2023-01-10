@@ -1,5 +1,5 @@
-import Underline from "@components/Underline/Underline";
-import { MarkProps } from "@lib/SanityPageBuilder/lib/RichText";
+import Underline from "components/Underline/Underline";
+import { MarkProps } from "lib/SanityPageBuilder/lib/RichText";
 import { AppColor } from "types";
 
 type HandUnderlineMarkProps = {

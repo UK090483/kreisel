@@ -6,10 +6,10 @@ import { downloadQuery } from "./marks/Download/download.query";
 import ButtonPlug, { buttonPlugQuery } from "./Plugs/ButtonPlug/ButtonPlug";
 import EmbedPlug from "./Plugs/EmbedPlug";
 import ImageGalleryPlug from "./Plugs/ImageGaleriePlug/ImageGaleriePlug";
-import Typo from "@components/Typography/Typography";
+import Typo from "components/Typography/Typography";
 import SpacerPlug, { spacerPlugQuery } from "./Plugs/Spacer";
 
-import SanityRichText from "@lib/SanityPageBuilder/lib/RichText";
+import SanityRichText from "lib/SanityPageBuilder/lib/RichText";
 
 import GSheet, { GSheetPlugQuery } from "./Plugs/Gsheet";
 import ImagePlug from "./Plugs/ImagePlug/ImagePlug";

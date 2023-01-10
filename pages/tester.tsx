@@ -1,7 +1,7 @@
 //@ts-nocheck
 
-import Typo from "@components/Typography/Typography";
-import Underline from "@components/Underline/Underline";
+import Typo from "components/Typography/Typography";
+import Underline from "components/Underline/Underline";
 
 const Home = () => {
   return (

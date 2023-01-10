@@ -1,6 +1,6 @@
-// import { AppContextProvider } from "@components/AppContext";
-// import { textBlock } from "@components/RichText/testPrepare";
-// import { ImageMetaResult } from "@lib/SanityImage/query";
+// import { AppContextProvider } from "components/AppContext";
+// import { textBlock } from "components/RichText/testPrepare";
+// import { ImageMetaResult } from "lib/SanityImage/query";
 // import { render, RenderOptions } from "@testing-library/react";
 // import { PageResult } from "pages/[[...slug]]";
 
@@ -22,7 +22,7 @@
 
 // const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
-// jest.mock("@components/Link", () => {
+// jest.mock("components/Link", () => {
 //   return {
 //     __esModule: true,
 //     //@ts-ignore
@@ -32,7 +32,7 @@
 //   };
 // });
 
-// jest.mock("@components/Link", () => {
+// jest.mock("components/Link", () => {
 //   return {
 //     __esModule: true,
 //     //@ts-ignore
@@ -42,7 +42,7 @@
 //   };
 // });
 
-// jest.mock("@lib/SanityService/sanity.server", () => {
+// jest.mock("lib/SanityService/sanity.server", () => {
 //   return {
 //     __esModule: true,
 //     sanityClient: jest.fn(),

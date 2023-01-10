@@ -1,6 +1,6 @@
-import SanityImage from "@lib/SanityImage";
-import Typo from "@components/Typography/Typography";
-import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
+import SanityImage from "lib/SanityImage";
+import Typo from "components/Typography/Typography";
+import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
 import * as React from "react";
 import { useIntersection } from "react-use";
 

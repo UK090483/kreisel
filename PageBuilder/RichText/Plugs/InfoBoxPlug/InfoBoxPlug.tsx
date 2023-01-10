@@ -2,7 +2,7 @@ import React from "react";
 
 import clsx from "clsx";
 
-import Typo from "@components/Typography/Typography";
+import Typo from "components/Typography/Typography";
 import RichText from "PageBuilder/RichText/RichText";
 
 const infoBoxPlugItemQuery = `

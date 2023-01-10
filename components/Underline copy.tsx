@@ -1,6 +1,6 @@
 // /* eslint-disable @next/next/no-img-element */
-// import useHover from "@hooks/useHover";
-// import useOnScreen from "@hooks/useOnSrceen";
+// import useHover from "hooks/useHover";
+// import useOnScreen from "hooks/useOnSrceen";
 // import clsx from "clsx";
 // import React from "react";
 // import { AppColor } from "types";

@@ -1,6 +1,6 @@
-import SanityImage from "@lib/SanityImage";
-import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
-import { PlugProps } from "@lib/SanityPageBuilder/lib/RichText";
+import SanityImage from "lib/SanityImage";
+import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
+import { PlugProps } from "lib/SanityPageBuilder/lib/RichText";
 import React from "react";
 
 type ImagePlugProps = {

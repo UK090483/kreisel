@@ -1,5 +1,5 @@
-import Kreisel, { PureKreisel } from "@components/Kreisel";
-import { Section } from "@components/Section/Section";
+import Kreisel, { PureKreisel } from "components/Kreisel";
+import { Section } from "components/Section/Section";
 import React from "react";
 
 const Style = () => {

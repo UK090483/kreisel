@@ -1,4 +1,4 @@
-import { imageMeta } from "@lib/SanityImage/query";
+import { imageMeta } from "lib/SanityImage/query";
 
 export const ImagePlugQuery = `
 _type == "imagePlug" => {

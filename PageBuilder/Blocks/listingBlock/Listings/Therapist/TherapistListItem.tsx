@@ -1,5 +1,5 @@
 import React from "react";
-import Typo from "@components/Typography/Typography";
+import Typo from "components/Typography/Typography";
 
 import Avatar from "./Avatar";
 import Link from "next/link";

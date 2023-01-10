@@ -1,8 +1,8 @@
-import { SectionProps } from "@components/Section/Section";
-import useSectionWidth from "@components/Section/useSectionWidth";
-import Svg from "@components/Svg";
-import useQueryState from "@hooks/useQueryState";
-import { useScrollTo } from "@hooks/useScrollTo";
+import { SectionProps } from "components/Section/Section";
+import useSectionWidth from "components/Section/useSectionWidth";
+import Svg from "components/Svg";
+import useQueryState from "hooks/useQueryState";
+import { useScrollTo } from "hooks/useScrollTo";
 import React, { FC, useEffect, useRef, useState } from "react";
 
 type AccordionProps = {

@@ -1,4 +1,4 @@
-import Button from "@components/Button/Button";
+import Button from "components/Button/Button";
 import { linkQuery, LinkResult } from "PageBuilder/Navigation/query";
 
 import React from "react";

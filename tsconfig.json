@@ -16,15 +16,20 @@
     "incremental": true,
     "baseUrl": "./",
     "paths": {
-      "@components/*": ["components/*"],
+      "components/*": ["components/*"],
       "@services/*": ["services/*"],
-      "@hooks/*": ["hooks/*"],
+      "hooks/*": ["hooks/*"],
       "@lib/*": ["lib/*"],
       "types/*": ["types/*"]
     },
     "types": ["jest", "node", "@types/testing-library__jest-dom"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "studio/**","cypress","cypress.config.ts","**/*.test.ts",]
+  "exclude": [
+    "node_modules",
+    "studio/**",
+    "cypress",
+    "cypress.config.ts",
+    "**/*.test.ts"
+  ]
 }
-

@@ -1,6 +1,6 @@
-import Button from "@components/Button/Button";
-import Kreisel from "@components/Kreisel";
-import Input from "@components/Inputs/Input";
+import Button from "components/Button/Button";
+import Kreisel from "components/Kreisel";
+import Input from "components/Inputs/Input";
 import React, { ReactElement, ReactNode } from "react";
 import { getSession, getCsrfToken, signIn } from "next-auth/react";
 import { NextPage } from "next";

@@ -1,5 +1,5 @@
-import { PureKreisel } from "@components/Kreisel";
-import Typo from "@components/Typography/Typography";
+import { PureKreisel } from "components/Kreisel";
+import Typo from "components/Typography/Typography";
 import clsx from "clsx";
 import { ScrapeEvent } from "pages/api/scrapeEvents";
 import React from "react";
