@@ -50,8 +50,8 @@ function Carousel(props: ICarouselProps) {
   });
   return (
     <div
-      className={clsx({
-        "text-white": ["dark-grey"].includes(bg || "no"),
+      className={clsx("relative", {
+        "text-white ": ["dark-grey"].includes(bg || "no"),
       })}
     >
       <ul ref={sliderRef} className="keen-slider list-none">
