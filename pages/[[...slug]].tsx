@@ -18,7 +18,7 @@ import { useMemberPage } from "PageBuilder/AppContext/AppContext";
 import BodyParser from "lib/SanityPageBuilder/lib/BodyParser/BodyParser";
 import { fetchStaticPaths } from "lib/SanityPageBuilder/lib/fetchStaticPaths";
 import { appQueryResult } from "PageBuilder/AppContext/appQuery";
-import ReusableBlock from "PageBuilder/Blocks/reuseableBlock/ReuseableBlock";
+import ReusableBlock from "PageBuilder/Blocks/reuseableBlock/frontend/ReuseableBlock";
 import Kreisel from "components/Kreisel";
 import { pageQuery } from "PageBuilder/ContentTypes/Page/page.query";
 import ListingBlock from "PageBuilder/Blocks/listingBlock/frontend/ListingsBlock";

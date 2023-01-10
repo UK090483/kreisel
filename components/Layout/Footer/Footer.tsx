@@ -1,6 +1,6 @@
 import FooterContact from "./FooterContact";
 import { Section } from "components/Section/Section";
-import NavOverview from "PageBuilder/Navigation/NavOverview";
+// import NavOverview from "PageBuilder/Navigation/NavOverview";
 import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
 import React from "react";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
@@ -44,12 +44,11 @@ const Footer: React.FC<FooterProps> = (props) => {
     >
       <FooterContact />
       <Section bg="primary-light" width="l" className="pt-12">
-        <NavOverview
+        {/* <NavOverview
           items={data?.navigation || []}
           className="w-full py-24  "
-        />
+        /> */}
       </Section>
-
       <div className="flex items-center justify-between w-full max-w-6xl px-8 "></div>
     </footer>
   );

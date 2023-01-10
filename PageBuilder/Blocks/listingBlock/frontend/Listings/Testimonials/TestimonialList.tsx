@@ -1,8 +1,8 @@
-import React from "react";
 import { ITestimonialItem } from "../../../listingBlock.query";
 import Carousel from "components/Carousel/Carousel";
 import Typo from "components/Typography/Typography";
 import SanityImage from "lib/SanityImage";
+import React from "react";
 import clsx from "clsx";
 
 interface ITestimonialListProps {
@@ -21,11 +21,11 @@ const TestimonialList: React.FC<ITestimonialListProps> = (props) => {
         return (
           <div
             key={index}
-            className={clsx("grid   grid-cols-1  items-center  h-full ", {
+            className={clsx("grid grid-cols-1  items-center h-full ", {
               "lg:grid-cols-[2fr_400px]": hasImage,
             })}
           >
-            <div className="flex flex-col md:p-12">
+            <div className="flex flex-col md:px-12">
               <Typo bold={false} variant="h4" className="pt-6 ">
                 Das sagen ehemalige Teilnehmer*innen:
               </Typo>
