@@ -1,5 +1,5 @@
 import CardWrap from "./CardWrap";
-import { CardResult } from "../../listingBlockQuery";
+import { CardResult } from "../../../listingBlock.query";
 import Typo from "components/Typography";
 import Kreisel from "components/Kreisel";
 import BlockContent from "@sanity/block-content-to-react";

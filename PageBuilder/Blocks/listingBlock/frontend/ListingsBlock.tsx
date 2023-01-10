@@ -1,10 +1,10 @@
-import React from "react";
-import { ListingBlockProps } from "./listingBlockQuery";
 import List from "./Listings/List";
 import PersonList from "./Listings/Persons/PersonList";
 import TestimonialList from "./Listings/Testimonials/TestimonialList";
 import TherapistList from "./Listings/Therapist/TherapistList";
 import ListWrap from "./ListWrap";
+import { ListingBlockProps } from "../listingBlock.query";
+import React from "react";
 
 const ListingBlock: React.FC<ListingBlockProps> = (props) => {
   const {

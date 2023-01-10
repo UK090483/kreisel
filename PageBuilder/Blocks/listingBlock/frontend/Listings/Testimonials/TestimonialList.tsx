@@ -1,5 +1,5 @@
 import React from "react";
-import { ITestimonialItem } from "../../listingBlockQuery";
+import { ITestimonialItem } from "../../../listingBlock.query";
 import Carousel from "components/Carousel/Carousel";
 import Typo from "components/Typography/Typography";
 import SanityImage from "lib/SanityImage";

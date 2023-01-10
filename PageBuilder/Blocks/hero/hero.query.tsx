@@ -1,12 +1,12 @@
-import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
 import { IBlockStyle } from "../types";
+import { imageQuery, ImageResult } from "PageBuilder/Image/sanityImage.query";
 
 export const heroBlockQuery = `
 _type == "hero" => {
   ...,
   _type,
   _key,
- 'photo':image{${imageMeta}},
+ 'photo':image{${imageQuery}},
 }
 `;
 
@@ -14,7 +14,7 @@ export interface HeroBlogResult extends IBlockStyle {
   _type: "hero";
   _key: string;
   content?: any;
-  photo?: ImageMetaResult;
+  photo?: ImageResult;
   title?: string;
   text?: string;
   filterIntensity?:

@@ -1,7 +1,7 @@
 import { HeroBlogResult } from "../hero.query";
 import { Section } from "components/Section/Section";
 import useSectionSpace from "components/Section/useSectionSpace";
-import SanityImage from "lib/SanityImage";
+import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import RichText from "PageBuilder/RichText/RichText";
 import clsx from "clsx";
 import React from "react";
@@ -43,7 +43,7 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
     >
       {photo && isFull && (
         <div>
-          <SanityImage image={photo} objectFit="cover" className="f" />
+          <SanityImage src={photo} fill className=" object-cover " />
           <div
             className={clsx(" absolute inset-0 å", {
               " bg-primary-light ":
@@ -69,7 +69,8 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
       </div>
       {photo && isHalf && (
         <div className=" relative order-1 md:order-2 min-h-[250px] my-8 md:my-0">
-          <SanityImage image={photo} objectFit="contain" />
+          <SanityImage src={photo} fill className="object-contain " />
+          {/* <SanityImage image={photo} objectFit="contain" /> */}
         </div>
       )}
     </Section>

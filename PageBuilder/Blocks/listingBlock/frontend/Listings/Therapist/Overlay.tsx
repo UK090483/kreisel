@@ -1,7 +1,7 @@
 import Typo from "components/Typography/Typography";
 
 import SanityImage from "lib/SanityImage";
-import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlockQuery";
+import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
 import Link from "next/link";
 import FocusTrap from "focus-trap-react";
 import { useRouter } from "next/router";

@@ -1,6 +1,6 @@
 import CardWrap from "./CardWrap";
 import CardBody from "./CardBody";
-import { CardResult } from "../../listingBlockQuery";
+import { CardResult } from "../../../listingBlock.query";
 import SanityImage from "lib/SanityImage";
 import Typo from "components/Typography";
 import React from "react";

@@ -1,11 +1,11 @@
-import { linkQuery, LinkResult } from "PageBuilder/Navigation/query";
-import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
-import { AppLocales, AppColor } from "types";
-import { IBlockStyle } from "../types";
 import {
   personItemQuery,
   PersonItemResult,
-} from "./Listings/Persons/PersonListQuery";
+} from "./frontend/Listings/Persons/PersonListQuery";
+import { IBlockStyle } from "../types";
+import { linkQuery, LinkResult } from "PageBuilder/Navigation/query";
+import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
+import { AppLocales, AppColor } from "types";
 
 export interface TherapistResult extends CardResult {
   _type: "therapist";
@@ -30,7 +30,7 @@ export interface ITestimonialItem {
   content: null | any;
 }
 
-export interface ListingBlockTestimonialResult {
+interface ListingBlockTestimonialResult {
   _key: string;
   contentType: "testimonial";
   items: ITestimonialItem[];
@@ -99,7 +99,7 @@ _type == "listing" => {
 }
 `;
 
-export interface ListingBlockResult<Type, Card> extends IBlockStyle {
+interface ListingBlockResult<Type, Card> extends IBlockStyle {
   _key: string;
   _type: "listing";
   type?: "contentType" | "custom";

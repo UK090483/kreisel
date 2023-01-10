@@ -1,33 +1,7 @@
 import Image, { ImageLoader, ImageProps } from "next/image";
 
 import * as React from "react";
-
-const IMAG_PROJECTION = `
-crop,
-hotspot,
-asset,
-...(asset->{
-  'alt':altText, 
-    url,
-    'aspectRatio':metadata.dimensions.aspectRatio,
-    "lqip":metadata.lqip,
-    'width':metadata.dimensions.width,
-    'height':metadata.dimensions.height,  
-    'palette':metadata.palette,
-  }),
-  alt
-`;
-
-type ImageResult = {
-  alt?: string | null;
-  url?: string;
-  hotspot?: { x: number; y: number } | null;
-  crop?: { bottom: number; top: number; right: number; left: number } | null;
-  aspectRatio: number;
-  width: number;
-  height: number;
-  lqip: string;
-};
+import type { ImageResult } from "../sanityImage.query";
 
 interface ISanityImageProps extends Omit<ImageProps, "src" | "alt"> {
   src?: ImageResult;

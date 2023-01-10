@@ -6,7 +6,7 @@ import Overlay from "./Overlay";
 import Search from "./Search";
 import TherapistListItem from "./TherapistListItem";
 import Pagination from "./Pagination";
-import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlockQuery";
+import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
 
 interface TherapistListProps {
   items: TherapistResult[];

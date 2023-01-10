@@ -1,17 +1,5 @@
-import { mockClient } from "lib/SanityPageBuilder/lib/MockClient";
-
-import React from "react";
 import { heroBlockQuery } from "../hero.query";
-
-jest.mock("components/Underline/Underline", () => {
-  return {
-    __esModule: true,
-    //@ts-ignore
-    default: ({ children }) => {
-      return <div>{children}</div>;
-    },
-  };
-});
+import { mockClient } from "lib/SanityPageBuilder/lib/MockClient";
 
 const database: any[] = [];
 

@@ -14,7 +14,7 @@ import {
 import {
   ListingBlockProps,
   listingBlockQuery,
-} from "PageBuilder/Blocks/listingBlock/listingBlockQuery";
+} from "PageBuilder/Blocks/listingBlock/listingBlock.query";
 import { reusableBlockQuery } from "PageBuilder/Blocks/reuseableBlock/ReusableBlock.query";
 import {
   sectionBlockQuery,
