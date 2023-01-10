@@ -4,7 +4,7 @@
   // },
   // "tailwindCSS.experimental.classRegex": ["clsx([^]*)"],
   "cSpell.language": "en,de-de",
-
+  "eslint.lintTask.enable": true,
   "files.exclude": {
     "**/.git": false,
     "**/.svn": false,

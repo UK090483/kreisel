@@ -52,6 +52,7 @@ const keyMap = {
   "Abschlüsse:&nbsp;": "degrees",
 };
 
+// eslint-disable-next-line import/no-unused-modules
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -166,7 +167,6 @@ const createDoc = async (data: { [k: string]: any }) => {
   }
 
   const res = await previewClient.create({ _type: "therapist", ...omitData });
-  console.log(res);
 };
 
 const getImageBlob = async (url: string, name: string) => {

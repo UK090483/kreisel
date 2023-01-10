@@ -1,11 +1,9 @@
-import {
-  GetStaticPathsResult,
-} from "next";
+import { GetStaticPathsResult } from "next";
 import { ComponentType } from "react";
 
 import type { SanityClient } from "@sanity/client/sanityClient";
 
-export type SPBComponent = {
+type SPBComponent = {
   name: string;
   component: ComponentType<any>;
   query: string;
@@ -13,7 +11,7 @@ export type SPBComponent = {
 
 type Revalidate = number | boolean;
 
-export type SPBOptions = {
+type SPBOptions = {
   components: SPBComponent[];
   client: SanityClient;
   locales: LocationConfig;
@@ -28,10 +26,10 @@ export type SPBOptions = {
 //   getStaticProps: GetStaticProps<P>;
 // };
 
-export type FetchStaticPathsParams = {
+type FetchStaticPathsParams = {
   slug?: string[];
 };
-export type FetchStaticPathsResult = {
+type FetchStaticPathsResult = {
   paths: { params: FetchStaticPathsParams; locale: string }[];
   fallback: boolean;
 };
@@ -39,7 +37,7 @@ export type FetchStaticPathsResult = {
 export type FetchStaticPathsResult2 =
   GetStaticPathsResult<FetchStaticPathsParams>;
 
-export type FetchStaticPathsProps = {
+type FetchStaticPathsProps = {
   doc: string;
   client: SanityClient;
   locales?: LocationConfig;
@@ -70,7 +68,7 @@ export type PageProps<P> = {
   [k: string]: any;
 };
 
-export type FetchStaticPropsResult<P> = {
+type FetchStaticPropsResult<P> = {
   props: PageProps<P>;
 };
 

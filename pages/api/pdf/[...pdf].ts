@@ -17,4 +17,5 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   //@ts-ignore
   await pipeline(response.body, res);
 }
+// eslint-disable-next-line import/no-unused-modules
 export default handler;

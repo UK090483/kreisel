@@ -90,8 +90,6 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
   );
 };
 
-export default Dropdown;
-
 type DropdownInputProps = {
   name: string;
   label: string;

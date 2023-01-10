@@ -2,7 +2,7 @@ import Image, { ImageLoader, ImageProps } from "next/image";
 
 import * as React from "react";
 
-export const IMAG_PROJECTION = `
+const IMAG_PROJECTION = `
 crop,
 hotspot,
 asset,
@@ -18,7 +18,7 @@ asset,
   alt
 `;
 
-export type ImageResult = {
+type ImageResult = {
   alt?: string | null;
   url?: string;
   hotspot?: { x: number; y: number } | null;
@@ -29,7 +29,7 @@ export type ImageResult = {
   lqip: string;
 };
 
-export interface ISanityImageProps extends Omit<ImageProps, "src" | "alt"> {
+interface ISanityImageProps extends Omit<ImageProps, "src" | "alt"> {
   src?: ImageResult;
   alt?: string;
 }

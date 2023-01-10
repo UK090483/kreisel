@@ -133,6 +133,6 @@ const adminFields = [
   },
 ];
 
-export const fields = [...memberFields, ...profileFields, ...adminFields];
+const fields = [...memberFields, ...profileFields, ...adminFields];
 
 export default fields;

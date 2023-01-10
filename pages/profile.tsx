@@ -36,6 +36,7 @@ ProfilePage.getLayout = function getLayout(page) {
   return <div className="  ">{page}</div>;
 };
 
+// eslint-disable-next-line import/no-unused-modules
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getSession(ctx);
   if (!session) {
@@ -69,4 +70,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   };
 };
 
+// eslint-disable-next-line import/no-unused-modules
 export default ProfilePage;

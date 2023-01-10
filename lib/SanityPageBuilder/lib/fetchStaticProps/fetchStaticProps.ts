@@ -1,7 +1,7 @@
 import { fetchStaticPropsProps, PageProps } from "../../types";
 import { GetStaticPropsResult } from "next";
 
- async function fetchStaticProps<P>(
+async function fetchStaticProps<P>(
   props: fetchStaticPropsProps
 ): Promise<GetStaticPropsResult<PageProps<P>>> {
   const {
@@ -21,6 +21,7 @@ import { GetStaticPropsResult } from "next";
 
   const slug = params && params.slug && params.slug[params.slug.length - 1];
 
+  // eslint-disable-next-line no-console
   console.time(slug);
 
   const localizedQuery = (slug: string) =>
@@ -50,6 +51,7 @@ import { GetStaticPropsResult } from "next";
     return { notFound: true, revalidate };
   }
 
+  // eslint-disable-next-line no-console
   console.timeEnd(slug);
 
   return {

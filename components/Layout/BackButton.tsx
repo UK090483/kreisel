@@ -2,7 +2,7 @@ import Svg from "components/Svg";
 import { useRouter } from "next/router";
 import * as React from "react";
 
-export interface IBackButtonProps {}
+interface IBackButtonProps {}
 
 export function BackButton(props: IBackButtonProps) {
   const { back } = useRouter();

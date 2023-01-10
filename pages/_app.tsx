@@ -84,4 +84,5 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   );
 }
 
+// eslint-disable-next-line import/no-unused-modules
 export default App;

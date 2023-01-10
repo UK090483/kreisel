@@ -23,7 +23,7 @@ export const imageMeatWithCrop = {
   },
 };
 
-export const imageMeatWithHotspot = {
+const imageMeatWithHotspot = {
   ...imageMeta,
   hotspot: {
     _type: "sanity.imageHotspot",

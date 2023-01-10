@@ -1,7 +1,7 @@
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
 import React, { ComponentType } from "react";
 
-export type BodyParserProps = {
+type BodyParserProps = {
   components: { [k: string]: { component: ComponentType<any> } };
 };
 const BodyParser: React.FC<BodyParserProps> = (props) => {

@@ -3,7 +3,7 @@ import { previewClient } from "@services/SanityService/sanity.server";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 // import { mockClient } from "@services/SanityService/test/testClient";
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/login",
     verifyRequest: "/auth/verify-request",
@@ -67,6 +67,7 @@ export const authOptions: NextAuthOptions = {
 
   events: {
     createUser: (...props) => {
+      // eslint-disable-next-line no-console
       console.log("createUser", ...props);
     },
   },
@@ -85,4 +86,5 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
 };
+// eslint-disable-next-line import/no-unused-modules
 export default NextAuth(authOptions);

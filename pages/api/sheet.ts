@@ -2,6 +2,7 @@
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
+// eslint-disable-next-line import/no-unused-modules
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   // let spreadsheetId = "1-lkg7ztmFYZY4PwLa9ztFbo3LTH7IaZUMKcXCr3SqMA";
   // let sheetRange = "A1:C100";

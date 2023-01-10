@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export type IFormLabelProps = {
+type IFormLabelProps = {
   name: string;
   label: string;
 } & JSX.IntrinsicElements["label"];

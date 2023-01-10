@@ -5,7 +5,6 @@ import {
 } from "../types";
 import type { SanityClient } from "@sanity/client/sanityClient";
 
-
 type getAllSlugsResult = {
   slug: string;
   [k: string]: any;
@@ -77,10 +76,10 @@ const parseFetchResult = (
   };
 };
 
-export type FetchStaticPathsParams = {
+type FetchStaticPathsParams = {
   slug?: string[];
 };
-export type FetchStaticPathsResult = {
+type FetchStaticPathsResult = {
   paths: { params: FetchStaticPathsParams; locale: string }[];
   fallback: boolean;
 };

@@ -1,6 +1,6 @@
 import { ImageMetaResult } from "lib/SanityImage/query";
 
-export const linkQuery = `
+const linkQuery = `
    ...,
   'internalLink': select(
                  defined(internalLink) && defined(internalLink->pageType)  => '/'+ internalLink->pageType->slug.current + '/' + internalLink->slug.current,
@@ -14,13 +14,13 @@ export const linkQuery = `
   'external': select(defined(externalLink)=>true,defined(internalLink)=>false) 
 `;
 
-export interface LinkResult {
+interface LinkResult {
   internalLink?: string | null;
   href?: string | null;
   external?: boolean;
 }
 
-export type SeoResult = {
+type SeoResult = {
   metaTitle: string;
   metaDesc: string;
   shareTitle: string;

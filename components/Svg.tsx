@@ -70,10 +70,10 @@ const paths = {
   ),
 };
 
-export type Icon = keyof typeof paths;
+type Icon = keyof typeof paths;
 interface PathProps extends React.SVGProps<SVGPathElement> {}
 
-export interface SvgProps extends React.SVGProps<SVGSVGElement> {
+interface SvgProps extends React.SVGProps<SVGSVGElement> {
   pathProps?: PathProps;
   icon: Icon;
   className?: string;

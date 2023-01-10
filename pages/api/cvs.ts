@@ -2,8 +2,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type DataResultItem = { row: { [k: string]: string }; values: string[] };
-export type DataResult = DataResultItem[];
+type DataResult = DataResultItem[];
 
+// eslint-disable-next-line import/no-unused-modules
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse

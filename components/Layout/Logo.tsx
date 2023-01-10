@@ -1,9 +1,14 @@
 import React from "react";
-
+import Image from "next/image";
 export const Logo = () => {
   return (
     <div className="py-2 ">
-      <img width={161} src="/Kreisel_Logo.png" alt=" Kreisel Logo" />
+      <Image
+        width={161}
+        height={50}
+        src="/Kreisel_Logo.png"
+        alt=" Kreisel Logo"
+      />
     </div>
   );
 };

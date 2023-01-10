@@ -78,6 +78,7 @@ const Page = () => {
   );
 };
 
+// eslint-disable-next-line import/no-unused-modules
 export const getStaticPaths: GetStaticPaths = async () => {
   return await fetchStaticPaths({
     client,
@@ -86,6 +87,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   });
 };
 
+// eslint-disable-next-line import/no-unused-modules
 export const getStaticProps: GetStaticProps = async (props) => {
   const { params, preview, locale } = props;
   const isMember =

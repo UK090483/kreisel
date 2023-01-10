@@ -23,7 +23,7 @@ export const mockClient = (props?: MockSanityClient) => {
   } as unknown as SanityClient;
 };
 
-export const mockGetClient = (props: MockSanityClient) => {
+const mockGetClient = (props: MockSanityClient) => {
   return () => mockGetClient(props);
 };
 

@@ -3,6 +3,7 @@
 import icsToJson from "ics-to-json";
 import type { NextApiRequest, NextApiResponse } from "next";
 //@ts-ignore
+// eslint-disable-next-line import/no-unused-modules
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
