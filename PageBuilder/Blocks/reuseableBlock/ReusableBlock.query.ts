@@ -1,6 +1,6 @@
 import { headerRichTextQuery } from "PageBuilder/RichText/RichText";
 import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
-import { IBlockStyle } from "../types";
+import { BlockStyle } from "PageBuilder/schemaHelper/blockStyle";
 
 export const reusableBlockQuery = `
 _type == "reusable" => {
@@ -10,7 +10,7 @@ _type == "reusable" => {
 }
 `;
 
-type ItemResult = IBlockStyle & {
+type ItemResult = BlockStyle & {
   content: null | any;
   bgImage?: ImageMetaResult | null;
   image?: ImageMetaResult | null;
@@ -19,7 +19,7 @@ type ItemResult = IBlockStyle & {
   _key: string;
 };
 
-export interface IReusableBlockResult extends IBlockStyle {
+export interface IReusableBlockResult {
   _type: "reusable";
   item: ItemResult;
 }

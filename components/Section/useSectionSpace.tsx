@@ -1,7 +1,7 @@
-import { IBlockSpace } from "PageBuilder/Blocks/types";
+import { BlockSpace } from "PageBuilder/schemaHelper/blockStyle";
 import clsx from "clsx";
 
-interface IIseSectionWidthProps extends IBlockSpace {}
+interface IIseSectionWidthProps extends BlockSpace {}
 
 const useSectionSpace = (props: IIseSectionWidthProps) => {
   const { topSpace, bottomSpace } = props;

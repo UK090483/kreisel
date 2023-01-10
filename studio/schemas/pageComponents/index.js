@@ -1,13 +1,13 @@
-import listing from "./listing";
+// import listing from "./listing";
 import Section from "./Section";
 import defaultRichText from "./RichText/defaultRichText";
-import hero from "./hero";
+// import hero from "./hero";
 
 import headerRichText from "./RichText/headerRichText";
 import easyRichText from "./RichText/easyRichText";
 import trust from "./trust";
 import trustItem from "./trustItem";
-import reuseableBlock from "./reuseableBlock";
+// import reuseableBlock from "./reuseableBlock";
 import annotations from "./annotations";
 
 const PageComponents = [
@@ -15,12 +15,12 @@ const PageComponents = [
   trust,
   trustItem,
   Section,
-  listing,
+  // listing,
   defaultRichText,
   headerRichText,
   easyRichText,
-  hero,
-  reuseableBlock,
+  // hero,
+  // reuseableBlock,
 ];
 
 export default PageComponents;

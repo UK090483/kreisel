@@ -25,6 +25,13 @@ export function colorList(skip?: any) {
 
   return list.filter((listItem) => !skip.includes(listItem.value));
 }
+export type ColorList =
+  | "primary"
+  | "primary-light"
+  | "secondary"
+  | "secondary-light"
+  | "grey"
+  | "grey-light";
 
 export function sizesList(skip?: any) {
   const list = [
@@ -39,3 +46,4 @@ export function sizesList(skip?: any) {
 
   return list.filter((listItem) => !skip.includes(listItem.value));
 }
+export type SizeList = "noSpace" | "s" | "m" | "l" | "xl" | "xxl";

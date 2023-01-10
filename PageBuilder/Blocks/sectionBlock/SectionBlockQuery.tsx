@@ -1,6 +1,6 @@
 import { richTextQuery } from "PageBuilder/RichText/RichText";
 import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
-import { IBlockStyle } from "../types";
+import { BlockStyle } from "PageBuilder/schemaHelper/blockStyle";
 
 export const sectionBlockQuery = `
 _type == "section" => {
@@ -20,7 +20,7 @@ _type == "section" => {
 }
 `;
 
-export interface SectionBlockResult extends IBlockStyle {
+export interface SectionBlockResult extends BlockStyle {
   _type: "section";
   content: null | any;
   bgImage?: ImageMetaResult | null;

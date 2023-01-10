@@ -15,7 +15,8 @@ import Therapist from "./Therapist";
 import Seo from "./Seo";
 import Image from "./Image";
 import Settings from "./Settings";
-import Reusable from "./Reusable";
+// import Reusable from "./Reusable";
+import pbSchema from "../../PageBuilder/schema";
 
 const schema = [
   ...Settings,
@@ -24,13 +25,14 @@ const schema = [
   ...Shop,
   ...Page,
   ...Persons,
-  ...Reusable,
+  // ...Reusable,
   ...Testimonial,
   ...Therapist,
   ...Navigation,
   ...objects,
   ...pageComponents,
   ...plugs,
+  ...pbSchema,
 ];
 
 export default schema;

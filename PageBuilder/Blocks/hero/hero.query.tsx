@@ -1,5 +1,12 @@
-import { IBlockStyle } from "../types";
 import { imageQuery, ImageResult } from "PageBuilder/Image/sanityImage.query";
+import {
+  BlockBgColor,
+  blockBgColorProjection,
+  BlockSpace,
+  blockSpaceProjection,
+  BlockTransition,
+  blockTransitionProjection,
+} from "PageBuilder/schemaHelper/blockStyle";
 
 export const heroBlockQuery = `
 _type == "hero" => {
@@ -7,10 +14,17 @@ _type == "hero" => {
   _type,
   _key,
  'photo':image{${imageQuery}},
+
+ ${blockBgColorProjection()}
+ ${blockSpaceProjection()}
+ ${blockTransitionProjection()}
 }
 `;
 
-export interface HeroBlogResult extends IBlockStyle {
+export interface HeroBlogResult
+  extends BlockSpace,
+    BlockBgColor,
+    BlockTransition {
   _type: "hero";
   _key: string;
   content?: any;

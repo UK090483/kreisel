@@ -1,9 +1,8 @@
-import { ListingBlockItem } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
-import React from "react";
-
 import { ArticleCard } from "./Card/ArticleCard";
 import Card from "./Card/Card";
 import ListCard from "./Card/ListCard";
+import { ListingBlockItem } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
+import React from "react";
 
 interface ListProps {
   items: ListingBlockItem[];

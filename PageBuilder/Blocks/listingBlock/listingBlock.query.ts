@@ -1,11 +1,16 @@
+/* eslint-disable import/no-unused-modules */
 import {
   personItemQuery,
   PersonItemResult,
 } from "./frontend/Listings/Persons/PersonListQuery";
-import { IBlockStyle } from "../types";
+
 import { linkQuery, LinkResult } from "PageBuilder/Navigation/query";
 import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
 import { AppLocales, AppColor } from "types";
+import {
+  BlockStyle,
+  blockStyleProjection,
+} from "PageBuilder/schemaHelper/blockStyle";
 
 export interface TherapistResult extends CardResult {
   _type: "therapist";
@@ -75,14 +80,10 @@ export interface IArticleCardResult extends CardResult {
 
 export const listingBlockQuery = `
 _type == "listing" => {
+  ...,
   variation,
   _type,
    _key,
-   bgColor,
-   transitionTop,
-   transitionBottom,
-   topSpace,
-   bottomSpace,
    contentType,
   'content':  content[]{...},
   'items': select(
@@ -96,10 +97,11 @@ _type == "listing" => {
     contentType in ['article']=> *[_type == ^.contentType ][]{${cardQuery}},
     contentType in ['blog','aktuelles']=> *[ pageType->slug.current == ^.contentType ][]{${cardQuery}}
   ),
+  ${blockStyleProjection()}
 }
 `;
 
-interface ListingBlockResult<Type, Card> extends IBlockStyle {
+interface ListingBlockResult<Type, Card> extends BlockStyle {
   _key: string;
   _type: "listing";
   type?: "contentType" | "custom";

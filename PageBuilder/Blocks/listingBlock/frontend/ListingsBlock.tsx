@@ -7,28 +7,13 @@ import { ListingBlockProps } from "../listingBlock.query";
 import React from "react";
 
 const ListingBlock: React.FC<ListingBlockProps> = (props) => {
-  const {
-    bgColor,
-    content,
-    variation,
-    transitionTop,
-    transitionBottom,
-    topSpace,
-    bottomSpace,
-  } = props;
+  const { variation } = props;
 
   if (!props.items) return null;
 
   if (props.contentType === "people") {
     return (
-      <ListWrap
-        bottomSpace={bottomSpace}
-        topSpace={topSpace}
-        transitionTop={transitionTop}
-        transitionBottom={transitionBottom}
-        bgColor={bgColor}
-        content={content}
-      >
+      <ListWrap {...props}>
         <PersonList items={props.items} />
       </ListWrap>
     );
@@ -36,14 +21,7 @@ const ListingBlock: React.FC<ListingBlockProps> = (props) => {
 
   if (props.contentType === "testimonial") {
     return (
-      <ListWrap
-        bottomSpace={bottomSpace}
-        topSpace={topSpace}
-        transitionTop={transitionTop}
-        transitionBottom={transitionBottom}
-        bgColor={bgColor}
-        content={content}
-      >
+      <ListWrap {...props}>
         <TestimonialList items={props.items} />
       </ListWrap>
     );
@@ -54,14 +32,7 @@ const ListingBlock: React.FC<ListingBlockProps> = (props) => {
   }
 
   return (
-    <ListWrap
-      bottomSpace={bottomSpace}
-      topSpace={topSpace}
-      transitionTop={transitionTop}
-      transitionBottom={transitionBottom}
-      bgColor={bgColor}
-      content={content}
-    >
+    <ListWrap {...props}>
       <List variation={variation} items={props.items} />
     </ListWrap>
   );

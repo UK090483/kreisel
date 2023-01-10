@@ -1,13 +1,18 @@
+import {
+  blockBgColor,
+  blockSpace,
+  blockTransitions,
+} from "PageBuilder/schemaHelper/blockStyle";
+import { getFieldGroups } from "PageBuilder/schemaHelper/getFieldGroup";
+import sectionTitle from "PageBuilder/schemaHelper/sectionTitle";
+
 const heroSchema = {
   name: "hero",
   title: "Hero",
-  content: [
-    {
-      title: "Title",
-      name: "title",
-      type: "string",
-      group: "content",
-    },
+  type: "object",
+  ...getFieldGroups(),
+  fields: [
+    sectionTitle({ group: "content" }),
     {
       title: "Text",
       name: "content",
@@ -46,9 +51,8 @@ const heroSchema = {
         ],
       },
       initialValue: "1/3",
+      group: "content",
     },
-  ],
-  style: [
     {
       title: "Filter intensity",
       name: "filterIntensity",
@@ -56,6 +60,7 @@ const heroSchema = {
       options: {
         list: ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90"],
       },
+      group: "content",
     },
     {
       title: "Filter Color",
@@ -64,17 +69,23 @@ const heroSchema = {
       options: {
         list: ["white", "primary-light"],
       },
+      group: "content",
     },
+    ...blockSpace(),
+    ...blockBgColor(),
+    ...blockTransitions(),
   ],
+
   preview: {
     select: {
       image: "image",
       content: "content",
       bgColor: "bgColor",
+      title: "title",
     },
-    prepare({ image }: any) {
+    prepare({ image, title }: any) {
       return {
-        title: "hero",
+        title: title || "hero",
         media: image,
       };
     },

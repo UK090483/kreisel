@@ -1,8 +1,7 @@
-import { AppColor } from "types";
 import clsx from "clsx";
 
 type TransitionProps = {
-  color?: AppColor;
+  color?: string | null;
   pos: "top" | "bottom";
   transition?: null | string;
 };
