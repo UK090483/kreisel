@@ -1,9 +1,8 @@
 import { previewClient } from "@services/SanityService/sanity.server";
 import { JSDOM } from "jsdom";
-import blockTools from "@sanity/block-tools";
+// import blockTools from "@sanity/block-tools";
 import Schema from "@sanity/schema";
 import type { NextApiRequest, NextApiResponse } from "next";
-
 
 const defaultSchema = Schema.compile({
   name: "myBlog",
@@ -98,28 +97,28 @@ const getData = async (url: string) => {
   //@ts-ignore
   data.slug = url.substr(url.lastIndexOf("/") + 1);
 
-  sections &&
-    sections.forEach((i) => {
-      const key = i.querySelector(".field-label")?.innerHTML;
-      //@ts-ignore
-      const _key = keyMap[key] || key;
+  // sections &&
+  //   sections.forEach((i) => {
+  //     const key = i.querySelector(".field-label")?.innerHTML;
+  //     //@ts-ignore
+  //     const _key = keyMap[key] || key;
 
-      let val = i.querySelector(".field-item")?.innerHTML;
+  //     let val = i.querySelector(".field-item")?.innerHTML;
 
-      if (["email", "website"].includes(_key)) {
-        val = i.querySelector("a")?.innerHTML;
-      }
+  //     if (["email", "website"].includes(_key)) {
+  //       val = i.querySelector("a")?.innerHTML;
+  //     }
 
-      if (["description"].includes(_key)) {
-        val = blockTools.htmlToBlocks(val, blockContentType, {
-          //@ts-ignore
-          parseHtml: (html) => new JSDOM(html).window.document,
-        });
-      }
-      //@ts-ignore
-      data[_key] = val;
-    });
-  return data;
+  //     if (["description"].includes(_key)) {
+  //       val = blockTools.htmlToBlocks(val, blockContentType, {
+  //         //@ts-ignore
+  //         parseHtml: (html) => new JSDOM(html).window.document,
+  //       });
+  //     }
+  //     //@ts-ignore
+  //     data[_key] = val;
+  //   });
+  // return data;
 };
 
 const getLinks = async (url: string) => {
@@ -130,14 +129,14 @@ const getLinks = async (url: string) => {
 
   const links: string[] = [];
 
-  const linkComponents = content?.querySelectorAll("a");
+  // const linkComponents = content?.querySelectorAll("a");
 
-  linkComponents &&
-    linkComponents?.forEach((a) => {
-      console.log(a.href);
+  // linkComponents &&
+  //   linkComponents?.forEach((a) => {
+  //     console.log(a.href);
 
-      links.push(`https://www.kreiselhh.de${a.href}`);
-    });
+  //     links.push(`https://www.kreiselhh.de${a.href}`);
+  //   });
 
   return links;
 };
@@ -178,3 +177,5 @@ const getImageBlob = async (url: string, name: string) => {
   });
   return uploadResponse;
 };
+
+export {};
