@@ -39,7 +39,7 @@ const Nav: React.FC<NavProps> = ({ items }) => {
               NavigationItemBase={NavItemBaseWithUnderline}
             />
           </div>
-          <ContactButton />
+          <ContactButton className="hidden xl:block" />
 
           <button
             data-testid="menu-overlay-toggle"
@@ -51,12 +51,19 @@ const Nav: React.FC<NavProps> = ({ items }) => {
           </button>
         </div>
       </nav>
-      <NavigationMobile items={items} open={menuOpen} closeMenu={closeMenu} />
+      <NavigationMobile
+        NavigationItemBase={NavItemBaseMobile}
+        items={items}
+        open={menuOpen}
+        closeMenu={closeMenu}
+      >
+        <ContactButton className="mt-6" dark />
+      </NavigationMobile>
     </>
   );
 };
 
-export default React.memo(Nav, () => false);
+export default Nav;
 
 const NavItemBaseWithUnderline: React.FC<NavItemBaseProps> = (props) => {
   const { place, active } = props;
@@ -72,4 +79,8 @@ const NavItemBaseWithUnderline: React.FC<NavItemBaseProps> = (props) => {
       <NavigationItemBase {...props} />
     </Underline>
   );
+};
+
+const NavItemBaseMobile: React.FC<NavItemBaseProps> = (props) => {
+  return <NavigationItemBase {...props} className="  my-3" />;
 };

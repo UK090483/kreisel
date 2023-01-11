@@ -19,6 +19,7 @@ interface NavigationMobileProps {
   closeMenu?: () => void;
   NavigationLink?: NavigationLinkComponent;
   NavigationItemBase?: NavigationItemBaseComponent;
+  children?: React.ReactNode;
 }
 
 const NavigationMobile: React.FC<NavigationMobileProps> = ({
@@ -27,6 +28,7 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
   closeMenu,
   NavigationLink,
   NavigationItemBase,
+  children,
 }) => {
   const NavigationLinkComponent = NavigationLink
     ? NavigationLink
@@ -66,9 +68,9 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
       {render && (
         <Portal>
           <div
-            className={`flex flex-col items-center justify-center h-screen bg-primary  fixed inset-0  z-10  transition-all transform duration-300 ${
+            className={`flex  flex-col items-center justify-center h-screen bg-primary-light fixed inset-0 z-10 transition-all transform duration-300 ${
               animation
-                ? " translate-y-0 opacity-100 "
+                ? "translate-y-0 opacity-100 "
                 : "-translate-y-96  opacity-0"
             }`}
           >
@@ -85,12 +87,14 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
                 );
               })}
 
+            {children}
+
             {overlays &&
               overlays.map((item) => {
                 return (
                   <div
                     key={item.label}
-                    className="absolute top-0 bottom-0 left-0 right-0 flex flex-col items-center justify-center bg-primary animate-fadeInFast"
+                    className="absolute top-0 bottom-0 left-0 right-0 flex flex-col items-center justify-center bg-primary-light animate-fadeInFast"
                   >
                     <button
                       className="absolute transform rotate-180 top-32 right-6 "
@@ -147,7 +151,9 @@ const ConditionalButton: React.FC<
     </button>
   ) : (
     <NavigationLinkComponent onClick={() => onClick("link")} {...props.link}>
-      {label}
+      <NavigationItemBaseComponent active={true} props={props}>
+        {label}
+      </NavigationItemBaseComponent>
     </NavigationLinkComponent>
   );
 };

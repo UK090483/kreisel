@@ -55,6 +55,7 @@
     "fieldsets",
     "hookform",
     "serializers",
-    "tailwindcss"
+    "tailwindcss",
+    "testid"
   ]
 }
