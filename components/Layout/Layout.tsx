@@ -54,7 +54,7 @@ const Layout: React.FC<PropsWithChildren> = (props) => {
       <Head name={data?.title} />
 
       <main
-        className={`min-h-screen transition-all duration-500 ease-out ${
+        className={`min-h-screen transition-all duration-500 ease-out antialiased ${
           fadeIn ? "animate-pageFadeIn" : ""
         }`}
       >

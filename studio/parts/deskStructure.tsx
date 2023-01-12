@@ -1,7 +1,7 @@
-import { MdSettings } from "react-icons/md";
-import { deskTool, StructureResolver } from "sanity/desk";
-import Iframe, { IframeOptions } from "sanity-plugin-iframe-pane";
 import { resolveProductionUrl } from "./resolveProductionUrl";
+import { MdSettings } from "react-icons/md";
+import { StructureResolver } from "sanity/desk";
+import Iframe, { IframeOptions } from "sanity-plugin-iframe-pane";
 
 const isLocal = window.location.hostname === "localhost";
 
@@ -107,7 +107,7 @@ const structure: StructureResolver = (S, context) =>
         },
       }),
 
-      S.listItem().title("Mitglieder").child(S.documentTypeList("therapist")),
+      S.listItem().title("Mitglieder").child(S.documentTypeList("member")),
       S.listItem().title("Articles").child(S.documentTypeList("article")),
       S.listItem().title("Persons").child(S.documentTypeList("person")),
       S.listItem()

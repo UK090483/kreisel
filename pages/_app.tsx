@@ -71,7 +71,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   return (
     <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
       <StoreContextProvider>
-        <SessionProvider refetchInterval={10}>
+        <SessionProvider refetchInterval={0}>
           <ShopContextProvider>
             {getLayout(pageProps.id)}
             <Cookie />

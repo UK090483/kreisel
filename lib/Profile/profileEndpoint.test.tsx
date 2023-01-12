@@ -3,7 +3,11 @@ import { mockClient } from "@services/SanityService/test/testClient";
 import { getToken } from "next-auth/jwt";
 import { testApiHandler, NtarhParameters } from "next-test-api-route-handler";
 
-const testDbItem = { _type: "therapist", email: "testEmail", _id: "testId" };
+const testDbItem = {
+  _type: "member",
+  email: { current: "testEmail" },
+  _id: "testId",
+};
 const defaultDB = [testDbItem];
 const testValues = {
   city: "testCity",
@@ -89,6 +93,10 @@ describe("profileEndpoint", () => {
           method: "POST",
           body: JSON.stringify(testValues),
         });
+
+        const text = await res.json();
+        console.log(text);
+
         expect(res.status).toBe(200);
       },
     });

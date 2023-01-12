@@ -1,4 +1,9 @@
-import type { SanityClient } from "@sanity/client";
+import {
+  getUserByEmailQuery,
+  getUserByIdQuery,
+  getUserByProviderAccountIdQuery,
+  memberType,
+} from "./queries";
 import { omit } from "lodash";
 import { v4 as uuidv4 } from "uuid";
 
@@ -7,12 +12,10 @@ import {
   AdapterUser,
   VerificationToken,
   AdapterSession,
+  // eslint-disable-next-line import/no-unresolved
 } from "next-auth/adapters";
-import {
-  getUserByEmailQuery,
-  getUserByIdQuery,
-  getUserByProviderAccountIdQuery,
-} from "./queries";
+
+import type { SanityClient } from "@sanity/client";
 
 let globToken: VerificationToken | null = null;
 let session: AdapterSession | null = null;
@@ -66,8 +69,9 @@ const sanityAdapter = ({
       return client
         .create({
           ...user,
-          _id: `user.${uuidv4()}`,
-          _type: "user",
+          _id: `${memberType}.${uuidv4()}`,
+          _type: memberType,
+          email: { current: user.email, _type: "slug" },
         })
         .then((newUser) => {
           return { ...user, id: newUser._id } as AdapterUser;
@@ -79,12 +83,23 @@ const sanityAdapter = ({
         .fetch<SanityAdapterUser>(getUserByIdQuery, { id })
         .then((i) => (i ? toAdapterUser(i) : null));
     },
-    getUserByEmail: (email) => {
-      _logger({ type: "info", message: `getUserByEmail`, args: { email } });
+    getUserByEmail: async (email) => {
+      _logger({
+        type: "info",
+        message: `getUserByEmail start`,
+        args: { email },
+      });
 
-      return client
+      const res = await client
         .fetch<SanityAdapterUser>(getUserByEmailQuery, { email })
         .then((i) => (i ? toAdapterUser(i) : null));
+
+      _logger({
+        type: "info",
+        message: `getUserByEmail result`,
+        args: { res },
+      });
+      return res;
     },
     getUserByAccount: ({ providerAccountId, provider }) => {
       _logger({ type: "info", message: `getUserByAccount` });
@@ -96,17 +111,27 @@ const sanityAdapter = ({
         .then((i) => (i ? toAdapterUser(i) : null));
     },
     updateUser: async (_user) => {
-      _logger({ type: "info", message: `updateUser` });
-      return new Promise((resolve, reject) => {
-        if (!_user?.id) return reject("id: missing in updateUser");
-        client
-          .patch(_user.id)
-          .set({ ...omit(_user, "id") })
-          .commit<AdapterUser>()
-          .then((res) => {
-            resolve(toAdapterUser(res));
-          });
+      _logger({ type: "info", message: `updateUser start`, args: { _user } });
+      if (!_user?.id) {
+        console.error("id: missing in updateUser");
+        return {} as AdapterUser;
+      }
+      const patchResult = await client
+        .patch(_user.id)
+        .set({ ...omit(_user, "id") })
+        .commit<AdapterUser>({ returnDocuments: true });
+
+      _logger({
+        type: "info",
+        message: `updateUser result`,
+        args: { patchResult },
       });
+
+      return {
+        ...patchResult,
+        //@ts-ignore
+        email: patchResult?.email?.current,
+      } as AdapterUser;
     },
     deleteUser: () => {
       _logger({ type: "info", message: `deleteUser` });

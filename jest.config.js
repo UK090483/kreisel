@@ -35,7 +35,6 @@ const oldJest = {
   testPathIgnorePatterns: [
     "<rootDir>/node_modules/",
     "<rootDir>/.next/",
-    "<rootDir>/studio/",
     "testPrepare.ts",
   ],
   testEnvironment: "jest-environment-jsdom",

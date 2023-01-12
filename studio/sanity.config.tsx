@@ -1,14 +1,17 @@
+import { resolveProductionUrl } from "./parts/resolveProductionUrl";
+import schema from "./schemas/schema";
+import structure from "./parts/deskStructure";
+import { pageByPageType } from "./parts/initialValueTemplates";
+import { resolveActions } from "./parts/resolveActions";
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
-import structure from "./parts/deskStructure";
+// eslint-disable-next-line import/no-unresolved
 import { theme } from "https://themer.sanity.build/api/hues?primary=f9de83";
 
-import schema from "./schemas/schema";
 import { media } from "sanity-plugin-media";
 import { visionTool } from "@sanity/vision";
-import { pageByPageType } from "./parts/initialValueTemplates";
-import { resolveProductionUrl } from "./parts/resolveProductionUrl";
 
+// eslint-disable-next-line import/no-unused-modules
 export default defineConfig({
   theme,
   name: "default",
@@ -21,28 +24,18 @@ export default defineConfig({
     ...(import.meta.env.MODE === "development" ? [visionTool()] : []),
   ],
   schema: {
-    types: schema,
+    types: [...schema],
     templates: (prev) => [pageByPageType, ...prev],
   },
 
   document: {
     newDocumentOptions: (prev, context) => {
       return prev.filter(
-        (i) => !["media.tag", "menuConfig", "seoConfig"].includes(i.templateId)
+        (i) => !["menuConfig", "seoConfig"].includes(i.templateId)
       );
     },
-    actions: (prev, context) => {
-      if (
-        ["media.tag", "menuConfig", "seoConfig"].includes(context.schemaType)
-      ) {
-        return prev.filter(
-          (p) =>
-            !["unpublish", "duplicate", "delete"].includes(p.action || "noname")
-        );
-      }
+    actions: resolveActions,
 
-      return prev;
-    },
     productionUrl: async (prev, context) => {
       return resolveProductionUrl(context.document) || prev;
     },

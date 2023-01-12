@@ -1,7 +1,7 @@
 import fields from "../../../lib/Profile/Fields";
 
 export default {
-  name: "therapist",
+  name: "member",
   title: "Mitglied",
   type: "document",
   fields,

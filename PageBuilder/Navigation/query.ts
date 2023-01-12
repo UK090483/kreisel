@@ -59,7 +59,7 @@ export const navItemQuery2 = (locale: string = "") => `
 
 export const NavigationQuery = (locale: string = "") => `
    'navigation':select(
-    pageType._ref == "bc359bcc-db23-4283-bc9f-591e3a9f44a3" =>  *[_id == 'siteConfig'][0].memberNav,
+    pageType._ref == "bc359bcc-db23-4283-bc9f-591e3a9f44a3" || _id == "84c459c1-6443-45ec-b8be-131441a8efd4" =>  *[_id == 'siteConfig'][0].memberNav,
     *[_id == 'siteConfig'][0].mainNav
     )[]{
     ${navItemQuery2(locale)},

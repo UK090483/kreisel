@@ -53,7 +53,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     allowMember: boolean;
     allowProfile: boolean;
   }>(
-    `*[_type == "therapist" && email == '${session.user?.email}' ][0]{
+    `*[_type == "member" && email.current == '${session.user?.email}' ][0]{
      'profile':{${profileQuery}},
       allowMember,
       allowProfile

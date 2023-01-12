@@ -46,7 +46,7 @@ export default getHandler;
 
 const updateUser = async (client: SanityClient, email: string, data: any) => {
   const items = await client.fetch<{ _id: string }[]>(
-    `*[_type == 'therapist' && email == '${email}' ][]`
+    `*[_type == 'member' && email.current == '${email}' ][]`
   );
 
   if (items.length < 1) {

@@ -1,7 +1,9 @@
 import groq from "groq";
 
+export const memberType = "member";
+
 export const getUserByIdQuery = groq`
-  *[_type == 'user' && _id == $id][0]
+  *[_type == '${memberType}' && _id == $id][0]
 `;
 
 export const getUserByProviderAccountIdQuery = groq`
@@ -9,7 +11,7 @@ export const getUserByProviderAccountIdQuery = groq`
 `;
 
 export const getUserByEmailQuery = groq`
-  *[_type == 'user' && email == $email][0]
+  *[_type == '${memberType}' && email.current == $email][0]{...,'email':email.current}
 `;
 
 export const getVerificationRequestQuery = groq`

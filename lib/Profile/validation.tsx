@@ -4,7 +4,7 @@ import { object, string, array, InferType } from "yup";
 const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
 
 export const schema = object({
-  title: string(),
+  title: string().nullable(),
   firstName: string().required(),
   name: string().required(),
   jobDescription: string(),

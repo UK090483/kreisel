@@ -6,7 +6,7 @@ name,
 jobDescription,
 surgery,
 addressSupplement,
-degree
+degree,
 `;
 
 export type Profile = {

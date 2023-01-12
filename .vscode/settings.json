@@ -53,6 +53,7 @@
     "clsx",
     "csrfToken",
     "fieldsets",
+    "groq",
     "hookform",
     "serializers",
     "tailwindcss",

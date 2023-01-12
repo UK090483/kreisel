@@ -1,3 +1,6 @@
+import { string } from "yup";
+const emailSchema = string().email();
+
 export const membershipOptions = [
   { title: "KREISELnetzwerk", value: "KREISELnetzwerk" },
   { title: "FIL", value: "FIL" },
@@ -38,7 +41,14 @@ const memberFields = [
   {
     name: "email",
     title: "Email",
-    type: "string",
+    type: "slug",
+    validation: (Rule: any) =>
+      Rule.required()
+        .custom(async (value: any) => {
+          const isValid = await emailSchema.isValid(value?.current);
+          return isValid ? true : "must be valid mail";
+        })
+        .error(),
   },
 ];
 
@@ -130,6 +140,12 @@ const adminFields = [
     name: "allowProfile",
     title: "Allow Profile",
     type: "boolean",
+  },
+  {
+    title: "Email Verified",
+    type: "datetime",
+    name: "emailVerified",
+    readOnly: true,
   },
 ];
 
