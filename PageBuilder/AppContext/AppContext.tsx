@@ -56,6 +56,7 @@ export const useMemberPage = () => {
   const { data } = useContext(AppContext);
   const [verified, setVerified] = useState(false);
   const { member, status } = useAuth();
+
   const { push } = useRouter();
   const slug = data?.slug;
   const isLoading = status === "loading";
