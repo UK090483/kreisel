@@ -4,6 +4,7 @@ import { ImageUploadInput } from "../../components/Inputs/ImageUpload";
 import { profileQueryResult } from "lib/Profile/profileQuery";
 import Input from "components/Inputs/input2";
 import Textarea from "components/Inputs/TextArea";
+import { SwitchInput } from "components/Inputs/Switch";
 import { DropdownInput } from "components/Inputs/Dropdown";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as React from "react";
@@ -91,6 +92,7 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
                 multiple
               />
 
+              <SwitchInput name="offersInternship" label="Hospitationsplatz" />
               {/* <Textarea name="education" label="Ausbildung" rows={4} /> */}
             </>
           )}

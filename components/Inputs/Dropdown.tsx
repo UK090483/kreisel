@@ -10,7 +10,7 @@ type DropdownItem = { title: string; value: string };
 interface DropdownProps {
   items: DropdownItem[];
   value?: string | string[];
-  onChange: (value: DropdownItem) => void;
+  onChange: (value: DropdownItem[]) => void;
   multiple?: boolean;
   name: string;
 }
@@ -26,8 +26,14 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
       : [{ value: "placeHolder", title: "bitte wählen" }]
     : items.find((i) => i.value === value);
 
+  const handleChange = (value: DropdownItem[]) => {
+    if (value && Array.isArray(value)) {
+      onChange(value.filter((i) => i.value != "placeHolder"));
+    }
+  };
+
   return (
-    <Listbox value={active} onChange={onChange} multiple={multiple}>
+    <Listbox value={active} onChange={handleChange} multiple={multiple}>
       <div className="relative mt-1">
         <Listbox.Button
           id={name}
@@ -112,7 +118,7 @@ export const DropdownInput: React.FC<DropdownInputProps> = (props) => {
       field.onChange(value.map((i) => i.value));
     }
     if (!isArray) {
-      field.onChange(value.value);
+      field.onChange([value.value]);
     }
   };
 

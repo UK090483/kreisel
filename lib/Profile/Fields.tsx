@@ -100,11 +100,11 @@ export const profileFields = [
     title: "Beschreibung",
     type: "text",
   },
-  // {
-  //   name: "education",
-  //   title: "Ausbildung",
-  //   type: "text",
-  // },
+  {
+    name: "offersInternship",
+    title: "Hospitationsplatz",
+    type: "boolean",
+  },
   {
     name: "membership",
     title: "Mitgliedschaft",

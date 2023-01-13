@@ -1,12 +1,15 @@
 import { membershipOptions, degreeOptions } from "./Fields";
-import { object, string, array, InferType } from "yup";
+import { object, string, array, InferType, mixed, boolean } from "yup";
 
 const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
 
-export const schema = object({
-  title: string().nullable(),
+export const memberSchema = object({
+  title: string(),
   firstName: string().required(),
   name: string().required(),
+});
+
+const profileFields = object({
   jobDescription: string(),
   description: string(),
   education: string(),
@@ -24,6 +27,10 @@ export const schema = object({
   website: string().url(),
   membership: array().of(string().oneOf(membershipOptions.map((i) => i.value))),
   degree: array().of(string().oneOf(degreeOptions.map((i) => i.value))),
+  image: object({ url: string().nullable(), file: mixed() }).nullable(),
+  offersInternship: boolean(),
 });
+
+export const schema = memberSchema.concat(profileFields);
 
 export type Profile = InferType<typeof schema>;

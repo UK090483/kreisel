@@ -16,6 +16,7 @@ zipCode,
 city,
 degree,
 jobDescription,
+offersInternship,
 'image':{ 'url': image.asset->url + '?w=300' },
 `;
 

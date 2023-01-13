@@ -93,6 +93,10 @@ const checkField = async (props: typeof filteredProfileFields[0]) => {
   if (type === "array") {
     foundElement = screen.getByRole("combobox", { name: title });
   }
+
+  if (type === "boolean") {
+    foundElement = screen.getByRole("switch", { name: title });
+  }
   if (!foundElement) {
     throw new Error(`missing field test for: ${title}`);
   }

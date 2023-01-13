@@ -14,11 +14,18 @@ const fieldsToValues = (fields: any[]) => {
   return fields
     .filter((i) => !["email"].includes(i.name))
     .reduce((acc, i) => {
-      let value: any = i.type === "array" ? ["t"] : `${i.name}_value`;
+      let value: any = `${i.name}_value`;
 
+      if (i.type === "array") {
+        value = [`${i.name}_value`];
+      }
       if (i.type === "image") {
         value = { url: null };
       }
+      if (i.type === "boolean") {
+        value = true;
+      }
+
       return { ...acc, [i.name]: value };
     }, {});
 };
