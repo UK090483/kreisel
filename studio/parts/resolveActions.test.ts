@@ -13,7 +13,11 @@ const actions = [
 ];
 
 const run = (context: Partial<DocumentActionsContext>) => {
-  const testContext = { ...context } as DocumentActionsContext;
+  const testContext = {
+    documentId: "any",
+    schemaType: "any",
+    ...context,
+  } as DocumentActionsContext;
   const res = resolveActions(
     actions.map((i) => ({ action: i })) as DocumentActionComponent[],
     testContext

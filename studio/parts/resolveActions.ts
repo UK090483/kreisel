@@ -1,28 +1,87 @@
-import { DocumentActionComponent, DocumentActionsContext } from "sanity";
+import {
+  DocumentActionComponent,
+  DocumentActionsContext,
+  useDocumentOperation,
+} from "sanity";
 
 const mitgliederPageId = "84c459c1-6443-45ec-b8be-131441a8efd4";
 const mitgliederPageTypeId = "bc359bcc-db23-4283-bc9f-591e3a9f44a3";
 const siteConfigType = "siteConfig";
 
+const ApproveAction: DocumentActionComponent = (props) => {
+  const { publish } = useDocumentOperation(props.id, props.type);
+  const { draft } = props;
+  return {
+    label: draft ? "Approve" : "Approved",
+    tone: draft ? "critical" : "positive",
+    disabled: !draft,
+    title: "approve",
+    onHandle: () => {
+      publish.execute();
+      props.onComplete();
+    },
+  };
+};
+
 export const resolveActions = (
   prev: DocumentActionComponent[],
   context: DocumentActionsContext
 ) => {
-  if ([siteConfigType].includes(context.schemaType)) {
-    return prev.filter(
-      (p) =>
-        !["unpublish", "duplicate", "delete"].includes(p.action || "noname")
-    );
-  }
+  return handleActions(prev, context, [
+    {
+      condition: { documentId: mitgliederPageId },
+      actions: ["discardChanges", "publish"],
+    },
+    {
+      condition: { documentId: mitgliederPageTypeId },
+      actions: ["discardChanges", "publish"],
+    },
+    {
+      condition: { schemaType: siteConfigType },
+      actions: ["discardChanges", "publish"],
+    },
+    {
+      condition: {
+        schemaType: "member",
+      },
+      actions: ["delete", "discardChanges", "publish", "unpublish", "restore"],
+      customActions: [ApproveAction],
+    },
+  ]);
+};
 
-  if (
-    [mitgliederPageId, mitgliederPageTypeId].includes(context.documentId || "")
-  ) {
-    return prev.filter(
-      (p) =>
-        !["unpublish", "duplicate", "delete"].includes(p.action || "noname")
-    );
-  }
+type handleActionsConfig = {
+  condition: {
+    documentId?: string;
+    schemaType?: string;
+    custom?: (context: DocumentActionsContext) => boolean;
+  };
+  actions: DocumentActionComponent["action"][];
+  customActions?: DocumentActionComponent[];
+};
 
-  return prev;
+const handleActions = (
+  prev: DocumentActionComponent[],
+  context: DocumentActionsContext,
+  config: handleActionsConfig[]
+) => {
+  let _prev = [...prev];
+  config.forEach((conf) => {
+    const {
+      customActions = [],
+      condition: { documentId, schemaType, custom = () => false },
+      actions,
+    } = conf;
+    if (
+      documentId === context.documentId ||
+      schemaType === context.schemaType ||
+      custom(context)
+    ) {
+      _prev = [
+        ...customActions,
+        ...prev.filter((i) => actions.includes(i.action)),
+      ];
+    }
+  });
+  return _prev;
 };

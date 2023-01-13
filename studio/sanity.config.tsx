@@ -3,8 +3,11 @@ import schema from "./schemas/schema";
 import structure from "./parts/deskStructure";
 import { pageByPageType } from "./parts/initialValueTemplates";
 import { resolveActions } from "./parts/resolveActions";
+import { resolveBadges } from "./parts/resolveBadges";
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
+import { documentListWidget } from "sanity-plugin-dashboard-widget-document-list";
+import { dashboardTool } from "@sanity/dashboard";
 // eslint-disable-next-line import/no-unresolved
 import { theme } from "https://themer.sanity.build/api/hues?primary=f9de83";
 
@@ -22,6 +25,15 @@ export default defineConfig({
     deskTool({ structure }),
     media(),
     ...(import.meta.env.MODE === "development" ? [visionTool()] : []),
+    dashboardTool({
+      widgets: [
+        documentListWidget({
+          title: "Mitglieder",
+          query: `*[_type == "member" && _id in path('drafts.**') ]`,
+          layout: { width: "small" },
+        }),
+      ],
+    }),
   ],
   schema: {
     types: [...schema],
@@ -29,15 +41,13 @@ export default defineConfig({
   },
 
   document: {
-    newDocumentOptions: (prev, context) => {
+    badges: resolveBadges,
+    newDocumentOptions: (prev) => {
       return prev.filter(
         (i) => !["menuConfig", "seoConfig"].includes(i.templateId)
       );
     },
     actions: resolveActions,
-
-    productionUrl: async (prev, context) => {
-      return resolveProductionUrl(context.document) || prev;
-    },
+    productionUrl: resolveProductionUrl,
   },
 });
