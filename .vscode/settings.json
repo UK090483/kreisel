@@ -54,7 +54,9 @@
     "csrfToken",
     "fieldsets",
     "groq",
+    "headlessui",
     "hookform",
+    "Hospitationsplatz",
     "serializers",
     "tailwindcss",
     "testid"

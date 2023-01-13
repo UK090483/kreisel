@@ -10,6 +10,7 @@ const oldJest = {
   //   "!**/node_modules/**",
   //   "!.next/**",
   // ],
+  verbose: true,
   moduleNameMapper: {
     "^components/(.*)$": "<rootDir>/components/$1",
     "^components/(.*)$": "<rootDir>/components/$1",

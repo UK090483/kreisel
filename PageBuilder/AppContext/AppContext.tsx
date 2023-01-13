@@ -57,7 +57,7 @@ export const useMemberPage = () => {
   const [verified, setVerified] = useState(false);
   const { member, status } = useAuth();
 
-  const { push } = useRouter();
+  const { isPreview } = useRouter();
   const slug = data?.slug;
   const isLoading = status === "loading";
 
@@ -71,7 +71,7 @@ export const useMemberPage = () => {
 
   const isMemberPage = slug.split("/")[1] === "mitgliederbereich";
 
-  const showSpinner = isMemberPage && !verified;
+  const showSpinner = !isPreview && isMemberPage && !verified;
 
   return { showSpinner };
 };

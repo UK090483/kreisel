@@ -34,7 +34,7 @@ const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },
   callbacks: {
     async jwt({ token, account, profile }) {
-      console.count("jwt---------");
+      // console.count("jwt---------");
 
       // console.log({ token, account, profile });
 
@@ -48,16 +48,16 @@ const authOptions: NextAuthOptions = {
         `*[_type == "member" && email.current == "${token.email}" ][0]{ allowMember,allowProfile }`
       );
 
-      console.log(fetchRoles);
+      // console.log(fetchRoles);
 
       return { ...token, ...fetchRoles };
     },
     async session({ session, token, user }) {
       // Send properties to the client, like an access_token and user id from a provider.
 
-      console.count("session---------");
+      // console.count("session---------");
 
-      console.log({ session, token, user });
+      // console.log({ session, token, user });
       // console.log("session---------");
       // //@ts-ignore
       // session.member = token.member;
