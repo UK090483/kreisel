@@ -1,4 +1,6 @@
 import { FormError } from "./parts/FormError";
+import { FormLabel } from "./parts/FormLabel";
+import { InputWarp } from "./parts/InputWrap";
 import { useFormContext } from "react-hook-form";
 
 type TextareaProps = {
@@ -10,23 +12,24 @@ const Textarea: React.FC<TextareaProps> = (props) => {
   const { name, label, className } = props;
   const {
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useFormContext();
 
   const error = errors[name];
   const errorMessage = error?.message as string | undefined;
 
   return (
-    <div className="flex  flex-col  gap-2 py-2">
-      <label htmlFor={name}>{label}</label>
+    <InputWarp disabled={isSubmitting}>
+      <FormLabel name={name} label={label} />
       <textarea
+        disabled={isSubmitting}
         {...register(name)}
         {...props}
         className={"rounded-md " + className}
         id={name}
       />
       <FormError errorMessage={errorMessage} />
-    </div>
+    </InputWarp>
   );
 };
 
