@@ -1,7 +1,10 @@
-import { Profile } from "./profileQuery";
+// import { profileQueryResult } from "./profileQuery";
+// import { schema } from "./validation";
 import { schema } from "./validation";
-import { SanityClient } from "@sanity/client";
+import { SanityClient, SanityImageAssetDocument } from "@sanity/client";
 import { getToken } from "next-auth/jwt";
+import formidable from "formidable";
+import fs from "fs";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
@@ -13,23 +16,35 @@ const getHandler = (client: SanityClient, getTokenFn: typeof getToken) => {
     req: NextApiRequest,
     res: NextApiResponse<any>
   ) {
+    let imageDocument: SanityImageAssetDocument | null = null;
+    // Check Token
     const token = await getTokenFn({ req, secret: process.env.AUTH_SECRET });
-
     if (!token || !token?.email) {
       return res.status(401).send("unauthorized");
     }
-    const body = req.body ? (JSON.parse(req.body) as Profile) : null;
 
-    if (!body) {
+    const { data, image } = await parseFormdata(req);
+
+    if (!data) {
       return res.status(400).send("no data to process");
+    }
+    if (image) {
+      imageDocument = await uploadImageBlob(image, client);
     }
 
     let validatedValues: any = null;
 
     try {
-      validatedValues = await schema.validate(body, { stripUnknown: true });
+      validatedValues = await schema.validate(data, { stripUnknown: true });
     } catch (error) {
       return res.status(400).json(error);
+    }
+
+    if (imageDocument) {
+      validatedValues.image = {
+        _type: "reference",
+        asset: { _ref: imageDocument._id, _type: "reference" },
+      };
     }
 
     const result = await updateUser(client, token.email, validatedValues);
@@ -70,3 +85,30 @@ const updateUser = async (client: SanityClient, email: string, data: any) => {
     });
   }
 };
+
+const parseFormdata = async (req: NextApiRequest) => {
+  const form = formidable({ multiples: true });
+  return new Promise<{ data: null | {}; image: Buffer | null }>(
+    (resolve, reject) => {
+      form.parse(req, (err, fields, files) => {
+        if (err) reject(err);
+
+        let image: Buffer | null = null;
+        const data =
+          typeof fields?.data === "string" ? JSON.parse(fields.data) : null;
+
+        if (files && files.image && !Array.isArray(files.image)) {
+          image = fs.readFileSync(files.image.filepath);
+        }
+        resolve({ data, image });
+      });
+    }
+  );
+};
+
+async function uploadImageBlob(blob: File | Buffer, client: SanityClient) {
+  return await client.assets.upload("image", blob, {
+    contentType: "image/png",
+    filename: "someText.png",
+  });
+}

@@ -1,5 +1,9 @@
 import ProfileForm from "lib/Profile/ProfileForm";
-import { Profile, profileQuery } from "lib/Profile/profileQuery";
+import {
+  fetchProfileData,
+  fetchProfileDataResult,
+} from "lib/Profile/profileQuery";
+
 import { previewClient } from "@services/SanityService/sanity.server";
 import { Session } from "next-auth";
 import { GetServerSideProps } from "next";
@@ -8,15 +12,13 @@ import React, { ReactElement, ReactNode } from "react";
 
 type ProfileProps = {
   session: Session | null;
-  profile: Profile;
-  allowMember: boolean;
-  allowProfile: boolean;
-};
+} & fetchProfileDataResult;
 
 const ProfilePage: React.FC<ProfileProps> & {
   getLayout: (page: ReactElement) => ReactNode;
 } = (props) => {
   const { allowProfile } = props;
+
   return (
     <div className="w-full items-center justify-center">
       <div className="bg-primary-light py-24 mb-24 px-5">
@@ -33,7 +35,7 @@ const ProfilePage: React.FC<ProfileProps> & {
 };
 
 ProfilePage.getLayout = function getLayout(page) {
-  return <div className="  ">{page}</div>;
+  return <div className=" ">{page}</div>;
 };
 
 // eslint-disable-next-line import/no-unused-modules
@@ -48,24 +50,23 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     };
   }
 
-  const data = await previewClient.fetch<{
-    profile?: Profile;
-    allowMember: boolean;
-    allowProfile: boolean;
-  }>(
-    `*[_type == "member" && email.current == '${session.user?.email}' ][0]{
-     'profile':{${profileQuery}},
-      allowMember,
-      allowProfile
-    }`
-  );
+  if (session.user?.email) {
+    const profileData = await fetchProfileData(
+      session.user?.email,
+      previewClient
+    );
+
+    return {
+      props: {
+        session,
+        ...profileData,
+      },
+    };
+  }
 
   return {
     props: {
       session,
-      profile: data.profile,
-      allowMember: data?.allowMember,
-      allowProfile: data?.allowProfile,
     },
   };
 };

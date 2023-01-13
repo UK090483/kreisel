@@ -22,7 +22,7 @@ export const degreeOptions = [
   { title: "Dyskalkulietherapeut", value: "Dyskalkulietherapeut" },
 ];
 
-const memberFields = [
+export const memberFields = [
   {
     name: "title",
     title: "Title",
@@ -100,11 +100,11 @@ export const profileFields = [
     title: "Beschreibung",
     type: "text",
   },
-  {
-    name: "education",
-    title: "Ausbildung",
-    type: "string",
-  },
+  // {
+  //   name: "education",
+  //   title: "Ausbildung",
+  //   type: "text",
+  // },
   {
     name: "membership",
     title: "Mitgliedschaft",
@@ -126,7 +126,7 @@ export const profileFields = [
   {
     name: "image",
     title: "Image",
-    type: "defaultImage",
+    type: "image",
   },
 ];
 

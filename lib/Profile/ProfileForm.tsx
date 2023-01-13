@@ -1,18 +1,18 @@
-import { schema } from "./validation";
-
+import { memberSchema, schema } from "./validation";
 import { membershipOptions, degreeOptions } from "./Fields";
-import { Profile } from "lib/Profile/profileQuery";
+import { ImageUploadInput } from "../../components/Inputs/ImageUpload";
+import { profileQueryResult } from "lib/Profile/profileQuery";
 import Input from "components/Inputs/input2";
 import Textarea from "components/Inputs/TextArea";
-
 import { DropdownInput } from "components/Inputs/Dropdown";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as React from "react";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import clsx from "clsx";
 import type { AnyObjectSchema } from "yup";
 
 interface IProfileFormProps {
-  profile?: Partial<Profile>;
+  profile?: Partial<profileQueryResult>;
   allowProfile?: boolean;
 }
 
@@ -23,23 +23,32 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
     mode: "onBlur",
     reValidateMode: "onChange",
     defaultValues: profile,
-    resolver: yupResolver<AnyObjectSchema>(schema),
+    resolver: yupResolver<AnyObjectSchema>(
+      allowProfile ? schema : memberSchema
+    ),
   });
 
   if (!profile) return null;
 
-  const { handleSubmit } = methods;
-  const { reset } = methods;
+  const { handleSubmit, reset } = methods;
 
-  const _onSubmit: SubmitHandler<Partial<Profile>> = async (data) => {
-    return new Promise<void>((resolve, reject) => {
-      fetch("api/profile", { method: "POST", body: JSON.stringify(data) }).then(
-        () => {
-          reset(data);
-          resolve();
-        }
-      );
-    });
+  const _onSubmit: SubmitHandler<Partial<profileQueryResult>> = async (
+    data
+  ) => {
+    const image = data.image;
+    delete data.image;
+    const formdata = new FormData();
+    formdata.append("data", JSON.stringify(data));
+    if (image && image.file) {
+      formdata.append("image", image.file);
+    }
+    try {
+      await fetch("api/profile", { method: "POST", body: formdata });
+      reset(data);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   };
 
   return (
@@ -54,30 +63,35 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
 
           {allowProfile && (
             <>
-              <DropdownInput
-                name="membership"
-                label="Mitgliedschaft"
-                items={membershipOptions}
-                multiple
-              />
+              <Textarea name="jobDescription" label="Beruf" rows={4} />
+
+              <div className="grid md:grid-cols-2 gap-4">
+                <Input name="street" label="Strasse" />
+                <Input name="city" label="Ort" />
+                <Input name="zipCode" label="PLZ" />
+                <Input name="website" label="Website" />
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                <Input name="phone" label="Tel" type="tel" />
+                <Input name="mobile" label="Mobil" type="tel" />
+              </div>
+              <ImageUploadInput name="image" label="Avatar" />
+
+              <Textarea name="description" label="Beschreibung" rows={4} />
               <DropdownInput
                 name="degree"
                 label="Abschlüsse"
                 items={degreeOptions}
                 multiple
               />
-              <Input name="phone" label="Tel" type="tel" />
-              <Input name="mobile" label="Mobil" type="tel" />
-              <Input name="website" label="Website" />
-              <Input name="jobDescription" label="Beruf" />
+              <DropdownInput
+                name="membership"
+                label="Mitgliedschaft"
+                items={membershipOptions}
+                multiple
+              />
 
-              <div className="grid md:grid-cols-2 gap-4">
-                <Input name="street" label="Strasse" />
-                <Input name="city" label="Ort" />
-                <Input name="zipCode" label="PLZ" />
-              </div>
-              <Textarea name="description" label="Beschreibung" rows={4} />
-              <Textarea name="education" label="Ausbildung" rows={4} />
+              {/* <Textarea name="education" label="Ausbildung" rows={4} /> */}
             </>
           )}
           <input
@@ -85,9 +99,9 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
             //   console.log("clicked");
             // }}
             // disabled={!canSubmit}
-            // className={clsx("p-4 border-2", {
-            //   "opacity-50": !canSubmit,
-            // })}
+            className={clsx("p-4 border-2", {
+              // "opacity-50": !canSubmit,
+            })}
             type="submit"
           />
         </form>

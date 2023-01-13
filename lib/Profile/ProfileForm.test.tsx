@@ -1,6 +1,6 @@
 import ProfileForm from "./ProfileForm";
 import { Profile } from "./validation";
-import { profileFields } from "./Fields";
+import { profileFields, memberFields } from "./Fields";
 import user from "@testing-library/user-event";
 import { render, screen, act } from "@testing-library/react";
 
@@ -35,9 +35,14 @@ const testData: TestProfile = {
   education: "testEducation",
 };
 
-const filteredFields = profileFields.filter(
+const filteredProfileFields = profileFields.filter(
   (i) => !["email", "image"].includes(i.name)
 );
+
+const filteredMemberFields = memberFields.filter(
+  (i) => !["email", "image"].includes(i.name)
+);
+
 const fetchMock = jest.fn((...props) => {
   return Promise.resolve({
     json: () => Promise.resolve({ rates: { CAD: 1.42 } }),
@@ -50,20 +55,26 @@ const submit = async () => {
   await user.click(screen.getByRole("button", { name: /submit/i }));
 };
 const checkResult = (ex: any) => {
-  expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toStrictEqual(ex);
+  expect(JSON.parse(fetchMock.mock.calls[0][1].body.get("data"))).toStrictEqual(
+    ex
+  );
 };
-const ProfileFormRender = async () => {
+const ProfileFormRender = async (
+  props?: React.ComponentProps<typeof ProfileForm>
+) => {
+  const defaultProps = { allowProfile: false, profile: testProfile, ...props };
+  const { profile, allowProfile } = defaultProps;
   await act(() => {
     render(
       <ProfileForm //@ts-ignore
-        profile={testProfile}
-        allowProfile={true}
+        profile={profile}
+        allowProfile={allowProfile}
       />
     );
   });
 };
 
-const checkField = async (props: typeof filteredFields[0]) => {
+const checkField = async (props: typeof filteredProfileFields[0]) => {
   const { name, title, type } = props;
   let foundElement: any;
   if (type === "text" || type === "string") {
@@ -92,8 +103,18 @@ describe("Profile Form", () => {
     fetchMock.mockClear();
   });
 
-  it.each(filteredFields)("should render field $name", async (field) => {
-    await ProfileFormRender();
-    await checkField(field);
-  });
+  it.each(filteredMemberFields)(
+    "should render member field $name",
+    async (field) => {
+      await ProfileFormRender();
+      await checkField(field);
+    }
+  );
+  it.each(filteredProfileFields)(
+    "should render profile field $name",
+    async (field) => {
+      await ProfileFormRender({ allowProfile: true });
+      await checkField(field);
+    }
+  );
 });

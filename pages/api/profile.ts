@@ -3,4 +3,11 @@ import handler from "lib/Profile/profileEndpoint";
 import { getToken } from "next-auth/jwt";
 
 // eslint-disable-next-line import/no-unused-modules
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+// eslint-disable-next-line import/no-unused-modules
 export default handler(previewClient, getToken);
