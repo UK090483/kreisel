@@ -1,20 +1,20 @@
-import Button from "./Button";
+// import Button from "./Button";
 import Spacer from "./Spacer";
-import ImageGallery from "./ImageGallery/index";
+// import ImageGallery from "./ImageGallery/index";
 
 import GSheet from "./GSheet/GSheet";
 import GSheetItem from "./GSheet/GSheetItem";
-import EmbedHTML from "./EmbedHTML";
-import Infobox from "./Infobox";
+// import EmbedHTML from "./EmbedHTML";
+// import Infobox from "./Infobox";
 // import ImagePlug from "./ImagePlug";
 
 const Plugs = [
   // ImagePlug,
-  ...Infobox,
-  Button,
+  // ...Infobox,
+  // Button,
   Spacer,
-  ...ImageGallery,
-  EmbedHTML,
+  // ...ImageGallery,
+  // EmbedHTML,
   GSheet,
   GSheetItem,
 ];

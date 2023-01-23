@@ -1,6 +1,6 @@
+import { AppColor } from "../../../../types";
 import { linkQuery, LinkResult } from "PageBuilder/Navigation/query";
 import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
-import { AppColor } from "../../../../types";
 
 export const imageGalleryPlugQuery = `
 _type == "imageGalleryPlug" => {
@@ -17,7 +17,7 @@ _type == "imageGalleryPlug" => {
 }
 `;
 
-export interface ImageGalleryPlugItem {
+interface ImageGalleryPlugItem {
   _type: "imageGalleryItem";
   title?: string;
   size?: "m" | "l";

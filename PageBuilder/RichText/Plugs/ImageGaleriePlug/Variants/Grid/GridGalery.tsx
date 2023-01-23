@@ -1,7 +1,7 @@
+import ImageGalleryItem from "./GridGalerieItem";
+import { ImageGalleryPlugResult } from "../../ImageGaleriePlug.query";
 import clsx from "clsx";
 import * as React from "react";
-import ImageGalleryItem from "./GridGalerieItem";
-import { ImageGalleryPlugResult } from "../../ImageGalerieQuery";
 
 const GridGalerie: React.FunctionComponent<ImageGalleryPlugResult> = (
   props

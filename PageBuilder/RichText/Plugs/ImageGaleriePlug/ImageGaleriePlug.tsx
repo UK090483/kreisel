@@ -1,8 +1,7 @@
-import React from "react";
-
-import { ImageGalleryPlugResult } from "./ImageGalerieQuery";
+import { ImageGalleryPlugResult } from "./ImageGaleriePlug.query";
 import GridGalerie from "./Variants/Grid/GridGalery";
 import CarouselGallery from "./Variants/Carousel/CarouselGalery";
+import React from "react";
 
 const ImageGalleryPlug: React.FC<{ node: ImageGalleryPlugResult }> = (
   props

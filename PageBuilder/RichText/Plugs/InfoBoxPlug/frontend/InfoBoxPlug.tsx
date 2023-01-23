@@ -1,35 +1,9 @@
+import { ImageGalleryPlugResult } from "../InfoBoxPlug.query";
+import Typo from "components/Typography/Typography";
+import RichText from "PageBuilder/RichText/RichText";
 import React from "react";
 
 import clsx from "clsx";
-
-import Typo from "components/Typography/Typography";
-import RichText from "PageBuilder/RichText/RichText";
-
-const infoBoxPlugItemQuery = `
-_key,rows,title,bgColor,
-`;
-export const infoBoxPlugQuery = `
-_type == "infoBox" => {
-  _type,
-  _key,
-  'items':items[]{${infoBoxPlugItemQuery}},
-}
-`;
-
-export interface ImageGalleryPlugItem {
-  _type: "imageGalleryItem";
-  title?: string;
-  rows?: [{ _key: string; content?: any[] | null }];
-  bgColor: "red" | "blue" | "yellow" | "green";
-  _key: string;
-}
-
-export interface ImageGalleryPlugResult {
-  _type: "imageGalleryPlug";
-  rows?: number;
-  name?: string;
-  items: ImageGalleryPlugItem[];
-}
 
 const InfoboxPlug: React.FC<{ node: ImageGalleryPlugResult }> = (props) => {
   const { items, rows } = props.node;
@@ -76,12 +50,3 @@ const InfoboxPlug: React.FC<{ node: ImageGalleryPlugResult }> = (props) => {
 };
 
 export default InfoboxPlug;
-const columnsToRows = (items: ImageGalleryPlugItem[]) => {
-  const rows = items.reduce((acc, item, index) => {
-    const rows =
-      item.rows?.map((i) => ({ content: i.content, itemKey: index })) || [];
-    return [...acc, ...rows];
-  }, [] as { content?: any; itemKey: number }[]);
-
-  return rows;
-};

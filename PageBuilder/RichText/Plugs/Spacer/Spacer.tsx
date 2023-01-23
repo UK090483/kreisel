@@ -1,19 +1,7 @@
+import { SpacerPlugResult } from "./spacer.query";
+import { PlugProps } from "../type";
 import React from "react";
-
 import clsx from "clsx";
-import { PlugProps } from "./type";
-
-export const spacerPlugQuery = `
-_type == "spacer" => {
-    _type,
-    space
-}
-`;
-export type SpacerPlugResult = {
-  _type: "spacer";
-  _key: string;
-  space: "s" | "m" | "l" | "xl" | "xxl";
-};
 
 const SpacerPlug: React.FC<PlugProps<SpacerPlugResult>> = (props) => {
   const space = props.node.space;

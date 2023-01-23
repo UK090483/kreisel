@@ -1,9 +1,8 @@
+import CarouselGalerieItem from "./CarouselGalerieItem";
+import { ImageGalleryPlugResult } from "../../ImageGaleriePlug.query";
 import Carousel from "components/Carousel/Carousel";
 
 import * as React from "react";
-
-import { ImageGalleryPlugResult } from "../../ImageGalerieQuery";
-import CarouselGalerieItem from "./CarouselGalerieItem";
 
 const CarouselGallery: React.FunctionComponent<ImageGalleryPlugResult> = (
   props

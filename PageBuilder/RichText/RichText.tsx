@@ -3,7 +3,7 @@ import Download from "./marks/Download/frontend/download";
 import { downloadQuery } from "./marks/Download/download.query";
 
 import ImageGalleryPlug from "./Plugs/ImageGaleriePlug/ImageGaleriePlug";
-import SpacerPlug, { spacerPlugQuery } from "./Plugs/Spacer";
+import SpacerPlug from "./Plugs/Spacer/Spacer";
 
 import GSheet, { GSheetPlugQuery } from "./Plugs/Gsheet";
 import ImagePlug from "./Plugs/ImagePlug/ImagePlug";
@@ -12,13 +12,15 @@ import EventPlug from "./Plugs/EventPlug/frontend/EventPlug";
 
 import EmbedHTML from "./Plugs/EmbedHTML/EmbedHTML";
 import HandUnderline from "./marks/handunderline";
-import InfoboxPlug, { infoBoxPlugQuery } from "./Plugs/InfoBoxPlug/InfoBoxPlug";
+import InfoboxPlug from "./Plugs/InfoBoxPlug/frontend/InfoBoxPlug";
 import { ImagePlugQuery } from "./Plugs/ImagePlug/imagePlugQuery";
 import { List, ListItem } from "./list/List";
 import Tooltip from "./marks/Tooltip/tooltip";
 import { toolTipQuery } from "./marks/Tooltip/tooltipQuery";
-import { imageGalleryPlugQuery } from "./Plugs/ImageGaleriePlug/ImageGalerieQuery";
+import { imageGalleryPlugQuery } from "./Plugs/ImageGaleriePlug/ImageGaleriePlug.query";
 import { EventPlugQuery } from "./Plugs/EventPlug/eventPlug.query";
+import { infoBoxPlugQuery } from "./Plugs/InfoBoxPlug/InfoBoxPlug.query";
+import { spacerPlugQuery } from "./Plugs/Spacer/spacer.query";
 import SanityRichText from "lib/SanityPageBuilder/lib/RichText";
 import Typo from "components/Typography/Typography";
 import React from "react";
