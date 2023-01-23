@@ -13,14 +13,14 @@ import Shop from "./Shop";
 import Testimonial from "./Testimonial";
 import Therapist from "./Therapist";
 import Seo from "./Seo";
-import Image from "./Image";
+// import Image from "./Image";
 import Settings from "./Settings";
 // import Reusable from "./Reusable";
 import pbSchema from "../../PageBuilder/schema";
 
 const schema = [
   ...Settings,
-  ...Image,
+  // ...Image,
   ...Seo,
   ...Shop,
   ...Page,

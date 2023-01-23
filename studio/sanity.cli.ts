@@ -1,6 +1,7 @@
-import path from "path";
 import { defineCliConfig } from "sanity/cli";
+import path from "path";
 
+// eslint-disable-next-line import/no-unused-modules
 export default defineCliConfig({
   api: {
     projectId: "jgnu3d9f",

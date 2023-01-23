@@ -1,0 +1,36 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "DEV",
+      "type": "process",
+      "command": "",
+      "dependsOn": ["NEXT", "SANITY", "SANITY_TEST"]
+    },
+    {
+      "label": "NEXT",
+
+      "type": "shell",
+      "icon": { "color": "terminal.ansiBlue", "id": "eye-watch" },
+      "isBackground": true,
+      "command": "npm run dev"
+    },
+    {
+      "label": "SANITY",
+      "type": "shell",
+      "command": "cd studio && npm run dev",
+      "isBackground": true
+    },
+    {
+      "label": "SANITY_TEST",
+      "type": "shell",
+      "command": "cd studio && npm run test",
+      "isBackground": true
+    },
+    {
+      "label": "SANITY_DEPLOY",
+      "type": "shell",
+      "command": "cd studio && npm run deploy"
+    }
+  ]
+}

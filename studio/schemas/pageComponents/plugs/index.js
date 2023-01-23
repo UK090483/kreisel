@@ -6,10 +6,10 @@ import GSheet from "./GSheet/GSheet";
 import GSheetItem from "./GSheet/GSheetItem";
 import EmbedHTML from "./EmbedHTML";
 import Infobox from "./Infobox";
-import ImagePlug from "./ImagePlug";
+// import ImagePlug from "./ImagePlug";
 
 const Plugs = [
-  ImagePlug,
+  // ImagePlug,
   ...Infobox,
   Button,
   Spacer,

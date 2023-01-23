@@ -8,7 +8,14 @@ export default {
   fields: [
     { name: "title", title: "title", type: "text" },
 
-    { name: "image", title: "Image", type: "defaultImage" },
+    {
+      name: "image",
+      title: "Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+    },
 
     { name: "contain", title: "Überlagern", type: "boolean" },
 
