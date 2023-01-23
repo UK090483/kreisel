@@ -1,6 +1,5 @@
-import { definePreview } from "@sanity/preview-kit";
-
 import { AppContextProviderProps, AppContext } from "./AppContext";
+import { definePreview } from "@sanity/preview-kit";
 
 import { config } from "services/SanityService/config";
 
