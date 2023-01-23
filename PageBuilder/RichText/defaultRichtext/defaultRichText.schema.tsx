@@ -90,5 +90,6 @@ export const defaultRichTextSchema = {
     { type: "embedHTML" },
     { type: "gSheet" },
     { type: "infoBox" },
+    { type: "eventPlug" },
   ],
 };

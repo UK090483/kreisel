@@ -4,12 +4,7 @@ const localUrl = `http://localhost:3000`;
 
 const previewSecret = import.meta.env.SANITY_STUDIO_PREVIEW_SECRET;
 
-export const resolveProductionUrl: DocumentPluginOptions["productionUrl"] =
-  async (prev, context) => {
-    return _resolveProductionUrl(context.document) || prev;
-  };
-
-const _resolveProductionUrl = (document: SanityDocumentLike) => {
+export const resolveProductionUrlDocument = (document: SanityDocumentLike) => {
   if (!["page"].includes(document?._type)) return;
   const baseUrl =
     window.location.hostname === "localhost" ? localUrl : remoteUrl;
@@ -22,3 +17,8 @@ const _resolveProductionUrl = (document: SanityDocumentLike) => {
   previewUrl.searchParams.append(`id`, docId);
   return previewUrl.toString();
 };
+
+export const resolveProductionUrl: DocumentPluginOptions["productionUrl"] =
+  async (prev, context) => {
+    return resolveProductionUrlDocument(context.document) || prev;
+  };

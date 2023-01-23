@@ -1,4 +1,4 @@
-import { resolveProductionUrl } from "./resolveProductionUrl";
+import { resolveProductionUrlDocument } from "./resolveProductionUrl";
 import { MdSettings } from "react-icons/md";
 import { StructureResolver } from "sanity/desk";
 import Iframe, { IframeOptions } from "sanity-plugin-iframe-pane";
@@ -6,7 +6,7 @@ import Iframe, { IframeOptions } from "sanity-plugin-iframe-pane";
 const isLocal = window.location.hostname === "localhost";
 
 const iframeOptions: IframeOptions = {
-  url: (doc) => resolveProductionUrl(doc),
+  url: (doc) => resolveProductionUrlDocument(doc),
   defaultSize: "mobile",
   reload: {
     revision: false,

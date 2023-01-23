@@ -25,29 +25,34 @@ const run = (context: Partial<DocumentActionsContext>) => {
   return res.map((i) => i.action);
 };
 
+const createOrDeleteActions = ["unpublish", "duplicate", "delete"];
+
 describe("resolve Actions", () => {
   it.each(actions)("should return %s action", (action) => {
     expect(run({ schemaType: "any", documentId: "any" })).toContain(action);
   });
-  it('should disallow "unpublish", "duplicate", "duplicate" for config siteConfig', () => {
-    expect(run({ schemaType: "siteConfig" })).not.toContain("unpublish");
-    expect(run({ schemaType: "siteConfig" })).not.toContain("duplicate");
-    expect(run({ schemaType: "siteConfig" })).not.toContain("duplicate");
-  });
-  it('should disallow "unpublish", "duplicate", "duplicate" for mitglieder PageType', () => {
-    expect(run({ documentId: mitgliederPageTypeId })).not.toContain(
-      "unpublish"
-    );
-    expect(run({ documentId: mitgliederPageTypeId })).not.toContain(
-      "duplicate"
-    );
-    expect(run({ documentId: mitgliederPageTypeId })).not.toContain(
-      "duplicate"
-    );
-  });
-  it('should disallow "unpublish", "duplicate", "duplicate" for mitglieder Page', () => {
-    expect(run({ documentId: mitgliederPageId })).not.toContain("unpublish");
-    expect(run({ documentId: mitgliederPageId })).not.toContain("duplicate");
-    expect(run({ documentId: mitgliederPageId })).not.toContain("duplicate");
-  });
+  it.each(createOrDeleteActions)(
+    "should disallow %s for config siteConfig",
+    () => {
+      expect(run({ schemaType: "siteConfig" })).not.toContain("unpublish");
+    }
+  );
+  it.each(createOrDeleteActions)(
+    "should disallow %s for mitglieder PageType",
+    (action) => {
+      expect(run({ documentId: mitgliederPageTypeId })).not.toContain(action);
+    }
+  );
+  it.each(createOrDeleteActions)(
+    "should disallow %s for mitglieder PageType",
+    (action) => {
+      expect(run({ documentId: mitgliederPageTypeId })).not.toContain(action);
+    }
+  );
+  it.each(createOrDeleteActions)(
+    "should disallow %s for mitglieder Page",
+    (action) => {
+      expect(run({ documentId: mitgliederPageId })).not.toContain(action);
+    }
+  );
 });

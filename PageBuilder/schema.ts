@@ -9,7 +9,10 @@ import {
   trustBlockSchema,
   trustBlockItem,
 } from "./Blocks/trustBlock/trustBlock.schema";
+import defaultImageSchema from "./Image/defaultImage.schema";
 import { defaultRichTextSchema } from "./RichText/defaultRichtext/defaultRichText.schema";
+import eventPlugSchema from "./RichText/Plugs/EventPlug/eventPlug.schema";
+import ImagePlugSchema from "./RichText/Plugs/ImagePlug/ImagePlug.schema";
 
 const schema = [
   heroSchema,
@@ -21,6 +24,10 @@ const schema = [
   SectionSchema,
 
   defaultRichTextSchema,
+  defaultImageSchema,
+
+  ImagePlugSchema,
+  eventPlugSchema,
 ];
 
 export default schema;
