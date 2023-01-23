@@ -8,7 +8,8 @@ import SpacerPlug, { spacerPlugQuery } from "./Plugs/Spacer";
 import GSheet, { GSheetPlugQuery } from "./Plugs/Gsheet";
 import ImagePlug from "./Plugs/ImagePlug/ImagePlug";
 
-import EventPlug, { EventPlugQuery } from "./Plugs/EventPlug/EventPlug";
+import EventPlug from "./Plugs/EventPlug/frontend/EventPlug";
+
 import EmbedHTML from "./Plugs/EmbedHTML/EmbedHTML";
 import HandUnderline from "./marks/handunderline";
 import InfoboxPlug, { infoBoxPlugQuery } from "./Plugs/InfoBoxPlug/InfoBoxPlug";
@@ -17,6 +18,7 @@ import { List, ListItem } from "./list/List";
 import Tooltip from "./marks/Tooltip/tooltip";
 import { toolTipQuery } from "./marks/Tooltip/tooltipQuery";
 import { imageGalleryPlugQuery } from "./Plugs/ImageGaleriePlug/ImageGalerieQuery";
+import { EventPlugQuery } from "./Plugs/EventPlug/eventPlug.query";
 import SanityRichText from "lib/SanityPageBuilder/lib/RichText";
 import Typo from "components/Typography/Typography";
 import React from "react";

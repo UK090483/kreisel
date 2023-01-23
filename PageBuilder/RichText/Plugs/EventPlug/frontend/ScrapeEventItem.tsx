@@ -11,7 +11,7 @@ export const ScrapeEventItem: React.FC<ScrapeEvent> = (item) => {
 
   return (
     <EventWrap
-      className="bg-grey-light rounded-theme  justify-between p-2 items-center  transition-shadow hover:shadow-md grid md:grid-cols-[minmax(120px,auto)_1fr_100px] "
+      className="bg-grey-light rounded-theme  justify-between p-2 items-center  transition-shadow hover:shadow-md grid gap-4 md:grid-cols-[minmax(120px,auto)_1fr_100px] "
       bookingStatus={item?.bookingStatus}
       href={url + item.link}
     >

@@ -13,20 +13,19 @@ const EventHead: React.FunctionComponent<IEventHeadProps> = (props) => {
   const { bookingStatus, location, date } = props;
   return (
     <div className="flex justify-between">
-      <div className="flex  justify-center items-center mb-2">
-        <Kreisel
-          className={clsx("h-6 w-6 rounded-full  mr-2 ", {
-            "text-green-400  ": bookingStatus === "open",
-            "text-red ": bookingStatus === "full",
-            "text-yellow-400 ": bookingStatus === "medium",
-          })}
-        />
+      {/* <Kreisel
+        className={clsx("h-6 w-6 rounded-full  mr-2 ", {
+          "text-green-400  ": bookingStatus === "open",
+          "text-red ": bookingStatus === "full",
+          "text-yellow-400 ": bookingStatus === "medium",
+        })}
+      />
 
-        <Typo variant="body-s" space={false}>
-          {location}
-        </Typo>
-      </div>
-      <Typo variant="body-s">{date}</Typo>
+      <Typo variant="body-s" space={false}>
+        {location}
+      </Typo>
+
+      <Typo variant="body-s">{date}</Typo> */}
     </div>
   );
 };

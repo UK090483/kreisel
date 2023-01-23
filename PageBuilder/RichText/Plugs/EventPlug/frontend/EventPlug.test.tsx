@@ -1,6 +1,6 @@
-import { mockClient } from "lib/SanityPageBuilder/lib/MockClient";
 import EventPlug, { EventPlugQuery, IEventItem } from "./EventPlug";
-import { render, screen } from "@testing-library/react";
+import { mockClient } from "lib/SanityPageBuilder/lib/MockClient";
+import { render } from "@testing-library/react";
 
 const itemsEmpty: IEventItem[] = [{ eventItems: [] }];
 
