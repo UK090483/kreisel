@@ -127,6 +127,12 @@ export const pageTypeSchema = defineType({
       title: "Slug",
       type: "slug",
     },
+    {
+      name: "contacts",
+      title: "Contacts",
+      type: "reference",
+      to: [{ type: "contactItem" }],
+    },
   ],
 
   preview: {

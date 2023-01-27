@@ -11,7 +11,7 @@ export const footerQuery = `
 'footer': {
   ...*[_id == 'siteConfig'][0]{
     'footerImage':footerImage{${imageMeta}},
-    'contact':coalesce(^.contacts,contacts[0])->{
+    'contact':coalesce(^.contacts,^.pageType->contacts,contacts[0])->{
       content,
       'persons':persons[]->{_id,name,position,description,'avatar':avatar{${imageMeta}}}
   }
