@@ -1,5 +1,5 @@
 // import Button from "./Button";
-import Spacer from "./Spacer";
+// import Spacer from "./Spacer";
 // import ImageGallery from "./ImageGallery/index";
 
 import GSheet from "./GSheet/GSheet";
@@ -12,7 +12,7 @@ const Plugs = [
   // ImagePlug,
   // ...Infobox,
   // Button,
-  Spacer,
+  // Spacer,
   // ...ImageGallery,
   // EmbedHTML,
   GSheet,

@@ -1,8 +1,5 @@
-import { useSection } from "components/Section/SectionContext";
-import Typo from "components/Typography/Typography";
-import * as React from "react";
-
 import PersonListItem from "./PersonListItem";
+import * as React from "react";
 
 interface IPersonListProps {
   items?: any[] | null;

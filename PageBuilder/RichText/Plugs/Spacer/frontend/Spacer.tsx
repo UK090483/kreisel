@@ -1,5 +1,5 @@
-import { SpacerPlugResult } from "./spacer.query";
-import { PlugProps } from "../type";
+import { SpacerPlugResult } from "../spacer.query";
+import { PlugProps } from "../../type";
 import React from "react";
 import clsx from "clsx";
 

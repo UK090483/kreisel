@@ -5,12 +5,12 @@ import objects from "./objects";
 import plugs from "./pageComponents/plugs";
 import pageComponents from "./pageComponents";
 
-import Persons from "./Persons";
+// import Persons from "./Persons";
 import Navigation from "./Navigation";
-import Page from "./Page";
+// import Page from "./Page";
 import Shop from "./Shop";
 
-import Testimonial from "./Testimonial";
+// import Testimonial from "./Testimonial";
 import Therapist from "./Therapist";
 import Seo from "./Seo";
 // import Image from "./Image";
@@ -23,10 +23,10 @@ const schema = [
   // ...Image,
   ...Seo,
   ...Shop,
-  ...Page,
-  ...Persons,
+  // ...Page,
+  // ...Persons,
   // ...Reusable,
-  ...Testimonial,
+  // ...Testimonial,
   ...Therapist,
   ...Navigation,
   ...objects,

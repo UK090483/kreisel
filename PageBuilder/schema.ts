@@ -9,6 +9,9 @@ import {
   trustBlockSchema,
   trustBlockItem,
 } from "./Blocks/trustBlock/trustBlock.schema";
+import { PageSchema, pageTypeSchema } from "./ContentTypes/Page/page.schema";
+import personSchema from "./ContentTypes/Person/person.schema";
+import testimonialSchema from "./ContentTypes/Testimonials/testimonial.schema";
 import defaultImageSchema from "./Image/defaultImage.schema";
 import { defaultRichTextSchema } from "./RichText/defaultRichtext/defaultRichText.schema";
 import embedHTMLSchema from "./RichText/Plugs/EmbedHTML/embedHTML.schema";
@@ -23,8 +26,15 @@ import {
   infoblockPlug,
   infoblockPlugItem,
 } from "./RichText/Plugs/InfoBoxPlug/InfoBoxPlug.schema";
+import spacerSchema from "./RichText/Plugs/Spacer/spacer.schema";
 
 const schema = [
+  // ContentTypes
+  PageSchema,
+  pageTypeSchema,
+  testimonialSchema,
+  personSchema,
+  // RichText
   defaultRichTextSchema,
   defaultImageSchema,
   // Blocks
@@ -43,6 +53,7 @@ const schema = [
   embedHTMLSchema,
   infoblockPlug,
   infoblockPlugItem,
+  spacerSchema,
 ];
 
 export default schema;

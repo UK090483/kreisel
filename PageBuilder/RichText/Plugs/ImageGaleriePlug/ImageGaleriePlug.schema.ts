@@ -78,7 +78,7 @@ export const imageGalleryPlugItemSchema = defineType({
     {
       name: "image",
       title: "Image",
-      type: "image",
+      type: "defaultImage",
       options: {
         hotspot: true,
       },

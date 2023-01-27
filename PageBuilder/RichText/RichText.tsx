@@ -3,7 +3,7 @@ import Download from "./marks/Download/frontend/download";
 import { downloadQuery } from "./marks/Download/download.query";
 
 import ImageGalleryPlug from "./Plugs/ImageGaleriePlug/ImageGaleriePlug";
-import SpacerPlug from "./Plugs/Spacer/Spacer";
+import SpacerPlug from "./Plugs/Spacer/frontend/Spacer";
 
 import GSheet, { GSheetPlugQuery } from "./Plugs/Gsheet";
 import ImagePlug from "./Plugs/ImagePlug/ImagePlug";

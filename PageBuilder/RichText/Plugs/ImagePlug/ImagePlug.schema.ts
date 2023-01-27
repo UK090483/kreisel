@@ -1,5 +1,3 @@
-import ImageComponent from "../../../Image/ImageComponent";
-
 const imagePlugSchema = {
   title: "Image",
   name: "imagePlug",
@@ -10,7 +8,6 @@ const imagePlugSchema = {
       type: "defaultImage",
       name: "image",
       title: "image",
-      components: { input: ImageComponent },
     },
     {
       name: "customString",
