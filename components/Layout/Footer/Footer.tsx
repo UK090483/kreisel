@@ -4,6 +4,7 @@ import { Section } from "components/Section/Section";
 import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
 import React from "react";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
+import { headerRichTextQuery } from "PageBuilder/RichText/RichText";
 
 interface FooterProps {}
 
@@ -12,7 +13,7 @@ export const footerQuery = `
   ...*[_id == 'siteConfig'][0]{
     'footerImage':footerImage{${imageMeta}},
     'contact':coalesce(^.contacts,^.pageType->contacts,contacts[0])->{
-      content,
+      'content':${headerRichTextQuery},
       'persons':persons[]->{_id,name,position,description,'avatar':avatar{${imageMeta}}}
   }
   }
