@@ -75,10 +75,15 @@ export const PageSchema = defineType({
       description: "if empty, default will be used",
       type: "string",
       group: "base",
-
       options: {
         list: [{ title: "Glossary", value: "glossary" }],
       },
+    },
+
+    {
+      name: "tags",
+      title: "Tags",
+      type: "tags",
     },
 
     { ...defaultBockContent, group: "content" },

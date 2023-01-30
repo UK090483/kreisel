@@ -35,6 +35,7 @@ const structure: StructureResolver = (S, context) =>
                     S.listItem()
                       .title("Page Types")
                       .child(S.documentTypeList("pageType")),
+                    S.listItem().title("Tags").child(S.documentTypeList("tag")),
                   ]
                 : []),
             ])

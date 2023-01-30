@@ -11,6 +11,7 @@ import {
 } from "./Blocks/trustBlock/trustBlock.schema";
 import { PageSchema, pageTypeSchema } from "./ContentTypes/Page/page.schema";
 import personSchema from "./ContentTypes/Person/person.schema";
+import { tagSchema, tagsSchema } from "./ContentTypes/Tags/Tag.schema";
 import testimonialSchema from "./ContentTypes/Testimonials/testimonial.schema";
 import defaultImageSchema from "./Image/defaultImage.schema";
 import { defaultRichTextSchema } from "./RichText/defaultRichtext/defaultRichText.schema";
@@ -29,6 +30,10 @@ import {
 import spacerSchema from "./RichText/Plugs/Spacer/spacer.schema";
 
 const schema = [
+  // objects
+
+  tagSchema,
+  tagsSchema,
   // ContentTypes
   PageSchema,
   pageTypeSchema,
