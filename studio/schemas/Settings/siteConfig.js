@@ -31,6 +31,25 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "redirects",
+      type: "array",
+      title: "Redirects",
+      options: {
+        editModal: "popover",
+      },
+      of: [
+        {
+          type: "object",
+          name: "redirect",
+          fields: [
+            { name: "from", type: "string", title: "From" },
+            { name: "to", type: "string", title: "To" },
+            { name: "permanent", type: "boolean", title: "Permanent" },
+          ],
+        },
+      ],
+    },
+    {
       name: "footerImage",
       type: "defaultImage",
     },

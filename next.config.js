@@ -1,6 +1,33 @@
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const sanityClient = require("@sanity/client");
+
+const client = sanityClient({
+  dataset: process.env.SANITY_PROJECT_DATASET,
+  projectId: process.env.SANITY_PROJECT_ID,
+  useCdn: process.env.NODE_ENV === "production",
+  apiVersion: "2022-08-30",
+});
+
+async function fetchSanityRedirects() {
+  const redirectData = await client.fetch(`
+    *[_id == 'siteConfig'][0].redirects[]{
+      "source":  from,
+      "destination":  to,
+      "permanent": permanent == true
+    }
+  `);
+
+  console.log("redirectData", redirectData);
+
+  return redirectData;
+}
+
 /** @type {import('next').NextConfig} */
 const moduleExports = {
+  // async rewrites() {
+  //   const sanityRedirects = await fetchSanityRedirects();
+  //   return sanityRedirects;
+  // },
   reactStrictMode: true,
   images: {
     domains: ["picsum.photos", "cdn.sanity.io"],
@@ -13,13 +40,16 @@ const moduleExports = {
     SANITY_PROJECT_DATASET: process.env.SANITY_PROJECT_DATASET,
   },
   async redirects() {
-    return [
-      {
-        source: "/home",
-        destination: "/",
-        permanent: true,
-      },
-    ];
+    const sanityRedirects = await fetchSanityRedirects();
+
+    return sanityRedirects;
+    // return [
+    //   {
+    //     source: "/home",
+    //     destination: "/",
+    //     permanent: true,
+    //   },
+    // ];
   },
   webpack(config, options) {
     const { dev, isServer } = options;
