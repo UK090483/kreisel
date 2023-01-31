@@ -1,12 +1,15 @@
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const sanityClient = require("@sanity/client");
 
-const client = sanityClient({
-  dataset: process.env.SANITY_PROJECT_DATASET,
-  projectId: process.env.SANITY_PROJECT_ID,
-  useCdn: process.env.NODE_ENV === "production",
-  apiVersion: "2022-08-30",
-});
+const client =
+  process.env.NODE_ENV === "test"
+    ? () => ({ fetch: () => ({}) })
+    : sanityClient({
+        dataset: process.env.SANITY_PROJECT_DATASET,
+        projectId: process.env.SANITY_PROJECT_ID,
+        useCdn: process.env.NODE_ENV === "production",
+        apiVersion: "2022-08-30",
+      });
 
 async function fetchSanityRedirects() {
   const redirectData = await client.fetch(`
@@ -16,9 +19,6 @@ async function fetchSanityRedirects() {
       "permanent": permanent == true
     }
   `);
-
-  console.log("redirectData", redirectData);
-
   return redirectData;
 }
 

@@ -5,6 +5,7 @@ export const membershipOptions = [
   { title: "KREISELnetzwerk", value: "KREISELnetzwerk" },
   { title: "FIL", value: "FIL" },
   { title: "BVL", value: "BVL" },
+  { title: "BLT", value: "BLT" },
   { title: "LegaKids", value: "LegaKids" },
 ];
 

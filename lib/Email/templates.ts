@@ -10,9 +10,7 @@ const color = {
   buttonText: "#F9DE83",
 };
 
-const Header = `Dein Profil wurde erfolgreich erstellt!`;
-
-const HeaderSection = ({ text }: { text: string }) => {
+export const HeaderSection = ({ text }: { text: string }) => {
   return `
   <tr>
   <td align="center"
@@ -23,7 +21,7 @@ const HeaderSection = ({ text }: { text: string }) => {
 `;
 };
 
-const ButtonSection = ({ text, url }: { text: string; url: string }) => {
+export const ButtonSection = ({ text, url }: { text: string; url: string }) => {
   return `
   <tr>
         <td align="center" style="padding: 20px 0;">
@@ -40,14 +38,14 @@ const ButtonSection = ({ text, url }: { text: string; url: string }) => {
 };
 
 export function html(params: {
-  url: string;
-  host: string;
-  theme: Theme;
+  url?: string;
+  host?: string;
+  theme?: Theme;
   content?: string[];
 }) {
-  const { url, host, theme } = params;
+  const { url, host, theme, content } = params;
 
-  const escapedHost = host.replace(/\./g, "&#8203;.");
+  const escapedHost = host ? host.replace(/\./g, "&#8203;.") : "";
 
   return `
   <body style="background: ${color.background};">
@@ -55,26 +53,10 @@ export function html(params: {
       style="background: ${
         color.mainBackground
       }; max-width: 600px; margin: auto; border-radius: 10px;">
-    ${HeaderSection({ text: Header })}
-    ${ButtonSection({ text: Header, url: "kkk" })}
-      <tr>
-        <td align="center" style="padding: 20px 0;">
-          <table border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td align="center" style="border-radius: 5px;" bgcolor="${
-                color.buttonBackground
-              }"><a href="${url}"
-                  target="_blank"
-                  style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${
-                    color.text
-                  }; text-decoration: none; border-radius: 5px; padding: 10px 20px; border: 1px solid ${
-    color.buttonBorder
-  }; display: inline-block; font-weight: bold;">Sign
-                  in</a></td>
-            </tr>
-          </table>
-        </td>
-      </tr>
+
+     ${content ? content.join(" ") : ""} 
+   
+   
       <tr>
         <td align="center"
           style="padding: 0px 0px 10px 0px; font-size: 16px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: ${

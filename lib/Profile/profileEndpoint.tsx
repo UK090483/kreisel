@@ -1,5 +1,3 @@
-// import { profileQueryResult } from "./profileQuery";
-// import { schema } from "./validation";
 import { schema } from "./validation";
 import { SanityClient, SanityImageAssetDocument } from "@sanity/client";
 import { getToken } from "next-auth/jwt";
@@ -28,6 +26,24 @@ const getHandler = (client: SanityClient, getTokenFn: typeof getToken) => {
     if (!data) {
       return res.status(400).send("no data to process");
     }
+    if (!image && !data) {
+      return res.status(400).send("no data to process");
+    }
+
+    const member = await client.fetch<
+      | {
+          _id: string;
+          allowProfile?: boolean;
+        }[]
+      | null
+    >(
+      `*[_type == 'member' && email.current == '${token?.email}' ][]{_id,allowProfile}`
+    );
+
+    if (!member) {
+      return res.status(401).send("unauthorized");
+    }
+
     if (image) {
       imageDocument = await uploadImageBlob(image, client);
     }
@@ -91,6 +107,8 @@ const parseFormdata = async (req: NextApiRequest) => {
   return new Promise<{ data: null | {}; image: Buffer | null }>(
     (resolve, reject) => {
       form.parse(req, (err, fields, files) => {
+        console.log(err);
+
         if (err) reject(err);
 
         let image: Buffer | null = null;
