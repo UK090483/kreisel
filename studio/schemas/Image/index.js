@@ -1,3 +1,5 @@
-import defaultImage from "./defaultImage";
+// import defaultImage from "./defaultImage";
 
-export default [defaultImage];
+// export default [defaultImage];
+
+export {};

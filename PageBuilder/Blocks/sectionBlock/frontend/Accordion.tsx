@@ -1,7 +1,6 @@
 import { SectionProps } from "components/Section/Section";
 import useSectionWidth from "components/Section/useSectionWidth";
 import Svg from "components/Svg";
-import useQueryState from "hooks/useQueryState";
 import { useScrollTo } from "hooks/useScrollTo";
 import React, { FC, useEffect, useRef, useState } from "react";
 
@@ -20,32 +19,22 @@ const Accordion: FC<AccordionProps> = ({
   title,
   width,
 }) => {
-  const { SetValue, value } = useQueryState("accordion");
-  const _key = React.useMemo(() => fixedEncodeURIComponent(title), [title]);
-  // const open = value === _key;
   const [containerHeight, setContainerHeight] = useState(initialHeight);
   const ref = useRef<HTMLDivElement>(null);
   const widthClasses = useSectionWidth({ width, noPadding: false });
   const scrollTo = useScrollTo(500);
-  const lastRef = useRef<Element | null>(null);
 
   const [open, setOpen] = useState(false);
   const handleClick = () => {
-    lastRef.current = findOpenContainer().container;
-    // SetValue(open ? null : _key);
-
     setOpen((i) => !i);
   };
 
   useEffect(() => {
     if (!open) return;
     if (!ref.current) return;
-
     const rect = ref.current.getBoundingClientRect();
     const { height, top } = rect;
-
     setContainerHeight(height);
-
     scrollTo(scrollY + (top - 200));
   }, [open, scrollTo, ref]);
 
@@ -86,28 +75,3 @@ const Accordion: FC<AccordionProps> = ({
 };
 
 export default Accordion;
-
-function fixedEncodeURIComponent(str?: string) {
-  if (!str) return makeId(6);
-  const slug_fyd = str.toLowerCase().replace(/\s+/g, "-");
-  return encodeURIComponent(slug_fyd).replace(/[!'()*]/g, function (c) {
-    return "%" + c.charCodeAt(0).toString(16);
-  });
-}
-
-function makeId(length: number) {
-  var result = "";
-  var characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  var charactersLength = characters.length;
-  for (var i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
-
-const findOpenContainer = () => {
-  const container = document.querySelector("[data-container-open=true]");
-  const rect = container ? container.getBoundingClientRect() : null;
-  return { container, top: rect?.top, height: rect?.height };
-};

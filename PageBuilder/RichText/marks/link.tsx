@@ -1,5 +1,5 @@
 import { Link } from "components/Link";
-import { LinkResult, linkQuery } from "PageBuilder/Navigation/query";
+import { LinkResult, linkQuery } from "PageBuilder/Navigation/navigation.query";
 import Button from "components/Button/Button";
 import React from "react";
 

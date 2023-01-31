@@ -1,5 +1,5 @@
 import { AppColor } from "../../../../types";
-import { linkQuery, LinkResult } from "PageBuilder/Navigation/query";
+import { linkQuery, LinkResult } from "PageBuilder/Navigation/navigation.query";
 import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
 
 export const imageGalleryPlugQuery = `

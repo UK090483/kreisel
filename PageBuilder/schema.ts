@@ -28,8 +28,15 @@ import {
   infoblockPlugItem,
 } from "./RichText/Plugs/InfoBoxPlug/InfoBoxPlug.schema";
 import spacerSchema from "./RichText/Plugs/Spacer/spacer.schema";
+import siteConfigSchema, {
+  contactItemSchema,
+} from "./Settings/SiteConfig.schema";
 
 const schema = [
+  // Config
+
+  siteConfigSchema,
+  contactItemSchema,
   // objects
 
   tagSchema,

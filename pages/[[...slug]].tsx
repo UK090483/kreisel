@@ -7,7 +7,7 @@ import HeroBlock from "PageBuilder/Blocks/hero/frontend/HeroBlock";
 import SectionBlock from "PageBuilder/Blocks/sectionBlock/frontend/SectionBlock";
 import { SectionBlockResult } from "PageBuilder/Blocks/sectionBlock/SectionBlockQuery";
 
-import { NavigationResult } from "PageBuilder/Navigation/query";
+import { NavigationResult } from "PageBuilder/Navigation/navigation.query";
 
 import { FooterQueryResult } from "components/Layout/Footer/Footer";
 import { ListingBlockProps } from "PageBuilder/Blocks/listingBlock/listingBlock.query";

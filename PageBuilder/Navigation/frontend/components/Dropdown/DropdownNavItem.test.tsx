@@ -1,7 +1,6 @@
-import { NavigationContextProvider } from "PageBuilder/Navigation/NavigationContext";
-import { fireEvent, render, screen } from "@testing-library/react";
-
 import DropdownNavItem from "./DropdownNavItem";
+import { NavigationContextProvider } from "PageBuilder/Navigation/frontend/NavigationContext";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 const customRender = (items?: boolean) => {
   render(

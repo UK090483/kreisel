@@ -5,7 +5,7 @@ import {
 import {
   NavigationQuery,
   NavigationResult,
-} from "PageBuilder/Navigation/query";
+} from "PageBuilder/Navigation/navigation.query";
 import appQuery, { appQueryResult } from "PageBuilder/AppContext/appQuery";
 import {
   heroBlockQuery,

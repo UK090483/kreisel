@@ -1,5 +1,5 @@
 import { ConditionalLink } from "components/Link";
-import { LinkResult } from "PageBuilder/Navigation/query";
+import { LinkResult } from "PageBuilder/Navigation/navigation.query";
 import React from "react";
 
 const CardWrap: React.FC<{

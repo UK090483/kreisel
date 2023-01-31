@@ -38,6 +38,7 @@ const oldJest = {
     "<rootDir>/.next/",
     "<rootDir>/studio/",
     "testPrepare.ts",
+    "<rootDir>/next.config.js",
   ],
   testEnvironment: "jest-environment-jsdom",
   modulePathIgnorePatterns: ["cypress"],

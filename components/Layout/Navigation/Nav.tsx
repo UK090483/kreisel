@@ -1,19 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
-import {
-  HeaderNavigation,
-  NavItemBaseProps,
-  NavigationItemBase,
-} from "../../../PageBuilder/Navigation";
+
 import ContactButton from "../Header/ContactButton";
 import Svg from "components/Svg";
 import { Link } from "components/Link";
 import useMenu from "@services/StoreService/hooks/useMenu";
 import { Logo } from "components/Layout/Logo";
 import Underline from "components/Underline/Underline";
-import NavigationMobile from "PageBuilder/Navigation/NavigationMobile";
-import { NavItem } from "PageBuilder/Navigation/types";
-import React from "react";
+import {
+  HeaderNavigation,
+  NavItemBaseProps,
+  NavigationItemBase,
+} from "PageBuilder/Navigation/frontend";
+import NavigationMobile from "PageBuilder/Navigation/frontend/NavigationMobile";
+import { NavItem } from "PageBuilder/Navigation/frontend/types";
 import clsx from "clsx";
+import React from "react";
 
 interface NavProps {
   items: NavItem[];

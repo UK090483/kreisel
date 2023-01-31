@@ -4,7 +4,7 @@ import {
   PersonItemResult,
 } from "./frontend/Listings/Persons/PersonListQuery";
 
-import { linkQuery, LinkResult } from "PageBuilder/Navigation/query";
+import { linkQuery, LinkResult } from "PageBuilder/Navigation/navigation.query";
 import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
 import { AppLocales, AppColor } from "types";
 import {

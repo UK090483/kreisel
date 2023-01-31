@@ -1,7 +1,7 @@
 // import schemaTypes from "all:part:@sanity/base/schema-type";
 // import createSchema from "part:@sanity/base/schema-creator";
 
-import objects from "./objects";
+// import objects from "./objects";
 import plugs from "./pageComponents/plugs";
 import pageComponents from "./pageComponents";
 
@@ -14,12 +14,12 @@ import Shop from "./Shop";
 import Therapist from "./Therapist";
 import Seo from "./Seo";
 // import Image from "./Image";
-import Settings from "./Settings";
+//import Settings from "./Settings";
 // import Reusable from "./Reusable";
 import pbSchema from "../../PageBuilder/schema";
 
 const schema = [
-  ...Settings,
+  // ...Settings,
   // ...Image,
   ...Seo,
   ...Shop,
@@ -29,7 +29,7 @@ const schema = [
   // ...Testimonial,
   ...Therapist,
   ...Navigation,
-  ...objects,
+  //...objects,
   ...pageComponents,
   ...plugs,
   ...pbSchema,

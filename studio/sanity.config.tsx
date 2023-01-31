@@ -13,6 +13,7 @@ import { theme } from "https://themer.sanity.build/api/hues?primary=f9de83";
 
 import { media } from "sanity-plugin-media";
 import { visionTool } from "@sanity/vision";
+import { vercelDeployTool } from "sanity-plugin-vercel-deploy";
 
 // eslint-disable-next-line import/no-unused-modules
 export default defineConfig({
@@ -34,6 +35,7 @@ export default defineConfig({
         }),
       ],
     }),
+    vercelDeployTool(),
   ],
   schema: {
     types: [...schema],

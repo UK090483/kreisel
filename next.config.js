@@ -41,15 +41,7 @@ const moduleExports = {
   },
   async redirects() {
     const sanityRedirects = await fetchSanityRedirects();
-
     return sanityRedirects;
-    // return [
-    //   {
-    //     source: "/home",
-    //     destination: "/",
-    //     permanent: true,
-    //   },
-    // ];
   },
   webpack(config, options) {
     const { dev, isServer } = options;
