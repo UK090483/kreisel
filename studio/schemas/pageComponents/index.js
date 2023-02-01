@@ -3,7 +3,7 @@
 // import defaultRichText from "./RichText/defaultRichText";
 // import hero from "./hero";
 
-import headerRichText from "./RichText/headerRichText";
+//import headerRichText from "./RichText/headerRichText";
 import easyRichText from "./RichText/easyRichText";
 // import trust from "./trust";
 // import trustItem from "./trustItem";
@@ -17,7 +17,7 @@ const PageComponents = [
   // Section,
   // listing,
   // defaultRichText,
-  headerRichText,
+  // headerRichText,
   easyRichText,
   // hero,
   // reuseableBlock,

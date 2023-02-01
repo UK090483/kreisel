@@ -1,58 +1,25 @@
-import link, { linkMarkQuery } from "./marks/link";
+import link from "./marks/Link/frontend/link";
 import Download from "./marks/Download/frontend/download";
-import { downloadQuery } from "./marks/Download/download.query";
 
 import ImageGalleryPlug from "./Plugs/ImageGaleriePlug/ImageGaleriePlug";
 import SpacerPlug from "./Plugs/Spacer/frontend/Spacer";
 
-import GSheet, { GSheetPlugQuery } from "./Plugs/Gsheet";
+import GSheet from "./Plugs/Gsheet";
 import ImagePlug from "./Plugs/ImagePlug/ImagePlug";
 
 import EventPlug from "./Plugs/EventPlug/frontend/EventPlug";
 
 import EmbedHTML from "./Plugs/EmbedHTML/EmbedHTML";
-import HandUnderline from "./marks/handunderline";
+import HandUnderline from "./marks/HandUnderline/frontend/handUnderline";
 import InfoboxPlug from "./Plugs/InfoBoxPlug/frontend/InfoBoxPlug";
-import { ImagePlugQuery } from "./Plugs/ImagePlug/imagePlugQuery";
+
 import { List, ListItem } from "./list/List";
-import Tooltip from "./marks/Tooltip/tooltip";
-import { toolTipQuery } from "./marks/Tooltip/tooltipQuery";
-import { imageGalleryPlugQuery } from "./Plugs/ImageGaleriePlug/ImageGaleriePlug.query";
-import { EventPlugQuery } from "./Plugs/EventPlug/eventPlug.query";
-import { infoBoxPlugQuery } from "./Plugs/InfoBoxPlug/InfoBoxPlug.query";
-import { spacerPlugQuery } from "./Plugs/Spacer/spacer.query";
+import Tooltip from "./marks/Tooltip/frontend/tooltip";
+
+import StyleMark from "./marks/Style/frontend/Style";
 import SanityRichText from "lib/SanityPageBuilder/lib/RichText";
 import Typo from "components/Typography/Typography";
 import React from "react";
-
-const marksQuery = `
-markDefs[]{
-  ...,
-  ${linkMarkQuery},
-  ${toolTipQuery},
-  ${downloadQuery},
-}
-`;
-export const richTextQuery = `
-content[]{
-  ...,
-  ${marksQuery},
-  ${spacerPlugQuery},
-  ${imageGalleryPlugQuery},
-  ${ImagePlugQuery},
-  ${GSheetPlugQuery},
-  ${EventPlugQuery},
-  ${infoBoxPlugQuery},
-}
-`;
-
-export const headerRichTextQuery = `
-content[]{
-  ...,
-  ${marksQuery},
-  ${ImagePlugQuery},
-}
-`;
 
 const styles = { h1: "h1", h2: "h2", h3: "h3", h4: "h4", normal: "body" };
 
@@ -74,11 +41,16 @@ const RichText: React.FC<any> = (props: any) => {
         infoBox: InfoboxPlug,
       }}
       marks={{
+        style: StyleMark,
         download: Download,
         tooltip: Tooltip,
         link,
         tag: (props: any) => {
-          return <Typo variant={props.mark.tag}>{props.children}</Typo>;
+          return (
+            <Typo as="span" variant={props.mark.tag}>
+              {props.children}
+            </Typo>
+          );
         },
         handUnderline: HandUnderline,
       }}

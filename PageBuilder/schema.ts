@@ -15,6 +15,7 @@ import { tagSchema, tagsSchema } from "./ContentTypes/Tags/Tag.schema";
 import testimonialSchema from "./ContentTypes/Testimonials/testimonial.schema";
 import defaultImageSchema from "./Image/defaultImage.schema";
 import { defaultRichTextSchema } from "./RichText/defaultRichtext/defaultRichText.schema";
+import headerRichTextSchema from "./RichText/headerRichText/headerRichText.schema";
 import embedHTMLSchema from "./RichText/Plugs/EmbedHTML/embedHTML.schema";
 import eventPlugSchema from "./RichText/Plugs/EventPlug/eventPlug.schema";
 import {
@@ -49,6 +50,7 @@ const schema = [
   // RichText
   defaultRichTextSchema,
   defaultImageSchema,
+  headerRichTextSchema,
   // Blocks
   heroSchema,
   listingSchema,

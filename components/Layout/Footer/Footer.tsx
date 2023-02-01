@@ -4,7 +4,7 @@ import { Section } from "components/Section/Section";
 import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
 import React from "react";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
-import { headerRichTextQuery } from "PageBuilder/RichText/RichText";
+import { headerRichTextQuery } from "PageBuilder/RichText/headerRichText/defaultRichText.query";
 
 interface FooterProps {}
 

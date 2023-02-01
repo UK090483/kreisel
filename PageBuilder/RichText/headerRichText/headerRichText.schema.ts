@@ -1,13 +1,10 @@
-import downloadField from "../marks/Download/download.field";
-import tooltipField from "../marks/Tooltip/tooltip.field";
 import handUnderlineField from "../marks/HandUnderline/handUnderline.field";
-
 import linkField from "../marks/Link/link.field";
-import styleField from "../marks/Style/style.field";
+import tagField from "../marks/Tag/tag.field";
 import { defineType } from "sanity";
 
-export const defaultRichTextSchema = defineType({
-  name: "defaultRichText",
+export default defineType({
+  name: "headerRichText",
   type: "array",
   title: "Text",
   of: [
@@ -30,21 +27,9 @@ export const defaultRichTextSchema = defineType({
             value: "underline",
           },
         ],
-        annotations: [
-          tooltipField,
-          downloadField,
-          handUnderlineField,
-          linkField,
-          styleField,
-        ],
+        annotations: [handUnderlineField, linkField, tagField],
       },
     },
     { type: "imagePlug" },
-    { type: "spacer" },
-    { type: "imageGalleryPlug" },
-    { type: "embedHTML" },
-    { type: "gSheet" },
-    { type: "infoBox" },
-    { type: "eventPlug" },
   ],
 });

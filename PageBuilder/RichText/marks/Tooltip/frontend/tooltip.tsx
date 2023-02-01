@@ -1,4 +1,4 @@
-import { TooltipResult } from "./tooltipQuery";
+import { TooltipResult } from "../tooltip.query";
 import { MarkProps } from "lib/SanityPageBuilder/lib/RichText";
 import Portal from "components/Portal";
 

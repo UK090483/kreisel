@@ -1,5 +1,5 @@
-import { richTextQuery } from "PageBuilder/RichText/RichText";
 import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
+import { richTextQuery } from "PageBuilder/RichText/defaultRichtext/defaultRichText.query";
 import {
   BlockStyle,
   blockStyleProjection,

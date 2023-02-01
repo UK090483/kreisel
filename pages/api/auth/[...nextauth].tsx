@@ -11,23 +11,6 @@ const authOptions: NextAuthOptions = {
   },
   adapter: SanityAdapter({
     client: previewClient,
-    // client: mockClient({
-    //   database: [
-    //     {
-    //       _type: "user",
-    //       name: "Konrad",
-    //       email: "konradullrich@me.com",
-    //       test: "test",
-    //       _id: "testUser2",
-    //     },
-    //     {
-    //       _type: "user",
-    //       email: "meikeschueler@kreiselhh.de",
-    //       _id: "testUser3",
-    //     },
-    //     { _type: "user", email: "gesaharms@kreiselhh.de", _id: "testUser4" },
-    //   ],
-    // }),
     devMode: true,
   }),
   secret: process.env.AUTH_SECRET,

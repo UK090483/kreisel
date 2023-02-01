@@ -1,5 +1,5 @@
-import { headerRichTextQuery } from "PageBuilder/RichText/RichText";
 import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
+import { headerRichTextQuery } from "PageBuilder/RichText/headerRichText/defaultRichText.query";
 import { BlockStyle } from "PageBuilder/schemaHelper/blockStyle";
 
 export const reusableBlockQuery = `

@@ -17,7 +17,7 @@ export interface LinkResult {
   onPage?: string | null;
 }
 
-export const navItemQuery = (locale: string = "") => `
+const navItemQuery = (locale: string = "") => `
    _type == 'navigationItem' =>{
       'label': coalesce(label_${locale}, label),
       'link':link{
@@ -26,14 +26,14 @@ export const navItemQuery = (locale: string = "") => `
     }
   `;
 
-export interface NavigationMegaMenuResult {
+interface NavigationMegaMenuResult {
   items: {
     label?: string;
     link?: LinkResult;
   }[];
 }
 
-export const NavigationMegaMenuQuery = (locale: string = "") => `
+const NavigationMegaMenuQuery = (locale: string = "") => `
    _type == 'navigationMegaMenu' =>{
         'items':items[]{
          ...,
@@ -50,7 +50,7 @@ export const NavigationMegaMenuQuery = (locale: string = "") => `
     }
   `;
 
-export const navItemQuery2 = (locale: string = "") => `
+const navItemQuery2 = (locale: string = "") => `
       'label': coalesce(label_${locale}, label),
       'link':link{
         ${linkQuery}
@@ -79,6 +79,6 @@ export interface NavigationResult {
   navigation: NavigationItemResult[];
 }
 
-export interface NavItemResult {
+interface NavItemResult {
   link: LinkResult;
 }

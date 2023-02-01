@@ -17,9 +17,9 @@ const testValues = {
 };
 
 const formdata = () => {
-  const f = new FormData();
-  f.set("data", JSON.stringify(testValues));
-  return f;
+  const form = new FormData();
+  form.append("data", JSON.stringify(testValues));
+  return form;
 };
 
 const customTester = async ({
@@ -42,6 +42,9 @@ const customTester = async ({
   sanityClient.patch = clientPatch;
   sanityClient.create = clientCreate;
   const testResult = await testApiHandler({
+    requestPatcher: (req) => {
+      req.headers = { "content-type": "multipart/form-data" };
+    },
     handler: getHandler(sanityClient, (() =>
       hasToken
         ? { email: "testEmail" }
@@ -66,30 +69,6 @@ describe("profileEndpoint", () => {
       },
     });
   });
-  // it("should return 400 if no body", async () => {
-  //   await customTester({
-  //     test: async ({ fetch }) => {
-  //       const res = await fetch({ method: "POST" });
-  //       expect(res.status).toBe(400);
-  //     },
-  //   });
-  // });
-
-  // it("should throw if no profile is found", async () => {
-  //   await expect(
-  //     customTester({
-  //       rejectOnHandlerError: true,
-  //       database: [],
-  //       test: async ({ fetch }) => {
-  //         const res = await fetch({
-  //           method: "POST",
-  //           body: formdata(),
-  //         });
-  //         expect(res.status).toBe(300);
-  //       },
-  //     })
-  //   ).rejects.toThrow("");
-  // });
 
   // it("should create draft if no draft is found", async () => {
   //   const {

@@ -107,10 +107,7 @@ const parseFormdata = async (req: NextApiRequest) => {
   return new Promise<{ data: null | {}; image: Buffer | null }>(
     (resolve, reject) => {
       form.parse(req, (err, fields, files) => {
-        console.log(err);
-
         if (err) reject(err);
-
         let image: Buffer | null = null;
         const data =
           typeof fields?.data === "string" ? JSON.parse(fields.data) : null;

@@ -23,6 +23,7 @@ const variantsMapping: mappingObject = {
 
 interface TypographyProps {
   variant?:
+    | "p"
     | "h1"
     | "h2"
     | "h3"
@@ -44,7 +45,7 @@ interface TypographyProps {
 
 const boldMap = ["h1", "h2", "h3", "h4", "h5", "h6"];
 
-const Typo: React.FC< React.PropsWithChildren<TypographyProps>> = ({
+const Typo: React.FC<React.PropsWithChildren<TypographyProps>> = ({
   variant = "body",
   children,
   className = "",

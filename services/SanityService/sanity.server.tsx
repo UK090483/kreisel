@@ -1,6 +1,5 @@
-import createClient from "@sanity/client";
-
 import { config } from "./config";
+import createClient from "@sanity/client";
 
 // Set up the client for fetching data in the getProps page functions
 export const sanityClient = createClient(config);
