@@ -5,17 +5,24 @@ import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
 import React from "react";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
 import { headerRichTextQuery } from "PageBuilder/RichText/headerRichText/defaultRichText.query";
+import { Link } from "components/Link";
 
 interface FooterProps {}
 
 export const footerQuery = `
 'footer': {
   ...*[_id == 'siteConfig'][0]{
+    
     'footerImage':footerImage{${imageMeta}},
     'contact':coalesce(^.contacts,^.pageType->contacts,contacts[0])->{
       'content':${headerRichTextQuery},
-      'persons':persons[]->{_id,name,position,description,'avatar':avatar{${imageMeta}}}
-  }
+      'persons':persons[]->{_id,name,position,description,'avatar':avatar{${imageMeta}}},
+      },
+    
+      'imprint':imprintPage->slug.current,
+      'agb':agbPage->slug.current,
+      'bla':'blu',
+
   }
 }
 `;
@@ -32,6 +39,8 @@ export interface FooterQueryResult {
         _id: string;
       }[];
     };
+    imprint?: string | null;
+    agb?: string | null;
   };
 }
 
@@ -50,7 +59,12 @@ const Footer: React.FC<FooterProps> = (props) => {
           className="w-full py-24  "
         /> */}
       </Section>
-      <div className="flex items-center justify-between w-full max-w-6xl px-8 "></div>
+      <div className="flex items-center justify-end gap-4 text-white w-full max-w-6xl px-8 py-4">
+        {data?.footer.imprint && (
+          <Link href={data?.footer.imprint}>Impressum</Link>
+        )}
+        {data?.footer.agb && <Link href={data?.footer.agb}>Agb</Link>}
+      </div>
     </footer>
   );
 };

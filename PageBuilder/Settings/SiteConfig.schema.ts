@@ -13,6 +13,20 @@ const siteConfigSchema = defineType({
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "agbPage",
+      title: "Agb Page",
+      type: "reference",
+      to: [{ type: "page" }],
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "imprintPage",
+      title: "Impressum Page",
+      type: "reference",
+      to: [{ type: "page" }],
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: "mainNav",
       type: "array",
       title: "Main Navigation",
