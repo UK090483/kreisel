@@ -1,6 +1,5 @@
 import FooterContact from "./FooterContact";
 import { Section } from "components/Section/Section";
-// import NavOverview from "PageBuilder/Navigation/NavOverview";
 import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
 import React from "react";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
@@ -18,11 +17,9 @@ export const footerQuery = `
       'content':${headerRichTextQuery},
       'persons':persons[]->{_id,name,position,description,'avatar':avatar{${imageMeta}}},
       },
-    
-      'imprint':imprintPage->slug.current,
-      'agb':agbPage->slug.current,
-      'bla':'blu',
-
+    'imprint':imprintPage->slug.current,
+    'agb':agbPage->slug.current,
+    'bla':'blu',
   }
 }
 `;
