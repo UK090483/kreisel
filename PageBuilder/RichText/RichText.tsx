@@ -4,7 +4,7 @@ import Download from "./marks/Download/frontend/download";
 import ImageGalleryPlug from "./Plugs/ImageGaleriePlug/ImageGaleriePlug";
 import SpacerPlug from "./Plugs/Spacer/frontend/Spacer";
 
-import GSheet from "./Plugs/Gsheet";
+import GSheet from "./Plugs/GSheet/frontend/Gsheet";
 import ImagePlug from "./Plugs/ImagePlug/ImagePlug";
 
 import EventPlug from "./Plugs/EventPlug/frontend/EventPlug";

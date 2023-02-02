@@ -1,6 +1,6 @@
 import { defineType } from "sanity";
 
-const linkSchema = defineType({
+export default defineType({
   name: "link",
   title: "Link",
   type: "object",
@@ -35,5 +35,3 @@ const linkSchema = defineType({
     },
   ],
 });
-
-export default linkSchema;

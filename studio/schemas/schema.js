@@ -2,56 +2,22 @@
 // import createSchema from "part:@sanity/base/schema-creator";
 
 // import objects from "./objects";
-import plugs from "./pageComponents/plugs";
-import pageComponents from "./pageComponents";
+// import plugs from "./pageComponents/plugs";
+//import pageComponents from "./pageComponents";
 
 // import Persons from "./Persons";
-import Navigation from "./Navigation";
+// import Navigation from "./Navigation";
 // import Page from "./Page";
-import Shop from "./Shop";
+// import Shop from "./Shop";
 
-// import Testimonial from "./Testimonial";
-import Therapist from "./Therapist";
-import Seo from "./Seo";
+//import Testimonial from "./Testimonial";
+//import Therapist from "./Therapist";
+//import Seo from "./Seo";
 // import Image from "./Image";
 //import Settings from "./Settings";
 // import Reusable from "./Reusable";
 import pbSchema from "../../PageBuilder/schema";
 
-const schema = [
-  // ...Settings,
-  // ...Image,
-  ...Seo,
-  ...Shop,
-  // ...Page,
-  // ...Persons,
-  // ...Reusable,
-  // ...Testimonial,
-  ...Therapist,
-  ...Navigation,
-  //...objects,
-  ...pageComponents,
-  ...plugs,
-  ...pbSchema,
-];
+const schema = [...pbSchema];
 
 export default schema;
-
-// export default createSchema({
-//   name: "default",
-//   types: schemaTypes.concat([
-//     ...Settings,
-//     ...Image,
-//     ...Seo,
-//     ...Shop,
-//     ...Page,
-//     ...Persons,
-//     ...Reusable,
-//     ...Testimonial,
-//     ...Therapist,
-//     ...Navigation,
-//     ...objects,
-//     ...pageComponents,
-//     ...plugs,
-//   ]),
-// });

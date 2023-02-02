@@ -4,21 +4,20 @@
 // import hero from "./hero";
 
 //import headerRichText from "./RichText/headerRichText";
-import easyRichText from "./RichText/easyRichText";
+// import easyRichText from "./RichText/easyRichText";
 // import trust from "./trust";
 // import trustItem from "./trustItem";
 // import reuseableBlock from "./reuseableBlock";
-import annotations from "./annotations";
 
 const PageComponents = [
-  ...annotations,
+  //...annotations,
   // trust,
   // trustItem,
   // Section,
   // listing,
   // defaultRichText,
   // headerRichText,
-  easyRichText,
+  // easyRichText,
   // hero,
   // reuseableBlock,
 ];

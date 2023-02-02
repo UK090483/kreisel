@@ -1,9 +1,9 @@
 import { resolveProductionUrl } from "./parts/resolveProductionUrl";
-import schema from "./schemas/schema";
 import structure from "./parts/deskStructure";
 import { pageByPageType } from "./parts/initialValueTemplates";
 import { resolveActions } from "./parts/resolveActions";
 import { resolveBadges } from "./parts/resolveBadges";
+import schema from "../PageBuilder/schema";
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
 import { documentListWidget } from "sanity-plugin-dashboard-widget-document-list";
@@ -38,7 +38,7 @@ export default defineConfig({
     vercelDeployTool(),
   ],
   schema: {
-    types: [...schema],
+    types: schema,
     templates: (prev) => [pageByPageType, ...prev],
   },
 

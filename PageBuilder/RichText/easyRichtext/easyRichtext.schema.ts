@@ -1,4 +1,6 @@
-export default {
+import { defineType } from "sanity";
+
+export default defineType({
   name: "easyRichText",
   type: "array",
   title: "Text",
@@ -23,4 +25,4 @@ export default {
       },
     },
   ],
-};
+});

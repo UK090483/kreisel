@@ -1,6 +1,7 @@
-import { colorList } from "../../snippets";
-import React from "react";
-export default {
+import { colorList } from "PageBuilder/schemaHelper/snippets";
+import { defineType } from "sanity";
+
+export default defineType({
   title: "Link",
   name: "underline",
   type: "object",
@@ -38,12 +39,7 @@ export default {
       },
     },
   ],
-  blockEditor: {
-    icon: () => "Hand Underline",
-    render: (props) => {
-      return <span>{props.children}</span>;
-    },
-  },
+
   preview: {
     select: {
       label: "label",
@@ -52,4 +48,4 @@ export default {
       return { title: value.label || "Label" };
     },
   },
-};
+});
