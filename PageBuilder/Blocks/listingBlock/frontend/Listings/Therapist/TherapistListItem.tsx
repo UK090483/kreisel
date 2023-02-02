@@ -1,10 +1,10 @@
-import React from "react";
-import Typo from "components/Typography/Typography";
-
 import Avatar from "./Avatar";
+import Typo from "components/Typography/Typography";
+import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
+import React from "react";
+
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
 
 interface TherapistListItemProps extends TherapistResult {}
 

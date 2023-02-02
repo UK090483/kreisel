@@ -38,10 +38,9 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
           href={{ pathname: baseUrl, query: {} }}
           scroll={false}
           shallow={true}
+          className=" absolute top-2 right-2 w-5 h-5  md:w-10 md:h-10 bg-primary flex justify-center items-center rounded-full "
         >
-          <a className=" absolute top-2 right-2 w-5 h-5  md:w-10 md:h-10 bg-primary flex justify-center items-center rounded-full ">
-            x
-          </a>
+          x
         </Link>
 
         <Typo bold variant="h4">{`${item?.firstName} ${item?.name}`}</Typo>
