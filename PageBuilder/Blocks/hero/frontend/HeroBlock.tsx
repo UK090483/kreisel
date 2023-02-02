@@ -21,6 +21,8 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
     filterColor,
   } = props;
 
+  console.log(props);
+
   const isFull = variant === "full" || variant === null;
   const isHalf = variant === "half";
 

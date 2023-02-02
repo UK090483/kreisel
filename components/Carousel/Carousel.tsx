@@ -19,7 +19,7 @@ function Carousel(props: ICarouselProps) {
   const {
     children,
     slidesMobile = 1,
-    slides = 3,
+    slides = 1,
     spacing = 20,
     navigation = true,
   } = props;

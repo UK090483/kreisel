@@ -1,0 +1,78 @@
+{
+    "alt": "Zeichnung Skyline Hamburg",
+    "aspectRatio": 3.8348082595870205,
+    "asset": {
+        "_ref": "image-8f369b8fdc944e6cb064bd9d89c9ca203baa6fc6-1300x339-png",
+        "_type": "reference"
+    },
+    "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0.25452488687782804,
+        "left": 0,
+        "right": 0,
+        "top": 0
+    },
+    "height": 339,
+    "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 0.7072810730513278,
+        "width": 0.25055289585922624,
+        "x": 0.3339133988951925,
+        "y": 0.39183457659650806
+    },
+    "lqip": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAEU1AABFNQF8gVf5AAAAoUlEQVQYlX3QXUuCQRDF8Z9ZJhEmwpNWvgtmQnSjN37/DyZH5wG9aeHP7szsnpk9XFcHT3gpHtHFM/oV585D5cMrxnirOPXLaoU+sMUKDd6xwQ+WlWtKJHxijgkGpdGLYB6m8Isj/vCNHQ441b6vhqnlnEZrzEo8TYYRTNckFiWcc6YNX/VgWnE7ZaYKoxIJ+XpsuPw/HrW+/Uc8vCW+3XEG7KcHPKmjs4sAAAAASUVORK5CYII=",
+    "palette": {
+        "_type": "sanity.imagePalette",
+        "darkMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#040404",
+            "foreground": "#fff",
+            "population": 99.7,
+            "title": "#fff"
+        },
+        "darkVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#424242",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+        },
+        "dominant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#040404",
+            "foreground": "#fff",
+            "population": 99.7,
+            "title": "#fff"
+        },
+        "lightMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#4c4c4c",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+        },
+        "lightVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#bcbcbc",
+            "foreground": "#000",
+            "population": 0,
+            "title": "#fff"
+        },
+        "muted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#4c4c4c",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+        },
+        "vibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#7f7f7f",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+        }
+    },
+    "url": "https://cdn.sanity.io/images/jgnu3d9f/production/8f369b8fdc944e6cb064bd9d89c9ca203baa6fc6-1300x339.png",
+    "width": 1300
+}
