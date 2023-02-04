@@ -9,9 +9,6 @@ jobs:
   backup-dataset:
     runs-on: ubuntu-latest
     name: Backup dataset
-    defaults:
-      run:
-        working-directory: studio
     steps:
       - name: Get current date
         id: date
@@ -20,9 +17,9 @@ jobs:
       - name: Install dependencies
         run: |
           npm install @sanity/cli --legacy-peer-deps
-
       - name: Export dataset
         run: |
+          cd studio \
           SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" \
           npx sanity dataset export \
           production backups/backup.tar.gz
