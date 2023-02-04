@@ -1,0 +1,38 @@
+name: Backup Routine
+on:
+  workflow_dispatch:
+  schedule:
+    # Runs at 04:00 UTC on the 1st and 17th of every month
+    - cron: "0 16 * * *"
+
+jobs:
+  backup-dataset:
+    runs-on: ubuntu-latest
+    name: Backup dataset
+    defaults:
+      run:
+        working-directory: studio
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%d-%m-%Y-%H:%M:%S')"
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          npm install @sanity/cli --legacy-peer-deps
+
+      - name: Export dataset
+        run: |
+          SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" \
+          npx sanity dataset export \
+          production backups/backup.tar.gz
+      - uses: actions/checkout@v2
+      - name: Upload to S3 artifact folder
+        uses: medlypharmacy/s3-artifacts-action@master
+        with:
+          aws_region: non
+          aws_access_key_id: ${{ secrets.S3_BUILD_ARTIFACTS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.S3_BUILD_ARTIFACTS_SECRET_ACCESS_KEY }}
+          aws_s3_bucket_name: ${{ secrets.S3_BUCKET_NAME }}
+          source_path: "studio/backups/backup.tar.gz"
+          destination_path: "/backup${{ steps.date.outputs.date }}"
