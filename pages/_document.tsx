@@ -9,6 +9,9 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@500;800&display=swap"
             rel="stylesheet"
           />
+          <link rel="manifest" href="/manifest.json" />
+          <link rel="apple-touch-icon" href="/icon.png"></link>
+          <meta name="theme-color" content="#fff" />
         </Head>
         <body
           className={`text-black ${
