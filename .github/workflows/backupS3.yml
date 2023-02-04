@@ -29,6 +29,6 @@ jobs:
           aws_region: non
           aws_access_key_id: ${{ secrets.S3_BUILD_ARTIFACTS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.S3_BUILD_ARTIFACTS_SECRET_ACCESS_KEY }}
-          aws_s3_bucket_name: ${{ github.repository }}
+          aws_s3_bucket_name: kreisel
           source_path: "./studio/backups/backup.tar.gz"
           destination_path: "/backup${{ steps.date.outputs.date }}"
