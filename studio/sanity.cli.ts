@@ -10,6 +10,7 @@ export default defineCliConfig({
   vite: (prevConfig) => {
     return {
       ...prevConfig,
+
       resolve: {
         ...prevConfig.resolve,
         alias: {

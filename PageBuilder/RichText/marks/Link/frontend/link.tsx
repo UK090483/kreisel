@@ -18,12 +18,15 @@ type LinkMarkPros = {
 
 export const linkMarkQuery = `
 _type == "link" => {
+  ...,
   'link': link{${linkQuery}},
     asButton,
   }`;
 
 const LinkMark: React.FC<React.PropsWithChildren<LinkMarkPros>> = (props) => {
   const { link, asButton } = props;
+
+  console.log(props);
 
   if (asButton) {
     return (

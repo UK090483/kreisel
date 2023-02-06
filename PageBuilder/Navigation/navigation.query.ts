@@ -6,7 +6,7 @@ export const linkQuery = `
             defined(internalLink) => '/'+ internalLink->slug.current,
             defined(externalLink)  => externalLink,
           ),
-  'external': select(defined(externalLink)=>true,defined(internalLink)=>false),
+  'external': defined(externalLink),
   onPage,
 `;
 

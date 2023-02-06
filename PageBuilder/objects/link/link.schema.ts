@@ -6,7 +6,7 @@ export default defineType({
   type: "object",
   fields: [
     {
-      name: "internal",
+      name: "internalLink",
       title: "Internal Link",
       type: "reference",
 
@@ -14,7 +14,7 @@ export default defineType({
       options: {
         disableNew: true,
       },
-      hidden: ({ parent }: any) => !!parent?.href,
+      hidden: ({ parent }: any) => !!parent?.externalLink,
     },
     {
       name: "onPageLink",
@@ -24,7 +24,7 @@ export default defineType({
       hidden: ({ parent }: any) => !parent?.internal,
     },
     {
-      name: "href",
+      name: "externalLink",
       title: "External Link",
       type: "url",
       hidden: ({ parent }: any) => !!parent?.internal,

@@ -5,6 +5,9 @@ export default defineField({
   name: "link",
   type: "object",
   title: "Link",
+  options: {
+    modal: { type: "dialog" },
+  },
   fields: [
     { title: "Link", name: "link", type: "link" },
     {

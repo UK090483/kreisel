@@ -46,7 +46,7 @@ const Accordion: FC<AccordionProps> = ({
       style={{
         maxHeight: open ? containerHeight + initialHeight : initialHeight,
       }}
-      className={`relative  max-h-16 transition-all duration-500 overflow-hidden`}
+      className={`relative max-h-16 transition-all duration-500 overflow-hidden`}
     >
       <div
         className={`w-full shadow-lg pl-3 transition-colors bg-primary-light  ${
