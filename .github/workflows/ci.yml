@@ -1,5 +1,4 @@
 name: ci
-# https://docs.github.com/en/actions/reference/events-that-trigger-workflows
 on: [push, deployment, deployment_status]
 jobs:
   show-event:
