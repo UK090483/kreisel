@@ -1,9 +1,9 @@
 describe("pages", () => {
-  it("should be working", () => {
-    Cypress.env("pages").forEach((e) => {
-      if (e.slug) {
+  Cypress.env("pages").forEach((e) => {
+    if (e.slug) {
+      it(`should find page ${e.slug}`, () => {
         cy.visit(e.slug);
-      }
-    });
+      });
+    }
   });
 });

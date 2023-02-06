@@ -1,5 +1,5 @@
-describe("empty spec", () => {
-  it("passes", () => {
+describe("Login ", () => {
+  it("fake login", () => {
     cy.loginAsFakeUser();
   });
 });
