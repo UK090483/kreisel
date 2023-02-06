@@ -1,11 +1,27 @@
 name: ci
-# https://docs.github.com/en/actions/reference/events-that-trigger-workflows
-on: [push, deployment, deployment_status]
+on: [deployment_status]
+
 jobs:
-  show-event:
+  e2e:
+    if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: my-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npm i cypress
+      - name: Run Cypress 🌲
+        uses: cypress-io/github-action@v5
+        with:
+          install: false
+        env:
+          CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
