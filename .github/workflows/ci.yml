@@ -18,7 +18,7 @@ jobs:
             ~/.cache/Cypress
             node_modules
           key: my-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-      - run: npm i cypress
+      - run: npm i cypress --legacy-peer-deps
       - name: Run Cypress 🌲
         uses: cypress-io/github-action@v5
         with:
