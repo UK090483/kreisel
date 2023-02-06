@@ -21,5 +21,7 @@ jobs:
       - run: npm i cypress
       - name: Run Cypress 🌲
         uses: cypress-io/github-action@v5
+        with:
+          install: false
         env:
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
