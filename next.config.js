@@ -28,15 +28,11 @@ async function fetchSanityRedirects() {
 
 /** @type {import('next').NextConfig} */
 const moduleExports = {
-  // async rewrites() {
-  //   const sanityRedirects = await fetchSanityRedirects();
-  //   return sanityRedirects;
-  // },
   reactStrictMode: true,
   images: {
     domains: ["picsum.photos", "cdn.sanity.io"],
-    deviceSizes: [420, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [8, 16, 32, 48, 64, 96, 128, 256, 384],
+    // deviceSizes: [420, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    // imageSizes: [8, 16, 32, 48, 64, 96, 128, 256, 384],
   },
 
   env: {
@@ -44,8 +40,7 @@ const moduleExports = {
     SANITY_PROJECT_DATASET: process.env.SANITY_PROJECT_DATASET,
   },
   async redirects() {
-    const sanityRedirects = await fetchSanityRedirects();
-    return sanityRedirects;
+    return await fetchSanityRedirects();
   },
   webpack(config, options) {
     const { dev, isServer } = options;
