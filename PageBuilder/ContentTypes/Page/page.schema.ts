@@ -1,6 +1,8 @@
 import { defaultBockContent } from "../../schemaHelper/snippets";
+import { getSlugField } from "PageBuilder/schemaHelper/getSlugField";
 import { CgWebsite } from "react-icons/cg";
 import { defineType } from "sanity";
+import { VscMultipleWindows } from "react-icons/vsc";
 
 export const PageSchema = defineType({
   type: "document",
@@ -42,15 +44,16 @@ export const PageSchema = defineType({
       type: "defaultImage",
       group: "base",
     },
-    {
-      name: "slug",
-      type: "slug",
-      title: "Slug",
-      group: "base",
-      options: {
-        source: "title",
-      },
-    },
+    getSlugField(),
+    // {
+    //   name: "slug",
+    //   type: "slug",
+    //   title: "Slug",
+    //   group: "base",
+    //   options: {
+    //     source: "title",
+    //   },
+    // },
     {
       name: "pageType",
       type: "reference",
@@ -116,7 +119,6 @@ export const PageSchema = defineType({
   },
 });
 
-import { VscMultipleWindows } from "react-icons/vsc";
 export const pageTypeSchema = defineType({
   name: "pageType",
   title: "Page type",
