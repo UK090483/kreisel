@@ -21,6 +21,7 @@ const sanityClient = createClient({
 });
 // eslint-disable-next-line import/no-unused-modules
 export default defineConfig({
+  projectId: "8bfgju",
   e2e: {
     baseUrl: "http://localhost:3000/",
     async setupNodeEvents(on, config) {
