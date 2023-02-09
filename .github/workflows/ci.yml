@@ -24,6 +24,7 @@ jobs:
         with:
           install: false
           record: true
+          component: true
         env:
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

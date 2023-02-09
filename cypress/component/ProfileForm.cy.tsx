@@ -1,3 +1,4 @@
+///<reference path="../support/component.ts" />
 import ProfileForm from "../../lib/Profile/ProfileForm";
 import {
   memberFields,
@@ -6,7 +7,7 @@ import {
   focusOptions,
   membershipOptions,
 } from "../../lib/Profile/Fields";
-import { mount, cy } from "../../testPrepare";
+
 import React, { ComponentProps } from "react";
 
 const testData = {
@@ -32,7 +33,7 @@ const testData = {
 
 const render = (overwrite?: Partial<ComponentProps<typeof ProfileForm>>) => {
   const props = { profile: {}, ...overwrite };
-  return mount(<ProfileForm {...props} />);
+  return cy.mount(<ProfileForm {...props} />);
 };
 
 describe("<ProfileForm />", () => {
@@ -40,12 +41,12 @@ describe("<ProfileForm />", () => {
     cy.viewport("macbook-13");
   });
 
-  it.only("show announcement if name and firstName missing", () => {
+  it("show announcement if name and firstName missing", () => {
     render();
     cy.get(`#announcement`);
   });
 
-  it.only("hide announcement if name and firstName ", () => {
+  it("hide announcement if name and firstName ", () => {
     render({ profile: { name: "testName", firstName: "testFirstName" } });
     cy.get(`#announcement`).should("not.exist");
   });
