@@ -12,9 +12,7 @@ const defaultImageSchema = {
       name: "alt",
       type: "string",
       description: "Important for SEO and accessibility.",
-      options: {
-        isHighlighted: true,
-      },
+
       validation: (Rule: any) => {
         return Rule.custom((field: any, context: any) => {
           return "asset" in context.parent && field === undefined

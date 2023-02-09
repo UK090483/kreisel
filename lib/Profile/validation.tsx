@@ -1,4 +1,4 @@
-import { membershipOptions, degreeOptions } from "./Fields";
+import { membershipOptions, degreeOptions, focusOptions } from "./Fields";
 import { object, string, array, InferType, mixed, boolean } from "yup";
 
 const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
@@ -10,6 +10,7 @@ export const memberSchema = object({
 });
 
 const profileFields = object({
+  additionalDegree: string(),
   jobDescription: string(),
   description: string(),
   education: string(),
@@ -26,6 +27,7 @@ const profileFields = object({
   }),
   website: string().url(),
   membership: array().of(string().oneOf(membershipOptions.map((i) => i.value))),
+  focus: array().of(string().oneOf(focusOptions.map((i) => i.value))),
   degree: array().of(string().oneOf(degreeOptions.map((i) => i.value))),
   image: object({ url: string().nullable(), file: mixed() }).nullable(),
   offersInternship: boolean(),

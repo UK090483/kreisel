@@ -2,11 +2,11 @@
 import { FormError } from "./parts/FormError";
 import { FormLabel } from "./parts/FormLabel";
 import { InputWarp } from "./parts/InputWrap";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useRef } from "react";
 
 import { BsFillPersonFill } from "react-icons/bs";
 import clsx from "clsx";
-import { useFormContext } from "react-hook-form";
+import { useController, useFormContext } from "react-hook-form";
 
 const size = 150;
 // eslint-disable-next-line import/no-unused-modules
@@ -19,10 +19,14 @@ type UploadImage = {
 type ImageUploadProps = {
   onChange: (image?: UploadImage | null) => void;
   value: UploadImage;
+  name: string;
 };
 
-const ImageUpload = (props: ImageUploadProps) => {
-  const { value, onChange } = props;
+const ImageUpload = React.forwardRef(function ImageUpload(
+  props: ImageUploadProps,
+  ref
+) {
+  const { value, onChange, name } = props;
 
   const handleSelectFile: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const file = e.target.files?.item(0);
@@ -46,14 +50,17 @@ const ImageUpload = (props: ImageUploadProps) => {
     (e) => {
       e.preventDefault();
       e.stopPropagation();
-      if (inputRef.current) inputRef.current.click();
+
+      if (inputRef.current) {
+        inputRef.current.click();
+      }
     },
     [inputRef]
   );
 
   return (
     <div>
-      <div className=" flex ">
+      <div className="flex">
         <input
           className="hidden"
           ref={inputRef}
@@ -62,9 +69,10 @@ const ImageUpload = (props: ImageUploadProps) => {
         />
 
         <button
+          id={name}
           type="button"
           onClick={openSelection}
-          className={clsx(" w-fit transition-transform rounded-full", {
+          className={clsx("w-fit transition-transform rounded-full", {
             "p-0": hasImage,
             "p-6 border-dashed border-4 border-primary-light": !hasImage,
           })}
@@ -90,13 +98,18 @@ const ImageUpload = (props: ImageUploadProps) => {
         {hasImage && (
           <div className=" w-full grid grid-cols-2">
             <button
+              aria-label="update Image"
               type="button"
               className=" border-r-2 border-black "
               onClick={openSelection}
             >
               Update
             </button>
-            <button type="button" onClick={handleRemove}>
+            <button
+              aria-label="remove Image"
+              type="button"
+              onClick={handleRemove}
+            >
               Remove
             </button>
           </div>
@@ -104,7 +117,7 @@ const ImageUpload = (props: ImageUploadProps) => {
       </div>
     </div>
   );
-};
+});
 
 interface ImageUploadInputProps {
   name: string;
@@ -115,31 +128,18 @@ export const ImageUploadInput: React.FC<ImageUploadInputProps> = (props) => {
   const { name, label } = props;
 
   const {
-    register,
-    watch,
-    setValue,
     formState: { errors, isSubmitting },
   } = useFormContext();
 
-  const handleChange = (value?: UploadImage | null) => {
-    setValue(name, value);
-  };
-
-  const value = watch(name);
-  const all = watch();
+  const { field } = useController({ name });
 
   const error = errors[name];
-
   const errorMessage = error?.message as string | undefined;
-
-  useEffect(() => {
-    register(name);
-  }, [register, name]);
 
   return (
     <InputWarp disabled={isSubmitting}>
       <FormLabel name={name} label={label} />
-      <ImageUpload onChange={handleChange} value={value} />
+      <ImageUpload {...field} />
       <FormError errorMessage={errorMessage} />
     </InputWarp>
   );

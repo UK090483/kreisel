@@ -1,26 +1,46 @@
 import { string } from "yup";
 const emailSchema = string().email();
 
-export const membershipOptions = [
-  { title: "KREISELnetzwerk", value: "KREISELnetzwerk" },
-  { title: "FIL", value: "FIL" },
-  { title: "BVL", value: "BVL" },
-  { title: "BLT", value: "BLT" },
-  { title: "LegaKids", value: "LegaKids" },
+export const focusOptions = [
+  { title: "Dyslexie", value: "dyslexie" },
+  { title: "Dyskalkulie", value: "dyskalkulie" },
+  { title: "Frühförderung", value: "frühförderung" },
+  { title: "Jugendliche", value: "jugendliche" },
+  { title: "Erwachsene", value: "erwachsene" },
+  { title: "LT in Schule", value: "lt-in-schule" },
+  { title: "tiergestützt", value: "tiergestützt" },
 ];
 
 export const degreeOptions = [
-  { title: "KREISELzertifikat", value: "KREISELzertifikat" },
-  { title: "KREISELurkunde", value: "KREISELurkunde" },
-  { title: "KREISELgrundlagen", value: "KREISELgrundlagen" },
-  { title: "Dreijährige Ausbildung", value: "DreijährigeAusbildung" },
-  { title: "Zweijährige Ausbildung", value: "ZweijährigeAusbildung" },
   {
-    title: "Integrative Lerntherapeutin / Integrativer Lerntherapeut FiL",
-    value: "IL/ILFil",
+    title: "KREISELzertifikat Dyskalkulie",
+    value: "kreiselzertifikat-dyskalkulie",
   },
-  { title: "Dyslexietherapeut® nach BVL", value: "Dyslexietherapeut" },
-  { title: "Dyskalkulietherapeut", value: "Dyskalkulietherapeut" },
+  { title: "KREISELzertifikat Dyslexie", value: "kreiselzertifikat-dyslexie" },
+  { title: "KREISELurkunde Dyskalkulie", value: "kreiselurkunde-dyskalkulie" },
+  { title: "KREISELurkunde Dyslexie", value: "kreiselurkunde-dyslexie" },
+  { title: "KREISELgrundlagen", value: "kreisel-grundlagen" },
+  { title: "Dyslexietherapeut*in® nach BVL", value: "dyslexietherapeut-bvl" },
+  {
+    title: "Dyskalkulietherapeut*in nach BVL",
+    value: "dyskalkulietherapeut-bvl",
+  },
+  {
+    title: "Integrative*r Lerntherapeut*in FiL Schwerpunkt Dyslexie",
+    value: "integrative-lerntherapeut-dyslexie",
+  },
+  {
+    title: "Integrative*r Lerntherapeut*in FiL Schwerpunkt Dyskalkulie",
+    value: "integrative-lerntherapeut-dyskalkulie",
+  },
+];
+
+export const membershipOptions = [
+  { title: "KREISELnetzwerk", value: "kreisel-netzwerk" },
+  { title: "FIL", value: "fil" },
+  { title: "BVL", value: "bvl" },
+  { title: "BLT", value: "blt" },
+  { title: "LegaKids", value: "lega-kids" },
 ];
 
 export const memberFields = [
@@ -61,8 +81,8 @@ type MemberFields = {
 
 export const profileFields = [
   {
-    name: "jobDescription",
-    title: "Beruf",
+    name: "experience",
+    title: "Praxis",
     type: "text",
   },
   {
@@ -107,6 +127,15 @@ export const profileFields = [
     type: "boolean",
   },
   {
+    name: "focus",
+    title: "Arbeitsschwerpunkte",
+    type: "array",
+    of: [{ type: "string" }],
+    options: {
+      list: focusOptions,
+    },
+  },
+  {
     name: "membership",
     title: "Mitgliedschaft",
     type: "array",
@@ -123,6 +152,11 @@ export const profileFields = [
     options: {
       list: degreeOptions,
     },
+  },
+  {
+    name: "additionalDegree",
+    title: "Sonstige Abschlüsse",
+    type: "text",
   },
   {
     name: "image",

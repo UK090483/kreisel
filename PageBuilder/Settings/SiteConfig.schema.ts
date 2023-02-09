@@ -1,4 +1,4 @@
-import { defineType } from "sanity";
+import { defineField, defineType } from "sanity";
 
 const siteConfigSchema = defineType({
   name: "siteConfig",
@@ -26,32 +26,32 @@ const siteConfigSchema = defineType({
       to: [{ type: "page" }],
       validation: (Rule) => Rule.required(),
     },
-    {
+    defineField({
       name: "mainNav",
       type: "array",
       title: "Main Navigation",
       options: {
-        editModal: "popover",
+        modal: { type: "dialog" },
       },
       of: [{ type: "navigationItem" }, { type: "navigationMegaMenu" }],
       validation: (Rule) => Rule.required(),
-    },
-    {
+    }),
+    defineField({
       name: "memberNav",
       type: "array",
       title: "Mitglieder Navigation",
       options: {
-        editModal: "popover",
+        modal: { type: "popover" },
       },
       of: [{ type: "navigationItem" }, { type: "navigationMegaMenu" }],
       validation: (Rule) => Rule.required(),
-    },
+    }),
     {
       name: "redirects",
       type: "array",
       title: "Redirects",
       options: {
-        editModal: "popover",
+        modal: { type: "popover" },
       },
       of: [
         {

@@ -11,12 +11,12 @@ interface DropdownProps {
   items: DropdownItem[];
   value?: string | string[];
   onChange: (value: DropdownItem[]) => void;
-  multiple?: boolean;
+
   name: string;
 }
 
 const Dropdown: React.FC<DropdownProps> = (props) => {
-  const { items = [], onChange, value, multiple, name } = props;
+  const { items = [], onChange, value, name } = props;
 
   const isMulti = Array.isArray(value);
 
@@ -33,20 +33,20 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
   };
 
   return (
-    <Listbox value={active} onChange={handleChange} multiple={multiple}>
+    <Listbox value={active || []} onChange={handleChange} multiple>
       <div className="relative mt-1">
         <Listbox.Button
           id={name}
           role="combobox"
           className="relative w-full cursor-default rounded-lg border-grey-border border-[1px] py-2 pl-3 pr-10 text-left  focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300"
         >
-          <span className="block truncate">
+          <ul className="block truncate">
             {Array.isArray(active)
               ? active.map((i) => <p key={i.value}>{i.title}</p>)
               : active
               ? active?.title
               : "bitte wählen"}
-          </span>
+          </ul>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <ChevronUpDownIcon
               className="h-5 w-5 text-gray-400"
@@ -99,10 +99,10 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
 type DropdownInputProps = {
   name: string;
   label: string;
-} & Pick<DropdownProps, "items" | "multiple">;
+} & Pick<DropdownProps, "items">;
 
 export const DropdownInput: React.FC<DropdownInputProps> = (props) => {
-  const { name, label, multiple, items } = props;
+  const { name, label, items } = props;
 
   const { field } = useController({
     name,
@@ -137,7 +137,6 @@ export const DropdownInput: React.FC<DropdownInputProps> = (props) => {
         items={items}
         value={field.value}
         onChange={handleChange}
-        multiple={multiple}
       />
       <FormError errorMessage={errorMessage} />
     </InputWarp>
