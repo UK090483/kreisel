@@ -1,12 +1,12 @@
-import ProfileForm from "./ProfileForm";
+import ProfileForm from "../../lib/Profile/ProfileForm";
 import {
   memberFields,
   profileFields,
   degreeOptions,
   focusOptions,
   membershipOptions,
-} from "./Fields";
-import { mount, cy } from "testPrepare";
+} from "../../lib/Profile/Fields";
+import { mount, cy } from "../../testPrepare";
 import React, { ComponentProps } from "react";
 
 const testData = {

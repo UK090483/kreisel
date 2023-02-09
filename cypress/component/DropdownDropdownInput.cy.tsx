@@ -1,31 +1,20 @@
-import { DropdownInput } from "./Dropdown";
-import { mount, cy, FormTestWrap } from "testPrepare";
-import React, { ComponentProps } from "react";
+///<reference path="../support/component.ts" />
 
-import { UseFormProps } from "react-hook-form";
+import { DropdownInput } from "../../components/Inputs/Dropdown";
+import { renderInForm, FormProps } from "../helpers/formHelper";
+import React from "react";
 
 const testItems = Array.from(Array(5).keys()).map((_i, index) => ({
   value: `value_${index}`,
   title: `title_${index}`,
 }));
 
-const render = (overwrite?: {
-  compProps?: Partial<ComponentProps<typeof DropdownInput>>;
-  formProps?: UseFormProps;
-}) =>
-  mount(
-    <FormTestWrap
-      onSubmit={cy.stub().as("submit")}
-      formProps={overwrite?.formProps}
-    >
-      <DropdownInput
-        label="Test Field"
-        name="test"
-        items={testItems}
-        {...overwrite?.compProps}
-      />
-    </FormTestWrap>
+const render = (formProps?: FormProps) => {
+  renderInForm(
+    <DropdownInput label="Test Field" name="test" items={testItems} />,
+    { formProps }
   );
+};
 
 describe("<DropdownInput />", () => {
   it("renders", () => {
@@ -63,7 +52,7 @@ describe("<DropdownInput />", () => {
   });
 
   it("should handle initial values", () => {
-    render({ formProps: { values: { test: ["value_1", "value_3"] } } });
+    render({ values: { test: ["value_1", "value_3"] } });
     cy.get("button[role=combobox]").contains("title_1");
     cy.get("button[role=combobox]").contains("title_3");
 

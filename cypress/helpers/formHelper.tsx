@@ -1,7 +1,6 @@
-import { mount } from "cypress/react18";
-import { cy, it, expect } from "local-cypress";
-import { PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react";
 import { UseFormProps, useForm, FormProvider } from "react-hook-form";
+import { mount } from "cypress/react18";
 
 const FormTestWrap = (props: {
   formProps?: PropsWithChildren<UseFormProps>;
@@ -10,8 +9,8 @@ const FormTestWrap = (props: {
 }) => {
   const { children, formProps, onSubmit } = props;
   const methods = useForm({ ...formProps });
-
-  const data = { values: methods.getValues() };
+  const values = methods.watch();
+  const data = { values, dirtyFields: methods.formState.dirtyFields };
 
   return (
     <>
@@ -27,4 +26,22 @@ const FormTestWrap = (props: {
   );
 };
 
-export { mount, cy, it, expect, FormTestWrap };
+const renderInForm = (
+  component: React.ReactElement,
+  props?: {
+    formProps?: PropsWithChildren<UseFormProps>;
+  }
+) => {
+  mount(
+    <FormTestWrap
+      onSubmit={cy.stub().as("submit")}
+      formProps={props?.formProps}
+    >
+      {component}
+    </FormTestWrap>
+  );
+};
+
+type FormProps = UseFormProps;
+
+export { FormTestWrap, renderInForm, FormProps };

@@ -1,5 +1,6 @@
-import { ImageUploadInput } from "./ImageUpload";
-import { cy, FormTestWrap, mount } from "../../testPrepare";
+import { ImageUploadInput } from "../../components/Inputs/ImageUpload";
+
+import { FormTestWrap, renderInForm } from "../helpers/formHelper";
 import React, { ComponentProps } from "react";
 import { UseFormProps } from "react-hook-form";
 
@@ -7,7 +8,7 @@ const render = (overwrite?: {
   compProps?: Partial<ComponentProps<typeof ImageUploadInput>>;
   formProps?: UseFormProps;
 }) =>
-  mount(
+  cy.mount(
     <FormTestWrap
       onSubmit={cy.stub().as("submit")}
       formProps={overwrite?.formProps}
@@ -18,7 +19,7 @@ const render = (overwrite?: {
 
 describe("<ImageUploadInput />", () => {
   it("renders", () => {
-    render();
+    renderInForm(<ImageUploadInput name="image" label="Image" />);
 
     cy.get(`input[type=file]`).selectFile("cypress/fixtures/image.png", {
       force: true,

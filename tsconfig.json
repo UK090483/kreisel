@@ -29,7 +29,8 @@
     "node_modules",
     "studio/**",
     "cypress/**",
-    "cypress.config.ts",
-    "**/*.test.ts"
+    "./cypress.config.ts",
+    "testPrepare.tsx",
+    "cypress"
   ]
 }

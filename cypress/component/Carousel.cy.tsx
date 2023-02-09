@@ -1,12 +1,12 @@
-import Carousel from "./Carousel";
+///<reference path="../support/component.ts" />
+import Carousel from "../../components/Carousel/Carousel";
 import React, { ComponentProps } from "react";
-import { mount } from "cypress/react18";
-import { cy, it } from "local-cypress";
+
 const items = [1, 2, 3, 4];
 
 const render = (overwrite?: ComponentProps<typeof Carousel>) => {
   const props = { ...overwrite };
-  return mount(
+  return cy.mount(
     <Carousel {...props}>
       {items.map((i) => (
         <div key={i} className=" h-56 flex justify-center items-center">
@@ -35,6 +35,7 @@ describe("<Carousel />", () => {
 
   it(" navigation should work ", () => {
     render();
+
     cy.wait(10);
     cy.get('button[aria-label="carousel button previous"]').click();
     cy.contains("item 4").should("be.visible");

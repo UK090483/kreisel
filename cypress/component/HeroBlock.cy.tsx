@@ -1,4 +1,4 @@
-import HeroBlock from "./HeroBlock";
+import HeroBlock from "../../PageBuilder/Blocks/hero/frontend/HeroBlock";
 import React, { ComponentProps } from "react";
 import { mount } from "cypress/react18";
 import { cy, it } from "local-cypress";

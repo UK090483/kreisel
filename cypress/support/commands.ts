@@ -65,6 +65,10 @@ Cypress.Commands.add("loginAsFakeUser", () => {
   });
 });
 
+Cypress.Commands.add("eraseFakeUser", () => {
+  return cy.request({ url: "/api/test/testUser", method: "DELETE" });
+});
+
 declare global {
   namespace Cypress {
     interface Cypress {
@@ -72,6 +76,7 @@ declare global {
     }
     interface Chainable {
       loginAsFakeUser: () => null;
+      eraseFakeUser: () => null;
     }
   }
 }
