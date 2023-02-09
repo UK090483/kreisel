@@ -32,7 +32,7 @@ const renderInForm = (
     formProps?: PropsWithChildren<UseFormProps>;
   }
 ) => {
-  mount(
+  return mount(
     <FormTestWrap
       onSubmit={cy.stub().as("submit")}
       formProps={props?.formProps}
