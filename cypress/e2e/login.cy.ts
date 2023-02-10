@@ -4,7 +4,5 @@ describe("create user spec", () => {
     cy.loginAsFakeUser();
     cy.url().should("include", "/profile");
     cy.eraseFakeUser();
-
-    cy.get("#notFindable");
   });
 });
