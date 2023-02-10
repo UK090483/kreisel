@@ -1,6 +1,13 @@
 import { JSDOM } from "jsdom";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+// X01 à Seminare Hamburg
+// X02 à Seminare Heidelberg
+// X03 à Infoveranstaltungen
+// X04 à Supervision
+// X05 à Online-Seminare
+// X06 à Lehrgänge
+
 export type ScrapeEvent = {
   link?: string;
   referent?: string;
@@ -17,11 +24,18 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const category =
+    typeof req.query.cat === "string" ? req.query.cat : undefined;
+
   const data = await getData(
-    "https://www.kcs4web.de/kcs4webhcm/Veranstaltungen.aspx?IDC=03371220&hsstartdate=1&hsenddate=1&reset=1"
+    `https://www.kcs4web.de/kcs4webhcm/Veranstaltungen.aspx?IDC=03371220&hsstartdate=1&hsenddate=1&reset=1${
+      category ? `&cat=${category}` : ""
+    }`
   );
   res.setHeader("Cache-Control", "s-maxage=1, stale-while-revalidate");
-  res.status(200).json({ data });
+  res.status(200).json({
+    data,
+  });
 }
 
 const indexToName: { [k: number]: string } = {
