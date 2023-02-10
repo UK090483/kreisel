@@ -9,7 +9,6 @@
     },
     {
       "label": "NEXT",
-
       "type": "shell",
       "icon": { "color": "terminal.ansiBlue", "id": "eye-watch" },
       "isBackground": true,
@@ -31,6 +30,12 @@
       "label": "SANITY_DEPLOY",
       "type": "shell",
       "command": "cd studio && npm run deploy"
+    },
+    {
+      "label": "CYPESS_COMPONENT",
+      "type": "shell",
+      "command": "npm run cypress:open:component",
+      "isBackground": true
     }
   ]
 }

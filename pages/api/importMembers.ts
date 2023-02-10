@@ -31,7 +31,7 @@ function getData() {
         resolve(results);
       })
       .on("error", (err: any) => {
-        console.log(err);
+        // console.log(err);
       });
   });
 }

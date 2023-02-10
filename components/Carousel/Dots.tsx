@@ -28,4 +28,5 @@ const Dots: React.FC<DotsProps> = (props) => {
   );
 };
 
+// eslint-disable-next-line import/no-unused-modules
 export default Dots;
