@@ -182,6 +182,12 @@ const adminFields = [
     name: "emailVerified",
     readOnly: true,
   },
+  {
+    title: "Approved",
+    name: "approved",
+    type: "boolean",
+    readOnly: true,
+  },
 ];
 
 const fields = [...memberFields, ...profileFields, ...adminFields];

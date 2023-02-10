@@ -9,7 +9,7 @@ const mitgliederPageTypeId = "bc359bcc-db23-4283-bc9f-591e3a9f44a3";
 const siteConfigType = "siteConfig";
 
 const ApproveAction: DocumentActionComponent = (props) => {
-  const { publish } = useDocumentOperation(props.id, props.type);
+  const { publish, patch } = useDocumentOperation(props.id, props.type);
   const { draft } = props;
   return {
     label: draft ? "Approve" : "Approved",
@@ -17,6 +17,7 @@ const ApproveAction: DocumentActionComponent = (props) => {
     disabled: !draft,
     title: "approve",
     onHandle: () => {
+      patch.execute([{ set: { approved: true } }], {});
       publish.execute();
       props.onComplete();
     },

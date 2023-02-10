@@ -20,4 +20,5 @@ import pbSchema from "../../PageBuilder/schema";
 
 const schema = [...pbSchema];
 
-export default schema;
+// export default schema;
+export {};

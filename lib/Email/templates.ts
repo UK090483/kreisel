@@ -44,7 +44,6 @@ export function html(params: {
   content?: string[];
 }) {
   const { url, host, theme, content } = params;
-
   const escapedHost = host ? host.replace(/\./g, "&#8203;.") : "";
 
   return `

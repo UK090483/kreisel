@@ -2,11 +2,6 @@
 import templates from "./template";
 import { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
-import { Theme } from "next-auth";
-
-const theme: Theme = {
-  brandColor: "#F9DE83",
-};
 
 let transporter = nodemailer.createTransport({
   host: process.env.EMAIL_SERVER_HOST,

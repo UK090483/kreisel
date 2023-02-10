@@ -60,6 +60,19 @@ const templates = {
     text: "Profile Changes Accepted",
     subject: "Profile Changes Accepted",
   },
+  profileChangesNeedsReview: {
+    html: html({
+      content: [
+        HeaderSection({ text: "Profile Changes Need Review" }),
+        ButtonSection({
+          text: "zur Profile Page",
+          url: profileUrl,
+        }),
+      ],
+    }),
+    text: "Profile Changes Accepted",
+    subject: "Profile Changes Accepted",
+  },
 };
 
 export default templates;

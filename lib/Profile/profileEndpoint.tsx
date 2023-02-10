@@ -80,6 +80,8 @@ const updateUser = async (client: SanityClient, email: string, data: any) => {
     `*[_type == 'member' && email.current == '${email}' ][]`
   );
 
+  const _data = { ...data, approved: false };
+
   if (items.length < 1) {
     return null;
   }
@@ -89,14 +91,14 @@ const updateUser = async (client: SanityClient, email: string, data: any) => {
   if (draft) {
     return await client
       .patch(draft._id)
-      .set(data)
+      .set(_data)
       .commit({ returnDocuments: true });
   }
 
   if (original) {
     return await client.create({
       ...original,
-      ...data,
+      ..._data,
       _id: "drafts." + original._id,
     });
   }
