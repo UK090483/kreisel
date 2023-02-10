@@ -27,7 +27,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Run Cypress 🌲
         uses: cypress-io/github-action@v5
