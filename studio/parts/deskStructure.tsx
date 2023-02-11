@@ -116,6 +116,7 @@ const structure: StructureResolver = (S, context) =>
         .child(S.documentTypeList("testimonial")),
       S.listItem().title("ToolTip").child(S.documentTypeList("tooltip")),
       S.listItem().title("ReuseAble ").child(S.documentTypeList("reuseAble")),
+      S.listItem().title("log ").child(S.documentTypeList("log")),
     ]);
 
 export default structure;

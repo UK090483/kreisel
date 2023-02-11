@@ -1,13 +1,9 @@
-// import sanityClient from "@sanity/client";
-
-// jest.genMockFromModule("@sanity/client");
-
-// export default sanityClient;
-
-const sanityAutoMock = () => () => ({
-  fetch: () => {
-    console.log("mocked sanity client");
-  },
-});
+const sanityAutoMock = () => {
+  return {
+    fetch: () => {
+      console.log("calling mock fetch");
+    },
+  };
+};
 
 export default sanityAutoMock;

@@ -18,6 +18,7 @@ import testimonialSchema from "./ContentTypes/Testimonials/testimonial.schema";
 import defaultImageSchema from "./Image/defaultImage.schema";
 import Navigation from "./Navigation/Navigation.schema";
 import linkSchema from "./objects/link/link.schema";
+import logSchema, { logItem } from "./objects/link/log/log.schema";
 import { defaultRichTextSchema } from "./RichText/defaultRichtext/defaultRichText.schema";
 import easyRichtextSchema from "./RichText/easyRichtext/easyRichtext.schema";
 import headerRichTextSchema from "./RichText/headerRichText/headerRichText.schema";
@@ -92,6 +93,8 @@ const schema = [
 
   //
 
+  logSchema,
+  logItem,
   // underlineSchema,
 ];
 
