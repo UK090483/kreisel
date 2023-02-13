@@ -22,6 +22,7 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
     type,
     transitionTop,
     transitionBottom,
+    _key,
   } = props;
 
   const hasImage = image && image.type;
@@ -34,6 +35,7 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
       condition={type === "accordion"}
       title={title}
       width={width || autoType}
+      id={_key}
     >
       <Section
         bg={bgColor}
