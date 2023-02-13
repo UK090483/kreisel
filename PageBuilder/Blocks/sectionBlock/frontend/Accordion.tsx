@@ -3,12 +3,14 @@ import useSectionWidth from "components/Section/useSectionWidth";
 import Svg from "components/Svg";
 import { useScrollTo } from "hooks/useScrollTo";
 import React, { FC, useEffect, useRef, useState } from "react";
+import { useSessionStorage } from "react-use";
 
 type AccordionProps = {
   condition: boolean;
   title?: string;
   width: SectionProps["width"];
   children?: React.ReactNode;
+  id: string;
 };
 
 const initialHeight = 64;
@@ -18,15 +20,17 @@ const Accordion: FC<AccordionProps> = ({
   children,
   title,
   width,
+  id,
 }) => {
   const [containerHeight, setContainerHeight] = useState(initialHeight);
   const ref = useRef<HTMLDivElement>(null);
   const widthClasses = useSectionWidth({ width, noPadding: false });
   const scrollTo = useScrollTo(500);
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useSessionStorage("accordion_" + id, false);
+
   const handleClick = () => {
-    setOpen((i) => !i);
+    setOpen(!open);
   };
 
   useEffect(() => {
