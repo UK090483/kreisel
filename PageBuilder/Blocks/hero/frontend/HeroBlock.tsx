@@ -70,7 +70,6 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
       {photo && isHalf && (
         <div className=" relative order-1 md:order-2 min-h-[250px] my-8 md:my-0">
           <SanityImage src={photo} fill className="object-contain " />
-          {/* <SanityImage image={photo} objectFit="contain" /> */}
         </div>
       )}
     </Section>
