@@ -7,9 +7,12 @@ _type == "imageGalleryPlug" => {
   ...,
   _type,
   _key,
-  'items':items[]{..., 'image': image{${imageMeta}} ,'link':link{
-    ${linkQuery}
-  }  },
+  'items':items[]{
+    ...,
+    'image': coalesce(image,link.internalLink->image){${imageMeta}},
+    'title': coalesce(title,link.internalLink->title),
+    'link':link{${linkQuery}}
+   },
   rows,
   rows_mobile,
   ratio,

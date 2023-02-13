@@ -10,7 +10,7 @@ export default defineType({
       title: "Internal Link",
       type: "reference",
 
-      to: [{ type: "page" }, { type: "person" }],
+      to: [{ type: "page" }],
       options: {
         disableNew: true,
       },
