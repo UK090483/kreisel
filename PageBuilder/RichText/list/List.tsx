@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import * as React from "react";
 
 interface IListProps {
@@ -5,12 +6,17 @@ interface IListProps {
 }
 
 export const List: React.FC<IListProps> = (props: any) => {
+  console.log(props);
+
+  const firstLevel = props.level === 1;
   return (
     <ul
       data-testid="list"
-      className={`${
-        props?.type === "number" ? "list-decimal" : "list-disc"
-      } list-outside ml-4 marker:text-primary pb-4 `}
+      className={clsx(`list-outside ml-4 marker:text-primary marker:  `, {
+        "pb-4": firstLevel,
+        "list-decimal": props?.type === "number",
+        "list-disc": props?.type !== "number",
+      })}
     >
       {props.children}
     </ul>
