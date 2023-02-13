@@ -1,6 +1,6 @@
 import { ArticleCard } from "./Card/ArticleCard";
 import Card from "./Card/Card";
-import ListCard from "./Card/ListCard";
+import SmallCard from "./Card/SmallCard";
 import {
   CardResult,
   ListingBlockProps,
@@ -15,7 +15,7 @@ const List: React.FC<ListProps & ListingBlockProps> = (props) => {
   const { items, variant } = props;
 
   return (
-    <div className="grid grid-cols-1 gap-8  md:grid-cols-2 lg:grid-cols-3 ">
+    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 ">
       {items.map((item, index) => {
         if (item._type === "article") {
           //@ts-ignore
@@ -23,13 +23,7 @@ const List: React.FC<ListProps & ListingBlockProps> = (props) => {
         }
 
         if (variant === "smallCard") {
-          return (
-            <ListCard
-              variation={"list"}
-              key={item._id || item._key}
-              {...item}
-            />
-          );
+          return <SmallCard key={item._id || item._key} {...item} />;
         }
         return <Card key={item._id || item._key} {...item} />;
       })}

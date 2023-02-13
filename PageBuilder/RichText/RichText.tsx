@@ -28,8 +28,8 @@ const RichText: React.FC<any> = (props: any) => {
     <SanityRichText
       //@ts-ignore
       list={List}
-      //@ts-ignore
-      listItem={ListItem}
+      // //@ts-ignore
+      istItem={ListItem}
       content={props.content}
       plugs={{
         imageGalleryPlug: ImageGalleryPlug,
