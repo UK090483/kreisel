@@ -12,7 +12,7 @@ export type listingBuilderItem = {
 export type listingBuilderItemFilter = {
   value: string;
   title: string;
-  queryFilter: {
+  queryFilter?: {
     filter: string;
     order?: string;
     slice?: { start: number; end: number };

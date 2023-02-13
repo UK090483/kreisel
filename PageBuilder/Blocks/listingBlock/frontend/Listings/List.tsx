@@ -1,16 +1,18 @@
 import { ArticleCard } from "./Card/ArticleCard";
 import Card from "./Card/Card";
 import ListCard from "./Card/ListCard";
-import { ListingBlockItem } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
+import {
+  CardResult,
+  ListingBlockProps,
+} from "PageBuilder/Blocks/listingBlock/listingBlock.query";
 import React from "react";
 
 interface ListProps {
-  items: ListingBlockItem[];
-  variation?: null | "list" | "grid";
+  items: CardResult[];
 }
 
-const List: React.FC<ListProps> = (props) => {
-  const { items, variation } = props;
+const List: React.FC<ListProps & ListingBlockProps> = (props) => {
+  const { items, variant } = props;
 
   return (
     <div className="grid grid-cols-1 gap-8  md:grid-cols-2 lg:grid-cols-3 ">
@@ -19,17 +21,17 @@ const List: React.FC<ListProps> = (props) => {
           //@ts-ignore
           return <ArticleCard key={item._id || item._key} {...item} />;
         }
-        {
-          return variation === "list" ? (
+
+        if (variant === "smallCard") {
+          return (
             <ListCard
-              variation={variation}
+              variation={"list"}
               key={item._id || item._key}
               {...item}
             />
-          ) : (
-            <Card key={item._id || item._key} {...item} />
           );
         }
+        return <Card key={item._id || item._key} {...item} />;
       })}
     </div>
   );

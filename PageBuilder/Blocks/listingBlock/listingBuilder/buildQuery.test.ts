@@ -8,6 +8,7 @@ const getItem = (_type: string, name: string, value: number) => ({
   name: name + value,
   title: name.toUpperCase() + value,
   value,
+  projectionTest: name + value,
 });
 
 const getItems = (type: string, name: string, count: number) =>
@@ -36,7 +37,6 @@ const builderItems: listingBuilderItem[] = [
         title: "F3",
         queryFilter: {
           filter: "value > 0",
-
           slice: { start: 1, end: 4 },
         },
       },
@@ -64,7 +64,10 @@ const runTestQuery = async (
 ) => {
   return testQuery(
     `*[_id == "tester"][0]{
-         'list':list{${buildQuery(items, `... ,'projectionTest':'boom'`)}}
+         'list':list{${buildQuery(
+           items,
+           `...select(_type == "reference" =>@->,@){...}`
+         )}}
         }`,
     data
   ) as Promise<{
@@ -109,7 +112,13 @@ describe("Build listing Query", () => {
     const res = await runTestQuery(
       builderItems,
       getData({
-        list: { contentType: "A", AItems: [{ _ref: "A2" }, { _ref: "A3" }] },
+        list: {
+          contentType: "A",
+          AItems: [
+            { _ref: "A2", _type: "reference" },
+            { _ref: "A3", _type: "reference" },
+          ],
+        },
       })
     );
     expect(res.list?.items.map((i) => i._id)).toEqual(["A2", "A3"]);
@@ -118,13 +127,16 @@ describe("Build listing Query", () => {
     const res = await runTestQuery(
       builderItems,
       getData({
-        list: { contentType: "A", AItems: [{ _ref: "A2" }, { _ref: "A3" }] },
+        list: {
+          contentType: "A",
+          AItems: [
+            { _ref: "A2", _type: "reference" },
+            { _ref: "A3", _type: "reference" },
+          ],
+        },
       })
     );
-    expect(res.list?.items.map((i) => i.projectionTest)).toEqual([
-      "boom",
-      "boom",
-    ]);
+    expect(res.list?.items.map((i) => i.projectionTest)).toEqual(["a2", "a3"]);
   });
 
   it("result items to have the requested filter Items", async () => {

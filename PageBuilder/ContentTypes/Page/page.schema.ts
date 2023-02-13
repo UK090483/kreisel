@@ -1,5 +1,9 @@
 import { defaultBockContent } from "../../schemaHelper/snippets";
 import { getSlugField } from "PageBuilder/schemaHelper/getSlugField";
+import {
+  AKTUELLES_PAGE_TYPE_ID,
+  BLOG_PAGE_TYPE_ID,
+} from "PageBuilder/constants";
 import { CgWebsite } from "react-icons/cg";
 import { defineType } from "sanity";
 import { VscMultipleWindows } from "react-icons/vsc";
@@ -44,16 +48,22 @@ export const PageSchema = defineType({
       type: "defaultImage",
       group: "base",
     },
+    {
+      title: "Published",
+      name: "publish",
+      type: "date",
+      group: "content",
+      hidden: ({ document }) => {
+        //@ts-ignore
+        const pageTypeId = document?.pageType?._ref as string | undefined;
+        if (!pageTypeId) return true;
+        return ![BLOG_PAGE_TYPE_ID, AKTUELLES_PAGE_TYPE_ID].includes(
+          pageTypeId
+        );
+      },
+    },
     getSlugField(),
-    // {
-    //   name: "slug",
-    //   type: "slug",
-    //   title: "Slug",
-    //   group: "base",
-    //   options: {
-    //     source: "title",
-    //   },
-    // },
+
     {
       name: "pageType",
       type: "reference",

@@ -1,7 +1,20 @@
-import { defineField } from "sanity";
 import { listingBuilderItem } from "./types";
+import { defineField } from "sanity";
 
-export const buildVariantFields = (items: listingBuilderItem[]) => {
+const buildContentTypeField = (items: listingBuilderItem[]) => {
+  return defineField({
+    group: "content",
+    title: `Content type`,
+    name: `contentType`,
+    type: "string",
+    options: {
+      list: [...items.map((i) => ({ title: i.title, value: i.name }))],
+      layout: "radio",
+    },
+  });
+};
+
+const buildVariantFields = (items: listingBuilderItem[]) => {
   return items
     .filter((i) => !!i.variants)
     .map((i) =>
@@ -23,7 +36,7 @@ export const buildVariantFields = (items: listingBuilderItem[]) => {
     );
 };
 
-export const buildFilterFields = (items: listingBuilderItem[]) => {
+const buildFilterFields = (items: listingBuilderItem[]) => {
   return items
     .filter((i) => !!i.filter)
     .map((i) =>
@@ -45,7 +58,7 @@ export const buildFilterFields = (items: listingBuilderItem[]) => {
     );
 };
 
-export const buildReferenceListFields = (items: listingBuilderItem[]) => {
+const buildReferenceListFields = (items: listingBuilderItem[]) => {
   return items
     .filter((i) => !!i.items)
     .map((i) =>
@@ -59,3 +72,14 @@ export const buildReferenceListFields = (items: listingBuilderItem[]) => {
       })
     );
 };
+
+const buildListingFields = (items: listingBuilderItem[]) => {
+  return [
+    buildContentTypeField(items),
+    ...buildFilterFields(items),
+    ...buildVariantFields(items),
+    ...buildReferenceListFields(items),
+  ];
+};
+
+export { buildListingFields };

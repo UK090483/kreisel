@@ -12,13 +12,14 @@ const getVariant = (items: listingBuilderItem[]) =>
 const getFilterOrder = (filter: listingBuilderItemFilter) =>
   filter.queryFilter?.order ? `| order(${filter.queryFilter.order})` : "";
 const getFilterSlice = (filter: listingBuilderItemFilter) =>
-  filter.queryFilter.slice
+  filter.queryFilter?.slice
     ? `[${filter.queryFilter.slice.start}...${filter.queryFilter.slice.end}]`
     : "";
 
 const getFilterQuery = (item: listingBuilderItem) => {
   if (!item.filter) return "";
   return item.filter.reduce((acc, filter) => {
+    if (!filter?.queryFilter?.filter) return acc;
     return (
       acc +
       `contentType == "${item.name}" && ${item.name}Filter == "${
@@ -31,9 +32,7 @@ const getFilterQuery = (item: listingBuilderItem) => {
 };
 
 const getReferenceQuery = (item: listingBuilderItem) => {
-  return `contentType == "${item.name}" => [...${item.name}Items[]${
-    item.items?.every((i) => i.type !== "reference") ? "" : "->"
-  }],`;
+  return `contentType == "${item.name}" => ${item.name}Items[],`;
 };
 
 const getItemQuery = (items: listingBuilderItem[]) => {
@@ -54,6 +53,7 @@ function buildQuery(
   'items': ${getItemQuery(items)}[]{${baseProjection}},
   'variant': ${getVariant(items)}
   `;
+
   return res;
 }
 

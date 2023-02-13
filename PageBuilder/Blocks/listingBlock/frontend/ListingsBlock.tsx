@@ -7,11 +7,11 @@ import { ListingBlockProps } from "../listingBlock.query";
 import React from "react";
 
 const ListingBlock: React.FC<ListingBlockProps> = (props) => {
-  const { variation } = props;
+  const { variation, contentType, variant } = props;
 
   if (!props.items) return null;
 
-  if (props.contentType === "people") {
+  if (contentType === "people") {
     return (
       <ListWrap {...props}>
         <PersonList items={props.items} />
@@ -19,7 +19,7 @@ const ListingBlock: React.FC<ListingBlockProps> = (props) => {
     );
   }
 
-  if (props.contentType === "testimonial") {
+  if (contentType === "testimonial") {
     return (
       <ListWrap {...props}>
         <TestimonialList items={props.items} />
@@ -27,13 +27,17 @@ const ListingBlock: React.FC<ListingBlockProps> = (props) => {
     );
   }
 
-  if (props.contentType === "therapist") {
-    return <TherapistList items={props.items} />;
+  if (contentType === "therapist") {
+    return (
+      <ListWrap {...props}>
+        <TherapistList items={props.items} />
+      </ListWrap>
+    );
   }
 
   return (
     <ListWrap {...props}>
-      <List variation={variation} items={props.items} />
+      <List variation={variation} {...props} items={props.items} />
     </ListWrap>
   );
 };

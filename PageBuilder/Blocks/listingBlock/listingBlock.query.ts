@@ -4,6 +4,8 @@ import {
   PersonItemResult,
 } from "./frontend/Listings/Persons/PersonListQuery";
 
+import buildQuery from "./listingBuilder/buildQuery";
+import listingBlockItems from "./listingBlock.items";
 import { linkQuery, LinkResult } from "PageBuilder/Navigation/navigation.query";
 import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
 import { AppLocales, AppColor } from "types";
@@ -46,13 +48,13 @@ interface ListingBlockTestimonialResult {
 export type ListingBlockItem = CardResult;
 
 const cardQuery = `
-...,
-'content':null,
 description,
 _type,
 _id,
-_createdAt,
 title,
+text,
+name,
+position,
 'image':image{...,${imageMeta}},
 'href': select(
   defined(pageType) && defined(slug) => '/' + pageType->slug.current + '/' + slug.current,
@@ -80,40 +82,37 @@ export interface IArticleCardResult extends CardResult {
 
 export const listingBlockQuery = `
 _type == "listing" => {
-  ...,
-  variation,
   _type,
-   _key,
-   contentType,
+  _key,
+  variation,
   'content':  content[]{...},
-  'items': select(
-    contentType == 'custom' => customItems[]{
-      _type == 'reference' => @->{${cardQuery}},
-      _type != 'reference' => {${cardQuery}},
-    },
-    contentType == 'people' => peopleItems[]->{${personItemQuery("")}},
-    contentType == 'testimonial' => testimonialItems[]->{${cardQuery}},
-    contentType == 'therapist' => *[_type == 'therapist' ][]{${cardQuery}},
-    contentType in ['article']=> *[_type == ^.contentType ][]{${cardQuery}},
-    contentType in ['blog','aktuelles']=> *[ pageType->slug.current == ^.contentType ][]{${cardQuery}}
-  ),
+  ${buildQuery(
+    listingBlockItems,
+    `...select(_type == "reference" =>@->,@){
+      ${cardQuery}
+      _type == 'person'=>{${personItemQuery("")}}
+    }`
+  )}
   ${blockStyleProjection()}
 }
 `;
 
-interface ListingBlockResult<Type, Card> extends BlockStyle {
+interface ListingBlockItemResult<Type, Card, Variant = undefined>
+  extends BlockStyle {
   _key: string;
   _type: "listing";
   type?: "contentType" | "custom";
   contentType: Type;
   items?: Card[];
-  lang?: AppLocales;
   content?: null | any;
   variation?: null | "list" | "grid";
+  variant?: Variant;
 }
 
 export type ListingBlockProps =
-  | ListingBlockResult<"people", PersonItemResult>
-  | ListingBlockResult<"therapist", TherapistResult>
-  | ListingBlockResult<"testimonial", ITestimonialItem>
-  | ListingBlockResult<"blog" | "article", CardResult>;
+  | ListingBlockItemResult<"page", CardResult, "card" | "smallCard">
+  | ListingBlockItemResult<"people", PersonItemResult>
+  | ListingBlockItemResult<"therapist", TherapistResult>
+  | ListingBlockItemResult<"testimonial", ITestimonialItem>
+  | ListingBlockItemResult<"blog" | "article", CardResult>
+  | ListingBlockItemResult<"custom", CardResult>;

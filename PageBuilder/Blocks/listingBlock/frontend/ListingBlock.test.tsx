@@ -52,9 +52,7 @@ describe("ListingBlock", () => {
   //   }`);
   // });
   it("should render no Items", async () => {
-    render(
-      <ListingBlock contentType="blog" _type="listing" _key="test" lang="de" />
-    );
+    render(<ListingBlock contentType="blog" _type="listing" _key="test" />);
   });
 
   it("should render with Items", async () => {
@@ -63,7 +61,6 @@ describe("ListingBlock", () => {
         contentType="blog"
         _type="listing"
         _key="test"
-        lang="de"
         items={items}
       />
     );
