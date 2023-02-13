@@ -6,8 +6,6 @@ interface IListProps {
 }
 
 export const List: React.FC<IListProps> = (props: any) => {
-  console.log(props);
-
   const firstLevel = props.level === 1;
   return (
     <ul
