@@ -4,7 +4,7 @@ import clsx from "clsx";
 interface IIseSectionWidthProps extends BlockSpace {}
 
 const useSectionSpace = (props: IIseSectionWidthProps) => {
-  const { topSpace, bottomSpace } = props;
+  const { topSpace = "m", bottomSpace = "m" } = props;
   const className = clsx({
     "pt-5 md:pt-10": topSpace === "s",
     "pt-16 md:pt-20": topSpace === "m" || topSpace === null,

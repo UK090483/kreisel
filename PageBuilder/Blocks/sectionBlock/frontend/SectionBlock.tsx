@@ -24,10 +24,6 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
     transitionBottom,
   } = props;
 
-  if (props.title === "Abschluss") {
-    console.log(props);
-  }
-
   const hasImage = image && image.type;
   const autoType = hasImage ? "l" : "s";
 
