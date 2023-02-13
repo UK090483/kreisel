@@ -5,7 +5,7 @@ import {
   BLOG_PAGE_TYPE_ID,
 } from "PageBuilder/constants";
 import { CgWebsite } from "react-icons/cg";
-import { defineType } from "sanity";
+import { defineField, defineType, defineArrayMember } from "sanity";
 import { VscMultipleWindows } from "react-icons/vsc";
 
 export const PageSchema = defineType({
@@ -62,6 +62,29 @@ export const PageSchema = defineType({
         );
       },
     },
+
+    defineField({
+      title: "Tags",
+      name: "tags",
+      type: "array",
+      group: "content",
+      of: [
+        defineArrayMember({
+          type: "reference",
+          to: [{ type: "tag" }],
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+
+      hidden: ({ document }) => {
+        //@ts-ignore
+        const pageTypeId = document?.pageType?._ref as string | undefined;
+        if (!pageTypeId) return true;
+        return ![BLOG_PAGE_TYPE_ID, AKTUELLES_PAGE_TYPE_ID].includes(
+          pageTypeId
+        );
+      },
+    }),
     getSlugField(),
 
     {
@@ -91,12 +114,6 @@ export const PageSchema = defineType({
       options: {
         list: [{ title: "Glossary", value: "glossary" }],
       },
-    },
-
-    {
-      name: "tags",
-      title: "Tags",
-      type: "tags",
     },
 
     { ...defaultBockContent, group: "content" },
