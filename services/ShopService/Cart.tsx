@@ -1,8 +1,8 @@
 import { ShopButton } from "./ShopButton";
 import { useShop } from "./shopContext";
-import SanityImage from "lib/SanityImage";
+import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import useAnimationDelay from "hooks/useAnimationDelay";
-import { ImageMetaResult } from "lib/SanityImage/query";
+import { ImageResult } from "PageBuilder/Image/sanityImage.query";
 import React, { useEffect, PropsWithChildren } from "react";
 import { createPortal } from "react-dom";
 import FocusTrap from "focus-trap-react";
@@ -91,7 +91,7 @@ type ArticleProps = {
   id: string;
   price?: number;
   title?: string;
-  image?: ImageMetaResult;
+  image?: ImageResult;
 };
 
 const Article: React.FC<PropsWithChildren<ArticleProps>> = ({
@@ -106,7 +106,7 @@ const Article: React.FC<PropsWithChildren<ArticleProps>> = ({
   return (
     <div className=" bg-white  rounded-xl overflow-hidden mb-4">
       <div className="relative w-full aspect-w-16 aspect-h-10 ">
-        <SanityImage image={image} objectFit="cover" />
+        <SanityImage src={image} fill className=" object-cover" />
       </div>
 
       <div className="p-3">

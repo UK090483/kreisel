@@ -1,7 +1,8 @@
 import CardWrap from "./CardWrap";
 import CardBody from "./CardBody";
 import { CardResult } from "../../../listingBlock.query";
-import SanityImage from "lib/SanityImage";
+
+import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import Typo from "components/Typography";
 import React from "react";
 import BlockContent from "@sanity/block-content-to-react";
@@ -34,7 +35,7 @@ const Card: React.FC<CardProps> = (props) => {
       <div
         className={`relative w-full   aspect-w-10 aspect-h-5 rounded-t-theme overflow-hidden bg-primary-light `}
       >
-        {image && <SanityImage image={image} objectFit="cover" />}
+        {image && <SanityImage src={image} fill className=" object-cover " />}
       </div>
 
       <CardBody className={`bg-white  h-full`}>

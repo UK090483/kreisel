@@ -1,9 +1,9 @@
-import { ImageMetaResult } from "lib/SanityImage/query";
+import { ImageResult } from "PageBuilder/Image/sanityImage.query";
 import Image from "next/image";
 
 type AvatarProps = {
   name?: string;
-  image?: ImageMetaResult;
+  image?: ImageResult;
   className?: string;
 };
 

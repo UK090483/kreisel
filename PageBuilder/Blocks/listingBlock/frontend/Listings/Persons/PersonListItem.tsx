@@ -1,12 +1,12 @@
 import Avatar from "components/Avatar";
 import * as React from "react";
-import type { ImageMetaResult } from "lib/SanityImage/query";
+import type { ImageResult } from "PageBuilder/Image/sanityImage.query";
 
 interface IPersonListItemProps {
   name?: null | string;
   position?: null | string;
   description?: null | string;
-  avatar?: null | ImageMetaResult;
+  avatar?: null | ImageResult;
   variant?: string | null;
   _id: string;
 }

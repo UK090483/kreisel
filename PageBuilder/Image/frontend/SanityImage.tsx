@@ -1,3 +1,5 @@
+import { PureKreisel } from "components/Kreisel";
+import clsx from "clsx";
 import Image, { ImageLoader, ImageProps } from "next/image";
 
 import * as React from "react";
@@ -17,9 +19,16 @@ const loader: ImageLoader = (props) => {
 function SanityImage(props: ISanityImageProps) {
   const { alt, src, className, style, fill, ...rest } = props;
 
-  const img = src ? src : null;
+  if (!src || !src.url)
+    return (
+      <PureKreisel
+        className={clsx({
+          "absolute w-full h-full inset-0 object-center text-primary p-4 ":
+            fill,
+        })}
+      />
+    );
 
-  if (!src || !src.url) return null;
   const _alt = alt || src.alt || "alt";
   const _url = src.url + "?auto=format" || "";
 

@@ -2,8 +2,9 @@ import Kreisel from "./Kreisel";
 import { useSection } from "./Section/SectionContext";
 import Tooltip from "./Tooltip";
 import Typo from "./Typography/Typography";
-import SanityImage from "lib/SanityImage";
-import { ImageMetaResult } from "lib/SanityImage/query";
+import SanityImage from "PageBuilder/Image/frontend/SanityImage";
+import { ImageResult } from "PageBuilder/Image/sanityImage.query";
+
 import clsx from "clsx";
 import * as React from "react";
 
@@ -11,7 +12,7 @@ interface IAvatarProps {
   showFull?: boolean;
   title?: string | null;
   subTitle?: string | null;
-  image?: ImageMetaResult | null;
+  image?: ImageResult | null;
   description?: string | null;
   id: string;
   size?: "s" | "m" | "l";
@@ -53,8 +54,12 @@ const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
       >
         {hasImage && (
           <SanityImage
-            image={image}
-            objectFit={showFull ? "contain" : "cover"}
+            src={image}
+            fill
+            className={clsx({
+              "object-contain ": showFull,
+              "object-cover ": !showFull,
+            })}
             sizes={"350px"}
           />
         )}

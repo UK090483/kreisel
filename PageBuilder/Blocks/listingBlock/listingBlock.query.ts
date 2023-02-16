@@ -7,7 +7,8 @@ import {
 import buildQuery from "./listingBuilder/buildQuery";
 import listingBlockItems from "./listingBlock.items";
 import { linkQuery, LinkResult } from "PageBuilder/Navigation/navigation.query";
-import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
+
+import { imageQuery, ImageResult } from "PageBuilder/Image/sanityImage.query";
 import { AppLocales, AppColor } from "types";
 import {
   BlockStyle,
@@ -29,7 +30,7 @@ export interface TherapistResult extends CardResult {
 
 export interface ITestimonialItem {
   text?: string | null;
-  image?: ImageMetaResult;
+  image?: ImageResult;
   name?: string | null;
   position?: string | null;
   _id: string;
@@ -55,7 +56,7 @@ title,
 text,
 name,
 position,
-'image':image{...,${imageMeta}},
+'image':image{...,${imageQuery}},
 'href': select(
   defined(pageType) && defined(slug) => '/' + pageType->slug.current + '/' + slug.current,
   defined(slug) => '/' + slug.current
@@ -67,7 +68,7 @@ export interface CardResult {
   href?: string;
   title?: string;
   description?: string;
-  image?: ImageMetaResult;
+  image?: ImageResult;
   link?: LinkResult;
   _createdAt?: string;
   _id: string;

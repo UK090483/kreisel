@@ -1,5 +1,5 @@
-import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
 import { richTextQuery } from "PageBuilder/RichText/defaultRichtext/defaultRichText.query";
+import { imageQuery, ImageResult } from "PageBuilder/Image/sanityImage.query";
 import {
   BlockStyle,
   blockStyleProjection,
@@ -12,8 +12,8 @@ _type == "section" => {
   title,
   type,
   ${richTextQuery},
-  bgImage{${imageMeta}},
-  image{${imageMeta}},
+  bgImage{${imageQuery}},
+  image{${imageQuery}},
   ${blockStyleProjection()}
 }
 `;
@@ -21,8 +21,8 @@ _type == "section" => {
 export interface SectionBlockResult extends BlockStyle {
   _type: "section";
   content: null | any;
-  bgImage?: ImageMetaResult | null;
-  image?: ImageMetaResult | null;
+  bgImage?: ImageResult | null;
+  image?: ImageResult | null;
   title?: string;
   type?: "accordion";
   _key: string;

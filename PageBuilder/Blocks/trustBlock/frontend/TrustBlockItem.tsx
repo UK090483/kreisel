@@ -1,5 +1,5 @@
 import { ITrustBlockItem } from "../trustBlock.query";
-import SanityImage from "lib/SanityImage";
+import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import Typo from "components/Typography/Typography";
 import * as React from "react";
 import { useIntersection } from "react-use";
@@ -19,7 +19,7 @@ const TrustBlockItem: React.FunctionComponent<ITrustBlockItem> = (props) => {
   return (
     <div ref={ref}>
       <div className="w-40 relative mx-auto h-40">
-        <SanityImage image={image} objectFit="contain" />
+        <SanityImage src={image} fill objectFit="contain" />
       </div>
 
       <Typo
@@ -28,7 +28,6 @@ const TrustBlockItem: React.FunctionComponent<ITrustBlockItem> = (props) => {
         className="font-sans text-center text-5xl pt-8 "
       >
         {value}
-        {/* {isNumber ? <CountUp n={isNumber} /> : value} */}
       </Typo>
 
       <Typo variant="body-l" as="p" className=" text-center ">

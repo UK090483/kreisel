@@ -1,12 +1,12 @@
-import SanityImage from "lib/SanityImage";
+import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import { PlugProps } from "lib/SanityPageBuilder/lib/RichText";
 import clsx from "clsx";
 
 import React, { PropsWithChildren } from "react";
-import type { ImageMetaResult } from "lib/SanityImage/query";
+import type { ImageResult } from "PageBuilder/Image/sanityImage.query";
 
 type ImagePlugProps = {
-  image?: ImageMetaResult | null;
+  image?: ImageResult | null;
   customWidth?: "1/4" | "1/3" | "1/2" | "2/3" | "full";
   ratio?: "auto" | "3:2" | "5:9" | "16:9" | "1:1";
   position?: "left" | "right" | "center";
@@ -32,7 +32,7 @@ const ImagePlug: React.FC<PlugProps<ImagePlugProps>> = (props) => {
 
   const hasRatio = ratio && ratio !== "auto";
 
-  if (!image || !image.id) return null;
+  if (!image || !image.url) return null;
 
   return (
     <div
@@ -51,9 +51,10 @@ const ImagePlug: React.FC<PlugProps<ImagePlugProps>> = (props) => {
     >
       <AspectBox ratio={ratio}>
         <SanityImage
-          image={image}
+          src={image}
+          fill={hasRatio}
           objectFit={hasRatio ? "cover" : undefined}
-          layout={hasRatio ? "fill" : "responsive"}
+          className={clsx({ "object-fill": hasRatio })}
           sizes={`(max-width: 350px) 350px ,(max-width: 640px) 100vw, ${sizesMap[customWidth]}vw`}
         />
       </AspectBox>

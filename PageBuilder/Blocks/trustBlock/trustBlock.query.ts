@@ -1,4 +1,4 @@
-import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
+import { imageQuery, ImageResult } from "PageBuilder/Image/sanityImage.query";
 import {
   BlockStyle,
   blockStyleProjection,
@@ -6,11 +6,11 @@ import {
 
 const trustBlockItemQuery = `
     ...,
-   'image': image{${imageMeta}},
+   'image': image{${imageQuery}},
 `;
 
 export interface ITrustBlockItem {
-  image?: ImageMetaResult | null;
+  image?: ImageResult;
   name: string;
   value: string;
   _key: string;

@@ -1,7 +1,7 @@
 import { ITestimonialItem } from "../../../listingBlock.query";
 import Carousel from "components/Carousel/Carousel";
 import Typo from "components/Typography/Typography";
-import SanityImage from "lib/SanityImage";
+import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import React from "react";
 import clsx from "clsx";
 
@@ -36,7 +36,7 @@ const TestimonialList: React.FC<ITestimonialListProps> = (props) => {
 
             {hasImage && (
               <div className=" mx-auto rounded-theme overflow-hidden  relative flex justify-center items-center   h-[320px] w-[320px] ">
-                <SanityImage image={image} layout={"fill"} objectFit="cover" />
+                <SanityImage src={image} fill className=" object-cover" />
               </div>
             )}
           </div>

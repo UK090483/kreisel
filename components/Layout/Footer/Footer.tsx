@@ -1,6 +1,6 @@
 import FooterContact from "./FooterContact";
 import { Section } from "components/Section/Section";
-import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
+import { imageQuery, ImageResult } from "PageBuilder/Image/sanityImage.query";
 import React from "react";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
 import { headerRichTextQuery } from "PageBuilder/RichText/headerRichText/defaultRichText.query";
@@ -12,10 +12,10 @@ export const footerQuery = `
 'footer': {
   ...*[_id == 'siteConfig'][0]{
     
-    'footerImage':footerImage{${imageMeta}},
+    'footerImage':footerImage{${imageQuery}},
     'contact':coalesce(^.contacts,^.pageType->contacts,contacts[0])->{
       'content':${headerRichTextQuery},
-      'persons':persons[]->{_id,name,position,description,'avatar':avatar{${imageMeta}}},
+      'persons':persons[]->{_id,name,position,description,'avatar':avatar{${imageQuery}}},
       },
     'imprint':imprintPage->slug.current,
     'agb':agbPage->slug.current,
@@ -25,12 +25,12 @@ export const footerQuery = `
 `;
 export interface FooterQueryResult {
   footer: {
-    footerImage: ImageMetaResult;
+    footerImage: ImageResult;
     contact?: {
       content?: any;
       persons?: {
         description?: string | null;
-        avatar?: ImageMetaResult;
+        avatar?: ImageResult;
         name?: string;
         position?: string;
         _id: string;

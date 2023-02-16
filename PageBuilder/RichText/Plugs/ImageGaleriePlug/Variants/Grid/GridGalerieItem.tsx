@@ -1,12 +1,14 @@
-import { ImageMetaResult } from "lib/SanityImage/query";
 import Typo from "components/Typography/Typography";
-import SanityImage from "lib/SanityImage";
+
+import { ImageResult } from "PageBuilder/Image/sanityImage.query";
+import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import { ConditionalLink } from "components/Link";
 
 import { LinkResult } from "PageBuilder/Navigation/navigation.query";
 import * as React from "react";
+import clsx from "clsx";
 type ImageGalleryItemProps = {
-  image?: ImageMetaResult;
+  image?: ImageResult;
   title?: string;
   link?: LinkResult;
   className?: string;
@@ -28,8 +30,12 @@ const ImageGalleryItem: React.FunctionComponent<ImageGalleryItemProps> = (
         <div className="flex flex-col pt-4">
           <div className={`h-full  ${contain ? "relative" : ""}`}>
             <SanityImage
-              image={image}
-              objectFit={contain ? "contain" : "cover"}
+              src={image}
+              fill
+              className={clsx({
+                "object-contain ": contain,
+                "object-cover ": !contain,
+              })}
             />
           </div>
           {title && (

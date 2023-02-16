@@ -1,6 +1,6 @@
 import Typo from "components/Typography/Typography";
 
-import SanityImage from "lib/SanityImage";
+import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
 import Link from "next/link";
 import FocusTrap from "focus-trap-react";
@@ -45,9 +45,7 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
 
         <Typo bold variant="h4">{`${item?.firstName} ${item?.name}`}</Typo>
 
-        {item?.image && (
-          <SanityImage image={item.image} width={150} layout="fixed" />
-        )}
+        {item?.image && <SanityImage src={item.image} width={150} />}
 
         <InfoItem title="Beruf" data={item?.jobDescription} />
         <InfoItem title="Email">

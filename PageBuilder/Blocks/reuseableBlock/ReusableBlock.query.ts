@@ -1,4 +1,4 @@
-import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
+import { imageQuery, ImageResult } from "PageBuilder/Image/sanityImage.query";
 import { headerRichTextQuery } from "PageBuilder/RichText/headerRichText/defaultRichText.query";
 import { BlockStyle } from "PageBuilder/schemaHelper/blockStyle";
 
@@ -6,14 +6,14 @@ export const reusableBlockQuery = `
 _type == "reusable" => {
   _type,
   _key,
- item->{..., ${headerRichTextQuery},  image{${imageMeta}},}
+ item->{..., ${headerRichTextQuery},  image{${imageQuery}},}
 }
 `;
 
 type ItemResult = BlockStyle & {
   content: null | any;
-  bgImage?: ImageMetaResult | null;
-  image?: ImageMetaResult | null;
+  bgImage?: ImageResult | null;
+  image?: ImageResult | null;
   title?: string;
   type?: "accordion";
   _key: string;

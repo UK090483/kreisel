@@ -1,6 +1,6 @@
 import { AppColor } from "../../../../types";
 import { linkQuery, LinkResult } from "PageBuilder/Navigation/navigation.query";
-import { imageMeta, ImageMetaResult } from "lib/SanityImage/query";
+import { ImageResult, imageQuery } from "PageBuilder/Image/sanityImage.query";
 
 export const imageGalleryPlugQuery = `
 _type == "imageGalleryPlug" => {
@@ -9,7 +9,7 @@ _type == "imageGalleryPlug" => {
   _key,
   'items':items[]{
     ...,
-    'image': coalesce(image,link.internalLink->image){${imageMeta}},
+    'image': coalesce(image,link.internalLink->image){${imageQuery}},
     'title': coalesce(title,link.internalLink->title),
     'link':link{${linkQuery}}
    },
@@ -24,7 +24,7 @@ interface ImageGalleryPlugItem {
   _type: "imageGalleryItem";
   title?: string;
   size?: "m" | "l";
-  image?: ImageMetaResult;
+  image?: ImageResult;
   link?: LinkResult;
   contain?: boolean;
   bgColor: AppColor;

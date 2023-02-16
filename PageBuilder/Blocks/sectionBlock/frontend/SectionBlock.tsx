@@ -2,8 +2,10 @@ import Accordion from "./Accordion";
 import { SectionBlockResult } from "../SectionBlockQuery";
 import RichText from "../../../RichText/RichText";
 import { Section } from "components/Section/Section";
-import SanityImage from "lib/SanityImage";
-import { ImageMetaResult } from "lib/SanityImage/query";
+
+import SanityImage from "PageBuilder/Image/frontend/SanityImage";
+import { ImageResult } from "PageBuilder/Image/sanityImage.query";
+
 import useSectionSpace from "components/Section/useSectionSpace";
 import clsx from "clsx";
 import React from "react";
@@ -25,7 +27,7 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
     _key,
   } = props;
 
-  const hasImage = image && image.type;
+  const hasImage = image && image.url;
   const autoType = hasImage ? "l" : "s";
 
   const spaceClasses = useSectionSpace({ topSpace, bottomSpace });
@@ -61,7 +63,7 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
 
 const WithImage: React.FC<{
   place: "left" | "right";
-  image: ImageMetaResult | null;
+  image: ImageResult | undefined;
   children?: React.ReactNode;
 }> = ({ children, place = "left", image }) => {
   const content = (
@@ -78,7 +80,7 @@ const WithImage: React.FC<{
     <>
       {place === "right" && content}
       <div className="  relative overflow-hidden  aspect-w-16 aspect-h-9 rounded-theme">
-        <SanityImage image={image} objectFit="cover" />
+        <SanityImage src={image} fill className="object-cover " />
       </div>
       {place === "left" && content}
     </>
