@@ -46,21 +46,24 @@ export default defineConfig({
     async setupNodeEvents(on, config) {
       addMatchImageSnapshotPlugin(on, config);
 
-      let sanityClient = createClient({
-        projectId: "jgnu3d9f",
-        dataset: "production",
-        useCdn: true,
-        apiVersion: "2021-03-25",
-      });
+      // let sanityClient = createClient({
+      //   projectId: "jgnu3d9f",
+      //   dataset: "production",
+      //   useCdn: true,
+      //   apiVersion: "2021-03-25",
+      // });
 
-      const image = await sanityClient.fetch<{ _id: string }>(
-        `*[_type == "sanity.imageAsset"][7]{...}`
-      );
+      // const image = await sanityClient.fetch<{ _id: string }>(
+      //   `*[_type == "sanity.imageAsset"][7]{...}`
+      // );
 
-      config.env.image = image;
+      // config.env.image = image;
+
+      // console.log(image);
+
       config.env.imageRef = {
         asset: {
-          _ref: image._id,
+          _ref: "image-0e0c8f6e2a30b7a6709501851250898d4fbc1100-512x512-png",
           _type: "reference",
         },
       };

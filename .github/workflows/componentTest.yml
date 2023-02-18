@@ -1,9 +1,8 @@
 name: componentTest
-on: [deployment_status]
+on: [push]
 
 jobs:
   componentTest:
-    if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎
@@ -12,7 +11,7 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Run Cypress 🌲
+      - name: Run Cypress
         run: npm run cypress:component
 
       - uses: actions/upload-artifact@v3
