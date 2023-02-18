@@ -6,6 +6,8 @@ import getIt from "get-it";
 //@ts-ignore
 import { base, jsonResponse, promise } from "get-it/middleware";
 
+import { addMatchImageSnapshotPlugin } from "cypress-image-snapshot/plugin";
+
 const oneSecMail = getIt([
   base("https://www.1secmail.com/api/v1/"),
   jsonResponse(),
@@ -29,6 +31,10 @@ export default defineConfig({
         `*[_type == 'page'][]{'slug': select( defined(pageType) => '/' + pageType->slug.current + '/'+slug.current,slug.current  )}`
       );
 
+      const image = await sanityClient.fetch<{ _id: string }>(
+        `*[_type == 'sanity.imageAsset][7]{...}`
+      );
+
       const domains = await oneSecMail({ url: "/?action=getDomainList" });
       const domain = domains[0];
       const name = "test__kreisel__user";
@@ -43,11 +49,30 @@ export default defineConfig({
 
       config.env.testMail = { address: `${name}@${domains[0]}`, domain, name };
       config.env.pages = pages;
+      config.env.image = image;
+
       return config;
     },
   },
 
   component: {
+    async setupNodeEvents(on, config) {
+      addMatchImageSnapshotPlugin(on, config);
+
+      const image = await sanityClient.fetch<{ _id: string }>(
+        `*[_type == "sanity.imageAsset"][7]{...}`
+      );
+
+      config.env.image = image;
+      config.env.imageRef = {
+        asset: {
+          _ref: image._id,
+          _type: "reference",
+        },
+      };
+
+      return config;
+    },
     devServer: {
       framework: "next",
       bundler: "webpack",

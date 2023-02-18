@@ -1,5 +1,3 @@
-import { ImageMetaResult } from "lib/SanityImage/query";
-
 const linkQuery = `
    ...,
   'internalLink': select(
@@ -24,9 +22,11 @@ type SeoResult = {
   metaTitle: string;
   metaDesc: string;
   shareTitle: string;
-  shareGraphic: ImageMetaResult;
+  shareGraphic: any;
   shareDesc: string;
   siteTitle: string;
   url: string;
   shareGraphicSrc: string;
 };
+
+export {};

@@ -13,8 +13,7 @@ _type == "hero" => {
   ...,
   _type,
   _key,
- 'photo':image{${imageQuery}},
-
+ 'image':image{${imageQuery}},
  ${blockBgColorProjection()}
  ${blockSpaceProjection()}
  ${blockTransitionProjection()}
@@ -28,9 +27,9 @@ export interface HeroBlogResult
   _type: "hero";
   _key: string;
   content?: any;
-  photo?: ImageResult;
+  image?: ImageResult;
   title?: string;
-  text?: string;
+
   filterIntensity?:
     | "0"
     | "10"

@@ -9,7 +9,7 @@ import React from "react";
 const HeroBlock: React.FC<HeroBlogResult> = (props) => {
   const {
     content,
-    photo,
+    image,
     variant = "full",
     size = "full",
     bgColor,
@@ -32,7 +32,7 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
       transitionBottom={transitionBottom}
       bg={bgColor}
       width={isFull ? "full" : "m"}
-      className={clsx(spaceClasses, "grid  relative", {
+      className={clsx(spaceClasses, "relative  grid", {
         "min-h-[95vh]": size === "full",
         "min-h-[50vh]": size === "1/2",
         "min-h-[66vh]": size === "2/3",
@@ -41,11 +41,11 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
         "md:grid-cols-[2fr,1fr]": isHalf,
       })}
     >
-      {photo && isFull && (
+      {image && isFull && (
         <div>
-          <SanityImage src={photo} fill className=" object-cover " />
+          <SanityImage src={image} fill className="object-cover" />
           <div
-            className={clsx(" absolute inset-0 å", {
+            className={clsx("absolute inset-0", {
               " bg-primary-light ":
                 filterColor === "primary-light" && !!filterIntensity,
               "bg-white ": filterColor === "white" && !!filterIntensity,
@@ -62,14 +62,14 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
           ></div>
         </div>
       )}
-      <div className=" flex  items-center w-full order-2 md:order-1 break-words">
-        <div className=" max-w-full    ">
+      <div className="order-2 flex w-full items-center break-words md:order-1">
+        <div className="max-w-full">
           <RichText content={content} />
         </div>
       </div>
-      {photo && isHalf && (
-        <div className=" relative order-1 md:order-2 min-h-[250px] my-8 md:my-0">
-          <SanityImage src={photo} fill className="object-contain " />
+      {image && isHalf && (
+        <div className=" relative order-1 my-8 min-h-[250px] md:order-2 md:my-0">
+          <SanityImage src={image} fill className="object-contain" />
         </div>
       )}
     </Section>

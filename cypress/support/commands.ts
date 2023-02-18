@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import { parse, evaluate } from "groq-js";
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -69,14 +70,62 @@ Cypress.Commands.add("eraseFakeUser", () => {
   return cy.request({ url: "/api/test/testUser", method: "DELETE" });
 });
 
+type runSanityQueryProps = {
+  blockQuery?: string;
+  blockData?: { [k: string]: any };
+  query?: string;
+  dataSet?: any[];
+};
+
+const runSanityQuery = async ({
+  blockQuery,
+  blockData,
+  query,
+  dataSet = [],
+}: runSanityQueryProps) => {
+  let queryType = "default";
+  let _query = query;
+  let _dataSet = [{ ...Cypress.env("image") }, dataSet];
+
+  if (blockQuery) {
+    queryType = "block";
+    _query = `*[_type == "testitem"][0]{'content':content[]{
+        ${blockQuery}
+      }}`;
+    _dataSet = [..._dataSet, { _type: "testitem", content: [blockData] }];
+  }
+
+  const tree = parse(_query);
+  let value = await evaluate(tree, { dataset: [..._dataSet] });
+  let result = await value.get();
+
+  if (queryType === "block") {
+    return result?.content[0];
+  }
+  return result;
+};
+
+Cypress.Commands.add("runSanityQuery", runSanityQuery);
+
+const getTestImage = () => {
+  return {
+    asset: Cypress.env("image")._id,
+    _type: "reference",
+  };
+};
+Cypress.Commands.add("getTestImage", getTestImage);
+
 declare global {
   namespace Cypress {
     interface Cypress {
       env(key: "pages"): { slug: string }[];
+      env(key: "image"): any;
     }
     interface Chainable {
-      loginAsFakeUser: () => null;
-      eraseFakeUser: () => null;
+      runSanityQuery: typeof runSanityQuery;
+      getTestImage;
+      loginAsFakeUser: () => void;
+      eraseFakeUser: () => void;
     }
   }
 }
