@@ -1,6 +1,6 @@
 import { defineConfig } from "cypress";
 
-import { createClient } from "@sanity/client";
+// import { createClient } from "@sanity/client";
 
 //@ts-ignore
 import { getIt } from "get-it";
@@ -21,21 +21,21 @@ export default defineConfig({
   e2e: {
     baseUrl: "http://localhost:3000/",
     async setupNodeEvents(on, config) {
-      let sanityClient = createClient({
-        projectId: "jgnu3d9f",
-        dataset: "production",
-        useCdn: true,
-        apiVersion: "2021-03-25",
-      });
-      const pages = await sanityClient.fetch<{ slug: string }[]>(
-        `*[_type == 'page'][]{'slug': select( defined(pageType) => '/' + pageType->slug.current + '/'+slug.current,slug.current  )}`
-      );
-      const domains = await oneSecMail({ url: "/?action=getDomainList" });
-      const domain = domains[0];
-      const name = "test__kreisel__user";
+      // let sanityClient = createClient({
+      //   projectId: "jgnu3d9f",
+      //   dataset: "production",
+      //   useCdn: true,
+      //   apiVersion: "2021-03-25",
+      // });
+      // const pages = await sanityClient.fetch<{ slug: string }[]>(
+      //   `*[_type == 'page'][]{'slug': select( defined(pageType) => '/' + pageType->slug.current + '/'+slug.current,slug.current  )}`
+      // );
+      // const domains = await oneSecMail({ url: "/?action=getDomainList" });
+      // const domain = domains[0];
+      // const name = "test__kreisel__user";
 
-      config.env.testMail = { address: `${name}@${domains[0]}`, domain, name };
-      config.env.pages = pages;
+      // config.env.testMail = { address: `${name}@${domains[0]}`, domain, name };
+      // config.env.pages = pages;
 
       return config;
     },
