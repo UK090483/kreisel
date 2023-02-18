@@ -46,6 +46,13 @@ export default defineConfig({
     async setupNodeEvents(on, config) {
       addMatchImageSnapshotPlugin(on, config);
 
+      let sanityClient = createClient({
+        projectId: "jgnu3d9f",
+        dataset: "production",
+        useCdn: true,
+        apiVersion: "2021-03-25",
+      });
+
       const image = await sanityClient.fetch<{ _id: string }>(
         `*[_type == "sanity.imageAsset"][7]{...}`
       );
