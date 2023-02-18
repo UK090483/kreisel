@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import type { SanityClient } from "@sanity/client/sanityClient";
+import type { SanityClient } from "@sanity/client";
 
 export default async function preview(
   req: NextApiRequest,

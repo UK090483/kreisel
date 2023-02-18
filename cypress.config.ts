@@ -1,8 +1,9 @@
 import { defineConfig } from "cypress";
 
-import createClient, { SanityClient } from "@sanity/client";
+import { createClient } from "@sanity/client";
+
 //@ts-ignore
-import getIt from "get-it";
+import { getIt } from "get-it";
 //@ts-ignore
 import { base, jsonResponse, promise } from "get-it/middleware";
 
@@ -15,18 +16,12 @@ const oneSecMail = getIt([
 
 oneSecMail.use(promise({ onlyBody: true }));
 
-let sanityClient: SanityClient;
-
-try {
-  sanityClient = createClient({
-    projectId: "jgnu3d9f",
-    dataset: "production",
-    useCdn: true,
-    apiVersion: "2021-03-25",
-  });
-} catch (error) {
-  console.log(error);
-}
+let sanityClient = createClient({
+  projectId: "jgnu3d9f",
+  dataset: "production",
+  useCdn: true,
+  apiVersion: "2021-03-25",
+});
 
 // eslint-disable-next-line import/no-unused-modules
 export default defineConfig({

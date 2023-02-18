@@ -1,5 +1,5 @@
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const sanityClient = require("@sanity/client");
+const { createClient } = require("@sanity/client");
 const withPWA = require("next-pwa")({
   dest: "public",
   disable: process.env.NODE_ENV === "development",
@@ -8,7 +8,7 @@ const withPWA = require("next-pwa")({
 const client =
   process.env.NODE_ENV === "test"
     ? () => ({ fetch: () => ({}) })
-    : sanityClient({
+    : createClient({
         dataset: process.env.SANITY_PROJECT_DATASET,
         projectId: process.env.SANITY_PROJECT_ID,
         useCdn: process.env.NODE_ENV === "production",

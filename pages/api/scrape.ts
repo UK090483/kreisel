@@ -171,7 +171,7 @@ const createDoc = async (data: { [k: string]: any }) => {
 
 const getImageBlob = async (url: string, name: string) => {
   const response = await fetch(url);
-  const reader = response.body as ReadableStream<any>;
+  const reader = response.body as unknown as Buffer;
   const uploadResponse = await previewClient.assets.upload("image", reader, {
     filename: `${name}.jpg`,
   });

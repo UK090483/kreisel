@@ -23,7 +23,7 @@
     "@heroicons/react": "^2.0.13",
     "@hookform/resolvers": "^2.9.10",
     "@sanity/block-tools": "^2.23.0",
-    "@sanity/client": "^3.4.1",
+    "@sanity/client": "^5.2.1",
     "@sanity/preview-kit": "^1.2.19",
     "@sanity/schema": "^2.23.0",
     "aws-sdk": "^2.1309.0",

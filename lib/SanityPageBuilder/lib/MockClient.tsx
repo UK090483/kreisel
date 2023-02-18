@@ -1,5 +1,5 @@
 import { parse, evaluate } from "groq-js";
-import type { SanityClient } from "@sanity/client/sanityClient";
+import type { SanityClient } from "@sanity/client";
 
 type MockSanityClient = {
   mockReturnValue?: any;

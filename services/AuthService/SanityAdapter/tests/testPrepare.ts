@@ -1,5 +1,5 @@
-import type { SanityClient } from "@sanity/client/sanityClient";
 import { parse, evaluate } from "groq-js";
+import type { SanityClient } from "@sanity/client";
 
 type MockSanityClient = {
   fetchReturn?: any;
@@ -45,11 +45,15 @@ export const mockClient = ({ fetchReturn, database }: MockSanityClient) => {
     patch: (doc: string) => {
       return {
         set: (newData: any) => {
-          return { commit: () => {
-              database = database?.map((item)=> item._id === doc ? {...item,...newData}:{...item})
+          return {
+            commit: () => {
+              database = database?.map((item) =>
+                item._id === doc ? { ...item, ...newData } : { ...item }
+              );
 
-              return 
-          } };
+              return;
+            },
+          };
         },
       };
     },

@@ -1,7 +1,7 @@
 import { GetStaticPathsResult } from "next";
 import { ComponentType } from "react";
 
-import type { SanityClient } from "@sanity/client/sanityClient";
+import type { SanityClient } from "@sanity/client";
 
 type SPBComponent = {
   name: string;
