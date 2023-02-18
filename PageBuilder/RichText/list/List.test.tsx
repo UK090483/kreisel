@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
 import { List } from "./List";
+import { render, screen } from "@testing-library/react";
 
 describe("List", () => {
   it("should render disc type ", () => {

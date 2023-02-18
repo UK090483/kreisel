@@ -1,30 +1,27 @@
+import Typo from "components/Typography/Typography";
 import clsx from "clsx";
 import * as React from "react";
 
 interface IListProps {
   type?: string;
 }
-
 export const List: React.FC<IListProps> = (props: any) => {
   const firstLevel = props.level === 1;
   return (
-    <ul
+    <Typo
       data-testid="list"
-      className={clsx(`list-outside ml-4 marker:text-primary marker:  `, {
-        "pb-4": firstLevel,
-        "list-decimal": props?.type === "number",
-        "list-disc": props?.type !== "number",
-      })}
+      variant={props?.type === "number" ? "ul-decimal" : "ul-disc"}
+      className={clsx({ "pb-8 last:pb-0 ": firstLevel })}
     >
       {props.children}
-    </ul>
+    </Typo>
   );
 };
 
 export const ListItem: React.FC<IListProps> = (props: any) => {
   return (
-    <li data-testid="listItem" className={` pb-3`}>
+    <Typo data-testid="listItem" variant="li">
       {props.children}
-    </li>
+    </Typo>
   );
 };
