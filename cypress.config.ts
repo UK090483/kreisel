@@ -16,18 +16,17 @@ const oneSecMail = getIt([
 
 oneSecMail.use(promise({ onlyBody: true }));
 
-let sanityClient = createClient({
-  projectId: "jgnu3d9f",
-  dataset: "production",
-  useCdn: true,
-  apiVersion: "2021-03-25",
-});
-
 // eslint-disable-next-line import/no-unused-modules
 export default defineConfig({
   e2e: {
     baseUrl: "http://localhost:3000/",
     async setupNodeEvents(on, config) {
+      let sanityClient = createClient({
+        projectId: "jgnu3d9f",
+        dataset: "production",
+        useCdn: true,
+        apiVersion: "2021-03-25",
+      });
       const pages = await sanityClient.fetch<{ slug: string }[]>(
         `*[_type == 'page'][]{'slug': select( defined(pageType) => '/' + pageType->slug.current + '/'+slug.current,slug.current  )}`
       );
