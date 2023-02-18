@@ -5,7 +5,7 @@ import React from "react";
 
 const InlineIcon = () => {
   return (
-    <span className="inline-block   h-[1em] transform translate-y-[-0.2em] ">
+    <span className="inline-block   h-[1em] translate-y-[-0.2em] transform ">
       {/* <Icon icon="arrowRight" bgColor="grey" /> */} <span>LinkIcon</span>
     </span>
   );
@@ -39,7 +39,7 @@ const LinkMark: React.FC<React.PropsWithChildren<LinkMarkPros>> = (props) => {
         <Link
           href={link?.href}
           external={link?.external}
-          className="underline font-bold  text-primary"
+          className="font-bold text-primary  underline"
         >
           {props.children}
         </Link>

@@ -16,7 +16,7 @@ _type == "imageGalleryPlug" => {
   rows,
   rows_mobile,
   ratio,
-  variant
+  variant,
 }
 `;
 

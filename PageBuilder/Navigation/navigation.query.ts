@@ -3,8 +3,8 @@ export const linkQuery = `
             defined(internalLink) && defined(internalLink->pageType) && defined(onPage)  => '/'+ internalLink->pageType->slug.current + '/' + internalLink->slug.current + '#'+ onPage,
             defined(internalLink) && defined(internalLink->pageType)  => '/'+ internalLink->pageType->slug.current + '/' + internalLink->slug.current,
             defined(internalLink) && defined(onPage) => '/'+ internalLink->slug.current + '#'+ onPage,
-            defined(internalLink) => '/'+ internalLink->slug.current,
-            defined(externalLink)  => externalLink,
+            defined(internalLink) => '/' + internalLink->slug.current,
+            defined(externalLink) => externalLink
           ),
   'external': defined(externalLink),
   onPage,

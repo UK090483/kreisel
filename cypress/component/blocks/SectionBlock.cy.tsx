@@ -1,4 +1,3 @@
-///<reference path="../../support/component.ts" />
 import SectionBlock from "../../../PageBuilder/Blocks/sectionBlock/frontend/SectionBlock";
 import { sectionBlockQuery } from "../../../PageBuilder/Blocks/sectionBlock/SectionBlockQuery";
 import React, { ComponentProps } from "react";
