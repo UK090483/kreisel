@@ -1,4 +1,5 @@
 ///<reference path="../../support/component.ts" />
+
 import HeroBlock from "../../../PageBuilder/Blocks/hero/frontend/HeroBlock";
 import { heroBlockQuery } from "../../../PageBuilder/Blocks/hero/hero.query";
 import React, { ComponentProps } from "react";
