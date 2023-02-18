@@ -1,4 +1,4 @@
-name: ci
+name: componentTest
 on: [deployment_status]
 
 jobs:

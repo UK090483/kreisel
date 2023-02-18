@@ -1,6 +1,6 @@
 import { defineConfig } from "cypress";
 
-import createClient from "@sanity/client";
+import createClient, { SanityClient } from "@sanity/client";
 //@ts-ignore
 import getIt from "get-it";
 //@ts-ignore
@@ -15,24 +15,26 @@ const oneSecMail = getIt([
 
 oneSecMail.use(promise({ onlyBody: true }));
 
-const sanityClient = createClient({
-  projectId: "jgnu3d9f",
-  dataset: "production",
-  useCdn: true,
-  apiVersion: "2021-03-25",
-});
+let sanityClient: SanityClient;
+
+try {
+  sanityClient = createClient({
+    projectId: "jgnu3d9f",
+    dataset: "production",
+    useCdn: true,
+    apiVersion: "2021-03-25",
+  });
+} catch (error) {
+  console.log(error);
+}
+
 // eslint-disable-next-line import/no-unused-modules
 export default defineConfig({
-  projectId: "8bfgju",
   e2e: {
     baseUrl: "http://localhost:3000/",
     async setupNodeEvents(on, config) {
       const pages = await sanityClient.fetch<{ slug: string }[]>(
         `*[_type == 'page'][]{'slug': select( defined(pageType) => '/' + pageType->slug.current + '/'+slug.current,slug.current  )}`
-      );
-
-      const image = await sanityClient.fetch<{ _id: string }>(
-        `*[_type == 'sanity.imageAsset][7]{...}`
       );
 
       const domains = await oneSecMail({ url: "/?action=getDomainList" });
@@ -49,7 +51,6 @@ export default defineConfig({
 
       config.env.testMail = { address: `${name}@${domains[0]}`, domain, name };
       config.env.pages = pages;
-      config.env.image = image;
 
       return config;
     },
