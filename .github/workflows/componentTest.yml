@@ -1,9 +1,12 @@
 name: componentTest
-on: [push]
+on: [push, "workflow_dispatch"]
 
 jobs:
   componentTest:
     runs-on: ubuntu-latest
+    env:
+      SANITY_PROJECT_DATASET: production
+      SANITY_PROJECT_ID: jgnu3d9f
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@v3
