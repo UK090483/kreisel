@@ -12,29 +12,29 @@
       "type": "shell",
       "icon": { "color": "terminal.ansiBlue", "id": "eye-watch" },
       "isBackground": true,
-      "command": "npm run dev"
+      "command": "yarn run dev"
     },
     {
       "label": "SANITY",
       "type": "shell",
-      "command": "cd studio && npm run dev",
+      "command": "cd studio && yarn run dev",
       "isBackground": true
     },
     {
       "label": "SANITY_TEST",
       "type": "shell",
-      "command": "cd studio && npm run test",
+      "command": "cd studio && yarn run test",
       "isBackground": true
     },
     {
       "label": "SANITY_DEPLOY",
       "type": "shell",
-      "command": "cd studio && npm run deploy"
+      "command": "cd studio && yarn run deploy"
     },
     {
       "label": "CYPESS_COMPONENT",
       "type": "shell",
-      "command": "npm run cypress:open:component",
+      "command": "yarn run cypress:open:component",
       "isBackground": true
     }
   ]

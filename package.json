@@ -8,7 +8,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint ",
+    "lint": "next lint",
     "test": "jest --watchAll --coverage",
     "cypress:open": "cypress open",
     "cypress:run:live": "CYPRESS_BASE_URL=https://kreisel.vercel.app/ cypress run --headed ",

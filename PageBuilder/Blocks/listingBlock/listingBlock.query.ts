@@ -52,6 +52,7 @@ const cardQuery = `
 description,
 _type,
 _id,
+_key,
 title,
 text,
 name,

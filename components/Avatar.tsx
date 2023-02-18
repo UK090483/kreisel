@@ -40,10 +40,10 @@ const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
     <div data-tip data-for={id} className="flex flex-col items-center ">
       <div
         className={clsx(
-          `relative    shadow-2xl overflow-hidden ${
+          `relative    overflow-hidden shadow-2xl ${
             showFull
               ? "w-full border-[10px] border-transparent "
-              : "rounded-full w-60"
+              : "rounded-full "
           } `,
           {
             "h-60 w-60": size === "l",
@@ -76,7 +76,7 @@ const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
           variant="h5"
           as="h3"
           space={false}
-          className={clsx("uppercase text-center ", {
+          className={clsx("text-center uppercase ", {
             "text-black": _bg === "primary",
             "text-primary":
               ["white", "black", "secondary", "grey"].includes(_bg) || !_bg,
@@ -85,7 +85,7 @@ const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
           {title}
         </Typo>
       </div>
-      <Typo space={false} className="whitespace-pre-line text-center w-60 mb-4">
+      <Typo space={false} className="mb-4 w-60 whitespace-pre-line text-center">
         {subTitle}
       </Typo>
       {children}

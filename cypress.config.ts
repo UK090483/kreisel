@@ -31,18 +31,9 @@ export default defineConfig({
       const pages = await sanityClient.fetch<{ slug: string }[]>(
         `*[_type == 'page'][]{'slug': select( defined(pageType) => '/' + pageType->slug.current + '/'+slug.current,slug.current  )}`
       );
-
       const domains = await oneSecMail({ url: "/?action=getDomainList" });
       const domain = domains[0];
       const name = "test__kreisel__user";
-
-      // const users = await fetch(
-      //   "https://jsonplaceholder.cypress.io/users?_limit=3"
-      // );
-
-      // console.log(users);
-
-      // implement node event listeners here
 
       config.env.testMail = { address: `${name}@${domains[0]}`, domain, name };
       config.env.pages = pages;
