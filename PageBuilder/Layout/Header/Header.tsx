@@ -8,6 +8,7 @@ import React from "react";
 interface HeaderProps {
   children?: React.ReactNode;
 }
+
 export const Header: React.FC<HeaderProps> = ({ children }) => {
   const { isAuthenticated } = useAuth();
   return (
@@ -17,11 +18,11 @@ export const Header: React.FC<HeaderProps> = ({ children }) => {
         className={`fixed top-0 left-0 right-0 z-20 bg-white `}
       >
         <div
-          className={clsx(`hidden sm:block py-2 bg-primary-light `, {
+          className={clsx(`hidden bg-primary-light py-2 sm:block `, {
             "bg-lime-400 ": isAuthenticated,
           })}
         >
-          <div className=" px-3 mx-auto flex items-center flex-wrap  justify-between lg:container">
+          <div className=" mx-auto flex flex-wrap items-center justify-between  px-3 lg:container">
             <Typo variant="body-s" space={false}>
               Kostenlose Beratung: 040 38 61 23 71
             </Typo>

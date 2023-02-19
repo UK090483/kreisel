@@ -4,7 +4,7 @@ import ContactButton from "../Header/ContactButton";
 import Svg from "components/Svg";
 import { Link } from "components/Link";
 import useMenu from "@services/StoreService/hooks/useMenu";
-import { Logo } from "components/Layout/Logo";
+import { Logo } from "PageBuilder/Layout/Logo";
 import Underline from "components/Underline/Underline";
 import {
   HeaderNavigation,
@@ -28,13 +28,13 @@ const Nav: React.FC<NavProps> = ({ items }) => {
   };
   return (
     <>
-      <nav className=" shadow-lg  px-3">
-        <div className=" mx-auto lg:container  flex items-center justify-between w-full py-2   ">
+      <nav className=" px-3  shadow-lg">
+        <div className=" mx-auto flex  w-full items-center justify-between py-2 lg:container   ">
           <Link href="/" className=" shrink-0 ">
             <Logo />
           </Link>
 
-          <div className="items-center justify-center hidden w-full lg:flex">
+          <div className="hidden w-full items-center justify-center lg:flex">
             <HeaderNavigation
               items={items}
               NavigationItemBase={NavItemBaseWithUnderline}
@@ -45,7 +45,7 @@ const Nav: React.FC<NavProps> = ({ items }) => {
           <button
             data-testid="menu-overlay-toggle"
             onClick={handleNavClick}
-            className="lg:hidden  w-8 h-8 "
+            className="h-8  w-8 lg:hidden "
             aria-label="Open the Menu"
           >
             <Svg className="w-full" icon={menuOpen ? "erase" : "hamburger"} />

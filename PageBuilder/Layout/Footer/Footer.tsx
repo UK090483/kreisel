@@ -43,20 +43,14 @@ export interface FooterQueryResult {
 
 const Footer: React.FC<FooterProps> = (props) => {
   const { data } = useAppContext();
-
   return (
     <footer
       data-testid="footer"
       className="flex flex-col items-center bg-primary-light"
     >
       <FooterContact />
-      <Section bg="primary-light" width="l" className="pt-12">
-        {/* <NavOverview
-          items={data?.navigation || []}
-          className="w-full py-24  "
-        /> */}
-      </Section>
-      <div className="flex items-center justify-end gap-4 text-white w-full max-w-6xl px-8 py-4">
+      <Section bg="primary-light" width="l" className="pt-12"></Section>
+      <div className="flex w-full max-w-6xl items-center justify-end gap-4 px-8 py-4 text-white">
         {data?.footer.imprint && (
           <Link href={data?.footer.imprint}>Impressum</Link>
         )}

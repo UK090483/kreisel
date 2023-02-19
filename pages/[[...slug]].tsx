@@ -9,7 +9,7 @@ import { SectionBlockResult } from "PageBuilder/Blocks/sectionBlock/SectionBlock
 
 import { NavigationResult } from "PageBuilder/Navigation/navigation.query";
 
-import { FooterQueryResult } from "components/Layout/Footer/Footer";
+import { FooterQueryResult } from "PageBuilder/Layout/Footer/Footer";
 import { ListingBlockProps } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
 
 import fetchStaticProps from "lib/SanityPageBuilder/lib/fetchStaticProps/fetchStaticProps";
@@ -39,7 +39,7 @@ const Page = () => {
 
   if (showSpinner) {
     return (
-      <div className=" w-full px-28 h-screen ">
+      <div className=" h-screen w-full px-28 ">
         <Kreisel className="max-w-sm "></Kreisel>
       </div>
     );

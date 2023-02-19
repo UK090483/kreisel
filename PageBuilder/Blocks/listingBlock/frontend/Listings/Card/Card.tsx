@@ -31,20 +31,24 @@ const Card: React.FC<CardProps> = (props) => {
   );
 
   return (
-    <CardWrap link={link} href={href} className=" shadow-xl w-full">
+    <CardWrap link={link} href={href} className=" w-full shadow-xl">
       <div
-        className={`relative w-full   aspect-w-10 aspect-h-5 rounded-t-theme overflow-hidden bg-primary-light `}
+        className={`aspect-w-10 aspect-h-5   relative w-full overflow-hidden rounded-t-theme bg-primary-light `}
       >
         {image && <SanityImage src={image} fill className=" object-cover " />}
       </div>
 
-      <CardBody className={`bg-white  h-full`}>
+      <CardBody className={`h-full  bg-white`}>
         {_createdAt && (
           <Typo className="pb-2" variant="body">
             {paresDate(_createdAt)}
           </Typo>
         )}
-        {title && <Typo variant="body-l">{title}</Typo>}
+        {title && (
+          <Typo space={false} className="pb-2 font-semibold">
+            {title}
+          </Typo>
+        )}
         {description && <Typo>{_description}</Typo>}
         {children}
       </CardBody>
