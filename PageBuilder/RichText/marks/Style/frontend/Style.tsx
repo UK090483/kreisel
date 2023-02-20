@@ -4,9 +4,7 @@ import Typo from "components/Typography/Typography";
 
 const StyleMark: React.FC<MarkProps<styleMarkResult>> = (props) => {
   const { mark, children } = props;
-
   const { tag } = mark;
-
   return (
     <Typo as="span" variant={tag || "p"}>
       {children}

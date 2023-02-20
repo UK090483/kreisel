@@ -1,12 +1,12 @@
 import { ImageGalleryPlugResult } from "../InfoBoxPlug.query";
 import Typo from "components/Typography/Typography";
-import RichText from "PageBuilder/RichText/RichText";
+import RichText from "PageBuilder/RichText/PortableText";
 import React from "react";
 
 import clsx from "clsx";
 
-const InfoboxPlug: React.FC<{ node: ImageGalleryPlugResult }> = (props) => {
-  const { items, rows } = props.node;
+const InfoboxPlug: React.FC<ImageGalleryPlugResult> = (props) => {
+  const { items, rows } = props;
   if (!items || items.length < 1) return <div>No Images</div>;
 
   return (
@@ -34,7 +34,7 @@ const InfoboxPlug: React.FC<{ node: ImageGalleryPlugResult }> = (props) => {
                 <div
                   key={row._key}
                   className={clsx(
-                    "p-4 break-words border-white first:border-0 border-t-4"
+                    "break-words border-t-4 border-white p-4 first:border-0"
                   )}
                 >
                   {index === 0 && <Typo bold> {i.title}</Typo>}

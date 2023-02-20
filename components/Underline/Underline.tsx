@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import useHover from "hooks/useHover";
-import { AppColor } from "types";
+
 import clsx from "clsx";
 import React from "react";
 import { useIntersection } from "react-use";
 
 interface UnderlineProps {
-  color?: AppColor;
+  color?: string;
   on?: "hover" | "init" | "scroll";
   className?: string;
   variant?: number | number[];
@@ -97,9 +97,9 @@ const Underline: React.FC<UnderlineProps> = ({
             className={clsx(
               "absolute w-full fill-current stroke-current",
               {
-                "   inset-0 scale-y-150 scale-x-125 -z-10  h-full ":
+                "   inset-0 -z-10 h-full scale-y-150  scale-x-125 ":
                   line.type === "circle",
-                " h-5 bottom-[-23px] translate-y-[-0.35em]":
+                " bottom-[-23px] h-5 translate-y-[-0.35em]":
                   line.type === "line",
               },
               className

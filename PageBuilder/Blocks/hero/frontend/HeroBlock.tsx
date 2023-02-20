@@ -2,7 +2,7 @@ import { HeroBlogResult } from "../hero.query";
 import { Section } from "components/Section/Section";
 import useSectionSpace from "components/Section/useSectionSpace";
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
-import RichText from "PageBuilder/RichText/RichText";
+import RichText from "PageBuilder/RichText/PortableText";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
 import Typo from "components/Typography/Typography";
 import clsx from "clsx";
@@ -29,8 +29,6 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
   const spaceClasses = useSectionSpace({ topSpace, bottomSpace });
 
   const { data } = useAppContext();
-
-  console.log(data);
 
   const mainImage = image || data?.image;
 

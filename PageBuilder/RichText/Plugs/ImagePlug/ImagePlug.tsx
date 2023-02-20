@@ -1,5 +1,4 @@
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
-import { PlugProps } from "lib/SanityPageBuilder/lib/RichText";
 import clsx from "clsx";
 
 import React, { PropsWithChildren } from "react";
@@ -21,14 +20,14 @@ const sizesMap = {
   full: 100,
 };
 
-const ImagePlug: React.FC<PlugProps<ImagePlugProps>> = (props) => {
+const ImagePlug: React.FC<ImagePlugProps> = (props) => {
   const {
     image,
     customWidth = "1/4",
     ratio = "auto",
     float = false,
     position = "center",
-  } = props.node;
+  } = props;
 
   const hasRatio = ratio && ratio !== "auto";
 

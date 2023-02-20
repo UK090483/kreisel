@@ -5,7 +5,7 @@ import React from "react";
 const Style = () => {
   return (
     <Section>
-      <div className="container  mx-auto py-8 bla">
+      <div className="bla  container mx-auto py-8">
         <div className="container mx-auto mt-10 ">
           <div>
             <PureKreisel className="w-1/2" />

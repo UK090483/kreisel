@@ -1,6 +1,6 @@
 import TrustBlockItem from "./TrustBlockItem";
 import { trustQueryResult } from "../trustBlock.query";
-import RichText from "PageBuilder/RichText/RichText";
+import RichText from "PageBuilder/RichText/PortableText";
 import { Section } from "components/Section/Section";
 
 import * as React from "react";

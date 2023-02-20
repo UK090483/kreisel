@@ -1,5 +1,5 @@
 import { ListingBlockProps } from "../listingBlock.query";
-import RichText from "PageBuilder/RichText/RichText";
+import RichText from "PageBuilder/RichText/PortableText";
 import { Section } from "components/Section/Section";
 import useSectionSpace from "components/Section/useSectionSpace";
 

@@ -1,10 +1,10 @@
 import { SpacerPlugResult } from "../spacer.query";
-import { PlugProps } from "../../type";
+
 import React from "react";
 import clsx from "clsx";
 
-const SpacerPlug: React.FC<PlugProps<SpacerPlugResult>> = (props) => {
-  const space = props.node.space;
+const SpacerPlug: React.FC<SpacerPlugResult> = (props) => {
+  const space = props.space;
 
   return (
     <div

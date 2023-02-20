@@ -1,11 +1,10 @@
 import { ScrapeEventItem } from "./ScrapeEventItem";
 import { IEventPlugProps } from "../eventPlug.query";
-import { PlugProps } from "lib/SanityPageBuilder/lib/RichText";
 import { ScrapeEvent } from "pages/api/scrapeEvents";
 import React, { useEffect, useState, useCallback } from "react";
 
-const EventPlug: React.FC<PlugProps<IEventPlugProps>> = (props) => {
-  const { filter } = props.node;
+const EventPlug: React.FC<IEventPlugProps> = (props) => {
+  const { filter } = props;
 
   const [scrapeEvents, setScrapeEvents] = useState<null | ScrapeEvent[]>(null);
   const [loading, setLoading] = useState(true);
@@ -39,7 +38,7 @@ const EventPlug: React.FC<PlugProps<IEventPlugProps>> = (props) => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 gap-3 mb-3">
+    <div className="mb-3 grid grid-cols-1 gap-3">
       {filterItems().map((item, index) => {
         return <ScrapeEventItem key={item.link} {...item} />;
       })}

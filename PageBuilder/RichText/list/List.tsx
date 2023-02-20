@@ -1,24 +1,24 @@
 import Typo from "components/Typography/Typography";
 import clsx from "clsx";
 import * as React from "react";
+import {
+  PortableTextListComponent,
+  PortableTextListItemComponent,
+} from "@portabletext/react";
 
-interface IListProps {
-  type?: string;
-}
-export const List: React.FC<IListProps> = (props: any) => {
-  const firstLevel = props.level === 1;
+export const List: PortableTextListComponent = (props) => {
   return (
     <Typo
       data-testid="list"
-      variant={props?.type === "number" ? "ul-decimal" : "ul-disc"}
-      className={clsx({ "pb-8 last:pb-0 ": firstLevel })}
+      variant={props.value.listItem === "bullet" ? "ul-disc" : "ul-decimal"}
+      className={clsx({ "pb-8 last:pb-0 ": props.value.level })}
     >
       {props.children}
     </Typo>
   );
 };
 
-export const ListItem: React.FC<IListProps> = (props: any) => {
+export const ListItem: PortableTextListItemComponent = (props) => {
   return (
     <Typo data-testid="listItem" variant="li">
       {props.children}

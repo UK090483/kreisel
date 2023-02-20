@@ -1,7 +1,7 @@
 import { Section } from "components/Section/Section";
 import React from "react";
 import Avatar from "components/Avatar";
-import RichText from "PageBuilder/RichText/RichText";
+import RichText from "PageBuilder/RichText/PortableText";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
 
 interface FooterContactProps {}
@@ -19,7 +19,7 @@ const FooterContact: React.FC<FooterContactProps> = (props) => {
     <Section width="l" className="grid grid-cols-1 py-24 md:grid-cols-2">
       <div className="flex flex-wrap items-center justify-center">
         {avatars?.map((a) => (
-          <li key={a._id} className=" list-none w-full md:w-1/2">
+          <li key={a._id} className=" w-full list-none md:w-1/2">
             <Avatar
               id={a._id}
               size="m"

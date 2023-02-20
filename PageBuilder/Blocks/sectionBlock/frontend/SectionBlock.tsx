@@ -1,6 +1,6 @@
 import Accordion from "./Accordion";
 import { SectionBlockResult } from "../SectionBlockQuery";
-import RichText from "../../../RichText/RichText";
+import RichText from "PageBuilder/RichText/PortableText";
 import { Section } from "components/Section/Section";
 
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
@@ -79,7 +79,7 @@ const WithImage: React.FC<{
   return (
     <>
       {place === "right" && content}
-      <div className="  relative overflow-hidden  aspect-w-16 aspect-h-9 rounded-theme">
+      <div className="  aspect-w-16 aspect-h-9  relative overflow-hidden rounded-theme">
         <SanityImage src={image} fill className="object-cover " />
       </div>
       {place === "left" && content}

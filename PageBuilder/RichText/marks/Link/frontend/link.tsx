@@ -48,9 +48,9 @@ const LinkMark: React.FC<React.PropsWithChildren<LinkMarkPros>> = (props) => {
   );
 };
 
-const link = (props: any) => {
-  return <LinkMark {...props.mark}>{props.children}</LinkMark>;
+const LinkEx = (props: any) => {
+  return <LinkMark {...props}>{props.children}</LinkMark>;
 };
 
-export default link;
+export default LinkEx;
 export {};

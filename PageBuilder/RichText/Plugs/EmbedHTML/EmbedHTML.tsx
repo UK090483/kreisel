@@ -1,12 +1,11 @@
-import { PlugProps } from "lib/SanityPageBuilder/lib/RichText";
 import * as React from "react";
 
 interface IEmbedHTMLProps {
   html?: string | null;
 }
 
-const EmbedHTML: React.FC<PlugProps<IEmbedHTMLProps>> = (props) => {
-  const { html } = props.node;
+const EmbedHTML: React.FC<IEmbedHTMLProps> = (props) => {
+  const { html } = props;
 
   if (!html) {
     return null;
