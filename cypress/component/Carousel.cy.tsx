@@ -1,4 +1,4 @@
-///<reference path="../support/component.ts" />
+///<reference path="../support/component.tsx" />
 import Carousel from "../../components/Carousel/Carousel";
 import React, { ComponentProps } from "react";
 
@@ -9,7 +9,7 @@ const render = (overwrite?: ComponentProps<typeof Carousel>) => {
   return cy.mount(
     <Carousel {...props}>
       {items.map((i) => (
-        <div key={i} className=" h-56 flex justify-center items-center">
+        <div key={i} className=" flex h-56 items-center justify-center">
           item {i}
         </div>
       ))}

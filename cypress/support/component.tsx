@@ -17,20 +17,52 @@
 import "./commands";
 
 import "../../styles/globals.css";
+import { runSanityQuery } from "../plugins/sanityQuery";
+import {
+  AppContextProvider,
+  AppContextProviderProps,
+} from "../../PageBuilder/AppContext/AppContext";
 import { addMatchImageSnapshotCommand } from "cypress-image-snapshot/command";
+import { mount } from "cypress/react18";
+
 addMatchImageSnapshotCommand();
 
-import { mount } from "cypress/react18";
+const mountWithContext = ({
+  jsx,
+  options,
+  rerenderKey,
+  context,
+}: {
+  jsx: Parameters<typeof mount>[0];
+  options?: Parameters<typeof mount>[1];
+  rerenderKey?: Parameters<typeof mount>[2];
+  context?: Partial<AppContextProviderProps>;
+}) => {
+  return mount(
+    <AppContextProvider
+      hostName="testHostName"
+      data={{ title: "TestTitle", ...context.data }}
+      {...context}
+    >
+      {jsx}
+    </AppContextProvider>,
+    options,
+    rerenderKey
+  );
+};
+
+Cypress.Commands.add("mountWithContext", mountWithContext);
+Cypress.Commands.add("mount", mount);
+Cypress.Commands.add("runSanityQuery", runSanityQuery);
 
 declare global {
   namespace Cypress {
     interface Chainable {
       mount: typeof mount;
+      mountWithContext: typeof mountWithContext;
     }
   }
 }
-
-Cypress.Commands.add("mount", mount);
 
 // Example use:
 // cy.mount(<MyComponent />)

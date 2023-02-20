@@ -20,10 +20,13 @@ import StyleMark from "./marks/Style/frontend/Style";
 import SanityRichText from "lib/SanityPageBuilder/lib/RichText";
 import Typo from "components/Typography/Typography";
 import React from "react";
+import { PortableText } from "@portabletext/react";
 
 const styles = { h1: "h1", h2: "h2", h3: "h3", h4: "h4", normal: "body" };
 
 const RichText: React.FC<any> = (props: any) => {
+  // return <PortableText value={props.content} components={{}} />;
+
   return (
     <SanityRichText
       //@ts-ignore

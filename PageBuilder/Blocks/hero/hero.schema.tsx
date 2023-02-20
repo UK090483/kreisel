@@ -36,7 +36,6 @@ const heroSchema = {
           { title: "Half HeroImage", value: "half" },
         ],
       },
-      initialValue: "1/3",
     },
     {
       title: "Height",

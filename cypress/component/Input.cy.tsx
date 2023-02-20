@@ -1,4 +1,4 @@
-///<reference path="../support/component.ts" />
+///<reference path="../support/component.tsx" />
 import Input from "../../components/Inputs/input2";
 import { renderInForm } from "../helpers/formHelper";
 import React from "react";

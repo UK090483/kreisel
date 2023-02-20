@@ -1,4 +1,4 @@
-///<reference path="../support/component.ts" />
+///<reference path="../support/component.tsx" />
 
 import { DropdownInput } from "../../components/Inputs/Dropdown";
 import { renderInForm, FormProps } from "../helpers/formHelper";

@@ -24,6 +24,7 @@ export interface AppContextProviderProps {
 
 export const AppContextProvider = (props: AppContextProviderProps) => {
   const { children, ...rest } = props;
+
   return (
     <AppContext.Provider value={{ preview: false, ...rest }}>
       {children}

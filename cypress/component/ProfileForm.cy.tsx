@@ -1,4 +1,4 @@
-///<reference path="../support/component.ts" />
+///<reference path="../support/component.tsx" />
 import ProfileForm from "../../lib/Profile/ProfileForm";
 import {
   memberFields,

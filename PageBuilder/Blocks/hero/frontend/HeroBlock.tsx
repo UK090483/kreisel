@@ -3,6 +3,8 @@ import { Section } from "components/Section/Section";
 import useSectionSpace from "components/Section/useSectionSpace";
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import RichText from "PageBuilder/RichText/RichText";
+import { useAppContext } from "PageBuilder/AppContext/AppContext";
+import Typo from "components/Typography/Typography";
 import clsx from "clsx";
 import React from "react";
 
@@ -21,10 +23,18 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
     filterColor,
   } = props;
 
-  const isFull = variant === "full" || variant === null;
-  const isHalf = variant === "half";
+  const isFull = variant === "full";
+  const isHalf = variant === "half" || variant === null;
 
   const spaceClasses = useSectionSpace({ topSpace, bottomSpace });
+
+  const { data } = useAppContext();
+
+  console.log(data);
+
+  const mainImage = image || data?.image;
+
+  const title = data?.title;
 
   return (
     <Section
@@ -41,9 +51,9 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
         "md:grid-cols-[2fr,1fr]": isHalf,
       })}
     >
-      {image && isFull && (
+      {isFull && (
         <div>
-          <SanityImage src={image} fill className="object-cover" />
+          <SanityImage src={mainImage} fill className="object-cover" />
           <div
             className={clsx("absolute inset-0", {
               " bg-primary-light ":
@@ -64,12 +74,18 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
       )}
       <div className="order-2 flex w-full items-center break-words md:order-1">
         <div className="max-w-full">
-          <RichText content={content} />
+          {content ? (
+            <RichText content={content} />
+          ) : (
+            <Typo as="h1" variant="h1">
+              {title}
+            </Typo>
+          )}
         </div>
       </div>
-      {image && isHalf && (
+      {isHalf && (
         <div className=" relative order-1 my-8 min-h-[250px] md:order-2 md:my-0">
-          <SanityImage src={image} fill className="object-contain" />
+          <SanityImage src={mainImage} fill className="object-contain" />
         </div>
       )}
     </Section>

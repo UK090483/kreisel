@@ -1,4 +1,4 @@
-///<reference path="../../support/component.ts" />
+///<reference path="../../support/component.tsx" />
 
 import HeroBlock from "../../../PageBuilder/Blocks/hero/frontend/HeroBlock";
 import { heroBlockQuery } from "../../../PageBuilder/Blocks/hero/hero.query";
@@ -7,9 +7,11 @@ import React, { ComponentProps } from "react";
 const render = ({
   props,
   blockData,
+  context,
 }: {
   props?: Partial<ComponentProps<typeof HeroBlock>>;
   blockData?: { [K: string]: any };
+  context?: Parameters<typeof cy.mountWithContext>["0"]["context"];
 }) => {
   cy.runSanityQuery({
     blockQuery: heroBlockQuery,
@@ -19,7 +21,7 @@ const render = ({
       ...blockData,
     },
   }).then((i) => {
-    cy.mount(<HeroBlock {...i} {...props} />);
+    cy.mountWithContext({ jsx: <HeroBlock {...i} {...props} />, context });
   });
 };
 
@@ -40,19 +42,23 @@ describe("<HeroBlock />", () => {
     it(`renders in ${vp}`, function () {
       cy.viewport(vp);
 
+      cy.log(Cypress.env("imageResult"));
+      cy.log(Cypress.env("image"));
+
       render({
         blockData: {
           content: this.content,
           variant: "half",
-          image: Cypress.env("imageRef"),
+          // image: Cypress.env("imageRef"),
         },
+        context: { data: { image: Cypress.env("imageResult") } },
       });
 
       cy.contains("TestContent").should("be.visible");
-      cy.get("img").then((img) => {
-        const w = window.getComputedStyle(img.get(0)).width;
-        cy.log(w);
-      });
+      // cy.get("img").then((img) => {
+      //   const w = window.getComputedStyle(img.get(0)).width;
+      //   cy.log(w);
+      // });
     });
   });
 
