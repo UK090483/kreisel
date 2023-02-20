@@ -21,6 +21,7 @@ const render = ({
       ...blockData,
     },
   }).then((i) => {
+    cy.log(i);
     cy.mountWithContext({ jsx: <HeroBlock {...i} {...props} />, context });
   });
 };
@@ -39,26 +40,22 @@ describe("<HeroBlock />", () => {
   });
 
   viewPorts.forEach((vp) => {
-    it(`renders in ${vp}`, function () {
+    it(`renders pageContextImage in ${vp}`, function () {
       cy.viewport(vp);
-
-      cy.log(Cypress.env("imageResult"));
-      cy.log(Cypress.env("image"));
 
       render({
         blockData: {
           content: this.content,
           variant: "half",
-          // image: Cypress.env("imageRef"),
         },
-        context: { data: { image: Cypress.env("imageResult") } },
+        context: {
+          data: {
+            image: { ...Cypress.env("imageResult"), alt: "contextImage" },
+          },
+        },
       });
-
       cy.contains("TestContent").should("be.visible");
-      // cy.get("img").then((img) => {
-      //   const w = window.getComputedStyle(img.get(0)).width;
-      //   cy.log(w);
-      // });
+      cy.get("img[alt='contextImage']");
     });
   });
 
@@ -70,15 +67,11 @@ describe("<HeroBlock />", () => {
         blockData: {
           content: this.content,
           variant: "half",
-          image: Cypress.env("imageRef"),
+          image: { ...Cypress.env("imageRef"), alt: "testImage" },
         },
       });
-
       cy.contains("TestContent").should("be.visible");
-      cy.get("img").then((img) => {
-        const w = window.getComputedStyle(img.get(0)).width;
-        cy.log(w);
-      });
+      cy.get("img[alt='testImage']");
     });
   });
 });

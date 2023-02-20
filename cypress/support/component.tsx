@@ -31,7 +31,7 @@ const mountWithContext = ({
   jsx,
   options,
   rerenderKey,
-  context,
+  context = {},
 }: {
   jsx: Parameters<typeof mount>[0];
   options?: Parameters<typeof mount>[1];

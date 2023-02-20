@@ -51,7 +51,7 @@ export default defineConfig({
         imageResult: any;
       }>(
         `{ 
-          'imageDocument': *[_type == "sanity.imageAsset"][7]{...}, 
+          'imageDocument': *[_type == "sanity.imageAsset"][7]{...,'alt':'testImage'}, 
           'imageResult':*[_type == "sanity.imageAsset"][7]{ url, 'aspectRatio':metadata.dimensions.aspectRatio,"lqip":metadata.lqip,}
         }`
       );

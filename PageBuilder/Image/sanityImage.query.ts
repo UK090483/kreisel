@@ -9,7 +9,6 @@ asset,
     "lqip":metadata.lqip,
     'width':metadata.dimensions.width,
     'height':metadata.dimensions.height,  
-    'palette':metadata.palette,
   }),
   alt
 `;
