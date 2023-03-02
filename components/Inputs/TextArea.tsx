@@ -22,6 +22,7 @@ const Textarea: React.FC<TextareaProps> = (props) => {
     <InputWarp disabled={isSubmitting}>
       <FormLabel name={name} label={label} />
       <textarea
+        data-test-id={`input_${name}`}
         disabled={isSubmitting}
         {...register(name)}
         {...props}

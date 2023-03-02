@@ -33,12 +33,17 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
   };
 
   return (
-    <Listbox value={active || []} onChange={handleChange} multiple>
+    <Listbox
+      value={active || []}
+      onChange={handleChange}
+      multiple
+      data-test-id={`input_${name}`}
+    >
       <div className="relative mt-1">
         <Listbox.Button
           id={name}
           role="combobox"
-          className="relative w-full cursor-default rounded-lg border-grey-border border-[1px] py-2 pl-3 pr-10 text-left  focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300"
+          className="relative w-full cursor-default rounded-lg border-[1px] border-grey-border py-2 pl-3 pr-10 text-left  focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300"
         >
           <ul className="block truncate">
             {Array.isArray(active)
@@ -60,7 +65,7 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="z-10 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-base">
+          <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-base">
             {items.map((item, itemIdx) => (
               <Listbox.Option
                 key={itemIdx}

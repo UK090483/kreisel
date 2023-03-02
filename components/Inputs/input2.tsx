@@ -23,6 +23,7 @@ const Input: React.FC<InputProps> = (props) => {
     <InputWarp disabled={isSubmitting}>
       <FormLabel name={name} label={label} />
       <input
+        data-test-id={`input_${name}`}
         disabled={isSubmitting}
         type="text"
         {...register(name)}

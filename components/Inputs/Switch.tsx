@@ -14,6 +14,7 @@ export function Switch(props: SwitchProps) {
   const { onChange, checked, name } = props;
   return (
     <HiSwitch
+      data-test-id={`input_${name}`}
       id={name}
       checked={checked}
       onChange={onChange}

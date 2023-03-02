@@ -62,6 +62,7 @@ const ImageUpload = React.forwardRef(function ImageUpload(
     <div>
       <div className="flex">
         <input
+          data-test-id={`input_${name}`}
           className="hidden"
           ref={inputRef}
           type="file"
@@ -72,22 +73,22 @@ const ImageUpload = React.forwardRef(function ImageUpload(
           id={name}
           type="button"
           onClick={openSelection}
-          className={clsx("w-fit transition-transform rounded-full", {
+          className={clsx("w-fit rounded-full transition-transform", {
             "p-0": hasImage,
-            "p-6 border-dashed border-4 border-primary-light": !hasImage,
+            "border-4 border-dashed border-primary-light p-6": !hasImage,
           })}
         >
           {!hasImage && (
             <BsFillPersonFill
               style={{ width: size - 50, height: size - 50 }}
-              className="text-primary-light w-56 h-56"
+              className="h-56 w-56 text-primary-light"
             />
           )}
           {hasImage && value.url && (
             <div className="image-item w-fit">
               <div
                 style={{ width: size, height: size }}
-                className=" rounded-full overflow-hidden "
+                className=" overflow-hidden rounded-full "
               >
                 <img src={value.url} alt="" width={size} />
               </div>
@@ -96,7 +97,7 @@ const ImageUpload = React.forwardRef(function ImageUpload(
         </button>
 
         {hasImage && (
-          <div className=" w-full grid grid-cols-2">
+          <div className=" grid w-full grid-cols-2">
             <button
               aria-label="update Image"
               type="button"

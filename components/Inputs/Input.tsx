@@ -13,7 +13,7 @@ const Input = React.forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
     <input
       ref={ref}
       className={clsx(className, {
-        "rounded-theme bg-primary-light border-2 border-black placeholder:text-black ":
+        "rounded-theme border-2 border-black bg-primary-light placeholder:text-black ":
           !unStyled,
       })}
       {...rest}
