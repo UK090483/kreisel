@@ -1,10 +1,15 @@
 /// <reference types="cypress" />
 
 import { runSanityQuery } from "../plugins/sanityQuery";
-import { deleteFakerUser, loginFakeUser } from "../plugins/user";
+import {
+  deleteFakerUser,
+  loginFakeUser,
+  setFakerUserValue,
+} from "../plugins/user";
 
 Cypress.Commands.add("loginAsFakeUser", loginFakeUser);
 Cypress.Commands.add("eraseFakeUser", deleteFakerUser);
+Cypress.Commands.add("setFakerUserValue", setFakerUserValue);
 
 declare global {
   namespace Cypress {
@@ -15,6 +20,7 @@ declare global {
     interface Chainable {
       runSanityQuery: typeof runSanityQuery;
       loginAsFakeUser: typeof loginFakeUser;
+      setFakerUserValue: typeof setFakerUserValue;
       eraseFakeUser: () => void;
     }
   }

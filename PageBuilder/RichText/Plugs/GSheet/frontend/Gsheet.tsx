@@ -3,7 +3,7 @@ import List from "components/List/List";
 import ListItem from "components/List/ListItem";
 import Typo from "components/Typography/Typography";
 import useCSV from "hooks/useCsv";
-import { PlugProps } from "lib/SanityPageBuilder/lib/RichText";
+
 import * as React from "react";
 
 interface IGSheetItem {
@@ -21,15 +21,15 @@ _type == "gSheet" => {
 }
 `;
 
-const GSheet: React.FunctionComponent<PlugProps<IGSheetProps>> = (props) => {
-  const url = props?.node?.url;
+const GSheet: React.FunctionComponent<IGSheetProps> = (props) => {
+  const url = props?.url;
   const { data, loading, reload } = useCSV({ hot: true, url });
 
   return (
     <div>
       <button onClick={reload}>Reload</button>
       {loading && (
-        <div className="w-1/2 mx-auto animate-spin">
+        <div className="mx-auto w-1/2 animate-spin">
           <Kreisel />
         </div>
       )}
@@ -42,7 +42,7 @@ const GSheet: React.FunctionComponent<PlugProps<IGSheetProps>> = (props) => {
                 key={index}
                 name="stelle"
                 id={index.toString()}
-                className="flex justify-between items-center px-6 py-2"
+                className="flex items-center justify-between px-6 py-2"
               >
                 <Typo bold space={false}>
                   {item.row.Titel}

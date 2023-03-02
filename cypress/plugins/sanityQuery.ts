@@ -1,3 +1,4 @@
+import { SanityClient } from "@sanity/client";
 import { parse, evaluate } from "groq-js";
 
 type runSanityQueryProps = {
@@ -32,4 +33,18 @@ export const runSanityQuery = async ({
     return result?.content[0];
   }
   return result;
+};
+
+export const getSanityTestClient = async (props?: { dataSet?: any[] }) => {
+  const _dataSet = props?.dataSet || [];
+  const client = {
+    fetch: async (query: string) => {
+      const tree = parse(query);
+      let value = await evaluate(tree, { dataset: [..._dataSet] });
+      return await value.get();
+    },
+  } as unknown as SanityClient;
+
+  cy.spy(client, "fetch").as("fetch");
+  return client;
 };

@@ -84,11 +84,11 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
 
   return (
     <>
-      <div className="w-full px-5 max-w-3xl mx-auto  mb-32">
+      <div className="mx-auto mb-32 w-full max-w-3xl  px-5">
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(_onSubmit, _onSubmitError)}>
             <Input name="title" label="Title" />
-            <div className="grid  md:grid-cols-2 gap-4">
+            <div className="grid  gap-4 md:grid-cols-2">
               <Input name="firstName" label="Vorname" />
               <Input name="name" label="Name" />
             </div>
@@ -101,15 +101,15 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
             )}
             {allowProfile && (
               <>
-                <Textarea name="experience" label="Praxis" rows={4} />
+                <Input name="practice" label="Praxis" />
 
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid gap-4 md:grid-cols-2">
                   <Input name="street" label="Strasse" />
                   <Input name="city" label="Ort" />
                   <Input name="zipCode" label="PLZ" />
                   <Input name="website" label="Website" />
                 </div>
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid gap-4 md:grid-cols-2">
                   <Input name="phone" label="Tel" type="tel" />
                   <Input name="mobile" label="Mobil" type="tel" />
                 </div>
@@ -121,21 +121,29 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
                   label="Arbeitsschwerpunkte"
                   items={focusOptions}
                 />
+                <Textarea
+                  name="focusOther"
+                  label="Sonstige Arbeitsschwerpunkte"
+                  rows={4}
+                />
                 <DropdownInput
                   name="degree"
                   label="Abschlüsse"
                   items={degreeOptions}
                 />
-                <Textarea
-                  name="additionalDegree"
-                  label="Sonstige Abschlüsse"
-                  rows={4}
-                />
+
                 <DropdownInput
                   name="membership"
                   label="Mitgliedschaft"
                   items={membershipOptions}
                 />
+
+                <Textarea
+                  name="qualification"
+                  label="Grundqualifikation"
+                  rows={4}
+                />
+
                 <SwitchInput
                   name="offersInternship"
                   label="Hospitationsplatz"
@@ -146,10 +154,10 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
               value={"Speichern"}
               // disabled={!canSubmit}
               className={clsx(
-                "p-4 border-2 fixed  bottom-8 w-screen max-w-xs mx-auto z-50 ",
+                "fixed bottom-8 z-50  mx-auto w-screen max-w-xs border-2 p-4 ",
                 {
                   "opacity-0 ": !canSubmit,
-                  "opacity-100 bg-green-500": canSubmit,
+                  "bg-green-500 opacity-100": canSubmit,
                 }
               )}
               type="submit"

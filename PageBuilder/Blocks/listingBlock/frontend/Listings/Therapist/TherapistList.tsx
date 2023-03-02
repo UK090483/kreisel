@@ -15,6 +15,7 @@ const itemCount = 10;
 
 const TherapistList: React.FC<TherapistListProps> = (props) => {
   const { items } = props;
+
   const [page, setPage] = useState(1);
   const {
     query: { therapeut, name, plz, city },
@@ -55,7 +56,7 @@ const TherapistList: React.FC<TherapistListProps> = (props) => {
         </ul>
       </Section>
       {therapeut && (
-        <div className="fixed top-0 z-10 w-full h-screen  overflow-scroll flex justify-center items-start pt-32 pb-4 bg-black bg-opacity-40">
+        <div className="fixed top-0 z-10 flex h-screen  w-full items-start justify-center overflow-scroll bg-black bg-opacity-40 pt-32 pb-4">
           <Overlay items={items} therapist={therapeut.toString()} />
         </div>
       )}

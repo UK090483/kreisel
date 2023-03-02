@@ -24,5 +24,18 @@ export default async function handler(
     });
   }
 
+  if (req.method === "POST") {
+    console.log(req.query);
+
+    if (req.query.allowMember) {
+      user = await previewClient
+        .patch({
+          query: `*[_type == "member" && email.current match "test__kreisel__user@*" ]`,
+        })
+        .set({ allowMember: req.query.allowMember === "true" })
+        .commit();
+    }
+  }
+
   res.status(200).json({ user });
 }

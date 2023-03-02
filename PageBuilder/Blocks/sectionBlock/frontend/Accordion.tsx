@@ -50,27 +50,27 @@ const Accordion: FC<AccordionProps> = ({
       style={{
         maxHeight: open ? containerHeight + initialHeight : initialHeight,
       }}
-      className={`relative max-h-16 transition-all duration-500 overflow-hidden`}
+      className={`relative max-h-16 overflow-hidden transition-all duration-500`}
     >
       <div
-        className={`w-full shadow-lg pl-3 transition-colors bg-primary-light  ${
+        className={`w-full bg-primary-light pl-3 shadow-lg transition-colors  ${
           open ? " delay-200 duration-700" : ""
         }      z-10 `}
       >
         <button
           onClick={handleClick}
           className={
-            ` w-full mx-auto h-16 flex items-center bg-primary-light font-bold ` +
+            ` mx-auto flex h-16 w-full items-center bg-primary-light font-bold ` +
             widthClasses
           }
         >
           <Svg
             icon="chevronRight"
-            className={`transition-transform border-2 p-0.5 mr-6 flex-shrink-0  rounded-full border-black ${
+            className={`mr-6 flex-shrink-0 rounded-full border-2 border-black  p-0.5 transition-transform ${
               open ? "rotate-90" : ""
             }`}
           />
-          <div className=" text-left ">{title}</div>
+          <h3 className=" text-left ">{title}</h3>
         </button>
       </div>
       <div ref={ref}>{children}</div>

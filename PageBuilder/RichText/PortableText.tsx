@@ -9,12 +9,12 @@ import SpacerPlug from "./Plugs/Spacer/frontend/Spacer";
 import Tooltip from "./marks/Tooltip/frontend/tooltip";
 import Download from "./marks/Download/frontend/download";
 import Link from "./marks/Link/frontend/link";
+import StyleMark from "./marks/Style/frontend/Style";
 import Typo from "components/Typography/Typography";
 import {
   PortableText,
   PortableTextReactComponents,
   PortableTextBlockComponent,
-  PortableTextTypeComponent,
 } from "@portabletext/react";
 import React, { ComponentProps } from "react";
 
@@ -30,11 +30,8 @@ const Type: PortableTextBlockComponent = (props) => {
   const variant = props.value.style
     ? styles[props.value.style] || "body"
     : "body";
-  return <Typo variant={variant}>{props.children}</Typo>;
-};
 
-const Test: PortableTextTypeComponent = ({ value }) => {
-  return <ImagePlug {...value} />;
+  return <Typo variant={variant}>{props.children}</Typo>;
 };
 
 const components: Partial<PortableTextReactComponents> = {
@@ -63,6 +60,9 @@ const components: Partial<PortableTextReactComponents> = {
     },
     link: ({ value, children }) => {
       return <Link {...value}>{children}</Link>;
+    },
+    style: ({ value, children }) => {
+      return <StyleMark {...value}>{children}</StyleMark>;
     },
   },
 

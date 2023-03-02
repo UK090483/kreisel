@@ -10,10 +10,7 @@ export const memberSchema = object({
 });
 
 const profileFields = object({
-  additionalDegree: string(),
-  jobDescription: string(),
-  description: string(),
-  education: string(),
+  practice: string(),
   street: string(),
   zipCode: string(),
   city: string(),
@@ -26,9 +23,20 @@ const profileFields = object({
     excludeEmptyString: true,
   }),
   website: string().url(),
-  membership: array().of(string().oneOf(membershipOptions.map((i) => i.value))),
+  description: string(),
+
+  //Arbeitsschwerpunkte
   focus: array().of(string().oneOf(focusOptions.map((i) => i.value))),
+  focusOther: string(),
+  //Abschlüsse
   degree: array().of(string().oneOf(degreeOptions.map((i) => i.value))),
+
+  //Mitgliedschaften
+  membership: array().of(string().oneOf(membershipOptions.map((i) => i.value))),
+
+  //Grundqualifikation
+  qualification: string(),
+
   image: object({ url: string().nullable(), file: mixed() }).nullable(),
   offersInternship: boolean(),
 });

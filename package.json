@@ -1,6 +1,7 @@
 {
   "name": "kreisel",
   "private": true,
+  "license": "MIT",
   "browserslist": [
     "defaults"
   ],
@@ -11,10 +12,11 @@
     "lint": "next lint",
     "test": "jest --watchAll --coverage",
     "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
     "cypress:run:live": "CYPRESS_BASE_URL=https://kreisel.vercel.app/ cypress run --headed ",
     "cypress:open:e2e:live": "CYPRESS_BASE_URL=https://kreisel.vercel.app/ cypress open --e2e --browser chrome",
     "cypress:open:component": "cypress open --component --browser chrome",
-    "cypress:component": "cypress run  --component ",
+    "cypress:component": "cypress run  --component",
     "kill:3000": "kill $(lsof -t -i :3000)",
     "kill:3333": "kill $(lsof -t -i :3333)"
   },

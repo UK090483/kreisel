@@ -3,6 +3,7 @@
     "isolatedModules": false,
     "noEmit": true,
     "esModuleInterop": true,
+    "baseUrl": "../",
 
     "jsx": "preserve",
 

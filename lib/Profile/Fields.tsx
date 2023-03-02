@@ -81,9 +81,9 @@ type MemberFields = {
 
 export const profileFields = [
   {
-    name: "experience",
+    name: "practice",
     title: "Praxis",
-    type: "text",
+    type: "string",
   },
   {
     name: "street",
@@ -122,11 +122,6 @@ export const profileFields = [
     type: "text",
   },
   {
-    name: "offersInternship",
-    title: "Hospitationsplatz",
-    type: "boolean",
-  },
-  {
     name: "focus",
     title: "Arbeitsschwerpunkte",
     type: "array",
@@ -134,6 +129,23 @@ export const profileFields = [
     options: {
       list: focusOptions,
     },
+  },
+  {
+    name: "focusOther",
+    title: "Arbeitsschwerpunkte Sonstige",
+    type: "text",
+    description: "z.B. Konzentrationstraining, Fremdsprachen, …",
+  },
+  {
+    name: "degree",
+    title: "Abschlüsse",
+    type: "array",
+    of: [{ type: "string" }],
+    options: {
+      list: degreeOptions,
+    },
+    description:
+      "Bitte wähle bei den KREISELabschlüssen nur deinen höchsten aus!",
   },
   {
     name: "membership",
@@ -145,23 +157,20 @@ export const profileFields = [
     },
   },
   {
-    name: "degree",
-    title: "Abschlüsse",
-    type: "array",
-    of: [{ type: "string" }],
-    options: {
-      list: degreeOptions,
-    },
-  },
-  {
-    name: "additionalDegree",
-    title: "Sonstige Abschlüsse",
+    name: "qualification",
+    title: "Grundqualifikation",
     type: "text",
   },
+
   {
     name: "image",
     title: "Image",
     type: "image",
+  },
+  {
+    name: "offersInternship",
+    title: "Hospitationsplatz",
+    type: "boolean",
   },
 ];
 

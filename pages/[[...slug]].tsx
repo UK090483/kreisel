@@ -14,12 +14,11 @@ import { ListingBlockProps } from "PageBuilder/Blocks/listingBlock/listingBlock.
 
 import fetchStaticProps from "lib/SanityPageBuilder/lib/fetchStaticProps/fetchStaticProps";
 
-import { useMemberPage } from "PageBuilder/AppContext/AppContext";
 import BodyParser from "lib/SanityPageBuilder/lib/BodyParser/BodyParser";
 import { fetchStaticPaths } from "lib/SanityPageBuilder/lib/fetchStaticPaths";
 import { appQueryResult } from "PageBuilder/AppContext/appQuery";
 import ReusableBlock from "PageBuilder/Blocks/reuseableBlock/frontend/ReuseableBlock";
-import Kreisel from "components/Kreisel";
+
 import { pageQuery } from "PageBuilder/ContentTypes/Page/page.query";
 import ListingBlock from "PageBuilder/Blocks/listingBlock/frontend/ListingsBlock";
 import TrustBlock from "PageBuilder/Blocks/trustBlock/frontend/TrustBlock";
@@ -35,16 +34,6 @@ export interface PageData
 }
 
 const Page = () => {
-  const { showSpinner } = useMemberPage();
-
-  if (showSpinner) {
-    return (
-      <div className=" h-screen w-full px-28 ">
-        <Kreisel className="max-w-sm "></Kreisel>
-      </div>
-    );
-  }
-
   return (
     <BodyParser
       components={{

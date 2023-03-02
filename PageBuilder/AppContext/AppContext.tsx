@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 
 import useAuth from "lib/Auth/useAuth";
 import { PageBuilderData } from "PageBuilder/query";
@@ -49,30 +49,31 @@ export const useHomeRoute = () => {
     const isHomeLink = `/${homeLink}` === href;
     return isHomeLink ? "/" : href;
   };
-
   return { homeRoute, parseRoute };
 };
 
 export const useMemberPage = () => {
+  const res = { showSpinner: false };
   const { data } = useContext(AppContext);
-  const [verified, setVerified] = useState(false);
-  const { member, status } = useAuth();
 
-  const { isPreview } = useRouter();
+  const { status } = useAuth();
+  const { isPreview, push } = useRouter();
   const slug = data?.slug;
-  const isLoading = status === "loading";
+  const isMemberPage = slug
+    ? slug.split("/")[1] === "mitgliederbereich"
+    : false;
 
-  useEffect(() => {
-    if (status !== "loading" && member) {
-      setVerified(true);
+  if (isMemberPage && !isPreview) {
+    res.showSpinner = status !== "authenticated";
+    if (status === "unauthenticated") {
+      push("/auth/login");
     }
-  }, [status, member]);
+  }
 
-  if (!slug) return { isMemberPage: false, isLoading: false };
+  if (isPreview) {
+    res.showSpinner = false;
+  }
 
-  const isMemberPage = slug.split("/")[1] === "mitgliederbereich";
-
-  const showSpinner = !isPreview && isMemberPage && !verified;
-
-  return { showSpinner };
+  console.log(status);
+  return res;
 };

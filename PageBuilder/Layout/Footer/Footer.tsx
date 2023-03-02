@@ -24,8 +24,8 @@ export const footerQuery = `
 }
 `;
 export interface FooterQueryResult {
-  footer: {
-    footerImage: ImageResult;
+  footer?: {
+    footerImage?: ImageResult;
     contact?: {
       content?: any;
       persons?: {
@@ -51,10 +51,10 @@ const Footer: React.FC<FooterProps> = (props) => {
       <FooterContact />
       <Section bg="primary-light" width="l" className="pt-12"></Section>
       <div className="flex w-full max-w-6xl items-center justify-end gap-4 px-8 py-4 text-white">
-        {data?.footer.imprint && (
+        {data?.footer?.imprint && (
           <Link href={data?.footer.imprint}>Impressum</Link>
         )}
-        {data?.footer.agb && <Link href={data?.footer.agb}>Agb</Link>}
+        {data?.footer?.agb && <Link href={data?.footer.agb}>Agb</Link>}
       </div>
     </footer>
   );

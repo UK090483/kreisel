@@ -17,35 +17,51 @@
 import "./commands";
 
 import "../../styles/globals.css";
-import { runSanityQuery } from "../plugins/sanityQuery";
+import { runSanityQuery, getSanityTestClient } from "../plugins/sanityQuery";
+
 import {
-  AppContextProvider,
-  AppContextProviderProps,
-} from "../../PageBuilder/AppContext/AppContext";
-import { addMatchImageSnapshotCommand } from "cypress-image-snapshot/command";
+  NextRouterMock,
+  createRouter,
+  createNextRouterProps,
+} from "../plugins/NextRouterMock";
+
+import {
+  AppContextProviderMock,
+  AppContextValue,
+} from "../plugins/AppContextMock";
+
+import {
+  MockSessionContextProvider,
+  MockSessionContextProps,
+  getSessionContextValue,
+} from "../plugins/SessionProviderMock";
 import { mount } from "cypress/react18";
 
-addMatchImageSnapshotCommand();
+const mountWithContext = (
+  jsx: Parameters<typeof mount>[0],
+  {
+    options,
+    rerenderKey,
+    context,
+    router,
+    session,
+  }: {
+    options?: Parameters<typeof mount>[1];
+    rerenderKey?: Parameters<typeof mount>[2];
+    context?: AppContextValue;
+    router?: createNextRouterProps;
+    session?: MockSessionContextProps;
+  }
+) => {
+  const preparedRouter = createRouter(router);
+  const sessionContextValue = getSessionContextValue(session);
 
-const mountWithContext = ({
-  jsx,
-  options,
-  rerenderKey,
-  context = {},
-}: {
-  jsx: Parameters<typeof mount>[0];
-  options?: Parameters<typeof mount>[1];
-  rerenderKey?: Parameters<typeof mount>[2];
-  context?: Partial<AppContextProviderProps>;
-}) => {
   return mount(
-    <AppContextProvider
-      hostName="testHostName"
-      data={{ title: "TestTitle", ...context.data }}
-      {...context}
-    >
-      {jsx}
-    </AppContextProvider>,
+    <NextRouterMock value={preparedRouter}>
+      <MockSessionContextProvider value={sessionContextValue}>
+        <AppContextProviderMock value={context}>{jsx}</AppContextProviderMock>
+      </MockSessionContextProvider>
+    </NextRouterMock>,
     options,
     rerenderKey
   );
@@ -54,15 +70,14 @@ const mountWithContext = ({
 Cypress.Commands.add("mountWithContext", mountWithContext);
 Cypress.Commands.add("mount", mount);
 Cypress.Commands.add("runSanityQuery", runSanityQuery);
+Cypress.Commands.add("getSanityTestClient", getSanityTestClient);
 
 declare global {
   namespace Cypress {
     interface Chainable {
       mount: typeof mount;
       mountWithContext: typeof mountWithContext;
+      getSanityTestClient: typeof getSanityTestClient;
     }
   }
 }
-
-// Example use:
-// cy.mount(<MyComponent />)

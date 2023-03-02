@@ -1,10 +1,11 @@
 import { styleMarkResult } from "../style.query";
-import { MarkProps } from "lib/SanityPageBuilder/lib/RichText";
+
 import Typo from "components/Typography/Typography";
 
-const StyleMark: React.FC<MarkProps<styleMarkResult>> = (props) => {
-  const { mark, children } = props;
-  const { tag } = mark;
+const StyleMark: React.FC<React.PropsWithChildren<styleMarkResult>> = (
+  props
+) => {
+  const { tag, children } = props;
   return (
     <Typo as="span" variant={tag || "p"}>
       {children}

@@ -27,19 +27,13 @@ interface AppPropsWithStaticProps {
 
 function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   const { data, query, preview } = _pageProps;
-
-  // const { data, error } = usePreviewSubscription<PageData | null>(query, {
-  //   initialData: _data,
-  //   enabled: preview,
-  // });
-
   const pageProps = { ..._pageProps, data };
 
   const getLayout = (id: string) => {
     return Component.getLayout ? (
       Component.getLayout(<Component key={id} {...pageProps} />)
     ) : (
-      <Layout preview={preview} {...pageProps}>
+      <Layout {...pageProps}>
         <Component key={id} {...pageProps} />
       </Layout>
     );
@@ -59,7 +53,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
                 {getLayout(pageProps.id)}
                 <Cookie />
                 <Cart />
-                {preview && <PreviewIndicator />}
+                <PreviewIndicator />
               </ShopContextProvider>
             </SessionProvider>
           </StoreContextProvider>
@@ -76,7 +70,6 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
             {getLayout(pageProps.id)}
             <Cookie />
             <Cart />
-            {preview && <PreviewIndicator />}
           </ShopContextProvider>
         </SessionProvider>
       </StoreContextProvider>

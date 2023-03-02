@@ -32,3 +32,12 @@ export const loginFakeUser = () => {
 export const deleteFakerUser = () => {
   return cy.request({ url: "/api/test/testUser", method: "DELETE" });
 };
+
+export const setFakerUserValue = (props: { [k: string]: any }) => {
+  const searchParams = new URLSearchParams(props);
+
+  return cy.request({
+    url: `/api/test/testUser?${searchParams.toString()}`,
+    method: "POST",
+  });
+};
