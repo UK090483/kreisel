@@ -1,6 +1,4 @@
-import { FormError } from "./parts/FormError";
-import { FormLabel } from "./parts/FormLabel";
-import { InputWarp } from "./parts/InputWrap";
+import FormControl from "./parts/FormControl";
 import { useFormContext } from "react-hook-form";
 
 type TextareaProps = {
@@ -19,8 +17,7 @@ const Textarea: React.FC<TextareaProps> = (props) => {
   const errorMessage = error?.message as string | undefined;
 
   return (
-    <InputWarp disabled={isSubmitting}>
-      <FormLabel name={name} label={label} />
+    <FormControl errorMessage={errorMessage} name={name} label={label}>
       <textarea
         data-test-id={`input_${name}`}
         disabled={isSubmitting}
@@ -29,8 +26,7 @@ const Textarea: React.FC<TextareaProps> = (props) => {
         className={"rounded-md " + className}
         id={name}
       />
-      <FormError errorMessage={errorMessage} />
-    </InputWarp>
+    </FormControl>
   );
 };
 

@@ -1,107 +1,42 @@
 import Kreisel, { PureKreisel } from "components/Kreisel";
 import { Section } from "components/Section/Section";
+import useInView from "hooks/useInView";
 import React from "react";
 
 const Style = () => {
+  useInView(
+    { step: ".step", debug: true, progress: true, threshold: 1 },
+    {
+      onStepEnter: (enter) => {
+        console.log({ enter });
+
+        enter.element.classList.add("border-red");
+      },
+      onStepExit: (exit) => {
+        console.log({ exit });
+        exit.element.classList.remove("border-red");
+      },
+      onStepProgress: (progress) => {
+        console.log({ progress, n: progress.progress });
+      },
+    }
+  );
   return (
     <Section>
-      <div className="bla  container mx-auto py-8">
-        <div className="container mx-auto mt-10 ">
-          <div>
-            <PureKreisel className="w-1/2" />
+      <div className="container mx-auto py-8">
+        <div className=" flex h-screen w-full items-center justify-center bg-green-500"></div>
+        <div className=" flex h-screen w-full items-center  justify-center">
+          <div className="step h-60  border-2 bg-gray-500">Bla</div>
+        </div>
 
-            <Kreisel />
-          </div>
-          {/* <Typo space={false} variant="h1">
-            <Underline color="primary" variant={0}>
-              Blaaaasdfjskl
-            </Underline>
-          </Typo>
-          <Typo space={false} variant="h2">
-            <Underline color="primary" variant={0}>
-              Blaaaasdfjskl fg fgfg
-            </Underline>
-          </Typo>
-          <Typo space={false} variant="h3">
-            sdfjsdlfkj f
-            <Underline color="primary" variant={3}>
-              __sfdsdfkBlaaaasdfjskl
-            </Underline>
-          </Typo>
-          <Typo space={false} variant="h4">
-            <Underline color="primary" variant={0}>
-              Blaaaasdfjskl
-            </Underline>
-          </Typo>
+        <div className="  flex h-screen w-full items-center bg-green-500">
+          <div className="step h-full border-2 bg-gray-500">BlaFull</div>
+        </div>
 
-          <Typo space={false} variant="body">
-            <Underline color="primary" variant={0}>
-              Blaaaasdfjskl
-            </Underline>
-          </Typo> */}
-
-          {/* <Typo space={false} variant="h2">
-            <Underline color="primary" variant={2}>
-              Blaaaasdfjskl
-            </Underline>
-          </Typo>
-          <Typo space={false} variant="h3">
-            <Underline on="hover" color="primary" variant={3}>
-              Blaaaasdfjskl
-            </Underline>
-          </Typo> */}
+        <div className="  flex h-screen w-full items-center bg-green-500">
+          <div className="step h-14  border-2 bg-gray-500">Bla2</div>
         </div>
       </div>
-      {/* <div className="container flex mx-auto ">
-        <div className="container mx-auto ">
-          <Underline variant={2}>
-            <Typo space={false} variant="h1">
-              H1
-            </Typo>
-          </Underline>
-          <Typo space={false} variant="h2">
-            H2
-          </Typo>
-          <Typo space={false} variant="h3">
-            H3
-          </Typo>
-          <Typo space={false} variant="h4">
-            H4
-          </Typo>
-          <Typo space={false} variant="h5">
-            H5
-          </Typo>
-          <Typo space={false} variant="body">
-            body
-          </Typo>
-          <Typo space={false} variant="body-l">
-            body
-          </Typo>
-        </div>
-        <div className="container mx-auto ">
-          <Typo space={false} hand variant="h1">
-            H1
-          </Typo>
-          <Typo space={false} hand variant="h2">
-            H2
-          </Typo>
-          <Typo space={false} hand variant="h3">
-            H3
-          </Typo>
-          <Typo space={false} hand variant="h4">
-            H4
-          </Typo>
-          <Typo space={false} hand variant="h5">
-            H5
-          </Typo>
-          <Typo space={false} hand variant="body">
-            body
-          </Typo>
-          <Typo space={false} hand variant="body-l">
-            body
-          </Typo>
-        </div>
-      </div> */}
     </Section>
   );
 };

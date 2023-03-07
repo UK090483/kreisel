@@ -5,19 +5,31 @@
       "label": "DEV",
       "type": "process",
       "command": "",
-      "dependsOn": ["NEXT", "SANITY", "SANITY_TEST"]
+      "dependsOn": ["NEXT", "SANITY", "SANITY_TEST", "COMPONENT_TEST_DEV"]
     },
     {
       "label": "NEXT",
       "type": "shell",
       "icon": { "color": "terminal.ansiBlue", "id": "eye-watch" },
       "isBackground": true,
-      "command": "yarn run dev"
+      "command": "vercel dev"
     },
     {
       "label": "SANITY",
       "type": "shell",
       "command": "cd studio && yarn run dev",
+      "isBackground": true
+    },
+    {
+      "label": "COMPONENT_TEST_DEV",
+      "type": "shell",
+      "command": "yarn run cypress:open:component",
+      "isBackground": true
+    },
+    {
+      "label": "COMPONENT_TEST",
+      "type": "shell",
+      "command": "yarn run cypress:component",
       "isBackground": true
     },
     {

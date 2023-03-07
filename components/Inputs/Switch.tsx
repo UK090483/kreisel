@@ -1,6 +1,4 @@
-import { InputWarp } from "./parts/InputWrap";
-import { FormError } from "./parts/FormError";
-import { FormLabel } from "./parts/FormLabel";
+import FormControl from "./parts/FormControl";
 import { useEffect } from "react";
 import { Switch as HiSwitch } from "@headlessui/react";
 import { useController, useFormContext } from "react-hook-form";
@@ -54,10 +52,13 @@ export const SwitchInput = (props: SwitchInputProps) => {
   const errorMessage = error?.message as string | undefined;
 
   return (
-    <InputWarp disabled={isSubmitting}>
-      <FormLabel name={name} label={label} />
+    <FormControl
+      disabled={isSubmitting}
+      name={name}
+      label={label}
+      errorMessage={errorMessage}
+    >
       <Switch name={name} checked={!!field.value} onChange={field.onChange} />
-      <FormError errorMessage={errorMessage} />
-    </InputWarp>
+    </FormControl>
   );
 };

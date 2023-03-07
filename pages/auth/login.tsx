@@ -1,6 +1,6 @@
 import Button from "components/Button/Button";
 import Kreisel from "components/Kreisel";
-import Input from "components/Inputs/Input";
+import Input from "components/Inputs/LoginInput";
 import React, { ReactElement, ReactNode } from "react";
 import { getSession, getCsrfToken, signIn } from "next-auth/react";
 import { NextPage } from "next";
@@ -40,9 +40,9 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center px-5 bg-grey-light">
-      <div className="rounded-theme p-20 bg-primary-light h-fit">
-        <div className="w-1/2 sm:w-2/3 mx-auto">
+    <div className="flex h-screen items-center justify-center bg-grey-light px-5">
+      <div className="h-fit rounded-theme bg-primary-light p-20">
+        <div className="mx-auto w-1/2 sm:w-2/3">
           <Kreisel />
         </div>
         <form
@@ -69,7 +69,7 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
                 },
                 required: "muss ausgefüllt sein",
               })}
-              className="w-full mt-2 "
+              className="mt-2 w-full "
               type="text"
               id="email"
               name="email"
@@ -79,7 +79,7 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
           <Button className={`mt-2 inline`} type="submit">
             Login
           </Button>
-          <Button className=" mt-8 w-full block" href={"/"}>
+          <Button className=" mt-8 block w-full" href={"/"}>
             Back to HomePage
           </Button>
         </form>

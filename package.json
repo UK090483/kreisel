@@ -61,6 +61,7 @@
     "react-tooltip": "^4.2.21",
     "react-use": "^17.4.0",
     "sanity": "^3.2.4",
+    "scrollama": "^3.2.0",
     "styled-components": "^5.3.6",
     "uuidv4": "^6.2.12",
     "yup": "^0.32.11"

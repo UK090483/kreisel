@@ -6,8 +6,6 @@ export const handleSanityUpdate = (body: any) => {
 
   const { type, delta, ok, email } = parseBody(body);
 
-  console.log({ delta });
-
   if (!ok) return { ok };
 
   if (type === "member") {
@@ -48,8 +46,6 @@ export const handleSanityUpdate = (body: any) => {
 };
 
 const parseBody = (body: any) => {
-  console.log(body);
-
   let type: string | null = null;
   let email: string | null = body?.after?.email?.current;
   const delta: { [k: string]: { before: any; after: any } } = {};

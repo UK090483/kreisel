@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { FormError } from "./parts/FormError";
-import { FormLabel } from "./parts/FormLabel";
-import { InputWarp } from "./parts/InputWrap";
+
+import FormControl from "./parts/FormControl";
 import React, { useCallback, useRef } from "react";
 
 import { BsFillPersonFill } from "react-icons/bs";
@@ -68,7 +67,6 @@ const ImageUpload = React.forwardRef(function ImageUpload(
           type="file"
           onChange={handleSelectFile}
         />
-
         <button
           id={name}
           type="button"
@@ -80,6 +78,7 @@ const ImageUpload = React.forwardRef(function ImageUpload(
         >
           {!hasImage && (
             <BsFillPersonFill
+              data-testid="imagePlaceholder"
               style={{ width: size - 50, height: size - 50 }}
               className="h-56 w-56 text-primary-light"
             />
@@ -138,10 +137,13 @@ export const ImageUploadInput: React.FC<ImageUploadInputProps> = (props) => {
   const errorMessage = error?.message as string | undefined;
 
   return (
-    <InputWarp disabled={isSubmitting}>
-      <FormLabel name={name} label={label} />
+    <FormControl
+      disabled={isSubmitting}
+      name={name}
+      label={label}
+      errorMessage={errorMessage}
+    >
       <ImageUpload {...field} />
-      <FormError errorMessage={errorMessage} />
-    </InputWarp>
+    </FormControl>
   );
 };

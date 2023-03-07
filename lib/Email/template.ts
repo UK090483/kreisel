@@ -62,13 +62,7 @@ const templates = {
   },
   profileChangesNeedsReview: {
     html: html({
-      content: [
-        HeaderSection({ text: "Profile Changes Need Review" }),
-        ButtonSection({
-          text: "zur Profile Page",
-          url: profileUrl,
-        }),
-      ],
+      content: [HeaderSection({ text: "Profile Changes Need Review" })],
     }),
     text: "Profile Changes Accepted",
     subject: "Profile Changes Accepted",

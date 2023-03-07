@@ -14,7 +14,7 @@ import { theme } from "https://themer.sanity.build/api/hues?primary=f9de83";
 import { media } from "sanity-plugin-media";
 import { visionTool } from "@sanity/vision";
 import { vercelDeployTool } from "sanity-plugin-vercel-deploy";
-
+// *[_type == 'page' && content[].content[].children[].text match "lorem"  ]
 // eslint-disable-next-line import/no-unused-modules
 export default defineConfig({
   theme,
@@ -31,6 +31,11 @@ export default defineConfig({
         documentListWidget({
           title: "Mitglieder",
           query: `*[_type == "member" && _id in path('drafts.**') ]`,
+          layout: { width: "small" },
+        }),
+        documentListWidget({
+          title: "Has Lorem text",
+          query: `*[_type == 'page' && content[].content[].children[].text match "lorem"  ]`,
           layout: { width: "small" },
         }),
       ],

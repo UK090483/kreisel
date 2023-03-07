@@ -1,24 +1,40 @@
-/* eslint-disable react/display-name */
-import clsx from "clsx";
+import FormControl from "./parts/FormControl";
+import { useFormContext } from "react-hook-form";
 import * as React from "react";
 
-type IInputProps = {
-  unStyled?: boolean;
+type InputProps = {
+  name: string;
+  label: string;
+  description?: string;
 } & JSX.IntrinsicElements["input"];
 
-const Input = React.forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
-  const { className, unStyled = false, ...rest } = props;
+const Input: React.FC<InputProps> = (props) => {
+  const { name, label, className } = props;
+  const {
+    register,
+    formState: { errors, isSubmitting },
+  } = useFormContext();
+
+  const error = errors[name];
+  const errorMessage = error?.message as string | undefined;
 
   return (
-    <input
-      ref={ref}
-      className={clsx(className, {
-        "rounded-theme border-2 border-black bg-primary-light placeholder:text-black ":
-          !unStyled,
-      })}
-      {...rest}
-    />
+    <FormControl
+      disabled={isSubmitting}
+      name={name}
+      label={label}
+      errorMessage={errorMessage}
+    >
+      <input
+        data-test-id={`input_${name}`}
+        disabled={isSubmitting}
+        type="text"
+        {...register(name)}
+        {...props}
+        className={"rounded-md " + className}
+        id={name}
+      />
+    </FormControl>
   );
-});
-
+};
 export default Input;

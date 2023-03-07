@@ -1,7 +1,5 @@
-///<reference path="../support/component.tsx" />
-
-import { DropdownInput } from "../../components/Inputs/Dropdown";
-import { renderInForm, FormProps } from "../helpers/formHelper";
+import { DropdownInput } from "../../../components/Inputs/Dropdown";
+import { renderInForm, FormProps } from "../../helpers/formHelper";
 import React from "react";
 
 const testItems = Array.from(Array(5).keys()).map((_i, index) => ({

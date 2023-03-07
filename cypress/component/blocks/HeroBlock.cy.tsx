@@ -11,7 +11,7 @@ const render = ({
 }: {
   props?: Partial<ComponentProps<typeof HeroBlock>>;
   blockData?: { [K: string]: any };
-  context?: Parameters<typeof cy.mountWithContext>["0"]["context"];
+  context?: Parameters<typeof cy.mountWithContext>["1"]["context"];
 }) => {
   cy.runSanityQuery({
     blockQuery: heroBlockQuery,
@@ -22,7 +22,7 @@ const render = ({
     },
   }).then((i) => {
     cy.log(i);
-    cy.mountWithContext({ jsx: <HeroBlock {...i} {...props} />, context });
+    cy.mountWithContext(<HeroBlock {...i} {...props} />, { context });
   });
 };
 
