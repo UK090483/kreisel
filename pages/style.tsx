@@ -1,4 +1,3 @@
-import Kreisel, { PureKreisel } from "components/Kreisel";
 import { Section } from "components/Section/Section";
 import useInView from "hooks/useInView";
 import React from "react";

@@ -4,7 +4,6 @@ import sendMail from "./sendMail";
 import { NextApiRequest, NextApiResponse } from "next";
 
 async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  console.log(process.env.VERCEL_URL);
   const info = await sendMail({
     to: "konradullrich@me.com",
     template: "memberLocked",
