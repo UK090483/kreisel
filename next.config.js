@@ -32,6 +32,7 @@ const moduleExports = {
   images: {
     domains: ["cdn.sanity.io"],
   },
+  experimental: { scrollRestoration: true },
 
   env: {
     SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
