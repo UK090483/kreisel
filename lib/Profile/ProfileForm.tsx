@@ -2,7 +2,7 @@ import { memberSchema, schema } from "./validation";
 import { membershipOptions, degreeOptions, focusOptions } from "./Fields";
 import { ImageUploadInput } from "components/Inputs/ImageUpload";
 import { profileQueryResult } from "lib/Profile/profileQuery";
-import Input from "components/Inputs/input";
+import Input from "components/Inputs/Input";
 import Textarea from "components/Inputs/TextArea";
 import { SwitchInput } from "components/Inputs/Switch";
 import { DropdownInput } from "components/Inputs/Dropdown";
