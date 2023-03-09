@@ -43,6 +43,8 @@ export default defineConfig({
   },
 
   component: {
+    viewportWidth: 1280,
+    viewportHeight: 800,
     async setupNodeEvents(on, config) {
       addMatchImageSnapshotPlugin(on, config);
 
@@ -51,8 +53,8 @@ export default defineConfig({
         imageResult: any;
       }>(
         `{ 
-          'imageDocument': *[_type == "sanity.imageAsset"][7]{...,'alt':'testImage'}, 
-          'imageResult':*[_type == "sanity.imageAsset"][7]{ url, 'aspectRatio':metadata.dimensions.aspectRatio,"lqip":metadata.lqip,}
+          'imageDocument': *[_type == "sanity.imageAsset"][22]{...,'alt':'testImage'}, 
+          'imageResult':*[_type == "sanity.imageAsset"][22]{ url, 'aspectRatio':metadata.dimensions.aspectRatio,"lqip":metadata.lqip,}
         }`
       );
 

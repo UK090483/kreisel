@@ -90,7 +90,9 @@ _type == "listing" => {
   'content':  content[]{...},
   ${buildQuery(
     listingBlockItems,
+
     `...select(_type == "reference" =>@->,@){
+
       ${cardQuery}
       _type == 'person'=>{${personItemQuery("")}}
     }`

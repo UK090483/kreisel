@@ -4,8 +4,11 @@ const getVariant = (items: listingBuilderItem[]) =>
   items
     .filter((i) => !!i.variants)
     .reduce(
-      (acc, item) =>
-        acc + `contentType == "${item.name}" => ${item.name}Variants,`,
+      (acc, item, index, all) =>
+        acc +
+        `contentType == "${item.name}" => ${item.name}Variants ${
+          all.length - 1 === index ? "" : ","
+        }`,
       "select("
     ) + "),";
 
@@ -32,13 +35,17 @@ const getFilterQuery = (item: listingBuilderItem) => {
 };
 
 const getReferenceQuery = (item: listingBuilderItem) => {
-  return `contentType == "${item.name}" => ${item.name}Items[],`;
+  return `contentType == "${item.name}" => ${item.name}Items`;
 };
 
 const getItemQuery = (items: listingBuilderItem[]) => {
   return (
     items.reduce(
-      (acc, item) => acc + getFilterQuery(item) + getReferenceQuery(item),
+      (acc, item, index, all) =>
+        acc +
+        getFilterQuery(item) +
+        getReferenceQuery(item) +
+        `${all.length - 1 === index ? "" : ","}`,
       "select("
     ) + ")"
   );
@@ -53,7 +60,6 @@ function buildQuery(
   'items': ${getItemQuery(items)}[]{${baseProjection}},
   'variant': ${getVariant(items)}
   `;
-
   return res;
 }
 

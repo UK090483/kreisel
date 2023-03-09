@@ -23,7 +23,7 @@ function SanityImage(props: ISanityImageProps) {
     return (
       <PureKreisel
         className={clsx({
-          "absolute w-full h-full inset-0 object-center text-primary p-4 ":
+          "absolute inset-0 h-full w-full object-center p-4 text-primary ":
             fill,
         })}
       />

@@ -16,7 +16,7 @@ const List: React.FC<ListProps & ListingBlockProps> = (props) => {
 
   return (
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 ">
-      {items.map((item, index) => {
+      {items.map((item) => {
         if (item._type === "article") {
           //@ts-ignore
           return <ArticleCard key={item._id || item._key} {...item} />;

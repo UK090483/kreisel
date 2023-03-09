@@ -21,21 +21,21 @@ const TestimonialList: React.FC<ITestimonialListProps> = (props) => {
         return (
           <div
             key={index}
-            className={clsx("grid grid-cols-1  items-center h-full ", {
+            className={clsx("grid h-full  grid-cols-1 items-center ", {
               "lg:grid-cols-[2fr_400px]": hasImage,
             })}
           >
-            <div className="flex flex-col md:px-12">
+            <div className=" flex flex-col md:px-12">
               <Typo bold={false} variant="h4" className="pt-6 ">
                 Das sagen ehemalige Teilnehmer*innen:
               </Typo>
-              <Typo bold={false} className="pt-6 whitespace-pre-line  h-full">
+              <Typo bold={false} className="h-full whitespace-pre-line  pt-6">
                 {text}
               </Typo>
             </div>
 
             {hasImage && (
-              <div className=" mx-auto rounded-theme overflow-hidden  relative flex justify-center items-center   h-[320px] w-[320px] ">
+              <div className="relative mx-auto mt-12  flex h-[320px]  w-[320px] items-center justify-center overflow-hidden rounded-theme ">
                 <SanityImage src={image} fill className=" object-cover" />
               </div>
             )}

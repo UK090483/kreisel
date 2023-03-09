@@ -10,6 +10,7 @@ type mountPageBuilderComponentProps<P> = {
   context?: Parameters<typeof cy.mountWithContext>["1"]["context"];
   blockQuery?: string;
   blockData?: PartialOrWhatever<P>;
+  dataSet?: any[];
 };
 
 export function mountPageBuilderComponent<P = {}>({
@@ -18,12 +19,14 @@ export function mountPageBuilderComponent<P = {}>({
   props,
   blockData,
   context,
+  dataSet,
 }: mountPageBuilderComponentProps<P>) {
   if (blockQuery) {
     return cy
       .runSanityQuery({
         blockQuery,
         blockData,
+        dataSet,
       })
       .then((i) => {
         cy.mountWithContext(<Component {...i} {...props} />, { context });

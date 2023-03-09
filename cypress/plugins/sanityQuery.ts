@@ -15,7 +15,7 @@ export const runSanityQuery = async ({
 }: runSanityQueryProps) => {
   let queryType = "default";
   let _query = query;
-  let _dataSet = [{ ...Cypress.env("image") }, dataSet];
+  let _dataSet = [{ ...Cypress.env("image") }, ...dataSet];
 
   if (blockQuery) {
     queryType = "block";
