@@ -23,9 +23,6 @@ const render = (
 };
 
 describe("<ImagePlug />", () => {
-  beforeEach(() => {
-    cy.get("[data-cy-root]").invoke("css", "overflow-x", "hidden");
-  });
   it("renders nothing without image", () => {
     render();
     cy.get("[data-cy-root]").should("be.empty");
@@ -43,10 +40,12 @@ describe("<ImagePlug />", () => {
     ["full", 1],
   ];
 
-  sizes.forEach(([width, multi]) => {
-    it(`renders image with correct width ${width}`, () => {
+  sizes.forEach(function ([width, multi]) {
+    it(`renders image with correct width ${width}`, function () {
       const vw = 1200;
+
       cy.viewport(vw, vw);
+
       render({
         blockData: {
           image: Cypress.env("imageRef"),
@@ -54,13 +53,22 @@ describe("<ImagePlug />", () => {
         },
       });
 
-      cy.get("img")
-        .computedStyle("width")
-        .should("eq", `${multi * vw}px`);
+      cy.get("[data-cy-root]")
+        .invoke("width")
+        .then((width) => {
+          cy.get("img")
+            .computedStyle("width")
+            .should("eq", `${multi * width}px`);
+        });
 
       // Full in mobile
       cy.viewport(300, 300);
-      cy.get("img").computedStyle("width").should("eq", `${300}px`);
+
+      cy.get("[data-cy-root]")
+        .invoke("width")
+        .then((width) => {
+          cy.get("img").computedStyle("width").should("eq", `${width}px`);
+        });
     });
   });
 
@@ -82,9 +90,14 @@ describe("<ImagePlug />", () => {
           customWidth: "full",
         },
       });
-      cy.get("img")
-        .computedStyle("height")
-        .should("eq", `${vw / multi}px`);
+
+      cy.get("[data-cy-root]")
+        .invoke("width")
+        .then((width) => {
+          cy.get("img")
+            .computedStyle("height")
+            .should("eq", `${width / multi}px`);
+        });
     });
   });
 });
