@@ -95,7 +95,7 @@ _type == "listing" => {
       _type == 'person'=>{${personItemQuery("")}}
     }`
   )}
-  ${blockStyleProjection()}
+   ${blockStyleProjection()}
 }
 `;
 

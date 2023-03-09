@@ -1,16 +1,8 @@
+import { ImagePlugProps } from "./imagePlugQuery";
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import clsx from "clsx";
 
 import React, { PropsWithChildren } from "react";
-import type { ImageResult } from "PageBuilder/Image/sanityImage.query";
-
-type ImagePlugProps = {
-  image?: ImageResult | null;
-  customWidth?: "1/4" | "1/3" | "1/2" | "2/3" | "full";
-  ratio?: "auto" | "3:2" | "5:9" | "16:9" | "1:1";
-  position?: "left" | "right" | "center";
-  float?: boolean;
-};
 
 const sizesMap = {
   "1/4": 25,
@@ -35,11 +27,12 @@ const ImagePlug: React.FC<ImagePlugProps> = (props) => {
 
   return (
     <div
-      className={clsx({
-        "w-full sm:w-1/4": customWidth === "1/4",
-        "w-full sm:w-1/3": customWidth === "1/3",
-        "w-full sm:w-1/2": customWidth === "1/2",
-        "w-full sm:w-2/3": customWidth === "2/3",
+      id="image"
+      className={clsx("w-full", {
+        " sm:w-1/4": customWidth === "1/4",
+        " sm:w-1/3": customWidth === "1/3",
+        " sm:w-1/2": customWidth === "1/2",
+        " sm:w-2/3": customWidth === "2/3",
         "w-full": customWidth === "full",
         "mx-auto": !float && position === "center",
         "ml-auto": !float && position === "right",
@@ -53,7 +46,7 @@ const ImagePlug: React.FC<ImagePlugProps> = (props) => {
           src={image}
           fill={hasRatio}
           objectFit={hasRatio ? "cover" : undefined}
-          className={clsx({ "object-fill": hasRatio })}
+          className={clsx("w-full", { "object-fill": hasRatio })}
           sizes={`(max-width: 350px) 350px ,(max-width: 640px) 100vw, ${sizesMap[customWidth]}vw`}
         />
       </AspectBox>

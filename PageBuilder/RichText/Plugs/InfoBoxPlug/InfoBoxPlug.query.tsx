@@ -6,6 +6,7 @@ _type == "infoBox" => {
   _type,
   _key,
   'items':items[]{${infoBoxPlugItemQuery}},
+  rows,
 }
 `;
 
@@ -18,7 +19,7 @@ interface ImageGalleryPlugItem {
 }
 
 export interface ImageGalleryPlugResult {
-  _type: "imageGalleryPlug";
+  _type: "infoBox";
   rows?: number;
   name?: string;
   items: ImageGalleryPlugItem[];

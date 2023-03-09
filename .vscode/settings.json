@@ -3,6 +3,7 @@
   //   "strings": true
   // },
   // "tailwindCSS.experimental.classRegex": ["clsx([^]*)"]
+  "iridium.npm.packageManager": "yarn",
   "cSpell.language": "en,de-de",
   "eslint.lintTask.enable": true,
   "files.exclude": {

@@ -6,8 +6,8 @@ import React from "react";
 import clsx from "clsx";
 
 const InfoboxPlug: React.FC<ImageGalleryPlugResult> = (props) => {
-  const { items, rows } = props;
-  if (!items || items.length < 1) return <div>No Images</div>;
+  const { items, rows = 4 } = props;
+  if (!items || items.length < 1) return null;
 
   return (
     <div

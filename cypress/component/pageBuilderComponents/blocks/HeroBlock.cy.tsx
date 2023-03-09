@@ -1,7 +1,5 @@
-///<reference path="../../support/component.tsx" />
-
-import HeroBlock from "../../../PageBuilder/Blocks/hero/frontend/HeroBlock";
-import { heroBlockQuery } from "../../../PageBuilder/Blocks/hero/hero.query";
+import HeroBlock from "../../../../PageBuilder/Blocks/hero/frontend/HeroBlock";
+import { heroBlockQuery } from "../../../../PageBuilder/Blocks/hero/hero.query";
 import React, { ComponentProps } from "react";
 
 const render = ({
@@ -21,7 +19,6 @@ const render = ({
       ...blockData,
     },
   }).then((i) => {
-    cy.log(i);
     cy.mountWithContext(<HeroBlock {...i} {...props} />, { context });
   });
 };

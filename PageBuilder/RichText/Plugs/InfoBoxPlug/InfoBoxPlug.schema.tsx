@@ -1,5 +1,8 @@
 import { defineType } from "sanity";
 
+import { BsCircleFill } from "react-icons/bs";
+import { toPlainText } from "@portabletext/react";
+
 export const infoblockPlug = defineType({
   title: "Info Box",
   name: "infoBox",
@@ -9,7 +12,7 @@ export const infoblockPlug = defineType({
     { name: "name", title: "title", type: "string" },
     {
       name: "items",
-      title: "Images",
+      title: "Items",
       type: "array",
       of: [{ type: "infoBoxItem" }],
     },
@@ -18,36 +21,8 @@ export const infoblockPlug = defineType({
       title: "Rows",
       type: "number",
       initialValue: 4,
-      validation: (Rule) => Rule.required().integer().min(1).max(8),
+      validation: (Rule) => Rule.required().integer().min(1).max(4),
     },
-    // {
-    //   name: "rows_mobile",
-    //   title: "Rows Mobile",
-    //   type: "number",
-    //   initialValue: 2,
-    //   validation: (Rule) => Rule.required().integer().min(1).max(8),
-    // },
-    // {
-    //   name: "ratio",
-    //   title: "Ratio",
-    //   type: "string",
-    //   initialValue: "1:1",
-    //   options: {
-    //     list: ["1:1", "16:9", "2:3", "3:2"],
-    //   },
-    // },
-    // {
-    //   name: "variation",
-    //   title: "Variation",
-    //   type: "string",
-
-    //   options: {
-    //     list: [
-    //       { title: "Grid", value: "grid" },
-    //       { title: "List", value: "list" },
-    //     ],
-    //   },
-    // },
   ],
   preview: {
     select: {
@@ -64,7 +39,7 @@ export const infoblockPlug = defineType({
 });
 
 export const infoblockPlugItem = defineType({
-  title: "Image Gallery Item",
+  title: "InfoBox Item",
   name: "infoBoxItem",
   type: "object",
 
@@ -78,8 +53,19 @@ export const infoblockPlugItem = defineType({
       of: [
         {
           type: "object",
-
           fields: [{ name: "content", title: "Content", type: "easyRichText" }],
+
+          preview: {
+            select: {
+              content: "content",
+            },
+
+            prepare({ content }) {
+              return {
+                title: toPlainText(content),
+              };
+            },
+          },
         },
       ],
     },
@@ -97,18 +83,24 @@ export const infoblockPlugItem = defineType({
         ],
       },
     },
-
-    // { name: "link", title: "Link", type: "link" },
   ],
   preview: {
     select: {
       title: "title",
       image: "image",
+      bgColor: "bgColor",
     },
-    prepare({ title, image }) {
+    prepare({ title, image, bgColor }) {
+      const colors: { [K: string]: string } = {
+        red: "#ec4e51",
+        blue: "#bfdbfe",
+        yellow: "#f9de83",
+        green: "#bbf7d0",
+      };
+      const color = typeof bgColor === "string" ? colors[bgColor] : colors.blue;
       return {
         title: title,
-        media: image,
+        media: () => <BsCircleFill color={color} />,
       };
     },
   },
