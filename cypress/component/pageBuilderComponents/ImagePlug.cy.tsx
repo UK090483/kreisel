@@ -23,6 +23,9 @@ const render = (
 };
 
 describe("<ImagePlug />", () => {
+  beforeEach(() => {
+    cy.get("[data-cy-root]").invoke("css", "overflow-x", "hidden");
+  });
   it("renders nothing without image", () => {
     render();
     cy.get("[data-cy-root]").should("be.empty");
