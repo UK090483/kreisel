@@ -16,7 +16,7 @@
 // Import commands.js using ES2015 syntax:
 import "./commands";
 
-import "../../styles/globals.css";
+import "styles/globals.css";
 import { runSanityQuery, getSanityTestClient } from "../plugins/sanityQuery";
 
 import { mountWithContext } from "../plugins/mountWithContext";

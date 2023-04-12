@@ -52,24 +52,24 @@ const heroSchema = {
       initialValue: "1/3",
       group: "content",
     },
-    {
-      title: "Filter intensity",
-      name: "filterIntensity",
-      type: "string",
-      options: {
-        list: ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90"],
-      },
-      group: "content",
-    },
-    {
-      title: "Filter Color",
-      name: "filterColor",
-      type: "string",
-      options: {
-        list: ["white", "primary-light"],
-      },
-      group: "content",
-    },
+    // {
+    //   title: "Filter intensity",
+    //   name: "filterIntensity",
+    //   type: "string",
+    //   options: {
+    //     list: ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90"],
+    //   },
+    //   group: "content",
+    // },
+    // {
+    //   title: "Filter Color",
+    //   name: "filterColor",
+    //   type: "string",
+    //   options: {
+    //     list: ["white", "primary-light"],
+    //   },
+    //   group: "content",
+    // },
     ...blockSpace(),
     ...blockBgColor(),
     ...blockTransitions(),

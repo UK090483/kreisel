@@ -1,4 +1,3 @@
-import React from "react";
 import NavigationItem from "./components/NavItem/NavigationItem";
 import { NavigationContextProvider } from "./NavigationContext";
 
@@ -7,6 +6,7 @@ import {
   NavigationLinkComponent,
   NavItem,
 } from "./types";
+import React from "react";
 
 interface Props {
   items: NavItem[];

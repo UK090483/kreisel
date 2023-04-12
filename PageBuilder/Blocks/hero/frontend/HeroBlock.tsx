@@ -40,52 +40,45 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
       transitionBottom={transitionBottom}
       bg={bgColor}
       width={isFull ? "full" : "m"}
-      className={clsx(spaceClasses, "relative  grid", {
+      className={clsx(spaceClasses, "relative grid grid-cols-1", {
         "min-h-[95vh]": size === "full",
         "min-h-[50vh]": size === "1/2",
         "min-h-[66vh]": size === "2/3",
         "min-h-[33vh]": size === "1/3",
-        "px-[10%]": isFull,
-        "md:grid-cols-[2fr,1fr]": isHalf,
+        "md:grid-cols-2": isHalf,
       })}
     >
-      {isFull && (
-        <div>
-          <SanityImage src={mainImage} fill className="object-cover" />
-          <div
-            className={clsx("absolute inset-0", {
-              " bg-primary-light ":
-                filterColor === "primary-light" && !!filterIntensity,
-              "bg-white ": filterColor === "white" && !!filterIntensity,
-              "opacity-10": filterIntensity === "10",
-              "opacity-20": filterIntensity === "20",
-              "opacity-30": filterIntensity === "30",
-              "opacity-40": filterIntensity === "40",
-              "opacity-50": filterIntensity === "50",
-              "opacity-60": filterIntensity === "60",
-              "opacity-70": filterIntensity === "70",
-              "opacity-80": filterIntensity === "80",
-              "opacity-90": filterIntensity === "90",
-            })}
-          ></div>
-        </div>
-      )}
-      <div className="order-2 flex w-full items-center break-words md:order-1">
-        <div className="max-w-full">
-          {content ? (
-            <RichText content={content} />
-          ) : (
-            <Typo as="h1" variant="h1">
-              {title}
-            </Typo>
-          )}
-        </div>
+      <div
+        className={clsx(
+          "z-10 self-end break-words",
+          "order-1 px-3 md:order-2",
+          {
+            "mx-auto w-full max-w-screen-lg": isFull,
+            "md:row-span-1 md:row-start-1   ": isFull,
+          }
+        )}
+      >
+        {content ? (
+          <RichText content={content} />
+        ) : (
+          <Typo as="h1" variant="h1">
+            {title}
+          </Typo>
+        )}
       </div>
-      {isHalf && (
-        <div className=" relative order-1 my-8 min-h-[250px] md:order-2 md:my-0">
-          <SanityImage src={mainImage} fill className="object-contain" />
-        </div>
-      )}
+
+      <div
+        className={clsx("md:order-2", "min-h-[200px]", {
+          "relative ": isHalf,
+          "relative row-span-1 row-start-1 md:static   ": isFull,
+        })}
+      >
+        <SanityImage
+          src={mainImage}
+          fill
+          className="mx-auto w-full max-w-[1800px] object-cover"
+        />
+      </div>
     </Section>
   );
 };

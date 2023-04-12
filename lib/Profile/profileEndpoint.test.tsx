@@ -1,7 +1,41 @@
+/**
+ * @jest-environment node
+ */
+
 import getHandler from "./profileEndpoint";
 import { mockClient } from "@services/SanityService/test/testClient";
 import { getToken } from "next-auth/jwt";
 import { testApiHandler, NtarhParameters } from "next-test-api-route-handler";
+import FormData from "form-data";
+import formidable from "formidable";
+import type { PageConfig } from "next";
+
+// jest.mock("formidable", () => ({
+//   ...jest.requireActual("formidable"),
+//   __esModule: true,
+//   default: jest.fn(),
+// }));
+
+const formidableMock = formidable as unknown as jest.Mock<any>;
+
+function prepareHandler(
+  client: Parameters<typeof getHandler>[0],
+  hasToken: boolean
+) {
+  const handler = getHandler(client, (() =>
+    hasToken
+      ? { email: "testEmail" }
+      : undefined) as unknown as typeof getToken);
+
+  const config: PageConfig = {
+    api: {
+      bodyParser: false,
+    },
+  };
+  //@ts-ignore
+  handler.config = config;
+  return handler;
+}
 
 const testDbItem = {
   _type: "member",
@@ -19,6 +53,7 @@ const testValues = {
 const formdata = () => {
   const form = new FormData();
   form.append("data", JSON.stringify(testValues));
+
   return form;
 };
 
@@ -45,10 +80,8 @@ const customTester = async ({
     requestPatcher: (req) => {
       req.headers = { "content-type": "multipart/form-data" };
     },
-    handler: getHandler(sanityClient, (() =>
-      hasToken
-        ? { email: "testEmail" }
-        : undefined) as unknown as typeof getToken),
+
+    handler: prepareHandler(sanityClient, hasToken),
     test: async () => {},
     ...params,
   });
@@ -71,15 +104,16 @@ describe("profileEndpoint", () => {
   });
 
   // it("should create draft if no draft is found", async () => {
+  //   const formData = formdata();
   //   const {
   //     sanity: { clientCreate },
   //   } = await customTester({
+  //     requestPatcher: (req) => (req.headers = formData.getHeaders()),
   //     test: async ({ fetch }) => {
   //       const res = await fetch({
   //         method: "POST",
-  //         body: formdata(),
+  //         body: formData,
   //       });
-
   //       expect(res.status).toBe(200);
   //     },
   //   });

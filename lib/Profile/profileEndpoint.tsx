@@ -106,6 +106,7 @@ const updateUser = async (client: SanityClient, email: string, data: any) => {
 
 const parseFormdata = async (req: NextApiRequest) => {
   const form = formidable({ multiples: true });
+
   return new Promise<{ data: null | {}; image: Buffer | null }>(
     (resolve, reject) => {
       form.parse(req, (err, fields, files) => {

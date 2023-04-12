@@ -1,15 +1,12 @@
 /// <reference types="cypress" />
 
+import "cypress-real-events";
 import { runSanityQuery } from "../plugins/sanityQuery";
 import {
   deleteFakerUser,
   loginFakeUser,
   setFakerUserValue,
 } from "../plugins/user";
-
-const computedStyle = (subject, c) => {
-  return window.getComputedStyle(subject.get(0)).width;
-};
 
 Cypress.Commands.add("loginAsFakeUser", loginFakeUser);
 Cypress.Commands.add("eraseFakeUser", deleteFakerUser);

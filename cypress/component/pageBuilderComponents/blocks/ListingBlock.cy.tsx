@@ -44,7 +44,7 @@ describe("ListingBlock Custom", () => {
   });
 });
 
-describe.only("ListingBlock People", () => {
+describe("ListingBlock People", () => {
   it("should Render People", () => {
     render({
       dataSet: [
@@ -85,7 +85,7 @@ describe.only("ListingBlock People", () => {
   });
 });
 
-describe.only("ListingBlock People", () => {
+describe("ListingBlock People", () => {
   it("should Render People", () => {
     render({
       dataSet: [
@@ -101,6 +101,7 @@ describe.only("ListingBlock People", () => {
           _id: "personId2",
           name: "person2",
           position: "position2",
+          description: "description2",
         },
       ],
       blockData: {
@@ -123,5 +124,9 @@ describe.only("ListingBlock People", () => {
     cy.contains("position1");
     cy.contains("person2");
     cy.contains("position2");
+    cy.contains("description2").should("not.have.class", "show");
+    cy.contains("position2").realHover();
+    cy.contains("description2");
+    cy.contains("description2").should("have.class", "show");
   });
 });

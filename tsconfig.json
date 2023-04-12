@@ -14,11 +14,9 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "components/*": ["components/*"],
       "@services/*": ["services/*"],
-      "hooks/*": ["hooks/*"],
       "@lib/*": ["lib/*"],
       "types/*": ["types/*"]
     },

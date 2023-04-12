@@ -7,7 +7,7 @@ import Textarea from "components/Inputs/TextArea";
 import { SwitchInput } from "components/Inputs/Switch";
 import { DropdownInput } from "components/Inputs/Dropdown";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as React from "react";
+import React, { useState } from "react";
 import {
   useForm,
   SubmitHandler,
@@ -24,6 +24,8 @@ interface IProfileFormProps {
 
 const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
   const { profile, allowProfile } = props;
+
+  const [error, setError] = useState(false);
 
   const methods = useForm<any>({
     mode: "onBlur",
@@ -75,6 +77,7 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
+      setError(true);
     }
   };
 
@@ -152,7 +155,6 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
             )}
             <input
               value={"Speichern"}
-              // disabled={!canSubmit}
               className={clsx(
                 "fixed bottom-8 z-50  mx-auto w-screen max-w-xs border-2 p-4 ",
                 {
@@ -164,6 +166,15 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
             />
           </form>
         </FormProvider>
+
+        {error && (
+          <div
+            id="errorMessage"
+            className=" fixed bottom-0 left-0 right-0 z-50 flex h-20 items-center justify-center bg-red text-white"
+          >
+            Sorry there was an Error please try an other time.
+          </div>
+        )}
       </div>
     </>
   );

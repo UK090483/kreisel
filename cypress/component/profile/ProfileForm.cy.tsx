@@ -43,11 +43,30 @@ const render = (overwrite?: Partial<ComponentProps<typeof ProfileForm>>) => {
   return cy.mount(<ProfileForm {...props} />);
 };
 
-describe("<ProfileForm />", () => {
-  beforeEach(() => {
-    cy.viewport("macbook-13");
-  });
+const fillField = (field: (typeof memberFields)[0], testValue) => {
+  if (field.type === "string" || field.type === "text") {
+    cy.get(`#${field.name}`).type(testValue, {
+      delay: 0,
+      waitForAnimations: false,
+      timeout: 0,
+    });
+  }
+  if (field.type === "array") {
+    cy.get(`#${field.name}`).click().get("li").first().click();
+  }
 
+  if (field.type === "boolean") {
+    cy.get(`#${field.name}`).click();
+  }
+
+  if (field.type === "image") {
+    cy.get(`input[type=file]`).selectFile("cypress/fixtures/image.png", {
+      force: true,
+    });
+  }
+};
+
+describe("<ProfileForm />", () => {
   it("has no unused Inputs", () => {
     render({
       allowProfile: true,
@@ -93,26 +112,7 @@ describe("<ProfileForm />", () => {
       //@ts-ignore
       const testValue = testData[i.name];
 
-      if (i.type === "string" || i.type === "text") {
-        cy.get(`#${i.name}`).type(testValue, {
-          delay: 0,
-          waitForAnimations: false,
-          timeout: 0,
-        });
-      }
-      if (i.type === "array") {
-        cy.get(`#${i.name}`).click().get("li").first().click();
-      }
-
-      if (i.type === "boolean") {
-        cy.get(`#${i.name}`).click();
-      }
-
-      if (i.type === "image") {
-        cy.get(`input[type=file]`).selectFile("cypress/fixtures/image.png", {
-          force: true,
-        });
-      }
+      fillField(i, testValue);
 
       cy.intercept("POST", "**/profile", {
         body: [{ projectId: "1" }, { projectId: "2" }],
@@ -135,5 +135,20 @@ describe("<ProfileForm />", () => {
           }
         });
     });
+  });
+
+  it("should handle Server Error", () => {
+    cy.intercept("POST", "**/profile", {
+      forceNetworkError: true,
+    }).as("profile");
+
+    render({
+      allowProfile: true,
+      profile: { name: "bla", firstName: "blu" },
+    });
+
+    fillField(profileFields[6], testData[profileFields[6].name]);
+    cy.get('input[type="submit"]').should("be.visible").click();
+    cy.get("#errorMessage").should("be.visible");
   });
 });

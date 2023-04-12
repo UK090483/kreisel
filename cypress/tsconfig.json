@@ -7,7 +7,7 @@
 
     "jsx": "preserve",
 
-    "types": ["cypress", "mocha"]
+    "types": ["cypress", "mocha", "cypress-real-events"]
   },
   "include": ["../node_modules/cypress", "./**/*.ts", "./**/*.tsx"]
 }

@@ -46,6 +46,7 @@ export default defineConfig({
     viewportWidth: 1280,
     viewportHeight: 800,
     async setupNodeEvents(on, config) {
+      
       addMatchImageSnapshotPlugin(on, config);
 
       const image = await sanityClient.fetch<{
