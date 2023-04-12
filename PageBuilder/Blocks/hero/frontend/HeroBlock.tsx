@@ -53,27 +53,30 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
           "z-10 self-end break-words",
           "order-1 px-3 md:order-2",
           {
-            "mx-auto w-full max-w-screen-lg": isFull,
+            "mx-auto w-full max-w-screen-lg ": isFull,
             "md:row-span-1 md:row-start-1   ": isFull,
           }
         )}
       >
-        {content ? (
-          <RichText content={content} />
-        ) : (
-          <Typo as="h1" variant="h1">
-            {title}
-          </Typo>
-        )}
+        <div className={clsx({ "md:w-1/2 ": isFull })}>
+          {content ? (
+            <RichText content={content} />
+          ) : (
+            <Typo as="h1" variant="h1">
+              {title}
+            </Typo>
+          )}
+        </div>
       </div>
 
       <div
-        className={clsx("md:order-2", "min-h-[200px]", {
+        className={clsx("md:order-2", "min-h-[300px]", {
           "relative ": isHalf,
           "relative row-span-1 row-start-1 md:static   ": isFull,
         })}
       >
         <SanityImage
+          sizes="1000"
           src={mainImage}
           fill
           className="mx-auto w-full max-w-[1800px] object-cover"
