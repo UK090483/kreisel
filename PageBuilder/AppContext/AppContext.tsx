@@ -5,6 +5,8 @@ import React, { useContext } from "react";
 import useAuth from "lib/Auth/useAuth";
 import { PageBuilderData } from "PageBuilder/query";
 
+const isServer = typeof window === "undefined";
+
 interface IAppContextState {
   data?: PageBuilderData | null;
 }
@@ -56,7 +58,7 @@ export const useMemberPage = () => {
   const res = { showSpinner: false };
   const { data } = useContext(AppContext);
 
-  const { status } = useAuth();
+  const { status, member } = useAuth();
   const { isPreview, push } = useRouter();
   const slug = data?.slug;
   const isMemberPage = slug
@@ -70,10 +72,14 @@ export const useMemberPage = () => {
     }
   }
 
+  if (isMemberPage && !isServer && !member && !isPreview) {
+    res.showSpinner = true;
+    push("/profile");
+  }
+
   if (isPreview) {
     res.showSpinner = false;
   }
 
-  console.log(status);
   return res;
 };
