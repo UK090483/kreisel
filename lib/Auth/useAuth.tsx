@@ -8,6 +8,7 @@ const useAuth = () => {
     isAuthenticated: status === "authenticated",
     //@ts-ignore
     member: !!data?.member,
+    email: data?.user?.email,
   };
 };
 
