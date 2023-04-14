@@ -3,6 +3,7 @@ import { defineField } from "sanity";
 export const getSlugField = (props?: {
   group?: string | false;
   source?: string;
+  required?: boolean;
 }) =>
   defineField({
     name: "slug",
@@ -13,7 +14,7 @@ export const getSlugField = (props?: {
       source: props?.source || "title",
     },
     validation: (Rule: any) => [
-      Rule.required(),
+      ...(props?.required === false ? [] : [Rule.required()]),
       Rule.custom((slug: any) => {
         if (!slug) return true;
         if (slug.current.indexOf(" ") >= 0)
