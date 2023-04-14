@@ -1,9 +1,17 @@
+import { getSlugField } from "PageBuilder/schemaHelper/getSlugField";
+import { defaultBockContent } from "PageBuilder/schemaHelper/snippets";
 import { defineType } from "sanity";
 
 export default defineType({
   name: "person",
   title: "Person",
   type: "document",
+  groups: [
+    {
+      name: "page",
+      title: "Page",
+    },
+  ],
 
   fields: [
     {
@@ -25,6 +33,9 @@ export default defineType({
       name: "avatar",
       type: "defaultImage",
     },
+
+    getSlugField({ group: "page", source: "name" }),
+    { ...defaultBockContent, group: "page" },
     {
       name: "variant",
       title: "Variation",

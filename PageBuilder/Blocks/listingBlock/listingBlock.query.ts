@@ -63,6 +63,7 @@ position,
   defined(slug) => '/' + slug.current
 ),
 'link':link{${linkQuery}},
+
 `;
 
 export interface CardResult {

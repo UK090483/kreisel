@@ -1,4 +1,5 @@
 import Avatar from "components/Avatar";
+import { Link } from "components/Link";
 import * as React from "react";
 import type { ImageResult } from "PageBuilder/Image/sanityImage.query";
 
@@ -8,25 +9,41 @@ interface IPersonListItemProps {
   description?: null | string;
   avatar?: null | ImageResult;
   variant?: string | null;
+  href?: string | null;
   _id: string;
 }
 
 const PersonListItem: React.FunctionComponent<IPersonListItemProps> = (
   props
 ) => {
-  const { name, description, position, avatar, _id, variant } = props;
+  const { name, description, position, avatar, _id, variant, href } = props;
 
-  return (
-    <li className="flex flex-col items-center justify-center w-full md:w-1/2  lg:w-1/3 self-start">
-      <Avatar
-        id={_id}
-        description={description}
-        image={avatar}
-        title={name}
-        subTitle={position}
-      ></Avatar>
-    </li>
+  const Item = (
+    <Avatar
+      id={_id}
+      description={description}
+      image={avatar}
+      title={name}
+      subTitle={position}
+    ></Avatar>
   );
+  if (href) {
+    return (
+      <Wrap>
+        <Link href={"person/" + href}>{Item}</Link>
+      </Wrap>
+    );
+  }
+
+  return <Wrap>{Item}</Wrap>;
 };
 
 export default PersonListItem;
+
+const Wrap: React.FC<React.PropsWithChildren> = ({ children }) => {
+  return (
+    <li className="flex w-full flex-col items-center justify-center self-start  md:w-1/2 lg:w-1/3">
+      {children}
+    </li>
+  );
+};
