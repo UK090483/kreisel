@@ -69,11 +69,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // eslint-disable-next-line import/no-unused-modules
 export const getStaticProps: GetStaticProps = async (props) => {
   const { params, preview, locale } = props;
-  const isMember =
-    params &&
-    params.slug &&
-    Array.isArray(params.slug) &&
-    params.slug[0] === "mitgliederbereich";
 
   return await fetchStaticProps<PageData>({
     locale,

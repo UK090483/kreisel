@@ -11,6 +11,7 @@ import {
   NavItemBaseProps,
   NavigationItemBase,
 } from "PageBuilder/Navigation/frontend";
+import AuthWidget from "@services/AuthService/AuthWidget";
 import NavigationMobile from "PageBuilder/Navigation/frontend/NavigationMobile";
 import { NavItem } from "PageBuilder/Navigation/frontend/types";
 import clsx from "clsx";
@@ -58,7 +59,8 @@ const Nav: React.FC<NavProps> = ({ items }) => {
         open={menuOpen}
         closeMenu={closeMenu}
       >
-        <ContactButton className="mt-6" dark />
+        <ContactButton className="mt-6 mb-6" dark />
+        <AuthWidget className="flex-col gap-2" />
       </NavigationMobile>
     </>
   );

@@ -68,7 +68,7 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
       {render && (
         <Portal>
           <div
-            className={`flex  flex-col items-center justify-center h-screen bg-primary-light fixed inset-0 z-10 transition-all transform duration-300 ${
+            className={`fixed inset-0 z-10 flex transform flex-col items-center overflow-scroll bg-primary-light pt-32 pb-24  transition-transform duration-300 ${
               animation
                 ? "translate-y-0 opacity-100 "
                 : "-translate-y-96  opacity-0"
@@ -94,10 +94,10 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
                 return (
                   <div
                     key={item.label}
-                    className="absolute top-0 bottom-0 left-0 right-0 flex flex-col items-center justify-center bg-primary-light animate-fadeInFast"
+                    className="absolute top-0 bottom-0 left-0 right-0 flex animate-fadeInFast flex-col items-center justify-center bg-primary-light"
                   >
                     <button
-                      className="absolute transform rotate-180 top-32 right-6 "
+                      className="absolute top-32 right-6 rotate-180 transform "
                       onClick={handleBackClick}
                     >
                       <Svg icon="chevronRight" />

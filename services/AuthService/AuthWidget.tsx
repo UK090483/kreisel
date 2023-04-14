@@ -1,43 +1,66 @@
 import { Link } from "components/Link";
 import useAuth from "lib/Auth/useAuth";
+import clsx from "clsx";
 import { signIn, signOut } from "next-auth/react";
 
-type UserWidgetProps = {};
+type UserWidgetProps = {
+  className?: string;
+};
 
-const AuthWidget: React.FC<UserWidgetProps> = () => {
+const AuthWidget: React.FC<UserWidgetProps> = ({ className }) => {
   const { isAuthenticated, member, email } = useAuth();
 
   return (
-    <div className="flex items-center text-sm ">
-      {isAuthenticated && (
-        <>
-          <Link
-            href="/profile"
-            className=" flex items-center justify-center gap-2 "
-          >
-            <Icon />
-            <span>{email}</span>
-          </Link>
-          <span className="px-3">|</span>
-        </>
-      )}
+    <div className={clsx(className, "flex items-center text-sm ")}>
+      <ProfileButton />
       {member && (
         <>
-          <Link href="/mitgliederbereich" className=" px-3 ">
-            Mitgliederbereich
-          </Link>
+          <Link href="/mitgliederbereich">Mitgliederbereich</Link>
+          <Spacer />
         </>
       )}
-      {isAuthenticated ? (
-        <button onClick={() => signOut()}>Sign out</button>
-      ) : (
-        <button onClick={() => signIn()}>Sign in</button>
-      )}
+
+      <SignInOutButton />
     </div>
   );
 };
 
 export default AuthWidget;
+
+const Spacer = () => <span className="px-3">|</span>;
+
+const ProfileButton = () => {
+  const { isAuthenticated, member, email } = useAuth();
+
+  if (!isAuthenticated) return null;
+  return (
+    <>
+      <Link
+        href="/profile"
+        className=" flex items-center justify-center gap-2 "
+      >
+        <Icon />
+        <span>{email}</span>
+      </Link>
+      <Spacer />
+    </>
+  );
+};
+
+const SignInOutButton = () => {
+  const { isAuthenticated } = useAuth();
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = () => {
+    if (isAuthenticated) {
+      signOut();
+    }
+    signIn();
+  };
+  return (
+    <button onClick={handleClick}>
+      {isAuthenticated ? "Sign out" : "Sign in"}
+    </button>
+  );
+};
 
 const Icon = () => {
   return (

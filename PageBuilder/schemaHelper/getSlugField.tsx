@@ -1,13 +1,16 @@
 import { defineField } from "sanity";
 
-export const getSlugField = (props?: { group?: string | false }) =>
+export const getSlugField = (props?: {
+  group?: string | false;
+  source?: string;
+}) =>
   defineField({
     name: "slug",
     type: "slug",
     title: "Slug",
     description: "",
     options: {
-      source: "title",
+      source: props?.source || "title",
     },
     validation: (Rule: any) => [
       Rule.required(),
