@@ -34,7 +34,7 @@ export default defineType({
       type: "defaultImage",
     },
 
-    getSlugField({ group: "page", source: "name" }),
+    getSlugField({ group: "page", source: "name", required: false }),
     { ...defaultBockContent, group: "page" },
     {
       name: "variant",
