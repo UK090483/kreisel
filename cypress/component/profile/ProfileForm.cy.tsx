@@ -123,6 +123,7 @@ describe("<ProfileForm />", () => {
       cy.wait("@profile")
         .its("request")
         .then((request) => {
+          //@ts-ignore
           const formData = interceptFormData(request);
 
           if (["array"].includes(i.type)) {
