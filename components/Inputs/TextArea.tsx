@@ -17,7 +17,12 @@ const Textarea: React.FC<TextareaProps> = (props) => {
   const errorMessage = error?.message as string | undefined;
 
   return (
-    <FormControl errorMessage={errorMessage} name={name} label={label}>
+    <FormControl
+      errorMessage={errorMessage}
+      name={name}
+      label={label}
+      disabled={isSubmitting}
+    >
       <textarea
         data-test-id={`input_${name}`}
         disabled={isSubmitting}

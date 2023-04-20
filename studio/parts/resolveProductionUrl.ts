@@ -4,8 +4,11 @@ const localUrl = `http://localhost:3000`;
 
 const previewSecret = import.meta.env.SANITY_STUDIO_PREVIEW_SECRET;
 
-export const resolveProductionUrlDocument = (document: SanityDocumentLike) => {
-  if (!["page"].includes(document?._type)) return;
+export const resolveProductionUrlDocument = (
+  document: SanityDocumentLike & { slug?: { current?: string } }
+) => {
+  if (!["page", "person"].includes(document?._type)) return;
+  if (!document?.slug?.current) return;
   const baseUrl =
     window.location.hostname === "localhost" ? localUrl : remoteUrl;
   const docId =

@@ -2,7 +2,6 @@ import { schema } from "./validation";
 import { SanityClient, SanityImageAssetDocument } from "@sanity/client";
 import { getToken } from "next-auth/jwt";
 import formidable from "formidable";
-
 import fs from "fs";
 import type { NextApiRequest, NextApiResponse } from "next";
 

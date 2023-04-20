@@ -3,11 +3,8 @@ import Footer from "./Footer";
 import Head from "./Head";
 import { Header } from "./Header";
 import Nav from "./Navigation/Nav";
-import {
-  useAppContext,
-  useMemberPage,
-} from "PageBuilder/AppContext/AppContext";
-import Kreisel from "components/Kreisel";
+import { useAppContext } from "PageBuilder/AppContext/AppContext";
+
 import React, {
   useEffect,
   useLayoutEffect,
@@ -22,10 +19,7 @@ const useIsomorphicLayoutEffect =
 const Layout: React.FC<PropsWithChildren> = (props) => {
   const { children } = props;
   const { data } = useAppContext();
-  const { showSpinner } = useMemberPage();
-
   const isGlossary = data?.layout === "glossary";
-
   const firstRender = useRef(true);
   const [fadeIn, setFadeIn] = useState(false);
 
@@ -42,17 +36,6 @@ const Layout: React.FC<PropsWithChildren> = (props) => {
       clearTimeout(timeOut);
     };
   }, [data?._id]);
-
-  if (showSpinner && true) {
-    return (
-      <div
-        data-test-id="spinner"
-        className=" flex h-screen w-full items-center justify-center px-28"
-      >
-        <Kreisel className="max-w-sm "></Kreisel>
-      </div>
-    );
-  }
 
   return (
     <>

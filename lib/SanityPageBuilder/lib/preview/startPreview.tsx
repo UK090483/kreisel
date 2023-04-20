@@ -23,7 +23,10 @@ export default async function preview(
   }
 
   const doc = await client.fetch(
-    `*[ _id == "${req.query.id}" ][0]{ 'slug':select( defined(pageType) => pageType->slug.current +'/'+ slug.current , slug.current)}`
+    `*[ _id == "${req.query.id}" ][0]{ 'slug':select(
+       defined(pageType) => pageType->slug.current +'/'+ slug.current ,
+       _type == 'person' => 'person/'+slug.current,
+        slug.current)}`
   );
 
   // Enable Preview Mode by setting the cookies

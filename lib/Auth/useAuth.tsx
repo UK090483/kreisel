@@ -8,7 +8,8 @@ const useAuth = () => {
     isAuthenticated: status === "authenticated",
     //@ts-ignore
     member: !!data?.member,
+    email: data?.user?.email,
   };
 };
 
-export default useAuth;
+export default {};

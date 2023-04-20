@@ -1,4 +1,4 @@
-import SanityAdapter from "@services/AuthService/SanityAdapter/SanityAdapter";
+import SanityAdapter from "@lib/Auth/SanityAdapter/SanityAdapter";
 import { previewClient } from "@services/SanityService/sanity.server";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";

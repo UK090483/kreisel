@@ -5,7 +5,7 @@ import React, { useCallback, useRef } from "react";
 
 import { BsFillPersonFill } from "react-icons/bs";
 import clsx from "clsx";
-import { useController, useFormContext } from "react-hook-form";
+import { useController, useFormContext, FieldError } from "react-hook-form";
 
 const size = 150;
 // eslint-disable-next-line import/no-unused-modules
@@ -13,10 +13,12 @@ const size = 150;
 type UploadImage = {
   url?: string | null;
   file?: File;
+  erased?: true;
 };
 
 type ImageUploadProps = {
   onChange: (image?: UploadImage | null) => void;
+
   value: UploadImage;
   name: string;
 };
@@ -29,10 +31,11 @@ const ImageUpload = React.forwardRef(function ImageUpload(
 
   const handleSelectFile: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const file = e.target.files?.item(0);
+
     if (file) {
       onChange({
         url: URL.createObjectURL(file),
-        file,
+        file: file,
       });
     }
   };
@@ -40,7 +43,10 @@ const ImageUpload = React.forwardRef(function ImageUpload(
   const hasImage = !!value?.url;
 
   const handleRemove = useCallback(() => {
-    onChange(null);
+    onChange({
+      url: null,
+      erased: true,
+    });
   }, [onChange]);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -63,6 +69,7 @@ const ImageUpload = React.forwardRef(function ImageUpload(
         <input
           data-test-id={`input_${name}`}
           className="hidden"
+          accept="image/png, image/jpeg"
           ref={inputRef}
           type="file"
           onChange={handleSelectFile}
@@ -96,7 +103,7 @@ const ImageUpload = React.forwardRef(function ImageUpload(
         </button>
 
         {hasImage && (
-          <div className=" grid w-full grid-cols-2">
+          <div className="grid w-full grid-cols-2">
             <button
               aria-label="update Image"
               type="button"
@@ -128,13 +135,17 @@ export const ImageUploadInput: React.FC<ImageUploadInputProps> = (props) => {
   const { name, label } = props;
 
   const {
-    formState: { errors, isSubmitting },
+    trigger,
+    formState: { errors, isSubmitting, isValid },
   } = useFormContext();
 
   const { field } = useController({ name });
 
-  const error = errors[name];
-  const errorMessage = error?.message as string | undefined;
+  const fieldErrors = errors[name] as
+    | Record<keyof UploadImage, FieldError>
+    | undefined;
+
+  const errorMessage = fieldErrors?.file.message;
 
   return (
     <FormControl
@@ -143,7 +154,15 @@ export const ImageUploadInput: React.FC<ImageUploadInputProps> = (props) => {
       label={label}
       errorMessage={errorMessage}
     >
-      <ImageUpload {...field} />
+      <ImageUpload
+        {...field}
+        onChange={(i) => {
+          if (i) {
+            field.onChange(i);
+            trigger(name);
+          }
+        }}
+      />
     </FormControl>
   );
 };

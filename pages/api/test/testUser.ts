@@ -25,14 +25,19 @@ export default async function handler(
   }
 
   if (req.method === "POST") {
-    console.log(req.query);
+    const { allowMember, allowProfile } = req.query;
 
-    if (req.query.allowMember) {
+    const next = {
+      ...(allowMember ? { allowMember: allowMember === "true" } : {}),
+      ...(allowProfile ? { allowProfile: allowProfile === "true" } : {}),
+    };
+
+    if (Object.keys(next).length > 0) {
       user = await previewClient
         .patch({
           query: `*[_type == "member" && email.current match "test__kreisel__user@*" ]`,
         })
-        .set({ allowMember: req.query.allowMember === "true" })
+        .set(next)
         .commit();
     }
   }

@@ -1,6 +1,6 @@
 import Adapter from "../SanityAdapter";
-import { mockClient } from "../../../SanityService/test/testClient";
-import { omit } from "lodash";
+import { mockClient } from "../../../../services/SanityService/test/testClient";
+
 import AdapterLogger from "../AdapterLogger";
 const testUser1 = {
   _type: "user",

@@ -1,6 +1,6 @@
 import Typo from "components/Typography/Typography";
-import useAuth from "lib/Auth/useAuth";
-import UserWidget from "@services/AuthService/AuthWidged";
+import { useAuth } from "lib/Auth/AuthContext";
+import UserWidget from "lib/Auth/AuthWidget";
 import clsx from "clsx";
 
 import React from "react";
@@ -18,8 +18,9 @@ export const Header: React.FC<HeaderProps> = ({ children }) => {
         className={`fixed top-0 left-0 right-0 z-20 bg-white `}
       >
         <div
-          className={clsx(`hidden bg-primary-light py-2 sm:block `, {
-            "bg-lime-400 ": isAuthenticated,
+          className={clsx(`hidden py-2 sm:block`, {
+            "bg-lime-400": isAuthenticated,
+            "bg-primary-light": !isAuthenticated,
           })}
         >
           <div className=" mx-auto flex flex-wrap items-center justify-between  px-3 lg:container">

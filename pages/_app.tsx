@@ -10,6 +10,7 @@ import PreviewIndicator from "lib/SanityPageBuilder/lib/preview/PreviewIndicator
 import { AppContextProvider } from "PageBuilder/AppContext/AppContext";
 import AppConfig from "app.config.json";
 import StoreContextProvider from "@services/StoreService/StoreProvider";
+import { AuthContextProvider } from "@lib/Auth/AuthContext";
 import { ReactElement, ReactNode, lazy } from "react";
 import { SessionProvider } from "next-auth/react";
 import { NextComponentType, NextPageContext } from "next";
@@ -42,38 +43,42 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   if (preview) {
     return (
       <PreviewSuspense fallback="Loading...">
-        <PreviewPageBuilderContextProvider
-          query={query}
-          data={pageProps.data}
-          hostName={AppConfig.hostname}
-        >
-          <StoreContextProvider>
-            <SessionProvider refetchInterval={10}>
+        <SessionProvider refetchInterval={10}>
+          <PreviewPageBuilderContextProvider
+            query={query}
+            data={pageProps.data}
+            hostName={AppConfig.hostname}
+          >
+            <StoreContextProvider>
               <ShopContextProvider>
                 {getLayout(pageProps.id)}
                 <Cookie />
                 <Cart />
                 <PreviewIndicator />
               </ShopContextProvider>
-            </SessionProvider>
-          </StoreContextProvider>
-        </PreviewPageBuilderContextProvider>
+            </StoreContextProvider>
+          </PreviewPageBuilderContextProvider>
+        </SessionProvider>
       </PreviewSuspense>
     );
   }
 
   return (
-    <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
-      <StoreContextProvider>
-        <SessionProvider refetchInterval={0}>
-          <ShopContextProvider>
-            {getLayout(pageProps.id)}
-            <Cookie />
-            <Cart />
-          </ShopContextProvider>
-        </SessionProvider>
-      </StoreContextProvider>
-    </AppContextProvider>
+    <SessionProvider refetchInterval={10}>
+      <AuthContextProvider>
+        <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
+          <StoreContextProvider>
+            <SessionProvider refetchInterval={0}>
+              <ShopContextProvider>
+                {getLayout(pageProps.id)}
+                <Cookie />
+                <Cart />
+              </ShopContextProvider>
+            </SessionProvider>
+          </StoreContextProvider>
+        </AppContextProvider>
+      </AuthContextProvider>
+    </SessionProvider>
   );
 }
 

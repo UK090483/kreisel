@@ -1,8 +1,5 @@
 import { useRouter } from "next/router";
-
 import React, { useContext } from "react";
-
-import useAuth from "lib/Auth/useAuth";
 import { PageBuilderData } from "PageBuilder/query";
 
 interface IAppContextState {
@@ -50,30 +47,4 @@ export const useHomeRoute = () => {
     return isHomeLink ? "/" : href;
   };
   return { homeRoute, parseRoute };
-};
-
-export const useMemberPage = () => {
-  const res = { showSpinner: false };
-  const { data } = useContext(AppContext);
-
-  const { status } = useAuth();
-  const { isPreview, push } = useRouter();
-  const slug = data?.slug;
-  const isMemberPage = slug
-    ? slug.split("/")[1] === "mitgliederbereich"
-    : false;
-
-  if (isMemberPage && !isPreview) {
-    res.showSpinner = status !== "authenticated";
-    if (status === "unauthenticated") {
-      push("/auth/login");
-    }
-  }
-
-  if (isPreview) {
-    res.showSpinner = false;
-  }
-
-  console.log(status);
-  return res;
 };

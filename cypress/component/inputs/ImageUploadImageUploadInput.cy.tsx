@@ -20,6 +20,24 @@ describe("<ImageUploadInput />", () => {
       .should("have.attr", "src", Cypress.env("image").url);
   });
 
+  it.only("should erase Image", () => {
+    renderInForm(<ImageUploadInput name="image" label="Image" />, {
+      formProps: {
+        values: { image: { url: Cypress.env("image").url } },
+      },
+    });
+
+    cy.get('[aria-label="remove Image"]').should("be.visible").click();
+    cy.get("form").submit();
+
+    cy.get("@submit").should("have.been.calledWith", {
+      image: {
+        url: null,
+        erased: true,
+      },
+    });
+  });
+
   it("should handle input", () => {
     renderInForm(<ImageUploadInput name="image" label="Image" />);
 
@@ -33,8 +51,15 @@ describe("<ImageUploadInput />", () => {
 
     cy.get("form").submit();
 
-    // cy.get("@submit").should("have.been.calledWith", {
-    //   image: "",
-    // });
+    cy.get("@submit").should("have.been.calledWith", {
+      image: {
+        url: Cypress.sinon.match.string,
+        file: Cypress.sinon.match({
+          type: "image/png",
+          name: "image.png",
+          lastModified: Cypress.sinon.match.number,
+        }),
+      },
+    });
   });
 });

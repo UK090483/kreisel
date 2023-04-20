@@ -21,6 +21,10 @@ async function fetchStaticProps<P>(
 
   const slug = params && params.slug && params.slug[params.slug.length - 1];
 
+  const pageType = params.slug && params.slug.length > 1 && params.slug[0];
+
+  const type = pageType === "person" ? "person" : "page";
+
   // eslint-disable-next-line no-console
   console.time(slug);
 
@@ -34,7 +38,7 @@ async function fetchStaticProps<P>(
     }, `slug.current == "${slug}"`);
 
   const filter = slug
-    ? `_type == "page" && (${localizedQuery(slug)})`
+    ? `_type == "${type}" && (${localizedQuery(slug)})`
     : `_id == *[_id == 'siteConfig'][0].indexPage._ref`;
 
   const fetch = `*[${filter}][0]{

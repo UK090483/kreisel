@@ -21,6 +21,7 @@
     "kill:3333": "kill $(lsof -t -i :3333)"
   },
   "dependencies": {
+    "@cemalgnlts/mailjs": "^2.0.2",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.16",
     "@hookform/resolvers": "^2.9.11",
@@ -34,6 +35,7 @@
     "clsx": "^1.1.1",
     "csv-parser": "^3.0.0",
     "cypress": "^12.8.0",
+    "cypress-intercept-formdata": "^0.5.2",
     "cypress-real-events": "^1.7.6",
     "focus-trap-react": "^8.9.0",
     "formidable": "^2.1.1",
@@ -54,6 +56,7 @@
     "next-usequerystate": "^1.7.2",
     "node-fetch": "^3.3.0",
     "nodemailer": "^6.7.2",
+    "object-to-formdata": "^4.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.25.3",

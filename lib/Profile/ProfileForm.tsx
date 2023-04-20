@@ -8,6 +8,7 @@ import { SwitchInput } from "components/Inputs/Switch";
 import { DropdownInput } from "components/Inputs/Dropdown";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
+import { serialize } from "object-to-formdata";
 import {
   useForm,
   SubmitHandler,
@@ -57,33 +58,31 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
   const _onSubmit: SubmitHandler<Partial<profileQueryResult>> = async (
     data
   ) => {
-    const image = data.image;
-    delete data.image;
-
-    const formdata = new FormData();
-    formdata.append("data", JSON.stringify(data));
-    if (image && image.file) {
-      formdata.append("image", image.file);
-      data.image = { url: image.url };
-    }
-
     try {
-      const nextData = await fetch("api/profile", {
+      const response = await fetch("api/profile", {
         method: "POST",
-        body: formdata,
+        body: serialize(data),
       });
 
-      reset(data);
+      if (response.ok) {
+        const res = await response.json();
+        reset(res.data);
+      } else {
+        setError(true);
+      }
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(error);
+      console.log(error);
       setError(true);
     }
   };
 
   const _onSubmitError: SubmitErrorHandler<
     Partial<profileQueryResult>
-  > = async (errors) => {};
+  > = async (errors) => {
+    setError(true);
+    console.log(errors);
+  };
 
   return (
     <>
@@ -91,7 +90,7 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(_onSubmit, _onSubmitError)}>
             <Input name="title" label="Title" />
-            <div className="grid  gap-4 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2">
               <Input name="firstName" label="Vorname" />
               <Input name="name" label="Name" />
             </div>
