@@ -2,11 +2,11 @@ import Typo from "components/Typography/Typography";
 
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
+import RichText from "PageBuilder/RichText/PortableText";
 import Link from "next/link";
 import FocusTrap from "focus-trap-react";
 import { useRouter } from "next/router";
 import * as React from "react";
-import BlockContent from "@sanity/block-content-to-react";
 
 import { useLockBodyScroll } from "react-use";
 
@@ -78,7 +78,7 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
             <Typo variant="body-s" bold>
               Beschreibung
             </Typo>
-            <BlockContent blocks={item?.description} />
+            <RichText content={item?.description} />
           </div>
         )}
 

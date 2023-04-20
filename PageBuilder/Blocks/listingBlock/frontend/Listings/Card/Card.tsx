@@ -4,8 +4,8 @@ import { CardResult } from "../../../listingBlock.query";
 
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import Typo from "components/Typography";
+import RichText from "PageBuilder/RichText/PortableText";
 import React from "react";
-import BlockContent from "@sanity/block-content-to-react";
 
 type CardProps = {
   variation?: null | "list" | "grid";
@@ -25,7 +25,7 @@ const Card: React.FC<CardProps> = (props) => {
   } = props;
 
   const _description = Array.isArray(description) ? (
-    <BlockContent blocks={description} />
+    <RichText content={description} />
   ) : (
     description
   );
