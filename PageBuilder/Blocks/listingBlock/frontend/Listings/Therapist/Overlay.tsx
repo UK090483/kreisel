@@ -2,11 +2,11 @@ import Typo from "components/Typography/Typography";
 
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
+import RichText from "PageBuilder/RichText/PortableText";
 import Link from "next/link";
 import FocusTrap from "focus-trap-react";
 import { useRouter } from "next/router";
 import * as React from "react";
-import BlockContent from "@sanity/block-content-to-react";
 
 import { useLockBodyScroll } from "react-use";
 
@@ -26,19 +26,20 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
     query.slug && Array.isArray(query.slug)
       ? query.slug.map((i) => i.trim()).join("/")
       : "";
+
   const item = React.useMemo(() => {
     return items.find((i) => i._id === therapist);
-  }, [therapist]);
+  }, [therapist, items]);
 
   return (
     <FocusTrap>
-      <div className="animate-slideDown relative w-full  md:w-2/3 mx-3 max-w-5xl rounded-lg p-5 md:p-10  bg-white ">
+      <div className="relative mx-3 w-full  max-w-5xl animate-slideDown rounded-lg bg-white p-5 md:w-2/3  md:p-10 ">
         <Link
           passHref
           href={{ pathname: baseUrl, query: {} }}
           scroll={false}
           shallow={true}
-          className=" absolute top-2 right-2 w-5 h-5  md:w-10 md:h-10 bg-primary flex justify-center items-center rounded-full "
+          className=" absolute top-2 right-2 flex h-5  w-5 items-center justify-center rounded-full bg-primary md:h-10 md:w-10 "
         >
           x
         </Link>
@@ -77,7 +78,7 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
             <Typo variant="body-s" bold>
               Beschreibung
             </Typo>
-            <BlockContent blocks={item?.description} />
+            <RichText content={item?.description} />
           </div>
         )}
 

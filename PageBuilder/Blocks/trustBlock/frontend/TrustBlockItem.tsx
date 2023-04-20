@@ -18,14 +18,14 @@ const TrustBlockItem: React.FunctionComponent<ITrustBlockItem> = (props) => {
 
   return (
     <div ref={ref}>
-      <div className="w-40 relative mx-auto h-40">
+      <div className="relative mx-auto h-40 w-40">
         <SanityImage src={image} fill objectFit="contain" />
       </div>
 
       <Typo
         variant="h2"
         as="p"
-        className="font-sans text-center text-5xl pt-8 "
+        className="pt-8 text-center font-sans text-5xl "
       >
         {value}
       </Typo>
@@ -62,6 +62,7 @@ const CountUp: React.FC<{ n: number }> = ({ n }) => {
         clearTimeout(timer.current);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   return <>{state}</>;

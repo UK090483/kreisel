@@ -10,22 +10,3 @@ export const previewClient = createClient({
   useCdn: false,
   token: process.env.SANITY_API_TOKEN,
 });
-
-export function createPreviewClient(token: string) {
-  return createClient({
-    ...config,
-    useCdn: false,
-    token,
-  });
-}
-
-// Helper function for easily switching between normal client and preview client
-export function getSanityClient(preview?: {
-  active: boolean;
-  token: string | undefined;
-}) {
-  if (preview?.active && preview.token) {
-    return createPreviewClient(preview.token);
-  }
-  return sanityClient;
-}

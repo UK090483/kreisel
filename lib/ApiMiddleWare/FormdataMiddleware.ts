@@ -17,7 +17,7 @@ export type Formdata<T extends any = any> = {
   };
 };
 
-export type NextApiRequestWithFormdata<T extends any = any> = NextApiRequest &
+type NextApiRequestWithFormdata<T extends any = any> = NextApiRequest &
   Formdata<T>;
 
 const form = formidable({ multiples: true });

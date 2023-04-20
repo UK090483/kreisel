@@ -7,7 +7,7 @@ export interface SeoType {
   pageUrl?: string;
 }
 
-export interface SeoResult {
+interface SeoResult {
   seo: SeoType;
 }
 
@@ -15,7 +15,7 @@ const localeValue = (val: string, locale: string) => {
   return locale ? `${val}_${locale}, ${val}` : val;
 };
 
-export const seoQuery = (locale: string = "") => `
+const seoQuery = (locale: string = "") => `
 'seo':{
   'canonical': select( defined(pageType) => '/'+ pageType->slug.current +'/' + slug.current ,!defined(pageType) => '/' + slug.current),
   'shareGraphic':coalesce(featuredImage, *[_id == 'siteConfig'][0].seo.shareGraphic),
@@ -39,3 +39,5 @@ export const seoQuery = (locale: string = "") => `
   )},*[_id == 'siteConfig'][0].seo.shareDesc),
 }
 `;
+
+export {};

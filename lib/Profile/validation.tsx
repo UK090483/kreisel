@@ -56,4 +56,4 @@ const profileFields = object({
 export const schema = memberSchema.concat(profileFields);
 
 export type Profile = InferType<typeof schema>;
-export type Member = InferType<typeof memberSchema>;
+type Member = InferType<typeof memberSchema>;

@@ -8,8 +8,6 @@ const AdapterLogger: (adapter: Adapter) => Adapter = (adapter) => {
 
       if (typeof res === "function") {
         return (...rest: any[]) => {
-          console.log(prop.toString().toUpperCase() + " called");
-          console.log("params", rest);
           //@ts-ignore
           return res.call(target, rest);
         };

@@ -1,6 +1,5 @@
 // animateScroll.js
 import React from "react";
-import { useEffect } from "react";
 
 const pow = Math.pow;
 
@@ -68,42 +67,6 @@ const animateScroll = ({
   }
 
   animationFrame = requestAnimationFrame(step);
-};
-
-// scrollTo.js
-
-const logError = () =>
-  console.error(
-    `Invalid element, are you sure you've provided element id or react ref?`
-  );
-
-const getElementPosition = (element: HTMLElement) => element.offsetTop;
-
-type scrollToProps = {
-  id: string;
-  duration?: number;
-};
-
-export const scrollTo = ({ id, duration = 500 }: scrollToProps) => {
-  // the position of the scroll bar before the user clicks the button
-  const initialPosition = window.scrollY;
-
-  // if the reference is id
-  if (id) {
-    const element = document.getElementById(id);
-    if (!element) {
-      // log error if the reference passed is invalid
-      logError();
-      return;
-    }
-
-    animateScroll({
-      // target position is the elements offsetTop
-      targetPosition: getElementPosition(element) - 100,
-      initialPosition,
-      duration,
-    });
-  }
 };
 
 export const useScrollTo = (duration: number = 500) => {

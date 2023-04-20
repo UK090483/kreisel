@@ -81,6 +81,7 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
     Partial<profileQueryResult>
   > = async (errors) => {
     setError(true);
+    // eslint-disable-next-line no-console
     console.log(errors);
   };
 

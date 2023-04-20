@@ -12,8 +12,7 @@ export type NavItemBaseProps = {
   className?: string;
 };
 
-// eslint-disable-next-line import/no-unused-modules
-export const NavigationItemBase: React.FC<NavItemBaseProps> = ({
+const NavigationItemBase: React.FC<NavItemBaseProps> = ({
   children,
   icon,
   hover,
@@ -34,8 +33,8 @@ export const NavigationItemBase: React.FC<NavItemBaseProps> = ({
       {children}
       {icon && (
         <Svg
-          className={` transition-transform ml-1 w-4 h-4 ${
-            hover ? "transform rotate-90 translate-x-1  " : ""
+          className={` ml-1 h-4 w-4 transition-transform ${
+            hover ? "translate-x-1 rotate-90 transform  " : ""
           }`}
           icon="chevronRight"
         />

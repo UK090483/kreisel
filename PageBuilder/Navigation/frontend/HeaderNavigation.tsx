@@ -38,5 +38,3 @@ export const HeaderNavigation = (props: Props) => {
     </NavigationContextProvider>
   );
 };
-
-export default HeaderNavigation;
