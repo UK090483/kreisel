@@ -11,7 +11,7 @@ import {
   NavItemBaseProps,
   NavigationItemBase,
 } from "PageBuilder/Navigation/frontend";
-import AuthWidget from "@services/AuthService/AuthWidget";
+import AuthWidget from "@lib/Auth/AuthWidget";
 import NavigationMobile from "PageBuilder/Navigation/frontend/NavigationMobile";
 import { NavItem } from "PageBuilder/Navigation/frontend/types";
 import clsx from "clsx";

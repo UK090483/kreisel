@@ -1,6 +1,6 @@
 import Typo from "components/Typography/Typography";
-import useAuth from "lib/Auth/useAuth";
-import UserWidget from "@services/AuthService/AuthWidget";
+import { useAuth } from "lib/Auth/AuthContext";
+import UserWidget from "lib/Auth/AuthWidget";
 import clsx from "clsx";
 
 import React from "react";

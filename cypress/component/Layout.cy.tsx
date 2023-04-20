@@ -21,21 +21,4 @@ describe("Layout", () => {
     cy.get("main").contains("Content");
     cy.get("footer");
   });
-  it("should call push to login and show spinner", () => {
-    render({
-      context: { data: { slug: "/mitgliederbereich/blaa", _id: "bla" } },
-      session: { state: "unauthenticated" },
-    });
-    cy.get("@push").should("have.been.calledWith", "/auth/login");
-    cy.get('[data-test-id="spinner"]');
-  });
-
-  it("should show spinner when loading", () => {
-    cy.viewport("macbook-16");
-    render({
-      context: { data: { slug: "/mitgliederbereich", _id: "bla" } },
-      session: { state: "loading" },
-    });
-    cy.get('[data-test-id="spinner"]');
-  });
 });

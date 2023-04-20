@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { Adapter } from "next-auth/adapters";
 
 const AdapterLogger: (adapter: Adapter) => Adapter = (adapter) => {

@@ -21,6 +21,7 @@
     "kill:3333": "kill $(lsof -t -i :3333)"
   },
   "dependencies": {
+    "@cemalgnlts/mailjs": "^2.0.2",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.16",
     "@hookform/resolvers": "^2.9.11",
@@ -54,6 +55,7 @@
     "next-usequerystate": "^1.7.2",
     "node-fetch": "^3.3.0",
     "nodemailer": "^6.7.2",
+    "object-to-formdata": "^4.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.25.3",

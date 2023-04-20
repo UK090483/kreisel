@@ -1,7 +1,6 @@
 import { Link } from "components/Link";
-import useAuth from "lib/Auth/useAuth";
+import { useAuth, signOut, signIn } from "lib/Auth/AuthContext";
 import clsx from "clsx";
-import { signIn, signOut } from "next-auth/react";
 
 type UserWidgetProps = {
   className?: string;
@@ -19,7 +18,6 @@ const AuthWidget: React.FC<UserWidgetProps> = ({ className }) => {
           <Spacer />
         </>
       )}
-
       <SignInOutButton />
     </div>
   );

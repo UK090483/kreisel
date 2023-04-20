@@ -10,8 +10,8 @@
 
 # testing
 /coverage
-
 /cypress/videos
+cypress.env.json
 
 # next.js
 /.next/

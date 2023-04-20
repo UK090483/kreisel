@@ -2,6 +2,7 @@ import { membershipOptions, degreeOptions, focusOptions } from "./Fields";
 import { object, string, array, InferType, mixed, boolean } from "yup";
 
 const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
+const MAX_FILE_SIZE = 100_000_0;
 
 export const memberSchema = object({
   title: string(),
@@ -37,10 +38,22 @@ const profileFields = object({
   //Grundqualifikation
   qualification: string(),
 
-  image: object({ url: string().nullable(), file: mixed() }).nullable(),
+  image: object({
+    url: string().nullable(),
+    file: mixed<File>()
+      .test("size", "Only Images up to 1MB are permitted", (file) =>
+        file ? file.size <= MAX_FILE_SIZE : true
+      )
+      .nullable(),
+
+    erased: boolean().nullable(),
+  })
+    .nullable()
+    .default(undefined),
   offersInternship: boolean(),
 });
 
 export const schema = memberSchema.concat(profileFields);
 
 export type Profile = InferType<typeof schema>;
+export type Member = InferType<typeof memberSchema>;

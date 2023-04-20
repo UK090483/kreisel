@@ -7,10 +7,9 @@ export const loginFakeUser = () => {
   cy.log(address);
   cy.log(domain);
   cy.log(name);
-
   cy.get("#email").type(address);
   cy.get(".px-12").click();
-  cy.wait(1000);
+  cy.wait(3000);
   cy.request<{ id: string }[]>({
     url: `https://www.1secmail.com/api/v1/?action=getMessages&login=${name}&domain=${domain}`,
   }).then((res) => {
@@ -22,6 +21,7 @@ export const loginFakeUser = () => {
       const html = res.body.htmlBody || "";
       const matchRes = html.match(linkRx);
       const link = matchRes && matchRes[2];
+
       if (link) {
         cy.visit(link);
       }
