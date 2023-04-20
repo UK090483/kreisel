@@ -38,6 +38,7 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
     showSpinner = status !== "authenticated";
 
     if (!member && isAuthenticated && !isServer) {
+      showSpinner = true;
       push("/profile");
     }
     if (isUnauthenticated) {
