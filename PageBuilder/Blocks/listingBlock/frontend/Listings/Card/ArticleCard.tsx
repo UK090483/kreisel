@@ -1,10 +1,10 @@
-import React from "react";
 import Card from "./Card";
 
 import Typo from "components/Typography/Typography";
 import Button from "components/Button/Button";
 import { useShop } from "@services/ShopService/shopContext";
 import { IArticleCardResult } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
+import React from "react";
 
 type ArticleCardProps = {} & IArticleCardResult;
 

@@ -9,6 +9,7 @@ function getStore<T>(initialState: T) {
   const StoreContext = React.createContext<StoreContextValues<T>>({
     state: initialState,
     setState: () => {
+      // eslint-disable-next-line no-console
       console.log("no Context.Provider Reachable");
     },
   });

@@ -14,6 +14,6 @@ export const getUserByEmailQuery = groq`
   *[_type == '${memberType}' && email.current == $email][0]{...,'email':email.current}
 `;
 
-export const getVerificationRequestQuery = groq`
-  *[_type == 'verification-request' && identifier == $identifier][0]
-`;
+// const getVerificationRequestQuery = groq`
+//   *[_type == 'verification-request' && identifier == $identifier][0]
+// `;

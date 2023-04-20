@@ -57,8 +57,8 @@ const GSheet: React.FunctionComponent<IGSheetProps> = (props) => {
     </div>
   );
 };
-
-export default GSheet;
+export {};
+// export default GSheet;
 
 const Overlay: React.FC<{ data: any; id: string }> = (props) => {
   const { data, id } = props;

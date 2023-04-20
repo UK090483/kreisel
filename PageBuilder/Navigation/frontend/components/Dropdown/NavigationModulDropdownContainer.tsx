@@ -1,7 +1,7 @@
-import React from "react";
 import Dropdown from "./Dropdown";
 import prepareNavItems from "../../helper/prepareNavItems";
 import { NavItem } from "../../types";
+import React from "react";
 
 type NavigationModulDropdownContainerProps = {
   items: NavItem[];

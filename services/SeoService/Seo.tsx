@@ -1,5 +1,5 @@
-import { NextSeo } from "next-seo";
 import { SeoType } from "./SeoQuerys";
+import { NextSeo } from "next-seo";
 import React from "react";
 
 interface SeoProps extends SeoType {
@@ -46,4 +46,6 @@ const Seo: React.FC<SeoProps> = (props) => {
     />
   );
 };
-export default Seo;
+// export default Seo;
+
+export {};

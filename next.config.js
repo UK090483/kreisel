@@ -29,11 +29,12 @@ async function fetchSanityRedirects() {
 /** @type {import('next').NextConfig} */
 const moduleExports = {
   reactStrictMode: true,
+
   images: {
     domains: ["cdn.sanity.io"],
   },
   experimental: { scrollRestoration: true },
-
+  eslint: { dirs: ["PageBuilder", "components", "hooks", "lib", "services"] },
   env: {
     SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
     SANITY_PROJECT_DATASET: process.env.SANITY_PROJECT_DATASET,

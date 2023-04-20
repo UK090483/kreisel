@@ -16,12 +16,3 @@ export const testQuery = async (query: string, dataSet?: any[]) => {
     return false;
   }
 };
-
-export const testProjection = async (projection: string) => {
-  if (!projection) return { error: { projection } };
-  const res = await testQuery(`*[_type == 'page'][]{${projection}}`);
-  if (!res) {
-    return { error: { projection } };
-  }
-  return { error: false };
-};
