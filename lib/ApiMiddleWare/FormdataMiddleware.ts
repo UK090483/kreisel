@@ -68,18 +68,6 @@ const FormdataPromise = async (req: NextApiRequest) => {
       if (err) {
         reject(err);
       }
-
-      // const resolvedFiles: Record<string, Buffer | Buffer[]> = {};
-
-      // for (const [key, val] of Object.entries(files)) {
-      //   resolvedFiles[key] = isArray(val)
-      //     ? val.map((i) => fs.readFileSync(i.filepath))
-      //     : fs.readFileSync(val.filepath);
-      // }
-
-      // console.log(resolvedFiles["image[file]"]);
-
-      //@ts-ignore
       resolve({ fields, files });
     });
   });

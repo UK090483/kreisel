@@ -42,7 +42,6 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
   const {
     handleSubmit,
     reset,
-
     formState: { dirtyFields, isValid },
   } = methods;
 
@@ -71,8 +70,6 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
       } else {
         setError(true);
       }
-
-      // ;
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);

@@ -35,6 +35,7 @@
     "clsx": "^1.1.1",
     "csv-parser": "^3.0.0",
     "cypress": "^12.8.0",
+    "cypress-intercept-formdata": "^0.5.2",
     "cypress-real-events": "^1.7.6",
     "focus-trap-react": "^8.9.0",
     "formidable": "^2.1.1",

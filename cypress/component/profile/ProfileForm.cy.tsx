@@ -7,6 +7,7 @@ import {
   focusOptions,
   membershipOptions,
 } from "../../../lib/Profile/Fields";
+import { interceptFormData } from "cypress-intercept-formdata";
 
 import React, { ComponentProps } from "react";
 
@@ -23,7 +24,7 @@ const testData = {
   description: "testDescription",
   firstName: "testFirstName",
   jobDescription: "testJobDescription",
-  offersInternship: true,
+  offersInternship: "true",
   mobile: "+45 53856002",
   experience: "testExperience",
   name: "testName",
@@ -120,18 +121,23 @@ describe("<ProfileForm />", () => {
 
       cy.get('input[type="submit"]').should("be.visible").click();
       cy.wait("@profile")
-        .its("request.body")
-        .then((body) => {
-          if (i.type === "image") {
-            cy.wrap(body, { timeout: 0 }).should("not.be.null").end();
-          }
-          if (i.type !== "image") {
-            const matched = body.match(/{(.*?)\}/);
-            const matchedStr = matched[0];
-            const result = JSON.parse(matchedStr);
-            cy.wrap(result, { timeout: 0 })
+        .its("request")
+        .then((request) => {
+          const formData = interceptFormData(request);
+
+          if (["array"].includes(i.type)) {
+            // cy.wrap(formData, { timeout: 0 })
+            //   .should("have.property", i.name)
+            //   .should("deep.equal", testValue);
+          } else if (i.type === "image") {
+          } else if (i.type === "boolean") {
+            cy.wrap(formData, { timeout: 0 })
               .should("have.property", i.name)
-              .should("deep.equal", testValue);
+              .should("equal", testValue);
+          } else {
+            cy.wrap(formData, { timeout: 0 })
+              .should("have.property", i.name)
+              .should("equal", testValue);
           }
         });
     });

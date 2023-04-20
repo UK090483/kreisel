@@ -4149,6 +4149,11 @@ cypress-image-snapshot@^4.0.1:
     pkg-dir "^3.0.0"
     term-img "^4.0.0"
 
+cypress-intercept-formdata@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/cypress-intercept-formdata/-/cypress-intercept-formdata-0.5.2.tgz#95fd9b33af8a6d54c4d9a12ecc076997f2f19d56"
+  integrity sha512-27BA/qg2inD7bGRdPG+24VuZTGd7rQHmiE9hvIrAdqoP1OdkZRfewAxHO8eayLy9YqJmYFJ4GPtsVR17lDCM+w==
+
 cypress-real-events@^1.7.6:
   version "1.7.6"
   resolved "https://registry.yarnpkg.com/cypress-real-events/-/cypress-real-events-1.7.6.tgz#6f17e0b2ceea1d6dc60f6737d8f84cc517bbbb4c"
