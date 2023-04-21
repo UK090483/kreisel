@@ -33,8 +33,10 @@ const NavigationItemBase: React.FC<NavItemBaseProps> = ({
       {children}
       {icon && (
         <Svg
-          className={` ml-1 h-4 w-4 transition-transform ${
-            hover ? "translate-x-1 rotate-90 transform  " : ""
+          pathProps={{ strokeWidth: 3 }}
+          size="s"
+          className={`ml-1 transition-transform ${
+            hover ? "translate-x-1 rotate-90 transform " : ""
           }`}
           icon="chevronRight"
         />

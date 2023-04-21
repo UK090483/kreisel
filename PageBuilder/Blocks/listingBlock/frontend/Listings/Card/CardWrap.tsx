@@ -16,7 +16,7 @@ const CardWrap: React.FC<{
     <ConditionalLink
       condition={!!_href}
       external={link?.external}
-      className={`overflow-hidden  rounded-theme shrink-0    max-w-sm mx-auto ${className}`}
+      className={`mx-auto max-w-sm shrink-0 overflow-hidden rounded-theme ${className}`}
       href={_href || "/"}
     >
       {children}
