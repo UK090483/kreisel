@@ -10,7 +10,7 @@ const GridGalerie: React.FunctionComponent<ImageGalleryPlugResult> = (
   return (
     <div
       className={clsx(
-        "grid mx-auto max-w-sm md:max-w-full  grid-flow-row gap-2 pb-12 last:pb-0",
+        "mx-auto grid max-w-sm grid-flow-row  gap-6 pb-12 last:pb-0 md:max-w-full",
         {
           "grid-cols-1": rows_mobile === 1,
           "grid-cols-2": rows_mobile === 2,
@@ -57,6 +57,7 @@ const GridGalerie: React.FunctionComponent<ImageGalleryPlugResult> = (
               "bg-white": bgColor === "white",
               "bg-primary": bgColor === "primary",
               "bg-primary-light": bgColor === "primary-light",
+              "bg-primary-xLight": bgColor === "primary-xLight",
               "bg-secondary": bgColor === "secondary",
               "bg-secondary-light": bgColor === "secondary-light",
               "bg-grey": bgColor === "grey",

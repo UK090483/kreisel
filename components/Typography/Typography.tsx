@@ -75,16 +75,16 @@ const Typo: React.FC<React.PropsWithChildren<TypographyProps>> = (props) => {
       className={clsx(
         // "relative scale-100 antialiased",
         {
-          "pb-10 last:pb-0": space !== false && variant === "body",
+          "pb-6 last:pb-0": space !== false && variant === "body",
           "text-sm ": variant === "body-s",
           "text-base ": variant === "body",
           "text-lg": ["body-l", "h6"].includes(variant as string),
           "text-base": variant === "h5",
-          "pb-[0.8em] text-lg sm:text-xl": variant === "h4",
-          "pb-[0.8em] text-xl sm:text-2xl": variant === "h3",
-          "pb-[0.8em] text-3xl sm:text-4xl": variant === "h2",
-          "pb-[0.4em] text-4xl sm:text-5xl": variant === "h1",
-          " font-header font-bold last:pb-0": isHeader,
+          "pb-[0.6em] text-xl sm:text-2xl": variant === "h4",
+          "pb-[0.6em] text-2xl sm:text-3xl": variant === "h3",
+          "pb-[0.6em] text-3xl sm:text-4xl": variant === "h2",
+          "pb-[0.8em] text-4xl sm:text-5xl": variant === "h1",
+          "font-header font-bold last:pb-0": isHeader,
 
           //lists
           "ml-4  list-outside marker:text-primary":
