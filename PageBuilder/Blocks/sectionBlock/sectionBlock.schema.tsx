@@ -36,7 +36,15 @@ const SectionSchema = {
       options: {
         list: [{ title: "Accordion", value: "accordion" }],
       },
-      initialValue: "m",
+    },
+    {
+      title: "Text Direction",
+      name: "textDirection",
+      type: "string",
+      options: {
+        list: [{ title: "Center", value: "center" }],
+      },
+      group: "style",
     },
     ...blockStyle(),
   ],

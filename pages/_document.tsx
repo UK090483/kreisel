@@ -14,7 +14,7 @@ class MyDocument extends Document {
           <meta name="theme-color" content="#fff" />
         </Head>
         <body
-          className={`text-black ${
+          className={`text-font ${
             process.env.NODE_ENV === "development" ? "debug-screens" : ""
           } `}
         >

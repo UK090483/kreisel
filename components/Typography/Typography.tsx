@@ -73,24 +73,25 @@ const Typo: React.FC<React.PropsWithChildren<TypographyProps>> = (props) => {
     <Component
       data-testid={props["data-testid"]}
       className={clsx(
-        "relative scale-100 antialiased",
+        // "relative scale-100 antialiased",
         {
           "pb-10 last:pb-0": space !== false && variant === "body",
           "text-sm ": variant === "body-s",
           "text-base ": variant === "body",
           "text-lg": ["body-l", "h6"].includes(variant as string),
           "text-base": variant === "h5",
-          "text-lg sm:text-2xl": variant === "h4",
-          "text-xl sm:text-3xl": variant === "h3",
-          "text-2xl sm:text-4xl": variant === "h2",
-          "text-3xl sm:text-5xl": variant === "h1",
-          "pb-[0.8em] font-header font-bold": isHeader,
+          "pb-[0.8em] text-lg sm:text-xl": variant === "h4",
+          "pb-[0.8em] text-xl sm:text-2xl": variant === "h3",
+          "pb-[0.8em] text-3xl sm:text-4xl": variant === "h2",
+          "pb-[0.4em] text-4xl sm:text-5xl": variant === "h1",
+          " font-header font-bold last:pb-0": isHeader,
 
           //lists
-          "ml-4 list-outside marker:text-primary":
+          "ml-4  list-outside marker:text-primary":
             variant === "ul-decimal" || variant === "ul-disc",
           "list-decimal": variant === "ul-decimal",
           "list-disc": variant === "ul-disc",
+          "my-3 pl-2": variant === "li",
         },
         className
       )}

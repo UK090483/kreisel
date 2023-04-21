@@ -16,6 +16,7 @@ export function colorList(skip?: any) {
   const list = [
     { title: "Primary", value: "primary" },
     { title: "Primary-Light", value: "primary-light" },
+    { title: "Primary-XLight", value: "primary-xLight" },
     { title: "Secondary", value: "secondary" },
     { title: "Secondary-Light", value: "secondary-light" },
     { title: "Grey", value: "grey" },
@@ -28,6 +29,7 @@ export function colorList(skip?: any) {
 export type ColorList =
   | "primary"
   | "primary-light"
+  | "primary-xLight"
   | "secondary"
   | "secondary-light"
   | "grey"

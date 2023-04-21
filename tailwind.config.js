@@ -40,7 +40,8 @@ module.exports = {
 
         black: "#000000",
         white: "#ffffff",
-        primary: { light: "#F9DE83", DEFAULT: "#F3BD06" },
+        primary: { light: "#F9DE83", xLight: "#FCF6D8", DEFAULT: "#F3BD06" },
+        font: { DEFAULT: "#1D1D1B" },
         secondary: { DEFAULT: "#D22D30", light: "#EC4E51" },
         red: "#D22D30",
       },

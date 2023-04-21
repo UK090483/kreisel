@@ -45,20 +45,20 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
         "min-h-[50vh]": size === "1/2",
         "min-h-[66vh]": size === "2/3",
         "min-h-[33vh]": size === "1/3",
-        "md:grid-cols-2": isHalf,
+        "sm:grid-cols-2": isHalf,
       })}
     >
       <div
         className={clsx(
           "z-10 self-end break-words",
-          "order-1 px-3 md:order-2",
+          "order-1 px-3 sm:order-2",
           {
             "mx-auto w-full max-w-screen-lg ": isFull,
-            "md:row-span-1 md:row-start-1   ": isFull,
+            "sm:row-span-1 sm:row-start-1   ": isFull,
           }
         )}
       >
-        <div className={clsx({ "md:w-1/2 ": isFull })}>
+        <div className={clsx({ "": isFull })}>
           {content ? (
             <RichText content={content} />
           ) : (
@@ -70,9 +70,9 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
       </div>
 
       <div
-        className={clsx("md:order-2", "min-h-[300px]", {
+        className={clsx("sm:order-2", "min-h-[300px]", {
           "relative ": isHalf,
-          "relative row-span-1 row-start-1 md:static   ": isFull,
+          "relative row-span-1 row-start-1 sm:static   ": isFull,
         })}
       >
         <SanityImage
