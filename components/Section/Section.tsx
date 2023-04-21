@@ -40,6 +40,7 @@ export const Section: React.FC<PropsWithChildren<SectionProps>> = (props) => {
           "bg-white": bg === "white",
           "bg-primary": bg === "primary",
           "bg-primary-light": bg === "primary-light",
+          "bg-primary-xLight": bg === "primary-xLight",
           "bg-secondary": bg === "secondary",
           "bg-secondary-light": bg === "secondary-light",
           " bg-grey": bg === "grey",

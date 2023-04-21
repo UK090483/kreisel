@@ -1,4 +1,10 @@
 const plugin = require("tailwindcss/plugin");
+const em = (px, base) => `${round(px / base)}em`;
+const round = (num) =>
+  num
+    .toFixed(7)
+    .replace(/(\.[0-9]+?)0+$/, "$1")
+    .replace(/\.0$/, "");
 
 module.exports = {
   content: [
@@ -17,19 +23,24 @@ module.exports = {
     },
     fontSize: {
       sm: ["12px", "1em"],
-      base: ["16px", "1.5em"],
-      lg: ["20px", "1.5em"],
+      base: ["16px", "1.77"],
+      lg: ["18px", "1.7"],
       xl: ["20px", "1.5em"],
-      "2xl": ["22px", "1.1em"],
-      "3xl": ["30px", "1.1em"],
-      "4xl": ["45px", "1.1em"],
-      "5xl": ["65px", "1.1em"],
+      "2xl": [em(18, 16), { lineHeight: "1.1", letterSpacing: "-0.03em" }],
+      "3xl": [em(28, 16), { lineHeight: "1.1", letterSpacing: "-0.03em" }],
+      "4xl": [em(38, 16), { lineHeight: "1.1", letterSpacing: "-0.03em" }],
+      "5xl": [em(48, 16), { lineHeight: "1.1", letterSpacing: "-0.03em" }],
     },
 
     extend: {
       borderRadius: {
         theme: "24px",
       },
+      boxShadow: {
+        theme:
+          "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+      },
+
       colors: {
         grey: {
           light: "#f1f1f1",
@@ -40,7 +51,8 @@ module.exports = {
 
         black: "#000000",
         white: "#ffffff",
-        primary: { light: "#F9DE83", DEFAULT: "#F3BD06" },
+        primary: { light: "#F9DE83", xLight: "#FCF6D8", DEFAULT: "#F3BD06" },
+        font: { dark: "#1D1D1B", DEFAULT: "#3C3C3B" },
         secondary: { DEFAULT: "#D22D30", light: "#EC4E51" },
         red: "#D22D30",
       },

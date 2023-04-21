@@ -39,6 +39,7 @@ const Nav: React.FC<NavProps> = ({ items }) => {
             <HeaderNavigation
               items={items}
               NavigationItemBase={NavItemBaseWithUnderline}
+              className=" justify-center"
             />
           </div>
           <ContactButton className="hidden xl:block" />
@@ -46,7 +47,7 @@ const Nav: React.FC<NavProps> = ({ items }) => {
           <button
             data-testid="menu-overlay-toggle"
             onClick={handleNavClick}
-            className="h-8  w-8 lg:hidden "
+            className="h-8 w-8 lg:hidden "
             aria-label="Open the Menu"
           >
             <Svg className="w-full" icon={menuOpen ? "erase" : "hamburger"} />
@@ -77,9 +78,9 @@ const NavItemBaseWithUnderline: React.FC<NavItemBaseProps> = (props) => {
       on={active ? "init" : "hover"}
       color={"primary-light"}
       variant={[1, 2, 3]}
-      className={clsx("-translate-y-4 ")}
+      className={clsx("translate-y-[-1em] ")}
     >
-      <NavigationItemBase {...props} />
+      <NavigationItemBase {...props} className="flex items-center" />
     </Underline>
   );
 };

@@ -24,29 +24,36 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
     type,
     transitionTop,
     transitionBottom,
+    textDirection,
     _key,
   } = props;
 
   const hasImage = image && image.url;
-  const autoType = hasImage ? "l" : "s";
+  const autoWidth = hasImage ? "l" : "s";
+  const isAccordion = type === "accordion";
 
-  const spaceClasses = useSectionSpace({ topSpace, bottomSpace });
+  const spaceClasses = useSectionSpace({
+    topSpace,
+    bottomSpace,
+    defaultSpace: isAccordion ? "s" : "m",
+  });
 
   return (
     <Accordion
-      condition={type === "accordion"}
+      condition={isAccordion}
       title={title}
-      width={width || autoType}
+      width={width || autoWidth}
       id={_key}
     >
       <Section
         bg={bgColor}
-        width={width || autoType}
+        width={width || autoWidth}
         {...(title && { id: title })}
         transitionTop={transitionTop}
         transitionBottom={transitionBottom}
         className={clsx(spaceClasses, {
           "grid  grid-cols-1  lg:grid-cols-2 ": hasImage,
+          "text-center": textDirection === "center",
         })}
       >
         {hasImage ? (

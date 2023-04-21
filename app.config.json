@@ -6,6 +6,7 @@
   "colors": {
     "primary": "#000000",
     "primary-light": "#000000",
+    "primary-xLight":"#000000",
     "secondary": "#000000",
     "secondary-light": "#000000",
     "black": "#000000",

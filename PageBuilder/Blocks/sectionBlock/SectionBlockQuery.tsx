@@ -14,6 +14,7 @@ _type == "section" => {
   ${richTextQuery},
   bgImage{${imageQuery}},
   image{${imageQuery}},
+  textDirection,
   ${blockStyleProjection()}
 }
 `;
@@ -25,5 +26,6 @@ export interface SectionBlockResult extends BlockStyle {
   image?: ImageResult | null;
   title?: string;
   type?: "accordion";
+  textDirection?: "center" | null;
   _key: string;
 }

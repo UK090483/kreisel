@@ -19,13 +19,18 @@ const ImageGalleryItem: React.FunctionComponent<ImageGalleryItemProps> = (
   props
 ) => {
   const { image, title, link, className, contain = false } = props;
+
   return (
     <>
       <ConditionalLink
         href={link?.href || "/"}
         external={!!link?.external}
         condition={!!link}
-        className={`${className} shadow-2x w-full overflow-hidden rounded-theme `}
+        className={clsx(
+          className,
+          "w-full overflow-hidden rounded-theme shadow-theme transition-shadow ",
+          { "hover:shadow-xl": !!link }
+        )}
       >
         <div className="flex flex-col pt-4">
           <div className={`h-full  ${contain ? "relative" : ""}`}>
@@ -39,10 +44,10 @@ const ImageGalleryItem: React.FunctionComponent<ImageGalleryItemProps> = (
             />
           </div>
           {title && (
-            <div className=" relative mx-4 mb-4 h-fit ">
+            <div className="relative h-fit">
               <Typo
                 space={false}
-                className="  inline-block w-full whitespace-pre-line break-words rounded-[16px] bg-white py-4 px-6 font-bold"
+                className="inline-block w-full whitespace-pre-line break-words bg-white py-2 px-6 text-center font-bold"
               >
                 {title}
               </Typo>

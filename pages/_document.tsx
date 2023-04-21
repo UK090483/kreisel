@@ -6,7 +6,7 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@500;800&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@500;700&display=swap"
             rel="stylesheet"
           />
           <link rel="manifest" href="/manifest.json" />
@@ -14,7 +14,7 @@ class MyDocument extends Document {
           <meta name="theme-color" content="#fff" />
         </Head>
         <body
-          className={`text-black ${
+          className={`text-font ${
             process.env.NODE_ENV === "development" ? "debug-screens" : ""
           } `}
         >
