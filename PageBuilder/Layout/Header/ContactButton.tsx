@@ -14,10 +14,7 @@ const ContactButton: React.FunctionComponent<IContactButtonProps> = (props) => {
       href={"mailto:kreisel"}
       className={clsx(
         " animate-slideInRight",
-        {
-          "bg-white border-white": dark,
-          "bg-primary-light border-primary-light": !dark,
-        },
+
         className
       )}
     >

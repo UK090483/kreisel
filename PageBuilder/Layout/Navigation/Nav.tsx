@@ -60,7 +60,7 @@ const Nav: React.FC<NavProps> = ({ items }) => {
         open={menuOpen}
         closeMenu={closeMenu}
       >
-        <ContactButton className="mt-6 mb-6" dark />
+        <ContactButton />
         <AuthWidget className="flex-col gap-2" />
       </NavigationMobile>
     </>
@@ -78,7 +78,7 @@ const NavItemBaseWithUnderline: React.FC<NavItemBaseProps> = (props) => {
       on={active ? "init" : "hover"}
       color={"primary-light"}
       variant={[1, 2, 3]}
-      className={clsx("translate-y-[-1em] ")}
+      className={clsx("translate-y-[-1em]")}
     >
       <NavigationItemBase {...props} className="flex items-center" />
     </Underline>
@@ -86,5 +86,5 @@ const NavItemBaseWithUnderline: React.FC<NavItemBaseProps> = (props) => {
 };
 
 const NavItemBaseMobile: React.FC<NavItemBaseProps> = (props) => {
-  return <NavigationItemBase {...props} className="  my-3" />;
+  return <NavigationItemBase {...props} className=" my-3" />;
 };

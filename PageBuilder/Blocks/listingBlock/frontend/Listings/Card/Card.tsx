@@ -13,16 +13,7 @@ type CardProps = {
 } & CardResult;
 
 const Card: React.FC<CardProps> = (props) => {
-  const {
-    children,
-    href,
-    title,
-    link,
-    _createdAt,
-    description,
-    variation,
-    image,
-  } = props;
+  const { children, href, title, link, _createdAt, description, image } = props;
 
   const _description = Array.isArray(description) ? (
     <RichText content={description} />
@@ -31,7 +22,7 @@ const Card: React.FC<CardProps> = (props) => {
   );
 
   return (
-    <CardWrap link={link} href={href} className=" w-full shadow-xl">
+    <CardWrap link={link} href={href} className=" w-full shadow-theme ">
       <div
         className={`aspect-w-10 aspect-h-5   relative w-full overflow-hidden rounded-t-theme bg-primary-light `}
       >

@@ -55,18 +55,19 @@ const Accordion: FC<AccordionProps> = ({
       <div
         className={`w-full bg-primary-light pl-3 shadow-lg transition-colors  ${
           open ? " delay-200 duration-700" : ""
-        }      z-10 `}
+        } z-10 `}
       >
         <button
           onClick={handleClick}
           className={
-            ` mx-auto flex h-16 w-full items-center bg-primary-light font-bold ` +
+            `mx-auto flex h-16 w-full items-center bg-primary-light font-bold ` +
             widthClasses
           }
         >
           <Svg
             icon="chevronRight"
-            className={`mr-6 flex-shrink-0 rounded-full border-2 border-black  p-0.5 transition-transform ${
+            pathProps={{ strokeWidth: 3 }}
+            className={`mr-6 flex-shrink-0 rounded-full border-2 border-current  p-0.5 transition-transform ${
               open ? "rotate-90" : ""
             }`}
           />
