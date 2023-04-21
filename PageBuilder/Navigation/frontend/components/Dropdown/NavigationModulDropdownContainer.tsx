@@ -64,17 +64,17 @@ const Render: React.ForwardRefRenderFunction<
           onMouseLeave={handleMouseLeave}
           onMouseEnter={handleMouseEnter}
           style={{
-            top: targetY,
+            top: targetY + 8,
             left: prepared.hasLists ? undefined : targetX,
           }}
-          className={`fixed  animate-fadeInMenuItemFast p-4 flex items-center justify-between  bg-white  rounded-b-2xl  ${
+          className={`fixed flex animate-fadeInMenuItemFast items-center justify-between rounded-b-2xl bg-white p-4 ${
             prepared.hasLists
-              ? "left-[50%] transform -translate-x-1/2  min-w-[80vw]"
+              ? "left-[50%] min-w-[80vw] -translate-x-1/2  transform"
               : ""
           }  `}
         >
-          <div className="absolute -z-10 shadow-lg  w-full left-0 right-0 bottom-0 top-4  rounded-b-2xl" />
-          <div className="absolute -z-10  bg-white inset-0 rounded-b-2xl" />
+          <div className="absolute left-0 right-0 bottom-0 top-4 -z-10 w-full rounded-b-2xl  shadow-lg" />
+          <div className="absolute inset-0  -z-10 rounded-b-2xl bg-white" />
 
           <Dropdown
             onClick={handleMouseLeave}
