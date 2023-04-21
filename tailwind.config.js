@@ -26,10 +26,10 @@ module.exports = {
       base: ["16px", "1.77"],
       lg: ["18px", "1.7"],
       xl: ["20px", "1.5em"],
-      "2xl": [em(18, 16), { lineHeight: "1.1", letterSpacing: "-0.04em" }],
-      "3xl": [em(28, 16), { lineHeight: "1.1", letterSpacing: "-0.04em" }],
-      "4xl": [em(38, 16), { lineHeight: "1.1", letterSpacing: "-0.04em" }],
-      "5xl": [em(48, 16), { lineHeight: "1.1", letterSpacing: "-0.04em" }],
+      "2xl": [em(18, 16), { lineHeight: "1.1", letterSpacing: "-0.03em" }],
+      "3xl": [em(28, 16), { lineHeight: "1.1", letterSpacing: "-0.03em" }],
+      "4xl": [em(38, 16), { lineHeight: "1.1", letterSpacing: "-0.03em" }],
+      "5xl": [em(48, 16), { lineHeight: "1.1", letterSpacing: "-0.03em" }],
     },
 
     extend: {
