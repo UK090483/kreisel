@@ -87,7 +87,7 @@ const Typo: React.FC<React.PropsWithChildren<TypographyProps>> = (props) => {
           "font-header font-bold last:pb-0": isHeader,
 
           //lists
-          "ml-4  list-outside marker:text-primary":
+          "ml-4 list-outside marker:text-primary":
             variant === "ul-decimal" || variant === "ul-disc",
           "list-decimal": variant === "ul-decimal",
           "list-disc": variant === "ul-disc",

@@ -1,6 +1,6 @@
 import Avatar from "./Avatar";
+import { TherapistResult } from "./therapist.query";
 import Typo from "components/Typography/Typography";
-import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
 import React from "react";
 
 import Link from "next/link";
@@ -20,21 +20,21 @@ const TherapistListItem: React.FC<TherapistListItemProps> = (props) => {
       : "";
 
   return (
-    <li className={`rounded-theme w-full   mb-2 p-0.5`}>
+    <li className={`mb-2 w-full   rounded-theme p-0.5`}>
       <Link
-        href={{ pathname: "/" + baseUrl, query: { therapeut: _id } }}
+        href={{ pathname: "/" + baseUrl, query: { therapist: _id } }}
         scroll={false}
         shallow={true}
-        className=" rounded-theme flex w-full items-center hover:bg-grey-light "
+        className=" flex w-full items-center rounded-theme hover:bg-grey-light "
       >
         <Avatar
-          className={`relative transition-all w-10 h-10 flex-shrink-0 rounded-theme overflow-hidden`}
+          className={`relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-theme transition-all`}
           name={`${firstName} ${name}`}
           image={image}
         />
 
         <div className=" w-full px-6 ">
-          <div className="flex-col md:flex-row flex w-full md:items-center md:justify-between ">
+          <div className="flex w-full flex-col md:flex-row md:items-center md:justify-between ">
             <Typo space={false}>{`${firstName} ${name}`}</Typo>
             <Typo space={false}>{`${city || ""} ${zipCode || ""}`}</Typo>
           </div>

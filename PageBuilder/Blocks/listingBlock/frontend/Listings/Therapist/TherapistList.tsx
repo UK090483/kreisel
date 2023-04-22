@@ -2,23 +2,29 @@ import Overlay from "./Overlay";
 import Search from "./Search";
 import TherapistListItem from "./TherapistListItem";
 import Pagination from "./Pagination";
+import { TherapistResult } from "./therapist.query";
 import { Section } from "components/Section/Section";
-import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import useSWR from "swr";
 
-interface TherapistListProps {
-  items: TherapistResult[];
-}
+interface TherapistListProps {}
 
 const itemCount = 10;
+//@ts-ignore
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const TherapistList: React.FC<TherapistListProps> = (props) => {
-  const { items } = props;
+  const { data, error } = useSWR<{ member: TherapistResult[] }>(
+    "/api/therapist",
+    fetcher
+  );
+
+  const items: TherapistResult[] = data?.member || [];
 
   const [page, setPage] = useState(1);
   const {
-    query: { therapeut, name, plz, city },
+    query: { therapist, name, plz, city },
   } = useRouter();
 
   const filteredItems = items.filter((i) => {
@@ -55,9 +61,9 @@ const TherapistList: React.FC<TherapistListProps> = (props) => {
             ))}
         </ul>
       </Section>
-      {therapeut && (
-        <div className="fixed top-0 z-10 flex h-screen  w-full items-start justify-center overflow-scroll bg-black bg-opacity-40 pt-32 pb-4">
-          <Overlay items={items} therapist={therapeut.toString()} />
+      {therapist && (
+        <div className="fixed inset-0 z-10 flex h-screen  w-full items-start justify-center overflow-scroll bg-black bg-opacity-40 pt-32 pb-4">
+          <Overlay items={items} therapist={therapist.toString()} />
         </div>
       )}
     </>

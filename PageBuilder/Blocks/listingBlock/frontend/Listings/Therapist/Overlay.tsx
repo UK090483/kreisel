@@ -1,13 +1,13 @@
+import { TherapistResult } from "./therapist.query";
 import Typo from "components/Typography/Typography";
 
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
-import { TherapistResult } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
 import RichText from "PageBuilder/RichText/PortableText";
+import { focusOptions, degreeOptions } from "lib/Profile/Fields";
 import Link from "next/link";
 import FocusTrap from "focus-trap-react";
 import { useRouter } from "next/router";
 import * as React from "react";
-
 import { useLockBodyScroll } from "react-use";
 
 interface IOverlayProps {
@@ -39,22 +39,41 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
           href={{ pathname: baseUrl, query: {} }}
           scroll={false}
           shallow={true}
-          className=" absolute top-2 right-2 flex h-5  w-5 items-center justify-center rounded-full bg-primary md:h-10 md:w-10 "
+          className=" absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary md:h-10 md:w-10 "
         >
           x
         </Link>
 
-        <Typo bold variant="h4">{`${item?.firstName} ${item?.name}`}</Typo>
+        <Typo
+          bold
+          variant="h4"
+        >{`${item?.title} ${item?.firstName} ${item?.name}`}</Typo>
 
         {item?.image && <SanityImage src={item.image} width={150} />}
 
-        <InfoItem title="Beruf" data={item?.jobDescription} />
+        <div className="pt-12"></div>
+
+        <InfoItem
+          title="Arbeitsschwerpunkte"
+          data={item?.focus
+            ?.map((i) =>
+              i ? focusOptions.find((o) => o.value === i)?.title : ""
+            )
+            .join("\n")}
+        />
+        <InfoItem
+          title="Abschlüsse"
+          data={item?.degree
+            ?.map((i) =>
+              i ? degreeOptions.find((o) => o.value === i)?.title : ""
+            )
+            .join("\n")}
+        />
+        <InfoItem title="Beruf" data={item?.description} />
         <InfoItem title="Email">
           {item?.email && (
             <Typo>
-              <a className="text-secondary " href={`mailto:${item?.email}`}>
-                {item?.email}
-              </a>
+              <a href={`mailto:${item?.email}`}>{item?.email}</a>
             </Typo>
           )}
         </InfoItem>
@@ -75,19 +94,21 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
 
         {item?.description && (
           <div className=" mb-4">
-            <Typo variant="body-s" bold>
-              Beschreibung
-            </Typo>
+            <Header>Beschreibung</Header>
             <RichText content={item?.description} />
           </div>
         )}
-
-        <InfoItem title="Ausbildung" data={item?.education} />
-        <InfoItem title="Abschlüsse" data={item?.degrees} />
+        <InfoItem title="Praxis" data={item?.practice} />
       </div>
     </FocusTrap>
   );
 };
+
+const Header: React.FC<React.PropsWithChildren> = ({ children }) => (
+  <Typo space={false} bold>
+    {children}
+  </Typo>
+);
 
 const InfoItem: React.FC<{
   data?: undefined | string;
@@ -96,12 +117,8 @@ const InfoItem: React.FC<{
 }> = ({ data, title, children }) => {
   return data || children ? (
     <>
-      {title && (
-        <Typo variant="body-s" bold>
-          {title}
-        </Typo>
-      )}
-      {data && <Typo>{data}</Typo>}
+      {title && <Header>{title}</Header>}
+      {data && <Typo className=" whitespace-pre-line">{data}</Typo>}
       {children}
     </>
   ) : null;

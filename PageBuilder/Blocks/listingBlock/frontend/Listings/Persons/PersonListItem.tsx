@@ -30,7 +30,7 @@ const PersonListItem: React.FunctionComponent<IPersonListItemProps> = (
   if (href) {
     return (
       <Wrap>
-        <Link href={"person/" + href}>{Item}</Link>
+        <Link href={"person" + href}>{Item}</Link>
       </Wrap>
     );
   }
