@@ -9,6 +9,13 @@ import React from "react";
 const ListingBlock: React.FC<ListingBlockProps> = (props) => {
   const { variation, contentType, variant } = props;
 
+  if (contentType === "therapist") {
+    return (
+      <ListWrap {...props}>
+        <TherapistList />
+      </ListWrap>
+    );
+  }
   if (!props.items) return null;
 
   if (contentType === "people") {
@@ -23,14 +30,6 @@ const ListingBlock: React.FC<ListingBlockProps> = (props) => {
     return (
       <ListWrap {...props}>
         <TestimonialList items={props.items} />
-      </ListWrap>
-    );
-  }
-
-  if (contentType === "therapist") {
-    return (
-      <ListWrap {...props}>
-        <TherapistList items={props.items} />
       </ListWrap>
     );
   }
