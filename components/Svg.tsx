@@ -34,8 +34,8 @@ const Svg: React.FC<SvgProps> = ({
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      className={clsx(`inline-block  stroke-current ${className}`, {
-        "h-6 w-6": size === "m",
+      className={clsx(`inline-block stroke-current ${className}`, {
+        "h-4 w-4 sm:h-6 sm:w-6": size === "m",
         "h-4 w-4": size === "s",
       })}
     >
