@@ -1,7 +1,9 @@
 import FormControl from "./parts/FormControl";
+import { formClasses } from "./style";
 import { useEffect } from "react";
 import { Switch as HiSwitch } from "@headlessui/react";
 import { useController, useFormContext } from "react-hook-form";
+import clsx from "clsx";
 
 type SwitchProps = {
   onChange: (value: boolean) => void;
@@ -16,14 +18,23 @@ export function Switch(props: SwitchProps) {
       id={name}
       checked={checked}
       onChange={onChange}
-      className={`${checked ? " bg-primary-light" : "bg-gray-500"}
-          relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+      className={clsx(
+        "relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full  transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75",
+        formClasses.border,
+        formClasses.bg
+      )}
     >
       <span className="sr-only">Use setting</span>
       <span
         aria-hidden="true"
-        className={`${checked ? "translate-x-9" : "translate-x-0"}
-            pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+        className={clsx(
+          {
+            "translate-x-9 bg-primary": checked,
+
+            "translate-x-0 bg-primary-light": !checked,
+          },
+          `pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full  shadow-lg ring-0 transition duration-200 ease-in-out`
+        )}
       />
     </HiSwitch>
   );

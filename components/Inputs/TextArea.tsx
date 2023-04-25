@@ -1,4 +1,6 @@
 import FormControl from "./parts/FormControl";
+import { formClasses } from "./style";
+import clsx from "clsx";
 import { useFormContext } from "react-hook-form";
 
 type TextareaProps = {
@@ -28,7 +30,13 @@ const Textarea: React.FC<TextareaProps> = (props) => {
         disabled={isSubmitting}
         {...register(name)}
         {...props}
-        className={"rounded-md " + className}
+        className={clsx(
+          "rounded-full",
+          formClasses.bg,
+          formClasses.border,
+          formClasses.rounded,
+          className
+        )}
         id={name}
       />
     </FormControl>

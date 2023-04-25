@@ -18,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({ children }) => {
         className={`fixed top-0 left-0 right-0 z-20 bg-white `}
       >
         <div
-          className={clsx(`hidden py-2 sm:block`, {
+          className={clsx(`hidden py-1 sm:block`, {
             "bg-lime-400": isAuthenticated,
             "bg-primary-light": !isAuthenticated,
           })}

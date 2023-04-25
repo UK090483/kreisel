@@ -38,7 +38,7 @@ const ProfilePage: React.FC<ProfileProps> & {
 };
 
 ProfilePage.getLayout = function getLayout(page) {
-  return <div>{page}</div>;
+  return <div className="bg-primary-xLight">{page}</div>;
 };
 
 // eslint-disable-next-line import/no-unused-modules
@@ -79,7 +79,7 @@ export default ProfilePage;
 
 const MemberInfo = ({ allowed }: { allowed: boolean }) => {
   return (
-    <div className={clsx("pt-8 text-sm")}>
+    <div className={clsx(" pt-8 text-sm")}>
       <span
         className={clsx({
           "text-green-600": allowed,

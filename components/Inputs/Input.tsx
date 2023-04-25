@@ -1,10 +1,12 @@
 import FormControl from "./parts/FormControl";
+import { formClasses } from "./style";
 import { useFormContext } from "react-hook-form";
 import * as React from "react";
+import clsx from "clsx";
 
 type InputProps = {
   name: string;
-  label: string;
+  label?: string;
   description?: string;
 } & JSX.IntrinsicElements["input"];
 
@@ -31,7 +33,13 @@ const Input: React.FC<InputProps> = (props) => {
         type="text"
         {...register(name)}
         {...props}
-        className={"rounded-md " + className}
+        className={clsx(
+          "rounded-full",
+          formClasses.roundedFull,
+          formClasses.bg,
+          formClasses.border,
+          className
+        )}
         id={name}
       />
     </FormControl>

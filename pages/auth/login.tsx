@@ -1,11 +1,13 @@
 import Button from "components/Button/Button";
 import Kreisel from "components/Kreisel";
-import Input from "components/Inputs/LoginInput";
+import Input from "components/Inputs/Input";
 import React, { ReactElement, ReactNode } from "react";
-import { getSession, getCsrfToken, signIn } from "next-auth/react";
+import { getSession, getCsrfToken } from "next-auth/react";
 import { NextPage } from "next";
 import { Session } from "next-auth";
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { object, string, AnyObjectSchema } from "yup";
 
 type LoginProps = {
   csrfToken?: string | undefined;
@@ -19,25 +21,23 @@ type NextPageWithLayout<P> = NextPage<P> & {
 type Inputs = {
   email: string;
 };
+
+const validation = object({
+  email: string().required().email(),
+});
 const SignIn: NextPageWithLayout<LoginProps> = (props) => {
   const { csrfToken } = props;
 
+  const methods = useForm<Inputs>({
+    mode: "onTouched",
+    resolver: yupResolver<AnyObjectSchema>(validation),
+  });
+
   const {
-    register,
+    formState: { isDirty, isValid },
+  } = methods;
 
-    trigger,
-    formState: { isDirty, isValid, errors },
-  } = useForm<Inputs>({ mode: "onTouched" });
-
-  const canSubmit = isDirty && isValid;
-  const _handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    trigger();
-
-    signIn("email", { email: "web@konradullrich.com", name: "bla" });
-
-    e.preventDefault();
-    if (canSubmit) return;
-  };
+  const canSubmit = isDirty ? isValid : true;
 
   return (
     <div className="flex h-screen items-center justify-center bg-grey-light px-5">
@@ -45,44 +45,29 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
         <div className="mx-auto w-1/2 sm:w-2/3">
           <Kreisel />
         </div>
-        <form
-          className=" pt-20 "
-          method="post"
-          action="/api/auth/signin/email"
-          // onSubmit={_handleSubmit}
-        >
-          <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-          <label
-            className={`block text-sm font-bold ${
-              errors["email"] ? "text-red" : ""
-            }`}
+        <FormProvider {...methods}>
+          <form
+            className=" pt-20 "
+            method="post"
+            action="/api/auth/signin/email"
           >
-            <span className="block">
-              Email {errors["email"] && " " + errors["email"].message}
-            </span>
+            <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
 
-            <Input
-              {...register("email", {
-                pattern: {
-                  value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
-                  message: "ist keine akzepierte mail adresse",
-                },
-                required: "muss ausgefüllt sein",
-              })}
-              className="mt-2 w-full "
-              type="text"
-              id="email"
-              name="email"
-              placeholder=" Email"
-            />
-          </label>
-          <Button className={`mt-2 inline`} type="submit">
-            Login
-          </Button>
-          <Button className=" mt-8 block w-full" href={"/"}>
-            Back to HomePage
-          </Button>
-        </form>
+            <Input name="email" placeholder="Email" />
+
+            <Button
+              className={`mt-2 inline w-full`}
+              type="submit"
+              disabled={!canSubmit}
+            >
+              Login
+            </Button>
+
+            <Button className="mt-2 block w-full" href={"/"}>
+              Back to HomePage
+            </Button>
+          </form>
+        </FormProvider>
       </div>
     </div>
   );

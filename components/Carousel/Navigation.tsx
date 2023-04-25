@@ -1,5 +1,4 @@
 import { IconButton } from "components/Button/Button";
-import Svg from "components/Svg";
 import React from "react";
 
 type NavigationProps = {
@@ -20,7 +19,6 @@ const Navigation: React.FC<NavigationProps> = (props) => {
         onClick={prev}
         className="rotate-180 lg:-translate-x-4"
       />
-
       <IconButton
         aria-label="carousel button next"
         icon="chevronRight"
@@ -32,6 +30,3 @@ const Navigation: React.FC<NavigationProps> = (props) => {
 };
 
 export default Navigation;
-const Arrow = () => {
-  return <Svg icon="chevronRight" size="m" pathProps={{ strokeWidth: 3 }} />;
-};

@@ -3,38 +3,51 @@ import { Link } from "components/Link";
 import Svg from "components/Svg";
 import React from "react";
 
+interface BaseButtonProps<T extends React.ElementType> {
+  as?: T;
+  children?: React.ReactNode;
+}
+
 type ButtonProps = {
-  onClick?: () => void;
   href?: string | null;
   external?: boolean;
-  className?: string;
-  type?: React.DetailedHTMLProps<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  >["type"];
-  disabled?: boolean;
+  size?: "s" | "m";
 };
 
-const buttonStyle = `inline-block whitespace-nowrap rounded-full bg-primary px-6 py-1 text-center text-base font-bold`;
+const buttonStyle = {
+  base: `inline-block whitespace-nowrap rounded-full bg-primary text-center`,
+  size: {
+    s: "text-sm px-3 py-1",
+    m: "px-6 py-1 text-base font-bold",
+  },
+};
 
-const Button: React.FC<React.PropsWithChildren<ButtonProps>> = (props) => {
+function Button<T extends React.ElementType = "button">(
+  props: BaseButtonProps<T> &
+    Omit<React.ComponentPropsWithoutRef<T>, keyof BaseButtonProps<T>> &
+    ButtonProps
+) {
   const {
     className = "",
     children,
     onClick,
     href,
     external,
-    type = "button",
     disabled = false,
+    size = "m",
+    ...rest
   } = props;
 
   if (href) {
     return (
       <Link
         onClick={onClick}
-        className={`${buttonStyle} ${className}`}
+        className={clsx(buttonStyle.base, buttonStyle.size[size], className, {
+          "opacity-50": disabled,
+        })}
         href={href}
         external={external}
+        {...rest}
       >
         {children}
       </Link>
@@ -44,17 +57,14 @@ const Button: React.FC<React.PropsWithChildren<ButtonProps>> = (props) => {
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`${buttonStyle} ${className}`}
-      type={type}
+      className={clsx(buttonStyle.base, buttonStyle.size[size], className, {
+        "opacity-50": disabled,
+      })}
+      {...rest}
     >
       {children}
     </button>
   );
-};
-
-interface BaseButtonProps<T extends React.ElementType> {
-  as?: T;
-  children?: React.ReactNode;
 }
 
 export function IconButton<T extends React.ElementType = "button">(
