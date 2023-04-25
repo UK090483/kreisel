@@ -29,7 +29,7 @@ export default defineConfig({
     baseUrl: "http://localhost:3000/",
     async setupNodeEvents(on, config) {
       const pages = await sanityClient.fetch<{ slug: string }[]>(
-        `*[_type == 'page'][]{'slug': select( defined(pageType) => '/' + pageType->slug.current + '/'+slug.current,slug.current  )}`
+        `*[_type == 'page' && defined(slug) ][]{'slug': select( defined(pageType) => '/' + pageType->slug.current + '/'+ slug.current, '/' + slug.current   )}`
       );
       const domains = await oneSecMail({ url: "/?action=getDomainList" });
       const domain = domains[0];
