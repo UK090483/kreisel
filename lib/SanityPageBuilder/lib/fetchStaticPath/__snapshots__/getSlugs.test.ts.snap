@@ -27,14 +27,11 @@ exports[`getSlugs should return right data  width locales 1`] = `
       "slug-en": "withString/subRouteen",
     },
     {
-      "slug": null,
       "slug-da": "noSlugEn",
       "slug-en": "noSlugEn",
     },
     {
       "slug": "noTransSlug",
-      "slug-da": null,
-      "slug-en": null,
     },
   ],
 }
@@ -58,9 +55,7 @@ exports[`getSlugs should return right data no locales  1`] = `
     {
       "slug": "withString/subRoute",
     },
-    {
-      "slug": null,
-    },
+    {},
     {
       "slug": "noTransSlug",
     },

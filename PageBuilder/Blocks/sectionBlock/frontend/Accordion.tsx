@@ -1,7 +1,8 @@
+import { IconButton } from "components/Button/Button";
 import { SectionProps } from "components/Section/Section";
 import useSectionWidth from "components/Section/useSectionWidth";
-import Svg from "components/Svg";
 import { useScrollTo } from "hooks/useScrollTo";
+import clsx from "clsx";
 import React, { FC, useEffect, useRef, useState } from "react";
 import { useSessionStorage } from "react-use";
 
@@ -64,13 +65,12 @@ const Accordion: FC<AccordionProps> = ({
             widthClasses
           }
         >
-          <Svg
+          <IconButton
+            as="div"
             icon="chevronRight"
-            pathProps={{ strokeWidth: 3 }}
-            className={`mr-6 flex-shrink-0 rounded-full border-2 border-current  p-0.5 transition-transform ${
-              open ? "rotate-90" : ""
-            }`}
+            className={clsx("mr-8 transition-transform", { "rotate-90": open })}
           />
+
           <h3 className=" text-left ">{title}</h3>
         </button>
       </div>

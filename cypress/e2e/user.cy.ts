@@ -9,6 +9,7 @@ describe("create user spec", () => {
   });
 
   it("creates user", () => {
+    cy.visit("/");
     cy.loginAsFakeUser();
     cy.url().should("include", "/profile");
   });
@@ -34,6 +35,7 @@ describe("create user spec", () => {
     cy.intercept("POST", "api/profile").as("profile");
     cy.visit("/profile");
     isLoginPage();
+    cy.visit("/");
     cy.loginAsFakeUser();
     cy.visit("/profile");
     cy.get("#announcement");

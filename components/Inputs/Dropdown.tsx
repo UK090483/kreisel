@@ -1,10 +1,12 @@
 import { FormError } from "./parts/FormError";
 import { FormLabel } from "./parts/FormLabel";
 import { InputWarp } from "./parts/InputWrap";
+import { formClasses } from "./style";
 import { Fragment, useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { useFormContext, useController } from "react-hook-form";
+import clsx from "clsx";
 
 type DropdownItem = { title: string; value: string };
 interface DropdownProps {
@@ -43,7 +45,11 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
         <Listbox.Button
           id={name}
           role="combobox"
-          className="relative w-full cursor-default rounded-lg border-[1px] border-grey-border py-2 pl-3 pr-10 text-left  focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300"
+          className={clsx(
+            formClasses.border,
+            formClasses.bg,
+            "relative w-full cursor-default rounded-lg py-2 pl-3 pr-10 text-left  focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300"
+          )}
         >
           <ul className="block truncate">
             {Array.isArray(active)

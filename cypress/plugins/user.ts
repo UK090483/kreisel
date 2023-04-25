@@ -1,14 +1,13 @@
 /// <reference types="cypress" />
 
 export const loginFakeUser = () => {
-  cy.visit("/");
-  cy.get(".mx-auto > .flex > button").click();
+  cy.get(`[aria-label="Sign in"]`).click();
   let { address, domain, name } = Cypress.env("testMail");
   cy.log(address);
   cy.log(domain);
   cy.log(name);
   cy.get("#email").type(address);
-  cy.get(".px-12").click();
+  cy.get("button[type=submit]").click();
   cy.wait(3000);
   cy.request<{ id: string }[]>({
     url: `https://www.1secmail.com/api/v1/?action=getMessages&login=${name}&domain=${domain}`,

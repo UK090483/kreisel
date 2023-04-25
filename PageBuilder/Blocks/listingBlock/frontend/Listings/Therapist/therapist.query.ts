@@ -7,7 +7,7 @@ export const therapistQuery = `
 'email':email.current,
 `;
 
-export type TherapistResult = Profile & {
+export type TherapistResult = Omit<Profile, "image"> & {
   _id: string;
   image: ImageResult;
   email: string;

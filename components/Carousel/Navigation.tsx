@@ -1,5 +1,5 @@
+import { IconButton } from "components/Button/Button";
 import React from "react";
-import { HiArrowLeft } from "react-icons/hi";
 
 type NavigationProps = {
   next?: () => void;
@@ -11,27 +11,22 @@ const Navigation: React.FC<NavigationProps> = (props) => {
 
   return (
     <div
-      className={`w-full flex  pointer-events-none items-end md:items-center justify-between absolute inset-0 ${className}`}
+      className={`pointer-events-none absolute inset-0 flex w-full rotate-180 items-end justify-between md:items-center ${className}`}
     >
-      <button
-        className="p-3 border-2 pointer-events-auto border-current rounded-full mr-4 lg:-translate-x-4"
-        onClick={prev}
+      <IconButton
         aria-label="carousel button previous"
-      >
-        <Arrow />
-      </button>
-      <button
-        className="p-3  rotate-180  pointer-events-auto border-2 border-current rounded-full lg:translate-x-4"
-        onClick={next}
+        icon="chevronRight"
+        onClick={prev}
+        className="rotate-180 lg:-translate-x-4"
+      />
+      <IconButton
         aria-label="carousel button next"
-      >
-        <Arrow />
-      </button>
+        icon="chevronRight"
+        onClick={next}
+        className="lg:translate-x-4"
+      />
     </div>
   );
 };
 
 export default Navigation;
-const Arrow = () => {
-  return <HiArrowLeft size={12} />;
-};
