@@ -12,10 +12,10 @@
 
 
 @layer components {
-  .tooltip {
+  /* .tooltip {
     @apply  !bg-white !border-2 !rounded-lg !border-primary !opacity-100 !p-4 !text-black !w-[calc(100vw-20px)] max-w-lg;
     z-index: 999999999;
-  }
+  } */
 
   .debug {
     border:red solid 1px;

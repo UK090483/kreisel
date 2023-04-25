@@ -11,7 +11,7 @@ import { previewClient } from "@services/SanityService/sanity.server";
 
 import { use } from "next-api-middleware";
 
-import { SanityClient } from "sanity";
+import { SanityClient } from "@sanity/client";
 import { has, omit, pick } from "lodash";
 import fs from "fs";
 import type { NextApiRequest, NextApiResponse, PageConfig } from "next";

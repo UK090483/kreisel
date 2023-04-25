@@ -2,23 +2,24 @@ import { TooltipResult } from "../tooltip.query";
 
 import Portal from "components/Portal";
 
-import ToolTipComponent from "components/Tooltip";
+import ToolTipComponent, { TooltipAnchor } from "components/Tooltip";
 
 const Tooltip: React.FC<React.PropsWithChildren<TooltipResult>> = (props) => {
   const { title, text, ref, _key, children } = props;
 
   const _title = title || ref?.title;
+  const _text = text || ref?.text;
 
   return (
     <>
-      <span className="text-sm underline sm:text-base" data-tip data-for={_key}>
+      <TooltipAnchor className=" underline " id={_key}>
         {children}
-      </span>
+      </TooltipAnchor>
       <Portal>
         <ToolTipComponent id={_key}>
           <>
-            <h1 className=" pb-4 font-bold">{_title}</h1>
-            {ref?.text}
+            <h1 className="pb-4 font-bold">{_title}</h1>
+            <p>{_text}</p>
           </>
         </ToolTipComponent>
       </Portal>

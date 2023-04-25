@@ -1,5 +1,6 @@
 import * as React from "react";
-import ReactTooltip from "react-tooltip";
+import { Tooltip as ReactTooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 
 interface ITooltipProps {
   id: string;
@@ -8,40 +9,34 @@ interface ITooltipProps {
 
 const Tooltip: React.FC<ITooltipProps> = (props) => {
   const { children } = props;
-  const [isMounted, setMount] = React.useState(false);
+  // const [isMounted, setMount] = React.useState(false);
 
-  React.useEffect(() => {
-    setMount(true);
-  }, []);
+  // React.useEffect(() => {
+  //   setMount(true);
+  // }, []);
 
-  if (!isMounted) return null;
+  // if (!isMounted) return null;
 
   return (
     <ReactTooltip
-      overridePosition={(position) => {
-        const wWidth = window.innerWidth;
-        const needFitLeft = position.left < 0;
-        const needFitRight = position.left + 280 > wWidth;
-        const needFitTop = position.top < 0;
-        let p = { ...position };
-        if (needFitLeft) {
-          p = { ...p, left: 20 };
-        }
-        if (needFitRight) {
-          p = { ...p, left: wWidth - 300 };
-        }
-        if (needFitTop) {
-          p = { ...p, top: 20 };
-        }
-        return p;
-      }}
       id={props.id}
-      effect="float"
-      // multiline={true}
-      className="tooltip !max-w-xs"
+      float
+      noArrow
+      place="bottom"
+      className="max-w-[calc(100vw-20px)] border-2 !border-primary !bg-primary-xLight !text-font-dark !opacity-100 sm:max-w-[300px] "
     >
       {children}
     </ReactTooltip>
+  );
+};
+
+export const TooltipAnchor: React.FC<
+  ITooltipProps & { className?: string }
+> = ({ children, id, className }) => {
+  return (
+    <span className={className} data-tooltip-id={id}>
+      {children}
+    </span>
   );
 };
 
