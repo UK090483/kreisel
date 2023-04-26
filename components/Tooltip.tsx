@@ -8,19 +8,11 @@ interface ITooltipProps {
 }
 
 const Tooltip: React.FC<ITooltipProps> = (props) => {
-  const { children } = props;
-  // const [isMounted, setMount] = React.useState(false);
-
-  // React.useEffect(() => {
-  //   setMount(true);
-  // }, []);
-
-  // if (!isMounted) return null;
+  const { children, id } = props;
 
   return (
     <ReactTooltip
-      id={props.id}
-      float
+      id={id}
       noArrow
       place="bottom"
       className="max-w-[calc(100vw-20px)] border-2 !border-primary !bg-primary-xLight !text-font-dark !opacity-100 sm:max-w-[300px] "
