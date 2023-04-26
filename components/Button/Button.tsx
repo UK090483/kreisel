@@ -34,6 +34,7 @@ function Button<T extends React.ElementType = "button">(
     href,
     external,
     disabled = false,
+    type = "button",
     size = "m",
     ...rest
   } = props;
@@ -55,6 +56,7 @@ function Button<T extends React.ElementType = "button">(
   }
   return (
     <button
+      type={type}
       disabled={disabled}
       onClick={onClick}
       className={clsx(buttonStyle.base, buttonStyle.size[size], className, {
@@ -72,11 +74,12 @@ export function IconButton<T extends React.ElementType = "button">(
     Omit<React.ComponentPropsWithoutRef<T>, keyof BaseButtonProps<T>> &
     Pick<React.ComponentProps<typeof Svg>, "icon">
 ) {
-  const { children, className, icon, as, ...rest } = props;
+  const { children, className, icon, as, type = "button", ...rest } = props;
   const Component = as || "button";
 
   return (
     <Component
+      type={type}
       className={clsx(
         className,
         "pointer-events-auto flex h-6 w-6 items-center justify-center rounded-full bg-primary text-font  shadow-theme sm:h-8 sm:w-8"

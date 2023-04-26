@@ -14,7 +14,7 @@ class MyDocument extends Document {
           <meta name="theme-color" content="#fff" />
         </Head>
         <body
-          className={`text-font ${
+          className={`text-font antialiased ${
             process.env.NODE_ENV === "development" ? "debug-screens" : ""
           } `}
         >
