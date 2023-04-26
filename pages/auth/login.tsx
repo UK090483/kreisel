@@ -1,6 +1,6 @@
 import Button from "components/Button/Button";
-import Kreisel from "components/Kreisel";
 import Input from "components/Inputs/Input";
+import AuthLayout from "components/Layout/AuthLayout";
 import React, { ReactElement, ReactNode } from "react";
 import { getSession, getCsrfToken } from "next-auth/react";
 import { NextPage } from "next";
@@ -37,39 +37,25 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
     formState: { isDirty, isValid },
   } = methods;
 
-  const canSubmit = isDirty ? isValid : true;
+  const canSubmit = isDirty && isValid;
 
   return (
-    <div className="flex h-screen items-center justify-center bg-grey-light px-5">
-      <div className="h-fit rounded-theme bg-primary-light p-20">
-        <div className="mx-auto w-1/2 sm:w-2/3">
-          <Kreisel />
-        </div>
-        <FormProvider {...methods}>
-          <form
-            className=" pt-20 "
-            method="post"
-            action="/api/auth/signin/email"
-          >
-            <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-
-            <Input name="email" placeholder="Email" />
-
-            <Button
-              className={`mt-2 inline w-full`}
-              type="submit"
-              disabled={!canSubmit}
-            >
-              Login
-            </Button>
-
-            <Button className="mt-2 block w-full" href={"/"}>
-              Back to HomePage
-            </Button>
-          </form>
-        </FormProvider>
-      </div>
-    </div>
+    <FormProvider {...methods}>
+      <form method="post" action="/api/auth/signin/email">
+        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+        <Input name="email" placeholder="Email" />
+        <Button
+          className={`mt-2 inline w-full`}
+          type="submit"
+          disabled={!canSubmit}
+        >
+          Login / SignUp
+        </Button>
+        <Button className="mt-2 block w-full" href={"/"}>
+          Back to HomePage
+        </Button>
+      </form>
+    </FormProvider>
   );
 };
 
@@ -92,7 +78,7 @@ SignIn.getInitialProps = async (context) => {
 };
 
 SignIn.getLayout = function getLayout(page) {
-  return <>{page}</>;
+  return <AuthLayout>{page}</AuthLayout>;
 };
 // eslint-disable-next-line import/no-unused-modules
 export default SignIn;

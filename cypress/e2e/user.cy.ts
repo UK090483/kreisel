@@ -42,7 +42,7 @@ describe("create user spec", () => {
     cy.get("#firstName").type(testData.firstName.val);
     cy.get("#name").type(testData.name.val);
     cy.get("#announcement").should("not.exist");
-    cy.get('input[type="submit"]').click();
+    cy.get('button[type="submit"]').click();
     cy.wait("@profile");
     cy.reload();
     cy.get("#firstName").should("have.value", testData.firstName.val);

@@ -119,7 +119,7 @@ describe("<ProfileForm />", () => {
         body: [{ projectId: "1" }, { projectId: "2" }],
       }).as("profile");
 
-      cy.get('input[type="submit"]').should("be.visible").click();
+      cy.get('button[type="submit"]').should("be.visible").click();
       cy.wait("@profile")
         .its("request")
         .then((request) => {
@@ -155,7 +155,7 @@ describe("<ProfileForm />", () => {
     });
 
     fillField(profileFields[6], testData[profileFields[6].name]);
-    cy.get('input[type="submit"]').should("be.visible").click();
+    cy.get('button[type="submit"]').should("be.visible").click();
     cy.get("#errorMessage").should("be.visible");
   });
 });

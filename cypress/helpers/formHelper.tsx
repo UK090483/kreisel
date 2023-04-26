@@ -14,9 +14,9 @@ const FormTestWrap = (props: {
 
   return (
     <>
-      <div className="" id="data">
+      {/* <div className="" id="data">
         {JSON.stringify(data)}
-      </div>
+      </div> */}
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit((data) => onSubmit(data))}>
           {children}

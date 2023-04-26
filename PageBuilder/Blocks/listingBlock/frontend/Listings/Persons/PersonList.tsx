@@ -7,17 +7,13 @@ interface IPersonListProps {
 }
 
 const PersonList: React.FunctionComponent<IPersonListProps> = (props) => {
-  const { items, title } = props;
-  const [isMounted, setIsMounted] = React.useState(false); // Need this for the react-tooltip
-
-  React.useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const { items } = props;
 
   return (
-    <ul className="w-full flex flex-wrap items-center justify-center">
-      {isMounted &&
-        items?.map((i, index) => <PersonListItem key={index} {...i} />)}
+    <ul className="flex w-full flex-wrap items-center justify-center">
+      {items?.map((i, index) => (
+        <PersonListItem key={index} {...i} />
+      ))}
     </ul>
   );
 };

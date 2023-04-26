@@ -6,6 +6,8 @@ import Input from "components/Inputs/Input";
 import Textarea from "components/Inputs/TextArea";
 import { SwitchInput } from "components/Inputs/Switch";
 import { DropdownInput } from "components/Inputs/Dropdown";
+import Button from "components/Button/Button";
+import { PureKreisel } from "components/Kreisel";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
 import { serialize } from "object-to-formdata";
@@ -42,7 +44,7 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
   const {
     handleSubmit,
     reset,
-    formState: { dirtyFields, isValid },
+    formState: { dirtyFields, isValid, isSubmitting },
   } = methods;
 
   const hasDirtyFields = Object.keys(dirtyFields).length > 0;
@@ -87,7 +89,7 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
 
   return (
     <>
-      <div className="mx-auto mb-32 w-full max-w-3xl  px-5">
+      <div className="mx-auto w-full max-w-3xl px-5 pb-32">
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(_onSubmit, _onSubmitError)}>
             <Input name="title" label="Title" />
@@ -153,17 +155,22 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
                 />
               </>
             )}
-            <input
-              value={"Speichern"}
+
+            <Button
+              type="submit"
               className={clsx(
-                "fixed bottom-8 z-50  mx-auto w-screen max-w-xs border-2 p-4 ",
+                "fixed bottom-8 z-50  mx-auto flex w-screen max-w-xs items-center justify-center gap-4",
                 {
                   "opacity-0 ": !canSubmit,
                   "bg-green-500 opacity-100": canSubmit,
                 }
               )}
-              type="submit"
-            />
+            >
+              {isSubmitting && (
+                <PureKreisel className=" h-4 w-4  animate-spin " />
+              )}
+              Speichern
+            </Button>
           </form>
         </FormProvider>
 

@@ -34,7 +34,7 @@ const Input: React.FC<InputProps> = (props) => {
         {...register(name)}
         {...props}
         className={clsx(
-          "rounded-full",
+          "rounded-full py-2",
           formClasses.roundedFull,
           formClasses.bg,
           formClasses.border,
