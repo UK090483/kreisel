@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import FormControl from "./parts/FormControl";
+import Button from "components/Button/Button";
 import React, { useCallback, useRef } from "react";
 
 import { BsFillPersonFill } from "react-icons/bs";
@@ -64,64 +65,67 @@ const ImageUpload = React.forwardRef(function ImageUpload(
   );
 
   return (
-    <div>
-      <div className="flex">
-        <input
-          data-test-id={`input_${name}`}
-          className="hidden"
-          accept="image/png, image/jpeg"
-          ref={inputRef}
-          type="file"
-          onChange={handleSelectFile}
-        />
-        <button
-          id={name}
-          type="button"
-          onClick={openSelection}
-          className={clsx("w-fit rounded-full transition-transform", {
-            "p-0": hasImage,
-            "border-4 border-dashed border-primary-light p-6": !hasImage,
-          })}
-        >
-          {!hasImage && (
-            <BsFillPersonFill
-              data-testid="imagePlaceholder"
-              style={{ width: size - 50, height: size - 50 }}
-              className="h-56 w-56 text-primary-light"
-            />
-          )}
-          {hasImage && value.url && (
-            <div className="image-item w-fit">
-              <div
-                style={{ width: size, height: size }}
-                className=" overflow-hidden rounded-full "
-              >
-                <img src={value.url} alt="" width={size} />
-              </div>
+    <div className="flex items-end justify-between gap-4 ">
+      <input
+        data-test-id={`input_${name}`}
+        className="hidden"
+        accept="image/png, image/jpeg"
+        ref={inputRef}
+        type="file"
+        onChange={handleSelectFile}
+      />
+      <button
+        id={name}
+        type="button"
+        onClick={openSelection}
+        className={clsx("w-fit rounded-full transition-transform", {
+          "p-0": hasImage,
+          "border-4 border-dashed border-primary-light p-6": !hasImage,
+        })}
+      >
+        {!hasImage && (
+          <BsFillPersonFill
+            data-testid="imagePlaceholder"
+            style={{ width: size - 50, height: size - 50 }}
+            className="h-56 w-56 text-primary-light"
+          />
+        )}
+        {hasImage && value.url && (
+          <div className="image-item w-fit ">
+            <div
+              style={{ width: size, height: size }}
+              className=" overflow-hidden rounded-full "
+            >
+              <img src={value.url} alt="" width={size} />
             </div>
-          )}
-        </button>
-
-        {hasImage && (
-          <div className="grid w-full grid-cols-2">
-            <button
-              aria-label="update Image"
-              type="button"
-              className=" border-r-2 border-black "
-              onClick={openSelection}
-            >
-              Update
-            </button>
-            <button
-              aria-label="remove Image"
-              type="button"
-              onClick={handleRemove}
-            >
-              Remove
-            </button>
           </div>
         )}
-      </div>
+      </button>
+
+      {!hasImage && (
+        <Button aria-label="add Image" type="button" onClick={openSelection}>
+          Add
+        </Button>
+      )}
+
+      {hasImage && (
+        <div className="flex w-full flex-wrap justify-end gap-2">
+          <Button
+            aria-label="update Image"
+            type="button"
+            onClick={openSelection}
+          >
+            Update
+          </Button>
+          <Button
+            aria-label="remove Image"
+            type="button"
+            onClick={handleRemove}
+          >
+            Remove
+          </Button>
+        </div>
+      )}
     </div>
   );
 });

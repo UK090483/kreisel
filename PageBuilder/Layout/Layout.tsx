@@ -1,8 +1,8 @@
-import { BackButton } from "./BackButton";
 import Footer from "./Footer";
 import Head from "./Head";
 import { Header } from "./Header";
 import Nav from "./Navigation/Nav";
+import { BackButton } from "components/Layout/BackButton";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
 
 import React, {

@@ -51,7 +51,6 @@ export const fetchProfileData = async (email: string, client: SanityClient) => {
      'profile':{${profileQuery}},
       allowMember,
       allowProfile,
-      
     }`
   );
 
@@ -59,7 +58,7 @@ export const fetchProfileData = async (email: string, client: SanityClient) => {
 
   const cleanFields = fetchResult.profile ? clean(fetchResult?.profile) : {};
   const castFields = fetchResult.allowProfile
-    ? schema.cast(cleanFields)
+    ? schema.cast(cleanFields, { stripUnknown: true })
     : memberSchema.cast(cleanFields, { stripUnknown: true });
 
   return {

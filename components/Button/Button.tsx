@@ -79,11 +79,11 @@ export function IconButton<T extends React.ElementType = "button">(
     <Component
       className={clsx(
         className,
-        "pointer-events-auto flex h-6 w-6 items-center justify-center rounded-full bg-primary shadow-theme sm:h-8 sm:w-8"
+        "pointer-events-auto flex h-6 w-6 items-center justify-center rounded-full bg-primary text-font  shadow-theme sm:h-8 sm:w-8"
       )}
       {...rest}
     >
-      {<Svg icon={icon} size="m" pathProps={{ strokeWidth: 3 }} />}
+      {<Svg icon={icon} size="m" pathProps={{ strokeWidth: 2 }} />}
     </Component>
   );
 }

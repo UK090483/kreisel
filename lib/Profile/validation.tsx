@@ -6,8 +6,8 @@ const MAX_FILE_SIZE = 100_000_0;
 
 export const memberSchema = object({
   title: string(),
-  firstName: string().required(),
-  name: string().required(),
+  firstName: string().required().default(""),
+  name: string().required().default(""),
 });
 
 const profileFields = object({
