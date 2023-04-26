@@ -11,6 +11,7 @@ import { AppContextProvider } from "PageBuilder/AppContext/AppContext";
 import AppConfig from "app.config.json";
 import StoreContextProvider from "@services/StoreService/StoreProvider";
 import { AuthContextProvider } from "@lib/Auth/AuthContext";
+import { variables } from "components/fonts";
 import { ReactElement, ReactNode, lazy } from "react";
 import { SessionProvider } from "next-auth/react";
 import { NextComponentType, NextPageContext } from "next";
@@ -19,6 +20,8 @@ import { PreviewSuspense } from "@sanity/preview-kit";
 const PreviewPageBuilderContextProvider = lazy(
   () => import("../PageBuilder/AppContext/PrevPageBuilderContext")
 );
+
+const b = variables;
 interface AppPropsWithStaticProps {
   pageProps: PageProps<PageData>;
   Component: NextComponentType<NextPageContext, any, PageProps<PageData>> & {
