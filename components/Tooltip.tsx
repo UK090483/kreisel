@@ -15,7 +15,7 @@ const Tooltip: React.FC<ITooltipProps> = (props) => {
       id={id}
       noArrow
       place="bottom"
-      className="max-w-[calc(100vw-20px)] border-2 !border-primary !bg-primary-xLight !text-font-dark !opacity-100 sm:max-w-[300px] "
+      className="z-50 max-w-[calc(100vw-20px)] border-2 !border-primary !bg-primary-xLight !text-font-dark !opacity-100 sm:max-w-[300px]"
     >
       {children}
     </ReactTooltip>

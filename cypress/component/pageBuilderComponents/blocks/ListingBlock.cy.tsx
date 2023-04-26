@@ -125,7 +125,7 @@ describe("ListingBlock People", () => {
     cy.contains("person2");
     cy.contains("position2");
     cy.contains("description2").should("not.exist");
-    // cy.contains("person2").click();
-    // cy.contains("description2").should("be.visible");
+    cy.contains("person2").realHover();
+    cy.contains("description2").should("be.visible");
   });
 });
