@@ -9,8 +9,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "startUp":"npm run build && npm run start",
-    "waitAndTest":"wait-on http://localhost:3000 && npm run cypress:run",
+    "startUp": "npm run build && npm run start",
+    "waitAndTest": "wait-on http://localhost:3000 && npm run cypress:run",
     "lint": "next lint --fix",
     "test": "jest --coverage",
     "cypress:open": "cypress open",
@@ -25,7 +25,7 @@
     "pretest:all": "echo pretest:all",
     "test:all": "npm run kill:3000 & npm run test & npm run cypress:component & npm run build && npm run start & wait-on http://localhost:3000 && npm run cypress:run",
     "test:all2": "ttab -w -t 'JEST TEST' npm run test & ttab -w -t 'CYPRESS COMPONENT' npm run cypress:component & ttab -w -t 'NEXT' npm run startUp & npm run waitAndTest"
-  }, 
+  },
   "dependencies": {
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
@@ -34,6 +34,7 @@
     "@sanity/client": "^5.4.2",
     "@sanity/preview-kit": "^1.4.0",
     "@sanity/schema": "^3.9.0",
+    "@vercel/analytics": "^1.0.0",
     "clsx": "^1.2.1",
     "csv-parser": "^3.0.0",
     "cypress": "^12.10.0",

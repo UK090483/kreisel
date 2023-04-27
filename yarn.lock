@@ -2805,6 +2805,11 @@
     "@typescript-eslint/types" "5.52.0"
     eslint-visitor-keys "^3.3.0"
 
+"@vercel/analytics@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@vercel/analytics/-/analytics-1.0.0.tgz#7041bf3f14d65ab685f053b2fab09c605d12543e"
+  integrity sha512-RQmj7pv82JwGDHrnKeRc6TtSw2U7rWNubc2IH0ernTzWTj02yr9zvIYiYJeztsBzrJtWv7m8Nz6vxxb+cdEtJw==
+
 "@vercel/error-utils@1.0.9":
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@vercel/error-utils/-/error-utils-1.0.9.tgz#3bcbc050a3a592503c32ee345bd43478e477fe79"
@@ -10397,11 +10402,6 @@ tsutils@^3.21.0:
   integrity sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==
   dependencies:
     tslib "^1.8.1"
-
-ttab@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/ttab/-/ttab-0.8.0.tgz#59e3b7c1b5bd69eba117e8d75903331925491602"
-  integrity sha512-ZsvrLuAJf52Joqo9aiLg1iygGz2l/hC5dKRrQ7W+k0LI7SN6m9bdF5hbpFm7WxEO4xE/pMMjFizd/5fdpNhoTA==
 
 tunnel-agent@^0.6.0:
   version "0.6.0"
