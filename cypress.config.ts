@@ -43,6 +43,7 @@ export default defineConfig({
   },
 
   component: {
+    video: false,
     viewportWidth: 1280,
     viewportHeight: 800,
     async setupNodeEvents(on, config) {

@@ -7,7 +7,7 @@ export const Logo = () => {
         width={161}
         height={50}
         src="/Kreisel_Logo.png"
-        alt=" Kreisel Logo"
+        alt="Kreisel Logo"
       />
     </div>
   );

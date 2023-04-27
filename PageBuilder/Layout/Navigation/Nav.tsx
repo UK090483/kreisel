@@ -42,7 +42,7 @@ const Nav: React.FC<NavProps> = ({ items }) => {
               className=" justify-center"
             />
           </div>
-          <ContactButton className="hidden xl:block" />
+          <ContactButton className="mr-3 hidden xl:block" />
 
           <button
             data-testid="menu-overlay-toggle"

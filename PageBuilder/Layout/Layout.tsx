@@ -1,4 +1,4 @@
-import Footer from "./Footer";
+import Footer from "./Footer/frontend/Footer";
 import Head from "./Head";
 import { Header } from "./Header";
 import Nav from "./Navigation/Nav";

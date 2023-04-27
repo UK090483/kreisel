@@ -1,31 +1,27 @@
-import { defineField, defineType } from "sanity";
+import { defineField, defineType } from "@sanity/types";
+import { AiFillSetting } from "react-icons/ai";
 
 const siteConfigSchema = defineType({
   name: "siteConfig",
   title: "Site config",
   type: "document",
+  icon: AiFillSetting,
+  groups: [
+    { name: "navigation", title: "Navigation", default: true },
+    { name: "pages", title: "Pages" },
+    { name: "footer", title: "Footer" },
+    { name: "seo", title: "Seo" },
+  ],
+
   fields: [
-    {
+    defineField({
       name: "indexPage",
       title: "Home Page",
       type: "reference",
       to: [{ type: "page" }],
       validation: (Rule) => Rule.required(),
-    },
-    {
-      name: "agbPage",
-      title: "Agb Page",
-      type: "reference",
-      to: [{ type: "page" }],
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      name: "imprintPage",
-      title: "Impressum Page",
-      type: "reference",
-      to: [{ type: "page" }],
-      validation: (Rule) => Rule.required(),
-    },
+      group: "pages",
+    }),
     defineField({
       name: "mainNav",
       type: "array",
@@ -35,6 +31,7 @@ const siteConfigSchema = defineType({
       },
       of: [{ type: "navigationItem" }, { type: "navigationMegaMenu" }],
       validation: (Rule) => Rule.required(),
+      group: "navigation",
     }),
     defineField({
       name: "memberNav",
@@ -45,8 +42,9 @@ const siteConfigSchema = defineType({
       },
       of: [{ type: "navigationItem" }, { type: "navigationMegaMenu" }],
       validation: (Rule) => Rule.required(),
+      group: "navigation",
     }),
-    {
+    defineField({
       name: "redirects",
       type: "array",
       title: "Redirects",
@@ -64,32 +62,38 @@ const siteConfigSchema = defineType({
           ],
         },
       ],
-    },
-    {
-      name: "footerImage",
-      type: "defaultImage",
-    },
-    {
+      group: "pages",
+    }),
+    defineField({
       name: "contacts",
       title: "Contacts",
       type: "array",
       of: [{ type: "reference", to: [{ type: "contactItem" }] }],
-    },
-    {
+      group: "footer",
+    }),
+    defineField({
+      name: "footer",
+      title: "Footer",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "footer" }] }],
+      group: "footer",
+    }),
+    defineField({
       title: "Default / Seo",
       name: "seo",
       type: "seo",
-    },
+      group: "seo",
+    }),
   ],
   preview: {
     select: {},
     prepare() {
-      return { title: "mainSetting" };
+      return { title: "Main Setting" };
     },
   },
 });
 
-export const contactItemSchema = {
+export const contactItemSchema = defineType({
   name: "contactItem",
   title: "Contact Item",
   type: "document",
@@ -116,6 +120,6 @@ export const contactItemSchema = {
       title: "Content",
     },
   ],
-};
+});
 
 export default siteConfigSchema;
