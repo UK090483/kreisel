@@ -19,7 +19,7 @@ const FooterInfo = (props: Props) => {
   return (
     <Section bg="primary-light" width="l" className="flex flex-wrap py-12">
       <ItemWrap width="1/2">
-        <Kreisel className="mx-auto w-1/2 " />
+        <Kreisel className="mx-auto w-1/2 md:mx-0 " />
       </ItemWrap>
       {items.map((i) => (
         <ItemWrap key={i._key} width="1/4">
