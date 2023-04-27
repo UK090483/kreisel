@@ -16,7 +16,11 @@ const FooterContact: React.FC<FooterContactProps> = (props) => {
   if (!data.footer.contact.content && !data.footer.contact.persons) return null;
 
   return (
-    <Section width="l" className="grid grid-cols-1 py-24 md:grid-cols-2">
+    <Section
+      bg="primary-xLight"
+      width="l"
+      className="grid grid-cols-1 py-24 md:grid-cols-2"
+    >
       <div className="flex flex-wrap items-center justify-center">
         {avatars?.map((a) => (
           <li key={a._id} className=" w-full list-none md:w-1/2">

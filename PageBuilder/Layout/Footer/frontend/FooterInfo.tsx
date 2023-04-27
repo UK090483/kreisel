@@ -40,7 +40,7 @@ const ItemWrap: React.FC<React.PropsWithChildren<{ width: "1/4" | "1/2" }>> = ({
 }) => {
   return (
     <div
-      className={clsx("shrink-0 pb-20 pl-3 text-center md:pt-0 md:text-left", {
+      className={clsx("shrink-0 pb-20 pl-3 text-center md:pb-0 md:text-left", {
         "w-full  md:w-1/4": width === "1/4",
         "w-full  md:w-1/2": width === "1/2",
       })}
