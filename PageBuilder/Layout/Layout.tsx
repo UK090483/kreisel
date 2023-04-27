@@ -1,4 +1,4 @@
-import Footer from "./Footer";
+import Footer from "./Footer/frontend/Footer";
 import Head from "./Head";
 import { Header } from "./Header";
 import Nav from "./Navigation/Nav";
@@ -47,7 +47,6 @@ const Layout: React.FC<PropsWithChildren> = (props) => {
         </Header>
       )}
       <Head name={data?.title} />
-
       <main
         className={`min-h-screen antialiased transition-all duration-500 ease-out ${
           fadeIn ? "animate-pageFadeIn" : ""
@@ -55,7 +54,6 @@ const Layout: React.FC<PropsWithChildren> = (props) => {
       >
         {children}
       </main>
-
       <Footer />
     </>
   );

@@ -9,7 +9,7 @@ import { SectionBlockResult } from "PageBuilder/Blocks/sectionBlock/SectionBlock
 
 import { NavigationResult } from "PageBuilder/Navigation/navigation.query";
 
-import { FooterQueryResult } from "PageBuilder/Layout/Footer/Footer";
+import { FooterQueryResult } from "PageBuilder/Layout/Footer/Footer.query";
 import { ListingBlockProps } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
 
 import fetchStaticProps from "lib/SanityPageBuilder/lib/fetchStaticProps/fetchStaticProps";

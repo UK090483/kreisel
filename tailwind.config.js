@@ -17,9 +17,8 @@ module.exports = {
 
   theme: {
     fontFamily: {
-      sans: ["Montserrat", "Helvetica", "sans-serif"],
-      hand: ["Caveat"],
-      header: ["GTZirkon"],
+      sans: ["var(--font-montserrat)"],
+      header: ["var(--gt-zirkon)"],
     },
     fontSize: {
       sm: ["12px", "1em"],

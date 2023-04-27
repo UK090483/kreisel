@@ -29,7 +29,7 @@ const Nav: React.FC<NavProps> = ({ items }) => {
   };
   return (
     <>
-      <nav className=" px-3  shadow-lg">
+      <nav className="px-3 shadow-lg">
         <div className=" mx-auto flex  w-full items-center justify-between py-2 lg:container   ">
           <Link href="/" className=" shrink-0 ">
             <Logo />
@@ -42,7 +42,7 @@ const Nav: React.FC<NavProps> = ({ items }) => {
               className=" justify-center"
             />
           </div>
-          <ContactButton className="hidden xl:block" />
+          <ContactButton className="mr-3 hidden xl:block" />
 
           <button
             data-testid="menu-overlay-toggle"

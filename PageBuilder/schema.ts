@@ -16,6 +16,7 @@ import personSchema from "./ContentTypes/Person/person.schema";
 import { tagSchema, tagsSchema } from "./ContentTypes/Tags/Tag.schema";
 import testimonialSchema from "./ContentTypes/Testimonials/testimonial.schema";
 import defaultImageSchema from "./Image/defaultImage.schema";
+import { footerItemSchema, footerSchema } from "./Layout/Footer/footer.shema";
 import Navigation from "./Navigation/Navigation.schema";
 import linkSchema from "./objects/link/link.schema";
 import logSchema, { logItem } from "./objects/log/log.schema";
@@ -63,6 +64,8 @@ const schema = [
 
   siteConfigSchema,
   contactItemSchema,
+  footerSchema,
+  footerItemSchema,
   // objects
 
   ...Navigation,

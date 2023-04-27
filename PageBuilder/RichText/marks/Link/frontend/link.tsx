@@ -1,15 +1,10 @@
 import { Link } from "components/Link";
 import { LinkResult, linkQuery } from "PageBuilder/Navigation/navigation.query";
 import Button from "components/Button/Button";
+import { useSection } from "components/Section/SectionContext";
 import React from "react";
 
-const InlineIcon = () => {
-  return (
-    <span className="inline-block   h-[1em] translate-y-[-0.2em] transform ">
-      {/* <Icon icon="arrowRight" bgColor="grey" /> */} <span>LinkIcon</span>
-    </span>
-  );
-};
+import clsx from "clsx";
 
 type LinkMarkPros = {
   link?: LinkResult;
@@ -24,7 +19,12 @@ _type == "link" => {
   }`;
 
 const LinkMark: React.FC<React.PropsWithChildren<LinkMarkPros>> = (props) => {
+  const { bg } = useSection();
+
   const { link, asButton } = props;
+
+  const dark = bg === "primary-light";
+
   if (asButton) {
     return (
       <Button href={link?.href} external={link?.external}>
@@ -39,7 +39,10 @@ const LinkMark: React.FC<React.PropsWithChildren<LinkMarkPros>> = (props) => {
         <Link
           href={link?.href}
           external={link?.external}
-          className="font-bold text-primary  underline"
+          className={clsx("font-bold underline underline-offset-4", {
+            "text-font": dark,
+            "text-primary": !dark,
+          })}
         >
           {props.children}
         </Link>

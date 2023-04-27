@@ -1,7 +1,7 @@
 import {
   footerQuery,
   FooterQueryResult,
-} from "PageBuilder/Layout/Footer/Footer";
+} from "PageBuilder/Layout/Footer/Footer.query";
 import {
   NavigationQuery,
   NavigationResult,
