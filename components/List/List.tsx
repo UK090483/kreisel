@@ -1,3 +1,4 @@
+"use client";
 import Overlay from "./Overlay";
 import { Section } from "components/Section/Section";
 import React, { PropsWithChildren } from "react";

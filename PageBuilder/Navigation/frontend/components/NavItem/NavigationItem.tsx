@@ -1,3 +1,4 @@
+"use client";
 import useIsActive from "../../helper/useIsActive";
 import { useNavigation } from "../../NavigationContext";
 import {

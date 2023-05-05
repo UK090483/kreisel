@@ -1,3 +1,4 @@
+"use client";
 import NavigationItem from "./components/NavItem/NavigationItem";
 import { NavigationContextProvider } from "./NavigationContext";
 

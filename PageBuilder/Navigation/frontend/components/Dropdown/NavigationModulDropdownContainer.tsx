@@ -1,3 +1,4 @@
+"use client";
 import Dropdown from "./Dropdown";
 import prepareNavItems from "../../helper/prepareNavItems";
 import { NavItem } from "../../types";

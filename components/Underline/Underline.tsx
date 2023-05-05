@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import useHover from "hooks/useHover";
 
 import clsx from "clsx";

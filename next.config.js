@@ -31,6 +31,8 @@ const moduleExports = {
   reactStrictMode: true,
 
   images: {
+    // loaderFile: "imageLoader.ts",
+
     domains: ["cdn.sanity.io"],
   },
   experimental: { scrollRestoration: true },

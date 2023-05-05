@@ -1,3 +1,4 @@
+"use client";
 import { NavItem } from "../../types";
 import { useNavigation } from "../../NavigationContext";
 import { NavigationLinkProps } from "../NavItem/NavigationLink";

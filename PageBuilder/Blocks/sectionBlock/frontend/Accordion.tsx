@@ -1,3 +1,4 @@
+"use client";
 import { IconButton } from "components/Button/Button";
 import { SectionProps } from "components/Section/Section";
 import useSectionWidth from "components/Section/useSectionWidth";

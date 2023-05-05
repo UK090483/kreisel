@@ -1,3 +1,5 @@
+"use client";
+
 import Kreisel from "./Kreisel";
 import { useSection } from "./Section/SectionContext";
 import Tooltip, { TooltipAnchor } from "./Tooltip";

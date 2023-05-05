@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+"use client";
 import React, { useContext } from "react";
 import { PageBuilderData } from "PageBuilder/query";
 
@@ -36,7 +36,9 @@ export const useAppContext = () => {
 export const useHomeRoute = () => {
   const { data } = useAppContext();
   const homeRoute = data?.homeRoute;
-  const { locale: currentLocale, defaultLocale } = useRouter();
+
+  const currentLocale = "de";
+  const defaultLocale = "de";
 
   const parseRoute = (href: string, locale?: string) => {
     const linkLocale = locale || currentLocale;

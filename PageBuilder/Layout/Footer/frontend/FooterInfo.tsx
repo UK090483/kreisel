@@ -1,17 +1,16 @@
-import { IFooterInfoItem } from "../Footer.query";
+import { IFooterInfo, IFooterInfoItem } from "../Footer.query";
 import Portable from "PageBuilder/RichText/PortableText";
-import { useAppContext } from "PageBuilder/AppContext/AppContext";
 import Kreisel from "components/Kreisel";
 import { Section } from "components/Section/Section";
 import React from "react";
 import clsx from "clsx";
 
-type Props = {};
+type Props = {
+  footerInfo: IFooterInfo;
+};
 
-const FooterInfo = (props: Props) => {
-  const { data } = useAppContext();
-
-  const footerInfoData = data?.footer?.footerInfo;
+const FooterInfo = ({ footerInfo }: Props) => {
+  const footerInfoData = footerInfo;
   const items = footerInfoData?.items;
 
   if (!items) return null;

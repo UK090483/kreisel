@@ -1,19 +1,17 @@
+import { IFooterContact } from "../Footer.query";
 import { Section } from "components/Section/Section";
 import React from "react";
 import Avatar from "components/Avatar";
 import RichText from "PageBuilder/RichText/PortableText";
-import { useAppContext } from "PageBuilder/AppContext/AppContext";
 
-interface FooterContactProps {}
+interface FooterContactProps {
+  contact: IFooterContact;
+}
 
-const FooterContact: React.FC<FooterContactProps> = (props) => {
-  const { data } = useAppContext();
-
-  if (!data?.footer?.contact) return null;
-  const contact = data?.footer?.contact;
+const FooterContact: React.FC<FooterContactProps> = ({ contact }) => {
   const avatars = contact?.persons;
   const avatarCount = avatars ? avatars.length : 0;
-  if (!data.footer.contact.content && !data.footer.contact.persons) return null;
+  if (!contact.content && !contact.persons) return null;
 
   return (
     <Section

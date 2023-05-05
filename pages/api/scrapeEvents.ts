@@ -1,4 +1,5 @@
 import { JSDOM } from "jsdom";
+import fetch from "node-fetch";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 // X01 à Seminare Hamburg
@@ -24,18 +25,20 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const g = await fetch(
+    "https://www.kcs4web.de/kcs4webhcm/Veranstaltungen.aspx?IDC=03371220"
+  );
+
   const category =
     typeof req.query.cat === "string" ? req.query.cat : undefined;
 
   const data = await getData(
-    `https://www.kcs4web.de/kcs4webhcm/Veranstaltungen.aspx?IDC=03371220&hsstartdate=1&hsenddate=1&reset=1${
+    `https://www.kcs4web.de/kcs4webhcm/Veranstaltungen.aspx?IDC=03371220${
       category ? `&cat=${category}` : ""
     }`
   );
   res.setHeader("Cache-Control", "s-maxage=1, stale-while-revalidate");
-  res.status(200).json({
-    data,
-  });
+  res.status(200).json({ data });
 }
 
 const indexToName: { [k: number]: string } = {
@@ -54,6 +57,7 @@ const getName = (index: number) => {
 const getData = async (url: string) => {
   const page = await fetch(url);
   const text = await page.text();
+
   const htmlDocument = new JSDOM(text);
 
   const content =

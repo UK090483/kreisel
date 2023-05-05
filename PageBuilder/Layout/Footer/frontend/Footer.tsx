@@ -1,30 +1,25 @@
 import FooterContact from "./FooterContact";
 import FooterInfo from "./FooterInfo";
+import { IFooterContact, IFooterInfo } from "../Footer.query";
 import React from "react";
-import { useAppContext } from "PageBuilder/AppContext/AppContext";
 import { Section } from "components/Section/Section";
 
-interface FooterProps {}
+interface FooterProps {
+  contact: IFooterContact;
+  footerInfo: IFooterInfo;
+}
 
-const Footer: React.FC<FooterProps> = (props) => {
-  const { data } = useAppContext();
+const Footer: React.FC<FooterProps> = ({ contact, footerInfo }) => {
   return (
-    <footer
-      data-testid="footer"
-      // className="flex flex-col items-center bg-primary-light"
-    >
-      <FooterContact />
-      <FooterInfo />
+    <footer data-testid="footer">
+      <FooterContact contact={contact} />
+      <FooterInfo footerInfo={footerInfo} />
 
       <Section
         bg="primary-xLight"
         className="flex items-center justify-center gap-4 px-8 py-4 text-sm"
       >
         KREISEL e.V. © 2023
-        {/* {data?.footer?.imprint && (
-          <Link href={data?.footer.imprint}>Impressum</Link>
-        )}
-        {data?.footer?.agb && <Link href={data?.footer.agb}>Agb</Link>} */}
       </Section>
     </footer>
   );

@@ -1,5 +1,5 @@
 import { downloadQuery } from "../marks/Download/download.query";
-import { linkMarkQuery } from "../marks/Link/frontend/link";
+import { linkMarkQuery } from "../marks/Link/link.query";
 import { toolTipQuery } from "../marks/Tooltip/tooltip.query";
 import { EventPlugQuery } from "../Plugs/EventPlug/eventPlug.query";
 import { GSheetPlugQuery } from "../Plugs/GSheet/frontend/Gsheet";

@@ -1,5 +1,7 @@
+"use client";
+
 import { IconButton } from "components/Button/Button";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import * as React from "react";
 
 interface IBackButtonProps {}

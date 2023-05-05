@@ -1,3 +1,4 @@
+"use client";
 import { useAuth, signOut, signIn } from "lib/Auth/AuthContext";
 import Button from "components/Button/Button";
 import Svg from "components/Svg";

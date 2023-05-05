@@ -1,3 +1,4 @@
+"use client";
 import DefaultNavigationItemBase from "./components/NavItem/NavigationItemBase";
 import DefaultNavigationLink from "./components/NavItem/NavigationLink";
 import { NavigationItemBaseComponent, NavigationLinkComponent } from "./types";

@@ -1,3 +1,4 @@
+"use client";
 import { NavigationModulDropdownContainer } from "./NavigationModulDropdownContainer";
 import { NavigationItemBaseComponent, NavItem } from "../../types";
 import { useNavigationOpen } from "../../NavigationContext";

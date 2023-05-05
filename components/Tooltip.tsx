@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";

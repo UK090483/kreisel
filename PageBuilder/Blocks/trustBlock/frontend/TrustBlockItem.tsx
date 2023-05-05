@@ -1,7 +1,7 @@
 import { ITrustBlockItem } from "../trustBlock.query";
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import Typo from "components/Typography/Typography";
-import * as React from "react";
+import React from "react";
 import { useIntersection } from "react-use";
 
 interface ITrustBlockItemProps {}

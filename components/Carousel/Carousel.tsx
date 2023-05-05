@@ -1,3 +1,4 @@
+"use client";
 import Navigation from "./Navigation";
 import { useSection } from "components/Section/SectionContext";
 import clsx from "clsx";

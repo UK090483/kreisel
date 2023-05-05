@@ -50,7 +50,7 @@ const NavigationMegaMenuQuery = (locale: string = "") => `
     }
   `;
 
-const navItemQuery2 = (locale: string = "") => `
+export const navItemQuery2 = (locale: string = "") => `
       'label': coalesce(label_${locale}, label),
       'link':link{
         ${linkQuery}

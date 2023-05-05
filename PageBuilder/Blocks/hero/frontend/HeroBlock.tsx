@@ -3,7 +3,6 @@ import { Section } from "components/Section/Section";
 import useSectionSpace from "components/Section/useSectionSpace";
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import RichText from "PageBuilder/RichText/PortableText";
-import { useAppContext } from "PageBuilder/AppContext/AppContext";
 import Typo from "components/Typography/Typography";
 import clsx from "clsx";
 import React from "react";
@@ -21,18 +20,13 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
     bottomSpace,
     filterIntensity,
     filterColor,
+    title,
   } = props;
 
   const isFull = variant === "full";
   const isHalf = variant === "half" || variant === null;
-
   const spaceClasses = useSectionSpace({ topSpace, bottomSpace });
-
-  const { data } = useAppContext();
-
-  const mainImage = image || data?.image;
-
-  const title = data?.title;
+  const mainImage = image;
 
   return (
     <Section

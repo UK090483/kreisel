@@ -4,20 +4,21 @@ import Typo from "components/Typography/Typography";
 import React from "react";
 
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 interface TherapistListItemProps extends TherapistResult {}
 
 const TherapistListItem: React.FC<TherapistListItemProps> = (props) => {
   const { firstName, name, city, zipCode, description, _id, image } = props;
 
-  const r = useRouter();
-  const { query, asPath } = r;
+  // const r = useRouter();
+  // const { query, asPath } = r;
 
-  const baseUrl =
-    query.slug && Array.isArray(query.slug)
-      ? query.slug.map((i) => i.trim()).join("/")
-      : "";
+  // const baseUrl =
+  //   query.slug && Array.isArray(query.slug)
+  //     ? query.slug.map((i) => i.trim()).join("/")
+  //     : "";
+
+  const baseUrl = "";
 
   return (
     <li className={`mb-2 w-full   rounded-theme p-0.5`}>

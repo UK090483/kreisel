@@ -1,15 +1,15 @@
-import { ScrapeEventItem } from "./ScrapeEventItem";
+import { ScrapeEventItem, ScrapeEventPlaceholder } from "./ScrapeEventItem";
+// import fetchEvents from "./scrapeEvents";
 import { IEventPlugProps } from "../eventPlug.query";
-import { ScrapeEvent } from "pages/api/scrapeEvents";
-import React, { useEffect, useState, useCallback } from "react";
 
-const EventPlug: React.FC<IEventPlugProps> = (props) => {
+import React, { Suspense } from "react";
+
+const EventPlugComponent = async (props: IEventPlugProps) => {
+  // const scrapeEvents = await fetchEvents();
+  const scrapeEvents: any[] = [];
   const { filter } = props;
 
-  const [scrapeEvents, setScrapeEvents] = useState<null | ScrapeEvent[]>(null);
-  const [loading, setLoading] = useState(true);
-
-  const filterItems = useCallback(() => {
+  const filterItems = () => {
     if (!scrapeEvents) {
       return [];
     }
@@ -24,18 +24,7 @@ const EventPlug: React.FC<IEventPlugProps> = (props) => {
       const title = i.name.toLowerCase();
       return filterList.find((f) => title.includes(f));
     });
-  }, [filter, scrapeEvents]);
-
-  useEffect(() => {
-    fetch("/api/scrapeEvents")
-      .then((data) => data.json())
-      .then((n) => {
-        if (n.data) {
-          setScrapeEvents(n.data);
-        }
-        setLoading(false);
-      });
-  }, []);
+  };
 
   return (
     <div className="mb-3 grid grid-cols-1 gap-3">
@@ -43,6 +32,15 @@ const EventPlug: React.FC<IEventPlugProps> = (props) => {
         return <ScrapeEventItem key={item.link} {...item} />;
       })}
     </div>
+  );
+};
+
+const EventPlug: React.FC<IEventPlugProps> = (props) => {
+  return (
+    <Suspense fallback={<ScrapeEventPlaceholder />}>
+      {/* @ts-expect-error Async Server Component */}
+      <EventPlugComponent {...props} />
+    </Suspense>
   );
 };
 

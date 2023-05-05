@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import { PageData } from "./[[...slug]]";
+
 import Layout from "PageBuilder/Layout/Layout";
 import { PageProps } from "lib/SanityPageBuilder/types";
 import Cookie from "lib/Cookie/Cookie";
@@ -23,8 +23,8 @@ const PreviewPageBuilderContextProvider = lazy(
 
 const b = variables;
 interface AppPropsWithStaticProps {
-  pageProps: PageProps<PageData>;
-  Component: NextComponentType<NextPageContext, any, PageProps<PageData>> & {
+  pageProps: PageProps<any>;
+  Component: NextComponentType<NextPageContext, any, PageProps<any>> & {
     getLayout?: (page: ReactElement) => ReactNode;
   };
 }

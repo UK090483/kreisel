@@ -1,3 +1,4 @@
+"use client";
 import { SectionProps } from "./Section";
 import React from "react";
 
