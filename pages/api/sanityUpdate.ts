@@ -1,23 +1,38 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import sendMail from "@lib/Email/sendMail";
-import { handleSanityUpdate } from "@lib/onSanityUpdate/handleSanityUpdate";
+import UpdateEventManager from "@lib/onSanityUpdate/EventManager";
+import parser from "@lib/onSanityUpdate/DataParser";
+import {
+  memberLocked,
+  memberUnlocked,
+  profileLocked,
+  profileUnlocked,
+  profileChanged,
+  profileApproved,
+} from "@lib/onSanityUpdate/Events";
 import type { NextApiRequest, NextApiResponse } from "next";
-
-type Data = {
-  name: string;
-};
 
 // eslint-disable-next-line import/no-unused-modules
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<any>
 ) {
-  const { emails } = handleSanityUpdate(req.body);
+  const manager = new UpdateEventManager(
+    [
+      memberLocked,
+      memberUnlocked,
+      profileLocked,
+      profileUnlocked,
+      profileChanged,
+      profileApproved,
+    ],
+    (e, data) => {
+      console.log(e);
+    },
+    () => {
+      console.log("error");
+    }
+  );
 
-  if (emails) {
-    const emailResult = await Promise.all(emails?.map((m) => sendMail(m)));
-    // console.log(emailResult);
-  }
-
+  manager.run(parser(req.body));
   res.status(200).json({ name: "John Doe" });
 }

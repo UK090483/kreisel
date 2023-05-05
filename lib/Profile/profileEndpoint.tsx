@@ -80,7 +80,6 @@ const updateUser = async (client: SanityClient, email: string, data: any) => {
   const items = await client.fetch<{ _id: string }[]>(
     `*[_type == 'member' && email.current == '${email}' ][]`
   );
-
   const _data = { ...data, approved: false };
 
   if (items.length < 1) {

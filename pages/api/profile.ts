@@ -83,32 +83,21 @@ const updateUser = async (
   data: any,
   unset: string[] = []
 ) => {
-  const items = await client.fetch<{ _id: string }[]>(
+  const items = await client.fetch<{ _id: string; approved?: boolean }[]>(
     `*[_type == 'member' && email.current == '${email}' ][]`
   );
-
-  const _data = { ...data, approved: false };
-
+  const _data = { ...data };
   if (items.length < 1) {
     return null;
   }
   const original = items.find((i) => !i._id.startsWith("drafts"));
-  const draft = items.find((i) => i._id.startsWith("drafts"));
-
-  if (draft) {
-    return await client
-      .patch(draft._id)
-      .set(_data)
-      .unset(unset)
-      .commit({ autoGenerateArrayKeys: true });
-  }
 
   if (original) {
-    return await client.create({
-      ...original,
-      ..._data,
-      _id: "drafts." + original._id,
-    });
+    client
+      .transaction()
+      .createOrReplace({ ...original, ..._data, _id: "drafts." + original._id })
+      .patch(client.patch(original._id).set({ approved: false }))
+      .commit();
   }
 };
 
