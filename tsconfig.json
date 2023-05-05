@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,33 +16,18 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@services/*": [
-        "services/*"
-      ],
-      "@lib/*": [
-        "lib/*"
-      ],
-      "types/*": [
-        "types/*"
-      ]
+      "@services/*": ["services/*"],
+      "@lib/*": ["lib/*"],
+      "types/*": ["types/*"]
     },
-    "types": [
-      "jest",
-      "node",
-      "@types/testing-library__jest-dom"
-    ],
+    "types": ["jest", "node", "@types/testing-library__jest-dom"],
     "plugins": [
       {
         "name": "next"
       }
     ]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": [
     "node_modules",
     "studio/**",
