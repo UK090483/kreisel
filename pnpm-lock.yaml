@@ -28,6 +28,9 @@ dependencies:
   '@sanity/schema':
     specifier: ^3.9.0
     version: 3.9.0
+  '@sanity/types':
+    specifier: ^3.10.0
+    version: 3.10.0
   '@sanity/webhook':
     specifier: ^2.0.0
     version: 2.0.0

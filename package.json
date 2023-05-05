@@ -36,6 +36,7 @@
     "@sanity/client": "^5.4.2",
     "@sanity/preview-kit": "^1.4.0",
     "@sanity/schema": "^3.9.0",
+    "@sanity/types": "^3.10.0",
     "@sanity/webhook": "^2.0.0",
     "@vercel/analytics": "^1.0.0",
     "clsx": "^1.2.1",
