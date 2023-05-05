@@ -1,34 +1,62 @@
 import { isObject } from "lodash";
 
 export type PayloadDelta<T extends any> = {
-  [k: string]: { before: T; after: T };
-};
-type ParsedPayload<T extends any> = {
-  before: T;
-  after: T;
-  delta: PayloadDelta<T>;
+  [P in keyof T]?: { before?: T[P]; after?: T[P] };
 };
 
-class UpdateEventManager<T extends any> {
+type ParsedPayload<T extends any> = {
+  before: Readonly<T>;
+  after: Readonly<T>;
+  delta: Readonly<PayloadDelta<T>>;
+};
+
+export function makeEvent<const T extends UpdateEventProducer>(arg: T): T {
+  return arg;
+}
+
+class UpdateEventManager<
+  T extends any = any,
+  const P extends ReadonlyArray<UpdateEventProducer<T>> = ReadonlyArray<
+    UpdateEventProducer<T>
+  >
+> {
+  private _events: string[] = [];
+
   constructor(
-    private events: UpdateEventProducer<T>[],
-    private onEvent: (type: string, payload: ParsedPayload<T>) => void,
+    private readonly events: P,
+    private onEvent: (
+      types: P[number]["type"][],
+      payload: ParsedPayload<T>
+    ) => void,
     private onFail?: () => void
   ) {}
   run(input: any) {
     const validatedInput = this.validate(input);
     if (!validatedInput) return this.handleFail();
     this.events.forEach((e) => {
-      if (e.evaluate(validatedInput)) {
-        this.onEvent(e.type, validatedInput);
+      if (this.evaluate(e.evaluate, validatedInput)) {
+        this._events.push(e.type);
       }
     });
+    if (this._events.length > 0) {
+      this.onEvent([...this._events], validatedInput);
+      this._events = [];
+    }
+  }
+
+  evaluate(e: UpdateEventProducer["evaluate"], payload: ParsedPayload<T>) {
+    if (Array.isArray(e)) {
+      return !e.map((i) => i(payload)).includes(false);
+    }
+    //@ts-ignore
+    return e(payload);
   }
   private handleFail() {
     if (this.onFail) {
       this.onFail();
     }
   }
+
   private validate: (input: any) => ParsedPayload<T> | null = (input) => {
     if (
       !isObject(input?.before) ||
@@ -40,10 +68,14 @@ class UpdateEventManager<T extends any> {
   };
 }
 
-export interface UpdateEventProducer<T extends any = any> {
-  type: string;
-  evaluate: (input: ParsedPayload<T>) => boolean;
-}
+export type evaluation<T extends any = any> = (
+  input: ParsedPayload<T>
+) => boolean;
+
+export type UpdateEventProducer<T extends any = any> = {
+  readonly type: string;
+  evaluate: evaluation<T> | Readonly<evaluation<T>[]>;
+};
 
 export type UpdateEventParser<T extends any = any> = (
   input: any

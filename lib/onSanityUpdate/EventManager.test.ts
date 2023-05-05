@@ -4,6 +4,7 @@ const run = (data: any, eventHandler?: any[]) => {
   const failHandler = jest.fn();
   const callback = jest.fn();
   const evaluateTrue = jest.fn().mockReturnValue(true);
+  const evaluateTrue2 = jest.fn().mockReturnValue(true);
   const evaluateFalse = jest.fn().mockReturnValue(false);
 
   const EventManager = new UpdateEventManager(
@@ -15,6 +16,10 @@ const run = (data: any, eventHandler?: any[]) => {
       {
         type: "testEvent",
         evaluate: evaluateTrue,
+      },
+      {
+        type: "testEvent2",
+        evaluate: evaluateTrue2,
       },
       ...(eventHandler ? eventHandler : []),
     ],
@@ -64,6 +69,9 @@ describe("UpdateEventManager", () => {
   it("should callback", () => {
     const { callback } = run(testData);
     expect(callback).toHaveBeenCalledTimes(1);
-    expect(callback).toHaveBeenCalledWith("testEvent", testData);
+    expect(callback).toHaveBeenCalledWith(
+      ["testEvent", "testEvent2"],
+      testData
+    );
   });
 });
