@@ -1,14 +1,12 @@
 import { ScrapeEventItem, ScrapeEventPlaceholder } from "./ScrapeEventItem";
-// import fetchEvents from "./scrapeEvents";
+import fetchEvents from "./scrapeEvents";
 import { IEventPlugProps } from "../eventPlug.query";
 
 import React, { Suspense } from "react";
 
 const EventPlugComponent = async (props: IEventPlugProps) => {
-  // const scrapeEvents = await fetchEvents();
-  const scrapeEvents: any[] = [];
+  const scrapeEvents = await fetchEvents();
   const { filter } = props;
-
   const filterItems = () => {
     if (!scrapeEvents) {
       return [];

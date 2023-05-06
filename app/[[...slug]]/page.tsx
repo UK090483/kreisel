@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unused-modules */
 import fetchPageData from "./fetchPageData";
 import BodyParser from "@lib/SanityPageBuilder/lib/BodyParser/BodyParser";
 import HeroBlock from "PageBuilder/Blocks/hero/frontend/HeroBlock";
@@ -11,6 +12,8 @@ import React from "react";
 type Props = {
   params: { slug?: string[] };
 };
+
+export const revalidate = 1;
 
 const Page = async (props: Props) => {
   const slug = props.params?.slug
@@ -43,5 +46,4 @@ const Page = async (props: Props) => {
   );
 };
 
-// eslint-disable-next-line import/no-unused-modules
 export default Page;

@@ -18,8 +18,6 @@ const HeroBlock: React.FC<HeroBlogResult> = (props) => {
     transitionBottom,
     topSpace,
     bottomSpace,
-    filterIntensity,
-    filterColor,
     title,
   } = props;
 

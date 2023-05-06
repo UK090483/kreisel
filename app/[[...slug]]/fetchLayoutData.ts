@@ -1,3 +1,4 @@
+import { withTimeLog } from "@lib/utils";
 import { sanityClient } from "@services/SanityService/sanity.server";
 import {
   IFooterInfo,
@@ -9,10 +10,7 @@ import { navItemQuery2 } from "PageBuilder/Navigation/navigation.query";
 import { cache } from "react";
 
 const getLayoutData = cache(async (navType: "mainNav" | "memberNav") => {
-  const c = Math.random().toString().slice(3, 7);
-  // eslint-disable-next-line no-console
-  console.time(`layoutFetch-${c} took`);
-  const result = await sanityClient.fetch<{
+  return sanityClient.fetch<{
     nav: any;
     footerInfo: IFooterInfo;
     contact: IFooterContact;
@@ -32,9 +30,9 @@ const getLayoutData = cache(async (navType: "mainNav" | "memberNav") => {
       }
     `
   );
-  // eslint-disable-next-line no-console
-  console.timeEnd(`layoutFetch-${c} took`);
-  return result;
 });
 
-export default getLayoutData;
+export default withTimeLog(
+  getLayoutData,
+  (id, type) => `fetch layoutData_${id} in`
+);

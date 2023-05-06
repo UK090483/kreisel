@@ -1,3 +1,4 @@
+import { withTimeLog } from "@lib/utils";
 import { sanityClient } from "@services/SanityService/sanity.server";
 import { heroBlockQuery } from "PageBuilder/Blocks/hero/hero.query";
 import { listingBlockQuery } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
@@ -22,4 +23,7 @@ const getPageData = async (slug: string) => {
   return result;
 };
 
-export default getPageData;
+export default withTimeLog(
+  getPageData,
+  (id, slug) => `fetch pageData_${id} slug: ${slug} in`
+);
