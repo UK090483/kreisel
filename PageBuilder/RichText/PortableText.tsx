@@ -3,7 +3,7 @@ import HandUnderline from "./marks/HandUnderline/frontend/handUnderline";
 import ImagePlug from "./Plugs/ImagePlug/ImagePlug";
 import ImageGalleryPlug from "./Plugs/ImageGaleriePlug/ImageGaleriePlug";
 import InfoboxPlug from "./Plugs/InfoBoxPlug/frontend/InfoBoxPlug";
-import EventPlug from "./Plugs/EventPlug/frontend/appDirect/EventPlug";
+import EventPlug from "./Plugs/EventPlug/frontend/Eventplug";
 import EmbedHTML from "./Plugs/EmbedHTML/EmbedHTML";
 import SpacerPlug from "./Plugs/Spacer/frontend/Spacer";
 import Tooltip from "./marks/Tooltip/frontend/tooltip";
