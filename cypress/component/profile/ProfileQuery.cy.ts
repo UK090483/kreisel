@@ -14,7 +14,7 @@ const fieldsToValues = (fields: any[]) => {
         value = [`${i.name}_value`];
       }
       if (i.type === "image") {
-        value = {};
+        value = { url: null };
       }
       if (i.type === "boolean") {
         value = true;

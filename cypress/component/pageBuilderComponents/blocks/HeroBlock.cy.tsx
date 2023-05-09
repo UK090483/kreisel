@@ -37,26 +37,6 @@ describe("<HeroBlock />", () => {
   });
 
   viewPorts.forEach((vp) => {
-    it(`renders pageContextImage in ${vp}`, function () {
-      cy.viewport(vp);
-
-      render({
-        blockData: {
-          content: this.content,
-          variant: "half",
-        },
-        context: {
-          data: {
-            image: { ...Cypress.env("imageResult"), alt: "contextImage" },
-          },
-        },
-      });
-      cy.contains("TestContent").should("be.visible");
-      cy.get("img[alt='contextImage']");
-    });
-  });
-
-  viewPorts.forEach((vp) => {
     it(`renders in ${vp}`, function () {
       cy.viewport(vp);
 

@@ -1,3 +1,5 @@
+"use client";
+
 import EventPlugComponent from "./EventPlugComponent";
 import { IEventPlugProps } from "../eventPlug.query";
 import { ScrapeEvent } from "pages/api/scrapeEvents";
