@@ -1,5 +1,5 @@
 import { EventWrap } from "./EventWrap";
-import { ScrapeEvent } from "./scrapeEvents";
+import { ScrapeEvent } from "./appDirect/scrapeEvents";
 import { PureKreisel } from "components/Kreisel";
 import Typo from "components/Typography/Typography";
 import clsx from "clsx";

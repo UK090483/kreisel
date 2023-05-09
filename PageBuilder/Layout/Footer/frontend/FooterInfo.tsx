@@ -6,7 +6,7 @@ import React from "react";
 import clsx from "clsx";
 
 type Props = {
-  footerInfo: IFooterInfo;
+  footerInfo?: IFooterInfo;
 };
 
 const FooterInfo = ({ footerInfo }: Props) => {
