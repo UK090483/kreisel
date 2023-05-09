@@ -5,13 +5,14 @@ import Avatar from "components/Avatar";
 import RichText from "PageBuilder/RichText/PortableText";
 
 interface FooterContactProps {
-  contact: IFooterContact;
+  contact?: IFooterContact;
 }
 
 const FooterContact: React.FC<FooterContactProps> = ({ contact }) => {
   const avatars = contact?.persons;
-  const avatarCount = avatars ? avatars.length : 0;
-  if (!contact.content && !contact.persons) return null;
+
+  if (!contact) return null;
+  if (contact && !contact.content && !contact.persons) return null;
 
   return (
     <Section

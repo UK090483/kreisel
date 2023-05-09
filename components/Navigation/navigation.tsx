@@ -21,10 +21,7 @@ const Navigation = ({ nav }: NavigationProps) => {
 
           <div className="hidden w-full items-center justify-center lg:flex">
             {/* <NavigationMenuDemo items={nav} /> */}
-            <HeaderNavigation
-              items={nav}
-              // NavigationItemBase={NavItemBaseWithUnderline}
-            />
+            <HeaderNavigation items={nav} />
           </div>
 
           <ContactButton className="mr-3 hidden xl:block" />

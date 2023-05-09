@@ -1,45 +1,20 @@
-import { ScrapeEventItem, ScrapeEventPlaceholder } from "./ScrapeEventItem";
-import fetchEvents from "./scrapeEvents";
+import EventPlugComponent from "./EventPlugComponent";
 import { IEventPlugProps } from "../eventPlug.query";
+import { ScrapeEvent } from "pages/api/scrapeEvents";
+import useSWR from "swr";
+import React from "react";
 
-import React, { Suspense } from "react";
-
-const EventPlugComponent = async (props: IEventPlugProps) => {
-  const scrapeEvents = await fetchEvents();
-  const { filter } = props;
-  const filterItems = () => {
-    if (!scrapeEvents) {
-      return [];
-    }
-    if (!scrapeEvents || !filter) {
-      return scrapeEvents;
-    }
-    const filterList = filter.split(",").map((i) => i.trim().toLowerCase());
-    return scrapeEvents.filter((i) => {
-      if (!i.name) {
-        return false;
-      }
-      const title = i.name.toLowerCase();
-      return filterList.find((f) => title.includes(f));
-    });
-  };
-
-  return (
-    <div className="mb-3 grid grid-cols-1 gap-3">
-      {filterItems().map((item, index) => {
-        return <ScrapeEventItem key={item.link} {...item} />;
-      })}
-    </div>
-  );
-};
+const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
 const EventPlug: React.FC<IEventPlugProps> = (props) => {
-  return (
-    <Suspense fallback={<ScrapeEventPlaceholder />}>
-      {/* @ts-expect-error Async Server Component */}
-      <EventPlugComponent {...props} />
-    </Suspense>
+  const { data, error } = useSWR<{ data: ScrapeEvent[] }>(
+    "/api/scrapeEvents",
+    fetcher
   );
+
+  if (!data?.data) return null;
+
+  return <EventPlugComponent scrapeEvents={data.data} />;
 };
 
 export default EventPlug;

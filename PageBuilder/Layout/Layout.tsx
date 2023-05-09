@@ -1,4 +1,5 @@
 // import Footer from "./Footer/frontend/Footer";
+import Footer from "./Footer/frontend/Footer";
 import Head from "./Head";
 import { Header } from "./Header";
 import Nav from "./Navigation/Nav";
@@ -54,7 +55,10 @@ const Layout: React.FC<PropsWithChildren> = (props) => {
       >
         {children}
       </main>
-      {/* <Footer /> */}
+      <Footer
+        contact={data?.footer?.contact}
+        footerInfo={data?.footer?.footerInfo}
+      />
     </>
   );
 };

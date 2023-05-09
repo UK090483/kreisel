@@ -5,8 +5,8 @@ import React from "react";
 import { Section } from "components/Section/Section";
 
 interface FooterProps {
-  contact: IFooterContact;
-  footerInfo: IFooterInfo;
+  contact?: IFooterContact;
+  footerInfo?: IFooterInfo;
 }
 
 const Footer: React.FC<FooterProps> = ({ contact, footerInfo }) => {
