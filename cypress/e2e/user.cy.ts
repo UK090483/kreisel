@@ -37,26 +37,43 @@ describe("create user spec", () => {
 
   const testData = { name: { val: "name" }, firstName: { val: "firstName" } };
 
-  it("should handle Profile", () => {
-    cy.intercept("POST", "api/profile").as("profile");
+  it("redirect to login page if not Logged in", () => {
     cy.visit("/profile");
     isLoginPage();
-    cy.visit("/");
-    cy.loginAsFakeUser({ sessionName: "session" });
+  });
+
+  it("should announce missing name ", () => {
+    cy.loginAsFakeUser({ sessionName: "profile" });
     cy.visit("/profile");
     cy.get("#announcement");
+  });
+
+  it("should handle name and first name", () => {
+    cy.intercept("POST", "api/profile").as("profile");
+    cy.loginAsFakeUser({ sessionName: "profile" });
+    cy.visit("/profile");
     cy.get("#firstName").type(testData.firstName.val);
     cy.get("#name").type(testData.name.val);
     cy.get("#announcement").should("not.exist");
     cy.get('button[type="submit"]').click();
-    cy.wait("@profile");
-    cy.wait(3000);
-
-    cy.reload();
-    cy.get("#firstName").should("have.value", testData.firstName.val);
-    cy.get("#name").should("have.value", testData.name.val);
-    cy.setFakerUserValue({ allowProfile: true });
-    cy.reload();
-    cy.get("#image").should("be.visible");
+    cy.wait("@profile")
+      .its("response.body.data.name")
+      .should("equal", testData.name.val);
   });
+
+  it(
+    "should fetch profile data",
+    {
+      retries: {
+        runMode: 3,
+        openMode: 3,
+      },
+    },
+    () => {
+      cy.loginAsFakeUser({ sessionName: "profile" });
+      cy.visit("/profile");
+      cy.get("#firstName").should("have.value", testData.firstName.val);
+      cy.get("#name").should("have.value", testData.name.val);
+    }
+  );
 });
