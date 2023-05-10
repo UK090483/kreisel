@@ -6,6 +6,7 @@
     "defaults"
   ],
   "scripts": {
+    "do":"./scripts/do",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
