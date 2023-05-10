@@ -2,8 +2,9 @@ import Button from "components/Button/Button";
 import Input from "components/Inputs/Input";
 import AuthLayout from "components/Layout/AuthLayout";
 import React, { ReactElement, ReactNode } from "react";
-import { getSession, getCsrfToken } from "next-auth/react";
-import { NextPage } from "next";
+import { getCsrfToken, signIn } from "next-auth/react";
+// import { getServerSession } from "next-auth/next"
+import { GetServerSideProps, NextPage } from "next";
 import { Session } from "next-auth";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -27,6 +28,8 @@ const validation = object({
 });
 const SignIn: NextPageWithLayout<LoginProps> = (props) => {
   const { csrfToken } = props;
+
+  console.log(props);
 
   const methods = useForm<Inputs>({
     mode: "onTouched",
@@ -55,25 +58,37 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
           Back to HomePage
         </Button>
       </form>
+
+      <button
+        onClick={() => {
+          signIn("email", { email: "konradullrich@me.com" });
+        }}
+      >
+        Boooooom
+      </button>
     </FormProvider>
   );
 };
 
-SignIn.getInitialProps = async (context) => {
+// eslint-disable-next-line import/no-unused-modules
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const { req, res } = context;
-  const session = await getSession({ req });
+  //const session = await getServerSession(req, res, authOptions)
 
-  if (session && res && session.user) {
-    res.writeHead(302, {
-      Location: "/",
-    });
-    res.end();
-    return {};
-  }
+  // if (session && res && session.user) {
+  //   res.writeHead(302, {
+  //     Location: "/",
+  //   });
+  //   res.end();
+  //   return {};
+  // }
+
+  const csrfToken = await getCsrfToken(context);
 
   return {
-    session: await getSession(context),
-    csrfToken: await getCsrfToken(context),
+    props: {
+      csrfToken,
+    },
   };
 };
 

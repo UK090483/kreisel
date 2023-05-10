@@ -1,4 +1,5 @@
 import { fetchStaticPropsProps, PageProps } from "../../types";
+import { withTimeLog } from "@lib/utils";
 import { GetStaticPropsResult } from "next";
 
 async function fetchStaticProps<P>(
@@ -25,9 +26,6 @@ async function fetchStaticProps<P>(
 
   const type = pageType === "person" ? "person" : "page";
 
-  // eslint-disable-next-line no-console
-  console.time(slug);
-
   const localizedQuery = (slug: string) =>
     Object.keys(locales).reduce((acc, item) => {
       //@ts-ignore
@@ -49,14 +47,16 @@ async function fetchStaticProps<P>(
     ${previewQuery}
    }`;
 
-  const data = await client.fetch(fetch);
+  const data = await withTimeLog(
+    (query: string) => {
+      return client.fetch(query);
+    },
+    (id) => `fetch page ${slug} ____${id}`
+  )(fetch);
 
   if (!data) {
     return { notFound: true, revalidate };
   }
-
-  // eslint-disable-next-line no-console
-  console.timeEnd(slug);
 
   return {
     props: {
