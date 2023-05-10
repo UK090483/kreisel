@@ -10,15 +10,21 @@ describe("create user spec", () => {
 
   it("creates user", () => {
     cy.visit("/");
-    cy.loginAsFakeUser();
-    cy.url().should("include", "/profile");
+    cy.loginAsFakeUser({
+      sessionName: "session",
+      options: {
+        validate: () => {
+          cy.url().should("include", "/profile");
+        },
+      },
+    });
   });
 
   it("should handle memberPages ", () => {
     cy.visit("/mitgliederbereich");
     isLoginPage();
     cy.visit("/");
-    cy.loginAsFakeUser();
+    cy.loginAsFakeUser({ sessionName: "session" });
     cy.get('[href="/mitgliederbereich"]', {}).should("not.exist");
     cy.setFakerUserValue({ allowMember: true });
     cy.visit("/");
@@ -31,12 +37,12 @@ describe("create user spec", () => {
 
   const testData = { name: { val: "name" }, firstName: { val: "firstName" } };
 
-  it.only("should handle Profile", () => {
+  it("should handle Profile", () => {
     cy.intercept("POST", "api/profile").as("profile");
     cy.visit("/profile");
     isLoginPage();
     cy.visit("/");
-    cy.loginAsFakeUser();
+    cy.loginAsFakeUser({ sessionName: "session" });
     cy.visit("/profile");
     cy.get("#announcement");
     cy.get("#firstName").type(testData.firstName.val);
@@ -44,7 +50,7 @@ describe("create user spec", () => {
     cy.get("#announcement").should("not.exist");
     cy.get('button[type="submit"]').click();
     cy.wait("@profile");
-    cy.wait(1000);
+    cy.wait(3000);
 
     cy.reload();
     cy.get("#firstName").should("have.value", testData.firstName.val);
