@@ -1,7 +1,7 @@
 import { EventWrap } from "./EventWrap";
 import { ScrapeEvent } from "./appDirect/scrapeEvents";
-import { PureKreisel } from "components/Kreisel";
-import Typo from "components/Typography/Typography";
+import { PureKreisel } from "components/Atoms/Kreisel";
+import Typo from "components/Atoms/Typography/Typography";
 import clsx from "clsx";
 import React from "react";
 const url = "https://www.kcs4web.de/kcs4webhcm/";

@@ -1,6 +1,6 @@
 import useCookie from "./useCookie";
 import CookieIcon from "./CookieIcon";
-import Button from "components/Button/Button";
+import Button from "components/Atoms/Button/Button";
 import React from "react";
 
 import { useRouter } from "next/router";

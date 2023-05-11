@@ -1,5 +1,5 @@
-import AuthLayout from "components/Layout/AuthLayout";
-import Typo from "components/Typography/Typography";
+import AuthLayout from "components/Organism/Layout/AuthLayout";
+import Typo from "components/Atoms/Typography/Typography";
 import { NextPage } from "next";
 import { ReactElement, ReactNode } from "react";
 

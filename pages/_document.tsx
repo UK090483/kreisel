@@ -1,4 +1,4 @@
-import { variables } from "components/fonts";
+import { variables } from "styles/fonts";
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import Document, { Head, Html, Main, NextScript } from "next/document";
 

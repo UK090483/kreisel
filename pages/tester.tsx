@@ -1,9 +1,9 @@
-import NavigationMenu from "components/Navigation/NavigationMenu";
+import NavigationMenu from "components/Molecules/Navigation/New/NavigationMenu";
 import {
   linkItem,
   listItem,
   MultiListItem,
-} from "components/Navigation/testData";
+} from "components/Molecules/Navigation/New/testData";
 
 const Home = () => {
   return (

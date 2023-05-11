@@ -1,9 +1,6 @@
-// import Footer from "./Footer/frontend/Footer";
-import Footer from "./Footer/frontend/Footer";
 import Head from "./Head";
-import { Header } from "./Header";
-import Nav from "./Navigation/Nav";
-import { BackButton } from "components/Layout/BackButton";
+import { Footer, Header } from "components";
+import { BackButton } from "components/Organism/Layout/BackButton";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
 
 import React, {
@@ -40,13 +37,7 @@ const Layout: React.FC<PropsWithChildren> = (props) => {
 
   return (
     <>
-      {isGlossary ? (
-        <BackButton />
-      ) : (
-        <Header>
-          <Nav items={data?.navigation || []} />
-        </Header>
-      )}
+      {isGlossary ? <BackButton /> : <Header items={data?.navigation || []} />}
       <Head name={data?.title} />
       <main
         className={`min-h-screen antialiased transition-all duration-500 ease-out ${
@@ -55,10 +46,7 @@ const Layout: React.FC<PropsWithChildren> = (props) => {
       >
         {children}
       </main>
-      <Footer
-        contact={data?.footer?.contact}
-        footerInfo={data?.footer?.footerInfo}
-      />
+      <Footer contact={data?.footer?.contact} info={data?.footer?.footerInfo} />
     </>
   );
 };

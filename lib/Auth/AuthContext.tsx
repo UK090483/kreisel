@@ -1,5 +1,5 @@
 "use client";
-import Kreisel from "components/Kreisel";
+import Kreisel from "components/Atoms/Kreisel";
 import React, { useContext } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";

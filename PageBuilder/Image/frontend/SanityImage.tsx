@@ -1,6 +1,6 @@
 "use client";
 
-import { PureKreisel } from "components/Kreisel";
+import { PureKreisel } from "components/Atoms/Kreisel";
 import clsx from "clsx";
 import Image, { ImageLoader, ImageProps } from "next/image";
 

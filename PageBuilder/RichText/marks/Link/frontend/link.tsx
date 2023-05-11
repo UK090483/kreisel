@@ -1,19 +1,19 @@
 "use client";
 import { LinkMarkPros } from "../link.query";
-import { Link } from "components/Link";
+import Link from "components/Atoms/Link";
 
-import Button from "components/Button/Button";
-import { useSection } from "components/Section/SectionContext";
+import Button from "components/Atoms/Button/Button";
+import { useSection } from "components/Atoms/Section/SectionContext";
 import React from "react";
 
 import clsx from "clsx";
 
 const LinkMark: React.FC<React.PropsWithChildren<LinkMarkPros>> = (props) => {
-  const { bg } = useSection();
+  const { bgColor } = useSection();
 
   const { link, asButton } = props;
 
-  const dark = bg === "primary-light";
+  const dark = bgColor === "primary-light";
 
   if (asButton) {
     return (

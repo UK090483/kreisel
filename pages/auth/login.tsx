@@ -1,6 +1,6 @@
-import Button from "components/Button/Button";
-import Input from "components/Inputs/Input";
-import AuthLayout from "components/Layout/AuthLayout";
+import Button from "components/Atoms/Button/Button";
+import Input from "components/Molecules/Inputs/Input";
+import AuthLayout from "components/Organism/Layout/AuthLayout";
 import React, { ReactElement, ReactNode } from "react";
 import { getCsrfToken, signIn } from "next-auth/react";
 // import { getServerSession } from "next-auth/next"

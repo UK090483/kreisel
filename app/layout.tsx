@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unused-modules */
 
 import "../styles/globals.css";
-import { variables } from "components/fonts";
+import { variables } from "styles/fonts";
 
 import { AuthContextProvider } from "@lib/Auth/AuthContext";
 import SessionProviderWrap from "@lib/Auth/SessionProvider";

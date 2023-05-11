@@ -1,4 +1,4 @@
-import Underline from "components/Underline/Underline";
+import Underline from "components/Atoms/Underline/Underline";
 
 import React, { ReactNode } from "react";
 

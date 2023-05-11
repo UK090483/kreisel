@@ -1,5 +1,5 @@
 import { DownloadResult } from "../download.query";
-import { Link } from "components/Link";
+import Link from "components/Atoms/Link";
 
 const Download: React.FC<React.PropsWithChildren<DownloadResult>> = (props) => {
   const { url, children } = props;

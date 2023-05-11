@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unused-modules */
 import fetchLayoutData from "./fetchLayoutData";
-import Navigation from "components/Navigation/navigation";
-import Footer from "PageBuilder/Layout/Footer/frontend/Footer";
+import Navigation from "components/Molecules/Navigation/New/navigation";
+import { Footer } from "components";
 
 type Props = {
   children: React.ReactNode;
@@ -24,7 +24,7 @@ export default async function RootLayout(props: Props) {
     <>
       <Navigation nav={nav} />
       {children}
-      <Footer contact={contact} footerInfo={footerInfo} />
+      <Footer contact={contact} info={footerInfo} />
     </>
   );
 }

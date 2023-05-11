@@ -1,5 +1,5 @@
 import { ImageGalleryPlugResult } from "../InfoBoxPlug.query";
-import Typo from "components/Typography/Typography";
+import Typo from "components/Atoms/Typography/Typography";
 import RichText from "PageBuilder/RichText/PortableText";
 import React from "react";
 

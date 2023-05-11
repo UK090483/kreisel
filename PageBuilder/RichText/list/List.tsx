@@ -1,4 +1,4 @@
-import Typo from "components/Typography/Typography";
+import Typo from "components/Atoms/Typography/Typography";
 import clsx from "clsx";
 import * as React from "react";
 import {
