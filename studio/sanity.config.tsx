@@ -9,7 +9,7 @@ import { deskTool } from "sanity/desk";
 import { documentListWidget } from "sanity-plugin-dashboard-widget-document-list";
 import { dashboardTool } from "@sanity/dashboard";
 // eslint-disable-next-line import/no-unresolved
-import { theme } from "https://themer.sanity.build/api/hues?primary=f9de83";
+// import { theme } from "https://themer.sanity.build/api/hues?primary=f9de83";
 
 import { media } from "sanity-plugin-media";
 import { visionTool } from "@sanity/vision";
@@ -17,15 +17,16 @@ import { vercelDeployTool } from "sanity-plugin-vercel-deploy";
 // *[_type == 'page' && content[].content[].children[].text match "lorem"  ]
 // eslint-disable-next-line import/no-unused-modules
 export default defineConfig({
-  theme,
+  // theme,
   name: "default",
   title: "KREISEL",
-  projectId: import.meta.env?.SANITY_STUDIO_PROJECT_ID,
-  dataset: import.meta.env?.SANITY_STUDIO_DATASET,
+
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID,
+  dataset: process.env.SANITY_STUDIO_DATASET,
   plugins: [
     deskTool({ structure }),
     media(),
-    ...(import.meta.env?.MODE === "development" ? [visionTool()] : []),
+    ...(process.env.NODE_ENV === "development" ? [visionTool()] : []),
     dashboardTool({
       widgets: [
         documentListWidget({

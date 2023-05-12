@@ -1,4 +1,4 @@
-import { LinkResult, linkQuery } from "PageBuilder/Navigation/navigation.query";
+import { LinkResult, linkQuery } from "../../../Navigation/navigation.query";
 
 export const linkMarkQuery = `
 _type == "link" => {

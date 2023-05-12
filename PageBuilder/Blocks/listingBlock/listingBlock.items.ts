@@ -1,8 +1,5 @@
 import { listingBuilderItem } from "./listingBuilder/types";
-import {
-  AKTUELLES_PAGE_TYPE_ID,
-  BLOG_PAGE_TYPE_ID,
-} from "PageBuilder/constants";
+import { AKTUELLES_PAGE_TYPE_ID, BLOG_PAGE_TYPE_ID } from "../../constants";
 
 type PagesListingItem = {
   items: string;

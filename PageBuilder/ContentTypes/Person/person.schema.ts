@@ -1,5 +1,5 @@
-import { getSlugField } from "PageBuilder/schemaHelper/getSlugField";
-import { defaultBockContent } from "PageBuilder/schemaHelper/snippets";
+import { getSlugField } from "../../schemaHelper/getSlugField";
+import { defaultBockContent } from "../../schemaHelper/snippets";
 import { defineType } from "sanity";
 
 export default defineType({

@@ -1,8 +1,8 @@
 import listingBlockItems from "./listingBlock.items";
 import { buildListingFields } from "./listingBuilder/buildSchema";
-import { blockStyle } from "PageBuilder/schemaHelper/blockStyle";
-import { getFieldGroups } from "PageBuilder/schemaHelper/getFieldGroup";
-import sectionTitle from "PageBuilder/schemaHelper/sectionTitle";
+import { blockStyle } from "../../schemaHelper/blockStyle";
+import { getFieldGroups } from "../../schemaHelper/getFieldGroup";
+import sectionTitle from "../../schemaHelper/sectionTitle";
 import { MdViewList } from "react-icons/md";
 
 const listingSchema = {

@@ -1,4 +1,4 @@
-import { colorList } from "PageBuilder/schemaHelper/snippets";
+import { colorList } from "../../../schemaHelper/snippets";
 import { defineType } from "sanity";
 
 export default defineType({

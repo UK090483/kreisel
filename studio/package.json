@@ -7,7 +7,7 @@
   "author": "Konrad Ullrich <Konradullrich@me.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "gql":"sanity graphql deploy",
+    "gql": "sanity graphql deploy",
     "start": "sanity start",
     "build": "sanity build",
     "dev": "sanity dev",
@@ -30,7 +30,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-is": "^18.2.0",
-    "sanity": "^3.9.1",
+    "sanity": "^3.10.3",
     "sanity-plugin-dashboard-widget-document-list": "^1.0.1",
     "sanity-plugin-iframe-pane": "^2.1.1",
     "sanity-plugin-media": "^2.0.0-v3-studio.3",

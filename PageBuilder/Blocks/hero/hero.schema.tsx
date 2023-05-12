@@ -2,9 +2,9 @@ import {
   blockBgColor,
   blockSpace,
   blockTransitions,
-} from "PageBuilder/schemaHelper/blockStyle";
-import { getFieldGroups } from "PageBuilder/schemaHelper/getFieldGroup";
-import sectionTitle from "PageBuilder/schemaHelper/sectionTitle";
+} from "../../schemaHelper/blockStyle";
+import { getFieldGroups } from "../../schemaHelper/getFieldGroup";
+import sectionTitle from "../../schemaHelper/sectionTitle";
 
 const heroSchema = {
   name: "hero",

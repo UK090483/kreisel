@@ -1,6 +1,6 @@
-import { imageQuery } from "PageBuilder/Image/sanityImage.query";
+import { imageQuery } from "../../../Image/sanityImage.query";
 
-import type { ImageResult } from "PageBuilder/Image/sanityImage.query";
+import type { ImageResult } from "../../../Image/sanityImage.query";
 
 export type ImagePlugProps = {
   image?: ImageResult | null;

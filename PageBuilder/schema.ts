@@ -47,7 +47,7 @@ import siteConfigSchema, {
 } from "./Settings/SiteConfig.schema";
 
 const schema = [
-  // Plugs
+  // Plugs----
   tooltipSchema,
   tooltipPlug,
   gSheetSchema,
@@ -61,31 +61,29 @@ const schema = [
   spacerSchema,
   underlineSchema,
   // Config
-
   siteConfigSchema,
   contactItemSchema,
   footerSchema,
   footerItemSchema,
-  // objects
-
+  // objects-----------------
   ...Navigation,
   linkSchema,
   tagSchema,
   tagsSchema,
   seoSchema,
-  // ContentTypes
+  // ContentTypes---
   PageSchema,
   pageTypeSchema,
   testimonialSchema,
   personSchema,
   memberSchema,
   articleSchema,
-  // RichText
+  // RichText---
   defaultRichTextSchema,
   defaultImageSchema,
   headerRichTextSchema,
   easyRichtextSchema,
-  // Blocks
+  // Blocks----
   heroSchema,
   listingSchema,
   trustBlockSchema,
@@ -93,9 +91,6 @@ const schema = [
   reusableBlock,
   reusableDocument,
   SectionSchema,
-
-  //
-
   logSchema,
   logItem,
   // underlineSchema,
