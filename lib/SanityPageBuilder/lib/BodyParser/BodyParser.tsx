@@ -1,17 +1,25 @@
 import React, { ComponentType } from "react";
 
-type BodyParserProps = {
-  components: { [k: string]: { component: ComponentType<any> } };
-  content: any[];
+type pageBuilderBlock = { _type: string; [k: string]: any };
+type pageBuilderBlocks = pageBuilderBlock[];
+
+type BodyParserProps<T extends pageBuilderBlocks> = {
+  components: {
+    [K in T[number] as K["_type"]]: { component: ComponentType<K> };
+  };
+  content: T;
 };
-const BodyParser: React.FC<BodyParserProps> = (props) => {
+
+function BodyParser<T extends pageBuilderBlocks>(props: BodyParserProps<T>) {
   const { components, content } = props;
 
   return (
     <>
       {content &&
         content.map((block) => {
+          //@ts-ignore
           if (components[block._type]) {
+            //@ts-ignore
             const Component = components[block._type].component;
             return <Component key={block._key} {...block} />;
           }
@@ -25,6 +33,6 @@ const BodyParser: React.FC<BodyParserProps> = (props) => {
         })}
     </>
   );
-};
+}
 
 export default BodyParser;

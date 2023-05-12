@@ -1,9 +1,9 @@
 import GridGalerie from "./Variants/Grid/GridGalery";
 import CarouselGallery from "./Variants/Carousel/CarouselGalery";
-import React from "react";
 
 import { ImageSrc } from "components/Atoms/Image";
 import { LinkProps } from "components/Atoms/Link";
+import React from "react";
 
 export interface ImageGalleryItemProps {
   title?: string;

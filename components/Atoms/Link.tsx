@@ -1,5 +1,7 @@
-import LinkAdapter from "components/Adapter/LinkAdapter";
+import LinkAdapter, { LinkSource as Ls } from "components/Adapter/LinkAdapter";
 import React, { PropsWithChildren } from "react";
+
+export type LinkSource = Ls;
 
 export type LinkProps = {
   external?: boolean;

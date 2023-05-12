@@ -1,7 +1,7 @@
 import ImageGalleryItem from "./GridGalerieItem";
+import { IImageGalleryProps } from "../../ImageGalerie";
 import clsx from "clsx";
 import * as React from "react";
-import { IImageGalleryProps } from "../../ImageGalerie";
 
 const GridGalerie: React.FunctionComponent<IImageGalleryProps> = (props) => {
   const { items, rows = 4, rows_mobile = 2, ratio = "1:1" } = props;
@@ -33,6 +33,7 @@ const GridGalerie: React.FunctionComponent<IImageGalleryProps> = (props) => {
         const { size = "m", bgColor = "primary", ...rest } = item;
         return (
           <ImageGalleryItem
+            key={item._key}
             {...rest}
             className={clsx({
               "aspect-w-10 aspect-h-10 ": ratio === "1:1",

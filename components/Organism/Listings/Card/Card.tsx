@@ -1,31 +1,30 @@
+/* eslint-disable jsx-a11y/alt-text */
 import CardWrap from "./CardWrap";
 import CardBody from "./CardBody";
 
 import Image, { ImageSrc } from "components/Atoms/Image";
-import { LinkProps } from "components/Atoms/Link";
+import { LinkSource } from "components/Atoms/Link";
 import Typo from "components/Atoms/Typography";
 
-import React from "react";
 import Content, {
   ContentSource,
   validateContentSource,
 } from "components/Atoms/Content";
+import React from "react";
 
 export type CardProps = {
-  variation?: null | "list" | "grid";
-  children?: React.ReactNode;
   href?: string;
   title?: string;
   description?: ContentSource | string;
   image?: ImageSrc;
-  link?: LinkProps;
+  link?: LinkSource;
   _createdAt?: string;
   _id: string;
   _key?: string;
   _type?: string;
 };
 
-const Card: React.FC<CardProps> = (props) => {
+const Card: React.FC<CardProps & { children?: React.ReactNode }> = (props) => {
   const { children, href, title, link, _createdAt, description, image } = props;
 
   const _description = validateContentSource(description) ? (
@@ -37,7 +36,7 @@ const Card: React.FC<CardProps> = (props) => {
   return (
     <CardWrap href={href} className=" w-full shadow-theme ">
       <div
-        className={`aspect-w-10 aspect-h-5   relative w-full overflow-hidden rounded-t-theme bg-primary-light `}
+        className={`aspect-w-10 aspect-h-5 relative w-full overflow-hidden rounded-t-theme bg-primary-light `}
       >
         <Image src={image} fill className=" object-cover " />
       </div>

@@ -1,9 +1,8 @@
 import Avatar from "./Avatar";
 import Typo from "components/Atoms/Typography/Typography";
 import { ImageSrc } from "components/Atoms/Image";
-import React from "react";
-
 import Link from "components/Atoms/Link";
+import React from "react";
 
 export interface ITherapistListItemProps {
   _id: string;

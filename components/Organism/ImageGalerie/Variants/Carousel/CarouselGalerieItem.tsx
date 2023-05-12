@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+import { ImageGalleryItemProps } from "../../ImageGalerie";
 import Typo from "components/Atoms/Typography/Typography";
 
 import Image from "components/Atoms/Image";
@@ -5,7 +7,6 @@ import { ConditionalLink } from "components/Atoms/Link";
 
 import * as React from "react";
 import clsx from "clsx";
-import { ImageGalleryItemProps } from "../../ImageGalerie";
 
 const CarouselGalerieItem: React.FunctionComponent<
   ImageGalleryItemProps & { className?: string }

@@ -1,11 +1,9 @@
 import { LinkProps } from "components/Atoms/Link";
+import { LinkResult } from "PageBuilder/Navigation/navigation.query";
 import React, { PropsWithChildren } from "react";
 import NextLink from "next/link";
 
-interface LinkSource {
-  href: string;
-  external?: boolean;
-}
+export type LinkSource = LinkResult;
 
 const LinkAdapter: React.FC<PropsWithChildren<LinkProps>> = ({
   children,

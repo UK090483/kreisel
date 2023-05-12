@@ -11,7 +11,6 @@ export const linkQuery = `
 `;
 
 export interface LinkResult {
-  internalLink?: string | null;
   href?: string | null;
   external?: boolean;
   onPage?: string | null;

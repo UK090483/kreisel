@@ -6,10 +6,10 @@ import TestimonialList, {
 import TherapistList from "./Therapist/TherapistList";
 import ListWrap from "./ListWrap";
 
-import React from "react";
 import { CardProps } from "./Card/Card";
 import { IPersonListItemProps } from "./Persons/PersonListItem";
 import { ISectionProps } from "components/Atoms/Section/Section";
+import React from "react";
 
 interface ListingBlockItemResult<Type, Card, Variant = undefined>
   extends ISectionProps {
@@ -20,7 +20,7 @@ interface ListingBlockItemResult<Type, Card, Variant = undefined>
   variant?: Variant;
 }
 
-export type ListingProps =
+type ListingProps =
   | ListingBlockItemResult<"page", CardProps, "card" | "smallCard">
   | ListingBlockItemResult<"people", IPersonListItemProps>
   | ListingBlockItemResult<"therapist", any>

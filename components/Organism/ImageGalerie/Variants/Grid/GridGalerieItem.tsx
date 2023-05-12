@@ -1,10 +1,10 @@
+import { ImageGalleryItemProps } from "../../ImageGalerie";
 import Typo from "components/Atoms/Typography/Typography";
-import { ConditionalLink, LinkProps } from "components/Atoms/Link";
-import Image, { ImageSrc } from "components/Atoms/Image";
+import { ConditionalLink } from "components/Atoms/Link";
+import Image from "components/Atoms/Image";
 
 import * as React from "react";
 import clsx from "clsx";
-import { ImageGalleryItemProps } from "../../ImageGalerie";
 
 const GridGalleryItem: React.FunctionComponent<
   ImageGalleryItemProps & { className?: string }

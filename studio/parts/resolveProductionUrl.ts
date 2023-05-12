@@ -2,7 +2,7 @@ import { SanityDocumentLike, DocumentPluginOptions } from "sanity";
 const remoteUrl = "https://kreisel.vercel.app/";
 const localUrl = `http://localhost:3000`;
 
-const previewSecret = import.meta.env.SANITY_STUDIO_PREVIEW_SECRET;
+const previewSecret = import.meta.env?.SANITY_STUDIO_PREVIEW_SECRET;
 
 export const resolveProductionUrlDocument = (
   document: SanityDocumentLike & { slug?: { current?: string } }

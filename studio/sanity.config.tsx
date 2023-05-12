@@ -20,12 +20,12 @@ export default defineConfig({
   theme,
   name: "default",
   title: "KREISEL",
-  projectId: import.meta.env.SANITY_STUDIO_PROJECT_ID,
-  dataset: import.meta.env.SANITY_STUDIO_DATASET,
+  projectId: import.meta.env?.SANITY_STUDIO_PROJECT_ID,
+  dataset: import.meta.env?.SANITY_STUDIO_DATASET,
   plugins: [
     deskTool({ structure }),
     media(),
-    ...(import.meta.env.MODE === "development" ? [visionTool()] : []),
+    ...(import.meta.env?.MODE === "development" ? [visionTool()] : []),
     dashboardTool({
       widgets: [
         documentListWidget({

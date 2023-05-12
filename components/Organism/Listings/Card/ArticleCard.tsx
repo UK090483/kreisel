@@ -3,7 +3,6 @@ import Card, { CardProps } from "./Card";
 import Typo from "components/Atoms/Typography/Typography";
 import Button from "components/Atoms/Button/Button";
 import { useShop } from "@services/ShopService/shopContext";
-import { IArticleCardResult } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
 import React from "react";
 
 type ArticleCardProps = { price?: number } & CardProps;

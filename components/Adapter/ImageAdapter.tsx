@@ -3,6 +3,8 @@ import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import { ImageResult } from "PageBuilder/Image/sanityImage.query";
 import React from "react";
 
+export type imageSource = ImageResult | undefined | null;
+
 const ImageAdapter = (props: React.ComponentProps<typeof Image>) => {
   // @ts-ignore
   return <SanityImage {...props} />;

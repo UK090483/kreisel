@@ -1,7 +1,7 @@
 import CarouselGalerieItem from "./CarouselGalerieItem";
+import { IImageGalleryProps } from "../../ImageGalerie";
 import Carousel from "components/Molecules/Carousel/Carousel";
 import * as React from "react";
-import { IImageGalleryProps } from "../../ImageGalerie";
 
 const CarouselGallery: React.FunctionComponent<IImageGalleryProps> = (
   props

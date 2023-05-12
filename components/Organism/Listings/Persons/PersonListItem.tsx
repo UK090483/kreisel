@@ -1,7 +1,7 @@
 import Avatar from "components/Atoms/Avatar";
 import Link from "components/Atoms/Link";
-import * as React from "react";
 import { ImageSrc } from "components/Atoms/Image";
+import * as React from "react";
 
 export interface IPersonListItemProps {
   name?: null | string;

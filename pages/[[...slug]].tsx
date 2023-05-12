@@ -3,15 +3,14 @@ import appConfig from "../app.config.json";
 import { sanityClient as client } from "@services/SanityService/sanity.server";
 import { HeroBlogResult } from "PageBuilder/Blocks/hero/hero.query";
 
-import HeroBlock from "PageBuilder/Blocks/hero/frontend/HeroBlock";
+import { Hero, Section, Listing } from "components";
 
-import SectionBlock from "PageBuilder/Blocks/sectionBlock/frontend/SectionBlock";
 import { SectionBlockResult } from "PageBuilder/Blocks/sectionBlock/SectionBlockQuery";
 
 import { NavigationResult } from "PageBuilder/Navigation/navigation.query";
 
 import { FooterQueryResult } from "PageBuilder/Layout/Footer/Footer.query";
-import { ListingBlockProps } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
+import { ListingBlockResult } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
 
 import fetchStaticProps from "lib/SanityPageBuilder/lib/fetchStaticProps/fetchStaticProps";
 
@@ -21,7 +20,7 @@ import { appQueryResult } from "PageBuilder/AppContext/appQuery";
 import ReusableBlock from "PageBuilder/Blocks/reuseableBlock/frontend/ReuseableBlock";
 
 import { pageQuery } from "PageBuilder/ContentTypes/Page/page.query";
-import ListingBlock from "PageBuilder/Blocks/listingBlock/frontend/ListingsBlock";
+
 import TrustBlock from "PageBuilder/Blocks/trustBlock/frontend/TrustBlock";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -29,9 +28,26 @@ import { GetStaticPaths, GetStaticProps } from "next";
 const locales = appConfig.locales;
 
 interface PageData extends NavigationResult, appQueryResult, FooterQueryResult {
-  content: (SectionBlockResult | ListingBlockProps | HeroBlogResult)[];
+  content: (
+    | SectionBlockResult
+    | ListingBlockResult
+    | HeroBlogResult
+    | BlaResult
+  )[];
   title?: string;
 }
+
+type BlaProps = { a: string; bc: number };
+
+const Bla: React.FC<BlaProps> = (props) => {
+  return <div></div>;
+};
+
+type BlaResult = {
+  _type: "bla";
+  a?: 6666;
+  b?: 66;
+};
 
 const Page = () => {
   const { data } = useAppContext();
@@ -39,15 +55,20 @@ const Page = () => {
     <BodyParser
       content={data?.content || []}
       components={{
-        hero: {
-          component: HeroBlock,
-        },
+        // // hero: {
+        // //   component: Hero,
+        // // },
+        //@ts-ignore
+        hero: { component: Hero },
         section: {
-          component: SectionBlock,
+          //@ts-ignore
+          component: Section,
         },
         listing: {
-          component: ListingBlock,
+          //@ts-ignore
+          component: Listing,
         },
+        //@ts-ignore
         trust: {
           component: TrustBlock,
         },

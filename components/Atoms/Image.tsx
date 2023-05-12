@@ -1,9 +1,10 @@
 import ImageAdapter, {
   validateSrc as vS,
+  imageSource,
 } from "components/Adapter/ImageAdapter";
 import React from "react";
 
-export type ImageSrc = unknown;
+export type ImageSrc = imageSource;
 
 type ImageProps<T extends any = any> = {
   fill?: boolean;

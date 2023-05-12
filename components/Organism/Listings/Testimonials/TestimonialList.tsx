@@ -1,9 +1,9 @@
 import Carousel from "components/Molecules/Carousel/Carousel";
 import Typo from "components/Atoms/Typography/Typography";
+import Image, { ImageSrc, validateSrc } from "components/Atoms/Image";
 import React from "react";
 import clsx from "clsx";
 
-import Image, { ImageSrc, validateSrc } from "components/Atoms/Image";
 
 export interface ITestimonialItemProps {
   text?: string | null;

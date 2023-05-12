@@ -103,7 +103,6 @@ _type == "listing" => {
   'content':  content[]{...},
   ${buildQuery(
     listingBlockItems,
-
     `...select(_type == "reference" =>@->,@){
 
       ${cardQuery}
@@ -126,10 +125,9 @@ interface ListingBlockItemResult<Type, Card, Variant = undefined>
   variant?: Variant;
 }
 
-export type ListingBlockProps =
+export type ListingBlockResult =
   | ListingBlockItemResult<"page", CardResult, "card" | "smallCard">
   | ListingBlockItemResult<"people", PersonItemResult>
   | ListingBlockItemResult<"therapist", TherapistResult>
   | ListingBlockItemResult<"testimonial", ITestimonialItem>
-  | ListingBlockItemResult<"blog" | "article", CardResult>
-  | ListingBlockItemResult<"custom", CardResult>;
+  | ListingBlockItemResult<"blog" | "article" | "custom", CardResult>;

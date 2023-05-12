@@ -16,7 +16,7 @@ export default defineCliConfig({
         alias: {
           ...prevConfig.resolve?.alias,
           "@": __dirname,
-          PageBuilder: path.join(path.dirname(__dirname), "/PageBuilder"),
+          PageBuilder: path.join(path.dirname(__dirname), "./PageBuilder"),
         },
       },
     };
