@@ -39,7 +39,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
     ) : (
       <Layout {...pageProps}>
         <Component key={id} {...pageProps} />
-        <Analytics />
+        {/* <Analytics /> */}
       </Layout>
     );
   };
