@@ -1,18 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 
+import {
+  HeaderNavigation,
+  NavItemBaseProps,
+  NavigationItemBase,
+} from "./Navigation/index";
+import NavigationMobile from "./Navigation/NavigationMobile";
+import { NavItem } from "./Navigation/types";
 import Svg from "components/Atoms/Svg";
 import Link from "components/Atoms/Link";
 import useMenu from "@services/StoreService/hooks/useMenu";
 import { Logo } from "components/Atoms/Logo";
 import Underline from "components/Atoms/Underline/Underline";
-import {
-  HeaderNavigation,
-  NavItemBaseProps,
-  NavigationItemBase,
-} from "PageBuilder/Navigation/frontend";
 import AuthWidget from "@lib/Auth/AuthWidget";
-import NavigationMobile from "PageBuilder/Navigation/frontend/NavigationMobile";
-import { NavItem } from "PageBuilder/Navigation/frontend/types";
 import Button from "components/Atoms/Button/Button";
 import clsx from "clsx";
 import React from "react";

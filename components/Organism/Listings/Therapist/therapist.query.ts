@@ -1,5 +1,5 @@
 import { Profile } from "@lib/Profile/validation";
-import { imageQuery, ImageResult } from "PageBuilder/Image/sanityImage.query";
+import { imageQuery, ImageResult } from "PageBuilder/baseQueries";
 
 export const therapistQuery = `
 ...,

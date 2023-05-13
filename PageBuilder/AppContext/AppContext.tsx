@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { PageBuilderData } from "PageBuilder/query";
+import { PageData } from "PageBuilder/composedQueries";
 
 interface IAppContextState {
-  data?: PageBuilderData | null;
+  data?: PageData | null;
 }
 
 const defaultState: IAppContextState = {

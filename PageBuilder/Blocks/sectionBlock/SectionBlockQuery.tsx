@@ -1,5 +1,5 @@
 import { richTextQuery } from "PageBuilder/RichText/defaultRichtext/defaultRichText.query";
-import { imageQuery, ImageResult } from "PageBuilder/Image/sanityImage.query";
+import { imageQuery, ImageResult } from "PageBuilder/baseQueries";
 import {
   BlockStyle,
   blockStyleProjection,

@@ -2,7 +2,7 @@ import { ShopButton } from "./ShopButton";
 import { useShop } from "./shopContext";
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import useAnimationDelay from "hooks/useAnimationDelay";
-import { ImageResult } from "PageBuilder/Image/sanityImage.query";
+import { ImageResult } from "PageBuilder/baseQueries";
 import React, { useEffect, PropsWithChildren } from "react";
 import { createPortal } from "react-dom";
 import FocusTrap from "focus-trap-react";

@@ -1,11 +1,6 @@
 /* eslint-disable import/no-unused-modules */
 import fetchPageData from "./fetchPageData";
-import BodyParser from "@lib/SanityPageBuilder/lib/BodyParser/BodyParser";
-import HeroBlock from "PageBuilder/Blocks/hero/frontend/HeroBlock";
-import ListingBlock from "PageBuilder/Blocks/listingBlock/frontend/ListingsBlock";
-import ReusableBlock from "PageBuilder/Blocks/reuseableBlock/frontend/ReuseableBlock";
-import SectionBlock from "PageBuilder/Blocks/sectionBlock/frontend/SectionBlock";
-import TrustBlock from "PageBuilder/Blocks/trustBlock/frontend/TrustBlock";
+import Content from "PageBuilder/Content";
 
 import React from "react";
 
@@ -22,28 +17,7 @@ const Page = async (props: Props) => {
 
   const pageData = await fetchPageData(slug);
 
-  return (
-    <BodyParser
-      content={pageData.content}
-      components={{
-        hero: {
-          component: HeroBlock,
-        },
-        section: {
-          component: SectionBlock,
-        },
-        listing: {
-          component: ListingBlock,
-        },
-        trust: {
-          component: TrustBlock,
-        },
-        reusable: {
-          component: ReusableBlock,
-        },
-      }}
-    />
-  );
+  return <Content content={pageData} />;
 };
 
 export default Page;

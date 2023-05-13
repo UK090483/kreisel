@@ -2,9 +2,8 @@
 
 import buildQuery from "./listingBuilder/buildQuery";
 import listingBlockItems from "./listingBlock.items";
-import { linkQuery, LinkResult } from "PageBuilder/Navigation/navigation.query";
-
-import { imageQuery, ImageResult } from "PageBuilder/Image/sanityImage.query";
+import { linkQuery, LinkResult } from "PageBuilder/baseQueries";
+import { imageQuery, ImageResult } from "PageBuilder/baseQueries";
 import { AppLocales, AppColor } from "types";
 import {
   BlockStyle,

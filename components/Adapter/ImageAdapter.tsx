@@ -1,6 +1,6 @@
 import Image from "../Atoms/Image";
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
-import { ImageResult } from "PageBuilder/Image/sanityImage.query";
+import { ImageResult } from "PageBuilder/baseQueries";
 import React from "react";
 
 export type imageSource = ImageResult | undefined | null;

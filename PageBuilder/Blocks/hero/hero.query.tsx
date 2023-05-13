@@ -1,4 +1,4 @@
-import { imageQuery, ImageResult } from "PageBuilder/Image/sanityImage.query";
+import { imageQuery, ImageResult } from "PageBuilder/baseQueries";
 
 import {
   BlockBgColor,

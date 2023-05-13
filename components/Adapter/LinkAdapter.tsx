@@ -1,5 +1,6 @@
 import { LinkProps } from "components/Atoms/Link";
-import { LinkResult } from "PageBuilder/Navigation/navigation.query";
+
+import { LinkResult } from "PageBuilder/baseQueries";
 import React, { PropsWithChildren } from "react";
 import NextLink from "next/link";
 

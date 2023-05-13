@@ -1,20 +1,4 @@
-export const linkQuery = `
- 'href': select(
-            defined(internalLink) && defined(internalLink->pageType) && defined(onPage)  => '/'+ internalLink->pageType->slug.current + '/' + internalLink->slug.current + '#'+ onPage,
-            defined(internalLink) && defined(internalLink->pageType)  => '/'+ internalLink->pageType->slug.current + '/' + internalLink->slug.current,
-            defined(internalLink) && defined(onPage) => '/'+ internalLink->slug.current + '#'+ onPage,
-            defined(internalLink) => '/' + internalLink->slug.current,
-            defined(externalLink) => externalLink
-          ),
-  'external': defined(externalLink),
-  onPage,
-`;
-
-export interface LinkResult {
-  href?: string | null;
-  external?: boolean;
-  onPage?: string | null;
-}
+import { linkQuery, LinkResult } from "PageBuilder/baseQueries";
 
 const navItemQuery = (locale: string = "") => `
    _type == 'navigationItem' =>{
