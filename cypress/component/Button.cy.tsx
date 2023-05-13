@@ -1,4 +1,4 @@
-import Button, { IconButton } from "components/Button/Button";
+import Button, { IconButton } from "components/Atoms/Button/Button";
 
 describe("<Button>", () => {
   it("should render Button", () => {

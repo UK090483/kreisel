@@ -1,4 +1,4 @@
-import Tooltip, { TooltipAnchor } from "components/Tooltip";
+import Tooltip, { TooltipAnchor } from "components/Atoms/Tooltip";
 
 const render = () => {
   cy.mount(

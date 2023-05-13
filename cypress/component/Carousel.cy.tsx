@@ -1,5 +1,5 @@
 ///<reference path="../support/component.tsx" />
-import Carousel from "../../components/Carousel/Carousel";
+import Carousel from "components/Molecules/Carousel/Carousel";
 import React, { ComponentProps } from "react";
 
 const items = [1, 2, 3, 4];

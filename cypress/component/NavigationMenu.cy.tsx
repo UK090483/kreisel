@@ -1,5 +1,8 @@
-import NavigationMenu from "components/Navigation/NavigationMenu";
-import { linkItem, listItem } from "components/Navigation/testData";
+import NavigationMenu from "components/Molecules/Navigation/New/NavigationMenu";
+import {
+  linkItem,
+  listItem,
+} from "components/Molecules/Navigation/New/testData";
 
 describe("<NavigationMenu/>", () => {
   it("should not render if no item & no Link", () => {
