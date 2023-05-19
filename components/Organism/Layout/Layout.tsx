@@ -1,3 +1,4 @@
+"use client";
 import { Footer, Header } from "components";
 import { BackButton } from "components/Organism/Layout/BackButton";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
