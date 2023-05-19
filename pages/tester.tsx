@@ -1,4 +1,4 @@
-import NavigationMenu from "components/Molecules/Navigation/New/NavigationMenu";
+import NavigationMenu from "components/Molecules/Navigation/New/Headless Ui/NavigationMenu";
 import {
   linkItem,
   listItem,

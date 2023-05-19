@@ -61,7 +61,5 @@ export interface FooterQueryResult {
   footer?: {
     footerInfo?: IFooterInfo;
     contact?: IFooterContact;
-    imprint?: string | null;
-    agb?: string | null;
   };
 }

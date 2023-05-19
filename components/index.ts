@@ -5,5 +5,6 @@ import Header from "./Organism/Header/Header";
 import Footer from "./Organism/Footer/Footer";
 import Trust from "./Organism/Trust/Trust";
 import ImageGallery from "./Organism/ImageGalerie/ImageGalerie";
+import Layout from "./Organism/Layout/Layout";
 
-export { Hero, Section, Listing, Header, Footer, ImageGallery, Trust };
+export { Hero, Section, Listing, Header, Footer, ImageGallery, Trust, Layout };

@@ -1,3 +1,5 @@
+"use client";
+
 import getStore from "./getStore";
 
 const initialState: StoreState = {

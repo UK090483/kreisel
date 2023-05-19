@@ -41,10 +41,10 @@ import {
   infoblockPlugItem,
 } from "./RichText/Plugs/InfoBoxPlug/InfoBoxPlug.schema";
 import spacerSchema from "./RichText/Plugs/Spacer/spacer.schema";
-import seoSchema from "./Seo/seo.schema";
+import seoSchema from "./schema/seo.schema";
 import siteConfigSchema, {
   contactItemSchema,
-} from "./Settings/SiteConfig.schema";
+} from "./schema/SiteConfig.schema";
 
 const schema = [
   // Plugs----

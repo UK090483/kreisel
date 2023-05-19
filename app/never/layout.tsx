@@ -1,14 +1,14 @@
 /* eslint-disable import/no-unused-modules */
 import fetchLayoutData from "./fetchLayoutData";
-import Navigation from "components/Molecules/Navigation/New/navigation";
-import { Footer } from "components";
+
+import { Footer, Header } from "components";
 
 type Props = {
   children: React.ReactNode;
   params: { slug?: string[] };
 };
 
-export const revalidate = 60;
+// export const revalidate = 60;
 
 export default async function RootLayout(props: Props) {
   const {
@@ -22,7 +22,7 @@ export default async function RootLayout(props: Props) {
 
   return (
     <>
-      <Navigation nav={nav} />
+      <Header items={nav || []} />
       {children}
       <Footer contact={contact} info={footerInfo} />
     </>

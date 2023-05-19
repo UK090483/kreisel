@@ -51,7 +51,7 @@ async function fetchStaticProps<P>(
     (query: string) => {
       return client.fetch(query);
     },
-    (id) => `fetch page ${slug} ____${id}`
+    (id) => `fetch page ${slug} ____${id}_pageFolder`
   )(fetch);
 
   if (!data) {

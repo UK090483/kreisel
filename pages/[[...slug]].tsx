@@ -13,7 +13,8 @@ const locales = appConfig.locales;
 
 const Page = () => {
   const { data } = useAppContext();
-  return <Content content={data?.content} />;
+  //@ts-ignore
+  return <Content content={data?.content || []} />;
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

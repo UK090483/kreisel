@@ -7,7 +7,7 @@ _id,
 'slug':coalesce('/'+pageType->slug_${locale}.current, '/'+pageType->slug.current,'') +'/'+ coalesce(slug_${locale},slug).current,
 `;
 
-const appQueryNoLocales = (locale?: string) => `
+const appQueryNoLocales = `
 _id,
 title,
 'homeRoute':*[_id == 'siteConfig'][0].indexPage->{ 'slug':slug.current },

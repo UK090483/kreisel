@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 
-import Layout from "PageBuilder/Layout/Layout";
+import { Layout } from "components";
 import { PageProps } from "lib/SanityPageBuilder/types";
 import Cookie from "lib/Cookie/Cookie";
 import Cart from "@services/ShopService/Cart";

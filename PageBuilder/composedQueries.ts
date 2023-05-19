@@ -1,10 +1,14 @@
+/* eslint-disable import/no-unused-modules */
 import { appQueryResult, appQuery } from "./AppContext/appQuery";
 import { HeroBlogResult, heroBlockQuery } from "./Blocks/hero/hero.query";
 import {
   ListingBlockResult,
   listingBlockQuery,
 } from "./Blocks/listingBlock/listingBlock.query";
-import { reusableBlockQuery } from "./Blocks/reuseableBlock/ReusableBlock.query";
+import {
+  IReusableBlockResult,
+  reusableBlockQuery,
+} from "./Blocks/reuseableBlock/ReusableBlock.query";
 import {
   sectionBlockQuery,
   SectionBlockResult,
@@ -13,24 +17,35 @@ import {
   trustBlockQuery,
   trustQueryResult,
 } from "./Blocks/trustBlock/trustBlock.query";
-import { footerQuery, FooterQueryResult } from "./Layout/Footer/Footer.query";
+import {
+  IFooterContact,
+  IFooterInfo,
+  footerContactQuery,
+  footerInfoQuery,
+  IFooterInfoItem,
+  footerQuery,
+  FooterQueryResult,
+} from "./Layout/Footer/Footer.query";
 import {
   NavigationResult,
   NavigationQuery,
+  NavQuery,
+  NavResult,
 } from "./Navigation/navigation.query";
 
-const contentQuery = `content[]{${heroBlockQuery},${sectionBlockQuery},${listingBlockQuery},${trustBlockQuery},${reusableBlockQuery}}`;
+export const contentQuery = `content[]{${heroBlockQuery},${sectionBlockQuery},${listingBlockQuery},${trustBlockQuery},${reusableBlockQuery}}`;
 
-export type ContentResult = (
-  | SectionBlockResult
-  | ListingBlockResult
-  | HeroBlogResult
-  | trustQueryResult
-)[];
+export type ContentResult = {
+  content: (
+    | SectionBlockResult
+    | ListingBlockResult
+    | HeroBlogResult
+    | trustQueryResult
+    | IReusableBlockResult
+  )[];
+};
 
-export const pageQuery = `${contentQuery}, ${appQuery(
-  ""
-)}, ${footerQuery}, ${NavigationQuery("")}`;
+export const pageQuery = `${contentQuery}, ${appQuery}, ${footerQuery}, ${NavigationQuery}`;
 
 export interface PageData
   extends NavigationResult,
@@ -39,3 +54,20 @@ export interface PageData
   content: ContentResult;
   title?: string;
 }
+
+export {
+  NavigationQuery,
+  NavQuery,
+  footerInfoQuery,
+  footerContactQuery,
+  footerQuery,
+};
+
+export type {
+  NavigationResult,
+  NavResult,
+  IFooterInfo,
+  IFooterContact,
+  FooterQueryResult,
+  IFooterInfoItem,
+};

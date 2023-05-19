@@ -1,13 +1,13 @@
-import { INavItem } from "./NavigationMenu";
+import { NavItem } from "../types";
 
-export const linkItem = (overwrite?: INavItem) =>
+export const linkItem = (overwrite?: NavItem) =>
   ({
     label: "Test Item",
     link: { href: "testLink" },
     ...overwrite,
-  } as INavItem);
+  } as NavItem);
 
-export const listItem = (overwrite?: INavItem) =>
+export const listItem = (overwrite?: NavItem) =>
   ({
     label: "List Test Item",
     items: [
@@ -15,10 +15,10 @@ export const listItem = (overwrite?: INavItem) =>
       linkItem({ label: "listitem 2", link: { href: "testLink2" } }),
     ],
     ...overwrite,
-  } as INavItem);
+  } as NavItem);
 
 // eslint-disable-next-line import/no-unused-modules
-export const MultiListItem = (overwrite?: INavItem) =>
+export const MultiListItem = (overwrite?: NavItem) =>
   ({
     label: "MultiList Test Item",
     items: [
@@ -39,8 +39,8 @@ export const MultiListItem = (overwrite?: INavItem) =>
       }),
     ],
     ...overwrite,
-  } as INavItem);
+  } as NavItem);
 
-const item: INavItem = { label: "LinkItem" };
+const item: NavItem = { label: "LinkItem" };
 
 export const testData = [];

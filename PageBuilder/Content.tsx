@@ -4,31 +4,26 @@ import ReusableBlock from "PageBuilder/Blocks/reuseableBlock/frontend/ReuseableB
 import { ContentResult } from "PageBuilder/composedQueries";
 import React from "react";
 
-const Content = (props: { content?: ContentResult }) => {
+const Content = (props: ContentResult) => {
   return (
     <BodyParser
-      //@ts-ignore
       content={props?.content || []}
-      components={{
-        //@ts-ignore
-        hero: { component: Hero },
-        section: {
-          //@ts-ignore
-          component: Section,
-        },
-        listing: {
-          //@ts-ignore
-          component: Listing,
-        },
-
-        trust: {
-          //@ts-ignore
-          component: Trust,
-        },
-        reusable: {
-          //@ts-ignore
-          component: ReusableBlock,
-        },
+      mapElements={(props) => {
+        if (props._type === "hero") {
+          return <Hero {...props} />;
+        }
+        if (props._type === "section") {
+          return <Section {...props} />;
+        }
+        if (props._type === "listing") {
+          return <Listing {...props} />;
+        }
+        if (props._type === "trust") {
+          return <Trust {...props} />;
+        }
+        if (props._type === "reusable") {
+          return <ReusableBlock {...props} />;
+        }
       }}
     />
   );

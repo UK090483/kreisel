@@ -19,6 +19,7 @@ export interface ITrustBlockItem {
 export const trustBlockQuery = `
 _type == "trust" => {
   ...,
+  _type,
   'items':items[]{
    ${trustBlockItemQuery}
   },
@@ -27,6 +28,7 @@ ${blockStyleProjection()}
 `;
 
 export interface trustQueryResult extends BlockStyle {
+  _type: "trust";
   content?: null | any;
   items?: ITrustBlockItem[] | null;
 }

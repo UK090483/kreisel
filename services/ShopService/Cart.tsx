@@ -1,3 +1,5 @@
+"use client";
+
 import { ShopButton } from "./ShopButton";
 import { useShop } from "./shopContext";
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";

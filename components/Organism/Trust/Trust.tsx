@@ -17,8 +17,8 @@ const Trust: React.FunctionComponent<ITrustBlockProps & ISectionProps> = (
   props
 ) => {
   const { items, content, bgColor, ...rest } = props;
-
   const hasContent = validateContentSource(content);
+
   return (
     <Section {...rest} bgColor={bgColor} width="m">
       {hasContent && (

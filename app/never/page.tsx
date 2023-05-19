@@ -8,7 +8,7 @@ type Props = {
   params: { slug?: string[] };
 };
 
-export const revalidate = 1;
+export const revalidate = 20;
 
 const Page = async (props: Props) => {
   const slug = props.params?.slug
@@ -17,7 +17,7 @@ const Page = async (props: Props) => {
 
   const pageData = await fetchPageData(slug);
 
-  return <Content content={pageData} />;
+  return <Content content={pageData?.content} />;
 };
 
 export default Page;
