@@ -1,4 +1,4 @@
-import NavigationMenu from "components/Molecules/Navigation/New/NavigationMenu";
+import HeaderNavigation from "components/Molecules/Navigation/New/Headless Ui/NavigationMenu";
 import {
   linkItem,
   listItem,
@@ -6,19 +6,19 @@ import {
 
 describe("<NavigationMenu/>", () => {
   it("should not render if no item & no Link", () => {
-    cy.mount(<NavigationMenu items={[linkItem({ link: {} })]} />);
+    cy.mount(<HeaderNavigation items={[linkItem({ link: {} })]} />);
     cy.contains(linkItem().label).should("not.exist");
   });
 
   it("should render as Link", () => {
-    cy.mount(<NavigationMenu items={[linkItem()]} />);
+    cy.mount(<HeaderNavigation items={[linkItem()]} />);
     cy.get(`a[href=${linkItem().link.href}]`)
       .should("be.visible")
       .should("have.text", linkItem().label);
   });
 
   it("should render as List", () => {
-    cy.mount(<NavigationMenu items={[listItem()]} />);
+    cy.mount(<HeaderNavigation items={[listItem()]} />);
 
     cy.contains(listItem().label).as("listButton");
 

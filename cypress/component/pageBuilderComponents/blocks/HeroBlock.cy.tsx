@@ -1,5 +1,5 @@
-import HeroBlock from "../../../../PageBuilder/Blocks/hero/frontend/HeroBlock";
 import { heroBlockQuery } from "../../../../PageBuilder/Blocks/hero/hero.query";
+import { Hero } from "components";
 import React, { ComponentProps } from "react";
 
 const render = ({
@@ -7,7 +7,7 @@ const render = ({
   blockData,
   context,
 }: {
-  props?: Partial<ComponentProps<typeof HeroBlock>>;
+  props?: Partial<ComponentProps<typeof Hero>>;
   blockData?: { [K: string]: any };
   context?: Parameters<typeof cy.mountWithContext>["1"]["context"];
 }) => {
@@ -19,7 +19,7 @@ const render = ({
       ...blockData,
     },
   }).then((i) => {
-    cy.mountWithContext(<HeroBlock {...i} {...props} />, { context });
+    cy.mountWithContext(<Hero {...i} {...props} />, { context });
   });
 };
 
@@ -29,7 +29,7 @@ const viewPorts: Cypress.ViewportPreset[] = [
   "macbook-16",
 ];
 
-describe("<HeroBlock />", () => {
+describe("<Hero />", () => {
   beforeEach(function () {
     cy.fixture("sanityContent").then((i) => {
       this.content = i;
