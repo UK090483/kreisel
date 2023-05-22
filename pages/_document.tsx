@@ -1,5 +1,4 @@
 import { variables } from "styles/fonts";
-// eslint-disable-next-line @next/next/no-document-import-in-page
 import Document, { Head, Html, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
@@ -25,4 +24,5 @@ class MyDocument extends Document {
   }
 }
 
+// eslint-disable-next-line import/no-unused-modules
 export default MyDocument;

@@ -2,14 +2,14 @@ import GridGalerie from "./Variants/Grid/GridGalery";
 import CarouselGallery from "./Variants/Carousel/CarouselGalery";
 
 import { ImageSrc } from "components/Atoms/Image";
-import { LinkProps } from "components/Atoms/Link";
+import { LinkSource } from "components/Atoms/Link";
 import React from "react";
 
 export interface ImageGalleryItemProps {
   title?: string;
   size?: "m" | "l";
   image?: ImageSrc;
-  link?: LinkProps;
+  link?: LinkSource;
   contain?: boolean;
   bgColor?: string;
   _key: string;
@@ -27,7 +27,7 @@ export interface IImageGalleryProps {
 const ImageGalleryPlug: React.FC<IImageGalleryProps> = (props) => {
   const { items, variant } = props;
 
-  if (!items || items.length < 1) return <div>No Images</div>;
+  if (!items || items.length < 1) return null;
 
   if (variant === "grid" || !!!variant) {
     return <GridGalerie {...props} />;

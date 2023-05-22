@@ -51,7 +51,7 @@ export interface PageData
   extends NavigationResult,
     appQueryResult,
     FooterQueryResult {
-  content: ContentResult;
+  content: ContentResult["content"];
   title?: string;
 }
 

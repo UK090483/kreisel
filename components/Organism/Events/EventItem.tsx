@@ -1,23 +1,21 @@
 import { EventWrap } from "./EventWrap";
-import { ScrapeEvent } from "./appDirect/scrapeEvents";
+import { Event } from "./Events";
 import { PureKreisel } from "components/Atoms/Kreisel";
 import Typo from "components/Atoms/Typography/Typography";
 import clsx from "clsx";
-import React from "react";
-const url = "https://www.kcs4web.de/kcs4webhcm/";
 
-export const ScrapeEventItem: React.FC<ScrapeEvent> = (item) => {
-  const { bookingStatus, ort, start } = item;
+export const ScrapeEventItem: React.FC<Event> = (item) => {
+  const { bookingStatus, ort, start, link } = item;
 
   return (
     <EventWrap
-      className="bg-grey-light rounded-theme  justify-between p-2 items-center  transition-shadow hover:shadow-md grid gap-4 md:grid-cols-[minmax(120px,auto)_1fr_100px] "
+      className="bg-grey-light rounded-theme justify-between p-2 items-center transition-shadow hover:shadow-md grid gap-4 md:grid-cols-[minmax(120px,auto)_1fr_100px]"
       bookingStatus={item?.bookingStatus}
-      href={url + item.link}
+      href={link}
     >
-      <div className={clsx("flex justify-start items-center h-fit ")}>
+      <div className={clsx("flex justify-start items-center h-fit")}>
         <PureKreisel
-          className={clsx("h-6 w-6 rounded-full  mr-2 ", {
+          className={clsx("h-6 w-6 rounded-full mr-2", {
             "text-green-400  ": bookingStatus === "open",
             "text-red ": bookingStatus === "full",
             "text-yellow-400 ": bookingStatus === "medium",
@@ -46,7 +44,7 @@ export const ScrapeEventItem: React.FC<ScrapeEvent> = (item) => {
   );
 };
 
-export const ScrapeEventPlaceholder: React.FC = () => {
+export const EventPlaceholder: React.FC = () => {
   const item = (
     <EventWrap className="bg-grey-light rounded-theme  justify-between p-2 items-center  transition-shadow hover:shadow-md grid gap-4 md:grid-cols-[minmax(120px,auto)_1fr_100px] ">
       <div className={clsx("flex justify-start items-center h-fit ")}>

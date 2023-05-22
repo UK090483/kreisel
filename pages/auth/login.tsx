@@ -29,8 +29,6 @@ const validation = object({
 const SignIn: NextPageWithLayout<LoginProps> = (props) => {
   const { csrfToken } = props;
 
-  console.log(props);
-
   const methods = useForm<Inputs>({
     mode: "onTouched",
     resolver: yupResolver<AnyObjectSchema>(validation),
@@ -63,9 +61,7 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
         onClick={() => {
           signIn("email", { email: "konradullrich@me.com" });
         }}
-      >
-        Boooooom
-      </button>
+      ></button>
     </FormProvider>
   );
 };

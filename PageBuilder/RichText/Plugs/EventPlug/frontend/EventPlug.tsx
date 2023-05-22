@@ -1,7 +1,7 @@
 "use client";
 
-import EventPlugComponent from "./EventPlugComponent";
 import { IEventPlugProps } from "../eventPlug.query";
+import { Events } from "components";
 import { ScrapeEvent } from "pages/api/scrapeEvents";
 import useSWR from "swr";
 import React from "react";
@@ -16,7 +16,7 @@ const EventPlug: React.FC<IEventPlugProps> = (props) => {
 
   if (!data?.data) return null;
 
-  return <EventPlugComponent scrapeEvents={data.data} />;
+  return <Events events={data.data} />;
 };
 
 export default EventPlug;

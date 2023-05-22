@@ -3,7 +3,6 @@ import appConfig from "../app.config.json";
 import { sanityClient as client } from "@services/SanityService/sanity.server";
 import fetchStaticProps from "lib/SanityPageBuilder/lib/fetchStaticProps/fetchStaticProps";
 import { fetchStaticPaths } from "lib/SanityPageBuilder/lib/fetchStaticPaths";
-
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
 import { PageData, pageQuery } from "PageBuilder/composedQueries";
 import Content from "PageBuilder/Content";
@@ -13,7 +12,6 @@ const locales = appConfig.locales;
 
 const Page = () => {
   const { data } = useAppContext();
-  //@ts-ignore
   return <Content content={data?.content || []} />;
 };
 

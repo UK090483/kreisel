@@ -1,17 +1,19 @@
-import LinkAdapter, { LinkSource as Ls } from "components/Adapter/LinkAdapter";
+import LinkAdapter from "components/Adapter/LinkAdapter";
 import React, { PropsWithChildren } from "react";
 
-export type LinkSource = Ls;
-
-export type LinkProps = {
+export type LinkSource = {
+  href?: string | null;
   external?: boolean;
-} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+  onPage?: string | null;
+};
+
+export type LinkProps = LinkSource &
+  React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const Link: React.FC<PropsWithChildren<LinkProps>> = ({
   children,
   ...rest
 }) => {
-  //@ts-ignore
   return <LinkAdapter {...rest}>{children}</LinkAdapter>;
 };
 

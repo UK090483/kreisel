@@ -3,7 +3,6 @@ import { ImageGallery } from "components/index";
 import React from "react";
 
 const ImageGalleryPlug: React.FC<ImageGalleryPlugResult> = (props) => {
-  //@ts-ignore
   return <ImageGallery {...props} />;
 };
 
