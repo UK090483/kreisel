@@ -1,6 +1,6 @@
 import { resolveProductionUrlDocument } from "./resolveProductionUrl";
 import { MdSettings } from "react-icons/md";
-import { StructureResolver } from "sanity/desk";
+import { StructureResolver, DefaultDocumentNodeResolver } from "sanity/desk";
 import Iframe, { IframeOptions } from "sanity-plugin-iframe-pane";
 
 const isLocal = window.location.hostname === "localhost";
@@ -53,23 +53,12 @@ const structure: StructureResolver = (S, context) =>
             );
 
           const root = S.listItem()
-            .id("page")
+            .id("root_pages")
             .title("Root")
             .child(
               S.documentTypeList("page")
                 .title(`Pages`)
                 .filter(`_type == "page" && !defined(pageType) `)
-                .child(
-                  S.document()
-                    .schemaType("page")
-                    .views([
-                      S.view.form(),
-                      S.view
-                        .component(Iframe)
-                        .options(iframeOptions)
-                        .title("Preview"),
-                    ])
-                )
             );
 
           const items = pageTypes.map(({ _id: pageTypeId, name }) =>
@@ -86,28 +75,16 @@ const structure: StructureResolver = (S, context) =>
                       pageTypeId,
                     }),
                   ])
-                  .child(
-                    S.document()
-                      .schemaType("page")
-                      .views([
-                        S.view.form(),
-                        S.view
-                          .component(Iframe)
-                          .options(iframeOptions)
-                          .title("Preview"),
-                      ])
-                  )
               )
           );
 
           return S.list({
-            title: "Page types",
-            id: "li",
+            title: "Page Type",
+            id: "pageType",
             items: [root, ...items],
           });
         },
       }),
-
       S.listItem().title("Mitglieder").child(S.documentTypeList("member")),
       S.listItem().title("Articles").child(S.documentTypeList("article")),
       S.listItem().title("Persons").child(S.documentTypeList("person")),
@@ -116,7 +93,19 @@ const structure: StructureResolver = (S, context) =>
         .child(S.documentTypeList("testimonial")),
       S.listItem().title("ToolTip").child(S.documentTypeList("tooltip")),
       S.listItem().title("ReuseAble ").child(S.documentTypeList("reuseAble")),
-      S.listItem().title("log ").child(S.documentTypeList("log")),
     ]);
 
 export default structure;
+
+export const defaultDocumentNode: DefaultDocumentNodeResolver = (
+  S,
+  { schemaType }
+) => {
+  if (["page"].includes(schemaType)) {
+    return S.document().views([
+      S.view.form(),
+      S.view.component(Iframe).options(iframeOptions).title("Preview"),
+    ]);
+  }
+  return S.document().views([S.view.form()]);
+};

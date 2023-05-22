@@ -1,5 +1,5 @@
 import { resolveProductionUrl } from "./parts/resolveProductionUrl";
-import structure from "./parts/deskStructure";
+import structure, { defaultDocumentNode } from "./parts/deskStructure";
 import { pageByPageType } from "./parts/initialValueTemplates";
 import { resolveActions } from "./parts/resolveActions";
 import { resolveBadges } from "./parts/resolveBadges";
@@ -7,7 +7,7 @@ import schema from "../PageBuilder/schema";
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
 import { documentListWidget } from "sanity-plugin-dashboard-widget-document-list";
-import { dashboardTool } from "@sanity/dashboard";
+import { dashboardTool, projectUsersWidget } from "@sanity/dashboard";
 // eslint-disable-next-line import/no-unresolved
 // import { theme } from "https://themer.sanity.build/api/hues?primary=f9de83";
 
@@ -24,14 +24,20 @@ export default defineConfig({
   projectId: process.env.SANITY_STUDIO_PROJECT_ID,
   dataset: process.env.SANITY_STUDIO_DATASET,
   plugins: [
-    deskTool({ structure }),
+    deskTool({ structure, defaultDocumentNode }),
     media(),
     ...(process.env.NODE_ENV === "development" ? [visionTool()] : []),
     dashboardTool({
       widgets: [
+        projectUsersWidget(),
         documentListWidget({
           title: "Mitglieder",
           query: `*[_type == "member" && _id in path('drafts.**') ]`,
+          layout: { width: "small" },
+        }),
+        documentListWidget({
+          title: "Changes",
+          query: `*[dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7 && _type in ['page','member']]`,
           layout: { width: "small" },
         }),
         documentListWidget({
