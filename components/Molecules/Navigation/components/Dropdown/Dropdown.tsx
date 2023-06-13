@@ -19,7 +19,10 @@ const Dropdown: React.FC<React.PropsWithChildren<DropdownProps>> = ({
 }) => {
   const ref = useRef<HTMLUListElement | null>(null);
   return (
-    <ul ref={ref} className=" flex justify-between w-full ">
+    <ul
+      ref={ref}
+      className=" flex justify-between w-full p-6 rounded-2xl bg-white shadow-lg"
+    >
       {list &&
         list.map((i, index) => (
           <List
