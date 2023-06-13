@@ -1,8 +1,5 @@
 import { listingBuilderItem } from "./listingBuilder/types";
-import {
-  AKTUELLES_PAGE_TYPE_ID,
-  BLOG_PAGE_TYPE_ID,
-} from "PageBuilder/constants";
+import { AKTUELLES_PAGE_TYPE_ID, BLOG_PAGE_TYPE_ID } from "../../constants";
 
 type PagesListingItem = {
   items: string;
@@ -88,6 +85,10 @@ const listingBlockItems: listingBuilderItem[] = [
     name: "therapist",
     filter: [
       { title: "All", value: "all", queryFilter: { filter: "defined(_id)" } },
+      {
+        title: "mit Hospitation Platz",
+        value: "offersInternship",
+      },
     ],
   },
   {

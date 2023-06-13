@@ -1,7 +1,7 @@
-import Kreisel from "components/Kreisel";
-import List from "components/List/List";
-import ListItem from "components/List/ListItem";
-import Typo from "components/Typography/Typography";
+import Kreisel from "components/Atoms/Kreisel";
+import List from "components/Molecules/List/List";
+import ListItem from "components/Molecules/List/ListItem";
+import Typo from "components/Atoms/Typography/Typography";
 import useCSV from "hooks/useCsv";
 
 import * as React from "react";

@@ -69,5 +69,6 @@
     "tailwindcss",
     "testid",
     "zirkon"
-  ]
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

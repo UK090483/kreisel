@@ -1,4 +1,4 @@
-import Layout from "PageBuilder/Layout/Layout";
+import { Layout } from "components";
 
 const render = (props: Parameters<typeof cy.mountWithContext>[1]) => {
   cy.mountWithContext(

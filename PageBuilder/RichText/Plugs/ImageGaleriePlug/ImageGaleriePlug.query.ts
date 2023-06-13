@@ -1,6 +1,10 @@
 import { AppColor } from "../../../../types";
-import { linkQuery, LinkResult } from "PageBuilder/Navigation/navigation.query";
-import { ImageResult, imageQuery } from "PageBuilder/Image/sanityImage.query";
+import {
+  linkQuery,
+  LinkResult,
+  ImageResult,
+  imageQuery,
+} from "PageBuilder/baseQueries";
 
 export const imageGalleryPlugQuery = `
 _type == "imageGalleryPlug" => {

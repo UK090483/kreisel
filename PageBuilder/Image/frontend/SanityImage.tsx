@@ -1,9 +1,11 @@
-import { PureKreisel } from "components/Kreisel";
+"use client";
+
+import { PureKreisel } from "components/Atoms/Kreisel";
 import clsx from "clsx";
 import Image, { ImageLoader, ImageProps } from "next/image";
 
 import * as React from "react";
-import type { ImageResult } from "../sanityImage.query";
+import type { ImageResult } from "PageBuilder/baseQueries";
 
 interface ISanityImageProps extends Omit<ImageProps, "src" | "alt"> {
   src?: ImageResult;

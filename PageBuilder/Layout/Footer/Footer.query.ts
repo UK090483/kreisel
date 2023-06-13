@@ -1,4 +1,4 @@
-import { imageQuery, ImageResult } from "PageBuilder/Image/sanityImage.query";
+import { imageQuery, ImageResult } from "PageBuilder/baseQueries";
 import { headerRichTextQuery } from "PageBuilder/RichText/headerRichText/defaultRichText.query";
 
 export const footerQuery = `
@@ -22,7 +22,14 @@ export const footerQuery = `
 }
 `;
 
-interface IFooterContact {
+export const footerContactQuery = `
+'contact':contacts[0]->{
+  'content':${headerRichTextQuery},
+  'persons':persons[]->{_id,name,position,description,'avatar':avatar{${imageQuery}}},
+  },
+`;
+
+export interface IFooterContact {
   content?: any;
   persons?: {
     description?: string | null;
@@ -33,11 +40,20 @@ interface IFooterContact {
   }[];
 }
 
+export const footerInfoQuery = `
+'footerInfo': footer[0]->{
+  'items':items[]{
+    ...,
+    'content':${headerRichTextQuery},
+  }
+},
+`;
+
 export interface IFooterInfoItem {
   _key: string;
   content?: any;
 }
-interface IFooterInfo {
+export interface IFooterInfo {
   items?: IFooterInfoItem[];
 }
 
@@ -45,7 +61,5 @@ export interface FooterQueryResult {
   footer?: {
     footerInfo?: IFooterInfo;
     contact?: IFooterContact;
-    imprint?: string | null;
-    agb?: string | null;
   };
 }

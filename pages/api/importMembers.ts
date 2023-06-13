@@ -1,10 +1,12 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import fields from "@lib/Profile/Fields";
+import fields, { membershipOptions } from "@lib/Profile/Fields";
+import { schema } from "@lib/Profile/validation";
 import { string } from "yup";
 import type { NextApiRequest, NextApiResponse } from "next";
+
 const csv = require("csv-parser");
 const fs = require("fs");
-// [\d ]{6,13}
+
 type Data = any;
 
 const mobileMatcher =
@@ -46,7 +48,7 @@ const lookup: {
         .match(mobileM2)
         ?.map((i) => i.replaceAll(/[-/: ]/g, ""));
 
-      return { old, mobile: mobile && mobile[0] };
+      // return { old, mobile: mobile && mobile[0] };
 
       return val;
     },
@@ -76,13 +78,85 @@ const lookup: {
     },
   },
   description: { key: "Beschreibung" },
-  image: { key: "Bild" },
-  offersInternship: { key: "Hospitationsplatz" },
+  image: {
+    key: "Bild",
+    validate: async (val) => {
+      if (val) {
+        return { url: val };
+      }
+      return undefined;
+    },
+  },
+  offersInternship: {
+    key: "Hospitationsplatz",
+    validate: async (val) => {
+      return val === "Ja" ? true : undefined;
+    },
+  },
   focus: { key: "---" },
   focusOther: { key: "---" },
-  degree: { key: "Abschlüsse" },
-  membership: { key: "Mitgliedschaften" },
+  degree: {
+    key: "Abschlüsse",
+    validate: async (val) => {
+      if (!val) return;
+      const degreeMap: { [K: string]: any } = {
+        "KREISELzertifikat (dreijährige Ausbildung)": "__",
+        "Integrative Lerntherapeutin / Integrativer Lerntherapeut FiL": "__",
+        "Dyslexietherapeut® nach BVL": "___",
+        "Dyskalkulietherapeut nach BVL": "___",
+        "KREISELgrundlagen (einjährige Ausbildung)": "___",
+        "Dreijährige Ausbildung": "___",
+        "KREISELurkunde (zweijährige Ausbildung)": "___",
+        "Zweijährige Ausbildung": "___",
+      };
+
+      return;
+      return val
+        .split(",")
+        .filter((i) => !!i.trim())
+        .map((i) => {
+          const deg = degreeMap[i.trim()];
+          if (!deg) {
+            throw new Error(`degree __${i}__ not found `);
+          }
+
+          return deg;
+        });
+    },
+  },
+  membership: {
+    key: "Mitgliedschaften",
+    validate: async (val) => {
+      if (!val) return;
+      return val
+        .split(",")
+        .filter((i) => !!i.trim())
+        .map((i) => {
+          const found = membershipOptions.find(
+            (option) =>
+              option.title.toLowerCase() === i.trim().toLocaleLowerCase()
+          );
+          if (!found) {
+            throw new Error(`membershipOption __${i.trim()}__ not found `);
+          }
+
+          return found.value;
+        });
+    },
+  },
   qualification: { key: "Beruf" },
+  allowMember: {
+    key: "Rollen",
+    validate: async (val) => {
+      return ["Lerntherapeut", "Mitglied"].includes(val);
+    },
+  },
+  allowProfile: {
+    key: "Rollen",
+    // validate: async (val) => {
+    //   return val === "Lerntherapeut";
+    // },
+  },
 };
 
 // eslint-disable-next-line import/no-unused-modules
@@ -91,14 +165,84 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   const result = await getData();
+  const fields = await showFields(result);
 
-  const phones = result.reduce((acc, item) => {
-    if (!item?.Telefon) return acc;
+  const testItem = result[0];
 
-    return `${acc} ${item?.Telefon}`;
-  }, "");
+  const cleanTestItem = await cleanItem(testItem);
 
-  const f = await fields.reduce(async (acc, field) => {
+  res.status(200).json({
+    // fields: fields["allowMember"],
+    // testItem,
+    // cleanTestItem,
+    // item: result[0],
+    // fields,
+
+    resulte: result.filter((item: any) => {
+      return item["Rollen"]
+        ? (item["Rollen"] as string).match(
+            /admin-kreisel | Redaktion | Administrator/gi
+          )
+        : false;
+    }),
+    result: result.map((item: any) => {
+      return item["Rollen"];
+    }),
+  });
+}
+
+async function cleanItem(item: { [k: string]: any }) {
+  const _result: { [k: string]: any } = {};
+
+  for (const field of fields) {
+    const handler = lookup[field.name];
+    if (!handler) {
+      // eslint-disable-next-line no-console
+      console.log(`handler for:${field.name} missing`);
+      continue;
+    }
+
+    const key = handler.key;
+    const value = item[key];
+
+    if (handler?.validate) {
+      _result[field.name] = await handler.validate(value, item);
+    }
+    if (!handler?.validate) {
+      _result[field.name] = value;
+    }
+  }
+
+  schema.validate(_result);
+  return _result;
+}
+
+async function cleanData(result: any[]) {
+  const _result = [];
+
+  for (const item of result) {
+  }
+}
+
+function getData() {
+  const results: any[] = [];
+  return new Promise<Record<string, string | undefined>[]>(
+    (resolve, reject) => {
+      fs.createReadStream("dataImport/kreisel-export-V1.csv")
+        .pipe(csv())
+        .on("data", (data: any) => results.push(data))
+        .on("end", () => {
+          resolve(results);
+        })
+        .on("error", (err: any) => {
+          // console.log(err);
+        });
+    }
+  );
+}
+
+async function showFields(result: any[]) {
+  return await fields.reduce(async (acc, field) => {
     const awaited = await acc;
     const items = await Promise.all(
       result.map(async (item: any) => {
@@ -123,32 +267,4 @@ export default async function handler(
       },
     };
   }, Promise.resolve<Record<string, { items: any[] }>>({}));
-
-  res.status(200).json({
-    // phones: phones.match(mobileM2),
-
-    item: result[0],
-    fields: f,
-
-    // result: result.map((item: any) => {
-    //   return item;
-    // }),
-  });
-}
-
-function getData() {
-  const results: any[] = [];
-  return new Promise<Record<string, string | undefined>[]>(
-    (resolve, reject) => {
-      fs.createReadStream("dataImport/kreisel-export-V1.csv")
-        .pipe(csv())
-        .on("data", (data: any) => results.push(data))
-        .on("end", () => {
-          resolve(results);
-        })
-        .on("error", (err: any) => {
-          // console.log(err);
-        });
-    }
-  );
 }

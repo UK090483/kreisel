@@ -1,7 +1,7 @@
 import { List, ListItem } from "./list/List";
 import HandUnderline from "./marks/HandUnderline/frontend/handUnderline";
 import ImagePlug from "./Plugs/ImagePlug/ImagePlug";
-import ImageGalleryPlug from "./Plugs/ImageGaleriePlug/ImageGaleriePlug";
+import ImageGalleryPlug from "./Plugs/ImageGaleriePlug/frontend/ImageGaleriePlug";
 import InfoboxPlug from "./Plugs/InfoBoxPlug/frontend/InfoBoxPlug";
 import EventPlug from "./Plugs/EventPlug/frontend/EventPlug";
 import EmbedHTML from "./Plugs/EmbedHTML/EmbedHTML";
@@ -10,7 +10,7 @@ import Tooltip from "./marks/Tooltip/frontend/tooltip";
 import Download from "./marks/Download/frontend/download";
 import Link from "./marks/Link/frontend/link";
 import StyleMark from "./marks/Style/frontend/Style";
-import Typo from "components/Typography/Typography";
+import Typo from "components/Atoms/Typography/Typography";
 import {
   PortableText,
   PortableTextReactComponents,
@@ -90,7 +90,9 @@ const components: Partial<PortableTextReactComponents> = {
   },
 };
 
-const Portable: React.FC<any> = (props: any) => {
+export type PortableTextSource = ComponentProps<typeof PortableText>["value"];
+
+const Portable: React.FC<any> = (props: { content: PortableTextSource }) => {
   return <PortableText value={props.content} components={components} />;
 };
 

@@ -1,11 +1,9 @@
 /// <reference types="cypress" />
 
-export const loginFakeUser = () => {
+const login = () => {
+  cy.visit("/");
   cy.get(`[aria-label="Sign in"]`).click();
   let { address, domain, name } = Cypress.env("testMail");
-  cy.log(address);
-  cy.log(domain);
-  cy.log(name);
   cy.get("#email").type(address);
   cy.get("button[type=submit]").click();
   cy.wait(3000);
@@ -26,6 +24,23 @@ export const loginFakeUser = () => {
       }
     });
   });
+};
+
+export const loginFakeUser = (props?: {
+  sessionName: string;
+  options?: Cypress.SessionOptions;
+}) => {
+  if (props?.sessionName) {
+    cy.session(props?.sessionName, () => {
+      login();
+      if (props?.options?.validate) {
+        props.options.validate();
+      }
+    });
+  }
+  if (!props?.sessionName) {
+    login();
+  }
 };
 
 export const deleteFakerUser = () => {

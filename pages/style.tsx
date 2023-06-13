@@ -1,4 +1,4 @@
-import { Section } from "components/Section/Section";
+import Section from "components/Atoms/Section/Section";
 import useInView from "hooks/useInView";
 import React from "react";
 

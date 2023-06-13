@@ -1,22 +1,22 @@
+import { defineField } from "sanity";
+
 const eventPlugSchema = {
   title: "Events",
   name: "eventPlug",
   type: "object",
 
   fields: [
-    // {
-    //   name: "filter",
-    //   type: "array",
-    //   of: [{ type: "string" }],
-    //   options: {
-    //     list: [
-    //       { title: "Info Nachmittag", value: "info-nachmittag" },
-    //       { title: "Master plan", value: "masterPlan" },
-    //       { title: "Infrastructure", value: "infrastructure" },
-    //       { title: "Private Home", value: "privateHome" },
-    //     ],
-    //   },
-    // },
+    defineField({
+      name: "category",
+      type: "string",
+      description: `
+      X01 à Seminare Hamburg
+      X02 à Seminare Heidelberg
+      X03 à Infoveranstaltungen
+      X04 à Supervision
+      X05 à Online-Seminare
+      X06 à Lehrgänge`,
+    }),
 
     {
       name: "filter",

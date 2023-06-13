@@ -1,3 +1,5 @@
+"use Client";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 
 type UseAnimationDelayState = {

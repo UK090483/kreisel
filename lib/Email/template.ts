@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unused-modules */
 
-import { HeaderSection, ButtonSection, html } from "./templates";
+import { HeaderSection, ButtonSection, html } from "./templateParts";
 
 const baseUrl = "https://kreisel.vercel.app";
 const profileUrl = baseUrl + "/profile";

@@ -1,7 +1,8 @@
-import Kreisel from "components/Kreisel";
+"use client";
+import Kreisel from "components/Atoms/Kreisel";
 import React, { useContext } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useRouter, usePathname } from "next/navigation";
 
 const isServer = typeof window === "undefined";
 
@@ -24,8 +25,11 @@ interface AuthContextProviderProps {
 
 export const AuthContextProvider = (props: AuthContextProviderProps) => {
   const { data, status } = useSession();
-  const { asPath, isPreview, push } = useRouter();
-  const isMemberPage = asPath.split("/")[1] === "mitgliederbereich";
+
+  const isDraftMode = false;
+  const { push } = useRouter();
+  const pathname = usePathname();
+  const isMemberPage = pathname?.split("/")[1] === "mitgliederbereich";
   const isLoading = status === "loading";
   const isAuthenticated = status === "authenticated";
   const isUnauthenticated = status === "unauthenticated";
@@ -34,7 +38,7 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
   const email = data?.user?.email || undefined;
   let showSpinner: boolean = false;
 
-  if (isMemberPage && !isPreview) {
+  if (isMemberPage && !isDraftMode) {
     showSpinner = status !== "authenticated";
 
     if (!member && isAuthenticated && !isServer) {

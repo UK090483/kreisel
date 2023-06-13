@@ -1,6 +1,6 @@
 import { styleMarkResult } from "../style.query";
 
-import Typo from "components/Typography/Typography";
+import Typo from "components/Atoms/Typography/Typography";
 
 const StyleMark: React.FC<React.PropsWithChildren<styleMarkResult>> = (
   props

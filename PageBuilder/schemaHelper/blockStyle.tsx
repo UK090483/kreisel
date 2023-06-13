@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unused-modules */
-import { sizesList, colorList, SizeList, ColorList } from "./snippets";
+import { sizesList, colorList, SizeList } from "./snippets";
 
 export const blockWidth = () => [
   {
@@ -100,7 +100,7 @@ export const blockBgColor = () => [
 export const blockBgColorProjection = () => `bgColor,`;
 
 export type BlockBgColor = {
-  bgColor?: ColorList | null;
+  bgColor?: string;
 };
 
 export const blockStyle = () => {

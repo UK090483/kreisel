@@ -1,16 +1,16 @@
-import ListingBlock from "PageBuilder/Blocks/listingBlock/frontend/ListingsBlock";
+import { Listing } from "components";
 
-import {
-  listingBlockQuery,
-  ListingBlockProps,
-} from "PageBuilder/Blocks/listingBlock/listingBlock.query";
+import { listingBlockQuery } from "PageBuilder/Blocks/listingBlock/listingBlock.query";
+import { ComponentProps } from "react";
 const render = (
   props?: Partial<
-    Parameters<typeof cy.mountPageBuilderComponent<ListingBlockProps>>[0]
+    Parameters<
+      typeof cy.mountPageBuilderComponent<ComponentProps<typeof Listing>>
+    >[0]
   >
 ) => {
-  cy.mountPageBuilderComponent<ListingBlockProps>({
-    Component: ListingBlock,
+  cy.mountPageBuilderComponent<ComponentProps<typeof Listing>>({
+    Component: Listing,
     blockQuery: listingBlockQuery,
     ...props,
     blockData: {

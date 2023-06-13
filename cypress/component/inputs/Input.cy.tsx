@@ -1,5 +1,5 @@
 import { renderInForm } from "../../helpers/formHelper";
-import Input from "components/Inputs/Input";
+import Input from "components/Molecules/Inputs/Input";
 import React from "react";
 
 describe("<Input/>", () => {

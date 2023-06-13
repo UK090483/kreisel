@@ -1,4 +1,5 @@
 import SanityImage from "./SanityImage";
+import loader from "../../../imageLoader";
 import { render, screen, cleanup } from "@testing-library/react";
 
 const testImage = {
@@ -23,7 +24,13 @@ const hotspot = {
 };
 const image = (o?: { src?: {}; props?: {} }) => {
   cleanup();
-  render(<SanityImage src={{ ...testImage, ...o?.src }} {...o?.props} />);
+  render(
+    <SanityImage
+      loader={loader}
+      src={{ ...testImage, ...o?.src }}
+      {...o?.props}
+    />
+  );
   return screen.getByRole<HTMLImageElement>("img");
 };
 describe("<SanityImage />", () => {

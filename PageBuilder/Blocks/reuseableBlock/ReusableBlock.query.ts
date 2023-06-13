@@ -1,4 +1,4 @@
-import { imageQuery, ImageResult } from "PageBuilder/Image/sanityImage.query";
+import { imageQuery, ImageResult } from "PageBuilder/baseQueries";
 import { headerRichTextQuery } from "PageBuilder/RichText/headerRichText/defaultRichText.query";
 import { BlockStyle } from "PageBuilder/schemaHelper/blockStyle";
 

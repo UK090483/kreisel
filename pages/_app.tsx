@@ -1,6 +1,6 @@
 import "../styles/globals.css";
-import { PageData } from "./[[...slug]]";
-import Layout from "PageBuilder/Layout/Layout";
+
+import { Layout } from "components";
 import { PageProps } from "lib/SanityPageBuilder/types";
 import Cookie from "lib/Cookie/Cookie";
 import Cart from "@services/ShopService/Cart";
@@ -11,7 +11,7 @@ import { AppContextProvider } from "PageBuilder/AppContext/AppContext";
 import AppConfig from "app.config.json";
 import StoreContextProvider from "@services/StoreService/StoreProvider";
 import { AuthContextProvider } from "@lib/Auth/AuthContext";
-import { variables } from "components/fonts";
+import { variables } from "styles/fonts";
 import { ReactElement, ReactNode, lazy } from "react";
 import { SessionProvider } from "next-auth/react";
 import { NextComponentType, NextPageContext } from "next";
@@ -23,8 +23,8 @@ const PreviewPageBuilderContextProvider = lazy(
 
 const b = variables;
 interface AppPropsWithStaticProps {
-  pageProps: PageProps<PageData>;
-  Component: NextComponentType<NextPageContext, any, PageProps<PageData>> & {
+  pageProps: PageProps<any>;
+  Component: NextComponentType<NextPageContext, any, PageProps<any>> & {
     getLayout?: (page: ReactElement) => ReactNode;
   };
 }

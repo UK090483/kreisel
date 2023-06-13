@@ -1,6 +1,7 @@
+"use client";
 import { useAuth, signOut, signIn } from "lib/Auth/AuthContext";
-import Button from "components/Button/Button";
-import Svg from "components/Svg";
+import Button from "components/Atoms/Button/Button";
+import Svg from "components/Atoms/Svg";
 import clsx from "clsx";
 
 type UserWidgetProps = {

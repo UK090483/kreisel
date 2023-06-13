@@ -41,13 +41,13 @@ import {
   infoblockPlugItem,
 } from "./RichText/Plugs/InfoBoxPlug/InfoBoxPlug.schema";
 import spacerSchema from "./RichText/Plugs/Spacer/spacer.schema";
-import seoSchema from "./Seo/seo.schema";
+import seoSchema from "./schema/seo.schema";
 import siteConfigSchema, {
   contactItemSchema,
-} from "./Settings/SiteConfig.schema";
+} from "./schema/SiteConfig.schema";
 
 const schema = [
-  // Plugs
+  // Plugs----
   tooltipSchema,
   tooltipPlug,
   gSheetSchema,
@@ -61,31 +61,29 @@ const schema = [
   spacerSchema,
   underlineSchema,
   // Config
-
   siteConfigSchema,
   contactItemSchema,
   footerSchema,
   footerItemSchema,
-  // objects
-
+  // objects-----------------
   ...Navigation,
   linkSchema,
   tagSchema,
   tagsSchema,
   seoSchema,
-  // ContentTypes
+  // ContentTypes---
   PageSchema,
   pageTypeSchema,
   testimonialSchema,
   personSchema,
   memberSchema,
   articleSchema,
-  // RichText
+  // RichText---
   defaultRichTextSchema,
   defaultImageSchema,
   headerRichTextSchema,
   easyRichtextSchema,
-  // Blocks
+  // Blocks----
   heroSchema,
   listingSchema,
   trustBlockSchema,
@@ -93,9 +91,6 @@ const schema = [
   reusableBlock,
   reusableDocument,
   SectionSchema,
-
-  //
-
   logSchema,
   logItem,
   // underlineSchema,

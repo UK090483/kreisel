@@ -1,22 +1,23 @@
-import { useAppContext } from "PageBuilder/AppContext/AppContext";
-import React, { ComponentType } from "react";
+import React from "react";
 
-type BodyParserProps = {
-  components: { [k: string]: { component: ComponentType<any> } };
+type pageBuilderBlock = { _type: string; [k: string]: any };
+type pageBuilderBlocks = pageBuilderBlock[];
+
+type BodyParserProps<T extends pageBuilderBlocks> = {
+  content: T;
+  mapElements: (props: T[number]) => React.ReactElement | void;
 };
-const BodyParser: React.FC<BodyParserProps> = (props) => {
-  const { components } = props;
 
-  const { data } = useAppContext();
-  const content = data?.content;
+function BodyParser<T extends pageBuilderBlocks>(props: BodyParserProps<T>) {
+  const { content, mapElements } = props;
 
   return (
     <>
       {content &&
         content.map((block) => {
-          if (components[block._type]) {
-            const Component = components[block._type].component;
-            return <Component key={block._key} {...block} />;
+          const element = mapElements(block);
+          if (element) {
+            return element;
           }
 
           return (
@@ -28,6 +29,6 @@ const BodyParser: React.FC<BodyParserProps> = (props) => {
         })}
     </>
   );
-};
+}
 
 export default BodyParser;

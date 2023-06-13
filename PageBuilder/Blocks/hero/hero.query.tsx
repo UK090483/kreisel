@@ -1,4 +1,5 @@
-import { imageQuery, ImageResult } from "PageBuilder/Image/sanityImage.query";
+import { imageQuery, ImageResult } from "PageBuilder/baseQueries";
+
 import {
   BlockBgColor,
   blockBgColorProjection,
@@ -29,19 +30,6 @@ export interface HeroBlogResult
   content?: any;
   image?: ImageResult;
   title?: string;
-
-  filterIntensity?:
-    | "0"
-    | "10"
-    | "20"
-    | "30"
-    | "40"
-    | "50"
-    | "60"
-    | "70"
-    | "80"
-    | "90";
-  filterColor?: "white" | "primary-light";
   size?: "full" | "1/2" | "2/3" | "1/3";
   variant?: "full" | "half";
 }

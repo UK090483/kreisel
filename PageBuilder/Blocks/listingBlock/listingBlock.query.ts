@@ -1,19 +1,35 @@
 /* eslint-disable import/no-unused-modules */
-import {
-  personItemQuery,
-  PersonItemResult,
-} from "./frontend/Listings/Persons/PersonListQuery";
 
 import buildQuery from "./listingBuilder/buildQuery";
 import listingBlockItems from "./listingBlock.items";
-import { linkQuery, LinkResult } from "PageBuilder/Navigation/navigation.query";
+import {
+  linkQuery,
+  LinkResult,
+  imageQuery,
+  ImageResult,
+} from "PageBuilder/baseQueries";
 
-import { imageQuery, ImageResult } from "PageBuilder/Image/sanityImage.query";
 import { AppLocales, AppColor } from "types";
 import {
   BlockStyle,
   blockStyleProjection,
 } from "PageBuilder/schemaHelper/blockStyle";
+
+export const personItemQuery = (locale: string) => `
+...,
+_id,
+'avatar':avatar{${imageQuery}},
+'description':coalesce(description_${locale},description),
+ name,
+'position':coalesce(position_${locale},position),
+`;
+export interface PersonItemResult {
+  name?: null | string;
+  position?: null | string;
+  description?: null | string;
+  avatar?: null | ImageResult;
+  _id: string;
+}
 
 export interface TherapistResult extends CardResult {
   _type: "therapist";
@@ -89,9 +105,9 @@ _type == "listing" => {
   _key,
   variation,
   'content':  content[]{...},
+  therapistFilter,
   ${buildQuery(
     listingBlockItems,
-
     `...select(_type == "reference" =>@->,@){
 
       ${cardQuery}
@@ -112,12 +128,12 @@ interface ListingBlockItemResult<Type, Card, Variant = undefined>
   content?: null | any;
   variation?: null | "list" | "grid";
   variant?: Variant;
+  therapistFilter?: string | null;
 }
 
-export type ListingBlockProps =
+export type ListingBlockResult =
   | ListingBlockItemResult<"page", CardResult, "card" | "smallCard">
   | ListingBlockItemResult<"people", PersonItemResult>
   | ListingBlockItemResult<"therapist", TherapistResult>
   | ListingBlockItemResult<"testimonial", ITestimonialItem>
-  | ListingBlockItemResult<"blog" | "article", CardResult>
-  | ListingBlockItemResult<"custom", CardResult>;
+  | ListingBlockItemResult<"blog" | "article" | "custom", CardResult>;

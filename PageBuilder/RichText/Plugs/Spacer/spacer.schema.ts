@@ -1,4 +1,4 @@
-import { sizesList } from "PageBuilder/schemaHelper/snippets";
+import { sizesList } from "../../../schemaHelper/snippets";
 import { defineType } from "sanity";
 
 const spacerSchema = defineType({

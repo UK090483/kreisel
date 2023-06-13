@@ -1,9 +1,8 @@
-import { useRouter } from "next/router";
 import React, { useContext } from "react";
-import { PageBuilderData } from "PageBuilder/query";
+import { PageData } from "PageBuilder/composedQueries";
 
 interface IAppContextState {
-  data?: PageBuilderData | null;
+  data?: PageData | null;
 }
 
 const defaultState: IAppContextState = {
@@ -36,7 +35,9 @@ export const useAppContext = () => {
 export const useHomeRoute = () => {
   const { data } = useAppContext();
   const homeRoute = data?.homeRoute;
-  const { locale: currentLocale, defaultLocale } = useRouter();
+
+  const currentLocale = "de";
+  const defaultLocale = "de";
 
   const parseRoute = (href: string, locale?: string) => {
     const linkLocale = locale || currentLocale;

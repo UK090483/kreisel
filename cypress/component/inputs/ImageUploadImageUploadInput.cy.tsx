@@ -1,5 +1,5 @@
-import { ImageUploadInput } from "../../../components/Inputs/ImageUpload";
 import { renderInForm } from "../../helpers/formHelper";
+import { ImageUploadInput } from "components/Molecules/Inputs/ImageUpload";
 import React from "react";
 
 const sizes: Cypress.ViewportPreset[] = ["iphone-5", "macbook-13"];

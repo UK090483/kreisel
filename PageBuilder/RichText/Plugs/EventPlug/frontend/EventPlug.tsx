@@ -1,49 +1,36 @@
-import { ScrapeEventItem } from "./ScrapeEventItem";
+"use client";
+
 import { IEventPlugProps } from "../eventPlug.query";
+import { Events } from "components";
 import { ScrapeEvent } from "pages/api/scrapeEvents";
-import React, { useEffect, useState, useCallback } from "react";
+import useSWR from "swr";
+import React from "react";
+
+const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
 const EventPlug: React.FC<IEventPlugProps> = (props) => {
-  const { filter } = props;
+  let url = `/api/scrapeEvents`;
+  const { category, filter } = props;
 
-  const [scrapeEvents, setScrapeEvents] = useState<null | ScrapeEvent[]>(null);
-  const [loading, setLoading] = useState(true);
+  const searchParams = new URLSearchParams();
 
-  const filterItems = useCallback(() => {
-    if (!scrapeEvents) {
-      return [];
-    }
-    if (!scrapeEvents || !filter) {
-      return scrapeEvents;
-    }
-    const filterList = filter.split(",").map((i) => i.trim().toLowerCase());
-    return scrapeEvents.filter((i) => {
-      if (!i.name) {
-        return false;
-      }
-      const title = i.name.toLowerCase();
-      return filterList.find((f) => title.includes(f));
-    });
-  }, [filter, scrapeEvents]);
+  if (category) {
+    searchParams.append("cat", category);
+  }
+  if (filter) {
+    searchParams.append("filter", filter);
+  }
 
-  useEffect(() => {
-    fetch("/api/scrapeEvents")
-      .then((data) => data.json())
-      .then((n) => {
-        if (n.data) {
-          setScrapeEvents(n.data);
-        }
-        setLoading(false);
-      });
-  }, []);
+  if (Boolean(searchParams.size)) {
+    url += "?" + searchParams.toString();
+  }
 
-  return (
-    <div className="mb-3 grid grid-cols-1 gap-3">
-      {filterItems().map((item, index) => {
-        return <ScrapeEventItem key={item.link} {...item} />;
-      })}
-    </div>
+  const { data, error, isLoading } = useSWR<{ data: ScrapeEvent[] }>(
+    url,
+    fetcher
   );
+
+  return <Events events={data?.data || []} loading={isLoading} />;
 };
 
 export default EventPlug;

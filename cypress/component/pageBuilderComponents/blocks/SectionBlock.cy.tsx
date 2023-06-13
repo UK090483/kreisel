@@ -49,7 +49,6 @@ describe("<SectionBlock />", () => {
       cy.contains("TestContent").should("be.visible");
       cy.get("img").then((img) => {
         const w = window.getComputedStyle(img.get(0)).width;
-        cy.log(w);
       });
     });
   });

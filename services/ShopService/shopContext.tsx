@@ -1,3 +1,4 @@
+"use client";
 import React, { useCallback, useContext, PropsWithChildren } from "react";
 import { useLocalStorage } from "react-use";
 

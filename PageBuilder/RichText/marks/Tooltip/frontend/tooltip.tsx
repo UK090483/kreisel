@@ -1,8 +1,8 @@
 import { TooltipResult } from "../tooltip.query";
 
-import Portal from "components/Portal";
+import Portal from "components/Atoms/Portal";
 
-import ToolTipComponent, { TooltipAnchor } from "components/Tooltip";
+import ToolTipComponent, { TooltipAnchor } from "components/Atoms/Tooltip";
 
 const Tooltip: React.FC<React.PropsWithChildren<TooltipResult>> = (props) => {
   const { title, text, ref, _key, children } = props;

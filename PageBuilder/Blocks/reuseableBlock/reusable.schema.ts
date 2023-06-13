@@ -1,5 +1,5 @@
-import { blockStyle } from "PageBuilder/schemaHelper/blockStyle";
-import { getFieldGroups } from "PageBuilder/schemaHelper/getFieldGroup";
+import { blockStyle } from "../../schemaHelper/blockStyle";
+import { getFieldGroups } from "../../schemaHelper/getFieldGroup";
 
 export const reusableBlock = {
   name: "reusable",

@@ -1,9 +1,6 @@
 import { defaultBockContent } from "../../schemaHelper/snippets";
-import { getSlugField } from "PageBuilder/schemaHelper/getSlugField";
-import {
-  AKTUELLES_PAGE_TYPE_ID,
-  BLOG_PAGE_TYPE_ID,
-} from "PageBuilder/constants";
+import { getSlugField } from "../../schemaHelper/getSlugField";
+import { AKTUELLES_PAGE_TYPE_ID, BLOG_PAGE_TYPE_ID } from "../../constants";
 import { CgWebsite } from "react-icons/cg";
 import { defineField, defineType, defineArrayMember } from "sanity";
 import { VscMultipleWindows } from "react-icons/vsc";

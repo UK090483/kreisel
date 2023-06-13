@@ -2,9 +2,9 @@ import {
   blockBgColor,
   blockSpace,
   blockTransitions,
-} from "PageBuilder/schemaHelper/blockStyle";
-import { getFieldGroups } from "PageBuilder/schemaHelper/getFieldGroup";
-import sectionTitle from "PageBuilder/schemaHelper/sectionTitle";
+} from "../../schemaHelper/blockStyle";
+import { getFieldGroups } from "../../schemaHelper/getFieldGroup";
+import sectionTitle from "../../schemaHelper/sectionTitle";
 
 const heroSchema = {
   name: "hero",
@@ -52,24 +52,6 @@ const heroSchema = {
       initialValue: "1/3",
       group: "content",
     },
-    // {
-    //   title: "Filter intensity",
-    //   name: "filterIntensity",
-    //   type: "string",
-    //   options: {
-    //     list: ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90"],
-    //   },
-    //   group: "content",
-    // },
-    // {
-    //   title: "Filter Color",
-    //   name: "filterColor",
-    //   type: "string",
-    //   options: {
-    //     list: ["white", "primary-light"],
-    //   },
-    //   group: "content",
-    // },
     ...blockSpace(),
     ...blockBgColor(),
     ...blockTransitions(),
