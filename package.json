@@ -27,6 +27,7 @@
     "test:all": "npm run kill:3000 & npm run test & npm run cypress:component & npm run build && npm run start & wait-on http://localhost:3000 && npm run cypress:run",
     "test:all2": "ttab -w -t 'JEST TEST' npm run test & ttab -w -t 'CYPRESS COMPONENT' npm run cypress:component & ttab -w -t 'NEXT' npm run startUp & npm run waitAndTest"
   },
+  "packageManager": "pnpm",
   "dependencies": {
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
