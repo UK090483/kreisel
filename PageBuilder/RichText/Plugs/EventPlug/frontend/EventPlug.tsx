@@ -9,14 +9,28 @@ import React from "react";
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
 const EventPlug: React.FC<IEventPlugProps> = (props) => {
-  const { data, error } = useSWR<{ data: ScrapeEvent[] }>(
-    "/api/scrapeEvents",
+  let url = `/api/scrapeEvents`;
+  const { category, filter } = props;
+
+  const searchParams = new URLSearchParams();
+
+  if (category) {
+    searchParams.append("cat", category);
+  }
+  if (filter) {
+    searchParams.append("filter", filter);
+  }
+
+  if (Boolean(searchParams.size)) {
+    url += "?" + searchParams.toString();
+  }
+
+  const { data, error, isLoading } = useSWR<{ data: ScrapeEvent[] }>(
+    url,
     fetcher
   );
 
-  if (!data?.data) return null;
-
-  return <Events events={data.data} />;
+  return <Events events={data?.data || []} loading={isLoading} />;
 };
 
 export default EventPlug;

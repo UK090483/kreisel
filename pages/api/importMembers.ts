@@ -4,7 +4,7 @@ import { string } from "yup";
 import type { NextApiRequest, NextApiResponse } from "next";
 const csv = require("csv-parser");
 const fs = require("fs");
-// [\d ]{6,13}
+
 type Data = any;
 
 const mobileMatcher =
@@ -130,9 +130,9 @@ export default async function handler(
     item: result[0],
     fields: f,
 
-    // result: result.map((item: any) => {
-    //   return item;
-    // }),
+    result: result.map((item: any) => {
+      return item;
+    }),
   });
 }
 

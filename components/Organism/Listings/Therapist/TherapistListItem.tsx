@@ -3,6 +3,7 @@ import Typo from "components/Atoms/Typography/Typography";
 import { ImageSrc } from "components/Atoms/Image";
 import Link from "components/Atoms/Link";
 import React from "react";
+import { useRouter } from "next/router";
 
 export interface ITherapistListItemProps {
   _id: string;
@@ -18,22 +19,21 @@ export interface ITherapistListItemProps {
 const TherapistListItem: React.FC<ITherapistListItemProps> = (props) => {
   const { firstName, name, city, zipCode, description, _id, image } = props;
 
-  // const r = useRouter();
-  // const { query, asPath } = r;
+  const r = useRouter();
+  const { query, asPath } = r;
 
-  // const baseUrl =
-  //   query.slug && Array.isArray(query.slug)
-  //     ? query.slug.map((i) => i.trim()).join("/")
-  //     : "";
-
-  const baseUrl = "";
+  const baseUrl =
+    query.slug && Array.isArray(query.slug)
+      ? query.slug.map((i) => i.trim()).join("/")
+      : "";
 
   return (
-    <li className={`mb-2 w-full   rounded-theme p-0.5`}>
+    <li className={`mb-2 w-full rounded-theme p-0.5`}>
       <Link
-        // href={{ pathname: "/" + baseUrl, query: { therapist: _id } }}
-        // scroll={false}
-        // shallow={true}
+        //@ts-ignore
+        href={{ pathname: "/" + baseUrl, query: { therapist: _id } }}
+        scroll={false}
+        shallow={true}
         className=" flex w-full items-center rounded-theme hover:bg-grey-light "
       >
         <Avatar

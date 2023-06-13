@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 interface IKreiselProps {
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const path =
@@ -44,10 +45,11 @@ const Kreisel: React.FC<IKreiselProps> = (props) => {
 };
 
 export const PureKreisel: React.FC<IKreiselProps> = (props) => {
-  const { className } = props;
+  const { className, style } = props;
 
   return (
     <svg
+      style={style}
       viewBox="0 0 100 100"
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"

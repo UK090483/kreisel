@@ -4,15 +4,23 @@ type EventWrapProps = {
   href?: string;
   bookingStatus?: string;
   className?: string;
+  style?: React.CSSProperties;
 };
+
 export const EventWrap: React.FC<React.PropsWithChildren<EventWrapProps>> = (
   props
 ) => {
-  const { children, href, bookingStatus, className } = props;
+  const { children, href, bookingStatus, className, style } = props;
 
   if (href) {
     return (
-      <a className={className} href={href} target="_blank" rel="noreferrer">
+      <a
+        style={style}
+        className={className}
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+      >
         {children}
       </a>
     );

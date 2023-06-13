@@ -1,3 +1,5 @@
+"use client";
+
 import Card, { CardProps } from "./Card";
 
 import Typo from "components/Atoms/Typography/Typography";

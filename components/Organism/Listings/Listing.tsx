@@ -18,6 +18,7 @@ interface ListingBlockItemResult<Type, Card, Variant = undefined>
   items?: Card[];
   content?: null | any;
   variant?: Variant;
+  therapistFilter?: string | null;
 }
 
 type ListingProps =
@@ -34,7 +35,9 @@ const ListingBlock: React.FC<ListingProps> = (props) => {
   if (contentType === "therapist") {
     return (
       <ListWrap {...props}>
-        <TherapistList />
+        <TherapistList
+          offersInternship={props.therapistFilter === "offersInternship"}
+        />
       </ListWrap>
     );
   }

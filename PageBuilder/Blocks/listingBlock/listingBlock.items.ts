@@ -85,6 +85,10 @@ const listingBlockItems: listingBuilderItem[] = [
     name: "therapist",
     filter: [
       { title: "All", value: "all", queryFilter: { filter: "defined(_id)" } },
+      {
+        title: "mit Hospitation Platz",
+        value: "offersInternship",
+      },
     ],
   },
   {

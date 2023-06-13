@@ -105,6 +105,7 @@ _type == "listing" => {
   _key,
   variation,
   'content':  content[]{...},
+  therapistFilter,
   ${buildQuery(
     listingBlockItems,
     `...select(_type == "reference" =>@->,@){
@@ -127,6 +128,7 @@ interface ListingBlockItemResult<Type, Card, Variant = undefined>
   content?: null | any;
   variation?: null | "list" | "grid";
   variant?: Variant;
+  therapistFilter?: string | null;
 }
 
 export type ListingBlockResult =

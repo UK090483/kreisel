@@ -56,6 +56,7 @@ function buildQuery(
   baseProjection: string
 ): string {
   const res = `
+  ...,
    contentType,
   'items': ${getItemQuery(items)}[]{${baseProjection}},
   'variant': ${getVariant(items)}
