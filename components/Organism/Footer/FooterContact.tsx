@@ -20,6 +20,8 @@ interface IFooterContact {
 }
 
 const FooterContact: React.FC<IFooterContact> = ({ persons = [], content }) => {
+  if (!persons && !content) return null;
+
   return (
     <Section
       bgColor="primary-xLight"

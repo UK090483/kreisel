@@ -30,7 +30,18 @@ class UpdateEventManager<
     ) => void,
     private onFail?: () => void
   ) {}
-  run(input: any) {
+
+  /**
+   * Expects
+   *
+   * @param {
+   *  before: Readonly<T>;
+   *  after: Readonly<T>;
+   *  delta: Readonly<PayloadDelta<T>>;
+   * }
+   */
+
+  run(input: ParsedPayload<T> | null) {
     const validatedInput = this.validate(input);
     if (!validatedInput) return this.handleFail();
     this.events.forEach((e) => {

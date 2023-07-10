@@ -39,6 +39,7 @@ export default defineConfig({
           title: "Changes",
           query: `*[dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7 && _type in ['page','member']]`,
           layout: { width: "small" },
+          limit: 100,
         }),
         documentListWidget({
           title: "Has Lorem text",
