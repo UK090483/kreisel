@@ -2,6 +2,7 @@ import { NavItemBaseProps } from "./components/NavItem/NavigationItemBase";
 import { NavigationLinkProps } from "./components/NavItem/NavigationLink";
 
 export interface NavItem {
+  _key: string;
   label?: string;
   items?: NavItem[];
   link?: {

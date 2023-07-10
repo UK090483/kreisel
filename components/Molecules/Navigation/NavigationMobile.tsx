@@ -1,7 +1,7 @@
 "use client";
 
-import DefaultNavigationItemBase from "./components/NavItem/NavigationItemBase";
-import DefaultNavigationLink from "./components/NavItem/NavigationLink";
+import NavigationItemBase from "./components/NavItem/NavigationItemBase";
+import NavigationLink from "./components/NavItem/NavigationLink";
 import {
   NavigationItemBaseComponent,
   NavigationLinkComponent,
@@ -12,6 +12,9 @@ import Svg from "components/Atoms/Svg";
 import useAnimationDelay from "hooks/useAnimationDelay";
 import React from "react";
 import { useLockBodyScroll } from "react-use";
+import * as Accordion from "@radix-ui/react-accordion";
+
+import clsx from "clsx";
 
 interface NavigationMobileProps {
   label?: string;
@@ -32,38 +35,18 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
   NavigationItemBase,
   children,
 }) => {
-  const NavigationLinkComponent = NavigationLink
-    ? NavigationLink
-    : DefaultNavigationLink;
-
-  const NavigationItemBaseComponent = NavigationItemBase
-    ? NavigationItemBase
-    : DefaultNavigationItemBase;
-
   const { render, animation } = useAnimationDelay({
     delay: 300,
     listener: open,
   });
 
-  const [overlays, setOverlays] = React.useState<NavItem[]>([]);
-
-  React.useEffect(() => {
-    if (!open) {
-      setOverlays([]);
-    }
-  }, [open]);
-
-  const handleClick = (type: string, item: NavItem) => {
-    if (type === "link" && closeMenu) {
-      return closeMenu();
-    }
-    setOverlays((i) => [...i, item]);
-  };
-
-  const handleBackClick = () => {
-    setOverlays((i) => i.slice(0, -1));
-  };
   useLockBodyScroll(render);
+
+  const handleClick = React.useCallback(() => {
+    if (closeMenu) {
+      closeMenu();
+    }
+  }, [closeMenu]);
 
   return (
     <>
@@ -76,50 +59,9 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
                 : "-translate-y-96  opacity-0"
             }`}
           >
-            {items &&
-              items.map((item, index) => {
-                return (
-                  <ConditionalButton
-                    onClick={(type) => handleClick(type, item)}
-                    key={item.label}
-                    {...item}
-                    NavigationItemBase={NavigationItemBaseComponent}
-                    NavigationLink={NavigationLinkComponent}
-                  />
-                );
-              })}
+            <NestedAccordion items={items} onClick={handleClick} />
 
             {children}
-
-            {overlays &&
-              overlays.map((item) => {
-                return (
-                  <div
-                    key={item.label}
-                    className="absolute top-0 bottom-0 left-0 right-0 flex animate-fadeInFast flex-col items-center justify-center bg-primary-light"
-                  >
-                    <button
-                      className="absolute top-32 right-6 rotate-180 transform "
-                      onClick={handleBackClick}
-                    >
-                      <Svg icon="chevronRight" />
-                    </button>
-
-                    {item.items &&
-                      item.items.map((item) => {
-                        return (
-                          <ConditionalButton
-                            key={item.label}
-                            onClick={(type) => handleClick(type, item)}
-                            {...item}
-                            NavigationItemBase={NavigationItemBaseComponent}
-                            NavigationLink={NavigationLinkComponent}
-                          />
-                        );
-                      })}
-                  </div>
-                );
-              })}
           </div>
         </Portal>
       )}
@@ -127,36 +69,73 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
   );
 };
 
-const ConditionalButton: React.FC<
-  NavItem & {
-    onClick: (type: "link" | "item") => void;
-    NavigationLink?: NavigationLinkComponent;
-    NavigationItemBase?: NavigationItemBaseComponent;
-  }
-> = (props) => {
-  const { label, onClick, NavigationLink, NavigationItemBase } = props;
+interface NestedAccordionProps {
+  items?: NavItem[];
+  level?: number;
+  onClick: () => void;
+}
 
-  const NavigationLinkComponent = NavigationLink
-    ? NavigationLink
-    : DefaultNavigationLink;
+const NestedAccordion = (props: NestedAccordionProps) => {
+  const { items, level = 0, onClick } = props;
 
-  const NavigationItemBaseComponent = NavigationItemBase
-    ? NavigationItemBase
-    : DefaultNavigationItemBase;
+  return (
+    <Accordion.Root type="multiple" className="w-[300px]">
+      {items?.map(({ label, link, _key, items }) => {
+        if (link) {
+          return (
+            <NavigationLink key={_key} {...link} onClick={onClick}>
+              <NavigationItemBase
+                active={true}
+                props={props}
+                className={clsx("", {
+                  "bg-primary-xLight rounded-theme py-3.5 mb-2": level === 0,
+                })}
+              >
+                {label}
+              </NavigationItemBase>
+            </NavigationLink>
+          );
+        }
 
-  const hasChildren = props.items && props.items.length > 0;
-  return hasChildren ? (
-    <button onClick={() => onClick("item")}>
-      <NavigationItemBaseComponent active={true} icon props={props}>
-        {label}
-      </NavigationItemBaseComponent>
-    </button>
-  ) : (
-    <NavigationLinkComponent onClick={() => onClick("link")} {...props.link}>
-      <NavigationItemBaseComponent active={true} props={props}>
-        {label}
-      </NavigationItemBaseComponent>
-    </NavigationLinkComponent>
+        if (items && items.length > 0) {
+          return (
+            <Accordion.Item
+              key={_key}
+              value={_key}
+              className={clsx(" overflow-hidden ", {
+                "bg-primary-xLight rounded-theme mb-2": level === 0,
+                "bg-white": level === 1,
+              })}
+            >
+              <Accordion.Header>
+                <Accordion.Trigger className="group w-full ">
+                  <NavigationItemBase
+                    active={true}
+                    props={props}
+                    className={clsx("flex justify-between items-center", {
+                      "group-data-[state=open]:bg-primary": level === 1,
+                    })}
+                  >
+                    {label}
+                    <Svg
+                      icon="chevronRight"
+                      className="ease-[cubic-bezier(0.87,_0,_0.13,_1)] transition-transform duration-300 group-data-[state=open]:rotate-90"
+                    />
+                  </NavigationItemBase>
+                </Accordion.Trigger>
+              </Accordion.Header>
+              <Accordion.Content className={clsx("", { "": level === 1 })}>
+                <NestedAccordion
+                  onClick={onClick}
+                  items={items}
+                  level={level + 1}
+                />
+              </Accordion.Content>
+            </Accordion.Item>
+          );
+        }
+      })}
+    </Accordion.Root>
   );
 };
 

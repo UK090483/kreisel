@@ -23,7 +23,7 @@ const NavigationItemBase: React.FC<NavItemBaseProps> = ({
     <span
       data-testid="navBase"
       className={clsx(
-        `block px-5 py-3  text-base leading-none `,
+        `block px-5 py-3  text-base leading-5 `,
         {
           "font-bold ": bold,
         },

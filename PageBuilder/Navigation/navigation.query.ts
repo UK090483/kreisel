@@ -8,6 +8,7 @@ interface NavigationMegaMenuResult {
 }
 
 const navItemQuery = (locale: string = "") => `
+      _key,
       'label': coalesce(label_${locale}, label),
       'link':link{
         ${linkQuery}
@@ -45,6 +46,7 @@ export const NavigationQuery = `
   `;
 
 interface NavigationItemResult {
+  _key: string;
   label?: string;
   link?: LinkResult;
   items?: NavigationItemResult[];
