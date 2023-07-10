@@ -22,6 +22,7 @@ const DropdownNavItem: React.FC<NavigationModulDropdownProps> = (props) => {
     : DefaultNavigationItemBase;
 
   const { open, setOpen } = useNavigationOpen(id);
+  //@ts-ignore
   const { active } = useIsActive({ items });
 
   const [bottom, setBottom] = React.useState<number>(0);

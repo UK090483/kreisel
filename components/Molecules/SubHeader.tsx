@@ -16,7 +16,7 @@ const Subheader = () => {
         "bg-primary-light": !isAuthenticated,
       })}
     >
-      <div className=" mx-auto flex flex-wrap items-center justify-between  px-3 lg:container">
+      <div className=" mx-auto flex flex-wrap items-center justify-between  px-3 container">
         <Typo variant="body-s" space={false}>
           Kostenlose Beratung: 040 38 61 23 71
         </Typo>

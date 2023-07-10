@@ -51,6 +51,7 @@ const List: React.FC<{
     NavItemLink: DefaultNavigationLink,
   } = useNavigation();
 
+  //@ts-ignore
   const { isActive } = useIsActive({});
 
   return (

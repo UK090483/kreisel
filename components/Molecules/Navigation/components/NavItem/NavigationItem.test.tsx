@@ -23,7 +23,7 @@ const TestNavigationLink: FC<NavigationLinkProps> = ({ children, href }) => {
   );
 };
 
-const customRender = ({ itemProps }: { itemProps?: NavItemProps }) => {
+const customRender = ({ itemProps }: { itemProps: NavItemProps }) => {
   return render(
     <NavigationContextProvider>
       <NavigationItem {...itemProps} />
@@ -33,16 +33,23 @@ const customRender = ({ itemProps }: { itemProps?: NavItemProps }) => {
 
 describe("NavigationItem", () => {
   it("smoke  ", () => {
+    //@ts-ignore
     customRender({});
   });
   it("should render Label", () => {
-    customRender({ itemProps: { label: "testLabel" } });
+    customRender({
+      itemProps: { label: "testLabel", _key: Math.random().toString() },
+    });
     expect(screen.getAllByText("testLabel"));
   });
 
   it("should render Link", () => {
     customRender({
-      itemProps: { label: "testLabel", link: { href: "/testLink" } },
+      itemProps: {
+        _key: Math.random().toString(),
+        label: "testLabel",
+        link: { href: "/testLink" },
+      },
     });
     expect(screen.getByRole("link").getAttribute("href")).toBe("/testLink");
   });
@@ -50,6 +57,7 @@ describe("NavigationItem", () => {
   it("should render Custom Component", () => {
     customRender({
       itemProps: {
+        _key: Math.random().toString(),
         label: "testLabel",
         link: { href: "/testLink" },
         NavigationItemBase: TestNavigationItemBase,

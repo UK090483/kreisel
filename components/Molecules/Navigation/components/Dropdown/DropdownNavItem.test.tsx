@@ -8,7 +8,15 @@ const customRender = (items?: boolean) => {
       <DropdownNavItem
         id="test"
         {...(items
-          ? { items: [{ label: "testItem", link: { href: "testLink" } }] }
+          ? {
+              items: [
+                {
+                  _key: Math.random().toString(),
+                  label: "testItem",
+                  link: { href: "testLink" },
+                },
+              ],
+            }
           : {})}
       >
         testLabel

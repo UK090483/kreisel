@@ -1,7 +1,8 @@
 import { NavItem } from "../types";
 
-export const linkItem = (overwrite?: NavItem) =>
+export const linkItem = (overwrite?: Partial<NavItem>) =>
   ({
+    _key: Math.random(),
     label: "Test Item",
     link: { href: "testLink" },
     ...overwrite,
@@ -40,7 +41,5 @@ export const MultiListItem = (overwrite?: NavItem) =>
     ],
     ...overwrite,
   } as NavItem);
-
-const item: NavItem = { label: "LinkItem" };
 
 export const testData = [];
