@@ -11,7 +11,7 @@ export const List: PortableTextListComponent = (props) => {
     <Typo
       data-testid="list"
       variant={props.value.listItem === "bullet" ? "ul-disc" : "ul-decimal"}
-      className={clsx({ "pb-8 last:pb-0 ": props.value.level })}
+      className={clsx({ "pb-8 last:pb-0  inline-block": props.value.level })}
     >
       {props.children}
     </Typo>
