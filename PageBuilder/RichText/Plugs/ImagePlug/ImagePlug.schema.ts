@@ -9,11 +9,7 @@ const imagePlugSchema = {
       name: "image",
       title: "image",
     },
-    {
-      name: "customString",
-      title: "This is a cool custom string",
-      type: "string",
-    },
+
     {
       title: "Width",
       name: "customWidth",
@@ -66,7 +62,7 @@ const imagePlugSchema = {
 
   preview: {
     select: {
-      image: "image.asset.url",
+      media: "image",
     },
   },
 };

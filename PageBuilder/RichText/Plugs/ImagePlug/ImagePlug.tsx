@@ -46,7 +46,7 @@ const ImagePlug: React.FC<ImagePlugProps> = (props) => {
           src={image}
           fill={hasRatio}
           objectFit={hasRatio ? "cover" : undefined}
-          className={clsx("w-full", { "object-fill": hasRatio })}
+          className={clsx("w-full rounded-theme", { "object-fill": hasRatio })}
           sizes={`(max-width: 350px) 350px ,(max-width: 640px) 100vw, ${sizesMap[customWidth]}vw`}
         />
       </AspectBox>
