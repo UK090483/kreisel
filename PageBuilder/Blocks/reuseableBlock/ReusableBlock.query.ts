@@ -22,4 +22,5 @@ type ItemResult = BlockStyle & {
 export interface IReusableBlockResult {
   _type: "reusable";
   item: ItemResult;
+  _key: string;
 }

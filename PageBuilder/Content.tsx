@@ -10,19 +10,19 @@ const Content = (props: ContentResult) => {
       content={props?.content || []}
       mapElements={(props) => {
         if (props._type === "hero") {
-          return <Hero {...props} />;
+          return <Hero key={props._key} {...props} />;
         }
         if (props._type === "section") {
-          return <Section {...props} />;
+          return <Section key={props._key} {...props} />;
         }
         if (props._type === "listing") {
-          return <Listing {...props} />;
+          return <Listing key={props._key} {...props} />;
         }
         if (props._type === "trust") {
-          return <Trust {...props} />;
+          return <Trust key={props._key} {...props} />;
         }
         if (props._type === "reusable") {
-          return <ReusableBlock {...props} />;
+          return <ReusableBlock key={props._key} {...props} />;
         }
       }}
     />

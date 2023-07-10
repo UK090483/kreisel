@@ -13,6 +13,7 @@ import useAnimationDelay from "hooks/useAnimationDelay";
 import React from "react";
 import { useLockBodyScroll } from "react-use";
 import * as Accordion from "@radix-ui/react-accordion";
+import * as Dialog from "@radix-ui/react-dialog";
 
 import clsx from "clsx";
 
@@ -31,16 +32,12 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
   open,
   items,
   closeMenu,
-  NavigationLink,
-  NavigationItemBase,
   children,
 }) => {
   const { render, animation } = useAnimationDelay({
     delay: 300,
     listener: open,
   });
-
-  useLockBodyScroll(render);
 
   const handleClick = React.useCallback(() => {
     if (closeMenu) {
@@ -49,19 +46,34 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
   }, [closeMenu]);
 
   return (
+    <Dialog.Root open={open}>
+      <Dialog.Portal>
+        <Dialog.Overlay />
+        <Dialog.Content className="data-[state=open]:animate-contentShow z-10 fixed inset-0 bg-primary-light overflow-y-auto">
+          <div className=" pt-32 pb-24 flex flex-col items-center ">
+            <NestedAccordion items={items} onClick={handleClick} />
+            {children}
+          </div>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+
+  return (
     <>
       {render && (
         <Portal>
           <div
-            className={`fixed inset-0 z-10 flex transform flex-col items-center overflow-scroll bg-primary-light pt-32 pb-24  transition-transform duration-300 ${
+            className={`fixed inset-0 border-2 border-red max-h-screen z-10 transform bg-primary-light overflow-scroll transition-transform duration-300 ${
               animation
                 ? "translate-y-0 opacity-100 "
                 : "-translate-y-96  opacity-0"
             }`}
           >
-            <NestedAccordion items={items} onClick={handleClick} />
-
-            {children}
+            <div className=" pt-32 pb-24 flex flex-col items-center   ">
+              <NestedAccordion items={items} onClick={handleClick} />
+              {children}
+            </div>
           </div>
         </Portal>
       )}

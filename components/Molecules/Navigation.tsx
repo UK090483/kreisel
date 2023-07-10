@@ -40,7 +40,7 @@ const Navigation: React.FC<NavProps> = ({ items }) => {
             <HeaderNavigation
               items={items}
               NavigationItemBase={NavItemBaseWithUnderline}
-              className=" justify-center"
+              className="justify-center"
             />
           </div>
           <ContactButton className="mr-3 hidden xl:block" />
@@ -48,7 +48,7 @@ const Navigation: React.FC<NavProps> = ({ items }) => {
           <button
             data-testid="menu-overlay-toggle"
             onClick={handleNavClick}
-            className="h-8 w-8 lg:hidden "
+            className="h-8 w-8 lg:hidden pointer-events-auto"
             aria-label="Open the Menu"
           >
             <Svg className="w-full" icon={menuOpen ? "erase" : "hamburger"} />

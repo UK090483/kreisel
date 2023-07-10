@@ -9,7 +9,7 @@ const trustBlockItemQuery = `
    'image': image{${imageQuery}},
 `;
 
-export interface ITrustBlockItem {
+interface ITrustBlockItem {
   image?: ImageResult;
   name: string;
   value: string;
@@ -28,6 +28,7 @@ ${blockStyleProjection()}
 `;
 
 export interface trustQueryResult extends BlockStyle {
+  _key: string;
   _type: "trust";
   content?: null | any;
   items?: ITrustBlockItem[] | null;
