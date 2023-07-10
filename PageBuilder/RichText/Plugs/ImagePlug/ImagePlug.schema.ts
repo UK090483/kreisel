@@ -58,6 +58,11 @@ const imagePlugSchema = {
       name: "float",
       type: "boolean",
     },
+    {
+      title: "Rounded Corners",
+      name: "rounded",
+      type: "boolean",
+    },
   ],
 
   preview: {

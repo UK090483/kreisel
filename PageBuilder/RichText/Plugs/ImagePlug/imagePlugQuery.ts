@@ -6,6 +6,7 @@ export type ImagePlugProps = {
   ratio?: "auto" | "3:2" | "5:9" | "16:9" | "1:1";
   position?: "left" | "right" | "center";
   float?: boolean;
+  rounded?: boolean;
 };
 export const ImagePlugQuery = `
 _type == "imagePlug" => {
