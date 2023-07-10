@@ -30,7 +30,7 @@ const GridGalerie: React.FunctionComponent<IImageGalleryProps> = (props) => {
       )}
     >
       {items.map((item) => {
-        const { size = "m", bgColor = "primary", ...rest } = item;
+        const { size = "m", bgColor = "primary-xLight", ...rest } = item;
         return (
           <ImageGalleryItem
             key={item._key}

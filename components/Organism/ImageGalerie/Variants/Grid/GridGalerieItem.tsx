@@ -9,7 +9,7 @@ import clsx from "clsx";
 const GridGalleryItem: React.FunctionComponent<
   ImageGalleryItemProps & { className?: string }
 > = (props) => {
-  const { image, title, link, className, contain = false } = props;
+  const { image, title, link, className, contain = true } = props;
 
   return (
     <>

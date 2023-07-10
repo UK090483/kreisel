@@ -84,7 +84,7 @@ export const imageGalleryPlugItemSchema = defineType({
       },
     },
 
-    { name: "contain", title: "Überlagern", type: "boolean" },
+    { name: "contain", title: "Überlagern (default active)", type: "boolean" },
 
     {
       title: "Background Color",
