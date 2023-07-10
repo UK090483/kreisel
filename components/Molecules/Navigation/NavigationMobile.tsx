@@ -11,7 +11,7 @@ import Portal from "components/Atoms/Portal";
 import Svg from "components/Atoms/Svg";
 import useAnimationDelay from "hooks/useAnimationDelay";
 import React from "react";
-import { useLockBodyScroll } from "react-use";
+
 import * as Accordion from "@radix-ui/react-accordion";
 import * as Dialog from "@radix-ui/react-dialog";
 
