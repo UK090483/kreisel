@@ -72,8 +72,18 @@ module.exports = {
         enterFromRight: "enterFromRight 250ms ease",
         exitToLeft: "exitToLeft 250ms ease",
         exitToRight: "exitToRight 250ms ease",
+        accordion_open: "accordion_open 250ms ease",
+        accordion_close: "accordion_close 250ms ease",
       },
       keyframes: {
+        accordion_open: {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        accordion_close: {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
         menuFade: {
           "0%": {
             opacity: 0,

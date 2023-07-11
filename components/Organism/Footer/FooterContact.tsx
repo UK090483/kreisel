@@ -26,21 +26,25 @@ const FooterContact: React.FC<IFooterContact> = ({ persons = [], content }) => {
     <Section
       bgColor="primary-xLight"
       width="l"
-      className="grid grid-cols-1 py-24 md:grid-cols-2"
+      className="grid grid-cols-1 py-24 md:grid-cols-2 "
     >
-      <div className="flex flex-wrap items-center justify-center">
-        {persons?.map((a) => (
-          <li key={a._id} className=" w-full list-none md:w-1/2">
-            <Avatar
-              id={a._id}
-              size="m"
-              image={a.avatar}
-              title={a.name}
-              subTitle={a.position}
-              description={a.description}
-            />
-          </li>
-        ))}
+      <div className="flex items-center w-full">
+        <div className="flex flex-wrap w-full">
+          {persons?.map((a) =>
+            a ? (
+              <li key={a._id} className="w-full list-none md:w-1/2 self-start">
+                <Avatar
+                  id={a._id}
+                  size="m"
+                  image={a.avatar}
+                  title={a.name}
+                  subTitle={a.position}
+                  description={a.description}
+                />
+              </li>
+            ) : null
+          )}
+        </div>
       </div>
 
       <div className="p-16">

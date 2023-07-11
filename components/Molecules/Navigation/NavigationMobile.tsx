@@ -7,7 +7,6 @@ import {
   NavigationLinkComponent,
   NavItem,
 } from "./types";
-import Portal from "components/Atoms/Portal";
 import Svg from "components/Atoms/Svg";
 import useAnimationDelay from "hooks/useAnimationDelay";
 import React from "react";
@@ -49,7 +48,7 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
     <Dialog.Root open={open}>
       <Dialog.Portal>
         <Dialog.Overlay />
-        <Dialog.Content className="data-[state=open]:animate-contentShow z-10 fixed inset-0 bg-primary-light overflow-y-auto">
+        <Dialog.Content className="data-[state=open]:animate-slideDown z-10 fixed inset-0 bg-primary-light overflow-y-auto">
           <div className=" pt-32 pb-24 flex flex-col items-center ">
             <NestedAccordion items={items} onClick={handleClick} />
             {children}
@@ -57,27 +56,6 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
-  );
-
-  return (
-    <>
-      {render && (
-        <Portal>
-          <div
-            className={`fixed inset-0 border-2 border-red max-h-screen z-10 transform bg-primary-light overflow-scroll transition-transform duration-300 ${
-              animation
-                ? "translate-y-0 opacity-100 "
-                : "-translate-y-96  opacity-0"
-            }`}
-          >
-            <div className=" pt-32 pb-24 flex flex-col items-center   ">
-              <NestedAccordion items={items} onClick={handleClick} />
-              {children}
-            </div>
-          </div>
-        </Portal>
-      )}
-    </>
   );
 };
 
@@ -136,7 +114,12 @@ const NestedAccordion = (props: NestedAccordionProps) => {
                   </NavigationItemBase>
                 </Accordion.Trigger>
               </Accordion.Header>
-              <Accordion.Content className={clsx("", { "": level === 1 })}>
+              <Accordion.Content
+                className={clsx(
+                  "data-[state=open]:animate-accordion_open  data-[state=closed]:animate-accordion_close",
+                  { "": level === 1 }
+                )}
+              >
                 <NestedAccordion
                   onClick={onClick}
                   items={items}
