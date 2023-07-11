@@ -18,7 +18,7 @@ const EventPlug: React.FC<IEventPlugProps> = (props) => {
     searchParams.append("cat", category);
   }
   if (filter) {
-    searchParams.append("filter", filter);
+    searchParams.append("filter", encodeURIComponent(filter));
   }
 
   if (Boolean(searchParams.size)) {

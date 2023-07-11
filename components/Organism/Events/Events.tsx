@@ -68,7 +68,7 @@ export default EventPlugComponent;
 
 const Description = () => {
   return (
-    <div className="text-sm grid grid-cols-2 leading-4">
+    <div className="text-sm grid md:grid-cols-2 gap-4 leading-4">
       <div className="text-sm">
         <div className="flex items-center">
           <StatusIndicator state="open" size="s" />{" "}

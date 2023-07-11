@@ -26,15 +26,19 @@ const filterItems = (filter: string, items: ScrapeEvent[]) => {
   if (!items) {
     return [];
   }
-  if (!items || !filter) {
+  if (!filter) {
     return items;
   }
-  const filterList = filter.split(",").map((i) => i.trim().toLowerCase());
+  const filterList = decodeURIComponent(filter)
+    .split(",")
+    .map((i) => i.trim().toLowerCase());
+
   return items.filter((i) => {
     if (!i.name) {
       return false;
     }
     const title = i.name.toLowerCase();
+
     return filterList.find((f) => title.includes(f));
   });
 };
