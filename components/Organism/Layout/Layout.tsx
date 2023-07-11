@@ -1,4 +1,5 @@
 "use client";
+import Head from "./Head/Head";
 import { Footer, Header } from "components";
 import { BackButton } from "components/Organism/Layout/BackButton";
 import { useAppContext } from "PageBuilder/AppContext/AppContext";
@@ -37,6 +38,7 @@ const Layout: React.FC<PropsWithChildren> = (props) => {
 
   return (
     <>
+      <Head />
       {isGlossary ? <BackButton /> : <Header items={data?.navigation || []} />}
 
       <main

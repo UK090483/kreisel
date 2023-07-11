@@ -9,7 +9,8 @@ _id,
 
 const appQueryNoLocales = `
 _id,
-title,
+'title':coalesce(title,name),
+description,
 'homeRoute':*[_id == 'siteConfig'][0].indexPage->{ 'slug':slug.current },
 'slug':coalesce('/'+pageType->slug.current,'') +'/'+ slug.current,
 'image':image{${imageQuery}},
@@ -19,6 +20,7 @@ layout
 export type appQueryResult = {
   _id: string;
   title?: string | null;
+  description?: string | null;
   homeRoute?: { [k: string]: string };
   slug?: string | null;
   layout?: "glossary" | null;
