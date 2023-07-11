@@ -1,6 +1,6 @@
 import EventItem from "./EventItem";
+import StatusIndicator from "./StatusIndicator";
 import clsx from "clsx";
-
 import React from "react";
 
 export type Event = {
@@ -30,20 +30,25 @@ const EventPlugComponent: React.FC<{ events: Event[]; loading?: boolean }> = ({
 
   if (_events?.length === 0)
     return (
-      <div className=" text-lg text-center">
+      <div className="text-lg text-center">
         es sind zur zeit keine Veranstaltungen geplant
       </div>
     );
   return (
-    <div className="relative">
-      <Panel />
-      <div className="mb-3 grid grid-cols-1 gap-3 max-h-[500px] overflow-scroll py-10">
-        {_events.map((item) => {
-          return <EventItem key={item.link} {...item} />;
-        })}
+    <>
+      <div className="relative">
+        <Panel />
+
+        <div className="mb-3 grid grid-cols-1 gap-3 max-h-[500px] overflow-scroll py-10">
+          {_events.map((item) => {
+            return <EventItem key={item.link} {...item} />;
+          })}
+        </div>
+
+        <Panel bottom />
       </div>
-      <Panel bottom />
-    </div>
+      <Description />
+    </>
   );
 };
 
@@ -60,3 +65,35 @@ const Panel = ({ bottom }: { bottom?: boolean }) => (
 );
 
 export default EventPlugComponent;
+
+const Description = () => {
+  return (
+    <div className="text-sm grid grid-cols-2 leading-4">
+      <div className="text-sm">
+        <div className="flex items-center">
+          <StatusIndicator state="open" size="s" />{" "}
+          <p>freie Plätze verfügbar</p>
+        </div>
+        <div className="flex mt-2 items-center">
+          <StatusIndicator state="medium" size="s" />{" "}
+          <p> wenige Plätze verfügbar</p>
+        </div>
+        <div className="flex mt-2 items-center">
+          <StatusIndicator state="full" size="s" />{" "}
+          <p> keine Plätze verfügbar</p>
+        </div>
+      </div>
+
+      <div>
+        <p className="font-bold">Preisgestaltung:</p>
+        <p>Seminartag 130,-€</p>
+        <p className="font-bold">Rabatte:</p>
+        <ol className="list-disc ml-4">
+          <li>Frühbucher 10%</li>
+          <li> Netzwerkmitglieder 20% </li>
+          <li> Wiederholung 50% (nur für Netzwerkmitglieder)</li>
+        </ol>
+      </div>
+    </div>
+  );
+};

@@ -1,6 +1,6 @@
 import { EventWrap } from "./EventWrap";
 import { Event } from "./Events";
-import { PureKreisel } from "components/Atoms/Kreisel";
+import StatusIndicator from "./StatusIndicator";
 import Typo from "components/Atoms/Typography/Typography";
 import clsx from "clsx";
 
@@ -18,15 +18,12 @@ const EventItem: React.FC<Event> = (item) => {
       href={link}
     >
       <div className={clsx("flex justify-start items-center h-fit")}>
-        <PureKreisel
-          style={{ animationDelay: index ? index * 10 + "ms" : "0" }}
-          className={clsx("h-6 w-6 rounded-full mr-2", {
-            "text-green-400  ": bookingStatus === "open",
-            "text-red ": bookingStatus === "full",
-            "text-yellow-400 ": bookingStatus === "medium",
-            "animate-spin": loading,
-          })}
+        <StatusIndicator
+          state={bookingStatus}
+          animationDelay={index ? index * 10 + "ms" : "0"}
+          loading={loading}
         />
+
         <div>
           <Typo variant="body-s" bold space={false}>
             {start}
