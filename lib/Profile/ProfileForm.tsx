@@ -92,7 +92,7 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
       <div className="mx-auto w-full max-w-3xl px-5 pb-32">
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(_onSubmit, _onSubmitError)}>
-            <Input name="title" label="Title" />
+            <Input name="title" label="Titel" description="Dr. / Prof etc." />
             <div className="grid gap-4 md:grid-cols-2">
               <Input name="firstName" label="Vorname" />
               <Input name="name" label="Name" />
@@ -106,7 +106,11 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
             )}
             {allowProfile && (
               <>
-                <Input name="practice" label="Praxis" />
+                <Input
+                  name="practice"
+                  label="Praxis"
+                  description="Name der Praxis/Firma"
+                />
 
                 <div className="grid gap-4 md:grid-cols-2">
                   <Input name="street" label="Strasse" />
@@ -135,6 +139,7 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
                   name="degree"
                   label="Abschlüsse"
                   items={degreeOptions}
+                  description="Bitte wähle bei den KREISELabschlüssen nur deinen höchsten aus!"
                 />
 
                 <DropdownInput

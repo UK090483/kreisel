@@ -3,13 +3,11 @@ import { formClasses } from "./style";
 import clsx from "clsx";
 import { useFormContext } from "react-hook-form";
 
-type TextareaProps = {
-  name: string;
-  label: string;
-} & JSX.IntrinsicElements["textarea"];
+type TextareaProps = {} & JSX.IntrinsicElements["textarea"] &
+  Omit<React.ComponentProps<typeof FormControl>, "children">;
 
 const Textarea: React.FC<TextareaProps> = (props) => {
-  const { name, label, className } = props;
+  const { name, label, description, className } = props;
   const {
     register,
     formState: { errors, isSubmitting },
@@ -24,6 +22,7 @@ const Textarea: React.FC<TextareaProps> = (props) => {
       name={name}
       label={label}
       disabled={isSubmitting}
+      description={description}
     >
       <textarea
         data-test-id={`input_${name}`}

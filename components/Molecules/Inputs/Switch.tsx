@@ -1,5 +1,6 @@
 import FormControl from "./parts/FormControl";
 import { formClasses } from "./style";
+import { FormDescription } from "./parts/FormDescription";
 import { useEffect } from "react";
 import { Switch as HiSwitch } from "@headlessui/react";
 import { useController, useFormContext } from "react-hook-form";
@@ -9,34 +10,37 @@ type SwitchProps = {
   onChange: (value: boolean) => void;
   checked?: boolean;
   name?: string;
-};
+} & React.ComponentProps<typeof FormDescription>;
 export function Switch(props: SwitchProps) {
   const { onChange, checked, name } = props;
   return (
-    <HiSwitch
-      data-test-id={`input_${name}`}
-      id={name}
-      checked={checked}
-      onChange={onChange}
-      className={clsx(
-        "relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full  transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75",
-        formClasses.border,
-        formClasses.bg
-      )}
-    >
-      <span className="sr-only">Use setting</span>
-      <span
-        aria-hidden="true"
+    <>
+      <HiSwitch
+        data-test-id={`input_${name}`}
+        id={name}
+        checked={checked}
+        onChange={onChange}
         className={clsx(
-          {
-            "translate-x-9 bg-primary": checked,
-
-            "translate-x-0 bg-primary-light": !checked,
-          },
-          `pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full  shadow-lg ring-0 transition duration-200 ease-in-out`
+          "relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full  transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75",
+          formClasses.border,
+          formClasses.bg
         )}
-      />
-    </HiSwitch>
+      >
+        <span className="sr-only">Use setting</span>
+        <span
+          aria-hidden="true"
+          className={clsx(
+            {
+              "translate-x-9 bg-primary": checked,
+
+              "translate-x-0 bg-primary-light": !checked,
+            },
+            `pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full  shadow-lg ring-0 transition duration-200 ease-in-out`
+          )}
+        />
+      </HiSwitch>
+      <FormDescription />
+    </>
   );
 }
 

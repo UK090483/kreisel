@@ -4,14 +4,11 @@ import { useFormContext } from "react-hook-form";
 import * as React from "react";
 import clsx from "clsx";
 
-type InputProps = {
-  name: string;
-  label?: string;
-  description?: string;
-} & JSX.IntrinsicElements["input"];
+type InputProps = {} & JSX.IntrinsicElements["input"] &
+  Omit<React.ComponentProps<typeof FormControl>, "children">;
 
 const Input: React.FC<InputProps> = (props) => {
-  const { name, label, className } = props;
+  const { name, label, className, description } = props;
   const {
     register,
     formState: { errors, isSubmitting },
@@ -26,6 +23,7 @@ const Input: React.FC<InputProps> = (props) => {
       name={name}
       label={label}
       errorMessage={errorMessage}
+      description={description}
     >
       <input
         data-test-id={`input_${name}`}
