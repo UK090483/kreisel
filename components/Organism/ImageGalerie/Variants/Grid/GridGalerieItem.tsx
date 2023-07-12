@@ -11,6 +11,8 @@ const GridGalleryItem: React.FunctionComponent<
 > = (props) => {
   const { image, title, link, className, contain = true } = props;
 
+  console.log(props);
+
   return (
     <>
       <ConditionalLink

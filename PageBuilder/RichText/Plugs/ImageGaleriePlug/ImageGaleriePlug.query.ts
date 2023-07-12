@@ -13,7 +13,10 @@ _type == "imageGalleryPlug" => {
   _key,
   'items':items[]{
     ...,
-    'image': coalesce(image,link.internalLink->image){${imageQuery}},
+    'image': select( 
+      defined(image.asset) => image,
+      link.internalLink->image
+    ){${imageQuery}},
     'title': coalesce(title,link.internalLink->title),
     'link':link{${linkQuery}}
    },
