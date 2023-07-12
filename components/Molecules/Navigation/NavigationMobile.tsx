@@ -8,11 +8,11 @@ import {
   NavItem,
 } from "./types";
 import Svg from "components/Atoms/Svg";
-import useAnimationDelay from "hooks/useAnimationDelay";
-import React from "react";
+import React, { useEffect } from "react";
 
 import * as Accordion from "@radix-ui/react-accordion";
 import * as Dialog from "@radix-ui/react-dialog";
+import { useMedia } from "react-use";
 
 import clsx from "clsx";
 
@@ -33,16 +33,18 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
   closeMenu,
   children,
 }) => {
-  const { render, animation } = useAnimationDelay({
-    delay: 300,
-    listener: open,
-  });
-
+  const isMobile = useMedia("(max-width: 1024px)");
   const handleClick = React.useCallback(() => {
     if (closeMenu) {
       closeMenu();
     }
   }, [closeMenu]);
+
+  useEffect(() => {
+    if (!isMobile && open && closeMenu) {
+      closeMenu();
+    }
+  }, [isMobile, open, closeMenu]);
 
   return (
     <Dialog.Root open={open}>
