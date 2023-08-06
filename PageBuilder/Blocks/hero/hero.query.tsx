@@ -4,7 +4,6 @@ import {
   BlockBgColor,
   blockBgColorProjection,
   BlockSpace,
-  blockSpaceProjection,
   BlockTransition,
   blockTransitionProjection,
 } from "PageBuilder/schemaHelper/blockStyle";
@@ -16,7 +15,6 @@ _type == "hero" => {
   _key,
  'image':image{${imageQuery}},
  ${blockBgColorProjection()}
- ${blockSpaceProjection()}
  ${blockTransitionProjection()}
 }
 `;
