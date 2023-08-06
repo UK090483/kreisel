@@ -33,7 +33,8 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
   closeMenu,
   children,
 }) => {
-  const isMobile = useMedia("(max-width: 1024px)");
+  const isMobile = useMedia("(max-width: 1024px)", false);
+
   const handleClick = React.useCallback(() => {
     if (closeMenu) {
       closeMenu();

@@ -2,7 +2,6 @@ import { TherapistResult } from "./therapist.query";
 import Typo from "components/Atoms/Typography/Typography";
 
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
-import RichText from "PageBuilder/RichText/PortableText";
 import { focusOptions, degreeOptions } from "lib/Profile/Fields";
 import Link from "next/link";
 import FocusTrap from "focus-trap-react";
@@ -69,7 +68,7 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
             )
             .join("\n")}
         />
-        <InfoItem title="Beruf" data={item?.description} />
+        <InfoItem title="Beschreibung" data={item?.description} />
         <InfoItem title="Email">
           {item?.email && (
             <Typo>
@@ -92,12 +91,6 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
           )}
         </InfoItem>
 
-        {item?.description && (
-          <div className=" mb-4">
-            <Header>Beschreibung</Header>
-            <RichText content={item?.description} />
-          </div>
-        )}
         <InfoItem title="Praxis" data={item?.practice} />
       </div>
     </FocusTrap>
@@ -105,7 +98,7 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
 };
 
 const Header: React.FC<React.PropsWithChildren> = ({ children }) => (
-  <Typo space={false} bold>
+  <Typo space={false} variant="h5" bold>
     {children}
   </Typo>
 );
