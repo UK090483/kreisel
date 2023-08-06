@@ -52,7 +52,7 @@ const Hero: React.FC<IHeroProps & ISectionProps & IUseSectionWidthProps> = (
           "mx-auto w-full max-w-screen-lg ": isFull,
         })}
       >
-        <div className={clsx({ "border-2 border-red max-w-[700px]": isFull })}>
+        <div className={clsx({ "max-w-[700px]": isFull })}>
           {content ? (
             <Content content={content} />
           ) : (
