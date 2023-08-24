@@ -6,5 +6,7 @@ declare namespace NodeJS {
     EMAIL_SERVER_PORT: number;
     EMAIL_FROM: string;
     AUTH_SECRET: string;
+    NEXT_PUBLIC_SUPABASE_URL: string;
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: string;
   }
 }

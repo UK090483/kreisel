@@ -1,11 +1,8 @@
 "use client";
 import Kreisel from "components/Atoms/Kreisel";
-import { supabase } from "lib/supabase/client";
-import Auth from "components/Organism/Auth/SignIn";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
-
-import { Session } from "@supabase/supabase-js";
 
 const isServer = typeof window === "undefined";
 
@@ -13,15 +10,11 @@ interface IAuthContextState {
   email?: string;
   member: boolean;
   isAuthenticated: boolean;
-  signIn: () => void;
-  signOut: () => void;
 }
 
 const defaultState: IAuthContextState = {
   member: false,
   isAuthenticated: false,
-  signIn: () => {},
-  signOut: () => {},
 };
 
 const AuthContext = React.createContext(defaultState);
@@ -31,51 +24,19 @@ interface AuthContextProviderProps {
 }
 
 export const AuthContextProvider = (props: AuthContextProviderProps) => {
-  const [session, setSession] = useState<Session | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const [open, setOpen] = useState(false);
-
-  const user = session?.user;
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setIsLoading(false);
-    });
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  }, []);
-
-  let status = "loading";
-
-  if (user) {
-    status = "authenticated";
-  }
+  const { data, status } = useSession();
 
   const isDraftMode = false;
   const { push } = useRouter();
   const pathname = usePathname();
   const isMemberPage = pathname?.split("/")[1] === "mitgliederbereich";
-
+  const isLoading = status === "loading";
   const isAuthenticated = status === "authenticated";
   const isUnauthenticated = status === "unauthenticated";
-
-  // const member = !!data?.member;
-  const member = false;
-  const email = user?.email || undefined;
+  //@ts-ignore
+  const member = !!data?.member;
+  const email = data?.user?.email || undefined;
   let showSpinner: boolean = false;
-
-  const signIn = () => {
-    setOpen(true);
-    //push("/auth/loginSupabase");
-  };
-
-  const signOut = () => {
-    supabase.auth.signOut();
-  };
 
   if (isMemberPage && !isDraftMode) {
     showSpinner = status !== "authenticated";
@@ -84,7 +45,6 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
       showSpinner = true;
       push("/profile");
     }
-
     if (isUnauthenticated) {
       signIn();
     }
@@ -103,15 +63,9 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
     );
   }
 
-  //return <>{children}</>;
-
   return (
-    <AuthContext.Provider
-      value={{ member, email, isAuthenticated, signIn, signOut, ...rest }}
-    >
+    <AuthContext.Provider value={{ member, email, isAuthenticated, ...rest }}>
       {children}
-
-      {open && <Auth close={() => setOpen(false)} />}
     </AuthContext.Provider>
   );
 };
@@ -119,3 +73,5 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
 export const useAuth = () => {
   return useContext(AuthContext);
 };
+
+export { signIn, signOut };
