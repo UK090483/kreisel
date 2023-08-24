@@ -58,6 +58,7 @@ const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
         >
           {hasImage && (
             <Image
+              alt={`${title} avatar`}
               src={image}
               fill
               className={clsx({

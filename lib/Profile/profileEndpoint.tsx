@@ -74,6 +74,7 @@ const getHandler = (client: SanityClient, getTokenFn: typeof getToken) => {
   };
 };
 
+// eslint-disable-next-line import/no-unused-modules
 export default getHandler;
 
 const updateUser = async (client: SanityClient, email: string, data: any) => {

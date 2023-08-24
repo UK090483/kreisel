@@ -26,7 +26,7 @@ const TestimonialList: React.FC<ITestimonialListProps> = (props) => {
   return (
     <Carousel slides={1} slidesMobile={1}>
       {items.map((itemProps, index) => {
-        const { image, text } = itemProps;
+        const { image, text, name } = itemProps;
         const hasImage = validateSrc(image);
         return (
           <div
@@ -56,7 +56,12 @@ const TestimonialList: React.FC<ITestimonialListProps> = (props) => {
             {hasImage && (
               <div className="flex">
                 <div className="shrink-0 relative mx-auto  flex h-24 w-24 lg:h-[320px] lg:w-[320px] items-center justify-center overflow-hidden rounded-theme ">
-                  <Image src={image} fill className="object-cover" />
+                  <Image
+                    alt={`${name}`}
+                    src={image}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <Label {...itemProps} classNames=" lg:hidden ml-6" />
               </div>

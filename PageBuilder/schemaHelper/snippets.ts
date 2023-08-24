@@ -26,7 +26,7 @@ export function colorList(skip?: any) {
 
   return list.filter((listItem) => !skip.includes(listItem.value));
 }
-export type ColorList =
+type ColorList =
   | "primary"
   | "primary-light"
   | "primary-xLight"

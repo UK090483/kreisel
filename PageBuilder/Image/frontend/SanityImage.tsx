@@ -31,7 +31,7 @@ function SanityImage(props: ISanityImageProps) {
       />
     );
 
-  const _alt = alt || src.alt || "alt";
+  const _alt = src.alt || alt || "alt";
   const _url = src.url + "?auto=format" || "";
 
   return (

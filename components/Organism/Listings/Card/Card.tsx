@@ -38,7 +38,7 @@ const Card: React.FC<CardProps & { children?: React.ReactNode }> = (props) => {
       <div
         className={`aspect-w-10 aspect-h-5 relative w-full overflow-hidden rounded-t-theme bg-primary-light `}
       >
-        <Image src={image} fill className=" object-cover " />
+        <Image alt={`${title}`} src={image} fill className=" object-cover " />
       </div>
 
       <CardBody className={`h-full bg-white`}>

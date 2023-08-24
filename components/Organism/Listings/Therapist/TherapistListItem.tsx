@@ -5,7 +5,7 @@ import Link from "components/Atoms/Link";
 import React from "react";
 import { useRouter } from "next/router";
 
-export interface ITherapistListItemProps {
+interface ITherapistListItemProps {
   _id: string;
   image?: ImageSrc;
   email?: string;

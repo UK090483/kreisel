@@ -9,6 +9,7 @@ export type ImageSrc = imageSource;
 type ImageProps<T extends any = any> = {
   fill?: boolean;
   src: ImageSrc;
+  alt: string;
 } & Omit<JSX.IntrinsicElements["img"], "src">;
 
 export const validateSrc = (src: ImageSrc) => vS(src);

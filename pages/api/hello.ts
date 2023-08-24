@@ -1,7 +1,8 @@
+import { supabase } from "@lib/supabase/serverClient";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
-  nau: string;
+  user: any;
 };
 
 // eslint-disable-next-line import/no-unused-modules
@@ -9,5 +10,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.json({ nau: process.env.NEXTAUTH_URL || "naaaa" });
+  const { data: user, error } = await supabase.auth.admin.updateUserById(
+    "0494dc3d-6e67-4ef9-b302-bc0b00a2a8da",
+    { user_metadata: { member: true } }
+  );
+  res.json({ user });
 }

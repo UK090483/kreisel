@@ -26,6 +26,7 @@ const GridGalleryItem: React.FunctionComponent<
         <div className="flex flex-col pt-4">
           <div className={`h-full  ${contain ? "relative" : ""}`}>
             <Image
+              alt={`${title}`}
               src={image}
               fill
               className={clsx({

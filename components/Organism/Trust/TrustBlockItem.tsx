@@ -27,7 +27,7 @@ const TrustBlockItem: React.FunctionComponent<ITrustBlockItemProps> = (
   return (
     <div ref={ref}>
       <div className="relative mx-auto h-40 w-40">
-        <Image src={image} fill className=" object-contain " />
+        <Image alt="trust item" src={image} fill className=" object-contain " />
       </div>
 
       <Typo

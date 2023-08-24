@@ -39,18 +39,18 @@ const Auth = ({ close }: { close: () => void }) => {
 
   useLockBodyScroll();
 
-  console.log(message);
-
   const handleLogin: SubmitHandler<Inputs> = ({ email }) => {
     setLoading(true);
-    supabase.auth.signInWithOtp({ email }).then(({ error }) => {
-      if (error) {
-        setMessage(error.message);
-      } else {
-        setMessage("Check your email for the login link!");
-      }
-      setLoading(false);
-    });
+    supabase.auth
+      .signInWithOtp({ email, options: { data: { new: true } } })
+      .then(({ error }) => {
+        if (error) {
+          setMessage(error.message);
+        } else {
+          setMessage("Check your email for the login link!");
+        }
+        setLoading(false);
+      });
   };
 
   return (

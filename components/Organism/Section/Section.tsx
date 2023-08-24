@@ -93,7 +93,12 @@ const WithImage: React.FC<{
     <>
       {place === "right" && content}
       <div className="  aspect-w-16 aspect-h-9  relative overflow-hidden rounded-theme">
-        <Image src={image} fill className="object-cover " />
+        <Image
+          alt={"section image"}
+          src={image}
+          fill
+          className="object-cover "
+        />
       </div>
       {place === "left" && content}
     </>

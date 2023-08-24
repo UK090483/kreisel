@@ -70,6 +70,7 @@ const Hero: React.FC<IHeroProps & ISectionProps & IUseSectionWidthProps> = (
         })}
       >
         <Image
+          alt={`${title}`}
           sizes="1000"
           src={mainImage}
           fill

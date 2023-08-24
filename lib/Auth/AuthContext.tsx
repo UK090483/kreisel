@@ -64,7 +64,7 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
   const isUnauthenticated = status === "unauthenticated";
 
   // const member = !!data?.member;
-  const member = false;
+  const member = !!user?.user_metadata?.member;
   const email = user?.email || undefined;
   let showSpinner: boolean = false;
 

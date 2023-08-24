@@ -34,6 +34,7 @@ const CarouselGalerieItem: React.FunctionComponent<
 
           <div className={`h-full min-h-[400px] relative`}>
             <Image
+              alt={`${title}`}
               src={image}
               fill
               className={clsx({

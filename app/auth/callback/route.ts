@@ -14,3 +14,5 @@ export async function GET(req: NextRequest) {
 
   return NextResponse.redirect(new URL("/account", req.url));
 }
+
+export const dynamic = "force-dynamic";
