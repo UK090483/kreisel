@@ -1,5 +1,5 @@
 import { membershipOptions, degreeOptions, focusOptions } from "./Fields";
-import { object, string, array, InferType, mixed, boolean } from "yup";
+import { object, string, array, InferType, boolean } from "yup";
 
 const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
 const MAX_FILE_SIZE = 100_000_0;
@@ -38,18 +38,18 @@ const profileFields = object({
   //Grundqualifikation
   qualification: string(),
 
-  image: object({
-    url: string().nullable(),
-    file: mixed<File>()
-      .test("size", "Only Images up to 1MB are permitted", (file) =>
-        file ? file.size <= MAX_FILE_SIZE : true
-      )
-      .nullable(),
+  // image: object({
+  //   url: string().nullable(),
+  //   file: mixed<File>()
+  //     .test("size", "Only Images up to 1MB are permitted", (file) =>
+  //       file ? file.size <= MAX_FILE_SIZE : true
+  //     )
+  //     .nullable(),
 
-    erased: boolean().nullable(),
-  })
-    .nullable()
-    .default(undefined),
+  //   erased: boolean().nullable(),
+  // })
+  //   .nullable()
+  //   .default(undefined),
   offersInternship: boolean(),
 });
 

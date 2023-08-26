@@ -26,7 +26,9 @@ let sanityClient = createClient({
 // eslint-disable-next-line import/no-unused-modules
 export default defineConfig({
   e2e: {
-    baseUrl: "http://127.0.0.1:3000/",
+    // baseUrl: "http://127.0.0.1:3000/",
+
+    baseUrl: "http://localhost:3000/",
     async setupNodeEvents(on, config) {
       const pages = await sanityClient.fetch<{ slug: string }[]>(
         `*[_type == 'page' && defined(slug) ][]{'slug': select( defined(pageType) => '/' + pageType->slug.current + '/'+ slug.current, '/' + slug.current   )}`

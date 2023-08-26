@@ -12,7 +12,7 @@ import StoreContextProvider from "@services/StoreService/StoreProvider";
 import { AuthContextProvider } from "@lib/Auth/AuthContext";
 import { variables } from "styles/fonts";
 
-import { ReactElement, ReactNode, lazy } from "react";
+import { ReactElement, ReactNode, lazy, useState } from "react";
 import { NextComponentType, NextPageContext } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { PreviewSuspense } from "@sanity/preview-kit";
@@ -20,17 +20,23 @@ const PreviewPageBuilderContextProvider = lazy(
   () => import("../PageBuilder/AppContext/PrevPageBuilderContext")
 );
 
+import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
+import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
+
 const _b = variables;
 interface AppPropsWithStaticProps {
   pageProps: PageProps<any>;
   Component: NextComponentType<NextPageContext, any, PageProps<any>> & {
     getLayout?: (page: ReactElement) => ReactNode;
   };
+  initialSession: Session;
 }
 
 function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   const { data, query, preview } = _pageProps;
   const pageProps = { ..._pageProps, data };
+
+  const [supabaseClient] = useState(() => createPagesBrowserClient());
 
   const getLayout = (id: string) => {
     return Component.getLayout ? (
@@ -65,17 +71,22 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   }
 
   return (
-    <AuthContextProvider>
-      <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
-        <StoreContextProvider>
-          <ShopContextProvider>
-            {getLayout(pageProps.id)}
-            <Cookie />
-            <Cart />
-          </ShopContextProvider>
-        </StoreContextProvider>
-      </AppContextProvider>
-    </AuthContextProvider>
+    <SessionContextProvider
+      supabaseClient={supabaseClient}
+      initialSession={_pageProps.initialSession}
+    >
+      <AuthContextProvider>
+        <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
+          <StoreContextProvider>
+            <ShopContextProvider>
+              {getLayout(pageProps.id)}
+              <Cookie />
+              <Cart />
+            </ShopContextProvider>
+          </StoreContextProvider>
+        </AppContextProvider>
+      </AuthContextProvider>
+    </SessionContextProvider>
   );
 }
 

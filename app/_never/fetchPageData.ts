@@ -1,8 +1,7 @@
 import { withTimeLog } from "@lib/utils";
 import { sanityClient } from "@services/SanityService/sanity.server";
-import { notFound } from "next/navigation";
-
 import { contentQuery, ContentResult } from "PageBuilder/composedQueries";
+import { notFound } from "next/navigation";
 
 const getPageData = async (slug: string) => {
   const result = await sanityClient.fetch<ContentResult>(

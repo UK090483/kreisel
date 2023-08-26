@@ -1,7 +1,20 @@
-import { createClient } from "@supabase/supabase-js";
+// Creating a new supabase server client object (e.g. in API route):
+import { createPagesServerClient } from "@supabase/auth-helpers-nextjs";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const supabaseServerClient = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+) => {
+  const supabaseServerClient = createPagesServerClient({
+    req,
+    res,
+  });
+  const {
+    data: { user },
+  } = await supabaseServerClient.auth.getUser();
 
+  res.status(200).json({ user: user ?? "" });
+};
 // eslint-disable-next-line import/no-unused-modules
-export const supabase = createClient(supabaseUrl, SUPABASE_SERVICE_ROLE_KEY);
+export default supabaseServerClient;

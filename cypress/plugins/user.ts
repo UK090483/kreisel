@@ -19,9 +19,13 @@ const login = () => {
       const matchRes = html.match(linkRx);
       const link = matchRes && matchRes[2];
 
-      if (link) {
-        cy.visit(link);
-      }
+      // if (link) {
+      //   cy.visit(link);
+      // }
+
+      cy.document({}).invoke({}, "write", html);
+
+      //cy.contains("Log In").click();
     });
   });
 };
@@ -44,7 +48,8 @@ export const loginFakeUser = (props?: {
 };
 
 export const deleteFakerUser = () => {
-  return cy.request({ url: "/api/test/testUser", method: "DELETE" });
+  cy.log("nooooo");
+  //return cy.request({ url: "/api/test/testUser", method: "DELETE" });
 };
 
 export const setFakerUserValue = (props: { [k: string]: any }) => {

@@ -1,9 +1,10 @@
 "use client";
 import Kreisel from "components/Atoms/Kreisel";
-import { supabase } from "lib/supabase/client";
-import Auth from "components/Organism/Auth/SignIn";
+import supabase from "lib/supabase/client";
+import Auth from "components/Organism/Auth/SupabaseAuth";
+
 import React, { useContext, useEffect, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 
 import { Session } from "@supabase/supabase-js";
 
@@ -31,46 +32,23 @@ interface AuthContextProviderProps {
 }
 
 export const AuthContextProvider = (props: AuthContextProviderProps) => {
-  const [session, setSession] = useState<Session | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { isLoading, status, user } = useUser();
 
-  const [open, setOpen] = useState(false);
+  const { open, setClose, setOpen } = useAuthNav();
+  const router = useRouter();
 
-  const user = session?.user;
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setIsLoading(false);
-    });
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  }, []);
-
-  let status = "loading";
-
-  if (user) {
-    status = "authenticated";
-  }
+  const { push, query, asPath, replace } = router;
 
   const isDraftMode = false;
-  const { push } = useRouter();
-  const pathname = usePathname();
-  const isMemberPage = pathname?.split("/")[1] === "mitgliederbereich";
-
+  const isMemberPage = asPath?.split("/")[1] === "mitgliederbereich";
   const isAuthenticated = status === "authenticated";
   const isUnauthenticated = status === "unauthenticated";
-
-  // const member = !!data?.member;
   const member = !!user?.user_metadata?.member;
   const email = user?.email || undefined;
   let showSpinner: boolean = false;
 
   const signIn = () => {
-    setOpen(true);
-    //push("/auth/loginSupabase");
+    setOpen();
   };
 
   const signOut = () => {
@@ -86,7 +64,7 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
     }
 
     if (isUnauthenticated) {
-      signIn();
+      push("/");
     }
   }
 
@@ -99,11 +77,11 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
         className="flex h-screen w-full items-center justify-center px-28"
       >
         <Kreisel className="max-w-sm "></Kreisel>
+
+        {open && <Auth close={setClose} />}
       </div>
     );
   }
-
-  //return <>{children}</>;
 
   return (
     <AuthContext.Provider
@@ -111,11 +89,76 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
     >
       {children}
 
-      {open && <Auth close={() => setOpen(false)} />}
+      {open && <Auth close={setClose} />}
     </AuthContext.Provider>
   );
 };
 
 export const useAuth = () => {
   return useContext(AuthContext);
+};
+
+const useUser = () => {
+  const [session, setSession] = useState<Session | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setIsLoading(false);
+    });
+
+    supabase.auth.onAuthStateChange((event, session) => {
+      console.log({ event });
+
+      if (event === "PASSWORD_RECOVERY") {
+      } else {
+        setSession(session);
+      }
+    });
+  }, []);
+
+  const user = session?.user;
+
+  let status: "loading" | "authenticated" | "unauthenticated" = "loading";
+
+  if (user) {
+    status = "authenticated";
+  }
+
+  if (!user && !isLoading) {
+    status = "unauthenticated";
+  }
+
+  return { user, isLoading, status };
+};
+
+const useAuthNav = () => {
+  const router = useRouter();
+
+  const open = !!router.query.___auth;
+
+  const setOpen = () => {
+    router.replace(
+      {
+        query: { ...router.query, ___auth: "show" },
+      },
+      undefined,
+      { shallow: true }
+    );
+    //setOpen(true);
+  };
+
+  const setClose = () => {
+    router.replace(
+      {
+        query: { ...router.query, ___auth: undefined },
+      },
+      undefined,
+      { shallow: true }
+    );
+    //setOpen(true);
+  };
+
+  return { open, setOpen, setClose };
 };

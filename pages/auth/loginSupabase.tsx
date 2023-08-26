@@ -1,4 +1,4 @@
-import { supabase } from "lib/supabase/client";
+import supabase from "lib/supabase/client";
 import { FormEventHandler, useState } from "react";
 
 // eslint-disable-next-line import/no-unused-modules

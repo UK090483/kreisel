@@ -4,11 +4,13 @@ import {
   fetchProfileData,
   fetchProfileDataResult,
 } from "lib/Profile/profileQuery";
-
 import { previewClient } from "@services/SanityService/sanity.server";
+import ProfileImage from "@lib/Profile/ProfileImage";
+import { createPagesServerClient } from "@supabase/auth-helpers-nextjs";
+
 import { Session } from "next-auth";
 import { GetServerSideProps } from "next";
-import { getSession } from "next-auth/react";
+
 import React, { ReactElement, ReactNode } from "react";
 import clsx from "clsx";
 
@@ -19,13 +21,14 @@ type ProfileProps = {
 const ProfilePage: React.FC<ProfileProps> & {
   getLayout: (page: ReactElement) => ReactNode;
 } = (props) => {
-  const { allowProfile, allowMember } = props;
+  const { allowProfile, allowMember, profileImage } = props;
 
   return (
     <div className="w-full items-center justify-center">
       <div className="mb-24 bg-primary-light py-24 px-5">
         <div className=" mx-auto max-w-3xl">
           <h1 className="font-header text-2xl">Dein Kreisel Profil</h1>
+          <ProfileImage image={profileImage} />
           <MemberInfo allowed={allowMember} />
         </div>
       </div>
@@ -43,15 +46,19 @@ ProfilePage.getLayout = function getLayout(page) {
 
 // eslint-disable-next-line import/no-unused-modules
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const session = await getSession(ctx);
-  if (!session) {
+  const supabase = createPagesServerClient(ctx);
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session)
     return {
       redirect: {
-        destination: "/api/auth/signin",
+        destination: "/",
         permanent: false,
       },
     };
-  }
 
   if (session.user?.email) {
     const profileData = await fetchProfileData(

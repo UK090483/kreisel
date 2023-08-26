@@ -1,6 +1,6 @@
 import { memberSchema, schema } from "./validation";
 import { membershipOptions, degreeOptions, focusOptions } from "./Fields";
-import { ImageUploadInput } from "components/Molecules/Inputs/ImageUpload";
+// import { ImageUploadInput } from "components/Molecules/Inputs/ImageUpload";
 import { profileQueryResult } from "lib/Profile/profileQuery";
 import Input from "components/Molecules/Inputs/Input";
 import Textarea from "components/Molecules/Inputs/TextArea";
@@ -10,7 +10,7 @@ import Button from "components/Atoms/Button/Button";
 import { PureKreisel } from "components/Atoms/Kreisel";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
-import { serialize } from "object-to-formdata";
+
 import {
   useForm,
   SubmitHandler,
@@ -63,7 +63,11 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
     try {
       const response = await fetch("api/profile", {
         method: "POST",
-        body: serialize(data),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       });
 
       if (response.ok) {
@@ -122,7 +126,7 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
                   <Input name="phone" label="Tel" type="tel" />
                   <Input name="mobile" label="Mobil" type="tel" />
                 </div>
-                <ImageUploadInput name="image" label="Avatar" />
+                {/* <ImageUploadInput name="image" label="Avatar" /> */}
 
                 <Textarea name="description" label="Beschreibung" rows={4} />
                 <DropdownInput

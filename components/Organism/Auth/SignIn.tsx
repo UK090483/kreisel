@@ -1,4 +1,4 @@
-import { supabase } from "lib/supabase/client";
+import supabase from "lib/supabase/client";
 import Button from "components/Atoms/Button/Button";
 import Input from "components/Molecules/Inputs/Input";
 import Dialog from "components/Atoms/Dialog/DialogBox";
@@ -42,7 +42,13 @@ const Auth = ({ close }: { close: () => void }) => {
   const handleLogin: SubmitHandler<Inputs> = ({ email }) => {
     setLoading(true);
     supabase.auth
-      .signInWithOtp({ email, options: { data: { new: true } } })
+      .signInWithOtp({
+        email,
+        options: {
+          data: { new: true },
+          emailRedirectTo: "http://localhost:3000/auth/callback",
+        },
+      })
       .then(({ error }) => {
         if (error) {
           setMessage(error.message);

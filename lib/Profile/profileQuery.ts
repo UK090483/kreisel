@@ -18,7 +18,7 @@ focusOther,
 degree,
 membership,
 qualification,
-'image':{ 'url': image.asset->url + '?w=300' },
+'image': image.asset->url + '?w=300',
 offersInternship,
 `;
 
@@ -38,7 +38,7 @@ export type profileQueryResult = {
   website: string;
   description: string;
   membership: ("kreisel" | "fil" | "bvl" | "legaKids")[];
-  image: { url?: string; file?: File };
+  image?: string | null;
 };
 
 export const fetchProfileData = async (email: string, client: SanityClient) => {
@@ -63,6 +63,9 @@ export const fetchProfileData = async (email: string, client: SanityClient) => {
 
   return {
     profile: castFields,
+    profileImage: fetchResult?.profile?.image
+      ? fetchResult?.profile?.image
+      : null,
     allowMember: !!fetchResult.allowMember,
     allowProfile: !!fetchResult.allowProfile,
   };
