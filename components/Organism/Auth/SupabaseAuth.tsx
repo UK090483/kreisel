@@ -12,6 +12,7 @@ const SupabaseAuth = ({ close }: { close: () => void }) => {
     <Portal.Root className="w-screen h-screen backdrop-blur-lg animate-fadeIn fixed inset-0 z-50 flex justify-center items-center">
       <Dialog onClose={close} className="animate-scaleIn">
         <Auth
+          redirectTo={window.location.href}
           appearance={{ theme: { ...ThemeSupa } }}
           supabaseClient={supabaseClient}
           providers={[]}

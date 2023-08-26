@@ -77,8 +77,6 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
         className="flex h-screen w-full items-center justify-center px-28"
       >
         <Kreisel className="max-w-sm "></Kreisel>
-
-        {open && <Auth close={setClose} />}
       </div>
     );
   }
@@ -109,8 +107,6 @@ const useUser = () => {
     });
 
     supabase.auth.onAuthStateChange((event, session) => {
-      console.log({ event });
-
       if (event === "PASSWORD_RECOVERY") {
       } else {
         setSession(session);
