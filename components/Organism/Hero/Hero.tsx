@@ -44,7 +44,7 @@ const Hero: React.FC<IHeroProps & ISectionProps & IUseSectionWidthProps> = (
       width={isFull ? "full" : "m"}
       className={clsx(
         "relative grid grid-cols-1",
-        "min-h-[360px] sm:min-h-[500px]"
+        "min-h-[360px] sm:min-h-[500px] pb-2"
       )}
     >
       <div
@@ -52,7 +52,11 @@ const Hero: React.FC<IHeroProps & ISectionProps & IUseSectionWidthProps> = (
           "mx-auto w-full max-w-screen-lg ": isFull,
         })}
       >
-        <div className={clsx({ "max-w-[700px]": isFull })}>
+        <div
+          className={clsx({
+            "max-w-[700px] -translate-y-6": isFull,
+          })}
+        >
           {content ? (
             <Content content={content} />
           ) : (

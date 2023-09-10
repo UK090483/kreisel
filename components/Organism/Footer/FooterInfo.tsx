@@ -1,5 +1,5 @@
 import Portable from "PageBuilder/RichText/PortableText";
-import Kreisel from "components/Atoms/Kreisel";
+// import Kreisel from "components/Atoms/Kreisel";
 import Section from "components/Atoms/Section/Section";
 import React from "react";
 import clsx from "clsx";
@@ -16,9 +16,9 @@ const FooterInfo = ({ items }: IFooterInfo) => {
   if (!items) return null;
   return (
     <Section bgColor="primary-light" width="l" className="flex flex-wrap py-12">
-      <ItemWrap width="1/2">
+      {/* <ItemWrap width="1/2">
         <Kreisel className="mx-auto  w-1/2 md:mx-0 " />
-      </ItemWrap>
+      </ItemWrap> */}
       {items.map((i) => (
         <ItemWrap key={i._key} width="1/4">
           <FooterInfoItem {...i} />
