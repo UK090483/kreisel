@@ -12,7 +12,7 @@ const baseUrl =
 const Head: React.FunctionComponent<HeadProps> = () => {
   const { data } = useAppContext();
   const url = `${baseUrl}${data?.slug}`;
-  const title = data?.title ? `Kreisel e.V. | ${data?.title}` : "Kreisel e.V.";
+  const title = data?.title ? `KREISEL e.V. | ${data?.title}` : "KREISEL e.V.";
 
   const image = data?.image;
 
