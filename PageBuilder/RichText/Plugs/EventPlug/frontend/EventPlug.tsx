@@ -10,7 +10,7 @@ const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
 const EventPlug: React.FC<IEventPlugProps> = (props) => {
   let url = `/api/scrapeEvents`;
-  const { category, filter } = props;
+  const { category, filter, pricing } = props;
 
   const searchParams = new URLSearchParams();
 
@@ -30,7 +30,9 @@ const EventPlug: React.FC<IEventPlugProps> = (props) => {
     fetcher
   );
 
-  return <Events events={data?.data || []} loading={isLoading} />;
+  return (
+    <Events pricing={pricing} events={data?.data || []} loading={isLoading} />
+  );
 };
 
 export default EventPlug;

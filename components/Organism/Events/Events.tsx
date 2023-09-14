@@ -1,5 +1,6 @@
 import EventItem from "./EventItem";
 import StatusIndicator from "./StatusIndicator";
+import Portable from "PageBuilder/RichText/PortableText";
 import clsx from "clsx";
 import React from "react";
 
@@ -16,10 +17,11 @@ export type Event = {
   index?: number;
 };
 
-const EventPlugComponent: React.FC<{ events: Event[]; loading?: boolean }> = ({
-  events,
-  loading,
-}) => {
+const EventPlugComponent: React.FC<{
+  events: Event[];
+  loading?: boolean;
+  pricing?: null | any;
+}> = ({ events, loading, pricing }) => {
   const _events = loading
     ? Array.from({ length: 10 }).map((_i, index) => ({
         link: index + "item",
@@ -27,6 +29,8 @@ const EventPlugComponent: React.FC<{ events: Event[]; loading?: boolean }> = ({
         index,
       }))
     : events;
+
+  console.log(pricing);
 
   if (_events?.length === 0)
     return (
@@ -47,7 +51,9 @@ const EventPlugComponent: React.FC<{ events: Event[]; loading?: boolean }> = ({
 
         <Panel bottom />
       </div>
-      <Description />
+      <Description>
+        <Portable content={pricing} />
+      </Description>
     </>
   );
 };
@@ -66,7 +72,7 @@ const Panel = ({ bottom }: { bottom?: boolean }) => (
 
 export default EventPlugComponent;
 
-const Description = () => {
+const Description = ({ children }: React.PropsWithChildren<{}>) => {
   return (
     <div className="text-sm grid md:grid-cols-2 gap-4 leading-4">
       <div className="text-sm">
@@ -85,14 +91,16 @@ const Description = () => {
       </div>
 
       <div>
-        <p className="font-bold">Preisgestaltung:</p>
+        {children}
+
+        {/* <p className="font-bold">Preisgestaltung:</p>
         <p>Seminartag 130,-€</p>
         <p className="font-bold">Rabatte:</p>
         <ol className="list-disc ml-4">
           <li>Frühbucher 10%</li>
           <li> Netzwerkmitglieder 20% </li>
           <li> Wiederholung 50% (nur für Netzwerkmitglieder)</li>
-        </ol>
+        </ol> */}
       </div>
     </div>
   );

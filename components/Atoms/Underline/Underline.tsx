@@ -98,9 +98,9 @@ const Underline: React.FC<UnderlineProps> = ({
             className={clsx(
               "absolute w-full fill-current stroke-current",
               {
-                "   inset-0 -z-10 h-full scale-y-150  scale-x-125 ":
+                "inset-0 -z-10 h-full scale-y-150 scale-x-125":
                   line.type === "circle",
-                " bottom-[-23px] h-5 translate-y-[-0.35em]":
+                "bottom-[-23px] h-5 translate-y-[-0.35em]":
                   line.type === "line",
               },
               className
@@ -130,7 +130,7 @@ const Underline: React.FC<UnderlineProps> = ({
             />
           </svg>
         )}
-        <span className=" relative">{children}</span>
+        <span className="relative">{children}</span>
       </span>
     </>
   );
