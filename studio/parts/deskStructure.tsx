@@ -49,7 +49,7 @@ const structure: StructureResolver = (S, context) =>
           const pageTypes = await context
             .getClient({ apiVersion: "2021-06-07" })
             .fetch<{ _id: string; name: string }[]>(
-              '*[_type == "pageType"]{_id ,name}'
+              '*[_type == "pageType"] | order(_updatedAt desc) {_id ,name}'
             );
 
           const root = S.listItem()
