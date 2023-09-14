@@ -19,7 +19,7 @@ const Transition: React.FC<TransitionProps> = ({
 }) => {
   if (!transition) return null;
   return (
-    <div className="relative ">
+    <div className={clsx("relative", { "translate-y-0.5": pos === "top" })}>
       <div
         className={clsx("absolute w-full overflow-hidden", {
           "-translate-y-full transform": pos === "top",
