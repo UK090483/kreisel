@@ -31,7 +31,7 @@ const EventPlugComponent: React.FC<{ events: Event[]; loading?: boolean }> = ({
   if (_events?.length === 0)
     return (
       <div className="text-lg text-center">
-        es sind zur zeit keine Veranstaltungen geplant
+        Neue Veranstaltungen sind in Planung.
       </div>
     );
   return (
