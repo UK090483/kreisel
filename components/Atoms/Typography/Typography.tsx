@@ -80,7 +80,7 @@ const Typo: React.FC<React.PropsWithChildren<TypographyProps>> = (props) => {
           "text-base ": variant === "body",
           "text-lg": ["body-l", "h6"].includes(variant as string),
           "text-base": variant === "h5",
-          "pb-[0.6em] text-xl sm:text-2xl": variant === "h4",
+          "pb-[0.6em] text-base sm:text-2xl": variant === "h4",
           "pb-[0.6em] text-2xl sm:text-3xl": variant === "h3",
           "pb-[0.6em] text-3xl sm:text-4xl": variant === "h2",
           "pb-[0.8em] text-4xl sm:text-5xl": variant === "h1",
