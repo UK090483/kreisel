@@ -15,22 +15,32 @@ type DropdownProps = {
   value?: string | string[];
   onChange: (value: DropdownItem[]) => void;
   name: string;
+  placeHolder?: string;
+  multiple?: boolean;
 };
 
-const Dropdown: React.FC<DropdownProps> = (props) => {
-  const { items = [], onChange, value, name } = props;
-
+export const Dropdown: React.FC<DropdownProps> = (props) => {
+  const {
+    items = [],
+    onChange,
+    value,
+    name,
+    placeHolder = "bitte wählen",
+    multiple = true,
+  } = props;
   const isMulti = Array.isArray(value);
 
   const active = isMulti
     ? value.length > 0
       ? items.filter((i) => value.includes(i.value))
-      : [{ value: "placeHolder", title: "bitte wählen" }]
+      : [{ value: "placeHolder", title: placeHolder }]
     : items.find((i) => i.value === value);
 
   const handleChange = (value: DropdownItem[]) => {
     if (value && Array.isArray(value)) {
       onChange(value.filter((i) => i.value != "placeHolder"));
+    } else {
+      onChange(value);
     }
   };
 
@@ -39,7 +49,7 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
       <Listbox
         value={active || []}
         onChange={handleChange}
-        multiple
+        multiple={multiple}
         data-test-id={`input_${name}`}
       >
         <div className="relative mt-1">
@@ -57,7 +67,7 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
                 ? active.map((i) => <p key={i.value}>{i.title}</p>)
                 : active
                 ? active?.title
-                : "bitte wählen"}
+                : placeHolder}
             </ul>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon

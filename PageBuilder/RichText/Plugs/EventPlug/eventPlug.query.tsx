@@ -2,6 +2,8 @@ export interface IEventPlugProps {
   filter?: string;
   category?: string;
   pricing?: null | any;
+  legende?: null | boolean;
+  showFilter?: null | boolean;
 }
 
 export const EventPlugQuery = `
@@ -9,5 +11,7 @@ export const EventPlugQuery = `
       category,
     filter,
     pricing,
+    legende,
+    showFilter
     }
     `;

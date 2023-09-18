@@ -2,7 +2,6 @@ import fetchEvents from "./scrapeEvents";
 
 import { IEventPlugProps } from "../../eventPlug.query";
 
-import { scrapeEventsFilter } from "../scrapeEventsFilter";
 import { Events } from "components";
 import React, { Suspense } from "react";
 
@@ -12,7 +11,7 @@ const EventPlugApp = async (props: IEventPlugProps) => {
   const scrapeEvents = await fetchEvents();
   const { filter } = props;
 
-  return <Events events={scrapeEventsFilter(scrapeEvents, filter || "")} />;
+  return <Events filter={filter} />;
 };
 
 const EventPlug: React.FC<IEventPlugProps> = (props) => {

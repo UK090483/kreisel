@@ -30,6 +30,16 @@ const eventPlugSchema = {
       type: "easyRichText",
       label: "Info",
     },
+    {
+      name: "legende",
+      type: "boolean",
+      label: "Legende Zeigen",
+    },
+    {
+      name: "showFilter",
+      type: "boolean",
+      label: "Filter Zeigen",
+    },
   ],
   preview: {
     select: {
