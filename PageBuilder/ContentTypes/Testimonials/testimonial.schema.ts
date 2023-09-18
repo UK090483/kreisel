@@ -6,6 +6,11 @@ export default defineType({
   type: "document",
   fields: [
     {
+      name: "internalTitle",
+      title: "interner Titel",
+      type: "string",
+    },
+    {
       name: "text",
       title: "Text",
       type: "text",
@@ -37,7 +42,14 @@ export default defineType({
   preview: {
     select: {
       title: "name",
+      internalTitle: "internalTitle",
       media: "image",
+    },
+    prepare(prop) {
+      return {
+        title: prop?.internalTitle || prop?.title,
+        media: prop.media,
+      };
     },
   },
 });

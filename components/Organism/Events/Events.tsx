@@ -1,3 +1,4 @@
+"use client";
 import EventItem from "./EventItem";
 import StatusIndicator from "./StatusIndicator";
 import Portable from "PageBuilder/RichText/PortableText";
