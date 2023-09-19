@@ -7,6 +7,7 @@ const authOptions: NextAuthOptions = {
     signIn: "/auth/login",
     verifyRequest: "/auth/verify-request",
     newUser: "/profile",
+    error: "/auth/error",
   },
   adapter: SanityAdapter({
     client: previewClient,
