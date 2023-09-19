@@ -18,7 +18,6 @@ focusOther,
 degree,
 membership,
 qualification,
-'image':{ 'url': image.asset->url + '?w=300' },
 offersInternship,
 `;
 
@@ -46,9 +45,11 @@ export const fetchProfileData = async (email: string, client: SanityClient) => {
     profile?: profileQueryResult;
     allowMember: boolean;
     allowProfile: boolean;
+    profileImage?: string | null;
   } | null>(
     `*[_type == "member" && email.current == '${email}' ][0]{
      'profile':{${profileQuery}},
+     'profileImage': image.asset-> url + '?w=300' ,
       allowMember,
       allowProfile,
     }`
@@ -62,6 +63,7 @@ export const fetchProfileData = async (email: string, client: SanityClient) => {
     : memberSchema.cast(cleanFields, { stripUnknown: true });
 
   return {
+    profileImage: fetchResult.profileImage,
     profile: castFields,
     allowMember: !!fetchResult.allowMember,
     allowProfile: !!fetchResult.allowProfile,

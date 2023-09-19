@@ -1,5 +1,6 @@
 import { systemText } from "../constants";
 import ProfileForm from "lib/Profile/ProfileForm";
+import ProfileImage from "lib/Profile/ProfileImage";
 import {
   fetchProfileData,
   fetchProfileDataResult,
@@ -19,13 +20,14 @@ type ProfileProps = {
 const ProfilePage: React.FC<ProfileProps> & {
   getLayout: (page: ReactElement) => ReactNode;
 } = (props) => {
-  const { allowProfile, allowMember } = props;
+  const { allowProfile, allowMember, profileImage } = props;
 
   return (
     <div className="w-full items-center justify-center">
       <div className="mb-24 bg-primary-light py-24 px-5">
         <div className=" mx-auto max-w-3xl">
           <h1 className="font-header text-2xl">Dein Kreisel Profil</h1>
+          <ProfileImage image={profileImage} />
           <MemberInfo allowed={allowMember} />
         </div>
       </div>
