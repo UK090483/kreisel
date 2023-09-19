@@ -74,7 +74,7 @@ const Hero: React.FC<IHeroProps & ISectionProps & IUseSectionWidthProps> = (
         })}
       >
         <Image
-          sizes="1000px"
+          sizes="(max-width:720px) 1200px, 100vw"
           src={mainImage}
           fill
           className="mx-auto w-full max-w-[1920px] object-cover"
