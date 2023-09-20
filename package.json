@@ -41,7 +41,7 @@
     "@radix-ui/react-menubar": "^1.0.2",
     "@radix-ui/react-navigation-menu": "^1.1.2",
     "@radix-ui/react-scroll-area": "^1.0.4",
-    "@sanity/client": "^5.4.2",
+    "@sanity/client": "^6.4.12",
     "@sanity/preview-kit": "^1.4.0",
     "@sanity/schema": "^3.9.0",
     "@sanity/types": "^3.10.0",

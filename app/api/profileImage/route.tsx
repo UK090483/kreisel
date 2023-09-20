@@ -1,6 +1,6 @@
 import { previewClient } from "@services/SanityService/sanity.server";
 import { NextResponse, NextRequest } from "next/server";
-import { SanityClient } from "sanity";
+import { SanityClient } from "@sanity/client";
 import { getToken } from "next-auth/jwt";
 // eslint-disable-next-line import/no-unused-modules
 export const POST = async (req: NextRequest, res: NextResponse) => {
