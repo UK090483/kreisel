@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable import/no-unused-modules */
 import fetchLayoutData from "./fetchLayoutData";
 

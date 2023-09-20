@@ -1,3 +1,4 @@
+"use client";
 import Hero from "./Organism/Hero/Hero";
 import Section from "./Organism/Section/Section";
 import Listing from "./Organism/Listings/Listing";

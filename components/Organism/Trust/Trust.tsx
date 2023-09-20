@@ -1,3 +1,4 @@
+"use client";
 import TrustBlockItem, { ITrustBlockItemProps } from "./TrustBlockItem";
 
 import Content, {
