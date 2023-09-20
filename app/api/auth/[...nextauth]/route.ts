@@ -2,28 +2,21 @@ import SanityAdapter from "@lib/Auth/SanityAdapter/SanityAdapter";
 import { previewClient } from "@services/SanityService/sanity.server";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
-// import { mockClient } from "@services/SanityService/test/testClient";
+
 const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/login",
-    // verifyRequest: "/auth/verify-request",
+    verifyRequest: "/auth/verify-request",
     newUser: "/profile",
+    error: "/auth/error",
   },
   adapter: SanityAdapter({
     client: previewClient,
-    devMode: true,
   }),
   secret: process.env.AUTH_SECRET,
   session: { strategy: "jwt" },
   callbacks: {
-    async jwt({ token, account, profile }) {
-      // console.count("jwt---------");
-
-      // console.log({ token, account, profile });
-
-      // console.log("jwt---------");
-      // Persist the OAuth access_token and or the user id to the token right after signin
-
+    async jwt({ token }) {
       const fetchRoles = await previewClient.fetch<{
         allowMember?: boolean | null;
         allowProfile?: boolean | null;
@@ -31,19 +24,9 @@ const authOptions: NextAuthOptions = {
         `*[_type == "member" && email.current == "${token.email}" ][0]{ allowMember,allowProfile }`
       );
 
-      // console.log(fetchRoles);
-
       return { ...token, ...fetchRoles };
     },
-    async session({ session, token, user }) {
-      // Send properties to the client, like an access_token and user id from a provider.
-
-      // console.count("session---------");
-
-      // console.log({ session, token, user });
-      // console.log("session---------");
-      // //@ts-ignore
-      // session.member = token.member;
+    async session({ session, token }) {
       return {
         ...session,
         member: token.allowMember,
@@ -84,7 +67,7 @@ const authOptions: NextAuthOptions = {
     }),
   ],
 };
-// eslint-disable-next-line import/no-unused-modules
-const handler = NextAuth(authOptions);
 
+const handler = NextAuth(authOptions);
+// eslint-disable-next-line import/no-unused-modules
 export { handler as GET, handler as POST };
