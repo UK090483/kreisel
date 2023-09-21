@@ -47,7 +47,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   if (preview) {
     return (
       <PreviewSuspense fallback="Loading...">
-        <SessionProvider refetchInterval={10}>
+        <SessionProvider>
           <PreviewPageBuilderContextProvider
             query={query}
             data={pageProps.data}
@@ -68,17 +68,17 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   }
 
   return (
-    <SessionProvider refetchInterval={10}>
+    <SessionProvider refetchInterval={3600}>
       <AuthContextProvider>
         <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
           <StoreContextProvider>
-            <SessionProvider refetchInterval={0}>
-              <ShopContextProvider>
-                {getLayout(pageProps.id)}
-                <Cookie />
-                <Cart />
-              </ShopContextProvider>
-            </SessionProvider>
+            {/* <SessionProvider refetchInterval={100}> */}
+            {/* <ShopContextProvider> */}
+            {getLayout(pageProps.id)}
+            {/* <Cookie /> */}
+            {/* <Cart />
+            </ShopContextProvider> */}
+            {/* </SessionProvider> */}
           </StoreContextProvider>
         </AppContextProvider>
       </AuthContextProvider>
