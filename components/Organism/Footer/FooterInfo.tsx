@@ -1,6 +1,7 @@
 import Portable from "PageBuilder/RichText/PortableText";
 // import Kreisel from "components/Atoms/Kreisel";
 import Section from "components/Atoms/Section/Section";
+import useSectionWidth from "components/Atoms/Section/useSectionWidth";
 import React from "react";
 import clsx from "clsx";
 
@@ -13,18 +14,35 @@ interface IFooterInfo {
 }
 
 const FooterInfo = ({ items }: IFooterInfo) => {
+  const className = useSectionWidth({ width: "s" });
   if (!items) return null;
+
   return (
-    <Section bgColor="primary-light" width="l" className="flex flex-wrap py-12">
-      {/* <ItemWrap width="1/2">
+    <>
+      <div className={clsx(" h-24 bg-primary-light flex justify-center")}>
+        <div
+          className={clsx(
+            className,
+            "w-full border-b-2 border-primary-xLight  "
+          )}
+        ></div>
+      </div>
+
+      <Section
+        bgColor="primary-light"
+        width="l"
+        className="flex flex-wrap py-24"
+      >
+        {/* <ItemWrap width="1/2">
         <Kreisel className="mx-auto  w-1/2 md:mx-0 " />
       </ItemWrap> */}
-      {items.map((i) => (
-        <ItemWrap key={i._key} width="1/4">
-          <FooterInfoItem {...i} />
-        </ItemWrap>
-      ))}
-    </Section>
+        {items.map((i) => (
+          <ItemWrap key={i._key} width="1/4">
+            <FooterInfoItem {...i} />
+          </ItemWrap>
+        ))}
+      </Section>
+    </>
   );
 };
 
