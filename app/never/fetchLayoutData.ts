@@ -17,7 +17,6 @@ const getLayoutData = async (navType: "mainNav" | "memberNav" = "mainNav") => {
     } & NavResult
   >(
     `*[_id == 'siteConfig'][0]{
-
           ${NavQuery(navType)}
           ${footerInfoQuery}
           ${footerContactQuery} 

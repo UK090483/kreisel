@@ -15,6 +15,7 @@ import { Logo } from "components/Atoms/Logo";
 import Underline from "components/Atoms/Underline/Underline";
 import AuthWidget from "@lib/Auth/AuthWidget";
 import Button from "components/Atoms/Button/Button";
+import { useAppContext } from "PageBuilder/AppContext/AppContext";
 import clsx from "clsx";
 import React from "react";
 
@@ -67,13 +68,14 @@ export default Navigation;
 
 interface IContactButtonProps {
   className?: string;
-  dark?: boolean;
 }
 const ContactButton: React.FunctionComponent<IContactButtonProps> = (props) => {
-  const { className, dark } = props;
+  const { className } = props;
+  const { data } = useAppContext();
+
   return (
     <Button
-      href={"mailto:kreisel"}
+      href={`mailto:${data?.contactMail}`}
       className={clsx(
         " animate-slideInRight",
 

@@ -32,20 +32,20 @@ export const useAppContext = () => {
   return useContext(AppContext);
 };
 
-export const useHomeRoute = () => {
-  const { data } = useAppContext();
-  const homeRoute = data?.homeRoute;
+// export const useHomeRoute = () => {
+//   const { data } = useAppContext();
+//   const homeRoute = data?.homeRoute;
 
-  const currentLocale = "de";
-  const defaultLocale = "de";
+//   const currentLocale = "de";
+//   const defaultLocale = "de";
 
-  const parseRoute = (href: string, locale?: string) => {
-    const linkLocale = locale || currentLocale;
-    const isDefaultLocale = linkLocale === defaultLocale;
-    const homeLink =
-      homeRoute && homeRoute[isDefaultLocale ? "slug" : `slug_${linkLocale}`];
-    const isHomeLink = `/${homeLink}` === href;
-    return isHomeLink ? "/" : href;
-  };
-  return { homeRoute, parseRoute };
-};
+//   const parseRoute = (href: string, locale?: string) => {
+//     const linkLocale = locale || currentLocale;
+//     const isDefaultLocale = linkLocale === defaultLocale;
+//     const homeLink =
+//       homeRoute && homeRoute[isDefaultLocale ? "slug" : `slug_${linkLocale}`];
+//     const isHomeLink = `/${homeLink}` === href;
+//     return isHomeLink ? "/" : href;
+//   };
+//   return { homeRoute, parseRoute };
+// };

@@ -2,12 +2,14 @@
 import Typo from "components/Atoms/Typography/Typography";
 import { useAuth } from "lib/Auth/AuthContext";
 import UserWidget from "lib/Auth/AuthWidget";
+import { useAppContext } from "PageBuilder/AppContext/AppContext";
 import clsx from "clsx";
 
 import React from "react";
 
 const Subheader = () => {
   const { isAuthenticated } = useAuth();
+  const { data } = useAppContext();
 
   return (
     <div
@@ -17,9 +19,11 @@ const Subheader = () => {
       })}
     >
       <div className=" mx-auto flex flex-wrap items-center justify-between  px-3 container">
-        <Typo variant="body-s" space={false}>
-          Kostenlose Beratung: 040 38 61 23 71
-        </Typo>
+        {data?.contactPhone && (
+          <Typo variant="body-s" space={false}>
+            Kostenlose Beratung: {data?.contactPhone}
+          </Typo>
+        )}
         <UserWidget />
       </div>
     </div>

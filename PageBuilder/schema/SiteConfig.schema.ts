@@ -7,13 +7,28 @@ const siteConfigSchema = defineType({
   type: "document",
   icon: AiFillSetting,
   groups: [
-    { name: "navigation", title: "Navigation", default: true },
+    { name: "data", title: "Daten", default: true },
+    { name: "navigation", title: "Navigation" },
     { name: "pages", title: "Pages" },
     { name: "footer", title: "Footer" },
     { name: "seo", title: "Seo" },
   ],
 
   fields: [
+    defineField({
+      name: "contactMail",
+      title: "Contact Email",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+      group: "data",
+    }),
+    defineField({
+      name: "contactPhone",
+      title: "Contact Telefonnummer",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+      group: "data",
+    }),
     defineField({
       name: "indexPage",
       title: "Home Page",
