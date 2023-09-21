@@ -68,17 +68,6 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
 
 // eslint-disable-next-line import/no-unused-modules
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { req, res } = context;
-  //const session = await getServerSession(req, res, authOptions)
-
-  // if (session && res && session.user) {
-  //   res.writeHead(302, {
-  //     Location: "/",
-  //   });
-  //   res.end();
-  //   return {};
-  // }
-
   const csrfToken = await getCsrfToken(context);
 
   return {
