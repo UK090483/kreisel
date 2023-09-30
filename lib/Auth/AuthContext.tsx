@@ -1,8 +1,10 @@
 "use client";
 import Kreisel from "components/Atoms/Kreisel";
-import React, { useContext } from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { User, authRoutes } from "@lib/Auth/IronSession/IronSession";
+import { isBrowser } from "@lib/utils";
+import React, { useCallback, useContext } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import useSWR from "swr";
 
 const isServer = typeof window === "undefined";
 
@@ -10,11 +12,15 @@ interface IAuthContextState {
   email?: string;
   member: boolean;
   isAuthenticated: boolean;
+  signIn: () => void;
+  signOut: () => void;
 }
 
 const defaultState: IAuthContextState = {
   member: false,
   isAuthenticated: false,
+  signIn: () => {},
+  signOut: () => {},
 };
 
 const AuthContext = React.createContext(defaultState);
@@ -23,23 +29,44 @@ interface AuthContextProviderProps {
   children?: React.ReactNode;
 }
 
+//@ts-ignore
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
 export const AuthContextProvider = (props: AuthContextProviderProps) => {
-  const { data, status } = useSession();
+  const {
+    data: user,
+    mutate,
+    isLoading,
+  } = useSWR<User>("/api/auth/user", fetcher);
 
   const isDraftMode = false;
   const { push } = useRouter();
   const pathname = usePathname();
   const isMemberPage = pathname?.split("/")[1] === "mitgliederbereich";
-  const isLoading = status === "loading";
-  const isAuthenticated = status === "authenticated";
-  const isUnauthenticated = status === "unauthenticated";
+
+  const isAuthenticated = !!user?.isLoggedIn;
+  const isUnauthenticated = !user?.isLoggedIn;
   //@ts-ignore
-  const member = !!data?.member;
-  const email = data?.user?.email || undefined;
+  const member = !!user?.member;
+  const email = user?.email || undefined;
   let showSpinner: boolean = false;
 
+  const signIn = useCallback(() => {
+    if (isBrowser) {
+      push(`/${authRoutes.pages.signIn}`);
+    }
+  }, [push]);
+
+  const signOut = useCallback(async () => {
+    mutate(
+      (await fetch(`/${authRoutes.api.logout}`, {
+        method: "POST",
+      })) as unknown as Promise<User>
+    );
+  }, [mutate]);
+
   if (isMemberPage && !isDraftMode) {
-    showSpinner = status !== "authenticated";
+    showSpinner = isUnauthenticated;
 
     if (!member && isAuthenticated && !isServer) {
       showSpinner = true;
@@ -64,7 +91,9 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
   }
 
   return (
-    <AuthContext.Provider value={{ member, email, isAuthenticated, ...rest }}>
+    <AuthContext.Provider
+      value={{ member, email, isAuthenticated, signIn, signOut, ...rest }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -73,5 +102,3 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
 export const useAuth = () => {
   return useContext(AuthContext);
 };
-
-export { signIn, signOut };

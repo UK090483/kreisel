@@ -1,5 +1,5 @@
 "use client";
-import { useAuth, signOut, signIn } from "lib/Auth/AuthContext";
+import { useAuth } from "lib/Auth/AuthContext";
 import Button from "components/Atoms/Button/Button";
 import Svg from "components/Atoms/Svg";
 import clsx from "clsx";
@@ -56,7 +56,7 @@ const ProfileButton = () => {
 };
 
 const SignInOutButton = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, signIn, signOut } = useAuth();
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = () => {
     if (isAuthenticated) {
       signOut();

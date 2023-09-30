@@ -1,12 +1,12 @@
 import Button from "components/Atoms/Button/Button";
 import Input from "components/Molecules/Inputs/Input";
 import AuthLayout from "components/Organism/Layout/AuthLayout";
-import React, { ReactElement, ReactNode } from "react";
-import { getCsrfToken, signIn } from "next-auth/react";
+import React, { ReactElement, ReactNode, useState } from "react";
+import { signIn } from "next-auth/react";
 // import { getServerSession } from "next-auth/next"
 import { GetServerSideProps, NextPage } from "next";
 import { Session } from "next-auth";
-import { useForm, FormProvider } from "react-hook-form";
+import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { object, string, AnyObjectSchema } from "yup";
 
@@ -29,6 +29,8 @@ const validation = object({
 const SignIn: NextPageWithLayout<LoginProps> = (props) => {
   const { csrfToken } = props;
 
+  const [error, setError] = useState("");
+
   const methods = useForm<Inputs>({
     mode: "onTouched",
     resolver: yupResolver<AnyObjectSchema>(validation),
@@ -40,9 +42,26 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
 
   const canSubmit = isDirty && isValid;
 
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const res = await fetch(`/api/auth/sendMagicLink?email=${data.email}`, {
+        method: "post",
+        body: JSON.stringify({ email: data.email }),
+      });
+
+      if (res.status === 404) {
+        setError("der user ist nicht zu finden ");
+      }
+    } catch (e) {
+      console.log(e);
+
+      // handle your error
+    }
+  };
+
   return (
     <FormProvider {...methods}>
-      <form method="post" action="/api/auth/signin/email">
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
         <Input name="email" placeholder="Email" />
         <Button
@@ -57,6 +76,7 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
         </Button>
       </form>
 
+      <div>{error && error}</div>
       <button
         onClick={() => {
           signIn("email", { email: "konradullrich@me.com" });
@@ -68,13 +88,14 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
 
 // eslint-disable-next-line import/no-unused-modules
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const csrfToken = await getCsrfToken(context);
+  // const csrfToken = await getCsrfToken(context);
+  // return {
+  //   props: {
+  //     csrfToken,
+  //   },
+  // };
 
-  return {
-    props: {
-      csrfToken,
-    },
-  };
+  return { props: { csrfToken: "bla" } };
 };
 
 SignIn.getLayout = function getLayout(page) {

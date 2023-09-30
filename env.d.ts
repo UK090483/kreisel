@@ -6,5 +6,6 @@ declare namespace NodeJS {
     EMAIL_SERVER_PORT: number;
     EMAIL_FROM: string;
     AUTH_SECRET: string;
+    IRONSESSION_PASSWORD: string;
   }
 }

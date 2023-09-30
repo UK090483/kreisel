@@ -7,6 +7,7 @@ import {
 } from "lib/Profile/profileQuery";
 
 import { previewClient } from "@services/SanityService/sanity.server";
+import { authRoutes } from "@lib/Auth/IronSession/IronSession";
 import { Session } from "next-auth";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
@@ -49,7 +50,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!session) {
     return {
       redirect: {
-        destination: "/api/auth/signin",
+        destination: `/${authRoutes.pages.signIn}`,
         permanent: false,
       },
     };
