@@ -24,12 +24,6 @@ const eventPlugSchema = {
       label: "Filter",
       description: " filter by comma separated list",
     },
-
-    {
-      name: "pricing",
-      type: "easyRichText",
-      label: "Info",
-    },
     {
       name: "legende",
       type: "boolean",

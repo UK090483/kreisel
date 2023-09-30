@@ -5,11 +5,10 @@ import { Events } from "components";
 import React from "react";
 
 const EventPlug: React.FC<IEventPlugProps> = (props) => {
-  const { category, filter, pricing, legende, showFilter } = props;
+  const { category, filter, legende, showFilter } = props;
 
   return (
     <Events
-      pricing={pricing}
       legende={legende}
       showFilter={showFilter}
       filter={filter}

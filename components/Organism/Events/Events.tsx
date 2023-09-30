@@ -1,7 +1,6 @@
 "use client";
 import EventItem from "./EventItem";
 import StatusIndicator from "./StatusIndicator";
-import Portable from "PageBuilder/RichText/PortableText";
 import { Dropdown } from "components/Molecules/Inputs/Dropdown";
 import { ScrapeEvent } from "pages/api/scrapeEvents";
 import clsx from "clsx";
@@ -104,9 +103,7 @@ const EventPlugComponent: React.FC<{
 
         <Panel bottom />
       </div>
-      <Description show={!!legende}>
-        <Portable content={pricing} />
-      </Description>
+      {!!legende && <Legende />}
     </>
   );
 };
@@ -125,40 +122,18 @@ const Panel = ({ bottom }: { bottom?: boolean }) => (
 
 export default EventPlugComponent;
 
-const Description = ({
-  children,
-  show,
-}: React.PropsWithChildren<{ show: boolean }>) => {
+const Legende = () => {
   return (
-    <div className="text-sm grid md:grid-cols-2 gap-4 leading-4">
-      {show && (
-        <div className="text-sm">
-          <div className="flex items-center">
-            <StatusIndicator state="open" size="s" />{" "}
-            <p>freie Plätze verfügbar</p>
-          </div>
-          <div className="flex mt-2 items-center">
-            <StatusIndicator state="medium" size="s" />{" "}
-            <p> wenige Plätze verfügbar</p>
-          </div>
-          <div className="flex mt-2 items-center">
-            <StatusIndicator state="full" size="s" />{" "}
-            <p> keine Plätze verfügbar</p>
-          </div>
-        </div>
-      )}
-
-      <div>
-        {children}
-
-        {/* <p className="font-bold">Preisgestaltung:</p>
-        <p>Seminartag 130,-€</p>
-        <p className="font-bold">Rabatte:</p>
-        <ol className="list-disc ml-4">
-          <li>Frühbucher 10%</li>
-          <li> Netzwerkmitglieder 20% </li>
-          <li> Wiederholung 50% (nur für Netzwerkmitglieder)</li>
-        </ol> */}
+    <div className="text-sm leading-4 flex flex-col sm:flex-row  sm:items-center gap-3">
+      <div className="flex items-center">
+        <StatusIndicator state="open" size="s" /> <p>freie Plätze verfügbar</p>
+      </div>
+      <div className="flex items-center">
+        <StatusIndicator state="medium" size="s" />{" "}
+        <p> wenige Plätze verfügbar</p>
+      </div>
+      <div className="flex items-center">
+        <StatusIndicator state="full" size="s" /> <p> keine Plätze verfügbar</p>
       </div>
     </div>
   );
