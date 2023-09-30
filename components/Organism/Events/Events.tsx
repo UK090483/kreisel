@@ -90,9 +90,9 @@ const EventPlugComponent: React.FC<{
       <div className="relative">
         <Panel />
 
-        <div className="mb-3 grid grid-cols-1 gap-3 max-h-[500px] overflow-scroll py-10">
+        <div className="mb-3 grid grid-cols-1 gap-3 max-h-[500px] overflow-scroll py-10 min-h-[300px]">
           {_events?.length === 0 && (
-            <div className="text-lg text-center">
+            <div className="text-lg text-center h-full flex justify-center items-center">
               Neue Veranstaltungen sind in Planung.
             </div>
           )}
