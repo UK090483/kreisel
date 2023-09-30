@@ -7,7 +7,7 @@ export type NavItemBaseProps = {
   bold?: boolean;
   place?: "link" | "dropdown" | "header";
   props: { [k: string]: any };
-  active: boolean;
+  active?: boolean;
   children?: React.ReactNode;
   className?: string;
 };

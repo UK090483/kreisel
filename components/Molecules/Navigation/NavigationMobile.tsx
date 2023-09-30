@@ -7,6 +7,7 @@ import {
   NavigationLinkComponent,
   NavItem,
 } from "./types";
+import useIsActive from "./helper/useIsActive";
 import Svg from "components/Atoms/Svg";
 import React, { useEffect } from "react";
 
@@ -71,17 +72,23 @@ interface NestedAccordionProps {
 const NestedAccordion = (props: NestedAccordionProps) => {
   const { items, level = 0, onClick } = props;
 
+  const { isActive } = useIsActive({ ...props, _key: "mobile" });
+
   return (
     <Accordion.Root type="multiple" className="w-[300px]">
-      {items?.map(({ label, link, _key, items }) => {
+      {items?.map((props) => {
+        const { label, link, _key, items } = props;
+
+        const active = isActive(props);
+
         if (link) {
           return (
             <NavigationLink key={_key} {...link} onClick={onClick}>
               <NavigationItemBase
-                active={true}
                 props={props}
                 className={clsx("", {
-                  "bg-primary-xLight rounded-theme py-3.5 mb-2": level === 0,
+                  "bg-primary-xLight rounded-theme py-3.5 mb-2 ": level === 0,
+                  "font-bold underline underline-offset-4": active,
                 })}
               >
                 {label}
@@ -105,9 +112,13 @@ const NestedAccordion = (props: NestedAccordionProps) => {
                   <NavigationItemBase
                     active={true}
                     props={props}
-                    className={clsx("flex justify-between items-center", {
-                      "group-data-[state=open]:bg-primary": level === 1,
-                    })}
+                    className={clsx(
+                      "flex justify-between items-center border-gray-400",
+                      {
+                        "group-data-[state=open]:bg-primary": level === 1,
+                        "font-bold underline underline-offset-4": active,
+                      }
+                    )}
                   >
                     {label}
                     <Svg
