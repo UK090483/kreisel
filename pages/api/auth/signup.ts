@@ -3,12 +3,12 @@ import {
   getUserByEmail,
   sessionOptions,
   baseUrl,
-  authRoutes,
   createNewUser,
   authErrors,
 } from "@lib/Auth/IronSession/IronSession";
 import sendMail, { templates } from "@lib/Email/sendMail";
 import { validation } from "pages/auth/signup";
+import authRoutes from "@lib/Auth/authRoutes";
 import { NextApiRequest, NextApiResponse } from "next";
 import { sealData, unsealData } from "iron-session";
 import { withIronSessionApiRoute } from "iron-session/next";

@@ -1,6 +1,7 @@
 "use client";
+import authRoutes from "./authRoutes";
 import Kreisel from "components/Atoms/Kreisel";
-import { User, authRoutes } from "@lib/Auth/IronSession/IronSession";
+import { User } from "@lib/Auth/IronSession/IronSession";
 import { isBrowser } from "@lib/utils";
 import React, { useCallback, useContext } from "react";
 import { useRouter, usePathname } from "next/navigation";

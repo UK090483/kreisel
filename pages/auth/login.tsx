@@ -1,7 +1,8 @@
 import Button from "components/Atoms/Button/Button";
 import Input from "components/Molecules/Inputs/Input";
 import AuthLayout from "components/Organism/Layout/AuthLayout";
-import { authRoutes } from "@lib/Auth/IronSession/IronSession";
+
+import authRoutes from "@lib/Auth/authRoutes";
 import React, { ReactElement, ReactNode, useState } from "react";
 import { signIn } from "next-auth/react";
 // import { getServerSession } from "next-auth/next"

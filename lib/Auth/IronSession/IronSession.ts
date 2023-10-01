@@ -50,20 +50,6 @@ declare module "iron-session" {
   }
 }
 
-export const authRoutes = {
-  api: {
-    login: "api/auth/login",
-    signup: "api/auth/signup",
-    logout: "api/auth/logout",
-  },
-  pages: {
-    signIn: "auth/login",
-    error: "auth/error",
-    profile: "profile",
-    checkMail: "auth/checkMail",
-  },
-};
-
 export const baseUrl =
   process.env.NEXTAUTH_URL || `https://${process.env.VERCEL_URL}`;
 

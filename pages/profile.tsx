@@ -7,7 +7,8 @@ import {
 } from "lib/Profile/profileQuery";
 
 import { previewClient } from "@services/SanityService/sanity.server";
-import { authRoutes, sessionOptions } from "@lib/Auth/IronSession/IronSession";
+import { sessionOptions } from "@lib/Auth/IronSession/IronSession";
+import authRoutes from "@lib/Auth/authRoutes";
 import { Session } from "next-auth";
 import { GetServerSideProps } from "next";
 import { withIronSessionSsr } from "iron-session/next";
