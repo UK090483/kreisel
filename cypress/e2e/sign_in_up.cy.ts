@@ -19,7 +19,7 @@ describe("Sign in/up", () => {
       cy.url().should("include", "checkMail");
       cy.getLastMail();
       cy.get("a").click();
-      cy.url().should("eq", Cypress.config().baseUrl);
+      cy.url().should("eq", `${Cypress.config().baseUrl}/`);
       cy.contains("button", "Sign out");
       cy.eraseFakeUser();
     });
@@ -44,10 +44,10 @@ describe("Sign in/up", () => {
       cy.url().should("include", "checkMail");
       cy.getLastMail();
       cy.get("a").click();
-      cy.url().should("eq", Cypress.config().baseUrl);
+      cy.url().should("eq", `${Cypress.config().baseUrl}/`);
       cy.contains("button", "Sign out").click();
       cy.contains("button", "Sign in");
-      cy.url().should("eq", Cypress.config().baseUrl);
+      cy.url().should("eq", `${Cypress.config().baseUrl}/`);
     });
     cy.eraseFakeUser();
   });
