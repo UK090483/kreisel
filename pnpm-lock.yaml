@@ -76,6 +76,9 @@ dependencies:
   formidable:
     specifier: ^2.1.1
     version: 2.1.1
+  get-it:
+    specifier: ^8.4.3
+    version: 8.4.3
   groq:
     specifier: ^3.10.0
     version: 3.10.0
@@ -3488,7 +3491,7 @@ packages:
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/eventsource': 5.0.0
-      get-it: 8.1.2
+      get-it: 8.4.3
       rxjs: 7.8.1
     transitivePeerDependencies:
       - supports-color
@@ -7362,24 +7365,6 @@ packages:
       has: 1.0.3
       has-symbols: 1.0.3
 
-  /get-it@8.1.2:
-    resolution: {integrity: sha512-B8aUYegP6PX8uqmPmPWagxaNZexkTmcegrIMytAE00PldhLem3d18WZzD+h2oB8lBbxZYnZi+zQ4luZtXkFRRw==}
-    engines: {node: '>=14.0.0'}
-    dependencies:
-      debug: 4.3.4(supports-color@5.5.0)
-      decompress-response: 7.0.0
-      follow-redirects: 1.15.2(debug@4.3.4)
-      into-stream: 6.0.0
-      is-plain-object: 5.0.0
-      is-retry-allowed: 2.2.0
-      is-stream: 2.0.1
-      parse-headers: 2.0.5
-      progress-stream: 2.0.0
-      tunnel-agent: 0.6.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /get-it@8.4.3:
     resolution: {integrity: sha512-H9YbPCN3QCbxtojv42fvmrkIYe434qKg1nKpMMtBqwL8U3XprnHMgDbQwMJIxSIFOPpajQPf0BxhjsHoFI0cEQ==}
     engines: {node: '>=14.0.0'}
@@ -11233,7 +11218,7 @@ packages:
       execa: 2.1.0
       exif-component: 1.0.1
       framer-motion: 10.12.10(react-dom@18.2.0)(react@18.2.0)
-      get-it: 8.1.2
+      get-it: 8.4.3
       get-random-values-esm: 1.0.0
       groq-js: 0.2.0
       hashlru: 2.3.0

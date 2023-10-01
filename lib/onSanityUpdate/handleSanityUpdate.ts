@@ -1,4 +1,4 @@
-import { sendMailProps } from "@lib/Email/sendMail";
+import { sendMailProps, templates } from "@lib/Email/sendMail";
 import { isEqual, isObject } from "lodash";
 
 export const handleSanityUpdate = (body: any) => {
@@ -11,15 +11,17 @@ export const handleSanityUpdate = (body: any) => {
   if (type === "member") {
     if (delta.allowMember) {
       emails.push({
-        template: delta.allowMember.after ? "memberUnlocked" : "memberLocked",
+        template: delta.allowMember.after
+          ? templates["memberUnlocked"]
+          : templates["memberLocked"],
         to: email,
       });
     }
     if (delta.allowProfile) {
       emails.push({
         template: delta.allowProfile.after
-          ? "profileUnlocked"
-          : "profileLocked",
+          ? templates["profileUnlocked"]
+          : templates["profileLocked"],
         to: email,
       });
     }
@@ -27,15 +29,13 @@ export const handleSanityUpdate = (body: any) => {
     if (delta.approved) {
       if (delta.approved.after) {
         emails.push({
-          template: delta.allowProfile.after
-            ? "profileUnlocked"
-            : "profileLocked",
+          template: templates["profileChangesAccepted"],
           to: email,
         });
       }
       if (!delta.approved.after) {
         emails.push({
-          template: "profileChangesNeedsReview",
+          template: templates["profileChangesNeedsReview"],
           to: "konradullrich@me.com",
         });
       }

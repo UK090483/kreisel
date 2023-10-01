@@ -61,7 +61,9 @@ const SignInOutButton = () => {
     if (isAuthenticated) {
       signOut();
     }
-    signIn();
+    if (!isAuthenticated) {
+      signIn();
+    }
   };
   return (
     <Button

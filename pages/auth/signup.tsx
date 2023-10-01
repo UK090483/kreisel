@@ -5,7 +5,7 @@ import { authRoutes } from "@lib/Auth/IronSession/IronSession";
 import React, { ReactElement, ReactNode, useState } from "react";
 import { signIn } from "next-auth/react";
 // import { getServerSession } from "next-auth/next"
-import { GetServerSideProps, NextPage } from "next";
+import { NextPage } from "next";
 import { Session } from "next-auth";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -23,17 +23,21 @@ type NextPageWithLayout<P> = NextPage<P> & {
 
 type Inputs = {
   email: string;
+  firstName: string;
+  name: string;
 };
 
-const validation = object({
-  email: string().required().email(),
+export const validation = object({
+  email: string().required("die Email ist erforderlich").email(),
+  firstName: string().required("der Vorname ist erforderlich"),
+  name: string().required("der Nachname ist erforderlich"),
 });
-const SignIn: NextPageWithLayout<LoginProps> = (props) => {
+const SignUp: NextPageWithLayout<LoginProps> = (props) => {
   const { csrfToken } = props;
 
-  const [error, setError] = useState("");
-
   const router = useRouter();
+
+  const [error, setError] = useState("");
 
   const methods = useForm<Inputs>({
     mode: "onTouched",
@@ -48,20 +52,20 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      const res = await fetch(`/api/auth/sendMagicLink?email=${data.email}`, {
+      const res = await fetch(`/${authRoutes.api.signup}`, {
         method: "post",
-        body: JSON.stringify({ email: data.email }),
+        body: JSON.stringify(data),
       });
-
-      if (res.status === 404) {
-        setError("der user ist nicht zu finden ");
+      const json = await res.json();
+      if (json.error) {
+        setError(json.error);
       }
       if (res.ok) {
         router.push(`/${authRoutes.pages.checkMail}`);
       }
     } catch (e) {
       console.log(e);
-
+      router.push(`/${authRoutes.pages.checkMail}`);
       // handle your error
     }
   };
@@ -71,12 +75,15 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
         <Input name="email" placeholder="Email" />
+        <Input name="firstName" placeholder="Vorname" />
+        <Input name="name" placeholder="Nachname" />
+
         <Button
           className={`mt-2 inline w-full`}
           type="submit"
           disabled={!canSubmit}
         >
-          Login / SignUp
+          SignUp
         </Button>
         <Button className="mt-2 block w-full" href={"/"}>
           Back to HomePage
@@ -93,20 +100,8 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
   );
 };
 
-// eslint-disable-next-line import/no-unused-modules
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  // const csrfToken = await getCsrfToken(context);
-  // return {
-  //   props: {
-  //     csrfToken,
-  //   },
-  // };
-
-  return { props: { csrfToken: "bla" } };
-};
-
-SignIn.getLayout = function getLayout(page) {
+SignUp.getLayout = function getLayout(page) {
   return <AuthLayout>{page}</AuthLayout>;
 };
 // eslint-disable-next-line import/no-unused-modules
-export default SignIn;
+export default SignUp;

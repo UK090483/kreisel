@@ -4,7 +4,7 @@ import {
   sessionOptions,
   baseUrl,
 } from "@lib/Auth/IronSession/IronSession";
-import sendMail from "@lib/Email/sendMail";
+import sendMail, { templates } from "@lib/Email/sendMail";
 import { NextApiRequest, NextApiResponse } from "next";
 import { sealData } from "iron-session";
 
@@ -31,20 +31,13 @@ export default async function sendEmailRoute(
   );
 
   if (user) {
-    console.log("start sending email");
-
     await sendMail({
       to: email,
-      template: "memberLocked",
-      content: {
-        text: `Hey there ${email}, <a href="${baseUrl}/api/auth/magicLogin?seal=${seal}">click here to login</a>.`,
-        subject: "Magic link",
-        html: `Hey there ${email}, <a href="${baseUrl}/api/auth/magicLogin?seal=${seal}">click here to login</a>.`,
-      },
+      template: templates["magicLink"](
+        `${baseUrl}/api/auth/magicLogin?seal=${seal}`
+      ),
     });
-
-    console.log("done sending email");
-    res.send({ ok: true });
+    return res.send({ ok: true });
   }
 
   if (!user) {

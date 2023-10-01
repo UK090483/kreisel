@@ -1,3 +1,4 @@
+import testUser from "./testUser";
 import { defineConfig } from "cypress";
 
 import { createClient } from "@sanity/client";
@@ -31,11 +32,9 @@ export default defineConfig({
       const pages = await sanityClient.fetch<{ slug: string }[]>(
         `*[_type == 'page' && defined(slug) ][]{'slug': select( defined(pageType) => '/' + pageType->slug.current + '/'+ slug.current, '/' + slug.current   )}`
       );
-      const domains = await oneSecMail({ url: "/?action=getDomainList" });
-      const domain = domains[0];
-      const name = "test__kreisel__user";
+      //const domains = await oneSecMail({ url: "/?action=getDomainList" });
 
-      config.env.testMail = { address: `${name}@${domains[0]}`, domain, name };
+      config.env.testUser = testUser;
       config.env.pages = pages;
 
       return config;

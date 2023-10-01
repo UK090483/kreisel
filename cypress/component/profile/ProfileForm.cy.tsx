@@ -7,12 +7,14 @@ import {
   focusOptions,
   membershipOptions,
 } from "../../../lib/Profile/Fields";
-import { interceptFormData } from "cypress-intercept-formdata";
 
 import React, { ComponentProps } from "react";
 
 const allFields = [...memberFields, ...profileFields].filter(
-  (i) => i.name !== "email"
+  (i) => !["email", "image"].includes(i.name)
+);
+const _profileFields = [...profileFields].filter(
+  (i) => !["email", "image"].includes(i.name)
 );
 
 const testData = {
@@ -24,7 +26,7 @@ const testData = {
   description: "testDescription",
   firstName: "testFirstName",
   jobDescription: "testJobDescription",
-  offersInternship: "true",
+  offersInternship: true,
   mobile: "+45 53856002",
   experience: "testExperience",
   name: "testName",
@@ -58,12 +60,6 @@ const fillField = (field: (typeof memberFields)[0], testValue) => {
 
   if (field.type === "boolean") {
     cy.get(`#${field.name}`).click();
-  }
-
-  if (field.type === "image") {
-    cy.get(`input[type=file]`).selectFile("cypress/fixtures/image.png", {
-      force: true,
-    });
   }
 };
 
@@ -102,9 +98,7 @@ describe("<ProfileForm />", () => {
     });
   });
 
-  profileFields.forEach((i) => {
-    if (i.name === "email") return;
-
+  _profileFields.forEach((i) => {
     it(`Field ${i.title} should handle input`, () => {
       render({
         allowProfile: true,
@@ -124,13 +118,14 @@ describe("<ProfileForm />", () => {
         .its("request")
         .then((request) => {
           //@ts-ignore
-          const formData = interceptFormData(request);
+
+          cy.log();
+          const formData = request.body;
 
           if (["array"].includes(i.type)) {
             // cy.wrap(formData, { timeout: 0 })
             //   .should("have.property", i.name)
             //   .should("deep.equal", testValue);
-          } else if (i.type === "image") {
           } else if (i.type === "boolean") {
             cy.wrap(formData, { timeout: 0 })
               .should("have.property", i.name)

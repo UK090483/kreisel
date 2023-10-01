@@ -7,10 +7,10 @@ import {
 } from "lib/Profile/profileQuery";
 
 import { previewClient } from "@services/SanityService/sanity.server";
-import { authRoutes } from "@lib/Auth/IronSession/IronSession";
+import { authRoutes, sessionOptions } from "@lib/Auth/IronSession/IronSession";
 import { Session } from "next-auth";
 import { GetServerSideProps } from "next";
-import { getSession } from "next-auth/react";
+import { withIronSessionSsr } from "iron-session/next";
 import React, { ReactElement, ReactNode } from "react";
 import clsx from "clsx";
 
@@ -28,7 +28,7 @@ const ProfilePage: React.FC<ProfileProps> & {
       <div className="mb-24 bg-primary-light py-24 px-5">
         <div className=" mx-auto max-w-3xl">
           <h1 className="font-header text-2xl">Dein Kreisel Profil</h1>
-          <ProfileImage image={profileImage} />
+          {allowProfile && <ProfileImage image={profileImage} />}
           <MemberInfo allowed={allowMember} />
         </div>
       </div>
@@ -45,37 +45,34 @@ ProfilePage.getLayout = function getLayout(page) {
 };
 
 // eslint-disable-next-line import/no-unused-modules
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const session = await getSession(ctx);
-  if (!session) {
+export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session.user;
+    if (!user) {
+      return {
+        redirect: {
+          destination: `/${authRoutes.pages.signIn}`,
+          permanent: false,
+        },
+      };
+    }
+
+    if (user?.email) {
+      const profileData = await fetchProfileData(user?.email, previewClient);
+
+      return {
+        props: {
+          ...profileData,
+        },
+      };
+    }
+
     return {
-      redirect: {
-        destination: `/${authRoutes.pages.signIn}`,
-        permanent: false,
-      },
+      props: {},
     };
-  }
-
-  if (session.user?.email) {
-    const profileData = await fetchProfileData(
-      session.user?.email,
-      previewClient
-    );
-
-    return {
-      props: {
-        session,
-        ...profileData,
-      },
-    };
-  }
-
-  return {
-    props: {
-      session,
-    },
-  };
-};
+  },
+  sessionOptions
+);
 
 // eslint-disable-next-line import/no-unused-modules
 export default ProfilePage;

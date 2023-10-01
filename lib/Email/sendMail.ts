@@ -1,4 +1,4 @@
-import templates from "./template";
+import templates, { template } from "./template";
 import nodemailer from "nodemailer";
 let transporter = nodemailer.createTransport({
   host: process.env.EMAIL_SERVER_HOST,
@@ -11,19 +11,24 @@ let transporter = nodemailer.createTransport({
 
 export type sendMailProps = {
   to: string | string[];
-  template: keyof typeof templates;
-  content?: { subject?: string; text?: string; html?: string };
+  template: template;
 };
 
-const sendMail = async ({ to, template, content }: sendMailProps) => {
-  const temp = templates[template];
-  return await transporter.sendMail({
+export { templates };
+
+const sendMail = async ({ to, template }: sendMailProps) => {
+  console.log({ action: "send mail", subject: template.subject });
+
+  const mail = await transporter.sendMail({
     from: `"KREISEL e.V." <${process.env.EMAIL_FROM}>`, // sender address
     to,
-    subject: content?.subject || temp.subject, // Subject line
-    text: content?.text || temp.text, // plain text body
-    html: content?.html || temp.html, // html body
+    subject: template.subject, // Subject line
+    text: template.text, // plain text body
+    html: template.html, // html body
   });
+  console.log("send mail done");
+
+  return mail;
 };
 
 export default sendMail;

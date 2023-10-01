@@ -52,6 +52,8 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
   let showSpinner: boolean = false;
 
   const signIn = useCallback(() => {
+    console.log("run sign in ");
+
     if (isBrowser) {
       push(`/${authRoutes.pages.signIn}`);
     }

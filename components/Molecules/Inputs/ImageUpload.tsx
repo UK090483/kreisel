@@ -182,7 +182,7 @@ const ImageUploadButtons = ({
         </Button>
         <Button
           size="s"
-          aria-label="update Image"
+          aria-label="remove Image"
           type="button"
           onClick={() => onchange("remove")}
         >

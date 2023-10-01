@@ -3,8 +3,8 @@
 const login = () => {
   cy.visit("/");
   cy.get(`[aria-label="Sign in"]`).click();
-  let { address, domain, name } = Cypress.env("testMail");
-  cy.get("#email").type(address);
+  let { mail, domain, name } = Cypress.env("testUser");
+  cy.get("#email").type(mail);
   cy.get("button[type=submit]").click();
   cy.wait(3000);
   cy.request<{ id: string }[]>({
@@ -26,12 +26,29 @@ const login = () => {
   });
 };
 
+export const getLastMail = () => {
+  let { mail, domain, name } = Cypress.env("testUser");
+  cy.request<{ id: string }[]>({
+    url: `https://www.1secmail.com/api/v1/?action=getMessages&login=${name}&domain=${domain}`,
+  }).then((res) => {
+    const id = res.body[0]?.id;
+    cy.request<{ htmlBody?: string }>({
+      url: `https://www.1secmail.com/api/v1/?action=readMessage&login=${name}&domain=${domain}&id=${id}`,
+    }).then((res) => {
+      cy.document({}).invoke({}, "write", res.body.htmlBody);
+    });
+  });
+};
+
 export const loginFakeUser = (props?: {
   sessionName: string;
+  values?: { allowMember?: boolean; allowProfile?: boolean };
   options?: Cypress.SessionOptions;
 }) => {
+  const { sessionName, values } = props;
   if (props?.sessionName) {
-    cy.session(props?.sessionName, () => {
+    cy.setFakerUserValue({ ...values });
+    cy.session(JSON.stringify({ sessionName, values }), () => {
       login();
       if (props?.options?.validate) {
         props.options.validate();
@@ -49,6 +66,8 @@ export const deleteFakerUser = () => {
 
 export const setFakerUserValue = (props: { [k: string]: any }) => {
   const searchParams = new URLSearchParams(props);
+
+  let { mail, domain, name, firstName } = Cypress.env("testUser");
 
   return cy.request({
     url: `/api/test/testUser?${searchParams.toString()}`,
