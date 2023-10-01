@@ -1,6 +1,6 @@
 let testUserA = Cypress.env("testUser");
 
-describe("create user spec", () => {
+describe("Sign in/up", () => {
   before(() => {
     cy.eraseFakeUser();
   });
@@ -8,7 +8,7 @@ describe("create user spec", () => {
     cy.eraseFakeUser();
   });
 
-  it("creates user", () => {
+  it("Sign Up", () => {
     cy.intercept("signup").as("signup");
     cy.visit("/auth/signup");
     cy.get("#email").type(testUserA.mail);
@@ -19,7 +19,7 @@ describe("create user spec", () => {
       cy.url().should("include", "checkMail");
       cy.getLastMail();
       cy.get("a").click();
-      cy.url({ timeout: 10000 }).should("eq", Cypress.config().baseUrl);
+      cy.url().should("eq", Cypress.config().baseUrl);
       cy.contains("button", "Sign out");
       cy.eraseFakeUser();
     });
@@ -33,7 +33,7 @@ describe("create user spec", () => {
     cy.contains("der user ist nicht zu finden");
   });
 
-  it.only("signin for known users", () => {
+  it.only("signin", () => {
     cy.intercept("sendMagicLink*").as("sendMagicLink");
     cy.setFakerUserValue({});
     cy.visit("/");
@@ -44,10 +44,10 @@ describe("create user spec", () => {
       cy.url().should("include", "checkMail");
       cy.getLastMail();
       cy.get("a").click();
-      cy.url({ timeout: 10000 }).should("eq", Cypress.config().baseUrl);
+      cy.url().should("eq", Cypress.config().baseUrl);
       cy.contains("button", "Sign out").click();
       cy.contains("button", "Sign in");
-      cy.url({ timeout: 10000 }).should("eq", Cypress.config().baseUrl);
+      cy.url().should("eq", Cypress.config().baseUrl);
     });
     cy.eraseFakeUser();
   });
