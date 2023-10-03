@@ -4,14 +4,14 @@ import AuthLayout from "components/Organism/Layout/AuthLayout";
 
 import authRoutes from "@lib/Auth/authRoutes";
 import React, { ReactElement, ReactNode, useState } from "react";
-import { signIn } from "next-auth/react";
-// import { getServerSession } from "next-auth/next"
+
 import { GetServerSideProps, NextPage } from "next";
 import { Session } from "next-auth";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { object, string, AnyObjectSchema } from "yup";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 type LoginProps = {
   csrfToken?: string | undefined;
@@ -70,26 +70,28 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
         <Input name="email" placeholder="Email" />
         <Button
           className={`mt-2 inline w-full`}
           type="submit"
           disabled={!canSubmit}
         >
-          Login / SignUp
+          Login
         </Button>
         <Button className="mt-2 block w-full" href={"/"}>
           Back to HomePage
         </Button>
       </form>
 
+      <Link
+        data-testId="toSignUp"
+        className=" text-sm underline mt-8"
+        href={`/${authRoutes.pages.signup}`}
+      >
+        Noch kein Member ?
+      </Link>
+
       <div>{error && error}</div>
-      <button
-        onClick={() => {
-          signIn("email", { email: "konradullrich@me.com" });
-        }}
-      ></button>
     </FormProvider>
   );
 };
