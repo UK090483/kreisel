@@ -42,8 +42,6 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
     isLoading,
   } = useSWR<User>("/api/auth/user", fetcher);
 
-  console.log({ user, isLoading });
-
   const isDraftMode = false;
   const { push } = useRouter();
   const pathname = usePathname();

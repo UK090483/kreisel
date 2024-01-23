@@ -3,6 +3,7 @@ import nodemailer from "nodemailer";
 import sgMail from "@sendgrid/mail";
 
 const useNodeMailer = false;
+sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
 let transporter = nodemailer.createTransport({
   host: process.env.EMAIL_SERVER_HOST,
