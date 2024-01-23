@@ -15,6 +15,7 @@ interface IAuthContextState {
   isAuthenticated: boolean;
   signIn: () => void;
   signOut: () => void;
+  refetchUser: () => void;
 }
 
 const defaultState: IAuthContextState = {
@@ -22,6 +23,7 @@ const defaultState: IAuthContextState = {
   isAuthenticated: false,
   signIn: () => {},
   signOut: () => {},
+  refetchUser: () => {},
 };
 
 const AuthContext = React.createContext(defaultState);
@@ -40,6 +42,8 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
     isLoading,
   } = useSWR<User>("/api/auth/user", fetcher);
 
+  console.log({ user, isLoading });
+
   const isDraftMode = false;
   const { push } = useRouter();
   const pathname = usePathname();
@@ -47,18 +51,20 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
 
   const isAuthenticated = !!user?.isLoggedIn;
   const isUnauthenticated = !user?.isLoggedIn;
-  //@ts-ignore
+
   const member = !!user?.member;
   const email = user?.email || undefined;
   let showSpinner: boolean = false;
 
   const signIn = useCallback(() => {
-    console.log("run sign in ");
-
     if (isBrowser) {
       push(`/${authRoutes.pages.signIn}`);
     }
   }, [push]);
+
+  const refetchUser = useCallback(async () => {
+    mutate();
+  }, [mutate]);
 
   const signOut = useCallback(async () => {
     mutate(
@@ -69,13 +75,13 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
   }, [mutate]);
 
   if (isMemberPage && !isDraftMode) {
-    showSpinner = isUnauthenticated;
+    showSpinner = isLoading;
 
     if (!member && isAuthenticated && !isServer) {
       showSpinner = true;
       push("/profile");
     }
-    if (isUnauthenticated) {
+    if (isUnauthenticated && !isLoading) {
       signIn();
     }
   }
@@ -95,7 +101,15 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
 
   return (
     <AuthContext.Provider
-      value={{ member, email, isAuthenticated, signIn, signOut, ...rest }}
+      value={{
+        member,
+        email,
+        isAuthenticated,
+        refetchUser,
+        signIn,
+        signOut,
+        ...rest,
+      }}
     >
       {children}
     </AuthContext.Provider>

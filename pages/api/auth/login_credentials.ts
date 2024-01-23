@@ -6,15 +6,19 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { withIronSessionApiRoute } from "iron-session/next";
 
 async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
-  const { email } = await req.body;
-  try {
-    if (typeof email !== "string")
-      return res.status(500).json({ message: "email is needed" });
-    const user = await getUserByEmail({ email });
+  const { email, password } = await req.body;
 
-    req.session.user = user;
-    await req.session.save();
-    res.json(user);
+  try {
+    const user = await getUserByEmail({ email, password });
+
+    if (user) {
+      req.session.user = user;
+      await req.session.save();
+      res.status(200);
+      res.json(user);
+    }
+    res.status(404);
+    res.json({});
   } catch (error) {
     res.status(500).json({ message: (error as Error).message });
   }

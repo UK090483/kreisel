@@ -2,6 +2,7 @@
 export default {
   api: {
     login: "api/auth/login",
+    login_credentials: "api/auth/login_credentials",
     signup: "api/auth/signup",
     logout: "api/auth/logout",
   },

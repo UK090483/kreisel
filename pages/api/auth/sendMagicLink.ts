@@ -37,7 +37,7 @@ export default async function sendEmailRoute(
         `${baseUrl}/api/auth/magicLogin?seal=${seal}`
       ),
     });
-    return res.send({ ok: true });
+    return res.status(200).send({ ok: true });
   }
 
   if (!user) {

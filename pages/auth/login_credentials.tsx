@@ -3,15 +3,17 @@ import Input from "components/Molecules/Inputs/Input";
 import AuthLayout from "components/Organism/Layout/AuthLayout";
 
 import authRoutes from "@lib/Auth/authRoutes";
+import { useAuth } from "@lib/Auth/AuthContext";
 import React, { ReactElement, ReactNode, useState } from "react";
 
+import { yupResolver } from "@hookform/resolvers/yup";
 import { GetServerSideProps, NextPage } from "next";
 import { Session } from "next-auth";
-import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { object, string, AnyObjectSchema } from "yup";
-import { useRouter } from "next/router";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { AnyObjectSchema, object, string } from "yup";
+// import useUser from "@lib/Auth/IronSession/useUser";
 
 type LoginProps = {
   csrfToken?: string | undefined;
@@ -24,14 +26,20 @@ type NextPageWithLayout<P> = NextPage<P> & {
 
 type Inputs = {
   email: string;
+  password: string;
 };
 
 const validation = object({
   email: string().required().email(),
+  password: string().min(5).required(),
 });
 const SignIn: NextPageWithLayout<LoginProps> = (props) => {
+  const { refetchUser } = useAuth();
+
   const [error, setError] = useState("");
+
   const router = useRouter();
+
   const methods = useForm<Inputs>({
     mode: "onTouched",
     resolver: yupResolver<AnyObjectSchema>(validation),
@@ -43,23 +51,24 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
 
   const canSubmit = isDirty && isValid;
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     try {
-      const res = await fetch(`/api/auth/sendMagicLink?email=${data.email}`, {
+      const res = await fetch(`/${authRoutes.api.login_credentials}`, {
         method: "post",
-        body: JSON.stringify({ email: data.email }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
       });
 
-      if (res.status === 404) {
-        setError("der user ist nicht zu finden ");
+      if (res.status === 200) {
+        refetchUser();
+        router.push("/");
       }
-      if (res.ok) {
-        router.push(`/${authRoutes.pages.checkMail}`);
+
+      if (res.status === 404) {
+        setError("Email und Password passen leider nicht zusammen");
       }
     } catch (e) {
       console.log(e);
-
-      // handle your error
     }
   };
 
@@ -67,6 +76,7 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Input name="email" placeholder="Email" />
+        <Input type="password" name="password" placeholder="Password" />
         <Button
           className={`mt-2 inline w-full`}
           type="submit"
@@ -80,7 +90,7 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
       </form>
 
       <Link
-        data-testId="toSignUp"
+        data-testid="toSignUp"
         className=" text-sm underline mt-8"
         href={`/${authRoutes.pages.signup}`}
       >

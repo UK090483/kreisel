@@ -1,5 +1,6 @@
 import templates, { template } from "./template";
 import nodemailer from "nodemailer";
+
 let transporter = nodemailer.createTransport({
   host: process.env.EMAIL_SERVER_HOST,
   port: process.env.EMAIL_SERVER_PORT,
@@ -18,7 +19,6 @@ export { templates };
 
 const sendMail = async ({ to, template }: sendMailProps) => {
   console.log({ action: "send mail", subject: template.subject });
-
   const mail = await transporter.sendMail({
     from: `"KREISEL e.V." <${process.env.EMAIL_FROM}>`, // sender address
     to,
@@ -27,7 +27,6 @@ const sendMail = async ({ to, template }: sendMailProps) => {
     html: template.html, // html body
   });
   console.log("send mail done");
-
   return mail;
 };
 

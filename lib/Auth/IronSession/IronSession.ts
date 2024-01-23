@@ -19,9 +19,21 @@ export const sessionOptions: IronSessionOptions = {
   },
 };
 
-export const getUserByEmail = async ({ email }: { email: string }) => {
+export const getUserByEmail = async ({
+  email,
+  password,
+}: {
+  email: string;
+  password?: string;
+}) => {
+  if (password) {
+    return await previewClient.fetch<User>(
+      `*[_type == '${memberType}' && email.current == $email && oneTimePassword.current == $password ][0]{'member':allowMember,'profile':allowProfile, 'email':email.current}`,
+      { email, password }
+    );
+  }
   return await previewClient.fetch<User>(
-    `*[_type == '${memberType}' && email.current == $email ][0]{...,'member':allowMember,'profile':allowProfile, 'email':email.current}`,
+    `*[_type == '${memberType}' && email.current == $email ][0]{'member':allowMember,'profile':allowProfile, 'email':email.current}`,
     { email }
   );
 };

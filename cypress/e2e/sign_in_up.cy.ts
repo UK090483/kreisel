@@ -38,7 +38,7 @@ describe("Sign in/up", () => {
     cy.contains("der user ist nicht zu finden");
   });
 
-  it.only("signin", () => {
+  it("signin MagicLink", () => {
     cy.intercept("sendMagicLink*").as("sendMagicLink");
     cy.setFakerUserValue({});
     cy.visit("/");
@@ -55,5 +55,23 @@ describe("Sign in/up", () => {
       cy.location("pathname").should("eq", "/");
     });
     cy.eraseFakeUser();
+  });
+  it.only("signin Credentials", () => {
+    cy.visit("/auth/login_credentials");
+    cy.intercept("login_credentials*").as("login_credentials");
+    cy.setFakerUserValue({});
+    cy.get("#email").type(testUserA.mail);
+    cy.get("#password").type("abchjkjh");
+    cy.get("button[type='submit']").click();
+
+    // cy.wait("@sendMagicLink").then(() => {
+    //   cy.getLastMail();
+    //   cy.get("a").click();
+    //   cy.location("pathname").should("eq", "/");
+    //   cy.contains("button", "Sign out").click();
+    //   cy.contains("button", "Sign in");
+    //   cy.location("pathname").should("eq", "/");
+    // });
+    // cy.eraseFakeUser();
   });
 });
