@@ -18,7 +18,9 @@ export type sendMailProps = {
 export { templates };
 
 const sendMail = async ({ to, template }: sendMailProps) => {
-  console.log({ action: "send mail", subject: template.subject });
+  const d = { action: "send mail", subject: template.subject };
+  console.time(JSON.stringify(d));
+
   const mail = await transporter.sendMail({
     from: `"KREISEL e.V." <${process.env.EMAIL_FROM}>`, // sender address
     to,
@@ -26,7 +28,8 @@ const sendMail = async ({ to, template }: sendMailProps) => {
     text: template.text, // plain text body
     html: template.html, // html body
   });
-  console.log("send mail done");
+
+  console.timeEnd(JSON.stringify(d));
   return mail;
 };
 
