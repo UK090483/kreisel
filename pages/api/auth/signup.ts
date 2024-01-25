@@ -13,9 +13,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { sealData, unsealData } from "iron-session";
 import { withIronSessionApiRoute } from "iron-session/next";
 import { InferType } from "yup";
-import { v4 as uuid } from "uuid";
-
-const signupData: { [key: string]: InferType<typeof validation> } = {};
 
 // eslint-disable-next-line import/no-unused-modules
 export default withIronSessionApiRoute(async function singUp(
@@ -28,7 +25,7 @@ export default withIronSessionApiRoute(async function singUp(
       strict: true,
       stripUnknown: true,
     });
-    const { email, name, firstName } = validated;
+    const { email, firstName, name } = validated;
     const user = await getUserByEmail({ email });
 
     if (user) {
@@ -38,11 +35,8 @@ export default withIronSessionApiRoute(async function singUp(
       });
     }
 
-    const id = uuid();
-    signupData[id] = validated;
-
     const seal = await sealData(
-      { id },
+      { user: { email, firstName, name } },
       {
         password: sessionOptions.password,
       }
@@ -61,28 +55,31 @@ export default withIronSessionApiRoute(async function singUp(
 
   if (req.method === "GET") {
     const seal = typeof req.query.seal === "string" && req.query.seal;
-
     if (!seal) {
       res.redirect(
         `/${authRoutes.pages.error}&error=${authErrors.linkExpired}`
       );
       return;
     }
-    const { id } = await unsealData<{ id: string }>(seal, {
+    const unsealed = await unsealData<{
+      id: string;
+      user: InferType<typeof validation>;
+    }>(seal, {
       password: sessionOptions.password,
     });
+    const { id, user: _user } = unsealed;
 
-    if (!signupData[id]) {
+    if (!_user) {
       res.redirect(
         `/${authRoutes.pages.error}?error=${authErrors.linkExpired}`
       );
       return;
     }
 
-    const newUser = await createNewUser(signupData[id]);
+    const newUser = await createNewUser(_user);
 
     if (newUser) {
-      const user = await getUserByEmail({ email: signupData[id].email });
+      const user = await getUserByEmail({ email: _user.email });
       req.session.user = user;
 
       await req.session.save();

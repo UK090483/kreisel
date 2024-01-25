@@ -220,6 +220,11 @@ const adminFields = [
     },
   },
   {
+    title: "Show",
+    name: "show",
+    type: "boolean",
+  },
+  {
     hidden: true,
     title: "PW",
     name: "pw",

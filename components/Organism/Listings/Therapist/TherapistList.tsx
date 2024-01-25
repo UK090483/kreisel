@@ -25,9 +25,6 @@ const TherapistList: React.FC<TherapistListProps> = (props) => {
     fetcher
   );
 
-  console.log({ data });
-  console.log({ props });
-
   const items: TherapistResult[] = data?.member || [];
 
   const [page, setPage] = useState(1);

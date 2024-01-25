@@ -43,6 +43,7 @@ export default async function handler(
         email: { current: testUser.mail, _type: "slug" },
         name: testUser.name,
         firstName: testUser.firstName,
+        oneTimePassword: { current: testUser.oneTimePassword, _type: "slug" },
         ...next,
       });
     }

@@ -1,6 +1,7 @@
 import {
   sessionOptions,
   getUserByEmail,
+  eraseOneTimePassword,
 } from "@lib/Auth/IronSession/IronSession";
 import { NextApiRequest, NextApiResponse } from "next";
 import { withIronSessionApiRoute } from "iron-session/next";
@@ -12,6 +13,7 @@ async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
     const user = await getUserByEmail({ email, password });
 
     if (user) {
+      await eraseOneTimePassword({ email });
       req.session.user = user;
       await req.session.save();
       res.status(200);

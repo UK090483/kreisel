@@ -1,5 +1,5 @@
 import { listingBuilderItem } from "./listingBuilder/types";
-import { AKTUELLES_PAGE_TYPE_ID, BLOG_PAGE_TYPE_ID } from "../../constants";
+// import { AKTUELLES_PAGE_TYPE_ID, BLOG_PAGE_TYPE_ID } from "../../constants";
 
 type PagesListingItem = {
   items: string;
@@ -23,51 +23,51 @@ const listingBlockItems: listingBuilderItem[] = [
       { title: "small Card", value: "smallCard" },
     ],
   },
-  {
-    title: "Aktuelles",
-    name: "aktuelles",
-    filter: [{ title: "All", value: "all", queryFilter: { filter: "" } }],
-    items: [
-      {
-        type: "reference",
-        to: [{ type: "page" }],
-        options: {
-          filter: `pageType._ref == ${AKTUELLES_PAGE_TYPE_ID}`,
-          disableNew: true,
-        },
-        validation: (rule) => rule.required(),
-      },
-    ],
-  },
-  {
-    title: "Blogs",
-    name: "blog",
-    filter: [{ title: "All", value: "all", queryFilter: { filter: "" } }],
-    items: [
-      {
-        type: "reference",
-        to: [{ type: "page" }],
-        options: {
-          filter: `pageType._ref == ${BLOG_PAGE_TYPE_ID}`,
-          disableNew: true,
-        },
-        validation: (rule) => rule.required(),
-      },
-    ],
-  },
-  {
-    title: "Artikel",
-    name: "article",
-    filter: [{ title: "All", value: "all", queryFilter: { filter: "" } }],
-    items: [
-      {
-        type: "reference",
-        to: [{ type: "article" }],
-        options: { disableNew: true },
-        validation: (rule) => rule.required(),
-      },
-    ],
-  },
+  // {
+  //   title: "Aktuelles",
+  //   name: "aktuelles",
+  //   filter: [{ title: "All", value: "all", queryFilter: { filter: "" } }],
+  //   items: [
+  //     {
+  //       type: "reference",
+  //       to: [{ type: "page" }],
+  //       options: {
+  //         filter: `pageType._ref == ${AKTUELLES_PAGE_TYPE_ID}`,
+  //         disableNew: true,
+  //       },
+  //       validation: (rule) => rule.required(),
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "Blogs",
+  //   name: "blog",
+  //   filter: [{ title: "All", value: "all", queryFilter: { filter: "" } }],
+  //   items: [
+  //     {
+  //       type: "reference",
+  //       to: [{ type: "page" }],
+  //       options: {
+  //         filter: `pageType._ref == ${BLOG_PAGE_TYPE_ID}`,
+  //         disableNew: true,
+  //       },
+  //       validation: (rule) => rule.required(),
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "Artikel",
+  //   name: "article",
+  //   filter: [{ title: "All", value: "all", queryFilter: { filter: "" } }],
+  //   items: [
+  //     {
+  //       type: "reference",
+  //       to: [{ type: "article" }],
+  //       options: { disableNew: true },
+  //       validation: (rule) => rule.required(),
+  //     },
+  //   ],
+  // },
   {
     title: "Testimonials",
     name: "testimonial",

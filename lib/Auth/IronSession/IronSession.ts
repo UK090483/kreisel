@@ -19,6 +19,19 @@ export const sessionOptions: IronSessionOptions = {
   },
 };
 
+export const eraseOneTimePassword = async ({ email }: { email: string }) => {
+  if (email) {
+    const { _id } = await previewClient.fetch<{ _id: string }>(
+      `*[_type == '${memberType}' && email.current == $email ][0]{_id}`,
+      { email }
+    );
+
+    if (_id) {
+      await previewClient.patch(_id).unset(["oneTimePassword"]).commit();
+    }
+  }
+};
+
 export const getUserByEmail = async ({
   email,
   password,

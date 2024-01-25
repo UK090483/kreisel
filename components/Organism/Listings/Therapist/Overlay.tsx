@@ -43,10 +43,9 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
           x
         </Link>
 
-        <Typo
-          bold
-          variant="h4"
-        >{`${item?.title} ${item?.firstName} ${item?.name}`}</Typo>
+        <Typo bold variant="h4">{`${item?.title ? item?.title : ""} ${
+          item?.firstName
+        } ${item?.name}`}</Typo>
 
         {item?.image && <SanityImage src={item.image} width={150} />}
 
@@ -80,7 +79,7 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
           {item?.website && (
             <Typo>
               <a
-                className="text-secondary "
+                className="text-secondary"
                 target="_blank"
                 rel="noreferrer"
                 href={item?.website}
