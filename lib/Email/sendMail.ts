@@ -45,11 +45,11 @@ const sendMail = async ({ to, template }: sendMailProps) => {
         },
       });
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
     }
   }
 
-  console.timeEnd(JSON.stringify(d));
   return;
 };
 

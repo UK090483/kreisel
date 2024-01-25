@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import Carousel from "components/Molecules/Carousel/Carousel";
 import Typo from "components/Atoms/Typography/Typography";
 import Image, { ImageSrc, validateSrc } from "components/Atoms/Image";
