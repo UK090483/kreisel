@@ -1,4 +1,4 @@
-name: componentTest
+name: cypress:component
 on: [push, "workflow_dispatch"]
 
 jobs:
@@ -8,14 +8,17 @@ jobs:
       SANITY_PROJECT_DATASET: production
       SANITY_PROJECT_ID: jgnu3d9f
     steps:
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - name: Checkout 🛎
         uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Run Cypress
-        run: npm run cypress:component
+        run: pnpm run cypress:component
 
       - uses: actions/upload-artifact@v3
         if: failure()

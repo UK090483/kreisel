@@ -7,8 +7,6 @@ import { unsealData } from "iron-session";
 import { withIronSessionApiRoute } from "iron-session/next";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default withIronSessionApiRoute(magicLoginRoute, sessionOptions);
-
 async function magicLoginRoute(
   req: NextApiRequest,
   res: NextApiResponse<User>
@@ -35,3 +33,5 @@ async function magicLoginRoute(
 
   res.redirect(`/`);
 }
+
+export default withIronSessionApiRoute(magicLoginRoute, sessionOptions);
