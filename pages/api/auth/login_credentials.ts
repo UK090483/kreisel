@@ -17,7 +17,7 @@ async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
       req.session.user = user;
       await req.session.save();
       res.status(200);
-      res.json(user);
+      return res.json(user);
     }
     res.status(404);
     res.json({});
