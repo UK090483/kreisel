@@ -8,6 +8,9 @@ jobs:
       SANITY_PROJECT_DATASET: production
       SANITY_PROJECT_ID: jgnu3d9f
     steps:
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - name: Checkout 🛎
         uses: actions/checkout@v3
 
