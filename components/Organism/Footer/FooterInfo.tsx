@@ -2,9 +2,9 @@ import Portable from "PageBuilder/RichText/PortableText";
 // import Kreisel from "components/Atoms/Kreisel";
 import Section from "components/Atoms/Section/Section";
 import useSectionWidth from "components/Atoms/Section/useSectionWidth";
+import Kreisel from "components/Atoms/Kreisel";
 import React from "react";
 import clsx from "clsx";
-import Kreisel from "components/Atoms/Kreisel";
 
 interface IFooterInfoItem {
   _key: string;
