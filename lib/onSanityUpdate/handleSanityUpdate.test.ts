@@ -1,4 +1,5 @@
 import { handleSanityUpdate } from "./handleSanityUpdate";
+import templates from "@lib/Email/template";
 
 const before = {};
 const root = { _type: "member", email: { current: "testmail" } };
@@ -17,7 +18,7 @@ describe("handleSanityUpdate", () => {
         after: { ...root, allowMember: true },
       })
     ).toStrictEqual({
-      emails: [{ template: "memberUnlocked", to: "testmail" }],
+      emails: [{ template: templates["memberUnlocked"], to: "testmail" }],
       ok: true,
     });
   });
@@ -28,7 +29,7 @@ describe("handleSanityUpdate", () => {
         after: { ...root, allowMember: false },
       })
     ).toStrictEqual({
-      emails: [{ template: "memberLocked", to: "testmail" }],
+      emails: [{ template: templates["memberLocked"], to: "testmail" }],
       ok: true,
     });
   });

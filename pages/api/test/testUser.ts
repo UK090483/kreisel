@@ -1,9 +1,13 @@
+import testUser from "../../../testUser";
 import { previewClient } from "@services/SanityService/sanity.server";
+import { v4 as uuid } from "uuid";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
   user: any;
 };
+
+const userQuery = `*[_type == "member" && email.current == "${testUser.mail}" ]`;
 
 // eslint-disable-next-line import/no-unused-modules
 export default async function handler(
@@ -13,14 +17,12 @@ export default async function handler(
   let user: any | null = null;
 
   if (req.method === "GET") {
-    user = await previewClient.fetch(
-      `*[_type == "member" && email.current match "test__kreisel__user@*" ]`
-    );
+    user = await previewClient.fetch(userQuery);
   }
 
   if (req.method === "DELETE") {
     user = await previewClient.delete({
-      query: `*[_type == "member" && email.current match "test__kreisel__user@*" ]`,
+      query: userQuery,
     });
   }
 
@@ -32,10 +34,24 @@ export default async function handler(
       ...(allowProfile ? { allowProfile: allowProfile === "true" } : {}),
     };
 
-    if (Object.keys(next).length > 0) {
+    let user = await previewClient.fetch(`${userQuery}[0]{_id}`);
+
+    if (!user) {
+      user = await previewClient.create({
+        _type: "member",
+        _id: `member.${uuid()}`,
+        email: { current: testUser.mail, _type: "slug" },
+        name: testUser.name,
+        firstName: testUser.firstName,
+        oneTimePassword: { current: testUser.oneTimePassword, _type: "slug" },
+        ...next,
+      });
+    }
+
+    if (user && Object.keys(next).length > 0) {
       user = await previewClient
         .patch({
-          query: `*[_type == "member" && email.current match "test__kreisel__user@*" ]`,
+          query: userQuery,
         })
         .set(next)
         .commit();

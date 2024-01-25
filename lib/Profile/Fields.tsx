@@ -79,6 +79,19 @@ type MemberFields = {
   email: string;
 };
 
+async function myAsyncSlugifier() {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < 20) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+}
+
 export const profileFields = [
   {
     name: "practice",
@@ -195,6 +208,27 @@ const adminFields = [
     title: "Approved",
     name: "approved",
     type: "boolean",
+    readOnly: true,
+  },
+  {
+    name: "oneTimePassword",
+    title: "One Time Password",
+    type: "slug",
+    options: {
+      source: "name",
+      slugify: myAsyncSlugifier,
+    },
+  },
+  {
+    title: "Show",
+    name: "show",
+    type: "boolean",
+  },
+  {
+    hidden: true,
+    title: "PW",
+    name: "pw",
+    type: "string",
     readOnly: true,
   },
 ];

@@ -1,15 +1,16 @@
-import authMiddleware, { AuthData } from "@lib/ApiMiddleWare/AuthMiddleware";
+import { AuthData } from "@lib/ApiMiddleWare/AuthMiddleware";
 import { schema } from "lib/Profile/validation";
 import { previewClient } from "@services/SanityService/sanity.server";
-import { use } from "next-api-middleware";
+import { sessionOptions } from "@lib/Auth/IronSession/IronSession";
 import { SanityClient } from "@sanity/client";
+import { withIronSessionApiRoute } from "iron-session/next";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 async function handler(
   req: NextApiRequest & AuthData,
   res: NextApiResponse<any>
 ) {
-  const email = req.authToken?.email;
+  const email = req.session.user?.email;
   const data = await schema.validate(req.body);
 
   if (!email) {
@@ -40,4 +41,4 @@ const updateUser = async (client: SanityClient, email: string, data: any) => {
 };
 
 // eslint-disable-next-line import/no-unused-modules
-export default use(authMiddleware)(handler);
+export default withIronSessionApiRoute(handler, sessionOptions);

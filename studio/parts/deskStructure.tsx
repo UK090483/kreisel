@@ -86,7 +86,7 @@ const structure: StructureResolver = (S, context) =>
         },
       }),
       S.listItem().title("Mitglieder").child(S.documentTypeList("member")),
-      S.listItem().title("Articles").child(S.documentTypeList("article")),
+      // S.listItem().title("Articles").child(S.documentTypeList("article")),
       S.listItem().title("Persons").child(S.documentTypeList("person")),
       S.listItem()
         .title("Testimonials")

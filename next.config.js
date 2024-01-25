@@ -31,8 +31,6 @@ const moduleExports = {
   reactStrictMode: true,
 
   images: {
-    // loaderFile: "imageLoader.ts",
-
     domains: ["cdn.sanity.io"],
   },
   experimental: { scrollRestoration: true },
@@ -44,16 +42,15 @@ const moduleExports = {
   async redirects() {
     return await fetchSanityRedirects();
   },
-  webpack(config, options) {
-    const { dev, isServer } = options;
+  // webpack(config, options) {
+  //   const { dev, isServer } = options;
+  //   // Do not run type checking twice:
+  //   if (dev && isServer) {
+  //     config.plugins.push(new ForkTsCheckerWebpackPlugin());
+  //   }
 
-    // Do not run type checking twice:
-    if (dev && isServer) {
-      config.plugins.push(new ForkTsCheckerWebpackPlugin());
-    }
-
-    return config;
-  },
+  //   return config;
+  // },
 };
 
 module.exports = moduleExports;

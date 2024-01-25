@@ -1,14 +1,14 @@
 import { previewClient } from "@services/SanityService/sanity.server";
+import { getUser } from "@lib/Auth/IronSession/IronSession";
 import { NextResponse, NextRequest } from "next/server";
 import { SanityClient } from "@sanity/client";
 import { getToken } from "next-auth/jwt";
+
 // eslint-disable-next-line import/no-unused-modules
 export const POST = async (req: NextRequest, res: NextResponse) => {
-  const token = await getToken({ req, secret: process.env.AUTH_SECRET });
-  if (!token || typeof token === "string" || !token.email) {
-    return NextResponse.json({ ok: true, status: 401 });
-  }
-  if (!token || !token.email) {
+  const user = await getUser(req, res);
+
+  if (!user || !user.email) {
     return NextResponse.json({ ok: true, status: 401 });
   }
 
@@ -19,7 +19,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   }
   const imageResult = await uploadImageBlob(file, previewClient);
 
-  await updateUser(previewClient, token.email, {
+  await updateUser(previewClient, user.email, {
     image: {
       _type: "reference",
       asset: { _ref: imageResult._id, _type: "reference" },

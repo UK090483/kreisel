@@ -10,9 +10,9 @@ const Avatar: React.FC<AvatarProps> = (props) => {
   const { image, name, className } = props;
 
   return (
-    <div className={`${className}`}>
+    <div className={`${className} relative`}>
       {validateSrc(image) ? (
-        <Image src={image} alt={`${name} Profil`} />
+        <Image src={image} alt={`${name} Profil`} fill={true} />
       ) : (
         <div className="absolute inset-0 flex justify-center items-center bg-primary-light">
           {getInitials(name)}

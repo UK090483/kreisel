@@ -1,3 +1,4 @@
+import testUser from "./testUser";
 import { defineConfig } from "cypress";
 
 import { createClient } from "@sanity/client";
@@ -26,16 +27,14 @@ let sanityClient = createClient({
 // eslint-disable-next-line import/no-unused-modules
 export default defineConfig({
   e2e: {
-    baseUrl: "http://127.0.0.1:3000/",
+    baseUrl: "http://127.0.0.1:3000",
     async setupNodeEvents(on, config) {
       const pages = await sanityClient.fetch<{ slug: string }[]>(
         `*[_type == 'page' && defined(slug) ][]{'slug': select( defined(pageType) => '/' + pageType->slug.current + '/'+ slug.current, '/' + slug.current   )}`
       );
-      const domains = await oneSecMail({ url: "/?action=getDomainList" });
-      const domain = domains[0];
-      const name = "test__kreisel__user";
+      //const domains = await oneSecMail({ url: "/?action=getDomainList" });
 
-      config.env.testMail = { address: `${name}@${domains[0]}`, domain, name };
+      config.env.testUser = testUser;
       config.env.pages = pages;
 
       return config;

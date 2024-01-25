@@ -20,7 +20,7 @@ export const ButtonSection = ({ text, url }: { text: string; url: string }) => {
       <table border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td align="center" style="border-radius: 5px;" bgcolor="${backgroundColor}"><a href="${url}"
-              target="_blank"
+             
               style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${textColor}; text-decoration: none; border-radius: 5px; padding: 10px 20px; border: 1px solid ${backgroundColor}; display: inline-block; font-weight: bold;">${text}</a></td>
         </tr>
       </table>

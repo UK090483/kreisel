@@ -74,5 +74,4 @@ const TherapistList: React.FC<TherapistListProps> = (props) => {
     </>
   );
 };
-
 export default TherapistList;

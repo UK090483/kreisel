@@ -6,16 +6,14 @@ const testMail = "testEmail";
 const testMember = { _type: "member", email: { current: testMail } };
 const fieldsToValues = (fields: any[]) => {
   return fields
-    .filter((i) => !["email"].includes(i.name))
+    .filter((i) => !["email", "image"].includes(i.name))
     .reduce((acc, i) => {
       let value: any = `${i.name}_value`;
 
       if (i.type === "array") {
         value = [`${i.name}_value`];
       }
-      if (i.type === "image") {
-        value = { url: null };
-      }
+
       if (i.type === "boolean") {
         value = true;
       }

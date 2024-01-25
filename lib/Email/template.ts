@@ -10,7 +10,35 @@ export const profileUnlocked = { html: html({}) };
 export const profileLocked = { html: html({}) };
 export const profileChangesAccepted = { html: html({}) };
 
+export type template = { html: string; text: string; subject: string };
 const templates = {
+  magicLink: (link: string) => ({
+    html: html({
+      content: [
+        HeaderSection({ text: "Magic Link" }),
+        ButtonSection({
+          text: "Click to Login",
+          url: link,
+        }),
+      ],
+    }),
+    text: `Magic Link : <a href="${link}/">click here to login</a>.`,
+    subject: "Magic Link",
+  }),
+  verifyMail: (link: string) => ({
+    html: html({
+      content: [
+        HeaderSection({ text: "Email Bestätigung" }),
+        ButtonSection({
+          text: "Email Bestätigen",
+          url: link,
+        }),
+      ],
+    }),
+    text: `Email Bestätigen : <a href="${link}/">Email Bestätigen</a>.`,
+    subject: "Email Bestätigen",
+  }),
+
   memberUnlocked: {
     html: html({
       content: [

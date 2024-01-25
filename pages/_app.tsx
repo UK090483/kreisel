@@ -2,18 +2,13 @@ import "../styles/globals.css";
 
 import { Layout } from "components";
 import { PageProps } from "lib/SanityPageBuilder/types";
-import Cookie from "lib/Cookie/Cookie";
-import Cart from "@services/ShopService/Cart";
-import { ShopContextProvider } from "@services/ShopService/shopContext";
-// import usePreviewSubscription from "lib/SanityPageBuilder/lib/preview/previewSubscription";
-import PreviewIndicator from "lib/SanityPageBuilder/lib/preview/PreviewIndicator";
+
 import { AppContextProvider } from "PageBuilder/AppContext/AppContext";
 import AppConfig from "app.config.json";
 import StoreContextProvider from "@services/StoreService/StoreProvider";
 import { AuthContextProvider } from "@lib/Auth/AuthContext";
 import { variables } from "styles/fonts";
 import { ReactElement, ReactNode, lazy } from "react";
-import { SessionProvider } from "next-auth/react";
 import { NextComponentType, NextPageContext } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { PreviewSuspense } from "@sanity/preview-kit";
@@ -47,42 +42,23 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   if (preview) {
     return (
       <PreviewSuspense fallback="Loading...">
-        <SessionProvider>
-          <PreviewPageBuilderContextProvider
-            query={query}
-            data={pageProps.data}
-            hostName={AppConfig.hostname}
-          >
-            <StoreContextProvider>
-              <ShopContextProvider>
-                {getLayout(pageProps.id)}
-                <Cookie />
-                <Cart />
-                <PreviewIndicator />
-              </ShopContextProvider>
-            </StoreContextProvider>
-          </PreviewPageBuilderContextProvider>
-        </SessionProvider>
+        <PreviewPageBuilderContextProvider
+          query={query}
+          data={pageProps.data}
+          hostName={AppConfig.hostname}
+        >
+          <StoreContextProvider>{getLayout(pageProps.id)}</StoreContextProvider>
+        </PreviewPageBuilderContextProvider>
       </PreviewSuspense>
     );
   }
 
   return (
-    <SessionProvider refetchInterval={3600}>
-      <AuthContextProvider>
-        <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
-          <StoreContextProvider>
-            {/* <SessionProvider refetchInterval={100}> */}
-            {/* <ShopContextProvider> */}
-            {getLayout(pageProps.id)}
-            {/* <Cookie /> */}
-            {/* <Cart />
-            </ShopContextProvider> */}
-            {/* </SessionProvider> */}
-          </StoreContextProvider>
-        </AppContextProvider>
-      </AuthContextProvider>
-    </SessionProvider>
+    <AuthContextProvider>
+      <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
+        <StoreContextProvider>{getLayout(pageProps.id)}</StoreContextProvider>
+      </AppContextProvider>
+    </AuthContextProvider>
   );
 }
 

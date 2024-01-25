@@ -17,3 +17,6 @@ export function withTimeLog<T extends (...args: any[]) => Promise<any>>(
     return result;
   };
 }
+
+export const isServer = typeof window === "undefined";
+export const isBrowser = !isServer;

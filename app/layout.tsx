@@ -4,7 +4,6 @@ import "../styles/globals.css";
 import { variables } from "styles/fonts";
 
 import { AuthContextProvider } from "@lib/Auth/AuthContext";
-import SessionProviderWrap from "@lib/Auth/SessionProvider";
 
 type Props = {
   children: React.ReactNode;
@@ -19,9 +18,7 @@ export default async function RootLayout({ children }: Props) {
           process.env.NODE_ENV === "development" ? "debug-screens" : ""
         } ${variables}  font-sans`}
       >
-        <SessionProviderWrap>
-          <AuthContextProvider>{children}</AuthContextProvider>
-        </SessionProviderWrap>
+        <AuthContextProvider>{children}</AuthContextProvider>
 
         <div id="app-portal" />
       </body>
