@@ -8,7 +8,7 @@ type Data = any;
 const msg = {
   from: "web@konradullrich.com", // Change to your recipient
   to: "konradullrich@me.com", // Change to your verified sender
-  subject: "bam ",
+  subject: "bam",
   text: "bam",
   html: "<strong>bam</strong>",
 };

@@ -4,6 +4,7 @@ import Section from "components/Atoms/Section/Section";
 import useSectionWidth from "components/Atoms/Section/useSectionWidth";
 import React from "react";
 import clsx from "clsx";
+import Kreisel from "components/Atoms/Kreisel";
 
 interface IFooterInfoItem {
   _key: string;
@@ -19,23 +20,25 @@ const FooterInfo = ({ items }: IFooterInfo) => {
 
   return (
     <>
-      <div className={clsx(" h-24 bg-primary-light flex justify-center")}>
+      {/* <div className={clsx(" h-24 bg-primary-light flex justify-center")}>
         <div
           className={clsx(
             className,
-            "w-full border-b-2 border-primary-xLight  "
+            "w-full border-b-2 border-primary-xLight "
           )}
         ></div>
-      </div>
+      </div> */}
 
       <Section
         bgColor="primary-light"
         width="l"
         className="flex flex-wrap py-24"
       >
-        {/* <ItemWrap width="1/2">
-        <Kreisel className="mx-auto  w-1/2 md:mx-0 " />
-      </ItemWrap> */}
+        <ItemWrap width="1/2">
+          <div className=" flex justify-center items-center">
+            <Kreisel className="mx-auto  w-1/4 md:mx-0 " />
+          </div>
+        </ItemWrap>
         {items.map((i) => (
           <ItemWrap key={i._key} width="1/4">
             <FooterInfoItem {...i} />
