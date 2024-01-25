@@ -1,4 +1,4 @@
-name: componentTest
+name: cypress:component
 on: [push, "workflow_dispatch"]
 
 jobs:

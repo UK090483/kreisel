@@ -76,7 +76,9 @@ declare module "iron-session" {
 }
 
 export const baseUrl =
-  process.env.NEXTAUTH_URL || `https://${process.env.VERCEL_URL}`;
+  process.env.NEXTAUTH_URL || process.env.VERCEL_ENV === "production"
+    ? "https://kreisel.vercel.app"
+    : `https://${process.env.VERCEL_URL}`;
 
 export const getUser = async (req: NextRequest, res: NextResponse) => {
   const session = await getIronSession(req, res, sessionOptions);

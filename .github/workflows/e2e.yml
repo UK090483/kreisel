@@ -1,4 +1,4 @@
-name: e2e
+name: cypress:e2e
 on: [deployment_status]
 
 jobs:
