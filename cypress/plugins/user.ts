@@ -6,7 +6,7 @@ const login = () => {
   let { mail, domain, name } = Cypress.env("testUser");
   cy.get("#email").type(mail);
   cy.get("button[type=submit]").click();
-  cy.wait(3000);
+  cy.wait(6000);
   cy.request<{ id: string }[]>({
     url: `https://www.1secmail.com/api/v1/?action=getMessages&login=${name}&domain=${domain}`,
   }).then((res) => {
@@ -41,7 +41,7 @@ export const getLastMail = () => {
 };
 
 export const loginFakeUser = (props?: {
-  sessionName: string;
+  sessionName?: string;
   values?: { allowMember?: boolean; allowProfile?: boolean };
   options?: Cypress.SessionOptions;
 }) => {
@@ -56,6 +56,7 @@ export const loginFakeUser = (props?: {
     });
   }
   if (!props?.sessionName) {
+    cy.setFakerUserValue({ ...values });
     login();
   }
 };

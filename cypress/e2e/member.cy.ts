@@ -6,7 +6,7 @@ describe("create user spec", () => {
   before(() => {
     cy.eraseFakeUser();
   });
-  after(() => {
+  afterEach(() => {
     cy.eraseFakeUser();
   });
 
@@ -19,7 +19,6 @@ describe("create user spec", () => {
 
   it("should handle memberPages ", () => {
     cy.loginAsFakeUser({
-      sessionName: "fakeMember",
       values: { allowMember: true },
     });
     cy.visit("/");

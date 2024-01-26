@@ -8,7 +8,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 export const getHandler = () => {
   return async function handler(req: NextApiRequest, res: NextApiResponse) {
     const member = await previewClient.fetch<{ _id: string }[]>(
-      `*[_type == "member" && show == true ]{${therapistQuery}}`
+      `*[_type == "member" && show == true && !(_id in path("drafts.**")) ]{${therapistQuery}}`
     );
 
     res.status(200).json({

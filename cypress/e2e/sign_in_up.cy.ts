@@ -22,6 +22,7 @@ describe("Sign in/up", () => {
     cy.get("button[type='submit']").click();
     cy.location("pathname").should("eq", "/auth/checkMail");
     cy.wait("@signup").then(() => {
+      cy.wait(6000);
       cy.getLastMail();
       cy.get("a").click();
     });

@@ -19,6 +19,8 @@ export const sessionOptions: IronSessionOptions = {
   },
 };
 
+export const TTL_IN_MINUTES_MAGIC_LINK = 60;
+
 export const eraseOneTimePassword = async ({ email }: { email: string }) => {
   if (email) {
     const { _id } = await previewClient.fetch<{ _id: string }>(
@@ -76,9 +78,10 @@ declare module "iron-session" {
 }
 
 export const baseUrl =
-  process.env.NEXTAUTH_URL || process.env.VERCEL_ENV === "production"
+  process.env.NEXTAUTH_URL ||
+  (process.env.VERCEL_ENV === "production"
     ? "https://kreisel.vercel.app"
-    : `https://${process.env.VERCEL_URL}`;
+    : `https://${process.env.VERCEL_URL}`);
 
 export const getUser = async (req: NextRequest, res: NextResponse) => {
   const session = await getIronSession(req, res, sessionOptions);
@@ -86,9 +89,4 @@ export const getUser = async (req: NextRequest, res: NextResponse) => {
     return session.user as User;
   }
   return;
-};
-
-export const authErrors = {
-  linkExpired:
-    "der Link ist leider abgelaufen, bitte versuchen sie es noch einmal",
 };
