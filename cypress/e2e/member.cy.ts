@@ -2,7 +2,7 @@ const isLoginPage = () => cy.url().should("include", "/auth/login");
 
 let testUser = Cypress.env("testUser");
 
-describe("create user spec", () => {
+describe("member spec", () => {
   before(() => {
     cy.eraseFakeUser();
   });
@@ -17,7 +17,7 @@ describe("create user spec", () => {
     cy.get('[href="/mitgliederbereich"]', {}).should("not.exist");
   });
 
-  it("should handle memberPages ", () => {
+  it("should handle memberPages", () => {
     cy.loginAsFakeUser({
       values: { allowMember: true },
     });

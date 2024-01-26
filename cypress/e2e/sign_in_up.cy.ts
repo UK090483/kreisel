@@ -1,6 +1,6 @@
 let testUserA = Cypress.env("testUser");
 
-describe("Sign in/up", () => {
+describe("Sign in/up spec", () => {
   before(() => {
     cy.eraseFakeUser();
   });

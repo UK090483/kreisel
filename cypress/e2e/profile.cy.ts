@@ -1,4 +1,4 @@
-describe("create user spec", () => {
+describe("profile spec", () => {
   before(() => {
     cy.eraseFakeUser();
   });
