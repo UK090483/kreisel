@@ -19,8 +19,8 @@ const NodeMailerAdapter: SendMailAdapter = async ({
 }) => {
   try {
     const mail = await transporter.sendMail({
-      from,
-      to,
+      from: from.email,
+      to: Array.isArray(to) ? to.map((i) => i.email) : to.email,
       subject,
       text,
       html,
@@ -35,4 +35,5 @@ const NodeMailerAdapter: SendMailAdapter = async ({
   }
 };
 
+// eslint-disable-next-line import/no-unused-modules
 export default NodeMailerAdapter;

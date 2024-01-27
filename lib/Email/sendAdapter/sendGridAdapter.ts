@@ -32,4 +32,5 @@ const SendgridAdapter: SendMailAdapter = async ({
   }
 };
 
+// eslint-disable-next-line import/no-unused-modules
 export default SendgridAdapter;

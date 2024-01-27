@@ -32,9 +32,11 @@ const MailerSendAdapter: SendMailAdapter = async ({
     });
   try {
     const d = await mailerSend.email.send(emailParams);
+    // eslint-disable-next-line no-console
     console.log(d);
     return d.statusCode === 202;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
     return false;
   }

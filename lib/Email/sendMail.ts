@@ -25,7 +25,7 @@ const sendMail = async ({ to, template }: sendMailProps) => {
     html: template.html,
   });
 
-  return;
+  return isSend;
 };
 
 export default sendMail;
