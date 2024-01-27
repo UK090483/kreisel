@@ -45,18 +45,20 @@ export const loginFakeUser = (props?: {
   values?: { allowMember?: boolean; allowProfile?: boolean };
   options?: Cypress.SessionOptions;
 }) => {
-  const { sessionName, values } = props;
   if (props?.sessionName) {
-    cy.setFakerUserValue({ ...values });
-    cy.session(JSON.stringify({ sessionName, values }), () => {
-      login();
-      if (props?.options?.validate) {
-        props.options.validate();
+    cy.setFakerUserValue({ ...props?.values });
+    cy.session(
+      JSON.stringify({ sessionName: props.sessionName, values: props.values }),
+      () => {
+        login();
+        if (props?.options?.validate) {
+          props.options.validate();
+        }
       }
-    });
+    );
   }
   if (!props?.sessionName) {
-    cy.setFakerUserValue({ ...values });
+    cy.setFakerUserValue({ ...props?.values });
     login();
   }
 };

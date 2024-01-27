@@ -8,7 +8,6 @@ import {
 import sendMail, { templates } from "@lib/Email/sendMail";
 import { validation } from "pages/auth/signup";
 import authRoutes from "@lib/Auth/authRoutes";
-import { authErrorCodes } from "pages/auth/error";
 import { NextApiRequest, NextApiResponse } from "next";
 import { sealData, unsealData } from "iron-session";
 import { withIronSessionApiRoute } from "iron-session/next";
@@ -56,9 +55,7 @@ export default withIronSessionApiRoute(async function singUp(
   if (req.method === "GET") {
     const seal = typeof req.query.seal === "string" && req.query.seal;
     if (!seal) {
-      res.redirect(
-        `/${authRoutes.pages.error}&error=${authErrorCodes.linkExpired}`
-      );
+      res.redirect(`/${authRoutes.errors.linkExpired}`);
       return;
     }
     const unsealed = await unsealData<{
@@ -69,24 +66,25 @@ export default withIronSessionApiRoute(async function singUp(
     const { user: _user } = unsealed;
 
     if (!_user) {
-      res.redirect(
-        `/${authRoutes.pages.error}?error=${authErrorCodes.linkExpired}`
-      );
+      res.redirect(`/${authRoutes.errors.linkExpired}`);
+      return;
+    }
+
+    const exists = await getUserByEmail({ email: _user.email });
+
+    if (exists) {
+      req.session.user = exists;
+      await req.session.save();
+      res.redirect(`/`).end();
       return;
     }
 
     const newUser = await createNewUser(_user);
 
-    console.log({ newUser });
-
     if (newUser) {
       const user = await getUserByEmail({ email: _user.email });
-
-      console.log({ user });
       req.session.user = user;
-
       await req.session.save();
-
       res.redirect(`/`).end();
     }
   }

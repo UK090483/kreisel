@@ -58,14 +58,13 @@ const SignUp: NextPageWithLayout<LoginProps> = (props) => {
       const json = await res.json();
       if (json.error) {
         setError(json.error);
+        return;
       }
       if (res.ok) {
         router.push(`/${authRoutes.pages.checkMail}`);
       }
     } catch (e) {
-      console.log(e);
       router.push(`/${authRoutes.pages.checkMail}`);
-      // handle your error
     }
   };
 

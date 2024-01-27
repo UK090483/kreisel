@@ -12,9 +12,7 @@ describe("profile spec", () => {
   });
 
   it("should status if not member", () => {
-    cy.loginAsFakeUser({
-      sessionName: "-member/-profile",
-    });
+    cy.loginAsFakeUser();
     cy.visit("/profile");
     cy.contains(
       "Sie sind noch nicht für den Mitgliederbereich frei geschaltet."
@@ -27,7 +25,6 @@ describe("profile spec", () => {
 
   it("should status if member", () => {
     cy.loginAsFakeUser({
-      sessionName: "profile/member",
       values: { allowProfile: true, allowMember: true },
     });
     cy.visit("/profile");
@@ -37,7 +34,7 @@ describe("profile spec", () => {
 
   it("should handle name and first name", () => {
     cy.intercept("POST", "api/profile").as("profile");
-    cy.loginAsFakeUser({ sessionName: "profile" });
+    cy.loginAsFakeUser();
     cy.visit("/profile");
     cy.get("#firstName").clear().type(testData.firstName.val);
     cy.get("#name").clear().type(testData.name.val);

@@ -10,7 +10,7 @@ export type sendMailProps = {
 
 // const from = `"KREISEL e.V." <${process.env.EMAIL_FROM}>`;
 
-const from = `info@kreiselhh.de`;
+const from = { email: `info@kreiselhh.de`, name: "Kreisel e.V." };
 
 const mailSendImplementation = MailerSendAdapter;
 
@@ -19,7 +19,7 @@ export { templates };
 const sendMail = async ({ to, template }: sendMailProps) => {
   const isSend = await mailSendImplementation({
     from,
-    to,
+    to: Array.isArray(to) ? to.map((i) => ({ email: i })) : { email: to },
     subject: template.subject,
     text: template.text,
     html: template.html,

@@ -13,11 +13,10 @@ const MailerSendAdapter: SendMailAdapter = async ({
   from,
   subject,
 }) => {
-  const sentFrom = new Sender(from);
-  const recipients =
-    typeof to === "string"
-      ? [new Recipient(to)]
-      : to.map((i) => new Recipient(i));
+  const sentFrom = new Sender(from.email, from.name);
+  const recipients = Array.isArray(to)
+    ? to.map((i) => new Recipient(i.email, i.name))
+    : [new Recipient(to.email, to.name)];
 
   const emailParams = new EmailParams()
     .setFrom(sentFrom)

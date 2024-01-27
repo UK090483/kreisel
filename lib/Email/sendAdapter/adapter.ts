@@ -1,8 +1,10 @@
+type unit = { email: string; name?: string };
+
 type sendMailProps = {
-  to: string | string[];
+  to: unit | unit[];
   text: string;
   html: string;
-  from: string;
+  from: unit;
   subject: string;
 };
 

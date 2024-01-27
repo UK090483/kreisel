@@ -1,16 +1,13 @@
+import authRoutes from "@lib/Auth/authRoutes";
 import AuthLayout from "components/Organism/Layout/AuthLayout";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { ReactElement, ReactNode } from "react";
 
-type ErrorType = keyof typeof authErrorCodes;
+type ErrorType = keyof typeof authRoutes.errors;
 
 type NextPageWithLayout<P> = NextPage<P> & {
   getLayout?: (page: ReactElement) => ReactNode;
-};
-
-export const authErrorCodes = {
-  linkExpired: "linkExpired",
 };
 
 const messages: Record<ErrorType, { message: string }> = {
@@ -20,11 +17,8 @@ const messages: Record<ErrorType, { message: string }> = {
   },
 };
 
-const ErrorPage: NextPageWithLayout<{}> = (props) => {
-  const signinPageUrl = `/signin`;
-
+const ErrorPage: NextPageWithLayout<{}> = () => {
   const { query } = useRouter();
-
   const error = (
     query.error && typeof query.error === "string"
       ? query.error.toLowerCase()

@@ -28,13 +28,13 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
 
   const [error, setError] = useState(false);
 
+  const _schema = allowProfile ? schema : memberSchema;
+
   const methods = useForm<any>({
-    mode: "onBlur",
+    mode: "all",
     reValidateMode: "onChange",
     defaultValues: profile,
-    resolver: yupResolver<AnyObjectSchema>(
-      allowProfile ? schema : memberSchema
-    ),
+    resolver: yupResolver<AnyObjectSchema>(_schema),
   });
 
   if (!profile) return null;
@@ -84,7 +84,7 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
   const _onSubmitError: SubmitErrorHandler<
     Partial<profileQueryResult>
   > = async (errors) => {
-    setError(true);
+    // setError(true);
     // eslint-disable-next-line no-console
     console.log(errors);
   };
@@ -124,9 +124,13 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
                   <Input name="phone" label="Tel" type="tel" />
                   <Input name="mobile" label="Mobil" type="tel" />
                 </div>
-                {/* <ImageUploadInput name="image" label="Avatar" /> */}
 
-                <Textarea name="description" label="Beschreibung" rows={4} />
+                <Textarea
+                  name="description"
+                  label="Beschreibung"
+                  rows={4}
+                  max={600}
+                />
                 <DropdownInput
                   name="focus"
                   label="Arbeitsschwerpunkte"
@@ -136,6 +140,7 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
                   name="focusOther"
                   label="Sonstige Arbeitsschwerpunkte"
                   rows={4}
+                  max={300}
                 />
                 <DropdownInput
                   name="degree"
@@ -154,6 +159,7 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
                   name="qualification"
                   label="Grundqualifikation"
                   rows={4}
+                  max={300}
                 />
 
                 <SwitchInput
