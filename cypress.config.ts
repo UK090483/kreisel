@@ -3,26 +3,26 @@ import { defineConfig } from "cypress";
 
 import { createClient } from "@sanity/client";
 
-//@ts-ignore
-import { getIt } from "get-it";
-//@ts-ignore
-import { base, jsonResponse, promise } from "get-it/middleware";
+// //@ts-ignore
+// import { getIt } from "get-it";
+// //@ts-ignore
+// import { base, jsonResponse, promise } from "get-it/middleware";
 
 import { addMatchImageSnapshotPlugin } from "cypress-image-snapshot/plugin";
 
-const oneSecMail = getIt([
-  base("https://www.1secmail.com/api/v1/"),
-  jsonResponse(),
-]);
+// const oneSecMail = getIt([
+//   base("https://www.1secmail.com/api/v1/"),
+//   jsonResponse(),
+// ]);
 
-const devMail = getIt([
-  base("https://www.developermail.com/api/v1/"),
-  jsonResponse(),
-]);
+// const devMail = getIt([
+//   base("https://www.developermail.com/api/v1/"),
+//   jsonResponse(),
+// ]);
 
-oneSecMail.use(promise({ onlyBody: true }));
+// oneSecMail.use(promise({ onlyBody: true }));
 
-devMail.use(promise({ onlyBody: true }));
+// devMail.use(promise({ onlyBody: true }));
 
 let sanityClient = createClient({
   projectId: "jgnu3d9f",
@@ -34,18 +34,18 @@ let sanityClient = createClient({
 // eslint-disable-next-line import/no-unused-modules
 export default defineConfig({
   e2e: {
-    // baseUrl: "http://127.0.0.1:3000",
     baseUrl: "http://localhost:3000/",
     async setupNodeEvents(on, config) {
       const pages = await sanityClient.fetch<{ slug: string }[]>(
         `*[_type == 'page' && defined(slug) ][]{'slug': select( defined(pageType) => '/' + pageType->slug.current + '/'+ slug.current, '/' + slug.current   )}`
       );
-      //const domains = await oneSecMail({ url: "/?action=getDomainList" });
-
-      const inBox = await oneSecMail({ method: "put", url: "/mailbox" });
 
       config.env.testUser = testUser;
       config.env.pages = pages;
+
+      const response = await fetch(`${config.baseUrl}/api/ping`);
+      const ping = await response.json();
+      config.baseUrl = ping.baseUrl;
 
       return config;
     },

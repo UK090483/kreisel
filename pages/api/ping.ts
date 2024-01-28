@@ -9,9 +9,7 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   return res.status(200).json({
-    v: process.env.NEXTAUTH_URL,
-    bas: baseUrl,
-    c: process.env.VERCEL_ENV,
+    baseUrl: baseUrl,
   });
 
   // res.json({
