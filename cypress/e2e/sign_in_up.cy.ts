@@ -51,7 +51,7 @@ describe("Sign in/up spec", () => {
     cy.contains("button", "Sign out").click();
   });
 
-  it.only("signin one Time Password", () => {
+  it("signin one Time Password", () => {
     createUser({ mailName: testuser.name });
     cy.visit("/auth/login_credentials");
     cy.intercept("login_credentials*").as("login_credentials");
