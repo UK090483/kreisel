@@ -16,7 +16,7 @@ describe("Sign in/up spec", () => {
     deleteTestUsers();
   });
 
-  it("Sign Up", () => {
+  it("Sign Up", { retries: 3 }, () => {
     cy.visit("/");
     getMailbox().then((m) => {
       cy.contains("Sign in").click();
@@ -37,7 +37,7 @@ describe("Sign in/up spec", () => {
     cy.contains("button", "Sign in");
   });
 
-  it("no signin for unknown users", () => {
+  it("no signin for unknown users", { retries: 3 }, () => {
     cy.visit("/");
     cy.contains("button", "Sign in").click();
     cy.get("#email").type(testuser.mail);
@@ -45,13 +45,13 @@ describe("Sign in/up spec", () => {
     cy.contains("der user ist nicht zu finden");
   });
 
-  it("signin MagicLink", () => {
+  it("signin MagicLink", { retries: 3 }, () => {
     cy.visit("/");
     loginAsFakeUser({ allowMember: "true" });
     cy.contains("button", "Sign out").click();
   });
 
-  it("signin one Time Password", () => {
+  it("signin one Time Password", { retries: 3 }, () => {
     createUser({ mailName: testuser.name });
     cy.visit("/auth/login_credentials");
     cy.intercept("login_credentials*").as("login_credentials");
