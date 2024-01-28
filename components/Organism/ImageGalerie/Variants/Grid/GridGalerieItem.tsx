@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { ImageGalleryItemProps } from "../../ImageGalerie";
 import Typo from "components/Atoms/Typography/Typography";
 import { ConditionalLink } from "components/Atoms/Link";

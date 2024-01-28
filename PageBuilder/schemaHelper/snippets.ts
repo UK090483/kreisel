@@ -26,14 +26,14 @@ export function colorList(skip?: any) {
 
   return list.filter((listItem) => !skip.includes(listItem.value));
 }
-export type ColorList =
-  | "primary"
-  | "primary-light"
-  | "primary-xLight"
-  | "secondary"
-  | "secondary-light"
-  | "grey"
-  | "grey-light";
+// export type ColorList =
+//   | "primary"
+//   | "primary-light"
+//   | "primary-xLight"
+//   | "secondary"
+//   | "secondary-light"
+//   | "grey"
+//   | "grey-light";
 
 export function sizesList(skip?: any) {
   const list = [

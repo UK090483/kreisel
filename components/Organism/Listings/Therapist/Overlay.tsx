@@ -4,10 +4,9 @@ import Typo from "components/Atoms/Typography/Typography";
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import { focusOptions, degreeOptions } from "lib/Profile/Fields";
 import Link from "next/link";
-import FocusTrap from "focus-trap-react";
 import { useRouter } from "next/router";
 import * as React from "react";
-import { useLockBodyScroll } from "react-use";
+import * as Dialog from "@radix-ui/react-dialog";
 
 interface IOverlayProps {
   items: TherapistResult[];
@@ -19,7 +18,7 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
 
   const { query } = useRouter();
 
-  useLockBodyScroll();
+  // useLockBodyScroll();
 
   const baseUrl =
     query.slug && Array.isArray(query.slug)
@@ -31,68 +30,77 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
   }, [therapist, items]);
 
   return (
-    <FocusTrap>
-      <div className="relative mx-3 w-full  max-w-5xl animate-slideDown rounded-lg bg-white p-5 md:w-2/3  md:p-10 ">
-        <Link
-          passHref
-          href={{ pathname: baseUrl, query: {} }}
-          scroll={false}
-          shallow={true}
-          className=" absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary md:h-10 md:w-10 "
-        >
-          x
-        </Link>
+    <Dialog.Root open={true}>
+      {/* <FocusTrap> */}
+      {/* <div className="relative mx-3 w-full  max-w-5xl animate-slideDown rounded-lg bg-white p-5 md:w-2/3  md:p-10 "> */}
+      <Dialog.Portal>
+        <Dialog.Overlay className="bg-white opacity-25 z-50   data-[state=open]:animate-overlayShow fixed inset-0" />
+        <Dialog.Content className=" overflow-scroll z-50  data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[95vh] w-[90vw] max-w-[950px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+          <div className="relative ">
+            <Link
+              passHref
+              href={{ pathname: baseUrl, query: {} }}
+              scroll={false}
+              shallow={true}
+              className=" absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary md:h-10 md:w-10 "
+            >
+              x
+            </Link>
 
-        <Typo bold variant="h4">{`${item?.title ? item?.title : ""} ${
-          item?.firstName
-        } ${item?.name}`}</Typo>
+            <Typo bold variant="h4">{`${item?.title ? item?.title : ""} ${
+              item?.firstName
+            } ${item?.name}`}</Typo>
 
-        {item?.image && <SanityImage src={item.image} width={150} />}
+            {item?.image && <SanityImage src={item.image} width={150} />}
 
-        <div className="pt-12"></div>
+            <div className="pt-12"></div>
 
-        <InfoItem
-          title="Arbeitsschwerpunkte"
-          data={item?.focus
-            ?.map((i) =>
-              i ? focusOptions.find((o) => o.value === i)?.title : ""
-            )
-            .join("\n")}
-        />
-        <InfoItem
-          title="Abschlüsse"
-          data={item?.degree
-            ?.map((i) =>
-              i ? degreeOptions.find((o) => o.value === i)?.title : ""
-            )
-            .join("\n")}
-        />
-        <InfoItem title="Beschreibung" data={item?.description} />
-        <InfoItem title="Email">
-          {item?.email && (
-            <Typo>
-              <a href={`mailto:${item?.email}`}>{item?.email}</a>
-            </Typo>
-          )}
-        </InfoItem>
-        <InfoItem title="Website">
-          {item?.website && (
-            <Typo>
-              <a
-                className="text-secondary"
-                target="_blank"
-                rel="noreferrer"
-                href={item?.website}
-              >
-                {item?.website}
-              </a>
-            </Typo>
-          )}
-        </InfoItem>
+            <InfoItem
+              title="Arbeitsschwerpunkte"
+              data={item?.focus
+                ?.map((i) =>
+                  i ? focusOptions.find((o) => o.value === i)?.title : ""
+                )
+                .join("\n")}
+            />
+            <InfoItem
+              title="Abschlüsse"
+              data={item?.degree
+                ?.map((i) =>
+                  i ? degreeOptions.find((o) => o.value === i)?.title : ""
+                )
+                .join("\n")}
+            />
+            <InfoItem title="Beschreibung" data={item?.description} />
+            <InfoItem title="Email">
+              {item?.email && (
+                <Typo>
+                  <a href={`mailto:${item?.email}`}>{item?.email}</a>
+                </Typo>
+              )}
+            </InfoItem>
+            <InfoItem title="Website">
+              {item?.website && (
+                <Typo>
+                  <a
+                    className="text-secondary"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={item?.website}
+                  >
+                    {item?.website}
+                  </a>
+                </Typo>
+              )}
+            </InfoItem>
 
-        <InfoItem title="Praxis" data={item?.practice} />
-      </div>
-    </FocusTrap>
+            <InfoItem title="Praxis" data={item?.practice} />
+          </div>
+        </Dialog.Content>
+      </Dialog.Portal>
+      {/* </div> */}
+      {/* </FocusTrap> */}
+    </Dialog.Root>
   );
 };
 

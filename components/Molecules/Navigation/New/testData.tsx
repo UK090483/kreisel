@@ -1,5 +1,6 @@
 import { NavItem } from "../types";
 
+// eslint-disable-next-line import/no-unused-modules
 export const linkItem = (overwrite?: Partial<NavItem>) =>
   ({
     _key: Math.random(),
@@ -8,6 +9,7 @@ export const linkItem = (overwrite?: Partial<NavItem>) =>
     ...overwrite,
   } as NavItem);
 
+// eslint-disable-next-line import/no-unused-modules
 export const listItem = (overwrite?: NavItem) =>
   ({
     label: "List Test Item",
@@ -42,4 +44,5 @@ export const MultiListItem = (overwrite?: NavItem) =>
     ...overwrite,
   } as NavItem);
 
+// eslint-disable-next-line import/no-unused-modules
 export const testData = [];

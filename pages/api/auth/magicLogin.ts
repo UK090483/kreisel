@@ -2,6 +2,7 @@ import {
   User,
   sessionOptions,
   getUserByEmail,
+  TTL_IN_MINUTES_MAGIC_LINK,
 } from "@lib/Auth/IronSession/IronSession";
 import { unsealData } from "iron-session";
 import { withIronSessionApiRoute } from "iron-session/next";
@@ -17,12 +18,23 @@ async function magicLoginRoute(
     throw new Error("seal value not defined");
   }
 
-  const { email } = await unsealData<{ email?: string }>(seal, {
+  const { email, created_at } = await unsealData<{
+    email?: string;
+    created_at: number;
+  }>(seal, {
     password: sessionOptions.password,
   });
 
+  const now = new Date().getTime();
+  const diff = (now - created_at) / 60000;
+  if (diff > TTL_IN_MINUTES_MAGIC_LINK) {
+    res.redirect(`/auth/error?error=verification`);
+    return;
+  }
+
   if (!email) {
-    throw new Error("could not find unsealed user");
+    res.redirect(`/auth/error?error=verification`);
+    return;
   }
 
   const user = await getUserByEmail({ email });

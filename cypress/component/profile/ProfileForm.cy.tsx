@@ -33,7 +33,7 @@ const testData = {
   phone: "+45 53856002",
   street: "testStreet",
   website: "https://github.com/",
-  zipCode: "testZipCode",
+  zipCode: "1700",
   education: "testEducation",
   additionalDegree: "testAdditionalDegree",
   degree: [degreeOptions[0].value],

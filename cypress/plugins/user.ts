@@ -6,7 +6,7 @@ const login = () => {
   let { mail, domain, name } = Cypress.env("testUser");
   cy.get("#email").type(mail);
   cy.get("button[type=submit]").click();
-  cy.wait(3000);
+  cy.wait(6000);
   cy.request<{ id: string }[]>({
     url: `https://www.1secmail.com/api/v1/?action=getMessages&login=${name}&domain=${domain}`,
   }).then((res) => {
@@ -41,27 +41,34 @@ export const getLastMail = () => {
 };
 
 export const loginFakeUser = (props?: {
-  sessionName: string;
+  sessionName?: string;
   values?: { allowMember?: boolean; allowProfile?: boolean };
   options?: Cypress.SessionOptions;
 }) => {
-  const { sessionName, values } = props;
   if (props?.sessionName) {
-    cy.setFakerUserValue({ ...values });
-    cy.session(JSON.stringify({ sessionName, values }), () => {
-      login();
-      if (props?.options?.validate) {
-        props.options.validate();
+    cy.setFakerUserValue({ ...props?.values });
+    cy.session(
+      JSON.stringify({ sessionName: props.sessionName, values: props.values }),
+      () => {
+        login();
+        if (props?.options?.validate) {
+          props.options.validate();
+        }
       }
-    });
+    );
   }
   if (!props?.sessionName) {
+    cy.setFakerUserValue({ ...props?.values });
     login();
   }
 };
 
 export const deleteFakerUser = () => {
-  return cy.request({ url: "/api/test/testUser", method: "DELETE" });
+  return cy.request({
+    url: "/api/test/testUser",
+    method: "DELETE",
+    failOnStatusCode: false,
+  });
 };
 
 export const setFakerUserValue = (props: { [k: string]: any }) => {
@@ -74,3 +81,38 @@ export const setFakerUserValue = (props: { [k: string]: any }) => {
     method: "POST",
   });
 };
+
+function retries<T extends () => Cypress.Chainable = () => Cypress.Chainable>(
+  options: {
+    cb: T;
+    check: (c: ReturnType<T>) => boolean;
+    log?: string;
+    maxTime?: number;
+  },
+  timer?: { count?: number; startTime?: number }
+) {
+  const { cb, check, log, maxTime = 10 } = options;
+  const startTime = timer?.startTime ? timer.startTime : Date.now();
+
+  if (!timer?.count && log) cy.log(log);
+
+  return new Promise((resolve, reject) => {
+    expect((Date.now() - startTime) / 1000, "time").to.be.lte(
+      maxTime,
+      "maxtime"
+    );
+    cb().then((res) => {
+      if (check(res)) {
+        cy.log("time :", (Date.now() - startTime) / 1000);
+        resolve(res);
+      } else {
+        setTimeout(() => {
+          retries(options, {
+            count: timer?.count ? timer.count + 1 : 1,
+            startTime,
+          });
+        }, 1000);
+      }
+    });
+  });
+}

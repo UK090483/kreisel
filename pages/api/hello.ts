@@ -1,31 +1,18 @@
-import sgMail from "@sendgrid/mail";
+import { baseUrl } from "@lib/Auth/IronSession/IronSession";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
-
 type Data = any;
-
-const msg = {
-  from: "web@konradullrich.com", // Change to your recipient
-  to: "konradullrich@me.com", // Change to your verified sender
-  subject: "bam",
-  text: "bam",
-  html: "<strong>bam</strong>",
-};
 
 // eslint-disable-next-line import/no-unused-modules
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  try {
-    const d = await sgMail.send(msg);
-    console.log(d);
-  } catch (error) {
-    console.error(error);
-  }
-
-  return res.status(200).json({});
+  return res.status(200).json({
+    v: process.env.NEXTAUTH_URL,
+    bas: baseUrl,
+    c: process.env.VERCEL_ENV,
+  });
 
   // res.json({
   //   host: process.env.EMAIL_SERVER_HOST,

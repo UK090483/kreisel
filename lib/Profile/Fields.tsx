@@ -174,7 +174,6 @@ export const profileFields = [
     title: "Grundqualifikation",
     type: "text",
   },
-
   {
     name: "image",
     title: "Image",

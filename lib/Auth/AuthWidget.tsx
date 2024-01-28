@@ -40,7 +40,7 @@ const ProfileButton = () => {
       <Button
         size="s"
         href="/profile"
-        className=" flex items-center justify-center gap-2 "
+        className="flex items-center justify-center gap-2 "
       >
         <Svg
           icon="profile"

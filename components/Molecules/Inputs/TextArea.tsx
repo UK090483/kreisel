@@ -3,15 +3,19 @@ import { formClasses } from "./style";
 import clsx from "clsx";
 import { useFormContext } from "react-hook-form";
 
-type TextareaProps = {} & JSX.IntrinsicElements["textarea"] &
+type TextareaProps = { max?: number } & JSX.IntrinsicElements["textarea"] &
   Omit<React.ComponentProps<typeof FormControl>, "children">;
 
 const Textarea: React.FC<TextareaProps> = (props) => {
-  const { name, label, description, className } = props;
+  const { name, label, description, className, max } = props;
   const {
     register,
     formState: { errors, isSubmitting },
+    watch,
   } = useFormContext();
+
+  const value = watch(name);
+  const count = value ? value.length : false;
 
   const error = errors[name];
   const errorMessage = error?.message as string | undefined;
@@ -38,6 +42,7 @@ const Textarea: React.FC<TextareaProps> = (props) => {
         )}
         id={name}
       />
+      {max && count && <div className=" text-sm ">{count + "/" + max}</div>}
     </FormControl>
   );
 };

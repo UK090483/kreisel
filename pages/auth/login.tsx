@@ -80,7 +80,7 @@ const SignIn: NextPageWithLayout<LoginProps> = (props) => {
       </form>
 
       <Link
-        data-testId="toSignUp"
+        data-testid="toSignUp"
         className=" text-sm underline mt-8"
         href={`/${authRoutes.pages.signup}`}
       >

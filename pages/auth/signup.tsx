@@ -3,7 +3,7 @@ import Input from "components/Molecules/Inputs/Input";
 import AuthLayout from "components/Organism/Layout/AuthLayout";
 import authRoutes from "@lib/Auth/authRoutes";
 import React, { ReactElement, ReactNode, useState } from "react";
-import { signIn } from "next-auth/react";
+
 import { NextPage } from "next";
 import { Session } from "next-auth";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
@@ -58,14 +58,13 @@ const SignUp: NextPageWithLayout<LoginProps> = (props) => {
       const json = await res.json();
       if (json.error) {
         setError(json.error);
+        return;
       }
       if (res.ok) {
         router.push(`/${authRoutes.pages.checkMail}`);
       }
     } catch (e) {
-      console.log(e);
       router.push(`/${authRoutes.pages.checkMail}`);
-      // handle your error
     }
   };
 
@@ -88,13 +87,7 @@ const SignUp: NextPageWithLayout<LoginProps> = (props) => {
           Back to HomePage
         </Button>
       </form>
-
       <div>{error && error}</div>
-      <button
-        onClick={() => {
-          signIn("email", { email: "konradullrich@me.com" });
-        }}
-      ></button>
     </FormProvider>
   );
 };

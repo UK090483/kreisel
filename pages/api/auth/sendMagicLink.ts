@@ -9,7 +9,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { sealData } from "iron-session";
 
 // eslint-disable-next-line import/no-unused-modules
-export default async function sendEmailRoute(
+export default async function sendMagicLinkRoute(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -20,10 +20,10 @@ export default async function sendEmailRoute(
   }
 
   const user = await getUserByEmail({ email });
-
   const seal = await sealData(
     {
       email,
+      created_at: Date.now(),
     },
     {
       password: sessionOptions.password,

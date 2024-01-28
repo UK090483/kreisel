@@ -1,35 +1,32 @@
+import authRoutes from "@lib/Auth/authRoutes";
 import AuthLayout from "components/Organism/Layout/AuthLayout";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { ReactElement, ReactNode } from "react";
 
-type ErrorType = "default" | "configuration" | "accessdenied" | "verification";
+type ErrorType = keyof typeof authRoutes.errors;
 
 type NextPageWithLayout<P> = NextPage<P> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
 const messages: Record<ErrorType, { message: string }> = {
-  accessdenied: { message: "You do not have permission to sign in." },
-  configuration: {
-    message: "There is a problem with the server configuration.",
+  linkExpired: {
+    message:
+      "der Link ist leider abgelaufen, bitte versuchen sie es noch einmal",
   },
-  verification: { message: "The sign in link is no longer valid." },
-  default: { message: "Es ist ein unbekannter Fehler aufgetreten" },
 };
 
-const ErrorPage: NextPageWithLayout<{}> = (props) => {
-  const signinPageUrl = `/signin`;
-
+const ErrorPage: NextPageWithLayout<{}> = () => {
   const { query } = useRouter();
-
   const error = (
     query.error && typeof query.error === "string"
       ? query.error.toLowerCase()
       : "default"
   ) as ErrorType;
 
-  const { message } = messages[error] ?? messages.default;
+  const { message } =
+    messages[error] ?? "Es ist ein unbekannter Fehler aufgetreten";
 
   return (
     <div className="error">

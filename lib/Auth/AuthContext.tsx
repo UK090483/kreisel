@@ -40,7 +40,10 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
     data: user,
     mutate,
     isLoading,
-  } = useSWR<User>("/api/auth/user", fetcher);
+  } = useSWR<User>("/api/auth/user", fetcher, {
+    revalidateOnReconnect: false,
+    revalidateOnFocus: false,
+  });
 
   const isDraftMode = false;
   const { push } = useRouter();

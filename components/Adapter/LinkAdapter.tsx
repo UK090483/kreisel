@@ -8,6 +8,7 @@ const LinkAdapter: React.FC<PropsWithChildren<LinkProps>> = ({
   onClick,
   href,
   external,
+  ...rest
 }) => {
   if (external) {
     return (
@@ -24,6 +25,7 @@ const LinkAdapter: React.FC<PropsWithChildren<LinkProps>> = ({
       href={href || "/"}
       passHref
       className={className}
+      {...rest}
     >
       {children}
     </NextLink>
