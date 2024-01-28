@@ -64,7 +64,11 @@ export const loginFakeUser = (props?: {
 };
 
 export const deleteFakerUser = () => {
-  return cy.request({ url: "/api/test/testUser", method: "DELETE" });
+  return cy.request({
+    url: "/api/test/testUser",
+    method: "DELETE",
+    failOnStatusCode: false,
+  });
 };
 
 export const setFakerUserValue = (props: { [k: string]: any }) => {
@@ -77,3 +81,38 @@ export const setFakerUserValue = (props: { [k: string]: any }) => {
     method: "POST",
   });
 };
+
+function retries<T extends () => Cypress.Chainable = () => Cypress.Chainable>(
+  options: {
+    cb: T;
+    check: (c: ReturnType<T>) => boolean;
+    log?: string;
+    maxTime?: number;
+  },
+  timer?: { count?: number; startTime?: number }
+) {
+  const { cb, check, log, maxTime = 10 } = options;
+  const startTime = timer?.startTime ? timer.startTime : Date.now();
+
+  if (!timer?.count && log) cy.log(log);
+
+  return new Promise((resolve, reject) => {
+    expect((Date.now() - startTime) / 1000, "time").to.be.lte(
+      maxTime,
+      "maxtime"
+    );
+    cb().then((res) => {
+      if (check(res)) {
+        cy.log("time :", (Date.now() - startTime) / 1000);
+        resolve(res);
+      } else {
+        setTimeout(() => {
+          retries(options, {
+            count: timer?.count ? timer.count + 1 : 1,
+            startTime,
+          });
+        }, 1000);
+      }
+    });
+  });
+}

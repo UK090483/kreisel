@@ -15,7 +15,14 @@ const oneSecMail = getIt([
   jsonResponse(),
 ]);
 
+const devMail = getIt([
+  base("https://www.developermail.com/api/v1/"),
+  jsonResponse(),
+]);
+
 oneSecMail.use(promise({ onlyBody: true }));
+
+devMail.use(promise({ onlyBody: true }));
 
 let sanityClient = createClient({
   projectId: "jgnu3d9f",
@@ -33,6 +40,8 @@ export default defineConfig({
         `*[_type == 'page' && defined(slug) ][]{'slug': select( defined(pageType) => '/' + pageType->slug.current + '/'+ slug.current, '/' + slug.current   )}`
       );
       //const domains = await oneSecMail({ url: "/?action=getDomainList" });
+
+      const inBox = await oneSecMail({ method: "put", url: "/mailbox" });
 
       config.env.testUser = testUser;
       config.env.pages = pages;

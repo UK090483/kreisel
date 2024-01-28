@@ -1,13 +1,13 @@
-const isLoginPage = () => cy.url().should("include", "/auth/login");
+import { loginAsFakeUser, deleteTestUsers } from "./helper/user";
 
-let testUser = Cypress.env("testUser");
+const isLoginPage = () => cy.url().should("include", "/auth/login");
 
 describe("member spec", () => {
   before(() => {
-    cy.eraseFakeUser();
+    deleteTestUsers();
   });
   afterEach(() => {
-    cy.eraseFakeUser();
+    deleteTestUsers();
   });
 
   it("should redirect to login memberPages ", () => {
@@ -16,11 +16,8 @@ describe("member spec", () => {
     cy.visit("/");
     cy.get('[href="/mitgliederbereich"]', {}).should("not.exist");
   });
-
   it("should handle memberPages", () => {
-    cy.loginAsFakeUser({
-      values: { allowMember: true },
-    });
+    loginAsFakeUser({ allowMember: "true" });
     cy.visit("/");
     cy.get('[href="/mitgliederbereich"]', {}).should("be.visible").click();
     cy.url().should("include", "/mitgliederbereich");

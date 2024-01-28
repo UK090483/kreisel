@@ -73,6 +73,9 @@ dependencies:
   cypress-real-events:
     specifier: ^1.7.6
     version: 1.7.6(cypress@12.10.0)
+  emailjs-mime-parser:
+    specifier: ^2.0.7
+    version: 2.0.7
   focus-trap-react:
     specifier: ^10.1.1
     version: 10.1.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
@@ -6346,6 +6349,30 @@ packages:
   /electron-to-chromium@1.4.394:
     resolution: {integrity: sha512-0IbC2cfr8w5LxTz+nmn2cJTGafsK9iauV2r5A5scfzyovqLrxuLoxOHE5OBobP3oVIggJT+0JfKnw9sm87c8Hw==}
 
+  /emailjs-addressparser@2.0.3:
+    resolution: {integrity: sha512-GjahNdp1fRsWBGxmwC4o7XEoEf7QsdsVrbZFoeulEKNp49NrIUZcZfGMKCPDv5kExiuJLulq/7tJY+ei6BRitA==}
+    dev: false
+
+  /emailjs-base64@1.1.4:
+    resolution: {integrity: sha512-4h0xp1jgVTnIQBHxSJWXWanNnmuc5o+k4aHEpcLXSToN8asjB5qbXAexs7+PEsUKcEyBteNYsSvXUndYT2CGGA==}
+    dev: false
+
+  /emailjs-mime-codec@2.0.9:
+    resolution: {integrity: sha512-7qJo4pFGcKlWh/kCeNjmcgj34YoJWY0ekZXEHYtluWg4MVBnXqGM4CRMtZQkfYwitOhUgaKN5EQktJddi/YIDQ==}
+    dependencies:
+      emailjs-base64: 1.1.4
+      ramda: 0.26.1
+      text-encoding: 0.7.0
+    dev: false
+
+  /emailjs-mime-parser@2.0.7:
+    resolution: {integrity: sha512-rOrRtAzq0OVLrxbTkRLyrtoY/YQldPgIzAk6lcD3LfXR0Gw3+PzsN2rO1QENY+cIQD94vYr2t2Ri0Zxlc9aeew==}
+    dependencies:
+      emailjs-addressparser: 2.0.3
+      emailjs-mime-codec: 2.0.9
+      ramda: 0.26.1
+    dev: false
+
   /emittery@0.13.1:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
     engines: {node: '>=12'}
@@ -10706,6 +10733,10 @@ packages:
       performance-now: 2.1.0
     dev: false
 
+  /ramda@0.26.1:
+    resolution: {integrity: sha512-hLWjpy7EnsDBb0p+Z3B7rPi3GDeRG5ZtiI33kJhTt+ORCd38AbAIjB/9zRIUoeTbE/AVX5ZkU7m6bznsvrf8eQ==}
+    dev: false
+
   /randombytes@2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
     dependencies:
@@ -12149,6 +12180,11 @@ packages:
       glob: 7.2.3
       minimatch: 3.1.2
     dev: true
+
+  /text-encoding@0.7.0:
+    resolution: {integrity: sha512-oJQ3f1hrOnbRLOcwKz0Liq2IcrvDeZRHXhd9RgLrsT+DjWY/nty1Hi7v3dtkaEYbPYe0mUoOfzRrMwfXXwgPUA==}
+    deprecated: no longer maintained
+    dev: false
 
   /text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
