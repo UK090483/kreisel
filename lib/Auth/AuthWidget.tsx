@@ -1,7 +1,7 @@
 "use client";
 import { useAuth } from "lib/Auth/AuthContext";
 import Button from "components/Atoms/Button/Button";
-import Svg from "components/Atoms/Svg";
+// import Svg from "components/Atoms/Svg";
 import clsx from "clsx";
 
 type UserWidgetProps = {
@@ -9,10 +9,17 @@ type UserWidgetProps = {
 };
 
 const AuthWidget: React.FC<UserWidgetProps> = ({ className }) => {
-  const { member } = useAuth();
+  const { member, email, isAuthenticated } = useAuth();
 
   return (
     <div className={clsx(className, "flex items-center text-sm ")}>
+      {isAuthenticated && (
+        <>
+          <div>{email}</div>
+          <Spacer />
+        </>
+      )}
+
       <ProfileButton />
       {member && (
         <>
@@ -40,15 +47,15 @@ const ProfileButton = () => {
       <Button
         size="s"
         href="/profile"
-        className="flex items-center justify-center gap-2 "
+        className="flex items-center justify-center gap-2"
       >
-        <Svg
+        {/* <Svg
           icon="profile"
           size="s"
           className="h-2.5 w-2.5"
           pathProps={{ strokeWidth: 0.5 }}
-        />
-        <span>{email}</span>
+        /> */}
+        <span>zum Profil</span>
       </Button>
       <Spacer />
     </>

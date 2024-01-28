@@ -88,12 +88,21 @@ const templates = {
     text: "Profile Changes Accepted",
     subject: "Profile Changes Accepted",
   },
-  profileChangesNeedsReview: {
+  profileChangesNeedsReview: ({ name }: { name: string }) => ({
     html: html({
-      content: [HeaderSection({ text: "Profile Changes Need Review" })],
+      content: [HeaderSection({ text: `${name} hat sein Profil bearbeitet` })],
     }),
-    text: "Profile Changes Accepted",
-    subject: "Profile Changes Accepted",
+    text: `${name} hat sein Profil bearbeitet`,
+    subject: `${name} hat sein Profil bearbeitet`,
+  }),
+  memberCreated: ({ name }: { name: string }) => {
+    return {
+      html: html({
+        content: [HeaderSection({ text: `${name} ist neues Member` })],
+      }),
+      text: `${name} ist neues Member`,
+      subject: `${name} ist neues Member`,
+    };
   },
 };
 

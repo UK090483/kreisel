@@ -7,8 +7,16 @@ const run = (data: any) => {
 describe("UpdateEventManager", () => {
   it("should call fail with incorrect data", () => {
     expect(run({})).toBeNull();
-    expect(run({ before: { bla: "bla" } })).toBeNull();
-    expect(run({ before: { after: { bla: "bla" } } })).toBeNull();
+    expect(run({ before: { bla: "bla" } })).toEqual({
+      before: { bla: "bla" },
+      delta: null,
+      after: null,
+    });
+    expect(run({ after: { bla: "bla" } })).toEqual({
+      after: { bla: "bla" },
+      delta: null,
+      before: null,
+    });
   });
   it("should run event handler", () => {
     const before = {

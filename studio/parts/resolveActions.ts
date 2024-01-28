@@ -46,7 +46,7 @@ export const resolveActions = (
         schemaType: "member",
       },
       actions: ["delete", "discardChanges", "publish", "unpublish", "restore"],
-      // customActions: [ApproveAction],
+      customActions: [ApproveAction],
     },
   ]);
 };

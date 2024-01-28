@@ -13,7 +13,7 @@ const Subheader = () => {
 
   return (
     <div
-      className={clsx(`hidden py-1 sm:flex justify-center bg-opacity-75 `, {
+      className={clsx(`hidden py-1 lg:flex justify-center bg-opacity-75 `, {
         "bg-lime-400": isAuthenticated,
         "bg-primary-light": !isAuthenticated,
       })}

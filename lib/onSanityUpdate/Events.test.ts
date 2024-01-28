@@ -1,17 +1,23 @@
 import { UpdateEventProducer } from "./EventManager";
 import {
+  memberCreated,
+  memberErased,
   memberLocked,
   memberUnlocked,
   profileLocked,
   profileUnlocked,
 } from "./Events";
 
-type dataOverwrite = { before?: {}; after?: {}; delta?: {} };
+type dataOverwrite = {
+  before?: {} | null;
+  after?: {} | null;
+  delta?: {} | null;
+};
 const getData = (data?: dataOverwrite) => {
   return {
-    before: { _type: "member", ...data?.before },
-    after: { ...data?.after },
-    delta: { ...data?.delta },
+    before: data?.before === null ? null : { _type: "member", ...data?.before },
+    after: data?.after === null ? null : { ...data?.after },
+    delta: data?.delta === null ? null : { ...data?.delta },
   };
 };
 
@@ -35,6 +41,9 @@ describe("memberLocked", () => {
       delta: { allowMember: { before: false, after: true } },
     }).toBe(false);
     run(memberLocked, {
+      delta: null,
+    }).toBe(false);
+    run(memberLocked, {
       delta: { allowMember: { after: false } },
     }).toBe(false);
     run(memberLocked, {}).toBe(false);
@@ -46,6 +55,7 @@ describe("memberUnlocked", () => {
     run(memberUnlocked, {
       delta: { allowMember: { before: false, after: true } },
     }).toBe(true);
+
     run(memberUnlocked, {
       delta: { allowMember: { after: true } },
     }).toBe(true);
@@ -54,6 +64,12 @@ describe("memberUnlocked", () => {
   it("should not fire", () => {
     run(memberUnlocked, {
       delta: { allowMember: { before: true, after: false } },
+    }).toBe(false);
+    run(memberUnlocked, {
+      delta: null,
+    }).toBe(false);
+    run(memberUnlocked, {
+      delta: null,
     }).toBe(false);
     run(memberUnlocked, {}).toBe(false);
   });
@@ -68,6 +84,9 @@ describe("ProfileLocked", () => {
   it("should not fire", () => {
     run(profileLocked, {
       delta: { allowProfile: { before: false, after: true } },
+    }).toBe(false);
+    run(profileLocked, {
+      delta: null,
     }).toBe(false);
     run(profileLocked, {}).toBe(false);
   });
@@ -86,6 +105,41 @@ describe("ProfileUnlocked", () => {
     run(profileUnlocked, {
       delta: { allowProfile: { before: true, after: false } },
     }).toBe(false);
+    run(profileUnlocked, {
+      delta: null,
+    }).toBe(false);
     run(profileUnlocked, {}).toBe(false);
+  });
+});
+
+describe("MemberCreated", () => {
+  it("should fire", () => {
+    run(memberCreated, {
+      delta: null,
+      before: null,
+    }).toBe(true);
+  });
+  it("should not fire", () => {
+    run(memberCreated, {
+      delta: null,
+      before: {},
+    }).toBe(false);
+    run(memberCreated, {}).toBe(false);
+  });
+});
+
+describe("MemberErased", () => {
+  it("should fire", () => {
+    run(memberErased, {
+      delta: null,
+      after: null,
+    }).toBe(true);
+  });
+  it("should not fire", () => {
+    run(memberErased, {
+      delta: null,
+      before: null,
+    }).toBe(false);
+    run(memberErased, {}).toBe(false);
   });
 });

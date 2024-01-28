@@ -8,8 +8,12 @@ import {
   profileUnlocked,
   profileChanged,
   profileApproved,
+  memberCreated,
+  memberErased,
 } from "@lib/onSanityUpdate/Events";
 import type { NextApiRequest, NextApiResponse } from "next";
+import sendMail, { templates } from "@lib/Email/sendMail";
+import testUser from "testUser";
 
 // eslint-disable-next-line import/no-unused-modules
 export default async function handler(
@@ -24,15 +28,52 @@ export default async function handler(
       profileUnlocked,
       profileChanged,
       profileApproved,
+      memberCreated,
+      memberErased,
     ],
-    (e, data) => {
-      console.log(e);
+    async (e, data) => {
+      if (e.includes("memberCreated")) {
+        const name = data?.after?.name || "";
+        const firstName = data?.after?.firstName;
+
+        if (firstName === testUser.firstName) {
+          await sendMail({
+            to: "konradullrich@me.com",
+            template: templates.memberCreated({
+              name: `${firstName} ${name}`,
+            }),
+          });
+          return;
+        }
+        await sendMail({
+          to: "web@konradullrich.com",
+          template: templates.memberCreated({ name: `${firstName} ${name}` }),
+        });
+      }
+      if (e.includes("profileChanged")) {
+        const name = data?.after?.name || "";
+        const firstName = data?.after?.firstName;
+        if (firstName === testUser.firstName) {
+          await sendMail({
+            to: "konradullrich@me.com",
+            template: templates.profileChangesNeedsReview({
+              name: `${firstName} ${name}`,
+            }),
+          });
+          return;
+        }
+        await sendMail({
+          to: "web@konradullrich.com",
+          template: templates.profileChangesNeedsReview({
+            name: `${firstName} ${name}`,
+          }),
+        });
+      }
     },
     () => {
-      console.log("error");
+      console.error("error");
     }
   );
-
-  manager.run(parser(req.body));
-  res.status(200).json({ name: "John Doe" });
+  await manager.run(parser(req.body));
+  res.status(200).json({});
 }

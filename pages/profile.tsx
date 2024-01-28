@@ -14,6 +14,7 @@ import { GetServerSideProps } from "next";
 import { withIronSessionSsr } from "iron-session/next";
 import React, { ReactElement, ReactNode } from "react";
 import clsx from "clsx";
+import { BackButton } from "components/Organism/Layout/BackButton";
 
 type ProfileProps = {
   session: Session | null;
@@ -26,6 +27,7 @@ const ProfilePage: React.FC<ProfileProps> & {
 
   return (
     <div className="w-full items-center justify-center">
+      <BackButton />
       <div className="mb-24 bg-primary-light py-24 px-5">
         <div className=" mx-auto max-w-3xl">
           <h1 className="font-header text-2xl">Dein Kreisel Profil</h1>

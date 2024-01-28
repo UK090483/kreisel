@@ -4,6 +4,9 @@ describe("member spec", () => {
   before(() => {
     deleteTestUsers();
   });
+  afterEach(() => {
+    deleteTestUsers();
+  });
   it("should redirect to login memberPages ", () => {
     cy.visit("/");
     loginAsFakeUser({ allowMember: "true" });

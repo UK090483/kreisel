@@ -5,9 +5,9 @@ export type PayloadDelta<T extends any> = {
 };
 
 type ParsedPayload<T extends any> = {
-  before: Readonly<T>;
-  after: Readonly<T>;
-  delta: Readonly<PayloadDelta<T>>;
+  before: Readonly<T> | null;
+  after: Readonly<T> | null;
+  delta: Readonly<PayloadDelta<T>> | null;
 };
 
 export function makeEvent<const T extends UpdateEventProducer>(arg: T): T {
@@ -27,7 +27,7 @@ class UpdateEventManager<
     private onEvent: (
       types: P[number]["type"][],
       payload: ParsedPayload<T>
-    ) => void,
+    ) => Promise<void>,
     private onFail?: () => void
   ) {}
 
@@ -41,7 +41,7 @@ class UpdateEventManager<
    * }
    */
 
-  run(input: ParsedPayload<T> | null) {
+  async run(input: ParsedPayload<T> | null) {
     const validatedInput = this.validate(input);
     if (!validatedInput) return this.handleFail();
     this.events.forEach((e) => {
@@ -50,7 +50,7 @@ class UpdateEventManager<
       }
     });
     if (this._events.length > 0) {
-      this.onEvent([...this._events], validatedInput);
+      await this.onEvent([...this._events], validatedInput);
       this._events = [];
     }
   }
@@ -69,12 +69,7 @@ class UpdateEventManager<
   }
 
   private validate: (input: any) => ParsedPayload<T> | null = (input) => {
-    if (
-      !isObject(input?.before) ||
-      !isObject(input?.after) ||
-      !isObject(input?.delta)
-    )
-      return null;
+    if (!isObject(input?.before) && !isObject(input?.after)) return null;
     return input;
   };
 }

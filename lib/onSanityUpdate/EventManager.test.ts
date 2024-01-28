@@ -43,22 +43,6 @@ describe("UpdateEventManager", () => {
     expect(eventHandler).not.toHaveBeenCalledTimes(1);
     expect(failHandler).toHaveBeenCalledTimes(1);
   });
-  it("should call failHandler with incorrect data", () => {
-    const { eventHandler, failHandler, callback } = run({
-      before: { bla: "bla" },
-    });
-    expect(callback).not.toHaveBeenCalledTimes(1);
-    expect(eventHandler).not.toHaveBeenCalledTimes(1);
-    expect(failHandler).toHaveBeenCalledTimes(1);
-  });
-  it("should call failHandler with incorrect data", () => {
-    const { eventHandler, failHandler, callback } = run({
-      after: { bla: "bla" },
-    });
-    expect(callback).not.toHaveBeenCalledTimes(1);
-    expect(eventHandler).not.toHaveBeenCalledTimes(1);
-    expect(failHandler).toHaveBeenCalledTimes(1);
-  });
 
   it("should call event handler", () => {
     const { eventHandler, failHandler } = run(testData);
