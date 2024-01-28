@@ -7,7 +7,7 @@ type Data = {
   user: any;
 };
 
-const userQuery = `*[_type == "member" && _id in path("member.fake.*")]`;
+const userQuery = `*[_type == "member" && firstName=="${testUser.firstName}" ]`;
 
 // eslint-disable-next-line import/no-unused-modules
 export default async function handler(
