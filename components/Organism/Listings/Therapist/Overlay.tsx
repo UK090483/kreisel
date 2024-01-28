@@ -4,10 +4,8 @@ import Typo from "components/Atoms/Typography/Typography";
 import SanityImage from "PageBuilder/Image/frontend/SanityImage";
 import { focusOptions, degreeOptions } from "lib/Profile/Fields";
 import Link from "next/link";
-import FocusTrap from "focus-trap-react";
 import { useRouter } from "next/router";
 import * as React from "react";
-import { useLockBodyScroll } from "react-use";
 import * as Dialog from "@radix-ui/react-dialog";
 
 interface IOverlayProps {
