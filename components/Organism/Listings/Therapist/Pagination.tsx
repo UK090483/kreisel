@@ -95,7 +95,7 @@ const Item: React.FC<{
   return (
     <div
       onClick={onClick}
-      className={`w-8 md:flex rounded-full justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in    ${
+      className={`w-8 flex rounded-full justify-center items-center cursor-pointer leading-5 transition duration-150 ease-in ${
         active ? "bg-primary-light" : ""
       }`}
     >

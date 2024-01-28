@@ -42,7 +42,7 @@ const TherapistListItem: React.FC<ITherapistListItemProps> = (props) => {
           image={image}
         />
 
-        <div className=" w-full px-6 ">
+        <div className=" w-full pl-6 ">
           <div className="flex w-full flex-col md:flex-row md:items-center md:justify-between ">
             <Typo space={false}>{`${firstName} ${name}`}</Typo>
             <Typo space={false}>{`${city || ""} ${zipCode || ""}`}</Typo>
