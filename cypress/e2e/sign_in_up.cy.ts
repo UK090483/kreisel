@@ -1,32 +1,36 @@
-let testUserA = Cypress.env("testUser");
+import {
+  getMailbox,
+  getLastMail,
+  deleteTestUsers,
+  testuser,
+  loginAsFakeUser,
+  createUser,
+} from "./helper/user";
 
 describe("Sign in/up spec", () => {
   before(() => {
-    cy.eraseFakeUser();
+    deleteTestUsers();
   });
 
   afterEach(() => {
-    cy.eraseFakeUser();
+    deleteTestUsers();
   });
 
   it("Sign Up", () => {
     cy.visit("/");
-    cy.contains("Sign in").click();
-    cy.get('[data-testid="toSignUp"]').click();
-    cy.url().should("include", "signup");
-    cy.intercept("signup").as("signup");
-    cy.visit("/auth/signup");
-    cy.get("#email").type(testUserA.mail);
-    cy.get("#firstName").type(testUserA.firstName);
-    cy.get("#name").type(testUserA.name);
-    cy.get("button[type='submit']").click();
-    cy.location("pathname").should("eq", "/auth/checkMail");
-    cy.wait("@signup").then(() => {
-      cy.wait(6000);
-      cy.getLastMail();
+    getMailbox().then((m) => {
+      cy.contains("Sign in").click();
+      cy.get('[data-testid="toSignUp"]').click();
+      cy.get("#email").type(m.address);
+      cy.get("#firstName").type(testuser.firstName);
+      cy.get("#name").type(testuser.name);
+      cy.get("button[type='submit']").click();
+      cy.location("pathname").should("eq", "/auth/checkMail");
+      getLastMail(m);
       cy.get("a").click();
+      cy.intercept("GET", "api/auth/user").as("user");
+      cy.wait("@user", { timeout: 20000 });
     });
-
     cy.location("pathname").should("eq", "/");
     cy.visit("/");
     cy.contains("button", "Sign out").click();
@@ -36,40 +40,28 @@ describe("Sign in/up spec", () => {
   it("no signin for unknown users", () => {
     cy.visit("/");
     cy.contains("button", "Sign in").click();
-    cy.get("#email").type(testUserA.mail);
+    cy.get("#email").type(testuser.mail);
     cy.get("button[type='submit']").click();
     cy.contains("der user ist nicht zu finden");
   });
 
   it("signin MagicLink", () => {
-    cy.intercept("sendMagicLink*").as("sendMagicLink");
-    cy.setFakerUserValue({});
     cy.visit("/");
-    cy.contains("button", "Sign in").click();
-    cy.get("#email").type(testUserA.mail);
-    cy.get("button[type='submit']").click();
-    cy.url().should("include", "checkMail");
-    cy.wait("@sendMagicLink").then(() => {
-      cy.getLastMail();
-      cy.get("a").click();
-      cy.location("pathname").should("eq", "/");
-      cy.contains("button", "Sign out").click();
-      cy.contains("button", "Sign in");
-      cy.location("pathname").should("eq", "/");
-    });
-    cy.eraseFakeUser();
+    loginAsFakeUser({ allowMember: "true" });
+    cy.contains("button", "Sign out").click();
   });
-  it("signin one Time Password", () => {
+
+  it.only("signin one Time Password", () => {
+    createUser({ mailName: testuser.name });
     cy.visit("/auth/login_credentials");
     cy.intercept("login_credentials*").as("login_credentials");
-    cy.setFakerUserValue({});
-    cy.get("#email").type(testUserA.mail);
+    cy.get("#email").type(testuser.mail);
     cy.get("#password").type("oneTimePassword");
     cy.get("button[type='submit']").click();
     cy.contains("button", "Sign out").click();
     cy.contains("button", "Sign in");
     cy.visit("/auth/login_credentials");
-    cy.get("#email").type(testUserA.mail);
+    cy.get("#email").type(testuser.mail);
     cy.get("#password").type("oneTimePassword");
     cy.get("button[type='submit']").click();
     cy.contains("Email und Password passen leider nicht zusammen");

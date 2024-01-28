@@ -1,6 +1,10 @@
+import _testuser from "../../../testUser";
+
 export type mailboxResult = { name: string; token: string; address: string };
 
 import parse from "emailjs-mime-parser";
+
+export const testuser = _testuser;
 
 export const getMailbox = () => {
   return cy
