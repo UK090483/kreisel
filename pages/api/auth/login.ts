@@ -22,4 +22,3 @@ async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
 
 // eslint-disable-next-line import/no-unused-modules
 export default withIronSessionApiRoute(loginRoute, sessionOptions);
-‚

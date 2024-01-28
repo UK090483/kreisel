@@ -23,14 +23,14 @@ type createUserProps = {
 export const createUser = (props: createUserProps) => {
   const searchParams = new URLSearchParams(props);
   return cy.request({
-    url: `/api/test/test?${searchParams.toString()}`,
+    url: `/api/test/userTest?${searchParams.toString()}`,
     method: "POST",
   });
 };
 
 export const deleteTestUsers = () => {
   return cy.request({
-    url: `/api/test/test`,
+    url: `/api/test/userTest`,
     method: "DELETE",
   });
 };
