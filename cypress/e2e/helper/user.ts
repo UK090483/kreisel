@@ -129,12 +129,13 @@ function retries<T extends () => Cypress.Chainable = () => Cypress.Chainable>(
 
 export const loginAsFakeUser = (props: Omit<createUserProps, "mailName">) => {
   cy.visit("/");
-  cy.intercept("GET", "api/auth/user").as("user");
+
   getMailbox().then((m) => {
     createUser({ mailName: m.name, ...props });
     login(m.address);
     getLastMail(m);
     cy.get("a").click();
+    cy.intercept("GET", "api/auth/user").as("user");
     cy.wait("@user", { timeout: 20000 });
   });
 };
