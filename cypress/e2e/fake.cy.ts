@@ -7,11 +7,7 @@ describe("member spec", () => {
   it("should redirect to login memberPages ", () => {
     cy.visit("/");
     loginAsFakeUser({ allowMember: "true" });
-    // getMailbox().then((m) => {
-    //   createUser({ mailName: m.name, allowMember: "true" });
-    //   login(m.address);
-    //   getLastMail(m);
-    //   cy.get("a").click();
-    // });
+
+    cy.contains("button", "Sign out", { timeout: 10000 }).click();
   });
 });
