@@ -36,6 +36,7 @@ let sanityClient = createClient({
 // eslint-disable-next-line import/no-unused-modules
 export default defineConfig({
   e2e: {
+    retries: { openMode: 3, runMode: 3 },
     viewportWidth: 1920,
     viewportHeight: 1080,
     baseUrl: "http://localhost:3000/",
