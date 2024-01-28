@@ -67,9 +67,9 @@ const TherapistList: React.FC<TherapistListProps> = (props) => {
         </ul>
       </Section>
       {therapist && (
-        <div className="fixed inset-0 z-10 flex h-screen  w-full items-start justify-center overflow-scroll bg-black bg-opacity-40 pt-32 pb-4">
-          <Overlay items={items} therapist={therapist.toString()} />
-        </div>
+        // <div className="fixed inset-0 z-10 flex h-screen  w-full items-start justify-center overflow-scroll bg-black bg-opacity-40 pt-32 pb-4">
+        <Overlay items={items} therapist={therapist.toString()} />
+        // </div>
       )}
     </>
   );
