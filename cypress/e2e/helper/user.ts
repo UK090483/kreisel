@@ -32,6 +32,7 @@ export const deleteTestUsers = () => {
   return cy.request({
     url: `/api/test/userTest`,
     method: "DELETE",
+    failOnStatusCode: false,
   });
 };
 
