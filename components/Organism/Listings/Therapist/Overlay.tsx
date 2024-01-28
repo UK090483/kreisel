@@ -34,8 +34,8 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
       {/* <FocusTrap> */}
       {/* <div className="relative mx-3 w-full  max-w-5xl animate-slideDown rounded-lg bg-white p-5 md:w-2/3  md:p-10 "> */}
       <Dialog.Portal>
-        <Dialog.Overlay className="bg-white opacity-25 z-50   data-[state=open]:animate-overlayShow fixed inset-0" />
-        <Dialog.Content className=" overflow-scroll z-50  data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[95vh] w-[90vw] max-w-[950px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+        <Dialog.Overlay className="bg-white opacity-25 z-50 data-[state=open]:animate-overlayShow fixed inset-0" />
+        <Dialog.Content className="overflow-scroll z-50  data-[state=open]:animate-contentShow fixed top-[80px] md:top-[50%] left-[50%] max-h-[calc(85vh-60px)] md:max-h-[85vh] w-[90vw] max-w-[950px] translate-x-[-50%] md:translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
           <div className="relative ">
             <Link
               passHref
