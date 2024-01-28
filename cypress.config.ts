@@ -36,6 +36,8 @@ let sanityClient = createClient({
 // eslint-disable-next-line import/no-unused-modules
 export default defineConfig({
   e2e: {
+    viewportWidth: 1920,
+    viewportHeight: 1080,
     baseUrl: "http://localhost:3000/",
     async setupNodeEvents(on, config) {
       const pages = await sanityClient.fetch<{ slug: string }[]>(
@@ -55,8 +57,8 @@ export default defineConfig({
 
   component: {
     video: false,
-    viewportWidth: 1280,
-    viewportHeight: 800,
+    viewportWidth: 1920,
+    viewportHeight: 600,
     async setupNodeEvents(on, config) {
       addMatchImageSnapshotPlugin(on, config);
 
