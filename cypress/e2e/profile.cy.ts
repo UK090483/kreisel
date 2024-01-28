@@ -27,7 +27,7 @@ describe("profile spec", () => {
 
   it("should status if member", () => {
     loginAsFakeUser({ allowProfile: "true", allowMember: "true" });
-    cy.visit("/");
+
     cy.get("[href='/profile']").click();
     cy.contains("Status: bestätigt");
   });
@@ -35,7 +35,6 @@ describe("profile spec", () => {
   it("should handle name and first name", () => {
     cy.intercept("POST", "api/profile").as("profile");
     loginAsFakeUser({ allowProfile: "true", allowMember: "true" });
-    cy.visit("/");
     cy.get("[href='/profile']").click();
     cy.get("#firstName").clear().type(testData.firstName.val);
     cy.get("#name").clear().type(testData.name.val);

@@ -14,12 +14,12 @@ describe("member spec", () => {
     cy.visit("/mitgliederbereich");
     isLoginPage();
     cy.visit("/");
-    cy.get('[href="/mitgliederbereich"]', {}).should("not.exist");
+    cy.get('[href="/mitgliederbereich"]').should("not.exist");
   });
   it("should handle memberPages", () => {
     loginAsFakeUser({ allowMember: "true" });
-    cy.visit("/");
-    cy.get('[href="/mitgliederbereich"]', {}).should("be.visible").click();
+
+    cy.get('[href="/mitgliederbereich"]').should("be.visible").click();
     cy.url().should("include", "/mitgliederbereich");
   });
 });
