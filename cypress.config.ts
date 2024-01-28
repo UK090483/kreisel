@@ -3,6 +3,8 @@ import { defineConfig } from "cypress";
 
 import { createClient } from "@sanity/client";
 
+// import fetch from "node-fetch";
+
 // //@ts-ignore
 // import { getIt } from "get-it";
 // //@ts-ignore

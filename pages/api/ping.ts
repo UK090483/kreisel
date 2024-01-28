@@ -11,13 +11,4 @@ export default async function handler(
   return res.status(200).json({
     baseUrl: baseUrl,
   });
-
-  // res.json({
-  //   host: process.env.EMAIL_SERVER_HOST,
-  //   port: process.env.EMAIL_SERVER_PORT,
-  //   auth: {
-  //     user: process.env.EMAIL_SERVER_USER,
-  //     //pass: process.env.EMAIL_SERVER_PASSWORD,
-  //   },
-  // });
 }
