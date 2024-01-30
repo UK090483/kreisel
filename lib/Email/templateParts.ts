@@ -33,7 +33,9 @@ export function html(params: { content?: string[] }) {
   const { content } = params;
   // const escapedHost = host ? host.replace(/\./g, "&#8203;.") : "";
   return `
-  <body style="background: ${backgroundColor};">
+  <!DOCTYPE html>
+  <html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+  <body style="background: ${backgroundColor};" >
     <table width="100%" border="0" cellspacing="20" cellpadding="0"
       style="background: ${brandColor}; max-width: 600px; margin: auto; border-radius: 10px;">
      ${content ? content.join(" ") : ""} 
@@ -45,5 +47,6 @@ export function html(params: { content?: string[] }) {
       </tr>
     </table>
   </body>
+  </html>
   `;
 }
