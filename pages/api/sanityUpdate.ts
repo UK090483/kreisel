@@ -32,6 +32,7 @@ export default async function handler(
       memberErased,
     ],
     async (e, data) => {
+      console.log({ e, data });
       if (e.includes("memberCreated")) {
         const name = data?.after?.name || "";
         const firstName = data?.after?.firstName;
