@@ -5,15 +5,23 @@ import {
 } from "@lib/Auth/IronSession/IronSession";
 import { NextApiRequest, NextApiResponse } from "next";
 import { withIronSessionApiRoute } from "iron-session/next";
+import authRoutes from "@lib/Auth/authRoutes";
 
 async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
   const { email, password } = await req.body;
 
+  if (!email || !password) {
+    res.redirect(authRoutes.errors.unexpected);
+    return;
+  }
+
+  const lowerCasedEmail = email.toLowerCase();
+
   try {
-    const user = await getUserByEmail({ email, password });
+    const user = await getUserByEmail({ email: lowerCasedEmail, password });
 
     if (user) {
-      await eraseOneTimePassword({ email });
+      await eraseOneTimePassword({ email: lowerCasedEmail });
       req.session.user = user;
       await req.session.save();
       res.status(200);

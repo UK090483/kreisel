@@ -10,7 +10,9 @@ async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
   try {
     if (typeof email !== "string")
       return res.status(500).json({ message: "email is needed" });
-    const user = await getUserByEmail({ email });
+
+    const lowerCasedEmail = email.toLowerCase();
+    const user = await getUserByEmail({ email: lowerCasedEmail });
 
     req.session.user = user;
     await req.session.save();

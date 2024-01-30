@@ -29,7 +29,7 @@ type Inputs = {
 const validation = object({
   email: string().required().email(),
 });
-const SignIn: NextPageWithLayout<LoginProps> = (props) => {
+const SignIn: NextPageWithLayout<LoginProps> = () => {
   const [error, setError] = useState("");
   const router = useRouter();
   const methods = useForm<Inputs>({

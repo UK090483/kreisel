@@ -4,6 +4,7 @@ import {
   getUserByEmail,
   TTL_IN_MINUTES_MAGIC_LINK,
 } from "@lib/Auth/IronSession/IronSession";
+import authRoutes from "@lib/Auth/authRoutes";
 import { unsealData } from "iron-session";
 import { withIronSessionApiRoute } from "iron-session/next";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -28,12 +29,12 @@ async function magicLoginRoute(
   const now = new Date().getTime();
   const diff = (now - created_at) / 60000;
   if (diff > TTL_IN_MINUTES_MAGIC_LINK) {
-    res.redirect(`/auth/error?error=verification`);
+    res.redirect(authRoutes.errors.linkExpired);
     return;
   }
 
   if (!email) {
-    res.redirect(`/auth/error?error=verification`);
+    res.redirect(authRoutes.errors.unexpected);
     return;
   }
 

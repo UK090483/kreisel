@@ -74,24 +74,21 @@ export default withIronSessionApiRoute(async function singUp(
       return;
     }
 
-    if (!_user) {
+    if (!_user || !_user.email) {
       res.redirect(`/${authRoutes.errors.linkExpired}`);
       return;
     }
-
-    const exists = await getUserByEmail({ email: _user.email });
-
+    const lowerCasedEmail = _user.email.toLowerCase();
+    const exists = await getUserByEmail({ email: lowerCasedEmail });
     if (exists) {
       req.session.user = exists;
       await req.session.save();
       res.redirect(`/`).end();
       return;
     }
-
-    const newUser = await createNewUser(_user);
-
+    const newUser = await createNewUser({ ..._user, email: lowerCasedEmail });
     if (newUser) {
-      const user = await getUserByEmail({ email: _user.email });
+      const user = await getUserByEmail({ email: lowerCasedEmail });
       req.session.user = user;
       await req.session.save();
       res.redirect(`/`).end();

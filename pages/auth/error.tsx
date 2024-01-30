@@ -11,6 +11,9 @@ type NextPageWithLayout<P> = NextPage<P> & {
 };
 
 const messages: Record<ErrorType, { message: string }> = {
+  unexpected: {
+    message: "Sorry, es ist ein unbekannter Fehler aufgetreten",
+  },
   linkExpired: {
     message:
       "der Link ist leider abgelaufen, bitte versuchen sie es noch einmal",
@@ -19,14 +22,16 @@ const messages: Record<ErrorType, { message: string }> = {
 
 const ErrorPage: NextPageWithLayout<{}> = () => {
   const { query } = useRouter();
+
   const error = (
-    query.error && typeof query.error === "string"
-      ? query.error.toLowerCase()
-      : "default"
+    query.error &&
+    typeof query.error === "string" &&
+    messages[query.error as ErrorType]
+      ? query.error
+      : "unexpected"
   ) as ErrorType;
 
-  const { message } =
-    messages[error] ?? "Es ist ein unbekannter Fehler aufgetreten";
+  const { message } = messages[error];
 
   return (
     <div className="error">
@@ -36,7 +41,7 @@ const ErrorPage: NextPageWithLayout<{}> = () => {
 };
 
 ErrorPage.getLayout = function getLayout(page) {
-  return <AuthLayout>{page}</AuthLayout>;
+  return <AuthLayout backHref="/">{page}</AuthLayout>;
 };
 // eslint-disable-next-line import/no-unused-modules
 export default ErrorPage;

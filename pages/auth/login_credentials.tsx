@@ -30,7 +30,7 @@ type Inputs = {
 };
 
 const validation = object({
-  email: string().required().email(),
+  email: string().required().email().lowercase(),
   password: string().min(5).required(),
 });
 const SignIn: NextPageWithLayout<LoginProps> = (props) => {
