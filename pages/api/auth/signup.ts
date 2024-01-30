@@ -4,6 +4,7 @@ import {
   sessionOptions,
   baseUrl,
   createNewUser,
+  TTL_IN_MINUTES_MAGIC_LINK,
 } from "@lib/Auth/IronSession/IronSession";
 import sendMail, { templates } from "@lib/Email/sendMail";
 import { validation } from "pages/auth/signup";
@@ -35,7 +36,7 @@ export default withIronSessionApiRoute(async function singUp(
     }
 
     const seal = await sealData(
-      { user: { email, firstName, name } },
+      { user: { email, firstName, name }, created_at: Date.now() },
       {
         password: sessionOptions.password,
       }
@@ -60,10 +61,18 @@ export default withIronSessionApiRoute(async function singUp(
     }
     const unsealed = await unsealData<{
       user: InferType<typeof validation>;
+      created_at: number;
     }>(seal, {
       password: sessionOptions.password,
     });
-    const { user: _user } = unsealed;
+    const { user: _user, created_at } = unsealed;
+
+    const now = new Date().getTime();
+    const diff = (now - created_at) / 60000;
+    if (!created_at || diff > TTL_IN_MINUTES_MAGIC_LINK) {
+      res.redirect(`/auth/error?error=verification`);
+      return;
+    }
 
     if (!_user) {
       res.redirect(`/${authRoutes.errors.linkExpired}`);

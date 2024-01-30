@@ -105,7 +105,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 SignIn.getLayout = function getLayout(page) {
-  return <AuthLayout>{page}</AuthLayout>;
+  return <AuthLayout backHref="/">{page}</AuthLayout>;
 };
 // eslint-disable-next-line import/no-unused-modules
 export default SignIn;

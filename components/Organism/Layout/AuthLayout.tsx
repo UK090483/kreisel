@@ -2,10 +2,13 @@ import { BackButton } from "./BackButton";
 import Kreisel from "components/Atoms/Kreisel";
 import { PropsWithChildren, FC } from "react";
 
-const AuthLayout: FC<PropsWithChildren> = ({ children }) => {
+const AuthLayout: FC<PropsWithChildren<{ backHref?: string }>> = ({
+  children,
+  backHref,
+}) => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-primary-xLight px-3">
-      <BackButton />
+      <BackButton href={backHref} />
       <div className=" w-full max-w-md rounded-theme border-2 border-primary bg-primary-light px-5 py-10 md:px-20 md:py-20">
         <div className="mx-auto mb-20 w-1/2 sm:w-2/3">
           <Kreisel />

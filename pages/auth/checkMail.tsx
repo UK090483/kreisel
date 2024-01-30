@@ -9,7 +9,7 @@ type NextPageWithLayout<P> = NextPage<P> & {
 
 const VerifyRequest: NextPageWithLayout<{}> = () => {
   return (
-    <AuthLayout>
+    <AuthLayout backHref="/">
       <div className="flex flex-col place-items-center">
         <Typo className="text-center" variant="h1">
           CHECK YOUR EMAIL

@@ -32,8 +32,6 @@ export const validation = object({
   name: string().required("der Nachname ist erforderlich"),
 });
 const SignUp: NextPageWithLayout<LoginProps> = (props) => {
-  const { csrfToken } = props;
-
   const router = useRouter();
 
   const [error, setError] = useState("");
@@ -71,7 +69,6 @@ const SignUp: NextPageWithLayout<LoginProps> = (props) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
         <Input name="email" placeholder="Email" />
         <Input name="firstName" placeholder="Vorname" />
         <Input name="name" placeholder="Nachname" />
