@@ -7,7 +7,7 @@ import Image, { ImageLoader, ImageProps } from "next/image";
 import * as React from "react";
 import type { ImageResult } from "PageBuilder/baseQueries";
 
-interface ISanityImageProps extends Omit<ImageProps, "src" | "alt"> {
+export interface ISanityImageProps extends Omit<ImageProps, "src" | "alt"> {
   src?: ImageResult;
   alt?: string;
 }
@@ -36,11 +36,12 @@ function SanityImage(props: ISanityImageProps) {
 
   return (
     <Image
+      priority
       style={{ ...style }}
-      {...rest}
       className={className}
       placeholder="blur"
       blurDataURL={src?.lqip}
+      {...rest}
       alt={_alt}
       src={_url}
       loader={loader}

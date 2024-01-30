@@ -1,3 +1,4 @@
+import { ISanityImageProps } from "PageBuilder/Image/frontend/SanityImage";
 import ImageAdapter, {
   validateSrc as vS,
   imageSource,
@@ -9,7 +10,8 @@ export type ImageSrc = imageSource;
 type ImageProps<T extends any = any> = {
   fill?: boolean;
   src: ImageSrc;
-} & Omit<JSX.IntrinsicElements["img"], "src">;
+} & Omit<ISanityImageProps, "src"> &
+  Omit<JSX.IntrinsicElements["img"], "src">;
 
 export const validateSrc = (src: ImageSrc) => vS(src);
 

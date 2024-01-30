@@ -74,6 +74,8 @@ const Hero: React.FC<IHeroProps & ISectionProps & IUseSectionWidthProps> = (
         })}
       >
         <Image
+          priority={true}
+          placeholder="empty"
           sizes="(max-width:720px) 1200px, 100vw"
           src={mainImage}
           fill
