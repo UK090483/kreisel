@@ -31,15 +31,12 @@ const MailerSendAdapter: SendMailAdapter = async ({
       track_opens: false,
     });
   try {
-    console.error("Email Error");
     const d = await mailerSend.email.send(emailParams);
     // eslint-disable-next-line no-console
-    console.log(d);
+
     if (d.body.message) {
-      console.warn("Email Warning");
       console.error("Email Error");
-      console.log(d.body.message);
-      console.log(d.body.warnings);
+      console.log(JSON.stringify(d.body, null, 2));
     }
     return d.statusCode === 202;
   } catch (error) {
