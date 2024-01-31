@@ -6,6 +6,7 @@ import { uuid } from "@sanity/uuid";
 import { ComposeIcon } from "@sanity/icons";
 
 const isLocal = window.location.hostname === "localhost";
+//const isLocal = false;
 
 const iframeOptions: IframeOptions = {
   url: (doc) => resolveProductionUrlDocument(doc),
@@ -88,56 +89,82 @@ const structure: StructureResolver = (S, context) =>
         },
       }),
 
-      S.listItem().title("Mitglieder").child(S.documentTypeList("member")),
+      //S.listItem().title("Mitglieder").child(S.documentTypeList("member")),
       // S.listItem().title("Articles").child(S.documentTypeList("article")),
 
-      // S.documentTypeListItem("member")
-      //   .title("Members")
-      //   .child(() => {
-      //     console.log(S.documentTypeList("member").getChild());
+      ...(isLocal
+        ? [
+            S.documentTypeListItem("member")
+              .title("Members")
+              .child(() => {
+                console.log(S.documentTypeList("member").getChild());
 
-      //     return S.documentTypeList("member").menuItems([
+                return S.documentTypeList("member").menuItems([
+                  S.menuItem()
+                    .title("Create")
+                    .icon(ComposeIcon)
+                    .intent({
+                      type: "create",
+                      params: { type: "member", id: `member.${uuid()}` },
+                    }),
+                ]);
+              }),
+          ]
+        : []),
+
+      ...(!isLocal
+        ? [
+            S.documentTypeListItem("member")
+              .title("Members")
+              .child(() => {
+                return S.documentTypeList("member")
+                  .filter(
+                    `_type == "member" && !(email.current match "*developermail.com")`
+                  )
+                  .menuItems([
+                    S.menuItem()
+                      .title("Neues Mitglied Anlegen")
+                      .icon(ComposeIcon)
+                      .intent({
+                        type: "create",
+                        params: { type: "member", id: `member.${uuid()}` },
+                      }),
+                  ]);
+              }),
+          ]
+        : []),
+
+      // S.listItem({
+      //   id: "member",
+      //   title: "Member",
+      //   schemaType: "member",
+      //   child: async () => {
+      //     const members = await context
+      //       .getClient({ apiVersion: "2021-06-07" })
+      //       .fetch<{ _id: string; name: string }[]>(
+      //         '*[_type == "member" && !(_id in path("drafts.**"))] | order(_updatedAt desc) {_id ,name}'
+      //       );
+      //     const items = members.map(({ _id: memberId, name }) =>
+      //       S.documentListItem().schemaType("member").id(memberId).title(name)
+      //     );
+      //     return S.list({
+      //       title: "Member",
+      //       id: "member",
+      //       items: [...items],
+      //     }).menuItems([
       //       S.menuItem()
       //         .title("Create")
       //         .icon(ComposeIcon)
       //         .intent({
       //           type: "create",
-      //           params: { type: "member", id: `member.${uuid()}` },
+      //           params: {
+      //             type: "member",
+      //             id: `member.${uuid()}`,
+      //           },
       //         }),
       //     ]);
-      //   }),
-
-      S.listItem({
-        id: "member",
-        title: "Member",
-        schemaType: "member",
-        child: async () => {
-          const members = await context
-            .getClient({ apiVersion: "2021-06-07" })
-            .fetch<{ _id: string; name: string }[]>(
-              '*[_type == "member" && !(_id in path("drafts.**"))] | order(_updatedAt desc) {_id ,name}'
-            );
-          const items = members.map(({ _id: memberId, name }) =>
-            S.documentListItem().schemaType("member").id(memberId).title(name)
-          );
-          return S.list({
-            title: "Member",
-            id: "member",
-            items: [...items],
-          }).menuItems([
-            S.menuItem()
-              .title("Create")
-              .icon(ComposeIcon)
-              .intent({
-                type: "create",
-                params: {
-                  type: "member",
-                  id: `member.${uuid()}`,
-                },
-              }),
-          ]);
-        },
-      }),
+      //   },
+      // }),
 
       S.listItem().title("Persons").child(S.documentTypeList("person")),
       S.listItem()
