@@ -48,6 +48,15 @@ export const ImageUpload = (props: ImageUploadProps) => {
     const file = e.target.files?.item(0);
 
     if (file) {
+      const fileSize = file.size / 100_00_00;
+      if (fileSize > 1) {
+        alert(
+          `das von Ihnen gewählte Bild ist mit ${fileSize.toPrecision(
+            2
+          )}mb leider grösser als die zugelassen Größe von 1mb! Versuchen sie es mit einem tool wie https://squoosh.app/ zu verkleinern`
+        );
+        return;
+      }
       const url = URL.createObjectURL(file);
       setState("previewing");
       setImage({ url: url, file: file });

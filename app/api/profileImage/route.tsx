@@ -2,7 +2,6 @@ import { previewClient } from "@services/SanityService/sanity.server";
 import { getUser } from "@lib/Auth/IronSession/IronSession";
 import { NextResponse, NextRequest } from "next/server";
 import { SanityClient } from "@sanity/client";
-import { getToken } from "next-auth/jwt";
 
 // eslint-disable-next-line import/no-unused-modules
 export const POST = async (req: NextRequest, res: NextResponse) => {
@@ -15,7 +14,16 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   const formData = await req.formData();
   const file = formData.get("file") as File;
   if (!file) {
-    return NextResponse.json({ error: "No files received." }, { status: 400 });
+    return NextResponse.json({ error: "No files received." }, { status: 500 });
+  }
+
+  const fileSize = file.size / 100_00_00;
+
+  if (fileSize > 1) {
+    return NextResponse.json(
+      { error: "File to Big max 1mb allowed" },
+      { status: 500 }
+    );
   }
   const imageResult = await uploadImageBlob(file, previewClient);
 
@@ -53,16 +61,12 @@ const updateUser = async (client: SanityClient, email: string, data: any) => {
 
 // eslint-disable-next-line import/no-unused-modules
 export const DELETE = async (req: NextRequest, res: NextResponse) => {
-  const token = await getToken({ req, secret: process.env.AUTH_SECRET });
-  if (!token || typeof token === "string" || !token.email) {
+  const user = await getUser(req, res);
+
+  if (!user || !user.email) {
     return NextResponse.json({ ok: true, status: 401 });
   }
-  if (!token || !token.email) {
-    return NextResponse.json({ ok: true, status: 401 });
-  }
-
-  await eraseImage(previewClient, token.email);
-
+  await eraseImage(previewClient, user.email);
   return NextResponse.json({ ok: true, status: 200 });
 };
 
