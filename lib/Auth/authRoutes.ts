@@ -17,7 +17,7 @@ export default {
   },
   pages,
   errors: {
-    linkExpired: `${pages.error}?error=linkExpired`,
-    unexpected: `${pages.error}?error=unexpected`,
+    linkExpired: `/${pages.error}?error=linkExpired`,
+    unexpected: `/${pages.error}?error=unexpected`,
   },
 };

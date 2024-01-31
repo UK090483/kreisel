@@ -11,8 +11,13 @@ const VerifyRequest: NextPageWithLayout<{}> = () => {
   return (
     <AuthLayout backHref="/">
       <div className="flex flex-col place-items-center">
-        <Typo className="text-center" variant="h1">
-          CHECK YOUR EMAIL
+        <Typo className="text-center" variant="h3">
+          ÜBERPRÜFEN SIE IHRE E-MAILS.
+        </Typo>
+        <Typo className="text-center text-[0.8rem]">
+          Bitte beachten Sie, dass der Versand von E-Mails gelegentlich etwas
+          Zeit in Anspruch nehmen kann. Überprüfen Sie auch Ihr Spam-Postfach,
+          falls Sie keine Bestätigung in Ihrem Hauptposteingang finden.
         </Typo>
       </div>
     </AuthLayout>
