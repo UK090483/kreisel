@@ -31,6 +31,7 @@ const MailerSendAdapter: SendMailAdapter = async ({
       track_opens: false,
     });
   try {
+    console.error("Email Error");
     const d = await mailerSend.email.send(emailParams);
     // eslint-disable-next-line no-console
     console.log(d);
