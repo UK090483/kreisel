@@ -38,6 +38,7 @@ export type profileQueryResult = {
   description: string;
   membership: ("kreisel" | "fil" | "bvl" | "legaKids")[];
   image: { url?: string; file?: File };
+  inReview?: boolean;
 };
 
 export const fetchProfileData = async (email: string, client: SanityClient) => {
@@ -46,12 +47,14 @@ export const fetchProfileData = async (email: string, client: SanityClient) => {
     allowMember: boolean;
     allowProfile: boolean;
     profileImage?: string | null;
+    inReview?: boolean;
   } | null>(
     `*[_type == "member" && email.current == '${email}' ][0]{
      'profile':{${profileQuery}},
      'profileImage': image.asset-> url + '?w=300' ,
       allowMember,
       allowProfile,
+      'inReview':_id in path("drafts.**")
     }`
   );
 
@@ -67,6 +70,7 @@ export const fetchProfileData = async (email: string, client: SanityClient) => {
     profile: castFields,
     allowMember: !!fetchResult.allowMember,
     allowProfile: !!fetchResult.allowProfile,
+    inReview: fetchResult.inReview,
   };
 };
 

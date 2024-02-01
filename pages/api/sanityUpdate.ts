@@ -36,8 +36,11 @@ export default async function handler(
       if (e.includes("memberCreated")) {
         const name = data?.after?.name || "";
         const firstName = data?.after?.firstName;
-
-        if (firstName === testUser.firstName) {
+        const email = data?.after?.email?.current;
+        if (
+          firstName === testUser.firstName ||
+          email === "konradullrich@me.com"
+        ) {
           await sendMail({
             to: "konradullrich@me.com",
             template: templates.memberCreated({
@@ -50,11 +53,19 @@ export default async function handler(
           to: "web@konradullrich.com",
           template: templates.memberCreated({ name: `${firstName} ${name}` }),
         });
+        await sendMail({
+          to: "mariekeklein@kreiselhh.de",
+          template: templates.memberCreated({ name: `${firstName} ${name}` }),
+        });
       }
       if (e.includes("profileChanged")) {
         const name = data?.after?.name || "";
         const firstName = data?.after?.firstName;
-        if (firstName === testUser.firstName) {
+        const email = data?.after?.email?.current;
+        if (
+          firstName === testUser.firstName ||
+          email === "konradullrich@me.com"
+        ) {
           await sendMail({
             to: "konradullrich@me.com",
             template: templates.profileChangesNeedsReview({
@@ -64,7 +75,7 @@ export default async function handler(
           return;
         }
         await sendMail({
-          to: "web@konradullrich.com",
+          to: "mariekeklein@kreiselhh.de",
           template: templates.profileChangesNeedsReview({
             name: `${firstName} ${name}`,
           }),

@@ -30,11 +30,14 @@ const updateUser = async (client: SanityClient, email: string, data: any) => {
     return null;
   }
   const original = items.find((i) => !i._id.startsWith("drafts"));
+  const draft = items.find((i) => i._id.startsWith("drafts"));
+
+  const nextData = draft ? draft : original;
 
   if (original) {
     await client
       .transaction()
-      .createOrReplace({ ...original, ...data, _id: "drafts." + original._id })
+      .createOrReplace({ ...nextData, ...data, _id: "drafts." + original._id })
       .patch(client.patch(original._id).set({ approved: false }))
       .commit();
   }

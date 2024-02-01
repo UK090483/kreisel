@@ -23,16 +23,23 @@ type ProfileProps = {
 const ProfilePage: React.FC<ProfileProps> & {
   getLayout: (page: ReactElement) => ReactNode;
 } = (props) => {
-  const { allowProfile, allowMember, profileImage } = props;
+  const { allowProfile, allowMember, profileImage, inReview } = props;
 
   return (
-    <div className="w-full items-center justify-center">
+    <div className="w-full items-center justify-center ">
       <BackButton />
       <div className="mb-24 bg-primary-light py-24 px-5">
         <div className=" mx-auto max-w-3xl">
-          <h1 className="font-header text-2xl">Dein Kreisel Profil</h1>
+          <h1 className="font-header text-2xl mb-2 text-center">
+            Dein Kreisel Profil
+          </h1>
           {allowProfile && <ProfileImage image={profileImage} />}
           <MemberInfo allowed={allowMember} />
+          {inReview && (
+            <div className="mt-8 text-center">
+              Deine Profildaten befinden sich in der Überprüfung.
+            </div>
+          )}
         </div>
       </div>
 
@@ -82,14 +89,14 @@ export default ProfilePage;
 
 const MemberInfo = ({ allowed }: { allowed: boolean }) => {
   return (
-    <div className={clsx(" pt-8 text-sm")}>
+    <div className={clsx(" pt-8 text-sm text-center")}>
       <span
         className={clsx({
           "text-green-600": allowed,
           "text-rose-600": !allowed,
         })}
       >
-        {"Status: "}
+        {"Mitgliedsstatus: "}
         {allowed
           ? systemText.profile.status.allowed
           : systemText.profile.status.disallowed}

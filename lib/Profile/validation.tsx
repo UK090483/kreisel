@@ -8,8 +8,8 @@ const getMax = (field: string, number: number) =>
 
 export const memberSchema = object({
   title: string().max(12, getMax("der Titel", 12)),
-  firstName: string().required().default("").max(30, getMax("der Vorname", 24)),
-  name: string().required().default("").max(30, getMax("der Name", 24)),
+  firstName: string().required().default("").max(50, getMax("der Vorname", 50)),
+  name: string().required().default("").max(50, getMax("der Name", 50)),
 });
 
 const profileFields = object({

@@ -2,7 +2,7 @@ import { ImageUpload } from "components/Molecules/Inputs/ImageUpload";
 
 const ProfileImage = ({ image }: { image?: string | null }) => {
   return (
-    <div>
+    <div className=" flex justify-center">
       <ImageUpload
         name=""
         image={image}

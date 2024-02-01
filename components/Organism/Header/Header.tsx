@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({ items }) => {
         <Subheader />
         <Navigation items={items} />
       </div>
-      <div className="h-[65px] sm:h-[90px]"></div>
+      <div className="h-[62px] lg:h-[90px]"></div>
     </>
   );
 };
