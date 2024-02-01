@@ -25,11 +25,11 @@ describe("profile spec", () => {
 
   const testData = { name: { val: "name" }, firstName: { val: "firstName" } };
 
-  it("should status if member", () => {
+  it("should show status if member", () => {
     loginAsFakeUser({ allowProfile: "true", allowMember: "true" });
 
     cy.get("[href='/profile']").click();
-    cy.contains("Status: bestätigt");
+    cy.contains("Mitgliedsstatus: bestätigt");
   });
 
   it("should handle name and first name", () => {
