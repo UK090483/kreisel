@@ -11,7 +11,7 @@ async function handler(
   res: NextApiResponse<any>
 ) {
   const email = req.session.user?.email;
-  const data = await schema.validate(req.body);
+  const data = await schema.validate(req.body, { stripUnknown: true });
 
   if (!email) {
     return res.status(500).json({ message: "email missing" });

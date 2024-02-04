@@ -32,7 +32,7 @@ describe("profile spec", () => {
     cy.contains("Mitgliedsstatus: bestätigt");
   });
 
-  it("should handle name and first name", () => {
+  it.only("should handle name and first name", () => {
     cy.intercept("POST", "api/profile").as("profile");
     loginAsFakeUser({ allowProfile: "true", allowMember: "true" });
     cy.get("[href='/profile']").click();

@@ -10,6 +10,7 @@ export const memberSchema = object({
   title: string().max(12, getMax("der Titel", 12)),
   firstName: string().required().default("").max(50, getMax("der Vorname", 50)),
   name: string().required().default("").max(50, getMax("der Name", 50)),
+  wantsPublicProfile: boolean(),
 });
 
 const profileFields = object({

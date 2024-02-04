@@ -123,7 +123,6 @@ export const profileFields = [
     title: "Mobil",
     type: "string",
   },
-
   {
     name: "website",
     title: "Website",
@@ -221,6 +220,11 @@ const adminFields = [
   {
     title: "Show",
     name: "show",
+    type: "boolean",
+  },
+  {
+    name: "wantsPublicProfile",
+    title: "Möchte Öfftentliches Profil",
     type: "boolean",
   },
   {

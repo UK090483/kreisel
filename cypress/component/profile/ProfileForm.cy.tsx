@@ -10,9 +10,11 @@ import {
 
 import React, { ComponentProps } from "react";
 
-const allFields = [...memberFields, ...profileFields].filter(
-  (i) => !["email", "image"].includes(i.name)
-);
+const allFields = [
+  ...memberFields,
+  ...profileFields,
+  { name: "wantsPublicProfile" },
+].filter((i) => !["email", "image"].includes(i.name));
 const _profileFields = [...profileFields].filter(
   (i) => !["email", "image"].includes(i.name)
 );
@@ -27,6 +29,7 @@ const testData = {
   firstName: "testFirstName",
   jobDescription: "testJobDescription",
   offersInternship: true,
+  wantsPublicProfile: true,
   mobile: "+45 53856002",
   experience: "testExperience",
   name: "testName",

@@ -43,9 +43,14 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
     handleSubmit,
     reset,
     formState: { dirtyFields, isValid, isSubmitting },
+    watch,
   } = methods;
 
   const hasDirtyFields = Object.keys(dirtyFields).length > 0;
+
+  const wantsPublicProfile = watch("wantsPublicProfile");
+
+  console.log({ wantsPublicProfile });
 
   const canSubmit = hasDirtyFields && isValid;
 
@@ -98,6 +103,11 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
             <div className="grid gap-4 md:grid-cols-2">
               <Input name="firstName" label="Vorname" />
               <Input name="name" label="Name" />
+
+              <SwitchInput
+                name="wantsPublicProfile"
+                label="Ich möchte ein Öffentliches Profil"
+              />
             </div>
 
             {showAnnouncement && (
@@ -106,7 +116,15 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
                 es wichtig dass Sie Ihren vollständigen Namen Angeben
               </div>
             )}
-            {allowProfile && (
+
+            {!allowProfile && wantsPublicProfile && (
+              <div>
+                Es wird geprüft ob Sie für ein öffentliches Profil zugelassen
+                werden können.
+              </div>
+            )}
+
+            {allowProfile && wantsPublicProfile && (
               <>
                 <Input
                   name="practice"

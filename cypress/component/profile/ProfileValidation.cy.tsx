@@ -4,9 +4,11 @@
 import { memberFields, profileFields } from "../../../lib/Profile/Fields";
 import { schema } from "../../../lib/Profile/validation";
 
-const allFieldsWithoutEmail = [...memberFields, ...profileFields].filter(
-  (i) => !["email", "image"].includes(i.name)
-);
+const allFieldsWithoutEmail = [
+  ...memberFields,
+  ...profileFields,
+  { name: "wantsPublicProfile" },
+].filter((i) => !["email", "image"].includes(i.name));
 
 describe("Should have a validation for all fields", () => {
   allFieldsWithoutEmail.forEach((field) => {

@@ -19,6 +19,7 @@ degree,
 membership,
 qualification,
 offersInternship,
+wantsPublicProfile,
 `;
 
 export type profileQueryResult = {
@@ -39,6 +40,7 @@ export type profileQueryResult = {
   membership: ("kreisel" | "fil" | "bvl" | "legaKids")[];
   image: { url?: string; file?: File };
   inReview?: boolean;
+  wantsPublicProfile?: boolean;
 };
 
 export const fetchProfileData = async (email: string, client: SanityClient) => {
