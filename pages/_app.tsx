@@ -34,7 +34,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
     ) : (
       <Layout {...pageProps}>
         <Component key={id} {...pageProps} />
-        <SpeedInsights />;
+        <SpeedInsights />
       </Layout>
     );
   };
