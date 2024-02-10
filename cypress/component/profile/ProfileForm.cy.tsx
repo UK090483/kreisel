@@ -105,7 +105,7 @@ describe("<ProfileForm />", () => {
     it(`Field ${i.title} should handle input`, () => {
       render({
         allowProfile: true,
-        profile: { name: "bla", firstName: "blu" },
+        profile: { name: "bla", firstName: "blu", wantsPublicProfile: true },
       });
       //@ts-ignore
       const testValue = testData[i.name];
@@ -149,7 +149,7 @@ describe("<ProfileForm />", () => {
 
     render({
       allowProfile: true,
-      profile: { name: "bla", firstName: "blu" },
+      profile: { name: "bla", firstName: "blu", wantsPublicProfile: true },
     });
 
     fillField(profileFields[6], testData[profileFields[6].name]);

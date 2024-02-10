@@ -15,6 +15,7 @@ import { PreviewSuspense } from "@sanity/preview-kit";
 const PreviewPageBuilderContextProvider = lazy(
   () => import("../PageBuilder/AppContext/PrevPageBuilderContext")
 );
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const b = variables;
 interface AppPropsWithStaticProps {
@@ -27,6 +28,7 @@ interface AppPropsWithStaticProps {
 function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   const { data, query, preview } = _pageProps;
   const pageProps = { ..._pageProps, data };
+  <SpeedInsights />;
 
   const getLayout = (id: string) => {
     return Component.getLayout ? (
