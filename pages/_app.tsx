@@ -10,7 +10,6 @@ import { AuthContextProvider } from "@lib/Auth/AuthContext";
 import { variables } from "styles/fonts";
 import { ReactElement, ReactNode, lazy } from "react";
 import { NextComponentType, NextPageContext } from "next";
-import { Analytics } from "@vercel/analytics/react";
 import { PreviewSuspense } from "@sanity/preview-kit";
 const PreviewPageBuilderContextProvider = lazy(
   () => import("../PageBuilder/AppContext/PrevPageBuilderContext")
@@ -28,7 +27,6 @@ interface AppPropsWithStaticProps {
 function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   const { data, query, preview } = _pageProps;
   const pageProps = { ..._pageProps, data };
-  <SpeedInsights />;
 
   const getLayout = (id: string) => {
     return Component.getLayout ? (
@@ -36,7 +34,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
     ) : (
       <Layout {...pageProps}>
         <Component key={id} {...pageProps} />
-        <Analytics />
+        <SpeedInsights />;
       </Layout>
     );
   };
