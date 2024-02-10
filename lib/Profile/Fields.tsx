@@ -11,27 +11,48 @@ export const focusOptions = [
   { title: "tiergestützt", value: "tiergestützt" },
 ];
 
-export const degreeOptions = [
+export const degreeOptionsOld = [
   {
-    title: "KREISELzertifikat Dyskalkulie",
+    title: "Bald weg! KREISELzertifikat Dyskalkulie",
     value: "kreiselzertifikat-dyskalkulie",
   },
-  { title: "KREISELzertifikat Dyslexie", value: "kreiselzertifikat-dyslexie" },
-  { title: "KREISELurkunde Dyskalkulie", value: "kreiselurkunde-dyskalkulie" },
-  { title: "KREISELurkunde Dyslexie", value: "kreiselurkunde-dyslexie" },
-  { title: "KREISELgrundlagen", value: "kreisel-grundlagen" },
+  {
+    title: "Bald weg! KREISELzertifikat Dyslexie",
+    value: "kreiselzertifikat-dyslexie",
+  },
+  {
+    title: "Bald weg! KREISELurkunde Dyskalkulie",
+    value: "kreiselurkunde-dyskalkulie",
+  },
+  {
+    title: "Bald weg! KREISELurkunde Dyslexie",
+    value: "kreiselurkunde-dyslexie",
+  },
+  { title: "Bald weg! KREISELgrundlagen", value: "kreisel-grundlagen" },
+  {
+    title: "Bald weg! Integrative*r Lerntherapeut*in FiL Schwerpunkt Dyslexie",
+    value: "integrative-lerntherapeut-dyslexie",
+  },
+  {
+    title:
+      "Bald weg! Integrative*r Lerntherapeut*in FiL Schwerpunkt Dyskalkulie",
+    value: "Bald weg! integrative-lerntherapeut-dyskalkulie",
+  },
+];
+
+export const degreeOptions = [
+  {
+    title: "KREISELzertifikat",
+    value: "kreiselzertifikat",
+  },
+  {
+    title: "Integrative*r Lerntherapeut*in FiL",
+    value: "integrative-lerntherapeut",
+  },
   { title: "Dyslexietherapeut*in® nach BVL", value: "dyslexietherapeut-bvl" },
   {
     title: "Dyskalkulietherapeut*in nach BVL",
     value: "dyskalkulietherapeut-bvl",
-  },
-  {
-    title: "Integrative*r Lerntherapeut*in FiL Schwerpunkt Dyslexie",
-    value: "integrative-lerntherapeut-dyslexie",
-  },
-  {
-    title: "Integrative*r Lerntherapeut*in FiL Schwerpunkt Dyskalkulie",
-    value: "integrative-lerntherapeut-dyskalkulie",
   },
 ];
 
@@ -154,7 +175,7 @@ export const profileFields = [
     type: "array",
     of: [{ type: "string" }],
     options: {
-      list: degreeOptions,
+      list: [...degreeOptionsOld, ...degreeOptions],
     },
     description:
       "Bitte wähle bei den KREISELabschlüssen nur deinen höchsten aus!",

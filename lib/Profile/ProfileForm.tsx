@@ -28,13 +28,13 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
 
   const [error, setError] = useState(false);
 
-  const _schema = allowProfile ? schema : memberSchema;
+  const __schema = allowProfile ? schema : memberSchema;
 
   const methods = useForm<any>({
     mode: "all",
     reValidateMode: "onChange",
     defaultValues: profile,
-    resolver: yupResolver<AnyObjectSchema>(_schema),
+    resolver: yupResolver<AnyObjectSchema>(__schema),
   });
 
   if (!profile) return null;
@@ -49,8 +49,6 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
   const hasDirtyFields = Object.keys(dirtyFields).length > 0;
 
   const wantsPublicProfile = watch("wantsPublicProfile");
-
-  console.log({ wantsPublicProfile });
 
   const canSubmit = hasDirtyFields && isValid;
 

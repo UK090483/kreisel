@@ -8,10 +8,10 @@ import Overlay from "./Overlay";
 import Section from "components/Atoms/Section/Section";
 
 import useRouter from "components/Adapter/useRouterAdapter";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 
-interface TherapistListProps {
+export interface TherapistListProps {
   offersInternship?: boolean;
 }
 
@@ -32,6 +32,10 @@ const TherapistList: React.FC<TherapistListProps> = (props) => {
     query: { therapist, name, plz, city },
   } = useRouter();
 
+  useEffect(() => {
+    setPage(1);
+  }, [plz]);
+
   const filteredItems = items.filter((i) => {
     if (typeof name === "string") {
       return [i.firstName?.toLowerCase(), i.name?.toLowerCase()]
@@ -39,7 +43,7 @@ const TherapistList: React.FC<TherapistListProps> = (props) => {
         .match(name.toLowerCase());
     }
     if (typeof plz === "string") {
-      return i.zipCode?.startsWith(plz);
+      return i.zipCode ? plz.split(",").includes(i.zipCode) : false;
     }
 
     if (typeof city === "string") {
@@ -51,7 +55,7 @@ const TherapistList: React.FC<TherapistListProps> = (props) => {
   return (
     <>
       <Section className="py-20">
-        <Search />
+        {data && data.member && <Search data={data.member} />}
         <Pagination
           itemCount={filteredItems.length}
           page={page}

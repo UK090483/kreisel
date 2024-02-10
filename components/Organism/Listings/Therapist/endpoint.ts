@@ -9,7 +9,7 @@ export const getHandler = () => {
   return async function handler(req: NextApiRequest, res: NextApiResponse) {
     res.setHeader("Cache-Control", "s-maxage=1, stale-while-revalidate");
     const member = await previewClient.fetch<{ _id: string }[]>(
-      `*[_type == "member" && show == true && !(_id in path("drafts.**")) ]{${therapistQuery}}`
+      `*[_type == "member" && show == true && !(_id in path("drafts.**")) ]| order(zipCode asc){${therapistQuery}}`
     );
 
     res.status(200).json({
