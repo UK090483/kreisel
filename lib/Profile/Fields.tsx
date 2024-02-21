@@ -28,7 +28,7 @@ export const degreeOptionsOld = [
     title: "Bald weg! KREISELurkunde Dyslexie",
     value: "kreiselurkunde-dyslexie",
   },
-  { title: "Bald weg! KREISELgrundlagen", value: "kreisel-grundlagen" },
+
   {
     title: "Bald weg! Integrative*r Lerntherapeut*in FiL Schwerpunkt Dyslexie",
     value: "integrative-lerntherapeut-dyslexie",
@@ -41,8 +41,13 @@ export const degreeOptionsOld = [
 ];
 
 export const degreeOptions = [
+  { title: "KREISEL-Grundlagen", value: "kreisel-grundlagen" },
   {
-    title: "KREISELzertifikat",
+    title: "KREISEL-Urkunde",
+    value: "kreiselurkunde",
+  },
+  {
+    title: "KREISEL-Zertifikat",
     value: "kreiselzertifikat",
   },
   {

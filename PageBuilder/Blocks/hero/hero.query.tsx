@@ -1,3 +1,4 @@
+import { headerRichTextQuery } from "PageBuilder/RichText/headerRichText/defaultRichText.query";
 import { imageQuery, ImageResult } from "PageBuilder/baseQueries";
 
 import {
@@ -14,6 +15,7 @@ _type == "hero" => {
   _type,
   _key,
  'image':image{${imageQuery}},
+ ${headerRichTextQuery},
  ${blockBgColorProjection()}
  ${blockTransitionProjection()}
 }
