@@ -16,7 +16,6 @@ const montserrat = Montserrat({
 
 const gt_zirkon = localFont({
   src: "../../../public/fonts/GTZirkon/GT Zirkon Bold.otf",
-
   preload: true,
   variable: "--gt-zirkon",
   display: "swap",
