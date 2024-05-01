@@ -59,7 +59,7 @@ export default async function handler(
     }`
   );
 
-  // filter items that not exists
+  //  filter items that not exists
   const clean = data.filter((i) => i.bookingStatus);
   const filtered = filter ? filterItems(filter, clean) : clean;
 
