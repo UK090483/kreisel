@@ -22,8 +22,10 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
   const plz = React.useMemo(() => {
     let res: string[] = [];
     data.forEach((i) => {
-      if (i.zipCode && !res.includes(i.zipCode)) {
-        res = [...res, i.zipCode];
+      if (!i.zipCode) return;
+      const zipCode = i.zipCode.slice(0, 2);
+      if (!res.includes(zipCode)) {
+        res = [...res, zipCode];
       }
     });
     return res.sort();
@@ -44,7 +46,7 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
   return (
     <div className="grid md:grid-cols-2">
       <Dropdown
-        items={plz.map((i) => ({ title: i, value: i }))}
+        items={plz.map((i) => ({ title: i + "...", value: i }))}
         name="PLZ"
         placeHolder="Postleitzahl"
         value={query.plz ? query.plz : undefined}

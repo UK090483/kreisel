@@ -20,9 +20,9 @@ focusOther,
 degree,
 membership,
 qualification,
-offersInternship
+offersInternship,
+mobile
   
-
 `;
 
 export type TherapistResult = Omit<Profile, "image"> & {
