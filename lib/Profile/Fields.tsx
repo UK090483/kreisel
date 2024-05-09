@@ -11,34 +11,34 @@ export const focusOptions = [
   { title: "tiergestützt", value: "tiergestützt" },
 ];
 
-export const degreeOptionsOld = [
-  {
-    title: "Bald weg! KREISELzertifikat Dyskalkulie",
-    value: "kreiselzertifikat-dyskalkulie",
-  },
-  {
-    title: "Bald weg! KREISELzertifikat Dyslexie",
-    value: "kreiselzertifikat-dyslexie",
-  },
-  {
-    title: "Bald weg! KREISELurkunde Dyskalkulie",
-    value: "kreiselurkunde-dyskalkulie",
-  },
-  {
-    title: "Bald weg! KREISELurkunde Dyslexie",
-    value: "kreiselurkunde-dyslexie",
-  },
+// export const degreeOptionsOld = [
+//   {
+//     title: "Bald weg! KREISELzertifikat Dyskalkulie",
+//     value: "kreiselzertifikat-dyskalkulie",
+//   },
+//   {
+//     title: "Bald weg! KREISELzertifikat Dyslexie",
+//     value: "kreiselzertifikat-dyslexie",
+//   },
+//   {
+//     title: "Bald weg! KREISELurkunde Dyskalkulie",
+//     value: "kreiselurkunde-dyskalkulie",
+//   },
+//   {
+//     title: "Bald weg! KREISELurkunde Dyslexie",
+//     value: "kreiselurkunde-dyslexie",
+//   },
 
-  {
-    title: "Bald weg! Integrative*r Lerntherapeut*in FiL Schwerpunkt Dyslexie",
-    value: "integrative-lerntherapeut-dyslexie",
-  },
-  {
-    title:
-      "Bald weg! Integrative*r Lerntherapeut*in FiL Schwerpunkt Dyskalkulie",
-    value: "Bald weg! integrative-lerntherapeut-dyskalkulie",
-  },
-];
+//   {
+//     title: "Bald weg! Integrative*r Lerntherapeut*in FiL Schwerpunkt Dyslexie",
+//     value: "integrative-lerntherapeut-dyslexie",
+//   },
+//   {
+//     title:
+//       "Bald weg! Integrative*r Lerntherapeut*in FiL Schwerpunkt Dyskalkulie",
+//     value: "integrative-lerntherapeut-dyskalkulie",
+//   },
+// ];
 
 export const degreeOptions = [
   { title: "KREISEL-Grundlagen", value: "kreisel-grundlagen" },
@@ -180,7 +180,7 @@ export const profileFields = [
     type: "array",
     of: [{ type: "string" }],
     options: {
-      list: [...degreeOptionsOld, ...degreeOptions],
+      list: [...degreeOptions],
     },
     description:
       "Bitte wähle bei den KREISELabschlüssen nur deinen höchsten aus!",

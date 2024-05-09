@@ -32,6 +32,8 @@ const EventPlugComponent: React.FC<{
   let url = `/api/scrapeEvents`;
   const [cat, setCat] = useState<string | undefined>();
 
+  console.log({ pricing, legende, showFilter, category, filter });
+
   const _cat = cat || category;
 
   const searchParams = new URLSearchParams();
