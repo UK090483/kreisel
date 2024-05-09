@@ -43,7 +43,7 @@ const TherapistList: React.FC<TherapistListProps> = (props) => {
         .match(name.toLowerCase());
     }
     if (typeof plz === "string") {
-      return i.zipCode ? plz.split(",").includes(i.zipCode) : false;
+      return i.zipCode ? plz.split(",").includes(i.zipCode.slice(0, 2)) : false;
     }
 
     if (typeof city === "string") {

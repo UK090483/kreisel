@@ -31,12 +31,10 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
 
   return (
     <Dialog.Root open={true}>
-      {/* <FocusTrap> */}
-      {/* <div className="relative mx-3 w-full  max-w-5xl animate-slideDown rounded-lg bg-white p-5 md:w-2/3  md:p-10 "> */}
       <Dialog.Portal>
-        <Dialog.Overlay className="bg-white opacity-25 z-50 data-[state=open]:animate-overlayShow fixed inset-0" />
-        <Dialog.Content className="overflow-scroll z-50 data-[state=open]:animate-contentShow fixed top-[40px] md:top-[50%] left-[50%] max-h-[calc(85vh-75px)] md:max-h-[85vh] w-[90vw] max-w-[950px] translate-x-[-50%] md:translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
-          <div className="relative ">
+        <Dialog.Overlay className="bg-white opacity-50 z-50 data-[state=open]:animate-overlayShow fixed inset-0" />
+        <Dialog.Content className="overflow-auto z-50 data-[state=open]:animate-contentShow fixed top-[40px] md:top-[50%] left-[50%] max-h-[calc(85vh-75px)] md:max-h-[85vh] w-[90vw] max-w-[950px] translate-x-[-50%] md:translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+          <div className=" ">
             <Link
               passHref
               href={{ pathname: baseUrl, query: {} }}
@@ -47,9 +45,9 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
               x
             </Link>
 
-            <Typo bold variant="h4">{`${item?.title ? item?.title : ""} ${
-              item?.firstName
-            } ${item?.name}`}</Typo>
+            <Typo bold variant="h4" as="h2">{`${
+              item?.title ? item?.title : ""
+            } ${item?.firstName} ${item?.name}`}</Typo>
 
             {item?.image && <SanityImage src={item.image} width={150} />}
 
@@ -79,6 +77,18 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
                 </Typo>
               )}
             </InfoItem>
+            <InfoItem title="Tel." show={!!item?.mobile || !!item?.phone}>
+              {item?.phone && (
+                <Typo space={!item?.mobile}>
+                  <a href={`tel:${item?.phone}`}>{item?.phone}</a>
+                </Typo>
+              )}
+              {item?.mobile && (
+                <Typo>
+                  <a href={`tel:${item?.mobile}`}>{item?.mobile}</a>
+                </Typo>
+              )}
+            </InfoItem>
             <InfoItem title="Website">
               {item?.website && (
                 <Typo>
@@ -95,17 +105,19 @@ const Overlay: React.FunctionComponent<IOverlayProps> = (props) => {
             </InfoItem>
 
             <InfoItem title="Praxis" data={item?.practice} />
+            <InfoItem title="Adresse">
+              <Typo space={false}>{item?.street}</Typo>
+              <Typo>{item?.zipCode + " " + item?.city}</Typo>
+            </InfoItem>
           </div>
         </Dialog.Content>
       </Dialog.Portal>
-      {/* </div> */}
-      {/* </FocusTrap> */}
     </Dialog.Root>
   );
 };
 
 const Header: React.FC<React.PropsWithChildren> = ({ children }) => (
-  <Typo space={false} variant="h5" bold>
+  <Typo space={false} variant="h5" as="h3" bold>
     {children}
   </Typo>
 );
@@ -114,8 +126,9 @@ const InfoItem: React.FC<{
   data?: undefined | string;
   title?: string;
   children?: React.ReactNode;
-}> = ({ data, title, children }) => {
-  return data || children ? (
+  show?: boolean;
+}> = ({ data, title, children, show = true }) => {
+  return (data || children) && show ? (
     <>
       {title && <Header>{title}</Header>}
       {data && <Typo className=" whitespace-pre-line">{data}</Typo>}

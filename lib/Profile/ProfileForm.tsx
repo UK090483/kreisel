@@ -8,7 +8,7 @@ import { DropdownInput } from "components/Molecules/Inputs/Dropdown";
 import Button from "components/Atoms/Button/Button";
 import { PureKreisel } from "components/Atoms/Kreisel";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useForm,
   SubmitHandler,
@@ -37,26 +37,27 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
     resolver: yupResolver<AnyObjectSchema>(__schema),
   });
 
-  if (!profile) return null;
-
   const {
     handleSubmit,
     reset,
     formState: { dirtyFields, isValid, isSubmitting },
     watch,
+    trigger,
   } = methods;
 
   const hasDirtyFields = Object.keys(dirtyFields).length > 0;
-
   const wantsPublicProfile = watch("wantsPublicProfile");
-
   const canSubmit = hasDirtyFields && isValid;
 
   const showAnnouncement =
-    !profile.name &&
+    !profile?.name &&
     !dirtyFields.name &&
-    !profile.firstName &&
+    !profile?.firstName &&
     !dirtyFields.firstName;
+
+  useEffect(() => {
+    trigger();
+  }, [profile, trigger]);
 
   const _onSubmit: SubmitHandler<Partial<profileQueryResult>> = async (
     data
@@ -91,6 +92,8 @@ const ProfileForm: React.FunctionComponent<IProfileFormProps> = (props) => {
     // eslint-disable-next-line no-console
     console.log(errors);
   };
+
+  if (!profile) return null;
 
   return (
     <>
