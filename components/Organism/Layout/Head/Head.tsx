@@ -21,8 +21,8 @@ const Head: React.FunctionComponent<HeadProps> = () => {
       <NextSeo
         title={title}
         description={data?.description ? data?.description : ""}
-        noindex={true}
-        nofollow={true}
+        noindex={false}
+        nofollow={false}
         canonical={url}
         additionalLinkTags={[{ rel: "icon", href: "/Kreisel.png" }]}
         openGraph={{
