@@ -19,6 +19,12 @@ const Head: React.FunctionComponent<HeadProps> = () => {
   return (
     <>
       <NextSeo
+        additionalMetaTags={[
+          {
+            name: "google-site-verification",
+            content: "D1tbsI3OZlayctYnyE7J_XKvhlU3zHjpy6_Davv_QZE",
+          },
+        ]}
         title={title}
         description={data?.description ? data?.description : ""}
         noindex={false}
