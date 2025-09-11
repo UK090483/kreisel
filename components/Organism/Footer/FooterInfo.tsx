@@ -34,9 +34,9 @@ const FooterInfo = ({ items }: IFooterInfo) => {
         width="l"
         className="flex flex-wrap py-24"
       >
-        <ItemWrap width="1/2">
+        <ItemWrap width="1/4">
           <div className=" flex justify-center items-center">
-            <Kreisel className="mx-auto  w-1/4 md:mx-0 " />
+            <Kreisel className="mx-auto w-1/2 md:mx-0 " />
           </div>
         </ItemWrap>
         {items.map((i) => (
